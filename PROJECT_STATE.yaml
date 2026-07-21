@@ -13,7 +13,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: launch_preparation
-  status: locally_validated_ready_to_publish
+  status: initial_public_site_published_and_runtime_verified
   purpose: public documentation, tutorials, release status, and future download home
 
 source_boundary:
@@ -47,7 +47,7 @@ site:
   deployment:
     provider: GitHub Pages
     workflow: .github/workflows/deploy-pages.yml
-    status: configured_not_yet_published
+    status: configured_and_deployed_2026-07-21
   brand_asset:
     path: assets/stateport-mascot-shell.svg
     sha256: 85459d506c5e15f405a44b6604fecd1cdc64ff4fd6a2d42ddb68199fdfca2cf6
@@ -62,9 +62,25 @@ release_ledger:
 
 delivery:
   local_repository: /home/ff/Documents/Projects/StatePort-Site
-  remote_repository: pending_creation
-  pages_url: pending_creation
+  remote_repository: https://github.com/lennertvhoy/StatePort-Site
+  default_branch: main
+  initial_commit: d4522dbee2a39d1f2c3c64766ac222b92ed17332
+  remote_contains_initial_commit: true
+  pages_url: https://lennertvhoy.github.io/StatePort-Site/
   local_validation: passed_2026-07-21
   visual_review: passed_local_desktop_and_mobile_2026-07-21
-  remote_ci: pending
+  remote_ci:
+    status: passed
+    workflow: Deploy StatePort Site
+    run_id: 29853702366
+    event: workflow_dispatch
+    head_sha: d4522dbee2a39d1f2c3c64766ac222b92ed17332
+  public_runtime:
+    status: verified
+    url: https://lennertvhoy.github.io/StatePort-Site/
+    checks:
+      - HTTP_200
+      - expected_document_title
+      - expected_homepage_content
+      - browser_console_no_errors
   human_acceptance: pending

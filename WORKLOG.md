@@ -16,5 +16,13 @@
 - Completed local browser review at desktop and mobile widths, including the
   responsive menu, homepage, documentation page, and release page. No browser
   console errors were observed.
-- Remote publication, Pages deployment, and human acceptance remain open at
-  this point in the worklog.
+- Created public repository `https://github.com/lennertvhoy/StatePort-Site`
+  and pushed `main` at `d4522dbee2a39d1f2c3c64766ac222b92ed17332`.
+- Configured GitHub Pages for custom-workflow publishing. The initial push run
+  started before Pages configuration and failed at `configure-pages`; after
+  configuration, workflow-dispatch run `29853702366` deployed the same exact
+  commit successfully. This is a configuration-ordering fact, not a content or
+  runtime failure.
+- Verified `https://lennertvhoy.github.io/StatePort-Site/` in a browser: HTTP
+  200, expected title and content, no console errors. Human acceptance remains
+  separately unproven.

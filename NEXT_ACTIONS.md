@@ -4,15 +4,6 @@
 **Execution Mode:** operating
 **Max Items:** 3
 
-## P0 [BL-SITE-002] Publish the initial Pages-ready repository
-
-**Status:** active
-
-Create `lennertvhoy/StatePort-Site`, push the intentional initial commit, enable
-the custom GitHub Pages workflow, and verify the resulting deployment.
-
-**Exit:** the remote URL and Pages URL are recorded; deployment state is known.
-
 ## P1 [BL-SITE-003] Add release-specific content only with public source evidence
 
 **Status:** pending_external
@@ -26,3 +17,7 @@ license decision, versioned artifact, checksums, and verified install path exist
 
 - **BL-SITE-001** — Local static validation passes; desktop and mobile browser
   review completed against a loopback static server with no console errors.
+- **BL-SITE-002** — Created and pushed public repository
+  `lennertvhoy/StatePort-Site` at `d4522dbee2a39d1f2c3c64766ac222b92ed17332`.
+  Enabled GitHub Pages custom-workflow publishing. Workflow run `29853702366`
+  passed for that exact SHA, and the public URL returned HTTP 200 in a browser.
