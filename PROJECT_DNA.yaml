@@ -1,0 +1,64 @@
+metadata:
+  format_version: statespec-project-dna/v1
+  updated_at: 2026-07-21
+
+project:
+  name: StatePort Site
+  category: public documentation and release home
+  product_language:
+    category: Stateware
+    method: State-Centric Engineering
+    specification: StateSpec
+    legacy_compatibility_name: StateDD
+
+audiences:
+  - prospective users who need a clear, non-technical explanation
+  - future self-hosters looking for trustworthy release and download status
+  - builders learning the StateSpec model
+  - contributors once a public source release is available
+
+content_architecture:
+  hero: StatePort, a durable application boundary for AI-assisted work
+  support: Stateware concepts and the four-stage application path
+  detail: documentation and tutorial routes with illustrative, non-installable examples
+  final_cta: clear public-release status instead of a premature download action
+
+visual_direction:
+  visual_thesis: A midnight state atlas: quiet archival depth, bright blue signals, and a single living mascot navigating durable routes.
+  palette:
+    infrastructure_navy: "#0B132B"
+    orchestration_blue: "#2F7DFF"
+    active_port_cyan: "#22D3EE"
+    paper: "#F4F0E8"
+    ink: "#15213D"
+  type:
+    display: editorial serif system stack
+    ui: system sans-serif stack
+    code: system monospace stack
+  composition_rules:
+    - full-bleed visual hero with a constrained copy column
+    - one dominant idea per section
+    - prose and lines before card grids
+    - no unsupported product UI or fake telemetry
+
+interaction_direction:
+  interaction_thesis:
+    - staggered hero entrance establishes hierarchy without delaying reading
+    - pointer-responsive atlas depth gives the brand mark a sense of navigation
+    - restrained scroll reveals mark new chapters while preserving reduced-motion access
+  constraints:
+    - all primary content remains available without JavaScript
+    - no autoplay media or behavioural tracking
+
+truth_boundaries:
+  stateport_source: private until an independently published release
+  downloads: absent until a versioned public release exists
+  docs: early public preview, not versioned release documentation
+  examples: illustrative unless explicitly labelled installable and released
+
+brand_asset:
+  accepted_shell_mascot:
+    source_path: StatePort/apps/web/assets/brand/stateport-mascot-shell.svg
+    sha256: 85459d506c5e15f405a44b6604fecd1cdc64ff4fd6a2d42ddb68199fdfca2cf6
+    copied_byte_for_byte: true
+    do_not_redraw_or_filter: true

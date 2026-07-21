@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="StatePort is an application-first Stateware platform built around durable, inspectable state.">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/site.css">
+    <title>StatePort — Durable AI applications</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header site-header--on-dark">
+      <a class="brand" href="./" aria-label="StatePort home">
+        <img src="assets/stateport-mascot-shell.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="docs/">Docs</a>
+        <a href="tutorials/">Tutorials</a>
+        <a class="nav-release" href="releases/">Release status</a>
+      </nav>
+    </header>
+
+    <main class="page-main" id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow">A Stateware project</p>
+            <h1 id="hero-title">StatePort<span>A calmer home for durable AI applications.</span></h1>
+            <p class="hero-deck">StatePort is built around durable, inspectable state—so the important truth of an application can outlast a prompt, a model, or a single session.</p>
+            <div class="hero-actions">
+              <a class="button" href="docs/">Read the guide</a>
+              <a class="button button--quiet" href="releases/">See release status</a>
+            </div>
+            <p class="availability">Public release preparation is in progress. No download is offered today.</p>
+          </div>
+
+          <div class="atlas" aria-hidden="true">
+            <svg viewBox="0 0 900 900" fill="none">
+              <circle class="orbit orbit--light" cx="450" cy="450" r="365" />
+              <circle class="orbit" cx="450" cy="450" r="272" />
+              <circle class="orbit orbit--light" cx="450" cy="450" r="169" />
+              <path class="route" d="M124 638C199 445 313 300 480 246c134-44 218-6 299 89" />
+              <path class="route" d="M206 176c140 78 213 167 237 296 23 126 99 220 269 296" />
+              <circle class="node" cx="126" cy="635" r="11" />
+              <circle class="node node--solid" cx="480" cy="246" r="9" />
+              <circle class="node" cx="780" cy="336" r="12" />
+              <circle class="node" cx="205" cy="176" r="11" />
+              <circle class="node node--solid" cx="712" cy="767" r="8" />
+            </svg>
+            <img class="atlas-mark" src="assets/stateport-mascot-shell.svg" alt="">
+            <div class="atlas-coordinates">
+              <span>STATE / PORT</span>
+              <span>51.047 — 4.469</span>
+              <span>CANONICAL / ACTIVE</span>
+            </div>
+          </div>
+          <p class="hero-footnote">Durable state · governed change · replaceable execution</p>
+        </div>
+      </section>
+
+      <section class="home-section statement" aria-labelledby="stateware-heading">
+        <p class="section-kicker reveal">The idea</p>
+        <div class="statement-copy reveal">
+          <h2 id="stateware-heading">The application should know what is true—even when the agent changes.</h2>
+          <p>Stateware treats durable, inspectable state and governed lifecycle contracts as the application boundary. Agents and models can help process that state; they do not become its only memory.</p>
+          <p>For StatePort, the visible product is the installed application. The operational machinery stays in the background until a person needs it.</p>
+        </div>
+      </section>
+
+      <section class="home-section" aria-label="StatePort principles">
+        <div class="principles">
+          <article class="principle reveal">
+            <p class="principle-index">01</p>
+            <h3>Canonical source</h3>
+            <p>Human-readable files remain the durable source of application truth—inspectable, repairable, and usable without one particular provider.</p>
+          </article>
+          <article class="principle reveal">
+            <p class="principle-index">02</p>
+            <h3>Governed change</h3>
+            <p>Permissions, approvals, validation, and receipts are separate facts. A change is not simply “done” because a model produced text.</p>
+          </article>
+          <article class="principle reveal">
+            <p class="principle-index">03</p>
+            <h3>Replaceable execution</h3>
+            <p>A workflow can declare its requirements while execution hosts and models declare their real capabilities and limitations.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="route-section" aria-labelledby="route-heading">
+        <div class="home-section">
+          <p class="section-kicker reveal">A practical route</p>
+          <h2 class="section-heading reveal" id="route-heading">Build an application from durable decisions outward.</h2>
+          <div class="route-list">
+            <article class="route-step reveal">
+              <p class="route-number">01 / DEFINE</p>
+              <h3>Describe the application</h3>
+              <p>Use a trusted StateSpec template to describe the state, capabilities, and views an application needs—without giving the template unlimited authority.</p>
+            </article>
+            <article class="route-step reveal">
+              <p class="route-number">02 / OWN</p>
+              <h3>Materialise an instance</h3>
+              <p>Create a user-owned instance whose durable records can be understood outside the runtime that happens to be helping today.</p>
+            </article>
+            <article class="route-step reveal">
+              <p class="route-number">03 / WORK</p>
+              <h3>Use the application first</h3>
+              <p>Conversation, actions, progress, and notifications belong to the application. Advanced platform controls appear only when they are useful and allowed.</p>
+            </article>
+            <article class="route-step reveal">
+              <p class="route-number">04 / VERIFY</p>
+              <h3>Keep evidence with change</h3>
+              <p>Validation and receipts preserve the difference between a proposal, an applied result, and a result that has actually been checked.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="home-section learn-grid" aria-labelledby="learn-heading">
+        <div class="reveal">
+          <p class="section-kicker">Learn the model</p>
+          <h2 class="section-heading section-heading--narrow" id="learn-heading">Start from the state, not the chat.</h2>
+          <p class="learn-copy">The public docs are an early, practical introduction to Stateware and StateSpec. Examples are clearly marked when they are illustrative rather than released software.</p>
+        </div>
+        <div class="link-stack reveal">
+          <a href="docs/"><span>Documentation</span></a>
+          <a href="docs/getting-started.html"><span>Getting started</span></a>
+          <a href="tutorials/"><span>Tutorials</span></a>
+        </div>
+      </section>
+
+      <section class="release-band" aria-labelledby="release-heading">
+        <div class="release-band-inner">
+          <div class="reveal">
+            <p class="release-label">Release ledger</p>
+            <h2 id="release-heading">A download should mean something specific.</h2>
+          </div>
+          <dl class="release-status-list reveal">
+            <div>
+              <dt>Current status</dt>
+              <dd>Public release preparation</dd>
+            </div>
+            <div>
+              <dt>Downloads</dt>
+              <dd>Not published</dd>
+            </div>
+            <div>
+              <dt>Source access</dt>
+              <dd>Public source release in preparation</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="home-section closing" aria-labelledby="closing-heading">
+        <div class="reveal">
+          <p class="section-kicker">Follow the work</p>
+          <h2 id="closing-heading">Read what exists. Wait for what does not.</h2>
+          <p>StatePort’s release page keeps availability explicit, so a future installation guide can bind to a real version, source boundary, and verification story.</p>
+        </div>
+        <a class="button button--ink reveal" href="releases/">View release status</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="assets/stateport-mascot-shell.svg" alt="">
+          <p><strong>StatePort</strong>Durable AI applications, built from state outward.</p>
+        </div>
+        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+      </div>
+    </footer>
+    <script src="assets/site.js"></script>
+  </body>
+</html>

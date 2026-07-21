@@ -1,0 +1,70 @@
+metadata:
+  updated_at: 2026-07-21
+  updated_by: codex
+  format_version: statespec-site-state/v1
+
+workflow:
+  repo_role: downstream_project
+  statedd_mode: operating
+  repo_mode: operating
+  compatibility_identifier: statedd-template-v5
+
+project:
+  name: StatePort Site
+  product: StatePort
+  phase: launch_preparation
+  status: locally_validated_ready_to_publish
+  purpose: public documentation, tutorials, release status, and future download home
+
+source_boundary:
+  implementation_repository:
+    visibility: private_as_observed_2026-07-21
+    public_link: intentionally_withheld
+    rule: no public-source, license, release, or download claim until independently published
+  permitted_public_content:
+    - durable-state concepts expressed in current public terminology
+    - early documentation and illustrative StateSpec examples
+    - honest release-preparation status
+  prohibited_public_content:
+    - private repository URLs or internal operational detail
+    - unpublished version numbers, installers, checksums, or release notes
+    - superiority, certification, compliance, or production-readiness claims
+
+site:
+  implementation: static_html_css_and_progressive_enhancement_javascript
+  primary_routes:
+    - /
+    - /docs/
+    - /docs/getting-started.html
+    - /tutorials/
+    - /tutorials/first-application.html
+    - /releases/
+  accessibility:
+    - semantic_landmarks_and_skip_link
+    - keyboard_operable_navigation
+    - reduced_motion_fallback
+    - visible_focus_states
+  deployment:
+    provider: GitHub Pages
+    workflow: .github/workflows/deploy-pages.yml
+    status: configured_not_yet_published
+  brand_asset:
+    path: assets/stateport-mascot-shell.svg
+    sha256: 85459d506c5e15f405a44b6604fecd1cdc64ff4fd6a2d42ddb68199fdfca2cf6
+    provenance: StatePort apps/web/assets/brand/stateport-mascot-shell.svg
+    mutation: false
+
+release_ledger:
+  public_release_published: false
+  public_download_available: false
+  source_license_published: false
+  visitor_message: public release preparation is in progress; no download is offered
+
+delivery:
+  local_repository: /home/ff/Documents/Projects/StatePort-Site
+  remote_repository: pending_creation
+  pages_url: pending_creation
+  local_validation: passed_2026-07-21
+  visual_review: passed_local_desktop_and_mobile_2026-07-21
+  remote_ci: pending
+  human_acceptance: pending

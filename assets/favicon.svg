@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="16"
+     height="16"
+     viewBox="0 0 16 16"
+     role="img"
+     aria-labelledby="title description"
+     shape-rendering="geometricPrecision">
+  <title id="title">StatePort owl favicon</title>
+  <desc id="description">A simplified high-contrast StatePort owl designed for browser-tab sizes.</desc>
+  <rect id="favicon-background" width="16" height="16" rx="4" fill="#2F7DFF"/>
+  <g id="micro-mark">
+    <path id="cap" fill="#FFFFFF" d="m2 4.5 6-2.7 6 2.7-6 2.8-6-2.8Z"/>
+    <circle id="left-eye" cx="5.25" cy="9.25" r="1.35" fill="#FFFFFF"/>
+    <circle id="right-eye" cx="10.75" cy="9.25" r="1.35" fill="#FFFFFF"/>
+    <path id="beak" fill="#FFFFFF" d="M6.25 11.5h3.5L8 14l-1.75-2.5Z"/>
+  </g>
+</svg>

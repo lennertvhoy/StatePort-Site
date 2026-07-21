@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A conceptual tutorial for designing a durable, governable AI-assisted application with StateSpec.">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+    <title>First durable application — StatePort</title>
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-shell.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="../docs/">Docs</a>
+        <a href="./" aria-current="page">Tutorials</a>
+        <a class="nav-release" href="../releases/">Release status</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="tutorial-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Tutorial / 01</p>
+          <h1 id="tutorial-title">Design your first durable application.</h1>
+          <p>A conceptual walkthrough for moving the important facts of an AI-assisted workflow out of ephemeral conversation and into an explicit lifecycle.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+        <aside class="doc-sidebar" aria-label="Tutorial sections">
+          <h2>In this tutorial</h2>
+          <nav>
+            <a href="./">Tutorial overview</a>
+            <a href="first-application.html" aria-current="page">First application</a>
+            <a href="../docs/getting-started.html">StateSpec basics</a>
+            <a href="../releases/">Release status</a>
+          </nav>
+        </aside>
+
+        <article class="prose">
+          <p class="notice"><strong>No installation implied</strong> This is a design exercise using a hypothetical study planner. It is not a promise that a corresponding StatePort package or public template is available today.</p>
+
+          <h2>The scenario</h2>
+          <p>Imagine a study planner that helps someone prepare for an exam. A chat assistant could suggest a plan, but the learner still needs to see the current plan, upcoming work, decisions, and completed evidence after the chat ends.</p>
+          <p>The goal is not to make the assistant cleverer. The goal is to make the application’s truth legible and durable.</p>
+
+          <h2>1. Separate facts from conversation</h2>
+          <p>Write down the facts that must survive a new model, a compacted context window, or an offline review:</p>
+          <ul>
+            <li>the learner’s goal and target date;</li>
+            <li>the current plan and its owner-approved changes;</li>
+            <li>evidence that a task was completed or checked;</li>
+            <li>the policy that determines who may make which changes.</li>
+          </ul>
+          <p>A conversation can discuss these facts. It should not be the only copy of them.</p>
+
+          <h2>2. Give every file an owner</h2>
+          <p>Before allowing a runner to edit workflow files, record whether each path belongs to the template, the individual instance, generated output, or an explicit override. This turns “the agent changed something” into a reviewable question: was that agent allowed to change this exact material?</p>
+
+          <h2>3. Model a small lifecycle</h2>
+          <p>For one proposed plan adjustment, the lifecycle could be as simple as:</p>
+          <div class="code-panel" data-label="Illustrative lifecycle"><code>proposal
+  ↓
+reviewed authority
+  ↓
+applied change
+  ↓
+validation result
+  ↓
+receipt and current state</code></div>
+          <p>Each step has a different meaning. Keeping them distinct makes failures visible: an applied change can fail validation, and a locally validated change can still await human acceptance.</p>
+
+          <h2>4. Make the assistant an adapter</h2>
+          <p>The assistant may propose a plan, explain a state transition, or help fill a draft. It does not receive permission merely because it generated the idea. A host must declare what it can actually do, and any missing capability should degrade explicitly rather than silently changing the workflow.</p>
+
+          <h2>5. Close with evidence</h2>
+          <p>For the learner, a useful result is not just “done.” It is a clear current state plus enough evidence to understand what changed, what checked it, and what remains open. That same pattern helps a teacher, operator, or future maintainer reason about the application without replaying a conversation.</p>
+
+          <h2>Takeaway</h2>
+          <p>StateSpec starts with the durable boundary: facts, ownership, authority, lifecycle, and evidence. The AI layer becomes more useful when it operates within that boundary instead of replacing it.</p>
+          <div class="inline-actions">
+            <a class="button button--ink" href="../docs/getting-started.html">Review the basics</a>
+            <a class="button button--outlined" href="../releases/">Check public availability</a>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-shell.svg" alt="">
+          <p><strong>StatePort</strong>Durable AI applications, built from state outward.</p>
+        </div>
+        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+      </div>
+    </footer>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An introduction to StatePort, Stateware, and the StateSpec model.">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+    <title>Documentation — StatePort</title>
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-shell.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="./" aria-current="page">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-release" href="../releases/">Release status</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="docs-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Documentation / early preview</p>
+          <h1 id="docs-title">Read the platform from durable state outward.</h1>
+          <p>These pages introduce the ideas behind StatePort without pretending that planned release material is already available.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+        <aside class="doc-sidebar" aria-label="Documentation sections">
+          <h2>In this guide</h2>
+          <nav>
+            <a href="./" aria-current="page">Overview</a>
+            <a href="getting-started.html">Getting started</a>
+            <a href="../tutorials/">Tutorials</a>
+            <a href="../releases/">Release status</a>
+          </nav>
+        </aside>
+
+        <article class="prose">
+          <p class="notice"><strong>Preview boundary</strong> The documentation is public early material. It is not versioned release documentation, and it does not offer an installer or public source checkout.</p>
+
+          <h2>What is StatePort?</h2>
+          <p>StatePort is an application-first Stateware platform. It is designed so a person interacts with an installed application—its conversation, actions, progress, and state—rather than beginning with a generic agent control panel.</p>
+          <p>The application’s durable source of truth is intended to remain readable and inspectable. Models, agents, and execution hosts are useful processors around that truth, not the exclusive place where it lives.</p>
+
+          <h2>What is Stateware?</h2>
+          <p><strong>Stateware</strong> is software whose durable, inspectable state and governed lifecycle contracts form the application boundary while agents and models remain replaceable processors.</p>
+          <p>That boundary matters when a conversation is compacted, a provider changes, an execution host is unavailable, or a person needs to understand why a change happened. The durable records should still make sense.</p>
+
+          <h2>What is StateSpec?</h2>
+          <p><strong>StateSpec</strong> is the portable, repository-native specification used to describe an application’s durable facts, ownership, requested capabilities, lifecycle rules, and validation expectations. StateDD is the former name retained only for compatibility with older identifiers.</p>
+          <p>A StateSpec template may request what it needs. It does not grant itself permission: effective capability depends on the template request, the instance grant, and operator policy.</p>
+
+          <h2>How the pieces relate</h2>
+          <div class="topic-list">
+            <a href="getting-started.html">
+              <strong>StateSpec basics</strong>
+              <span>Start with a small, illustrative repository shape and the boundary between an example and a release.</span>
+              <i aria-hidden="true">↗</i>
+            </a>
+            <a href="../tutorials/first-application.html">
+              <strong>First application</strong>
+              <span>Walk through the decisions that make an AI-assisted workflow durable and governable.</span>
+              <i aria-hidden="true">↗</i>
+            </a>
+            <a href="../releases/">
+              <strong>Release ledger</strong>
+              <span>See what will be required before this site offers a source link, package, or download.</span>
+              <i aria-hidden="true">↗</i>
+            </a>
+          </div>
+
+          <h2>What StatePort does not promise here</h2>
+          <ul>
+            <li>No claim that a template or StateSpec outperforms a baseline without controlled, reproducible evidence.</li>
+            <li>No claim of a public release, license, download, hosted service, or production readiness before one is published.</li>
+            <li>No claim that a model session, a generated summary, or a screenshot is canonical application truth on its own.</li>
+          </ul>
+
+          <div class="inline-actions">
+            <a class="button button--ink" href="getting-started.html">Read StateSpec basics</a>
+            <a class="button button--outlined" href="../tutorials/">Browse tutorials</a>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-shell.svg" alt="">
+          <p><strong>StatePort</strong>Durable AI applications, built from state outward.</p>
+        </div>
+        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+      </div>
+    </footer>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="845"
+     height="845"
+     viewBox="207.5 180 845 845"
+     role="img"
+     aria-labelledby="title description"
+     shape-rendering="geometricPrecision">
+  <title id="title">StatePort shell mark</title>
+  <desc id="description">Shell-optimized derivative of the accepted blue mascot: identical geometry, tight optically centered viewBox for small shell sizes.</desc>
+  <g id="logo" fill="#2F7DFF">
+    <path id="body-and-hat"
+          d="M 371 321 L 366 326 L 363 332 L 345 398 L 337 421 L 328 455 L 301 542 L 302 556 L 329 613 L 332 623 L 322 627 L 235 651 L 230 654 L 225 662 L 225 670 L 412 969 L 422 975 L 893 975 L 899 972 L 903 968 L 906 962 L 907 954 L 944 816 L 950 789 L 960 755 L 1013 549 L 1035 469 L 1035 461 L 1033 456 L 1024 449 L 1015 449 L 934 470 L 929 470 L 926 464 L 922 447 L 916 430 L 891 342 L 889 331 L 886 325 L 881 320 L 631 230 L 619 231 Z M 401 383 L 429 393 L 620 469 L 633 469 L 845 386 L 851 385 L 853 388 L 854 395 L 858 405 L 862 422 L 893 525 L 899 527 L 969 508 L 975 509 L 961 567 L 959 571 L 959 575 L 931 678 L 929 690 L 927 694 L 920 725 L 913 748 L 867 928 L 444 928 L 368 806 L 366 801 L 293 685 L 294 681 L 383 657 L 387 655 L 393 647 L 394 642 L 392 634 L 354 553 L 352 545 Z M 444 345 L 624 279 L 629 279 L 739 320 L 805 343 L 808 345 L 808 348 L 697 392 L 653 408 L 648 411 L 629 418 L 623 418 L 446 349 Z"
+          fill-rule="evenodd"
+          clip-rule="evenodd"/>
+    <g id="eyes">
+    <circle cx="517.28" cy="535.06" r="23.88"/>
+    <circle cx="778.02" cy="503.00" r="22.85"/>
+    </g>
+    <path id="beak"
+          d="M 752 584 L 746 581 L 723 580 L 722 579 L 612 572 L 611 571 L 596 571 L 595 570 L 588 571 L 579 578 L 577 583 L 577 592 L 621 726 L 626 733 L 635 739 L 642 741 L 649 741 L 658 738 L 667 731 L 713 669 L 757 604 L 758 593 Z M 616 611 L 691 627 L 690 633 L 647 707 L 644 706 L 639 687 L 615 615 Z"
+          fill-rule="evenodd"
+          clip-rule="evenodd"/>
+  </g>
+</svg>

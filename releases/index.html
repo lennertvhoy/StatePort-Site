@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The current public release and download status for StatePort.">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+    <title>Release status — StatePort</title>
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-shell.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="../docs/">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-release" href="./" aria-current="page">Release status</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="releases-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Release ledger</p>
+          <h1 id="releases-title">Availability should be as explicit as capability.</h1>
+          <p>A download page should tell you exactly what is published and what has not yet crossed the public-release boundary.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+        <aside class="doc-sidebar" aria-label="Release sections">
+          <h2>Release ledger</h2>
+          <nav>
+            <a href="./" aria-current="page">Current status</a>
+            <a href="../docs/">Documentation</a>
+            <a href="../tutorials/">Tutorials</a>
+            <a href="../">Home</a>
+          </nav>
+        </aside>
+
+        <article class="prose">
+          <h2>No public release is published</h2>
+          <p>StatePort is in public-release preparation. This website intentionally does not provide a source checkout, versioned installer, binary artifact, checksum, or download command before those materials are publicly published and verified.</p>
+
+          <dl class="release-ledger">
+            <div>
+              <dt>Release</dt>
+              <dd class="status-pending">Not published</dd>
+            </div>
+            <div>
+              <dt>Downloads</dt>
+              <dd class="status-pending">Not available</dd>
+            </div>
+            <div>
+              <dt>Public source</dt>
+              <dd class="status-pending">In preparation</dd>
+            </div>
+            <div>
+              <dt>Install guide</dt>
+              <dd class="status-pending">Will be release-bound</dd>
+            </div>
+          </dl>
+
+          <h2>What a future release will include</h2>
+          <p>When StatePort is ready to make a public release, this page should bind its claims to exact, independently checkable material rather than a vague “available now” badge.</p>
+          <ul>
+            <li>A public source boundary and an explicit license decision.</li>
+            <li>A versioned release with notes tied to that source.</li>
+            <li>Verified artifacts or installers, with appropriate checksums where applicable.</li>
+            <li>Platform support and installation guidance that has been tested on the stated environment.</li>
+            <li>Clear separation between implemented, locally validated, remotely accepted, and human-accepted release facts.</li>
+          </ul>
+
+          <h2>Why no premature download?</h2>
+          <p>StatePort treats evidence as part of a reliable lifecycle. That makes it better to state “not published” than to offer a command that depends on private source, an unverified environment, or an unfinished release decision.</p>
+
+          <div class="inline-actions">
+            <a class="button button--ink" href="../docs/">Read the public docs</a>
+            <a class="button button--outlined" href="../tutorials/">Explore tutorials</a>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-shell.svg" alt="">
+          <p><strong>StatePort</strong>Durable AI applications, built from state outward.</p>
+        </div>
+        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+      </div>
+    </footer>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>
