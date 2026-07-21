@@ -23,6 +23,9 @@
 - Tightened the public voice so the page leads with work, ownership, and the
   product surface. Availability now has one quiet home in the release ledger;
   technical distinctions remain where the documentation needs them.
+- Pushed the package to `agent/public-showcase` and opened draft PR
+  [`#1`](https://github.com/lennertvhoy/StatePort-Site/pull/1). It awaits
+  review, merge, Pages deployment, and public-runtime verification.
 
 ## 2026-07-21 — Complete documentation package authored locally
 

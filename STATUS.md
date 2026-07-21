@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-07-21
 **Execution Mode:** operating
-**Project State:** published_initial_site_with_locally_validated_expanded_package_pending_push_and_deployment
+**Project State:** published_initial_site_with_expanded_package_pushed_for_review_pending_merge_and_deployment
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -32,7 +32,9 @@
   and roadmap, reference and FAQ, and a receipt-reading tutorial.
 - A captioned 83-second local prototype walkthrough, four fixture-based UI
   screenshots, a public whitepaper reader plus source Markdown, an Agent Kits
-  roadmap, and a LinkedIn post draft are locally complete. `python3
+  roadmap, and a LinkedIn post draft are complete on
+  `agent/public-showcase` and pushed as draft PR
+  [`#1`](https://github.com/lennertvhoy/StatePort-Site/pull/1). `python3
   scripts/validate_repo.py` passes; fresh desktop and mobile browser review of
   the homepage, media, Agent Kits route, and release ledger found no console
   errors.
@@ -45,11 +47,11 @@
 - Public source availability, a licensed release, downloads, or an installation
   path for visitors.
 - Human acceptance of the copy, visual design, or information architecture.
-- Remote commit, CI, deployment, and public-runtime verification of the expanded
+- Merge, Pages deployment, and public-runtime verification of the expanded
   documentation, media, paper, roadmap, and post-draft package.
 
 ## Next action
 
-Commit and push the expanded package, then verify the exact GitHub Pages
+Review and merge the expanded package, then verify the exact GitHub Pages
 deployment and public runtime. Keep release/download content tied to a public
 source release and its evidence.

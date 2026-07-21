@@ -20,8 +20,8 @@ license decision, versioned artifact, checksums, and verified install path exist
   screens, the author-designated public Stateware whitepaper and source
   Markdown, and an Agent Kits roadmap. Static validation and desktop/mobile
   browser review passed. The release ledger remains the single public source
-  for availability; commit, push, deployment, and runtime verification remain
-  pending.
+  for availability; draft review, merge, deployment, and runtime verification
+  remain pending.
 
 - **BL-SITE-004** — Authored the complete local documentation package for the
   whitepaper topics: foundations, model, lifecycle, governance, security and
