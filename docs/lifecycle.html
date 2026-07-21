@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Lifecycle — StatePort public documentation preview.">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+    <title>Lifecycle — StatePort</title>
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-shell.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="./" aria-current="page">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-release" href="../releases/">Release status</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="page-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Documentation / 03</p>
+          <h1 id="page-title">A durable application has a life beyond one run.</h1>
+          <p>The lifecycle keeps installation, use, understanding, change, movement, backup, and recovery as separate, inspectable responsibilities.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+
+        <aside class="doc-sidebar" aria-label="Documentation sections">
+          <h2>Documentation</h2>
+          <nav>
+            <a href="./">Overview</a>
+            <a href="foundations.html">Foundations</a>
+            <a href="model.html">Model</a>
+            <a href="lifecycle.html" aria-current="page">Lifecycle</a>
+            <a href="governance.html">Governance</a>
+            <a href="security-and-privacy.html">Security &amp; privacy</a>
+            <a href="hosts-and-portability.html">Hosts &amp; portability</a>
+            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="reference.html">Reference &amp; FAQ</a>
+            <a href="getting-started.html">Getting started</a>
+            <a href="../tutorials/">Tutorials</a>
+            <a href="../releases/">Release status</a>
+          </nav>
+        </aside>
+        <article class="prose">
+          <p class="notice notice--quiet"><strong>Reading guide</strong> This page explores the model. <a href="../releases/">Availability lives in the release ledger.</a></p>
+
+          <h2>Install from an identity, not a folder name</h2>
+          <p>Installability begins with a source that can be identified and checked. A release is a pinned identity, not a moving branch, matching directory name, or local fixture. Development candidates still have a useful role in isolated tests.</p>
+
+          <h2>Use and understand</h2>
+          <p>Application-first use means a person starts with their application’s conversation, actions, progress, and state. Provenance, ownership, capability state, approvals, and receipts are progressively disclosed when they are needed to understand what happened.</p>
+
+          <h2>Update and move</h2>
+          <p>A trustworthy update needs an exact source target, ownership-aware changes, conflict classification, a reviewable plan, validation, and a way to preserve the original instance if publication fails. Moving an instance has the same care: it is a migration with its own evidence.</p>
+
+          <h2>Back up and recover</h2>
+          <p>A backup is a bounded archive with an identity and validation record. Recovery needs its own demonstration: a dry run, isolated target, validation, cleanup, and proof that the live instance stayed intact. The release ledger records when lifecycle steps become available.</p>
+
+          <h2>A useful reading rule</h2>
+          <div class="code-panel" data-label="Do not collapse these states"><code>designed ≠ implemented
+implemented ≠ locally validated
+locally validated ≠ independently accepted
+accepted ≠ released</code></div>
+          <p>The release ledger is intentionally separate from conceptual documentation so a future installation guide can bind to a real version, source identity, and verification record.</p>
+
+          <div class="inline-actions">
+            <a class="button button--ink" href="governance.html">See governed change</a>
+            <a class="button button--outlined" href="../releases/">Read the release ledger</a>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-shell.svg" alt="">
+          <p><strong>StatePort</strong>Durable applications, built from state outward.</p>
+        </div>
+        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+      </div>
+    </footer>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>

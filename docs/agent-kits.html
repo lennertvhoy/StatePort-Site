@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Agent Kits roadmap — StatePort public documentation preview.">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+    <title>Agent Kits roadmap — StatePort</title>
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-shell.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="./" aria-current="page">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-release" href="../releases/">Release status</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="page-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Roadmap / Agent Kits</p>
+          <h1 id="page-title">A useful workflow, ready to travel.</h1>
+          <p>A planned, modular way to pair a focused template with the runtime and ownership it needs.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+        <aside class="doc-sidebar" aria-label="Documentation sections">
+          <h2>Documentation</h2>
+          <nav>
+            <a href="./">Overview</a>
+            <a href="foundations.html">Foundations</a>
+            <a href="model.html">Model</a>
+            <a href="lifecycle.html">Lifecycle</a>
+            <a href="governance.html">Governance</a>
+            <a href="hosts-and-portability.html">Hosts &amp; portability</a>
+            <a href="prototype-walkthrough.html">Prototype walkthrough</a>
+            <a href="agent-kits.html" aria-current="page">Agent Kits roadmap</a>
+            <a href="../papers/stateware-whitepaper-public-v1.1.html">Stateware paper</a>
+            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="../releases/">Release status</a>
+          </nav>
+        </aside>
+        <article class="prose">
+          <p class="notice notice--quiet"><strong>Early direction</strong> Agent Kits are a design proposal. <a href="../releases/">Availability lives in the release ledger.</a></p>
+
+          <h2>A useful shape for a focused tool</h2>
+          <p>A study review guide, project kick-off assistant, or checklist steward should arrive with its shape intact: what it does, what it needs, and who owns the resulting work. The proposal is a template-first Agent Kit with a public template, runtime profile, policy request, and integrity metadata.</p>
+
+          <div class="kit-flow" aria-label="Proposed Agent Kit lifecycle">
+            <section>
+              <span>01</span>
+              <h3>Public template</h3>
+              <p>The workflow and declared views begin with an immutable, public source.</p>
+            </section>
+            <section>
+              <span>02</span>
+              <h3>Declared runtime</h3>
+              <p>A host adapter names its capabilities, sandbox, and limits.</p>
+            </section>
+            <section>
+              <span>03</span>
+              <h3>Explicit authority</h3>
+              <p>Effective capability remains the intersection of template request, instance grant, and operator policy.</p>
+            </section>
+            <section>
+              <span>04</span>
+              <h3>Owned instance</h3>
+              <p>A user starts fresh or deliberately imports a separately governed backup.</p>
+            </section>
+          </div>
+
+          <h2>Docker-first, later</h2>
+          <p>The first distribution profile under consideration is Docker/OCI. An image is a replaceable execution artifact; durable StateSpec data and credentials stay outside it. A kit should remain inspectable, mount an owned instance deliberately, and use the same lease, validation, transaction, and receipt contracts as agent-native use.</p>
+
+          <h2>Separate from StateBench</h2>
+          <p>A kit earns its value by solving a real use case. StateBench may later evaluate an exact configuration under controlled conditions; release trust and permissions remain separate concerns.</p>
+
+          <h2>Before it ships</h2>
+          <ul>
+            <li>Publish an exact release source and its acceptance criteria.</li>
+            <li>Design a versioned schema, threat model, and public/private fixture policy.</li>
+            <li>Define ownership-aware install, update, export, import, rollback, and revocation behavior.</li>
+            <li>Bind Docker/OCI provenance and a release identity while keeping data and credentials outside image layers.</li>
+            <li>Validate one exact release candidate through CLI, application, degraded-host, and human-acceptance journeys.</li>
+          </ul>
+
+          <div class="inline-actions">
+            <a class="button button--ink" href="hosts-and-portability.html">Read host boundaries</a>
+            <a class="button button--outlined" href="../releases/">Check release status</a>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-shell.svg" alt="">
+          <p><strong>StatePort</strong>Durable applications, built from state outward.</p>
+        </div>
+        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+      </div>
+    </footer>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>

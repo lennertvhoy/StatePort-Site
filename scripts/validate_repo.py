@@ -66,12 +66,34 @@ def main() -> None:
         "404.html",
         "docs/index.html",
         "docs/getting-started.html",
+        "docs/foundations.html",
+        "docs/model.html",
+        "docs/lifecycle.html",
+        "docs/governance.html",
+        "docs/security-and-privacy.html",
+        "docs/hosts-and-portability.html",
+        "docs/evidence-and-roadmap.html",
+        "docs/reference.html",
+        "docs/prototype-walkthrough.html",
+        "docs/agent-kits.html",
         "tutorials/index.html",
         "tutorials/first-application.html",
+        "tutorials/reading-a-receipt.html",
         "releases/index.html",
         "assets/site.css",
         "assets/site.js",
         "assets/stateport-mascot-shell.svg",
+        "assets/media/stateport-local-prototype-walkthrough.mp4",
+        "assets/media/stateport-local-prototype-walkthrough.vtt",
+        "assets/media/stateport-demo-home.png",
+        "assets/media/stateport-demo-conversation.png",
+        "assets/media/stateport-demo-source.png",
+        "assets/media/stateport-demo-mobile.png",
+        "papers/stateware-whitepaper-public-v1.1.md",
+        "papers/stateware-whitepaper-public-v1.1.html",
+        "papers/assets/stateware-applications-home.png",
+        "papers/assets/stateware-conversation.png",
+        "papers/assets/stateware-approvals.png",
         ".github/workflows/deploy-pages.yml",
     )
     for path in required:
@@ -81,7 +103,11 @@ def main() -> None:
     require_text("STATUS.md", "**Execution Mode:** operating")
     require_text("PROJECT_STATE.yaml", "statedd_mode: operating")
     require_text("index.html", "StatePort")
-    require_text("releases/index.html", "No public release is published")
+    require_text("index.html", "Watch the local prototype")
+    require_text("docs/prototype-walkthrough.html", "Local preview")
+    require_text("docs/agent-kits.html", "Early direction")
+    require_text("papers/stateware-whitepaper-public-v1.1.html", "Publication note")
+    require_text("releases/index.html", "The release is still in preparation")
     require_text(".github/workflows/deploy-pages.yml", "actions/deploy-pages@v4")
 
     public_copy = "\n".join(

@@ -4,9 +4,9 @@ The public documentation, tutorials, and release-status home for StatePort.
 
 Live site: <https://lennertvhoy.github.io/StatePort-Site/>
 
-This repository intentionally separates the public website from the current
-private implementation repository. It does not claim a public source release,
-license, installer, or download before one exists.
+This repository keeps the public website separate from the current private
+implementation repository. The release ledger is the source for availability
+until a public source release exists.
 
 ## Run locally
 

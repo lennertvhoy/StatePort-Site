@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Hosts and portability — StatePort public documentation preview.">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+    <title>Hosts and portability — StatePort</title>
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-shell.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="./" aria-current="page">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-release" href="../releases/">Release status</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="page-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Documentation / 06</p>
+          <h1 id="page-title">Replaceable execution needs declared limits.</h1>
+          <p>A portable application does not require every host to behave the same. It requires the application’s durable boundary to survive while hosts declare what they can actually do.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+
+        <aside class="doc-sidebar" aria-label="Documentation sections">
+          <h2>Documentation</h2>
+          <nav>
+            <a href="./">Overview</a>
+            <a href="foundations.html">Foundations</a>
+            <a href="model.html">Model</a>
+            <a href="lifecycle.html">Lifecycle</a>
+            <a href="governance.html">Governance</a>
+            <a href="security-and-privacy.html">Security &amp; privacy</a>
+            <a href="hosts-and-portability.html" aria-current="page">Hosts &amp; portability</a>
+            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="reference.html">Reference &amp; FAQ</a>
+            <a href="getting-started.html">Getting started</a>
+            <a href="../tutorials/">Tutorials</a>
+            <a href="../releases/">Release status</a>
+          </nav>
+        </aside>
+        <article class="prose">
+          <p class="notice notice--quiet"><strong>Reading guide</strong> This page explores the model. <a href="../releases/">Availability lives in the release ledger.</a></p>
+
+          <h2>Host sessions are not the application</h2>
+          <p>A model session, prompt, authentication observation, host configuration, or context window can be useful operational data. It must not override the instance’s policy, approvals, lifecycle truth, or durable evidence. The same application should remain legible through its repository and command-line tools even when a particular host is unavailable.</p>
+
+          <h2>Capability before branding</h2>
+          <p>Instead of assuming that a named host is interchangeable with another, a host should state its capabilities: structured events, cancellation, sandbox support, tool boundaries, output reporting, token telemetry, and the authentication route class. Missing support should produce an honest degradation, not an invented equivalence.</p>
+
+          <h2>Where the host work stands</h2>
+          <p>The public documentation describes a host-neutral model. A narrow direct-Codex conversation path has been exercised locally; Pi remains a reference-host direction. The release ledger will carry supported installation and host coverage as they are verified.</p>
+
+          <h2>What stronger evidence would look like</h2>
+          <p>Useful host evidence binds the exact application state, adapter and host versions, declared sandbox, model, context policy, authentication route class, validation commands, output artifacts, and observed failure/degradation modes. A provider label alone does not explain the result.</p>
+
+          <div class="inline-actions">
+            <a class="button button--ink" href="evidence-and-roadmap.html">Read evidence states</a>
+            <a class="button button--outlined" href="model.html">Return to core abstractions</a>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-shell.svg" alt="">
+          <p><strong>StatePort</strong>Durable applications, built from state outward.</p>
+        </div>
+        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+      </div>
+    </footer>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>

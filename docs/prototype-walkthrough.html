@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A captioned local StatePort prototype walkthrough.">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+    <title>Prototype walkthrough — StatePort</title>
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-shell.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="./" aria-current="page">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-release" href="../releases/">Release status</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="page-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Recorded preview / 83 seconds</p>
+          <h1 id="page-title">A brief look inside StatePort.</h1>
+          <p>A captioned tour of applications, conversations, source context, and the working details around them.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+        <aside class="doc-sidebar" aria-label="Documentation sections">
+          <h2>Documentation</h2>
+          <nav>
+            <a href="./">Overview</a>
+            <a href="foundations.html">Foundations</a>
+            <a href="model.html">Model</a>
+            <a href="hosts-and-portability.html">Hosts &amp; portability</a>
+            <a href="prototype-walkthrough.html" aria-current="page">Prototype walkthrough</a>
+            <a href="agent-kits.html">Agent Kits roadmap</a>
+            <a href="../papers/stateware-whitepaper-public-v1.1.html">Stateware paper</a>
+            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="../releases/">Release status</a>
+          </nav>
+        </aside>
+        <article class="prose">
+          <p class="notice notice--quiet"><strong>Local preview</strong> Recorded 21 July 2026 from a loopback prototype. <a href="../releases/">Availability lives in the release ledger.</a></p>
+
+          <div class="media-player">
+            <video controls preload="metadata" playsinline poster="../assets/media/stateport-demo-home.png" aria-describedby="walkthrough-caption">
+              <source src="../assets/media/stateport-local-prototype-walkthrough.mp4" type="video/mp4">
+              <track kind="captions" srclang="en" label="English" src="../assets/media/stateport-local-prototype-walkthrough.vtt" default>
+              Your browser does not support HTML video.
+            </video>
+            <p id="walkthrough-caption">83-second captioned local capture.</p>
+          </div>
+
+          <h2>What the video shows</h2>
+          <ol class="walkthrough-steps">
+            <li><strong>Application-first home.</strong> Work resumes in a named application rather than an anonymous chat thread.</li>
+            <li><strong>Visible source context.</strong> The screen keeps the fixture and source status in view.</li>
+            <li><strong>Local conversation path.</strong> One concise prompt receives a durable reply through a locally authenticated command-line session.</li>
+            <li><strong>Optional Workbench.</strong> Technical capabilities appear when they are useful and show their current state.</li>
+            <li><strong>Source boundary.</strong> An exact development candidate can support isolated testing while release material remains separately identified.</li>
+            <li><strong>Mobile home.</strong> The installed-applications orientation survives a narrow viewport without making the Workbench the default product.</li>
+          </ol>
+
+          <h2>Where the video stops</h2>
+          <p>This is a local capture. Packaging, fresh-machine setup, host coverage, benchmarks, and independent checks each need their own record. The <a href="evidence-and-roadmap.html">evidence ladder</a> explains how those records fit together.</p>
+
+          <div class="inline-actions">
+            <a class="button button--ink" href="hosts-and-portability.html">Read host portability</a>
+            <a class="button button--outlined" href="../releases/">View release status</a>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-shell.svg" alt="">
+          <p><strong>StatePort</strong>Durable applications, built from state outward.</p>
+        </div>
+        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+      </div>
+    </footer>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>

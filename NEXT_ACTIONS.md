@@ -15,6 +15,20 @@ license decision, versioned artifact, checksums, and verified install path exist
 
 ## Completed since last update (2026-07-21)
 
+- **BL-SITE-005** — Locally validated an expanded public documentation package with a
+  captioned, fixture-based local prototype walkthrough, four labelled product
+  screens, the author-designated public Stateware whitepaper and source
+  Markdown, and an Agent Kits roadmap. Static validation and desktop/mobile
+  browser review passed. The release ledger remains the single public source
+  for availability; commit, push, deployment, and runtime verification remain
+  pending.
+
+- **BL-SITE-004** — Authored the complete local documentation package for the
+  whitepaper topics: foundations, model, lifecycle, governance, security and
+  privacy, host portability, evidence, reference, and a receipt-reading
+  tutorial. The static validator and desktop/mobile key-route browser review
+  pass with no console errors. This worktree change is uncommitted, unpushed,
+  and not deployed.
 - **BL-SITE-001** — Local static validation passes; desktop and mobile browser
   review completed against a loopback static server with no console errors.
 - **BL-SITE-002** — Created and pushed public repository

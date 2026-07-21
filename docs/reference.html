@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Reference and FAQ — StatePort public documentation preview.">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+    <title>Reference and FAQ — StatePort</title>
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-shell.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="./" aria-current="page">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-release" href="../releases/">Release status</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="page-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Documentation / 08</p>
+          <h1 id="page-title">A short vocabulary for asking better questions.</h1>
+          <p>These definitions are deliberately practical. They help distinguish application truth, operational context, authority, and evidence.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+
+        <aside class="doc-sidebar" aria-label="Documentation sections">
+          <h2>Documentation</h2>
+          <nav>
+            <a href="./">Overview</a>
+            <a href="foundations.html">Foundations</a>
+            <a href="model.html">Model</a>
+            <a href="lifecycle.html">Lifecycle</a>
+            <a href="governance.html">Governance</a>
+            <a href="security-and-privacy.html">Security &amp; privacy</a>
+            <a href="hosts-and-portability.html">Hosts &amp; portability</a>
+            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="reference.html" aria-current="page">Reference &amp; FAQ</a>
+            <a href="getting-started.html">Getting started</a>
+            <a href="../tutorials/">Tutorials</a>
+            <a href="../releases/">Release status</a>
+          </nav>
+        </aside>
+        <article class="prose">
+          <p class="notice notice--quiet"><strong>Reading guide</strong> This page explores the model. <a href="../releases/">Availability lives in the release ledger.</a></p>
+
+          <h2>Glossary</h2>
+          <h3>Stateware</h3>
+          <p>Software whose durable, inspectable state and governed lifecycle contracts form the application boundary while agents and models remain replaceable processors.</p>
+          <h3>StateSpec</h3>
+          <p>The portable, repository-native specification for durable facts, ownership, requested capabilities, lifecycle rules, and validation expectations. StateDD is a legacy compatibility name, not the current public term.</p>
+          <h3>Canonical state</h3>
+          <p>The declared source of truth for a specific concern. It is not a synonym for every file, message, cache, or external system record.</p>
+          <h3>Instance</h3>
+          <p>A particular durable application copy with its own identity, private state, grants, and lifecycle history.</p>
+          <h3>Receipt</h3>
+          <p>A structured claim about a transition and its evidence. It can be reviewed and verified; it does not replace judgement or make an external system reversible.</p>
+
+          <h2>Frequently asked questions</h2>
+          <h3>Where can I check availability?</h3>
+          <p>The <a href="../releases/">release ledger</a> is the source for public availability.</p>
+          <h3>Is a conversation the application’s truth?</h3>
+          <p>No. A conversation can be a durable operational record, but a domain fact needs an explicit owner and source of truth.</p>
+          <h3>Does portability mean identical behavior everywhere?</h3>
+          <p>No. It means an application can preserve its declared boundary while hosts report their actual capabilities and limitations.</p>
+          <h3>Does a receipt prove a decision was good?</h3>
+          <p>No. It makes the decision and its outcome easier to attribute and inspect. Human judgement remains necessary.</p>
+          <h3>Where should I begin?</h3>
+          <p>Read the foundations page, then the model and lifecycle. The first-application tutorial turns those concepts into a small design exercise.</p>
+
+          <div class="inline-actions">
+            <a class="button button--ink" href="foundations.html">Start at the foundations</a>
+            <a class="button button--outlined" href="../tutorials/">Browse tutorials</a>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-shell.svg" alt="">
+          <p><strong>StatePort</strong>Durable applications, built from state outward.</p>
+        </div>
+        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+      </div>
+    </footer>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>
