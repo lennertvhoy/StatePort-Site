@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Platform support and qualification — StatePort public documentation preview.">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+    <title>Platform support &amp; qualification — StatePort</title>
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-shell.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="./" aria-current="page">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-release" href="../releases/">Release status</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="page-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Documentation / Platform support</p>
+          <h1 id="page-title">Support is a capability claim, not a startup event.</h1>
+          <p>A container starting can be useful evidence. It does not, by itself, prove durable storage, host execution, recovery, or a safe path from an existing installation.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+        <aside class="doc-sidebar" aria-label="Documentation sections">
+          <h2>Documentation</h2>
+          <nav>
+            <a href="./">Overview</a>
+            <a href="foundations.html">Foundations</a>
+            <a href="model.html">Model</a>
+            <a href="lifecycle.html">Lifecycle</a>
+            <a href="governance.html">Governance</a>
+            <a href="security-and-privacy.html">Security &amp; privacy</a>
+            <a href="hosts-and-portability.html">Hosts &amp; portability</a>
+            <a href="platform-support.html" aria-current="page">Platform support</a>
+            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="reference.html">Reference &amp; FAQ</a>
+            <a href="getting-started.html">Getting started</a>
+            <a href="../tutorials/">Tutorials</a>
+            <a href="../releases/">Release status</a>
+          </nav>
+        </aside>
+
+        <article class="prose">
+          <p class="notice notice--quiet"><strong>Release-preparation contract</strong> This is a qualification map, not a current installation offer. <a href="../releases/">Availability lives in the release ledger.</a></p>
+
+          <h2>Capability-based qualification</h2>
+          <p>StatePort separates the browser and durable-storage path from host-integrated execution. An environment is not supported just because a container starts: each capability needs an explicit demonstration, and the release position records how far that demonstration has gone.</p>
+
+          <div class="table-scroll" tabindex="0" role="region" aria-label="Platform qualification matrix">
+            <table>
+              <caption class="sr-only">Platform qualification matrix</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Environment</th>
+                  <th scope="col">Browser and durable storage</th>
+                  <th scope="col">Host-integrated execution</th>
+                  <th scope="col">Release position</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Linux</th>
+                  <td>Primary qualification target.</td>
+                  <td>Codex CLI and Linux isolation can be qualified.</td>
+                  <td>First supported release.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Docker Desktop for Linux</th>
+                  <td>Clean-install acceptance target.</td>
+                  <td>Requires explicit provider-authentication and sandbox qualification.</td>
+                  <td>Must pass before release.</td>
+                </tr>
+                <tr>
+                  <th scope="row">macOS + Docker Desktop</th>
+                  <td>Expected UI and durable-storage path.</td>
+                  <td>Bubblewrap is Linux-specific; host adapters require separate proof.</td>
+                  <td>Preview only after testing.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Windows + Docker Desktop / WSL 2</th>
+                  <td>Expected UI and durable-storage path.</td>
+                  <td>Filesystem, terminal, provider, and WSL behaviour require separate proof.</td>
+                  <td>Preview only after testing.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>The matrix names a release contract, not a promise that every row is currently available. The <a href="hosts-and-portability.html">host-portability page</a> explains why provider identity alone cannot substitute for capability and degradation evidence.</p>
+
+          <h2>The first clean-install user story</h2>
+          <p>This is the first end-to-end scenario a later signed release must demonstrate. It is not an installation guide yet: the exact commands, image digests, and release identity belong with that release.</p>
+          <ol>
+            <li>Install the supported Docker and Compose environment.</li>
+            <li>Start an exact signed StatePort release from an empty data directory.</li>
+            <li>Complete first-run diagnostics.</li>
+            <li>Import existing StateSpec repositories through an explicit, reviewed path.</li>
+            <li>Instantiate a new application from an accepted canonical template.</li>
+            <li>Configure Codex or another supported host without copying credentials into StatePort.</li>
+            <li>Prove conversation, terminal, backup, restore, and governed-change workflows.</li>
+            <li>Stop the old service only after data and recovery acceptance pass.</li>
+          </ol>
+
+          <h2>What does not qualify a platform</h2>
+          <p>A successful image build, a container that answers one health endpoint, or a browser that reaches a landing screen is insufficient. Qualification needs the actual browser path, persistent state, provider route, host boundaries, governed change, backup, isolated restore, and failure behaviour to remain legible together.</p>
+
+          <h2>Evidence before a support claim</h2>
+          <p>Before this page can describe a platform as supported, the exact release and environment need a recorded acceptance run. The record should identify the source, images, host and adapter, authentication route class, storage location, checks performed, observed limits, and recovery outcome. A later release guide can then bind those facts to real artefacts rather than a moving branch.</p>
+
+          <div class="inline-actions">
+            <a class="button button--ink" href="hosts-and-portability.html">Read host boundaries</a>
+            <a class="button button--outlined" href="../releases/">View release status</a>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-shell.svg" alt="">
+          <p><strong>StatePort</strong>Durable applications, built from state outward.</p>
+        </div>
+        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+      </div>
+    </footer>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>

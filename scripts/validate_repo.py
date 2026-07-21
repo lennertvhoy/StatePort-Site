@@ -5,6 +5,7 @@ from __future__ import annotations
 
 from html.parser import HTMLParser
 from pathlib import Path
+import re
 from urllib.parse import urlsplit
 
 
@@ -53,6 +54,60 @@ def validate_local_references() -> None:
                 raise AssertionError(f"Broken local reference in {page.relative_to(ROOT)}: {reference}")
 
 
+def css_variable_hex(css: str, variable: str) -> tuple[int, int, int]:
+    match = re.search(rf"{re.escape(variable)}\s*:\s*(#[0-9a-fA-F]{{6}})\s*;", css)
+    if not match:
+        raise AssertionError(f"Expected a six-digit hex value for {variable}")
+    value = match.group(1).lstrip("#")
+    return tuple(int(value[index : index + 2], 16) for index in range(0, 6, 2))
+
+
+def relative_luminance(rgb: tuple[int, int, int]) -> float:
+    channels = []
+    for channel in rgb:
+        normalized = channel / 255
+        channels.append(
+            normalized / 12.92
+            if normalized <= 0.04045
+            else ((normalized + 0.055) / 1.055) ** 2.4
+        )
+    return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2]
+
+
+def contrast_ratio(foreground: tuple[int, int, int], background: tuple[int, int, int]) -> float:
+    lighter, darker = sorted((relative_luminance(foreground), relative_luminance(background)), reverse=True)
+    return (lighter + 0.05) / (darker + 0.05)
+
+
+def validate_documentation_button_accessibility() -> None:
+    css = require("assets/site.css").read_text(encoding="utf-8")
+    required_overrides = (
+        ".prose a.button {\n  font-weight: 760;\n  text-decoration: none;\n}",
+        ".prose a.button--ink,\n.prose a.button--ink:hover {\n  color: var(--white);\n}",
+        ".prose a.button--outlined {\n  color: var(--ink);\n}",
+        ".prose a.button--outlined:hover {\n  color: var(--white);\n}",
+    )
+    for override in required_overrides:
+        if override not in css:
+            raise AssertionError(f"Missing documentation-button override: {override.splitlines()[0]}")
+    if css.index(".prose a.button {") <= css.index(".prose a {"):
+        raise AssertionError("Documentation-button overrides must follow the generic prose-link rule")
+    if ".button--ink {\n  color: var(--white);\n  background: var(--ink);\n}" not in css:
+        raise AssertionError("Dark button must declare white text on the ink background")
+
+    focus_visible = re.search(r":focus-visible\s*\{(?P<body>[^}]*)\}", css, re.DOTALL)
+    if not focus_visible or "outline:" not in focus_visible.group("body") or "outline-offset:" not in focus_visible.group("body"):
+        raise AssertionError("Visible keyboard focus treatment is required")
+
+    white = css_variable_hex(css, "--white")
+    for background_variable in ("--ink", "--blue-deep"):
+        ratio = contrast_ratio(white, css_variable_hex(css, background_variable))
+        if ratio < 4.5:
+            raise AssertionError(
+                f"White text on {background_variable} fails WCAG AA contrast: {ratio:.2f}:1"
+            )
+
+
 def main() -> None:
     required = (
         "AGENTS.md",
@@ -72,6 +127,7 @@ def main() -> None:
         "docs/governance.html",
         "docs/security-and-privacy.html",
         "docs/hosts-and-portability.html",
+        "docs/platform-support.html",
         "docs/evidence-and-roadmap.html",
         "docs/reference.html",
         "docs/prototype-walkthrough.html",
@@ -106,6 +162,7 @@ def main() -> None:
     require_text("index.html", "Watch the local prototype")
     require_text("docs/prototype-walkthrough.html", "Local preview")
     require_text("docs/agent-kits.html", "Early direction")
+    require_text("docs/platform-support.html", "Capability-based qualification")
     require_text("papers/stateware-whitepaper-public-v1.1.html", "Publication note")
     require_text("releases/index.html", "The release is still in preparation")
     require_text(".github/workflows/deploy-pages.yml", "actions/deploy-pages@v4")
@@ -117,6 +174,7 @@ def main() -> None:
         raise AssertionError("Public pages must not link to the private implementation repository")
 
     validate_local_references()
+    validate_documentation_button_accessibility()
     print("StatePort Site validation: OK")
 
 

@@ -4,6 +4,18 @@
 **Execution Mode:** operating
 **Max Items:** 3
 
+## P1 [BL-SITE-006] Review the local release-readiness remediation before submission
+
+**Status:** ready_for_review
+
+The local worktree adds the documentation-button contrast repair and its
+regression gate, plus the capability-based platform-support contract and
+clean-install acceptance story. It has not changed draft PR #1, Pages, or the
+public runtime.
+
+**Exit:** an explicitly reviewed exact commit reaches draft PR #1, then its
+matching remote checks and human review are recorded separately.
+
 ## P1 [BL-SITE-003] Add release-specific content only with public source evidence
 
 **Status:** pending_external

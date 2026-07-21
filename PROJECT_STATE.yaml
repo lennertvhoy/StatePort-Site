@@ -13,7 +13,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: launch_preparation
-  status: initial_public_site_published_with_expanded_package_pushed_for_review_pending_merge_and_deployment
+  status: initial_public_site_published_with_expanded_package_and_local_release_readiness_remediation_pending_review_merge_and_deployment
   purpose: public documentation, tutorials, release status, and future download home
 
 source_boundary:
@@ -43,6 +43,7 @@ site:
     - /docs/governance.html
     - /docs/security-and-privacy.html
     - /docs/hosts-and-portability.html
+    - /docs/platform-support.html
     - /docs/evidence-and-roadmap.html
     - /docs/reference.html
     - /docs/prototype-walkthrough.html
@@ -69,7 +70,7 @@ site:
     mutation: false
 
 documentation_package:
-  status: pushed_for_review_pending_merge_and_deployment
+  status: expanded_package_pushed_for_review_with_local_release_readiness_remediation_pending_commit_and_push
   scope:
     - foundations
     - application_model_and_state_authority
@@ -77,6 +78,7 @@ documentation_package:
     - governance_capabilities_approvals_and_receipts
     - security_and_privacy_boundaries
     - execution_host_portability_and_degradation
+    - capability_based_platform_support_contract_and_clean_install_acceptance_story
     - evidence_ladder_and_roadmap
     - glossary_faq_and_receipt_tutorial
     - captioned_local_prototype_walkthrough_and_fixture_screens
@@ -86,7 +88,7 @@ documentation_package:
   public_claim_boundary: release_ledger_is_the_single_public_source_for_availability
   local_review:
     prior_validator: passed_2026-07-21_before_media_package
-    current_package: static_validation_and_desktop_mobile_visual_review_passed_2026-07-21
+    current_package: static_validation_contrast_regression_and_desktop_mobile_visual_review_passed_2026-07-21
 
 public_media_and_paper:
   status: pushed_for_review_pending_merge_and_deployment
@@ -129,8 +131,8 @@ delivery:
   expanded_package_branch: agent/public-showcase
   expanded_package_draft_pull_request: https://github.com/lennertvhoy/StatePort-Site/pull/1
   pages_url: https://lennertvhoy.github.io/StatePort-Site/
-  local_validation: passed_2026-07-21_for_expanded_package
-  visual_review: passed_local_desktop_and_mobile_2026-07-21_for_expanded_package
+  local_validation: passed_2026-07-21_for_expanded_package_and_local_release_readiness_remediation
+  visual_review: passed_local_desktop_and_mobile_2026-07-21_for_expanded_package_and_local_release_readiness_remediation
   remote_ci:
     status: passed
     workflow: Deploy StatePort Site

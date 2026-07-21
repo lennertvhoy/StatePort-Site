@@ -1168,6 +1168,7 @@ select {
 }
 
 .prose {
+  min-width: 0;
   max-width: 46rem;
 }
 
@@ -1222,6 +1223,25 @@ select {
   font-weight: 650;
 }
 
+/* Documentation links are blue; documentation buttons retain their button contrast. */
+.prose a.button {
+  font-weight: 760;
+  text-decoration: none;
+}
+
+.prose a.button--ink,
+.prose a.button--ink:hover {
+  color: var(--white);
+}
+
+.prose a.button--outlined {
+  color: var(--ink);
+}
+
+.prose a.button--outlined:hover {
+  color: var(--white);
+}
+
 .prose code {
   padding: 0.15em 0.32em;
   border-radius: 4px;
@@ -1253,6 +1273,18 @@ select {
   margin: 1.6rem 0;
   border-collapse: collapse;
   font-size: 0.92rem;
+}
+
+.prose .table-scroll {
+  margin: 1.6rem 0;
+  overflow-x: auto;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.prose .table-scroll table {
+  min-width: 43rem;
+  margin: 0;
 }
 
 .prose th,

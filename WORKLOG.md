@@ -1,5 +1,26 @@
 # Worklog
 
+## 2026-07-21 — Local platform-support and documentation-button accessibility remediation
+
+- Added `docs/platform-support.html` as a qualification contract rather than a
+  current installation claim. It distinguishes browser/durable-storage proof
+  from host-integrated execution for Linux, Docker Desktop for Linux, macOS +
+  Docker Desktop, and Windows + Docker Desktop/WSL 2; it also records the
+  first clean-install acceptance story that a future signed release must prove.
+- Wired the route into documentation navigation, the overview, the hosts page,
+  the sitemap, route validation, and current project state. The release ledger
+  remains the source for availability.
+- Corrected the `.prose a` cascade so dark and outlined documentation buttons
+  retain their intended colors. The static validator now requires those scoped
+  overrides, calculates white-on-dark WCAG contrast (including hover), and
+  requires visible keyboard focus treatment.
+- Ran `python3 scripts/validate_repo.py`, reviewed the route on a loopback
+  server at desktop and 390px mobile widths, and observed no browser console
+  errors. The matrix remains horizontally scrollable on mobile without causing
+  document-level horizontal overflow.
+- This remediation is local only: it has not been committed, pushed to draft
+  PR #1, merged, deployed, or accepted as release evidence.
+
 ## 2026-07-21 — Public prototype, paper, and Agent Kits package locally validated
 
 - Added an 83.94-second H.264/AAC local prototype walkthrough with English
