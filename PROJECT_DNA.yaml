@@ -1,30 +1,55 @@
 metadata:
   format_version: statespec-project-dna/v1
-  updated_at: 2026-07-21
+  updated_at: 2026-07-22T13:07:00+02:00
 
 project:
   name: StatePort Site
-  category: public documentation and release home
+  category: public product story, documentation, and release home
   product_language:
     category: Stateware
     method: State-Centric Engineering
     specification: StateSpec
     legacy_compatibility_name: StateDD
 
+architecture:
+  runtime: static_html_css_and_progressive_enhancement_javascript
+  build_pipeline: none
+  layers:
+    - assets/site.css is the established visual-system baseline
+    - assets/site-enhancements.css is an additive product, documentation, responsive, print, and accessibility layer
+    - assets/site.js provides resilient progressive enhancement without becoming canonical state
+  platform_metadata:
+    - canonical URLs and social-preview metadata on primary entry routes
+    - schema.org JSON-LD on primary entry routes
+    - site.webmanifest with the existing SVG favicon as its icon
+  privacy:
+    - no behavioural tracking
+    - no remote fonts
+    - no third-party scripts
+    - no client-side data dependency
+  portability:
+    - deployable as static files
+    - core content remains readable without JavaScript
+    - no framework runtime or provider-specific application API
+
 audiences:
   - prospective users who need a clear, non-technical explanation
   - future self-hosters looking for trustworthy release and download status
-  - builders learning the StateSpec model
+  - builders learning the Stateware and StateSpec model
+  - operators evaluating governance, security, lifecycle, and portability boundaries
   - contributors once a public source release is available
 
 content_architecture:
-  hero: StatePort, a durable application boundary for work that lasts
-  support: Stateware concepts and the four-stage application path
-  detail: a captioned local preview, public whitepaper, and roadmap material
-  final_cta: a single release ledger for availability details
+  first_screen: concrete product definition plus the current prototype and software-availability boundary
+  evidence: captioned local fixture walkthrough with explicit limits
+  product_path: definition, evidence, principles, operating model, audience route, release ledger
+  documentation_path: product first, then model, operation, evidence, and reference by visitor intent
+  tutorials: conceptual exercises with time, outcomes, and proof limits
+  release_status: one authoritative ledger separating public artifacts from software, source, license, downloads, and installation material
+  roadmap: labelled and subordinate to the unreleased core product
 
 visual_direction:
-  visual_thesis: A midnight state atlas: quiet archival depth, bright blue signals, and a single living mascot navigating durable routes.
+  visual_thesis: "A midnight state atlas: quiet archival depth, bright blue signals, and a single living mascot navigating durable routes."
   palette:
     infrastructure_navy: "#0B132B"
     orchestration_blue: "#2F7DFF"
@@ -41,20 +66,43 @@ visual_direction:
     - prose and lines before card grids
     - no unsupported product UI or fake telemetry
     - use real, labelled fixture captures when showing product UI
+    - preserve the accepted shell mascot without redraw, filter, or substitution
   copy_rules:
+    - define the product before introducing the category thesis
     - lead with concrete work, ownership, and product surfaces
     - keep Stateware and StateSpec terms where they clarify the model
     - keep availability in the release ledger instead of repeating long boundary disclaimers
-    - avoid generic agent or AI labels, hype, and reflexive not-this/not-that copy
+    - distinguish proposed, authorized, applied, validated, released, and human accepted
+    - avoid generic agent or AI labels, hype, decorative coordinates, and reflexive not-this/not-that copy
 
 interaction_direction:
   interaction_thesis:
     - staggered hero entrance establishes hierarchy without delaying reading
     - pointer-responsive atlas depth gives the brand mark a sense of navigation
     - restrained scroll reveals mark new chapters while preserving reduced-motion access
+    - documentation enhancements reduce scanning cost without hiding canonical content
+  capabilities:
+    - keyboard-safe mobile navigation with Escape, outside close, focus transfer, and focus restoration
+    - grouped documentation navigation with a mobile disclosure
+    - generated breadcrumbs, local tables of contents, and previous-next paths
+    - accessible documentation filtering and code-copy status feedback
+    - print, increased-contrast, and forced-colour accommodations
   constraints:
     - all primary content remains available without JavaScript
+    - visually hidden navigation must not remain keyboard focusable
     - captioned media uses user-initiated controls with no autoplay or behavioural tracking
+    - progressive JavaScript does not inject untrusted HTML strings
+
+quality_contract:
+  deterministic_checks:
+    - repository shape, local references, immutable workflow pins, contrast, and public-private source boundary
+    - language, titles, descriptions, landmarks, one h1, unique IDs, and skip-link targets
+    - image alternatives, labelled controls, keyboard-navigation contracts, and video captions
+    - canonical and social metadata, JSON-LD, manifest, fragments, and sitemap coverage
+    - tracking absence, local scripts, safe DOM construction, and static asset budgets
+  evidence_boundary:
+    - static checks are not browser, assistive-technology, usability, deployment, runtime, or human-acceptance evidence
+    - exact behavior-bearing commit identity and workflow run must be recorded
 
 truth_boundaries:
   stateport_source: private until an independently published release

@@ -1,5 +1,58 @@
 # Worklog
 
+## 2026-07-22 — Critical product and UX overhaul prepared and behavior head validated
+
+- Audited the deployed plain-language site across product definition,
+  positioning, information architecture, visual hierarchy, content, responsive
+  interaction, keyboard access, metadata, privacy, performance, maintainability,
+  release truth, and automated validation. The durable findings, decisions,
+  acceptance criteria, rollback, and deferred work are recorded in
+  `SITE_AUDIT.md`.
+- Preserved the static HTML/CSS/progressive-JavaScript architecture, midnight
+  state-atlas visual identity, accepted byte-for-byte shell mascot, captioned
+  user-initiated prototype, zero-tracking boundary, and conservative release
+  language. A framework rewrite was rejected as cost without user value.
+- Rebuilt the homepage around a concrete product definition, current evidence,
+  a shorter operating story, separate user and builder routes, and one detailed
+  release boundary. Agent Kits was demoted to an explicitly scoped roadmap note.
+- Replaced the flat documentation wall with a recommended four-step path,
+  intent-based catalogue, accessible filter, grouped sidebars, breadcrumbs,
+  local tables of contents, previous/next navigation, and code-copy feedback.
+- Clarified tutorial sequence, time, outcomes, and proof limits. Rebuilt the
+  release ledger to distinguish available public artifacts from unavailable
+  software, implementation source, license, downloads, and installation
+  material.
+- Reworked progressive interaction: mobile navigation now manages hidden focus,
+  Escape and outside close, focus transfer, and restoration; key entry routes
+  have a no-JavaScript mobile-navigation fallback. Added print,
+  increased-contrast, forced-colour, intrinsic-media, lazy-loading, and async
+  decoding support.
+- Added canonical URLs, Open Graph/Twitter metadata, schema.org JSON-LD, and a
+  web app manifest to the primary entry routes without adding tracking or remote
+  runtime dependencies.
+- Expanded the dependency-free quality contract from local links and a narrow
+  contrast case to document structure, unique IDs, skip targets, image
+  alternatives, labelled controls, captioned video, local scripts, entry-point
+  metadata, JSON-LD, internal fragments, sitemap coverage, manifest validity,
+  tracking absence, safe DOM construction, and static asset budgets.
+- The first exact-head CI run exposed a real pre-existing 404-page defect: no
+  meta description and no skip link. Corrected the structure and replaced the
+  jargon-heavy recovery copy with clear local routes rather than exempting the
+  page from the contract.
+- While the first draft was being assembled, PR #2 merged and canonical `main`
+  advanced. Created `agent/site-product-ux-overhaul-mainline` directly from
+  current `main` SHA `10846eaea05ebf915006fe0f4d65a1e1e4f9a82b`, reapplied only
+  the intentional files as one clean commit, opened draft PR
+  [`#5`](https://github.com/lennertvhoy/StatePort-Site/pull/5), and closed the
+  superseded diverged draft PR #4 without merge.
+- Behavior-bearing head `be8c63ffb14b34c0ec6c1cc657b8ea248b2eaa4b` passed
+  GitHub Actions run `29914436990`. Authored-source JavaScript syntax, Python
+  compilation, HTML parsing, and a synthetic twenty-page quality-contract run
+  also passed.
+- PR #5 remains unmerged, undeployed, public-runtime unverified, and human
+  unaccepted. Browser, keyboard, screen-reader, Lighthouse, axe, and task-based
+  usability review remain separate acceptance work.
+
 ## 2026-07-22 — Plain-language revision deployed and verified
 
 - Merged PR #2 as `8794d1bc9800fff186555fbd5546e7bf9c2d8fc2` after the exact
