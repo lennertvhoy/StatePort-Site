@@ -1,43 +1,31 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:01.740
-Here is the StatePort preview.
+00:00.000 --> 00:13.619
+Start in the catalog. Choose the app you actually need. Here, the checklist is ready, the study app is unavailable, and StatePort shows that difference instead of hiding it.
 
-00:00:02.190 --> 00:00:05.360
-It gives an AI project a place to live outside the chat.
+00:13.619 --> 00:24.471
+Open the checklist and you get a real project view: its name, its backup state, the tools it exposes, and where the source came from.
 
-00:00:05.810 --> 00:00:10.820
-When you come back, you can see the project, what you were doing, and what needs your attention.
+00:24.471 --> 00:34.288
+Ask a normal question: what should I do next? The answer comes back in the same conversation, with the project still in view.
 
-00:00:11.970 --> 00:00:13.730
-This is the conversation screen.
+00:34.288 --> 00:46.968
+For a more controlled task, choose an action. Before it runs, StatePort shows the engine, the budget, the data it will read, and whether it can change anything.
 
-00:00:14.180 --> 00:00:17.920
-You can ask for help, but the conversation is only one part of the project.
+00:46.968 --> 00:53.792
+Approval is its own step. You can review the exact task before anything executes.
 
-00:00:18.370 --> 00:00:21.810
-Your files and decisions do not disappear inside a long chat.
+00:53.792 --> 01:02.709
+After execution, the result is readable: verify the portable execution boundary. The project is unchanged.
 
-00:00:22.960 --> 00:00:25.390
-This screen shows the project information.
+01:02.709 --> 01:13.374
+The evidence drawer keeps the lifecycle, receipt, and exact record together. You can inspect the result instead of trusting a screenshot.
 
-00:00:25.840 --> 00:00:30.840
-It helps you see what is ready, what is still being checked, and what is only a test.
+01:13.374 --> 01:24.160
+Settings are part of the product. You can see the instance identity, what stays editable, and which facts come from the application itself.
 
-00:00:31.290 --> 00:00:33.750
-That makes it easier to know what you can trust.
+01:24.160 --> 01:36.524
+Different application, different role. This CTO fixture opens a workbench for development work, while the project identity and recovery state stay visible.
 
-00:00:34.900 --> 00:00:36.390
-And this is the mobile view.
-
-00:00:36.840 --> 00:00:39.940
-The same project stays readable on a small screen.
-
-00:00:40.390 --> 00:00:42.720
-This is a local preview made on my computer.
-
-00:00:43.170 --> 00:00:45.210
-You cannot download the software yet.
-
-00:00:45.660 --> 00:00:50.860
-The point of StatePort is simple: help you pick up AI work again without losing the work itself.
+01:36.524 --> 01:45.637
+The boundaries are visible too. Tools that are unavailable in this environment stay unavailable instead of pretending to work.

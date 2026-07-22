@@ -625,7 +625,7 @@ select {
 .media-player video {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 8 / 5;
   background: #090f1e;
 }
 

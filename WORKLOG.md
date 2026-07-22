@@ -1,5 +1,29 @@
 # Worklog
 
+## 2026-07-22 — Working platform walkthrough captured and surfaced
+
+- Reviewed the loopback StatePort runtime through the public-safe ChecklistState
+  and CTO Pilot Fixture applications. The working path included the catalog,
+  project overview, a real conversation answer, governed-run preparation,
+  exact approval, execution, readable result, evidence drawer, settings, and
+  capability boundaries.
+- Found and corrected a platform presentation gap: completed no-mutation runs
+  were persisted with `lifecycleState: CLOSED` while the legacy status remained
+  `result_validating`, leaving the useful result buried. The frontend now shows
+  a readable Result section, the unchanged-project fact, exact result JSON, and
+  an evidence action for that closed state. Frontend typecheck, lint, and all
+  715 frontend tests passed; the rebuilt loopback service returned a healthy
+  identity response.
+- Replaced the weak 52-second screen slideshow with a 105.746-second,
+  1920×1200 walkthrough captured from those real states. The new MP4 has no
+  baked-in text overlay; narration and captions are generated from the same
+  ten scene segments. Local MP4 SHA-256:
+  `b69e18dfcac398e2839f2b6f6733b7cb440631903ea6fc9cf1bec603d7f76293`.
+- Reworked the homepage and walkthrough page around actual platform actions,
+  results, evidence, settings, and roles. Site validation and the full quality
+  contract passed. The replacement is locally validated but remains unmerged,
+  undeployed, and not human-accepted.
+
 ## 2026-07-22 — Clean-screen walkthrough and plain-language narration prepared
 
 - Replaced the text-card-overlaid walkthrough composition with a short video
