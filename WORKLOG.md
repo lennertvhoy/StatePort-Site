@@ -1,5 +1,16 @@
 # Worklog
 
+## 2026-07-22 — Plain-language revision deployed and verified
+
+- Merged PR #2 as `8794d1bc9800fff186555fbd5546e7bf9c2d8fc2` after the exact
+  branch validation passed in run `29912161044`.
+- Pages deployment run `29912179462` passed.
+- Public runtime checks returned HTTP 200 for the homepage, docs, walkthrough,
+  release status, captions, and video. The live video SHA-256 matches
+  `7f7ed41b2f010357369d22b402c4fbcfdd088dcc9b7d2eb9ab423c9134c12901`.
+- Human acceptance of the copy, visual design, information architecture, and
+  media voice remains open.
+
 ## 2026-07-22 — Plain-language public copy and narration revision
 
 - Responded to product-owner review that the public site and walkthrough were

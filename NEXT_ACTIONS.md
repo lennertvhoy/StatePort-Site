@@ -4,17 +4,15 @@
 **Execution Mode:** operating
 **Max Items:** 3
 
-## P1 [BL-SITE-008] Deploy and review the plain-language site package
+## P1 [BL-SITE-007] Obtain human acceptance of the deployed site package
 
-**Status:** ready_for_deployment
+**Status:** pending
 
-The homepage, documentation entry points, walkthrough page, captions, and
-walkthrough narration have been rewritten for non-technical readers. The
-existing public release boundary remains unchanged.
+The plain-language homepage, documentation entry points, walkthrough page,
+captions, and narration are deployed by Pages run `29912179462`.
 
-**Exit:** Pages serves this exact revision; human review records acceptance or
-requested changes for the live copy, visual design, information architecture,
-and media voice.
+**Exit:** human review records acceptance or requested changes for the live
+copy, visual design, information architecture, and media voice.
 
 ## P1 [BL-SITE-003] Add release-specific content only with public source evidence
 
