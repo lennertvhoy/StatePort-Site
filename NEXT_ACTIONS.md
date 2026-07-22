@@ -4,35 +4,37 @@
 **Execution Mode:** operating
 **Max Items:** 3
 
-## P1 [BL-SITE-009] Review the exact product and UX overhaul
+## P1 [BL-SITE-009] Obtain human acceptance of the deployed product and UX overhaul
 
-**Status:** ready_for_review
+**Status:** pending
 
-Draft PR [`#5`](https://github.com/lennertvhoy/StatePort-Site/pull/5) contains
-the audit-backed homepage, documentation, tutorial, release-ledger, 404,
-interaction, metadata, privacy, performance, and quality-contract changes. The
-behavior-bearing head `be8c63ffb14b34c0ec6c1cc657b8ea248b2eaa4b` passed
-GitHub Actions run `29914436990`.
+PR [`#5`](https://github.com/lennertvhoy/StatePort-Site/pull/5) merged as
+`905849ebc874391eb0449d619159fd5e78f02be2` and Pages deployment run
+`29915789073` passed. The exact final head
+`4d890658a8723bd5c44959ea6d5a455918f1e36e` also passed the repository and
+expanded quality contracts, desktop/390px browser review, keyboard smoke,
+caption/media checks, and public browser-console verification.
 
-Review at desktop and 390px widths, then complete keyboard and screen-reader
-smoke tests. Use five tasks: explain StatePort after the first screen; distinguish
-the prototype from downloadable software; find security limits; find platform
-support; explain proposal versus validation versus human acceptance.
+Complete human review of the live site at desktop and 390px widths. Use five
+tasks: explain StatePort after the first screen; distinguish the prototype from
+downloadable software; find security limits; find platform support; explain
+proposal versus validation versus human acceptance.
 
 **Exit:** human review records accepted changes or concrete revisions against
-the exact PR head. Static validation alone does not close this item.
+the deployed merge commit. Static or agent browser validation alone does not
+close this item.
 
 ## P1 [BL-SITE-010] Merge, deploy, and verify an accepted exact revision
 
-**Status:** blocked_on_BL-SITE-009
+**Status:** completed
 
-After review acceptance, merge the exact accepted PR head, record the merge
-commit, require a successful Pages deployment, and verify the public homepage,
-documentation, release ledger, 404 route, captions, media, mobile navigation,
-and browser console.
+PR #5 exact head `4d890658a8723bd5c44959ea6d5a455918f1e36e` merged as
+`905849ebc874391eb0449d619159fd5e78f02be2`. Pages run `29915789073` passed;
+the homepage, documentation, release ledger, 404 route, captions, media,
+mobile navigation, and browser console were verified publicly.
 
-**Exit:** one exact revision is separately recorded as merged, deployed,
-public-runtime verified, and human accepted. Do not collapse those states.
+**Exit:** merged, deployed, and public-runtime verified are recorded
+separately. Human acceptance remains BL-SITE-009.
 
 ## P1 [BL-SITE-003] Add release-specific content only with public source evidence
 
@@ -52,3 +54,5 @@ license decision, versioned artifact, checksums, and verified install path exist
   current canonical `main`; opened draft PR #5 and closed superseded draft PR #4.
 - Expanded the deterministic quality contract and corrected the 404-page defect
   it exposed. Behavior-bearing head validation passed in run `29914436990`.
+- Reviewed and deployed PR #5's exact final head; recorded merge, Pages, and
+  public-runtime evidence separately. Human acceptance remains open.
