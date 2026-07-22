@@ -6,7 +6,7 @@
 
 ## P1 [BL-SITE-012] Replace the screen slideshow with a working platform walkthrough
 
-**Status:** locally_validated_deployment_pending_human_acceptance_pending
+**Status:** deployed_public_runtime_verified_human_acceptance_pending
 
 The product-owner review correctly identified that the 52-second clean-screen
 revision still behaved like a slideshow. The replacement walkthrough is
@@ -23,9 +23,10 @@ Its narration is rendered through StudyVoice Piper using the male US
 sentences, pauses, and 96% pacing; the VTT cue text is verified to match those
 same ten sentence groups exactly. The model-card dataset license is Apache 2.0.
 The site validators passed, the local site reports 1920×1200 video metadata,
-and the public-safe platform runtime was exercised before capture. The voice
-revision is locally validated but not deployed yet; the live site still serves
-the previous revision until this exact asset is accepted and published.
+and the public-safe platform runtime was exercised before capture. PR #14
+merged as `b22b674bb4321e099356107874ba86a952f09fdd`; Pages deployment run
+`29922160118` passed; and the live runtime serves the Sam voice revision and
+its synchronized captions.
 
 **Exit:** exact revision is validated, reviewed at desktop and 390px widths,
 merged, Pages-deployed, public-runtime verified, and human-accepted. The
