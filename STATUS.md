@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-07-22
 **Execution Mode:** operating
-**Project State:** working_platform_walkthrough_voice_revision_deployed_public_runtime_verified_human_acceptance_pending
+**Project State:** working_platform_walkthrough_neural_voice_revision_locally_validated_deployment_pending_human_acceptance_pending
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -38,15 +38,14 @@
   Static validation and local runtime playback passed. PR #11 merged as
   `9567f1c223f3c536bebe51ae8f4580709a748b76`; Pages deployment run
   `29919971077` passed, and that revision was publicly verified.
-- A new voice revision is locally validated but not deployed yet. It is a
-  98.365-second, 1920×1200 capture using StudyVoice Piper's male US
-  `en_US-sam-medium` voice and SSML-style markup. Its MP4 SHA-256 is
-  `9532b8b4ca1f0874c1a0b8796f6f59e4e47f4e2df423a460050bd0cf23ba24bb`.
+- The current public walkthrough uses the prior StudyVoice Piper voice revision
+  from PR #14. A new neural-voice revision is locally validated but not
+  deployed yet. It is a 65.824-second, 1920×1200 capture using the male US
+  `en-US-AndrewNeural` Edge neural voice and SSML-style markup. Its MP4
+  SHA-256 is `b5d39209fd6bb7180f7eba651ce67e720125ad12447ed620675f2807395452d2`.
   The ten VTT cues exactly match the ten markup scene texts and the screenshot
-  holds are built from the same scene durations.
-- PR #14 merged as `b22b674bb4321e099356107874ba86a952f09fdd`; Pages deployment
-  run `29922160118` passed. The live public runtime now serves the Sam voice
-  revision, its 1920×1200 video, and the synchronized VTT captions.
+  holds are built from the same scene durations. The build sent only public
+  narration text to the synthesis service; visitors have no runtime dependency.
 - A critical product, UX, content, accessibility, performance, metadata,
   privacy, and implementation audit is recorded in `SITE_AUDIT.md`.
 - The audit found that the visual identity and static architecture should be
@@ -91,10 +90,12 @@
 - Human acceptance of the live baseline and the proposed overhaul remains open.
 - Public source availability, a licensed release, downloads, and a verified
   installation path remain absent.
-- The current working-platform walkthrough is deployed and publicly verified.
-  Human acceptance of the live product story remains open.
+- The prior working-platform walkthrough is deployed and publicly verified.
+  The new neural-voice revision is pending deployment; human acceptance of the
+  live product story remains open.
 
 ## Next action
 
-Review the deployed new voice revision at desktop and 390px widths; keep
-public-runtime verification and human acceptance as separate recorded steps.
+Review the new neural-voice revision at desktop and 390px widths after
+deployment; keep public-runtime verification and human acceptance as separate
+recorded steps.

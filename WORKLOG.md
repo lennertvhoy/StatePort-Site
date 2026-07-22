@@ -1,5 +1,18 @@
 # Worklog
 
+## 2026-07-22 — Plain-language neural narration prepared
+
+- Rejected the StudyVoice Piper track after product-owner review found that the
+  spoken content remained difficult to understand. Rewrote the ten scenes as
+  direct screen-specific actions and removed abstract product terminology.
+- Rendered the public narration text once through Microsoft Edge neural TTS
+  with the male US `en-US-AndrewNeural` voice. This avoids visitor runtime
+  calls and avoids a heavy local synthesis workload.
+- The local MP4 is 65.824 seconds, 1920×1200, H.264/AAC, SHA-256
+  `b5d39209fd6bb7180f7eba651ce67e720125ad12447ed620675f2807395452d2`.
+  All ten captions exactly match the ten markup scene groups; deployment is
+  pending.
+
 ## 2026-07-22 — StudyVoice voice revision deployed
 
 - Merged PR #14 as `b22b674bb4321e099356107874ba86a952f09fdd`; Pages deployment
