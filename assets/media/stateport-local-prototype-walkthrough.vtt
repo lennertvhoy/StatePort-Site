@@ -1,31 +1,49 @@
 WEBVTT
 
-00:00.000 --> 00:04.834
-This is the list of apps in StatePort. I am opening the checklist.
+00:00.000 --> 00:08.358
+StatePort is a home for ongoing work with AI. You do not start with a blank chat. You open the app for the work you are doing.
 
-00:04.834 --> 00:11.948
-This is the checklist's home. It shows the project, the tools it has, and whether the backup needs attention.
+00:08.358 --> 00:17.268
+Each app keeps the work in one place: the project, the conversation, the tools, the decisions, and what happened before.
 
-00:11.948 --> 00:19.322
-Here I ask, what should I do next? The answer stays inside the checklist, next to the work it is talking about.
+00:17.268 --> 00:23.130
+The idea is simple. Chat helps with the work, but the project is what lasts.
 
-00:19.322 --> 00:28.832
-Now I pick an action: plan the next checklist item. Before it runs, I can see what it will do, which tool will run it, and whether it can change anything.
+00:23.130 --> 00:28.464
+Here I choose a checklist from the catalog. I open it to continue that work.
 
-00:28.832 --> 00:35.322
-This request is waiting for my approval. I can read the exact action before I allow it to run.
+00:28.464 --> 00:35.766
+The project opens with the things I need to see: what it is, what tools it has, and what needs attention.
 
-00:35.322 --> 00:41.740
-It is finished. The result says the check is complete. Nothing in the project was changed.
+00:35.766 --> 00:44.436
+Now I ask a normal question: what should I do next? The answer stays inside the checklist, next to the work it is talking about.
 
-00:41.740 --> 00:47.326
-Later, I can review the request, the approval, and the result in one place.
+00:44.436 --> 00:52.314
+Next I ask StatePort to plan the next checklist item. This is an action, so it gets more care than a chat reply.
 
-00:47.326 --> 00:53.076
-These are the settings. They show what I can change, and what the app controls for me.
+00:52.314 --> 00:59.232
+Before it can run, I can see what it will do, which tool will run it, and whether it can change the project.
 
-00:53.076 --> 00:58.826
-Here is a different app for technical work. It has a different workspace and different tools.
+00:59.232 --> 01:05.454
+The plan is ready, but it is waiting. I can read the exact action before I approve it.
 
-00:58.826 --> 01:05.824
-Some tools are not available in this setup. StatePort leaves them turned off instead of pretending they work.
+01:05.454 --> 01:09.228
+After I approve it, StatePort runs the check.
+
+01:09.228 --> 01:14.178
+Here is the result. It finished, and it did not change the project.
+
+01:14.178 --> 01:19.584
+Later, I can check the request, the approval, and the result together.
+
+01:19.584 --> 01:24.174
+Settings show what I can change, and what is fixed for this project.
+
+01:24.174 --> 01:30.492
+Different work can use a different app. This technical workspace has tools for development work.
+
+01:30.492 --> 01:37.290
+Some tools are not available here. StatePort leaves them turned off instead of pretending they work.
+
+01:37.290 --> 01:43.968
+That is the point of StatePort. AI helps inside work you can see, check, and come back to.

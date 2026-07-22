@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-07-22
 **Execution Mode:** operating
-**Project State:** working_platform_walkthrough_neural_voice_revision_deployed_public_runtime_verified_human_acceptance_pending
+**Project State:** working_platform_walkthrough_story_revision_locally_validated_deployment_pending_human_acceptance_pending
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -47,6 +47,16 @@
 - PR #16 merged as `a51e2f7c55c02f9f2418099d10004cd7afafd2aa`; Pages deployment
   run `29923458869` passed. The live public runtime hash, duration, captions,
   and walkthrough copy were verified directly.
+- A clearer 103.968-second local story revision is prepared but not yet public.
+  It starts by defining StatePort and its core idea—chat helps, but the work
+  needs a lasting home—before showing a complete checklist workflow, the
+  approval and result, evidence, settings, a second workspace, and the
+  takeaway. It remains a 1920×1200 working public-safe fixture with no baked
+  text overlay. Its MP4 SHA-256 is
+  `f57949d33bdfe9ee8bebde37dfe32446adb01c5c9136fdd6927724758aaa9467`.
+  The 16 VTT cues exactly match the 16 narration scene texts; each screen is
+  held for its corresponding scene and the narration has a 750 ms scene pause.
+  The public site still serves the verified PR #16 1:06 revision.
 - A critical product, UX, content, accessibility, performance, metadata,
   privacy, and implementation audit is recorded in `SITE_AUDIT.md`.
 - The audit found that the visual identity and static architecture should be
@@ -91,10 +101,11 @@
 - Human acceptance of the live baseline and the proposed overhaul remains open.
 - Public source availability, a licensed release, downloads, and a verified
   installation path remain absent.
-- The current working-platform walkthrough is deployed and publicly verified.
-  Human acceptance of the live product story remains open.
+- The clearer story revision is locally validated only. Its merge, Pages
+  deployment, public-runtime verification, and human acceptance remain open.
 
 ## Next action
 
-Review the deployed neural-voice revision at desktop and 390px widths; keep
+Deploy the clearer story revision, verify its live media hash, duration,
+captions, and page copy, then review it at desktop and 390px widths. Keep
 public-runtime verification and human acceptance as separate recorded steps.
