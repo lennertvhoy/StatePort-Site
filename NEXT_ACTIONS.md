@@ -6,7 +6,7 @@
 
 ## P1 [BL-SITE-012] Replace the screen slideshow with a working platform walkthrough
 
-**Status:** deployed_public_runtime_verified_human_acceptance_pending
+**Status:** locally_validated_deployment_pending_human_acceptance_pending
 
 The product-owner review correctly identified that the 52-second clean-screen
 revision still behaved like a slideshow. The replacement walkthrough is
@@ -16,13 +16,16 @@ approval, governed result, evidence, settings, and a second application’s
 capability boundary. The spoken track and WebVTT are generated from the same
 ten scene segments, with no baked-in text overlay.
 
-The local MP4 is 105.746 seconds with SHA-256
-`b69e18dfcac398e2839f2b6f6733b7cb440631903ea6fc9cf1bec603d7f76293`.
+The new local MP4 is 98.365 seconds with SHA-256
+`9532b8b4ca1f0874c1a0b8796f6f59e4e47f4e2df423a460050bd0cf23ba24bb`.
+Its narration is rendered through StudyVoice Piper using the male US
+`en_US-sam-medium` voice. The SSML-style markup source defines the ten scene
+sentences, pauses, and 96% pacing; the VTT cue text is verified to match those
+same ten sentence groups exactly. The model-card dataset license is Apache 2.0.
 The site validators passed, the local site reports 1920×1200 video metadata,
-and the public-safe platform runtime was exercised before capture. PR #11
-merged as `9567f1c223f3c536bebe51ae8f4580709a748b76`; Pages deployment run
-`29919971077` passed; and the live public runtime serves the expected video
-metadata and captions.
+and the public-safe platform runtime was exercised before capture. The voice
+revision is locally validated but not deployed yet; the live site still serves
+the previous revision until this exact asset is accepted and published.
 
 **Exit:** exact revision is validated, reviewed at desktop and 390px widths,
 merged, Pages-deployed, public-runtime verified, and human-accepted. The

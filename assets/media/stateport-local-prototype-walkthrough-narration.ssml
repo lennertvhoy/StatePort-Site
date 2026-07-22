@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<speak version="1.1" xml:lang="en-US">
+  <voice name="en-US-sam-medium">
+    <prosody rate="96%">
+      <p id="scene-01">
+        <s>Start in the catalog.</s>
+        <break time="320ms"/>
+        <s>Choose the app you actually need.</s>
+        <break time="260ms"/>
+        <s>Here, the checklist is ready, the study app is unavailable, and StatePort shows that difference instead of hiding it.</s>
+      </p>
+      <p id="scene-02">
+        <s>Open the checklist and you get a real project view: its name, its backup state, the tools it exposes, and where the source came from.</s>
+      </p>
+      <p id="scene-03">
+        <s>Ask a normal question: what should I do next?</s>
+        <break time="300ms"/>
+        <s>The answer comes back in the same conversation, with the project still in view.</s>
+      </p>
+      <p id="scene-04">
+        <s>For a more controlled task, choose an action.</s>
+        <break time="300ms"/>
+        <s>Before it runs, StatePort shows the engine, the budget, the data it will read, and whether it can change anything.</s>
+      </p>
+      <p id="scene-05">
+        <s>Approval is its own step.</s>
+        <break time="280ms"/>
+        <s>You can review the exact task before anything executes.</s>
+      </p>
+      <p id="scene-06">
+        <s>After execution, the result is readable: verify the portable execution boundary.</s>
+        <break time="280ms"/>
+        <s>The project is unchanged.</s>
+      </p>
+      <p id="scene-07">
+        <s>The evidence drawer keeps the lifecycle, receipt, and exact record together.</s>
+        <break time="260ms"/>
+        <s>You can inspect the result instead of trusting a screenshot.</s>
+      </p>
+      <p id="scene-08">
+        <s>Settings are part of the product.</s>
+        <break time="260ms"/>
+        <s>You can see the instance identity, what stays editable, and which facts come from the application itself.</s>
+      </p>
+      <p id="scene-09">
+        <s>Different application, different role.</s>
+        <break time="260ms"/>
+        <s>This CTO fixture opens a workbench for development work, while the project identity and recovery state stay visible.</s>
+      </p>
+      <p id="scene-10">
+        <s>The boundaries are visible too.</s>
+        <break time="260ms"/>
+        <s>Tools that are unavailable in this environment stay unavailable instead of pretending to work.</s>
+      </p>
+    </prosody>
+  </voice>
+</speak>

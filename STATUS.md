@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-07-22
 **Execution Mode:** operating
-**Project State:** working_platform_walkthrough_deployed_public_runtime_verified_human_acceptance_pending
+**Project State:** working_platform_walkthrough_voice_revision_locally_validated_deployment_pending_human_acceptance_pending
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -28,7 +28,8 @@
   `b9d0b757536608b05433781dd32dda157893ad06`; Pages deployment run
   `29917446210` passed and the public runtime matched the asset hash, captions,
   and duration.
-- The replacement walkthrough is a 105.746-second, 1920×1200 capture of the
+- The previously deployed replacement walkthrough was a 105.746-second,
+  1920×1200 capture of the
   working public-safe fixture. It shows the catalog, project view, real
   conversation answer, approval boundary, governed result, evidence drawer,
   settings, and a second application’s capability boundary. Its local MP4
@@ -36,8 +37,13 @@
   `b69e18dfcac398e2839f2b6f6733b7cb440631903ea6fc9cf1bec603d7f76293`.
   Static validation and local runtime playback passed. PR #11 merged as
   `9567f1c223f3c536bebe51ae8f4580709a748b76`; Pages deployment run
-  `29919971077` passed, and the live public runtime now serves the expected
-  video metadata and captions. Human acceptance remains open.
+  `29919971077` passed, and that revision was publicly verified.
+- A new voice revision is locally validated but not deployed yet. It is a
+  98.365-second, 1920×1200 capture using StudyVoice Piper's male US
+  `en_US-sam-medium` voice and SSML-style markup. Its MP4 SHA-256 is
+  `9532b8b4ca1f0874c1a0b8796f6f59e4e47f4e2df423a460050bd0cf23ba24bb`.
+  The ten VTT cues exactly match the ten markup scene texts and the screenshot
+  holds are built from the same scene durations.
 - A critical product, UX, content, accessibility, performance, metadata,
   privacy, and implementation audit is recorded in `SITE_AUDIT.md`.
 - The audit found that the visual identity and static architecture should be
@@ -82,11 +88,12 @@
 - Human acceptance of the live baseline and the proposed overhaul remains open.
 - Public source availability, a licensed release, downloads, and a verified
   installation path remain absent.
-- The replacement working-platform walkthrough is deployed and publicly
-  verified. Human acceptance of the live product story remains open.
+- The prior working-platform walkthrough is deployed and publicly verified.
+  The new voice revision is pending deployment; human acceptance of the live
+  product story remains open.
 
 ## Next action
 
-Review the deployed working-platform walkthrough at desktop and 390px widths;
+Review the new voice revision at desktop and 390px widths after deployment;
 keep public-runtime verification and human acceptance as separate recorded
 steps.
