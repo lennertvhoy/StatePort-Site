@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Evidence and roadmap — StatePort public documentation preview.">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+    <title>Evidence and roadmap — StatePort</title>
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-shell.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="./" aria-current="page">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-release" href="../releases/">Release status</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="page-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Documentation / 07</p>
+          <h1 id="page-title">Claims should grow only as their evidence grows.</h1>
+          <p>A screenshot, a passing local test, a hosted CI run, and a human review are different kinds of evidence. StatePort keeps those states separate.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+
+        <aside class="doc-sidebar" aria-label="Documentation sections">
+          <h2>Documentation</h2>
+          <nav>
+            <a href="./">Overview</a>
+            <a href="foundations.html">Foundations</a>
+            <a href="model.html">Model</a>
+            <a href="lifecycle.html">Lifecycle</a>
+            <a href="governance.html">Governance</a>
+            <a href="security-and-privacy.html">Security &amp; privacy</a>
+            <a href="hosts-and-portability.html">Hosts &amp; portability</a>
+            <a href="platform-support.html">Platform support</a>
+            <a href="evidence-and-roadmap.html" aria-current="page">Evidence &amp; roadmap</a>
+            <a href="reference.html">Reference &amp; FAQ</a>
+            <a href="getting-started.html">Getting started</a>
+            <a href="../tutorials/">Tutorials</a>
+            <a href="../releases/">Release status</a>
+          </nav>
+        </aside>
+        <article class="prose">
+          <p class="notice notice--quiet"><strong>Reading guide</strong> This page explores the model. <a href="../releases/">Availability lives in the release ledger.</a></p>
+
+          <h2>Four useful evidence states</h2>
+          <div class="code-panel" data-label="A claim ladder"><code>implemented
+→ locally validated
+→ independently accepted
+→ human accepted
+→ released</code></div>
+          <p>These states do not collapse into one another. Local validation can be valuable and still be self-adjudicated. Independent CI can test an exact source without proving user value. Human acceptance can evaluate a product journey without converting an unresolved source into a release.</p>
+
+          <h2>What is public today</h2>
+          <p>This website brings together the documentation, prototype, paper, and release ledger. Software availability is recorded separately, with its exact source and evidence.</p>
+
+          <h2>What remains open</h2>
+          <ul>
+            <li>A public source release, licensing decision, artifacts, and verified install path.</li>
+            <li>Independent validation of the exact delivered source and its packaged runtime.</li>
+            <li>Canonical upstream release acceptance for application packages.</li>
+            <li>External-user and human product acceptance.</li>
+            <li>Controlled evaluation before any comparative or performance claim.</li>
+          </ul>
+
+          <h2>How to evaluate the model</h2>
+          <p>The central questions are testable: does explicit state improve recovery after a session loss? Do digest-bound approvals reduce mismatch? Do receipts improve a person’s understanding of change? Does host replacement preserve more useful continuity than a transcript export? A credible answer needs baselines, repeated runs, and measures that can falsify the claim.</p>
+
+          <div class="inline-actions">
+            <a class="button button--ink" href="../releases/">View release status</a>
+            <a class="button button--outlined" href="reference.html">Review terms and questions</a>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-shell.svg" alt="">
+          <p><strong>StatePort</strong>Durable applications, built from state outward.</p>
+        </div>
+        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+      </div>
+    </footer>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>

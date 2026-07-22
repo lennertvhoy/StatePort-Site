@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Security and privacy — StatePort public documentation preview.">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+    <title>Security and privacy — StatePort</title>
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-shell.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="./" aria-current="page">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-release" href="../releases/">Release status</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="page-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Documentation / 05</p>
+          <h1 id="page-title">Boundaries reduce risk. They do not make risk disappear.</h1>
+          <p>StatePort’s model uses explicit authority, source identity, and evidence to make sensitive work more inspectable—not to claim certification or perfect safety.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+
+        <aside class="doc-sidebar" aria-label="Documentation sections">
+          <h2>Documentation</h2>
+          <nav>
+            <a href="./">Overview</a>
+            <a href="foundations.html">Foundations</a>
+            <a href="model.html">Model</a>
+            <a href="lifecycle.html">Lifecycle</a>
+            <a href="governance.html">Governance</a>
+            <a href="security-and-privacy.html" aria-current="page">Security &amp; privacy</a>
+            <a href="hosts-and-portability.html">Hosts &amp; portability</a>
+            <a href="platform-support.html">Platform support</a>
+            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="reference.html">Reference &amp; FAQ</a>
+            <a href="getting-started.html">Getting started</a>
+            <a href="../tutorials/">Tutorials</a>
+            <a href="../releases/">Release status</a>
+          </nav>
+        </aside>
+        <article class="prose">
+          <p class="notice notice--quiet"><strong>Reading guide</strong> This page explores the model. <a href="../releases/">Availability lives in the release ledger.</a></p>
+
+          <h2>Threats worth naming</h2>
+          <p>An application that uses a model can face malicious source material, prompt injection, poisoned state, stale approvals, confused authority, compromised hosts, forged evidence, unsafe external effects, and backup leakage. Treating an “agent” as one trust boundary makes these problems harder to see.</p>
+
+          <h2>Design responses</h2>
+          <ul>
+            <li>Record source identity and reject untrusted promotion from a fixture or development candidate.</li>
+            <li>Give every workflow path an ownership rule before automated mutation.</li>
+            <li>Bind consequential approvals to exact proposals and preconditions.</li>
+            <li>Constrain execution hosts and make their capabilities and degradations explicit.</li>
+            <li>Keep secrets outside canonical state and avoid copying provider credentials into templates, images, or public material.</li>
+            <li>Use receipts and validation results to make changes reviewable after the fact.</li>
+          </ul>
+
+          <h2>Privacy is a design responsibility</h2>
+          <p>Durable state and model context are different concerns. An application should make context-loading policy explicit, bounded, and measurable. Private notes, conversations, identifiers, credentials, and raw paths should not become fleet telemetry merely because they are convenient to aggregate.</p>
+
+          <h2>What this does not establish</h2>
+          <p>This documentation does not claim GDPR compliance, NIS2 compliance, certification, a penetration test, a complete threat model, or legal advice. Controls must be evaluated in the actual deployment, with real data flows, providers, retention, and operators in scope.</p>
+
+          <div class="inline-actions">
+            <a class="button button--ink" href="hosts-and-portability.html">Understand host boundaries</a>
+            <a class="button button--outlined" href="evidence-and-roadmap.html">Read the evidence vocabulary</a>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-shell.svg" alt="">
+          <p><strong>StatePort</strong>Durable applications, built from state outward.</p>
+        </div>
+        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+      </div>
+    </footer>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>

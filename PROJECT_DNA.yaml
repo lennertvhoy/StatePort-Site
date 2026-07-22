@@ -18,10 +18,10 @@ audiences:
   - contributors once a public source release is available
 
 content_architecture:
-  hero: StatePort, a durable application boundary for AI-assisted work
+  hero: StatePort, a durable application boundary for work that lasts
   support: Stateware concepts and the four-stage application path
-  detail: documentation and tutorial routes with illustrative, non-installable examples
-  final_cta: clear public-release status instead of a premature download action
+  detail: a captioned local preview, public whitepaper, and roadmap material
+  final_cta: a single release ledger for availability details
 
 visual_direction:
   visual_thesis: A midnight state atlas: quiet archival depth, bright blue signals, and a single living mascot navigating durable routes.
@@ -40,6 +40,12 @@ visual_direction:
     - one dominant idea per section
     - prose and lines before card grids
     - no unsupported product UI or fake telemetry
+    - use real, labelled fixture captures when showing product UI
+  copy_rules:
+    - lead with concrete work, ownership, and product surfaces
+    - keep Stateware and StateSpec terms where they clarify the model
+    - keep availability in the release ledger instead of repeating long boundary disclaimers
+    - avoid generic agent or AI labels, hype, and reflexive not-this/not-that copy
 
 interaction_direction:
   interaction_thesis:
@@ -48,13 +54,15 @@ interaction_direction:
     - restrained scroll reveals mark new chapters while preserving reduced-motion access
   constraints:
     - all primary content remains available without JavaScript
-    - no autoplay media or behavioural tracking
+    - captioned media uses user-initiated controls with no autoplay or behavioural tracking
 
 truth_boundaries:
   stateport_source: private until an independently published release
   downloads: absent until a versioned public release exists
-  docs: early public preview, not versioned release documentation
+  docs: public field notes; versioned installation material belongs with a release
   examples: illustrative unless explicitly labelled installable and released
+  prototype: local pre-release fixture capture; never a public install or acceptance claim
+  agent_kits: roadmap only until separately implemented and released
 
 brand_asset:
   accepted_shell_mascot:

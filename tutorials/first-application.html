@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A conceptual tutorial for designing a durable, governable AI-assisted application with StateSpec.">
+    <meta name="description" content="A conceptual tutorial for designing a durable, governable application with StateSpec.">
     <meta name="theme-color" content="#0B132B">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../assets/site.css">
@@ -32,7 +32,7 @@
         <div class="article-hero-inner">
           <p class="document-kicker">Tutorial / 01</p>
           <h1 id="tutorial-title">Design your first durable application.</h1>
-          <p>A conceptual walkthrough for moving the important facts of an AI-assisted workflow out of ephemeral conversation and into an explicit lifecycle.</p>
+          <p>A conceptual walkthrough for bringing the important facts of a workflow out of ephemeral conversation and into an explicit lifecycle.</p>
         </div>
       </section>
 
@@ -42,13 +42,14 @@
           <nav>
             <a href="./">Tutorial overview</a>
             <a href="first-application.html" aria-current="page">First application</a>
+            <a href="reading-a-receipt.html">Read a receipt</a>
             <a href="../docs/getting-started.html">StateSpec basics</a>
             <a href="../releases/">Release status</a>
           </nav>
         </aside>
 
         <article class="prose">
-          <p class="notice"><strong>No installation implied</strong> This is a design exercise using a hypothetical study planner. It is not a promise that a corresponding StatePort package or public template is available today.</p>
+          <p class="notice notice--quiet"><strong>Design exercise</strong> This uses a hypothetical study planner. <a href="../releases/">Availability lives in the release ledger.</a></p>
 
           <h2>The scenario</h2>
           <p>Imagine a study planner that helps someone prepare for an exam. A chat assistant could suggest a plan, but the learner still needs to see the current plan, upcoming work, decisions, and completed evidence after the chat ends.</p>
@@ -87,7 +88,7 @@ receipt and current state</code></div>
           <p>For the learner, a useful result is not just “done.” It is a clear current state plus enough evidence to understand what changed, what checked it, and what remains open. That same pattern helps a teacher, operator, or future maintainer reason about the application without replaying a conversation.</p>
 
           <h2>Takeaway</h2>
-          <p>StateSpec starts with the durable boundary: facts, ownership, authority, lifecycle, and evidence. The AI layer becomes more useful when it operates within that boundary instead of replacing it.</p>
+          <p>StateSpec starts with the durable boundary: facts, ownership, authority, lifecycle, and evidence. Assistance becomes more useful when it works within that boundary.</p>
           <div class="inline-actions">
             <a class="button button--ink" href="../docs/getting-started.html">Review the basics</a>
             <a class="button button--outlined" href="../releases/">Check public availability</a>
@@ -100,7 +101,7 @@ receipt and current state</code></div>
       <div class="footer-inner">
         <div class="footer-mark">
           <img src="../assets/stateport-mascot-shell.svg" alt="">
-          <p><strong>StatePort</strong>Durable AI applications, built from state outward.</p>
+          <p><strong>StatePort</strong>Durable applications, built from state outward.</p>
         </div>
         <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
       </div>

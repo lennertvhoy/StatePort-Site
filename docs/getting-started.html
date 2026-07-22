@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A conceptual first step with StateSpec and durable AI application state.">
+    <meta name="description" content="A conceptual first step with StateSpec and durable application state.">
     <meta name="theme-color" content="#0B132B">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../assets/site.css">
@@ -38,9 +38,18 @@
 
       <div class="article-shell">
         <aside class="doc-sidebar" aria-label="Documentation sections">
-          <h2>In this guide</h2>
+          <h2>Documentation</h2>
           <nav>
             <a href="./">Overview</a>
+            <a href="foundations.html">Foundations</a>
+            <a href="model.html">Model</a>
+            <a href="lifecycle.html">Lifecycle</a>
+            <a href="governance.html">Governance</a>
+            <a href="security-and-privacy.html">Security &amp; privacy</a>
+            <a href="hosts-and-portability.html">Hosts &amp; portability</a>
+            <a href="platform-support.html">Platform support</a>
+            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="reference.html">Reference &amp; FAQ</a>
             <a href="getting-started.html" aria-current="page">Getting started</a>
             <a href="../tutorials/">Tutorials</a>
             <a href="../releases/">Release status</a>
@@ -48,7 +57,7 @@
         </aside>
 
         <article class="prose">
-          <p class="notice"><strong>Illustrative only</strong> The structure below teaches a way of thinking. It is not a released template, command sequence, or installation guide.</p>
+          <p class="notice notice--quiet"><strong>Design exercise</strong> This small repository shape is a way to think through an application. <a href="../releases/">Availability lives in the release ledger.</a></p>
 
           <h2>1. Name the durable facts</h2>
           <p>Start by identifying what someone should still be able to inspect tomorrow: goals, decisions, policy, ownership, current work, and evidence. These are application facts, not hidden model memory.</p>
@@ -76,7 +85,7 @@
           <p>StateSpec is intended to be portable. A particular host can be a reference implementation, but an application should be able to declare its actual needs and receive explicit degradation when another host cannot provide the same capability.</p>
 
           <h2>Where to go next</h2>
-          <p>Use the first tutorial to turn these principles into a small hypothetical application design. When a public StatePort release exists, this section will link to versioned installation material rather than asking visitors to infer commands from an example.</p>
+          <p>Use the first tutorial to turn these principles into a small hypothetical application design. Versioned installation material will live alongside the release when it is ready.</p>
           <div class="inline-actions">
             <a class="button button--ink" href="../tutorials/first-application.html">Start the tutorial</a>
             <a class="button button--outlined" href="../releases/">Check availability</a>
@@ -89,7 +98,7 @@
       <div class="footer-inner">
         <div class="footer-mark">
           <img src="../assets/stateport-mascot-shell.svg" alt="">
-          <p><strong>StatePort</strong>Durable AI applications, built from state outward.</p>
+          <p><strong>StatePort</strong>Durable applications, built from state outward.</p>
         </div>
         <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
       </div>

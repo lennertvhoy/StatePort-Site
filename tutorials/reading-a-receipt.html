@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A conceptual tutorial for reading a governed change receipt.">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+    <title>Read a receipt — StatePort</title>
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-shell.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="../docs/">Docs</a>
+        <a href="./" aria-current="page">Tutorials</a>
+        <a class="nav-release" href="../releases/">Release status</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="tutorial-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Tutorial / 02</p>
+          <h1 id="tutorial-title">Read a receipt without mistaking it for a verdict.</h1>
+          <p>A short conceptual exercise for distinguishing what was proposed, authorized, applied, validated, and still awaiting a person’s judgement.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+        <aside class="doc-sidebar" aria-label="Tutorial sections">
+          <h2>Tutorials</h2>
+          <nav>
+            <a href="./">Overview</a>
+            <a href="first-application.html">First application</a>
+            <a href="reading-a-receipt.html" aria-current="page">Read a receipt</a>
+            <a href="../docs/governance.html">Governance</a>
+            <a href="../releases/">Release status</a>
+          </nav>
+        </aside>
+
+        <article class="prose">
+          <p class="notice notice--quiet"><strong>Design exercise</strong> The receipt below is a learning aid. Its example format is deliberately small and illustrative.</p>
+
+          <h2>The situation</h2>
+          <p>Imagine that an application proposes to move one study session from Wednesday to Thursday. A useful record should help the owner answer more than “did the assistant say it was done?”</p>
+
+          <h2>Read the stages in order</h2>
+          <div class="code-panel" data-label="Illustrative receipt summary"><code>proposal:          move session / Wed → Thu
+proposal identity:  sha256:… exact reviewable content
+authority:         owner decision bound to that identity
+execution:         one bounded local transition attempted
+apply result:      applied
+validation:        schedule rules passed
+receipt state:     recorded
+human acceptance:  not implied</code></div>
+          <p>The proposal identity matters because an approval for one plan should not drift into approval for a changed plan. The execution and apply result matter because a proposal can be authorized without running, and a run can fail before publication.</p>
+
+          <h2>Ask five questions</h2>
+          <ol>
+            <li>Which exact application instance and source identity does this concern?</li>
+            <li>What content was prepared for review?</li>
+            <li>What authority covered the act, and did it match the prepared content?</li>
+            <li>What was actually applied and what validation was recorded?</li>
+            <li>Which part still needs external acknowledgement or human acceptance?</li>
+          </ol>
+
+          <h2>Notice what a receipt cannot say</h2>
+          <p>A receipt cannot prove that a learner’s schedule is wise, that a person understood the proposal, or that an external calendar update can be undone. Those questions need explicit policy, human judgement, and—when applicable—separate evidence from the external system.</p>
+
+          <div class="inline-actions">
+            <a class="button button--ink" href="../docs/governance.html">Return to governance</a>
+            <a class="button button--outlined" href="first-application.html">Design an application</a>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-shell.svg" alt="">
+          <p><strong>StatePort</strong>Durable applications, built from state outward.</p>
+        </div>
+        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+      </div>
+    </footer>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>

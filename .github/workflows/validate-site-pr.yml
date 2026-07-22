@@ -1,0 +1,22 @@
+name: Validate StatePort Site
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-site:
+    name: Static site contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out pull request source
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - name: Validate site shape and public boundary
+        run: python3 scripts/validate_repo.py
+      - name: Validate local links and documentation-button contrast
+        run: python3 scripts/check_site_quality.py

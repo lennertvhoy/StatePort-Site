@@ -30,17 +30,29 @@
     <main id="main">
       <section class="article-hero" aria-labelledby="docs-title">
         <div class="article-hero-inner">
-          <p class="document-kicker">Documentation / early preview</p>
-          <h1 id="docs-title">Read the platform from durable state outward.</h1>
-          <p>These pages introduce the ideas behind StatePort without pretending that planned release material is already available.</p>
+          <p class="document-kicker">Documentation</p>
+          <h1 id="docs-title">A durable place for work to live.</h1>
+          <p>An introduction to Stateware, StateSpec, and the design behind StatePort.</p>
         </div>
       </section>
 
       <div class="article-shell">
         <aside class="doc-sidebar" aria-label="Documentation sections">
-          <h2>In this guide</h2>
+          <h2>Documentation</h2>
           <nav>
             <a href="./" aria-current="page">Overview</a>
+            <a href="foundations.html">Foundations</a>
+            <a href="model.html">Model</a>
+            <a href="lifecycle.html">Lifecycle</a>
+            <a href="governance.html">Governance</a>
+            <a href="security-and-privacy.html">Security &amp; privacy</a>
+            <a href="hosts-and-portability.html">Hosts &amp; portability</a>
+            <a href="platform-support.html">Platform support</a>
+            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="reference.html">Reference &amp; FAQ</a>
+            <a href="prototype-walkthrough.html">Prototype walkthrough</a>
+            <a href="agent-kits.html">Agent Kits roadmap</a>
+            <a href="../papers/stateware-whitepaper-public-v1.1.html">Stateware paper</a>
             <a href="getting-started.html">Getting started</a>
             <a href="../tutorials/">Tutorials</a>
             <a href="../releases/">Release status</a>
@@ -48,11 +60,11 @@
         </aside>
 
         <article class="prose">
-          <p class="notice"><strong>Preview boundary</strong> The documentation is public early material. It is not versioned release documentation, and it does not offer an installer or public source checkout.</p>
+          <p class="notice notice--quiet"><strong>Reading guide</strong> These are field notes on the model. Software availability lives in the <a href="../releases/">release ledger</a>.</p>
 
           <h2>What is StatePort?</h2>
-          <p>StatePort is an application-first Stateware platform. It is designed so a person interacts with an installed application—its conversation, actions, progress, and state—rather than beginning with a generic agent control panel.</p>
-          <p>The application’s durable source of truth is intended to remain readable and inspectable. Models, agents, and execution hosts are useful processors around that truth, not the exclusive place where it lives.</p>
+          <p>StatePort is an application-first Stateware platform. A person begins with an installed application—its conversation, actions, progress, and state.</p>
+          <p>The application’s durable source of truth remains readable and inspectable. Models, agents, and execution hosts work around that truth without becoming the exclusive place where it lives.</p>
 
           <h2>What is Stateware?</h2>
           <p><strong>Stateware</strong> is software whose durable, inspectable state and governed lifecycle contracts form the application boundary while agents and models remain replaceable processors.</p>
@@ -64,28 +76,88 @@
 
           <h2>How the pieces relate</h2>
           <div class="topic-list">
+            <a href="foundations.html">
+              <strong>Foundations</strong>
+              <span>Understand the boundary problem and the Stateware thesis before looking at product surfaces.</span>
+              <i aria-hidden="true">↗</i>
+            </a>
+            <a href="model.html">
+              <strong>Core model</strong>
+              <span>Learn the relationship between applications, instances, canonical state, authority, capability, and receipts.</span>
+              <i aria-hidden="true">↗</i>
+            </a>
+            <a href="lifecycle.html">
+              <strong>Lifecycle</strong>
+              <span>Follow install, use, update, movement, backup, and recovery as distinct responsibilities.</span>
+              <i aria-hidden="true">↗</i>
+            </a>
+            <a href="governance.html">
+              <strong>Governed change</strong>
+              <span>See why proposal, authorization, execution, validation, receipt, and acceptance remain separate facts.</span>
+              <i aria-hidden="true">↗</i>
+            </a>
+            <a href="security-and-privacy.html">
+              <strong>Security &amp; privacy</strong>
+              <span>Read the threat boundaries, design responses, and practical limits.</span>
+              <i aria-hidden="true">↗</i>
+            </a>
+            <a href="hosts-and-portability.html">
+              <strong>Hosts &amp; portability</strong>
+              <span>Learn how a host declares the capabilities and limits it can support.</span>
+              <i aria-hidden="true">↗</i>
+            </a>
+            <a href="platform-support.html">
+              <strong>Platform support</strong>
+              <span>See the capability-based qualification contract for Linux, Docker Desktop, macOS, and Windows/WSL 2.</span>
+              <i aria-hidden="true">↗</i>
+            </a>
+            <a href="evidence-and-roadmap.html">
+              <strong>Evidence &amp; roadmap</strong>
+              <span>Use the claim ladder to distinguish local evidence, independent validation, acceptance, and release.</span>
+              <i aria-hidden="true">↗</i>
+            </a>
+            <a href="reference.html">
+              <strong>Reference &amp; FAQ</strong>
+              <span>Keep the terms and the most important distinctions close at hand.</span>
+              <i aria-hidden="true">↗</i>
+            </a>
+            <a href="prototype-walkthrough.html">
+              <strong>Prototype walkthrough</strong>
+              <span>Watch the captioned local capture and follow the product paths it explores.</span>
+              <i aria-hidden="true">↗</i>
+            </a>
+            <a href="agent-kits.html">
+              <strong>Agent Kits roadmap</strong>
+              <span>Explore a planned template-first way to share focused, portable tools.</span>
+              <i aria-hidden="true">↗</i>
+            </a>
+            <a href="../papers/stateware-whitepaper-public-v1.1.html">
+              <strong>Stateware paper</strong>
+              <span>Read the author-designated public whitepaper alongside the current release ledger.</span>
+              <i aria-hidden="true">↗</i>
+            </a>
             <a href="getting-started.html">
               <strong>StateSpec basics</strong>
-              <span>Start with a small, illustrative repository shape and the boundary between an example and a release.</span>
+              <span>Start with a small, illustrative repository shape for a durable application.</span>
               <i aria-hidden="true">↗</i>
             </a>
             <a href="../tutorials/first-application.html">
               <strong>First application</strong>
-              <span>Walk through the decisions that make an AI-assisted workflow durable and governable.</span>
+              <span>Walk through the decisions that make a workflow durable and governable.</span>
               <i aria-hidden="true">↗</i>
             </a>
             <a href="../releases/">
               <strong>Release ledger</strong>
-              <span>See what will be required before this site offers a source link, package, or download.</span>
+              <span>See what is available now and what the release is preparing.</span>
               <i aria-hidden="true">↗</i>
             </a>
           </div>
 
-          <h2>What StatePort does not promise here</h2>
+          <h2>A few useful distinctions</h2>
           <ul>
-            <li>No claim that a template or StateSpec outperforms a baseline without controlled, reproducible evidence.</li>
-            <li>No claim of a public release, license, download, hosted service, or production readiness before one is published.</li>
-            <li>No claim that a model session, a generated summary, or a screenshot is canonical application truth on its own.</li>
+            <li>Comparative claims need controlled, reproducible evidence.</li>
+            <li>The release ledger is the source for public availability.</li>
+            <li>A model session, generated summary, or screenshot is context—not canonical state on its own.</li>
           </ul>
 
           <div class="inline-actions">
@@ -100,7 +172,7 @@
       <div class="footer-inner">
         <div class="footer-mark">
           <img src="../assets/stateport-mascot-shell.svg" alt="">
-          <p><strong>StatePort</strong>Durable AI applications, built from state outward.</p>
+          <p><strong>StatePort</strong>Durable applications, built from state outward.</p>
         </div>
         <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
       </div>

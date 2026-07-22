@@ -1,5 +1,5 @@
 metadata:
-  updated_at: 2026-07-21
+  updated_at: 2026-07-22
   updated_by: codex
   format_version: statespec-site-state/v1
 
@@ -13,7 +13,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: launch_preparation
-  status: initial_public_site_published_and_runtime_verified
+  status: initial_public_site_published_with_expanded_package_and_draft_pr_remediation_pending_review_merge_and_deployment
   purpose: public documentation, tutorials, release status, and future download home
 
 source_boundary:
@@ -25,6 +25,8 @@ source_boundary:
     - durable-state concepts expressed in current public terminology
     - early documentation and illustrative StateSpec examples
     - honest release-preparation status
+    - author-designated public whitepaper with its publication and release-boundary note
+    - captioned local fixture capture labelled as pre-release implementation evidence
   prohibited_public_content:
     - private repository URLs or internal operational detail
     - unpublished version numbers, installers, checksums, or release notes
@@ -35,9 +37,22 @@ site:
   primary_routes:
     - /
     - /docs/
+    - /docs/foundations.html
+    - /docs/model.html
+    - /docs/lifecycle.html
+    - /docs/governance.html
+    - /docs/security-and-privacy.html
+    - /docs/hosts-and-portability.html
+    - /docs/platform-support.html
+    - /docs/evidence-and-roadmap.html
+    - /docs/reference.html
+    - /docs/prototype-walkthrough.html
+    - /docs/agent-kits.html
     - /docs/getting-started.html
     - /tutorials/
     - /tutorials/first-application.html
+    - /tutorials/reading-a-receipt.html
+    - /papers/stateware-whitepaper-public-v1.1.html
     - /releases/
   accessibility:
     - semantic_landmarks_and_skip_link
@@ -54,10 +69,57 @@ site:
     provenance: StatePort apps/web/assets/brand/stateport-mascot-shell.svg
     mutation: false
 
+documentation_package:
+  status: expanded_package_and_release_readiness_remediation_pushed_to_draft_pr_exact_head_validated_pending_review_merge_and_deployment
+  scope:
+    - foundations
+    - application_model_and_state_authority
+    - lifecycle_install_update_move_backup_recovery
+    - governance_capabilities_approvals_and_receipts
+    - security_and_privacy_boundaries
+    - execution_host_portability_and_degradation
+    - capability_based_platform_support_contract_and_clean_install_acceptance_story
+    - evidence_ladder_and_roadmap
+    - glossary_faq_and_receipt_tutorial
+    - captioned_local_prototype_walkthrough_and_fixture_screens
+    - author_designated_public_whitepaper_reader_and_source_markdown
+    - planned_agent_kits_roadmap
+    - launch_linkedin_post_draft
+  public_claim_boundary: release_ledger_is_the_single_public_source_for_availability
+  local_review:
+    prior_validator: passed_2026-07-21_before_media_package
+    current_package: static_validation_contrast_regression_and_desktop_mobile_visual_review_passed_2026-07-21
+
+public_media_and_paper:
+  status: pushed_for_review_pending_merge_and_deployment
+  prototype_video:
+    path: assets/media/stateport-local-prototype-walkthrough.mp4
+    duration_seconds: 83.94
+    sha256: d73303e46b09d39f09bb92f6914c59b9ec56902c1b37635a48610ab889bd31a8
+    format: h264_aac_mp4_with_english_webvtt_captions
+    boundary: local_preview_with_availability_routed_to_release_ledger
+  paper:
+    path: papers/stateware-whitepaper-public-v1.1.md
+    reader: papers/stateware-whitepaper-public-v1.1.html
+    sha256: fe0c3dbd7aeb5b30c479ce4ed7d65d5aea2a71a755f9b9e5c722f88ca1b32c36
+    classification: author_designated_public_whitepaper
+    boundary: public_paper_with_availability_routed_to_release_ledger
+    visual_assets:
+      - path: papers/assets/stateware-applications-home.png
+        sha256: cd08577b955691294a5c967c43cc8704b0de9b1eb1e775e3a92c23a75c1a4a5e
+      - path: papers/assets/stateware-conversation.png
+        sha256: 1fab64a39b568053e65208402b9349693b63f0097de5badf1e2182e91d200ed8
+      - path: papers/assets/stateware-approvals.png
+        sha256: cc65abed5156751be74c210ae5cf93124ac3670c6d311dcc3dd4b1a0ffdcdf93
+  agent_kits:
+    route: docs/agent-kits.html
+    status: roadmap_only_no_schema_exporter_registry_image_or_install_flow
+
 release_ledger:
   public_release_published: false
   public_download_available: false
   source_license_published: false
+  intended_first_distribution: docker_first_when_release_is_published
   visitor_message: public release preparation is in progress; no download is offered
 
 delivery:
@@ -66,15 +128,24 @@ delivery:
   default_branch: main
   initial_commit: d4522dbee2a39d1f2c3c64766ac222b92ed17332
   remote_contains_initial_commit: true
+  expanded_package_branch: agent/public-showcase
+  expanded_package_draft_pull_request: https://github.com/lennertvhoy/StatePort-Site/pull/1
+  expanded_package_behavior_head: dbed5a9e62594ea19a5d8289c47776cbdfa3aeda
+  draft_pr_validation:
+    status: passed_on_behavior_bearing_head
+    scope: non_deploying_static_links_contrast_and_public_boundary_checks
+    workflow: Validate_StatePort_Site
+    run_id: 29908699477
+    behavior_head_sha: dbed5a9e62594ea19a5d8289c47776cbdfa3aeda
   pages_url: https://lennertvhoy.github.io/StatePort-Site/
-  local_validation: passed_2026-07-21
-  visual_review: passed_local_desktop_and_mobile_2026-07-21
+  local_validation: passed_2026-07-22_for_expanded_package_release_readiness_remediation_and_draft_pr_validation_contract
+  visual_review: passed_local_desktop_and_mobile_2026-07-21_for_expanded_package_and_local_release_readiness_remediation
   remote_ci:
-    status: passed
+    status: main_deployment_passed_separate_draft_pr_validation_passed
     workflow: Deploy StatePort Site
-    run_id: 29853702366
-    event: workflow_dispatch
-    head_sha: d4522dbee2a39d1f2c3c64766ac222b92ed17332
+    run_id: 29853820423
+    event: push
+    head_sha: 884acedaf7cfe7ab41f77b6f3aad354d420fc6ed
   public_runtime:
     status: verified
     url: https://lennertvhoy.github.io/StatePort-Site/

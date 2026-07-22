@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The Stateware model — StatePort public documentation preview.">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+    <title>The Stateware model — StatePort</title>
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-shell.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="./" aria-current="page">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-release" href="../releases/">Release status</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="page-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Documentation / 02</p>
+          <h1 id="page-title">Give each concern one declared authority.</h1>
+          <p>The model distinguishes an application, its instance, its state, its capabilities, and the evidence around change.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+
+        <aside class="doc-sidebar" aria-label="Documentation sections">
+          <h2>Documentation</h2>
+          <nav>
+            <a href="./">Overview</a>
+            <a href="foundations.html">Foundations</a>
+            <a href="model.html" aria-current="page">Model</a>
+            <a href="lifecycle.html">Lifecycle</a>
+            <a href="governance.html">Governance</a>
+            <a href="security-and-privacy.html">Security &amp; privacy</a>
+            <a href="hosts-and-portability.html">Hosts &amp; portability</a>
+            <a href="platform-support.html">Platform support</a>
+            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="reference.html">Reference &amp; FAQ</a>
+            <a href="getting-started.html">Getting started</a>
+            <a href="../tutorials/">Tutorials</a>
+            <a href="../releases/">Release status</a>
+          </nav>
+        </aside>
+        <article class="prose">
+          <p class="notice notice--quiet"><strong>Reading guide</strong> This page explores the model. <a href="../releases/">Availability lives in the release ledger.</a></p>
+
+          <h2>Application and instance</h2>
+          <p>An <strong>application</strong> is a reusable definition: it describes intended state, requested capabilities, views, lifecycle rules, and validation expectations. An <strong>instance</strong> is the particular durable copy a person, team, or class uses. It holds its own identity, private state, grants, and history.</p>
+          <p>This distinction prevents a reusable template from quietly becoming the owner of a person’s data. A template can request a capability; it cannot grant itself that capability.</p>
+
+          <h2>Canonical state and projections</h2>
+          <p>Canonical state is the declared source of truth for a concern. A screen, summary, cached index, generated context pack, host session, or model response may be useful, but it must not silently outrank the source it represents.</p>
+          <div class="code-panel" data-label="Authority by concern"><code>template content      → designated source
+private instance facts → instance state
+generated views        → rebuildable projection
+provider session       → noncanonical operational context
+external system facts  → that external system</code></div>
+
+          <h2>Capabilities are intersections</h2>
+          <p>Effective capability is deliberately narrower than a request. It is the intersection of what the application requests, what the instance grants, what operator policy permits, what the current actor may do, and what the runtime can actually support. If one part is missing, the user should see an honest limit.</p>
+
+          <h2>Approvals, grants, and receipts</h2>
+          <p>A standing grant defines a bounded class of authority. A decision can authorize a particular consequential act. A <strong>receipt</strong> is a structured, checkable claim about what was prepared, authorized, applied, observed, and validated. It is stronger when it binds exact identities and evidence; it is never magic proof on its own.</p>
+
+          <h2>Ownership categories</h2>
+          <p>Before an automated runner changes a workflow file, its authority must be legible: template-owned, instance-owned, generated, or an explicit override. This turns “the agent changed something” into a checkable question about a specific path and rule.</p>
+
+          <div class="inline-actions">
+            <a class="button button--ink" href="lifecycle.html">Follow the lifecycle</a>
+            <a class="button button--outlined" href="reference.html">Read the glossary</a>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-shell.svg" alt="">
+          <p><strong>StatePort</strong>Durable applications, built from state outward.</p>
+        </div>
+        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+      </div>
+    </footer>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>
