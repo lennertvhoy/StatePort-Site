@@ -1,0 +1,18 @@
+{
+  "name": "StatePort",
+  "short_name": "StatePort",
+  "description": "Public product story, documentation, tutorials, and release status for StatePort.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F4F0E8",
+  "theme_color": "#0B132B",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
