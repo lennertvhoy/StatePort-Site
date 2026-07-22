@@ -6,28 +6,27 @@
 
 ## P1 [BL-SITE-012] Replace the screen slideshow with a working platform walkthrough
 
-**Status:** deployed_public_runtime_verified_human_acceptance_pending
+**Status:** locally_validated_deployment_pending_human_acceptance_pending
 
-The product-owner review correctly identified that the 52-second clean-screen
-revision still behaved like a slideshow. The replacement walkthrough is
-captured from the working public-safe fixture at 1920×1200 and follows real
-states: catalog, project view, conversation answer, exact-run review,
-approval, governed result, evidence, settings, and a second application’s
-capability boundary. The spoken track and WebVTT are generated from the same
-ten scene segments, with no baked-in text overlay.
+The product-owner review found that the clearer neural-voice revision still
+began too abruptly and did not explain the product's theory before touring the
+screens. The new local revision makes one story out of the working public-safe
+fixture: what StatePort is; why chat belongs inside a lasting piece of work;
+one complete checklist path; the approval, result, evidence, and settings a
+person can inspect; a second workspace; and a plain-language takeaway.
 
-The new local MP4 is 65.824 seconds with SHA-256
-`b5d39209fd6bb7180f7eba651ce67e720125ad12447ed620675f2807395452d2`.
-Its narration uses the male US `en-US-AndrewNeural` Edge neural voice. The
-SSML-style markup source defines ten short screen-specific scene sentences and
-pauses; the VTT cue text is verified to match those ten scene groups exactly.
-Only the public narration text was sent once at build time; site visitors have
-no runtime voice-service dependency.
-The site validators passed, the local site reports 1920×1200 video metadata,
-and the public-safe platform runtime was exercised before capture. PR #16
-merged as `a51e2f7c55c02f9f2418099d10004cd7afafd2aa`; Pages deployment run
-`29923458869` passed; and the live runtime hash, duration, captions, and
-walkthrough copy were verified directly.
+The local MP4 is 103.968 seconds at 1920×1200 with SHA-256
+`f57949d33bdfe9ee8bebde37dfe32446adb01c5c9136fdd6927724758aaa9467`.
+It uses the male US `en-US-AndrewNeural` Edge neural voice, rendered as
+continuous scene narration at 95% pace with a 750 ms pause after each of the
+16 scenes. The WebVTT has 16 cues whose text exactly matches the 16 markup
+scene groups, and the clean, uncropped screens hold for those same segments.
+There are no baked-in text overlays. Only public narration text was sent once
+at build time; visitors have no runtime voice-service dependency.
+
+Local ffprobe metadata, exact caption text, and a 16-state contact sheet were
+checked. The live site still serves PR #16's 1:06 revision until this story
+revision is merged, deployed, and verified.
 
 **Exit:** exact revision is validated, reviewed at desktop and 390px widths,
 merged, Pages-deployed, public-runtime verified, and human-accepted. The

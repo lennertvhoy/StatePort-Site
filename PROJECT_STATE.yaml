@@ -1,5 +1,5 @@
 metadata:
-  updated_at: 2026-07-22T14:23:00+02:00
+  updated_at: 2026-07-22T15:10:00+02:00
   updated_by: codex
   format_version: statespec-site-state/v1
 
@@ -13,7 +13,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: launch_preparation
-  status: working_platform_walkthrough_neural_voice_revision_deployed_public_runtime_verified_human_acceptance_pending
+  status: working_platform_walkthrough_story_revision_locally_validated_deployment_pending_human_acceptance_pending
   purpose: public product story, documentation, tutorials, release status, and future download home
 
 source_boundary:
@@ -74,9 +74,10 @@ site:
   deployment:
     provider: GitHub Pages
     workflow: .github/workflows/deploy-pages.yml
-  status: configured_deployed_working_walkthrough_neural_voice_revision_public_runtime_verified
-    merge_commit: a51e2f7c55c02f9f2418099d10004cd7afafd2aa
-    workflow_run: 29923458869
+    status: story_revision_deployment_pending
+    prior_merge_commit: a51e2f7c55c02f9f2418099d10004cd7afafd2aa
+    prior_workflow_run: 29923458869
+  status: configured_working_walkthrough_story_revision_locally_validated_deployment_pending
   brand_asset:
     path: assets/stateport-mascot-shell.svg
     sha256: 85459d506c5e15f405a44b6604fecd1cdc64ff4fd6a2d42ddb68199fdfca2cf6
@@ -84,7 +85,7 @@ site:
     mutation: false
 
 documentation_package:
-  status: deployed_product_ux_overhaul_video_plain_revision_public_runtime_verified_human_acceptance_pending
+  status: deployed_product_ux_overhaul_story_walkthrough_revision_locally_validated_deployment_pending_human_acceptance_pending
   scope:
     - concrete_product_definition_and_current_availability_boundary
     - intent_based_documentation_reading_path_catalogue_and_filter
@@ -111,12 +112,12 @@ documentation_package:
     product_ux_overhaul_assistive_technology_and_usability_acceptance: pending
 
 public_media_and_paper:
-  status: working_platform_walkthrough_neural_voice_revision_deployed_public_runtime_verified
+  status: working_platform_walkthrough_story_revision_locally_validated_deployment_pending
   prototype_video:
     path: assets/media/stateport-local-prototype-walkthrough.mp4
-    duration_seconds: 65.824
-    sha256: b5d39209fd6bb7180f7eba651ce67e720125ad12447ed620675f2807395452d2
-    format: h264_aac_mp4_1920x1200_public_safe_platform_fixture_capture_with_edge_neural_us_male_and_webvtt_captions
+    duration_seconds: 103.968
+    sha256: f57949d33bdfe9ee8bebde37dfe32446adb01c5c9136fdd6927724758aaa9467
+    format: h264_aac_mp4_1920x1200_public_safe_platform_fixture_capture_with_edge_neural_us_male_story_first_narration_and_webvtt_captions
     narration_source: assets/media/stateport-local-prototype-walkthrough-narration.txt
     markup_source: assets/media/stateport-local-prototype-walkthrough-narration.ssml
     voice: en-US-AndrewNeural
@@ -124,13 +125,16 @@ public_media_and_paper:
     synthesis_boundary: public_narration_text_sent_once_at_build_time_no_visitor_runtime_dependency
     boundary: working_public_safe_fixture_capture_with_availability_routed_to_release_ledger
     visual_treatment: clean_screens_without_baked_text_cards
+    story_structure: what_stateport_is_why_chat_lives_inside_work_real_workflow_controls_and_takeaway
+    pacing: 95_percent_narration_rate_with_natural_scene_delivery_and_750ms_scene_tail_pauses
     deployment:
-      status: deployed
-      public_runtime_status: verified_2026-07-22
-      merge_commit: a51e2f7c55c02f9f2418099d10004cd7afafd2aa
-      workflow_run: 29923458869
+      status: locally_validated_deployment_pending
+      public_runtime_status: prior_revision_verified_only
+      prior_merge_commit: a51e2f7c55c02f9f2418099d10004cd7afafd2aa
+      prior_workflow_run: 29923458869
       public_url: https://lennertvhoy.github.io/StatePort-Site/
-      caption_sync: scene_level_verbatim_from_markup_sentence_text_timed_to_exact_audio_segments
+      caption_sync: sixteen_scene_cues_verbatim_from_markup_sentence_text_timed_to_exact_audio_segments
+      local_validation: ffprobe_h264_aac_1920x1200_103.968_seconds_caption_text_exact_and_contact_sheet_checked_2026-07-22
   paper:
     path: papers/stateware-whitepaper-public-v1.1.md
     reader: papers/stateware-whitepaper-public-v1.1.html

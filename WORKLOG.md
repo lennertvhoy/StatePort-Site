@@ -1,5 +1,23 @@
 # Worklog
 
+## 2026-07-22 — Story-first walkthrough prepared
+
+- Product-owner feedback identified the remaining comprehension gap: the
+  neural-voice screen tour was clearer, but it still had too little orientation,
+  theory, and breathing room for a first-time viewer.
+- Rebuilt the narration as a 16-scene story: define StatePort, explain why a
+  conversation belongs inside lasting work, follow a checklist from catalog to
+  approved result, show later evidence and settings, contrast a second
+  workspace, and close with the product's purpose.
+- Rendered the male US `en-US-AndrewNeural` voice as continuous scene speech at
+  95% pace with a 750 ms pause after each scene. The video keeps clean,
+  uncropped 1920×1200 fixture screens and no baked text overlays.
+- The local H.264/AAC MP4 is 103.968 seconds, SHA-256
+  `f57949d33bdfe9ee8bebde37dfe32446adb01c5c9136fdd6927724758aaa9467`.
+  All 16 WebVTT cues exactly match the 16 markup scene texts; ffprobe metadata
+  and a visual 16-state contact sheet passed. Deployment, public-runtime
+  verification, and human acceptance remain pending.
+
 ## 2026-07-22 — Plain-language neural narration deployed
 
 - Merged PR #16 as `a51e2f7c55c02f9f2418099d10004cd7afafd2aa`; Pages deployment
