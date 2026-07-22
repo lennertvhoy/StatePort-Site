@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-07-22
 **Execution Mode:** operating
-**Project State:** working_platform_walkthrough_locally_validated_deployment_pending_human_acceptance_pending
+**Project State:** working_platform_walkthrough_deployed_public_runtime_verified_human_acceptance_pending
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -20,22 +20,24 @@
   run `29912161044`. Pages deployment run `29912179462` passed, and the live
   plain-language baseline was verified for the homepage, documentation,
   walkthrough, release status, captions, video identity, and browser console.
-- The currently deployed public video remains the earlier 52-second captioned walkthrough built from clean
+- The previously deployed public video was the earlier 52-second captioned walkthrough built from clean
   local prototype screens. Its MP4 SHA-256 is
   `b1be27a1cc2a1001050839dbfd3b0476a2e78cfa89478a03e15f0554ed51cadc`.
   It removes the baked-in text cards, uses plain-English narration, and keeps
   each spoken section on the screen it describes. PR #9 merged as
   `b9d0b757536608b05433781dd32dda157893ad06`; Pages deployment run
-  `29917446210` passed and the public runtime matches the asset hash, captions,
-  and duration. This branch prepares its replacement, so the public runtime has not changed yet.
+  `29917446210` passed and the public runtime matched the asset hash, captions,
+  and duration.
 - The replacement walkthrough is a 105.746-second, 1920×1200 capture of the
   working public-safe fixture. It shows the catalog, project view, real
   conversation answer, approval boundary, governed result, evidence drawer,
   settings, and a second application’s capability boundary. Its local MP4
   SHA-256 is
   `b69e18dfcac398e2839f2b6f6733b7cb440631903ea6fc9cf1bec603d7f76293`.
-  Static validation and local runtime playback passed; merge, Pages deploy,
-  public-runtime verification, and human acceptance remain open.
+  Static validation and local runtime playback passed. PR #11 merged as
+  `9567f1c223f3c536bebe51ae8f4580709a748b76`; Pages deployment run
+  `29919971077` passed, and the live public runtime now serves the expected
+  video metadata and captions. Human acceptance remains open.
 - A critical product, UX, content, accessibility, performance, metadata,
   privacy, and implementation audit is recorded in `SITE_AUDIT.md`.
 - The audit found that the visual identity and static architecture should be
@@ -80,12 +82,11 @@
 - Human acceptance of the live baseline and the proposed overhaul remains open.
 - Public source availability, a licensed release, downloads, and a verified
   installation path remain absent.
-- The replacement working-platform walkthrough is not yet merged or deployed;
-  the deployed public site still serves the prior 52-second video until this
-  revision is accepted and published.
+- The replacement working-platform walkthrough is deployed and publicly
+  verified. Human acceptance of the live product story remains open.
 
 ## Next action
 
-Review the replacement working-platform walkthrough at desktop and 390px
-widths, then keep merge, Pages deployment, public-runtime verification, and
-human acceptance as separate recorded steps.
+Review the deployed working-platform walkthrough at desktop and 390px widths;
+keep public-runtime verification and human acceptance as separate recorded
+steps.
