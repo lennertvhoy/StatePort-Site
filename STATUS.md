@@ -22,11 +22,12 @@
   walkthrough, release status, captions, video identity, and browser console.
 - The live video is now a 52-second captioned walkthrough built from clean
   local prototype screens. Its MP4 SHA-256 is
-  `f125eed97be3591c59f41f2fb9316648660ff025106a1f02c6d7f1e326291a9e`.
-  It removes the baked-in text cards and uses a plain-English narration. PR #7
-  merged as `b9a22283278b548628d3f4f591c159e55afa98d6`; Pages deployment run
-  `29916907351` passed and the public runtime matches the asset hash and
-  duration.
+  `b1be27a1cc2a1001050839dbfd3b0476a2e78cfa89478a03e15f0554ed51cadc`.
+  It removes the baked-in text cards, uses plain-English narration, and keeps
+  each spoken section on the screen it describes. PR #9 merged as
+  `b9d0b757536608b05433781dd32dda157893ad06`; Pages deployment run
+  `29917446210` passed and the public runtime matches the asset hash, captions,
+  and duration.
 - A critical product, UX, content, accessibility, performance, metadata,
   privacy, and implementation audit is recorded in `SITE_AUDIT.md`.
 - The audit found that the visual identity and static architecture should be

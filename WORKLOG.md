@@ -14,6 +14,17 @@
   52-second duration, new captions, and clean walkthrough page. Human
   acceptance remains separate.
 
+## 2026-07-22 — Walkthrough audio and captions synchronized
+
+- Review found that the first clean-screen revision still let the narration
+  run on a different timeline from the visible screen changes.
+- Regenerated the narration in four screen-matched sections, rebuilt the MP4,
+  and replaced summary captions with sentence-level verbatim captions timed
+  from the actual audio.
+- PR #9 merged as `b9d0b757536608b05433781dd32dda157893ad06`; Pages run
+  `29917446210` passed. Public MP4 SHA-256:
+  `b1be27a1cc2a1001050839dbfd3b0476a2e78cfa89478a03e15f0554ed51cadc`.
+
 ## 2026-07-22 — Product/UX overhaul merged, deployed, and runtime verified
 
 - Reviewed exact PR #5 final head `4d890658a8723bd5c44959ea6d5a455918f1e36e`
