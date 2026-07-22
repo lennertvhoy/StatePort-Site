@@ -4,6 +4,28 @@
 **Execution Mode:** operating
 **Max Items:** 3
 
+## P1 [BL-SITE-012] Replace the screen slideshow with a working platform walkthrough
+
+**Status:** locally_validated_deployment_pending
+
+The product-owner review correctly identified that the 52-second clean-screen
+revision still behaved like a slideshow. The replacement walkthrough is
+captured from the working public-safe fixture at 1920×1200 and follows real
+states: catalog, project view, conversation answer, exact-run review,
+approval, governed result, evidence, settings, and a second application’s
+capability boundary. The spoken track and WebVTT are generated from the same
+ten scene segments, with no baked-in text overlay.
+
+The local MP4 is 105.746 seconds with SHA-256
+`b69e18dfcac398e2839f2b6f6733b7cb440631903ea6fc9cf1bec603d7f76293`.
+The site validators passed, the local site reports 1920×1200 video metadata,
+and the public-safe platform runtime was exercised before capture. The
+replacement is not merged or deployed yet.
+
+**Exit:** exact revision is validated, reviewed at desktop and 390px widths,
+merged, Pages-deployed, public-runtime verified, and human-accepted. The
+working fixture evidence must remain separate from software-release claims.
+
 ## P1 [BL-SITE-011] Replace the jargon-heavy prototype walkthrough
 
 **Status:** completed
