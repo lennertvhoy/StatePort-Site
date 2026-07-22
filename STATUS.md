@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-07-22
 **Execution Mode:** operating
-**Project State:** working_platform_walkthrough_story_revision_screenshot_gallery_locally_validated_deployment_pending_human_acceptance_pending
+**Project State:** working_platform_walkthrough_story_revision_screenshot_gallery_deployed_public_runtime_verified_human_acceptance_pending
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -60,12 +60,16 @@
   run `29924837231` passed. The public MP4 and VTT hashes, 103.968-second
   H.264/AAC metadata, and 1:44 introductory walkthrough copy were verified
   directly from the live URL.
-- A screenshot-gallery revision is locally validated but not yet public. The
-  homepage's four interface screens now use their full inline column instead
-  of sharing it with captions, and the settings screen is no longer artificially
-  narrow. Each remains a direct image link when JavaScript is unavailable; with
-  JavaScript, it opens a full-size, keyboard-operable gallery with controls,
-  live slide status, Escape/outside-click close, and focus restoration.
+- PR #20 merged as `cc856c25f7a75e1f42e076e3e30372e40399463f`; Pages deployment
+  run `29926750701` passed. The homepage's four interface screens now use their
+  full inline column instead of sharing it with captions, and the settings
+  screen is no longer artificially narrow. Each remains a direct image link
+  when JavaScript is unavailable; with JavaScript, it opens a full-size,
+  keyboard-operable gallery with controls, live slide status, Escape/outside-
+  click close, and focus restoration. The live source exposes all four entry
+  points and gallery assets; a live 390px browser check opened a screen,
+  advanced it with ArrowRight, closed it with Escape, and found no console
+  errors.
 - A critical product, UX, content, accessibility, performance, metadata,
   privacy, and implementation audit is recorded in `SITE_AUDIT.md`.
 - The audit found that the visual identity and static architecture should be
@@ -111,11 +115,9 @@
 - Public source availability, a licensed release, downloads, and a verified
   installation path remain absent.
 - Human acceptance of the deployed story revision remains open.
-- The screenshot-gallery revision has not yet been merged, deployed, or
-  public-runtime verified.
+- Human acceptance of the screenshot gallery remains open.
 
 ## Next action
 
-Deploy the screenshot-gallery revision, verify the live interaction at desktop
-and 390px widths, then keep public-runtime verification and human acceptance as
-separate recorded steps.
+No further deployment work is queued for this slice. Human acceptance of the
+public screenshot gallery remains separate and pending.

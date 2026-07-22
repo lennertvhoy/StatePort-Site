@@ -6,7 +6,7 @@
 
 ## P1 [BL-SITE-013] Make public screenshot evidence inspectable at full size
 
-**Status:** locally_validated_deployment_pending_human_acceptance_pending
+**Status:** deployed_public_runtime_verified_human_acceptance_pending
 
 The homepage fixture screens were too small to communicate the working platform
 well. The local revision gives each of the four 1920×1200 interface screens its
@@ -20,13 +20,14 @@ the screen's existing label and description. The dialog uses only local static
 assets and respects reduced-motion preferences.
 
 Static validation, JavaScript parsing, and desktop/390px browser checks passed.
-The browser review exercised opening a screen, button and keyboard navigation,
-Escape-to-close focus restoration, full-size settings visibility, and a clean
-console. Deployment and public-runtime verification remain pending.
+PR #20 merged as `cc856c25f7a75e1f42e076e3e30372e40399463f`; Pages deployment
+run `29926750701` passed. The live homepage exposes all four gallery entry
+points and its gallery assets. A live 390px browser check opened the catalog
+screen, advanced from 01/04 to 02/04 with ArrowRight, closed with Escape, and
+reported a clean console.
 
-**Exit:** exact revision is statically validated, merged, Pages-deployed,
-public-runtime verified at desktop and 390px widths, and human-accepted. The
-screens remain public-safe fixture evidence, not a public software release.
+**Exit:** human acceptance remains separate and pending. The screens remain
+public-safe fixture evidence, not a public software release.
 
 ## P1 [BL-SITE-012] Replace the screen slideshow with a working platform walkthrough
 
