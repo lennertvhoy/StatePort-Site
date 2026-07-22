@@ -6,7 +6,7 @@
 
 ## P1 [BL-SITE-012] Replace the screen slideshow with a working platform walkthrough
 
-**Status:** locally_validated_deployment_pending
+**Status:** deployed_public_runtime_verified_human_acceptance_pending
 
 The product-owner review correctly identified that the 52-second clean-screen
 revision still behaved like a slideshow. The replacement walkthrough is
@@ -19,8 +19,10 @@ ten scene segments, with no baked-in text overlay.
 The local MP4 is 105.746 seconds with SHA-256
 `b69e18dfcac398e2839f2b6f6733b7cb440631903ea6fc9cf1bec603d7f76293`.
 The site validators passed, the local site reports 1920×1200 video metadata,
-and the public-safe platform runtime was exercised before capture. The
-replacement is not merged or deployed yet.
+and the public-safe platform runtime was exercised before capture. PR #11
+merged as `9567f1c223f3c536bebe51ae8f4580709a748b76`; Pages deployment run
+`29919971077` passed; and the live public runtime serves the expected video
+metadata and captions.
 
 **Exit:** exact revision is validated, reviewed at desktop and 390px widths,
 merged, Pages-deployed, public-runtime verified, and human-accepted. The
