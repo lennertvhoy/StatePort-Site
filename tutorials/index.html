@@ -3,21 +3,42 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="StatePort tutorials for designing durable, governable applications.">
+    <meta name="description" content="Practice the StatePort design model with short tutorials on durable application boundaries and governed receipts.">
     <meta name="theme-color" content="#0B132B">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="StatePort">
+    <meta property="og:title" content="StatePort tutorials — Practice the model">
+    <meta property="og:description" content="Short, conceptual exercises for durable state, authority, lifecycle, and evidence.">
+    <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/tutorials/">
+    <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-demo-source.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/tutorials/">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="manifest" href="../site.webmanifest">
     <link rel="stylesheet" href="../assets/site.css">
+    <link rel="stylesheet" href="../assets/site-enhancements.css" data-site-enhancements>
     <title>Tutorials — StatePort</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "StatePort tutorials",
+        "description": "Conceptual tutorials for the StatePort design model.",
+        "url": "https://lennertvhoy.github.io/StatePort-Site/tutorials/",
+        "dateModified": "2026-07-22",
+        "inLanguage": "en"
+      }
+    </script>
   </head>
   <body class="article-page">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header site-header--light">
       <a class="brand" href="../" aria-label="StatePort home">
-        <img src="../assets/stateport-mascot-shell.svg" alt="">
+        <img src="../assets/stateport-mascot-shell.svg" alt="" width="42" height="42">
         <span>StatePort</span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
-        <span class="sr-only">Toggle navigation</span>
+        <span class="sr-only">Open navigation</span>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
       </button>
       <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
@@ -31,8 +52,8 @@
       <section class="article-hero" aria-labelledby="tutorials-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Tutorials</p>
-          <h1 id="tutorials-title">Learn the design from the work outward.</h1>
-          <p>Short field notes on the decisions that make an application durable, portable, and governable.</p>
+          <h1 id="tutorials-title">Practice the model with small, honest examples.</h1>
+          <p>Use short exercises to decide what a workflow should remember, who may change it, and what evidence should remain afterwards.</p>
         </div>
       </section>
 
@@ -48,33 +69,54 @@
           </nav>
         </aside>
 
-        <article class="prose">
-          <p class="notice notice--quiet"><strong>Current scope</strong> The first tutorials are conceptual. <a href="../releases/">The release ledger</a> will name versioned instructions when they exist.</p>
+        <article class="prose tutorial-overview" data-no-toc>
+          <p class="notice notice--quiet"><strong>Current scope</strong> These are conceptual design exercises, not versioned installation instructions. The <a href="../releases/">release ledger</a> will name installable material when it exists.</p>
 
-          <h2>Available now</h2>
-          <div class="topic-list">
-            <a href="first-application.html">
-              <strong>Design your first durable application</strong>
-              <span>Map the facts, authority, lifecycle, and evidence a small workflow should keep close at hand.</span>
-              <i aria-hidden="true">↗</i>
-            </a>
-            <a href="reading-a-receipt.html">
-              <strong>Read a governed receipt</strong>
-              <span>Use a short scenario to distinguish a proposal, an authority decision, an applied result, validation, and acceptance.</span>
-              <i aria-hidden="true">↗</i>
-            </a>
+          <h2>Start in this order</h2>
+          <div class="tutorial-list">
+            <article class="tutorial-row">
+              <div class="tutorial-meta">
+                <span>01</span>
+                <span>Conceptual</span>
+                <span>10–15 min</span>
+              </div>
+              <div>
+                <h3><a href="first-application.html">Design your first durable application</a></h3>
+                <p>Map the facts, authority, lifecycle, and evidence a small workflow should keep close at hand.</p>
+                <p class="tutorial-outcome"><strong>You will leave with:</strong> a boundary sketch that separates current state from chat context.</p>
+              </div>
+            </article>
+            <article class="tutorial-row">
+              <div class="tutorial-meta">
+                <span>02</span>
+                <span>Conceptual</span>
+                <span>8–10 min</span>
+              </div>
+              <div>
+                <h3><a href="reading-a-receipt.html">Read a governed receipt</a></h3>
+                <p>Use one scenario to separate a proposal, authority decision, applied result, validation, and human acceptance.</p>
+                <p class="tutorial-outcome"><strong>You will leave with:</strong> a practical way to read claims about what changed.</p>
+              </div>
+            </article>
           </div>
 
-          <h2>What comes next</h2>
-          <ul>
-            <li>A verified local installation path bound to an exact release.</li>
-            <li>A first application walkthrough with public fixtures rather than private project material.</li>
-            <li>Operator and contributor guides with clear scope and evidence.</li>
-          </ul>
+          <section class="tutorial-boundary" aria-labelledby="tutorial-boundary-heading">
+            <h2 id="tutorial-boundary-heading">What these tutorials do—and do not—prove</h2>
+            <dl class="boundary-list">
+              <div>
+                <dt>They do</dt>
+                <dd>Teach the reasoning model with inspectable examples and explicit distinctions.</dd>
+              </div>
+              <div>
+                <dt>They do not</dt>
+                <dd>Prove a public release, supported platform, installation path, or production deployment.</dd>
+              </div>
+            </dl>
+          </section>
 
           <div class="inline-actions">
             <a class="button button--ink" href="first-application.html">Open the first tutorial</a>
-            <a class="button button--outlined" href="../releases/">View release ledger</a>
+            <a class="button button--outlined" href="../docs/">Browse the documentation</a>
           </div>
         </article>
       </div>
@@ -83,9 +125,14 @@
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="footer-mark">
-          <img src="../assets/stateport-mascot-shell.svg" alt="">
-          <p><strong>StatePort</strong>AI work that stays yours.</p>
+          <img src="../assets/stateport-mascot-shell.svg" alt="" width="31" height="31">
+          <p><strong>StatePort</strong>Durable AI-assisted work, kept in view.</p>
         </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="../docs/">Docs</a>
+          <a href="./" aria-current="page">Tutorials</a>
+          <a href="../releases/">Release status</a>
+        </nav>
         <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
       </div>
     </footer>

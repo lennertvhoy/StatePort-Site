@@ -3,21 +3,42 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="An introduction to StatePort, Stateware, and the StateSpec model.">
+    <meta name="description" content="Follow a clear path through the StatePort product, Stateware model, StateSpec format, lifecycle, governance, security, portability, and evidence.">
     <meta name="theme-color" content="#0B132B">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="StatePort">
+    <meta property="og:title" content="StatePort documentation — Start in the right order">
+    <meta property="og:description" content="A guided route from the product experience to the Stateware and StateSpec system design.">
+    <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/">
+    <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-demo-home.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="manifest" href="../site.webmanifest">
     <link rel="stylesheet" href="../assets/site.css">
+    <link rel="stylesheet" href="../assets/site-enhancements.css" data-site-enhancements>
     <title>Documentation — StatePort</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "StatePort documentation",
+        "description": "A guided introduction to the StatePort product, Stateware model, and StateSpec system design.",
+        "url": "https://lennertvhoy.github.io/StatePort-Site/docs/",
+        "dateModified": "2026-07-22",
+        "inLanguage": "en"
+      }
+    </script>
   </head>
   <body class="article-page">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header site-header--light">
       <a class="brand" href="../" aria-label="StatePort home">
-        <img src="../assets/stateport-mascot-shell.svg" alt="">
+        <img src="../assets/stateport-mascot-shell.svg" alt="" width="42" height="42">
         <span>StatePort</span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
-        <span class="sr-only">Toggle navigation</span>
+        <span class="sr-only">Open navigation</span>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
       </button>
       <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
@@ -31,139 +52,146 @@
       <section class="article-hero" aria-labelledby="docs-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation</p>
-          <h1 id="docs-title">A clear guide to StatePort.</h1>
-          <p>A few plain-English pages about what StatePort is, how it works, and what is available today.</p>
+          <h1 id="docs-title">Understand StatePort in the right order.</h1>
+          <p>Start with the product experience. Go deeper into Stateware, StateSpec, operations, and evidence only when those details answer your question.</p>
         </div>
       </section>
 
-      <div class="article-shell">
+      <div class="article-shell article-shell--docs-overview">
         <aside class="doc-sidebar" aria-label="Documentation sections">
-          <h2>Documentation</h2>
+          <h2>Recommended start</h2>
           <nav>
-            <a href="./" aria-current="page">Overview</a>
-            <a href="foundations.html">Foundations</a>
-            <a href="model.html">Model</a>
-            <a href="lifecycle.html">Lifecycle</a>
-            <a href="governance.html">Governance</a>
-            <a href="security-and-privacy.html">Security &amp; privacy</a>
-            <a href="hosts-and-portability.html">Hosts &amp; portability</a>
-            <a href="platform-support.html">Platform support</a>
-            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
-            <a href="reference.html">Reference &amp; FAQ</a>
-            <a href="prototype-walkthrough.html">Prototype walkthrough</a>
-            <a href="agent-kits.html">Agent Kits roadmap</a>
-            <a href="../papers/stateware-whitepaper-public-v1.1.html">Stateware paper</a>
-            <a href="getting-started.html">Getting started</a>
-            <a href="../tutorials/">Tutorials</a>
+            <a href="./" aria-current="page">Documentation home</a>
+            <a href="prototype-walkthrough.html">Product walkthrough</a>
+            <a href="foundations.html">Why StatePort exists</a>
+            <a href="model.html">How the model works</a>
+            <a href="getting-started.html">StateSpec basics</a>
             <a href="../releases/">Release status</a>
           </nav>
         </aside>
 
-        <article class="prose">
-          <p class="notice notice--quiet"><strong>Start here</strong> Read this page first. The <a href="../releases/">release status</a> page tells you what you can actually download and use.</p>
+        <article class="prose docs-overview" data-no-toc>
+          <p class="notice notice--quiet"><strong>Availability boundary</strong> These pages explain the product direction and design model. The <a href="../releases/">release ledger</a> is the source for what can actually be downloaded or installed.</p>
 
-          <h2>What is StatePort?</h2>
-          <p>StatePort is a place for AI-powered work to live. Instead of leaving everything in a chat, it keeps the project, its decisions, its files, and its progress together.</p>
-          <p>You can see what happened, pick up where you left off, and keep your work if the tools around it change.</p>
+          <section aria-labelledby="quick-path-heading">
+            <p class="section-kicker">New here</p>
+            <h2 id="quick-path-heading">Take the four-step reading path.</h2>
+            <ol class="reading-path">
+              <li>
+                <a href="prototype-walkthrough.html">
+                  <span class="reading-path-number">01</span>
+                  <span><strong>See the product</strong><small>Watch the 84-second local walkthrough and read its evidence boundary.</small></span>
+                </a>
+              </li>
+              <li>
+                <a href="foundations.html">
+                  <span class="reading-path-number">02</span>
+                  <span><strong>Understand the problem</strong><small>Learn why a chat transcript is a weak boundary for long-lived work.</small></span>
+                </a>
+              </li>
+              <li>
+                <a href="model.html">
+                  <span class="reading-path-number">03</span>
+                  <span><strong>Understand the model</strong><small>Connect applications, instances, canonical state, authority, capabilities, and receipts.</small></span>
+                </a>
+              </li>
+              <li>
+                <a href="../releases/">
+                  <span class="reading-path-number">04</span>
+                  <span><strong>Check what is available</strong><small>Keep documentation, prototype evidence, source access, and software distribution separate.</small></span>
+                </a>
+              </li>
+            </ol>
+          </section>
 
-          <h2>What is Stateware?</h2>
-          <p><strong>Stateware</strong> is our name for software that keeps the important part of an application in a place people can read, own, and carry forward.</p>
-          <p>Chat and AI tools can help, but they should not be the only place your memory lives or the only way to understand what changed.</p>
+          <section class="docs-catalogue-section" aria-labelledby="catalogue-heading">
+            <div class="docs-catalogue-heading">
+              <div>
+                <p class="section-kicker">All documentation</p>
+                <h2 id="catalogue-heading">Find the page that answers your question.</h2>
+              </div>
+              <div class="docs-filter">
+                <label for="documentation-filter">Filter topics</label>
+                <input id="documentation-filter" type="search" placeholder="Try “security”, “receipts”, or “install”" autocomplete="off" data-doc-filter aria-describedby="documentation-filter-status">
+                <p id="documentation-filter-status" class="filter-status" aria-live="polite"></p>
+              </div>
+            </div>
 
-          <h2>What is StateSpec?</h2>
-          <p><strong>StateSpec</strong> is the format used to describe an application: what it is for, what it needs to remember, and what it is allowed to do. You do not need to know this format to understand the product.</p>
-          <p>The deeper pages explain how StateSpec keeps permissions, changes, and ownership clear. StateDD is its former name, kept only for older files and tools.</p>
+            <div class="docs-catalogue" data-doc-catalogue>
+              <section class="docs-group" aria-labelledby="docs-group-product">
+                <h3 id="docs-group-product">Start with the product</h3>
+                <div class="docs-index-links">
+                  <a class="docs-index-link" href="prototype-walkthrough.html" data-doc-entry data-keywords="product demo video transcript interface prototype evidence">
+                    <span><strong>Prototype walkthrough</strong><small>See the current local interface and the limits of that evidence.</small></span><i aria-hidden="true">↗</i>
+                  </a>
+                  <a class="docs-index-link" href="foundations.html" data-doc-entry data-keywords="why problem chat durable work ownership stateware">
+                    <span><strong>Why StatePort exists</strong><small>Understand the boundary problem before the terminology.</small></span><i aria-hidden="true">↗</i>
+                  </a>
+                  <a class="docs-index-link" href="../releases/" data-doc-entry data-keywords="release status availability download source install">
+                    <span><strong>Release status</strong><small>See what is public, what is viewable, and what is not yet available.</small></span><i aria-hidden="true">↗</i>
+                  </a>
+                </div>
+              </section>
 
-          <h2>How the pieces relate</h2>
-          <div class="topic-list">
-            <a href="foundations.html">
-              <strong>Why this exists</strong>
-              <span>See the problem with keeping important work inside a chat window.</span>
-              <i aria-hidden="true">↗</i>
-            </a>
-            <a href="model.html">
-              <strong>How work stays together</strong>
-              <span>Learn how a project, its files, its decisions, and its history fit together.</span>
-              <i aria-hidden="true">↗</i>
-            </a>
-            <a href="lifecycle.html">
-              <strong>From start to recovery</strong>
-              <span>Follow the whole journey: start, use, update, move, back up, and recover.</span>
-              <i aria-hidden="true">↗</i>
-            </a>
-            <a href="governance.html">
-              <strong>Important changes</strong>
-              <span>See what should happen before a risky change, and how to check what happened afterwards.</span>
-              <i aria-hidden="true">↗</i>
-            </a>
-            <a href="security-and-privacy.html">
-              <strong>Security &amp; privacy</strong>
-              <span>Read the threat boundaries, design responses, and practical limits.</span>
-              <i aria-hidden="true">↗</i>
-            </a>
-            <a href="hosts-and-portability.html">
-              <strong>Tools and devices</strong>
-              <span>See how StatePort stays useful when a model, tool, or computer changes.</span>
-              <i aria-hidden="true">↗</i>
-            </a>
-            <a href="platform-support.html">
-              <strong>Platform support</strong>
-              <span>See the capability-based qualification contract for Linux, Docker Desktop, macOS, and Windows/WSL 2.</span>
-              <i aria-hidden="true">↗</i>
-            </a>
-            <a href="evidence-and-roadmap.html">
-              <strong>What is proven</strong>
-              <span>Learn the difference between a demo, a test, an independent check, and a release.</span>
-              <i aria-hidden="true">↗</i>
-            </a>
-            <a href="reference.html">
-              <strong>Reference &amp; FAQ</strong>
-              <span>Keep the terms and the most important distinctions close at hand.</span>
-              <i aria-hidden="true">↗</i>
-            </a>
-            <a href="prototype-walkthrough.html">
-              <strong>Prototype walkthrough</strong>
-              <span>Watch the captioned local capture and follow the product paths it explores.</span>
-              <i aria-hidden="true">↗</i>
-            </a>
-            <a href="agent-kits.html">
-              <strong>Agent Kits roadmap</strong>
-              <span>Explore a planned template-first way to share focused, portable tools.</span>
-              <i aria-hidden="true">↗</i>
-            </a>
-            <a href="../papers/stateware-whitepaper-public-v1.1.html">
-              <strong>Stateware paper</strong>
-              <span>Read the author-designated public whitepaper alongside the current release ledger.</span>
-              <i aria-hidden="true">↗</i>
-            </a>
-            <a href="getting-started.html">
-              <strong>Build the idea</strong>
-              <span>Start with a small example of how to keep a project’s important facts together.</span>
-              <i aria-hidden="true">↗</i>
-            </a>
-            <a href="../tutorials/first-application.html">
-              <strong>First application</strong>
-              <span>Walk through the decisions that make a project easier to understand and protect.</span>
-              <i aria-hidden="true">↗</i>
-            </a>
-            <a href="../releases/">
-              <strong>Release ledger</strong>
-              <span>See what is available now and what the release is preparing.</span>
-              <i aria-hidden="true">↗</i>
-            </a>
-          </div>
+              <section class="docs-group" aria-labelledby="docs-group-build">
+                <h3 id="docs-group-build">Design and build</h3>
+                <div class="docs-index-links">
+                  <a class="docs-index-link" href="model.html" data-doc-entry data-keywords="model application instance canonical state authority capability receipt">
+                    <span><strong>Core model</strong><small>Learn the relationships that make an application durable and governable.</small></span><i aria-hidden="true">↗</i>
+                  </a>
+                  <a class="docs-index-link" href="getting-started.html" data-doc-entry data-keywords="statespec yaml schema files getting started build example">
+                    <span><strong>StateSpec basics</strong><small>Read a small illustrative repository shape and its responsibilities.</small></span><i aria-hidden="true">↗</i>
+                  </a>
+                  <a class="docs-index-link" href="../tutorials/first-application.html" data-doc-entry data-keywords="tutorial first application design facts authority lifecycle evidence">
+                    <span><strong>Design a first application</strong><small>Map the facts, authority, lifecycle, and evidence a workflow needs.</small></span><i aria-hidden="true">↗</i>
+                  </a>
+                  <a class="docs-index-link" href="../tutorials/reading-a-receipt.html" data-doc-entry data-keywords="tutorial receipt proposal approval applied validation acceptance">
+                    <span><strong>Read a governed receipt</strong><small>Practice separating proposal, authorization, execution, validation, and acceptance.</small></span><i aria-hidden="true">↗</i>
+                  </a>
+                </div>
+              </section>
 
-          <h2>A few useful distinctions</h2>
-          <ul>
-            <li>A demo is not the same thing as a released product.</li>
-            <li>The release status page tells you what is available.</li>
-            <li>A chat, summary, or screenshot is not the same thing as the work itself.</li>
-          </ul>
+              <section class="docs-group" aria-labelledby="docs-group-operate">
+                <h3 id="docs-group-operate">Trust, operate, and recover</h3>
+                <div class="docs-index-links">
+                  <a class="docs-index-link" href="lifecycle.html" data-doc-entry data-keywords="lifecycle install update move backup recovery restore">
+                    <span><strong>Lifecycle</strong><small>Keep install, use, update, movement, backup, and recovery distinct.</small></span><i aria-hidden="true">↗</i>
+                  </a>
+                  <a class="docs-index-link" href="governance.html" data-doc-entry data-keywords="governance permission capability approval receipt acceptance authority">
+                    <span><strong>Governed change</strong><small>Understand capability grants, approvals, receipts, and acceptance.</small></span><i aria-hidden="true">↗</i>
+                  </a>
+                  <a class="docs-index-link" href="security-and-privacy.html" data-doc-entry data-keywords="security privacy threat trust secrets data risk">
+                    <span><strong>Security and privacy</strong><small>Read the threat boundaries, design responses, and practical limits.</small></span><i aria-hidden="true">↗</i>
+                  </a>
+                  <a class="docs-index-link" href="hosts-and-portability.html" data-doc-entry data-keywords="host portability model provider execution runtime degradation move">
+                    <span><strong>Hosts and portability</strong><small>See how applications declare requirements and hosts declare capabilities.</small></span><i aria-hidden="true">↗</i>
+                  </a>
+                  <a class="docs-index-link" href="platform-support.html" data-doc-entry data-keywords="platform support linux docker macos windows wsl qualification install">
+                    <span><strong>Platform support contract</strong><small>Read the qualification matrix without mistaking it for current availability.</small></span><i aria-hidden="true">↗</i>
+                  </a>
+                </div>
+              </section>
 
-          <div class="inline-actions">
-            <a class="button button--ink" href="getting-started.html">Read StateSpec basics</a>
-            <a class="button button--outlined" href="../tutorials/">Browse tutorials</a>
-          </div>
+              <section class="docs-group" aria-labelledby="docs-group-evidence">
+                <h3 id="docs-group-evidence">Evidence, reference, and direction</h3>
+                <div class="docs-index-links">
+                  <a class="docs-index-link" href="evidence-and-roadmap.html" data-doc-entry data-keywords="evidence roadmap claim proof validation acceptance release">
+                    <span><strong>Evidence and roadmap</strong><small>Distinguish a local observation, independent validation, acceptance, and release.</small></span><i aria-hidden="true">↗</i>
+                  </a>
+                  <a class="docs-index-link" href="reference.html" data-doc-entry data-keywords="reference glossary faq terms definition statedd statespec stateware">
+                    <span><strong>Reference and FAQ</strong><small>Keep the public terms and important distinctions close at hand.</small></span><i aria-hidden="true">↗</i>
+                  </a>
+                  <a class="docs-index-link" href="../papers/stateware-whitepaper-public-v1.1.html" data-doc-entry data-keywords="paper whitepaper stateware architecture research thesis">
+                    <span><strong>Stateware paper</strong><small>Read the longer design argument and its publication note.</small></span><i aria-hidden="true">↗</i>
+                  </a>
+                  <a class="docs-index-link" href="agent-kits.html" data-doc-entry data-keywords="agent kits roadmap templates portable tools planned early direction">
+                    <span><strong>Agent Kits roadmap</strong><small>Explore a scoped early direction without treating it as a released feature.</small></span><i aria-hidden="true">↗</i>
+                  </a>
+                </div>
+              </section>
+            </div>
+            <p class="docs-filter-empty" data-doc-filter-empty hidden>No documentation topics match that filter.</p>
+          </section>
         </article>
       </div>
     </main>
@@ -171,9 +199,14 @@
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="footer-mark">
-          <img src="../assets/stateport-mascot-shell.svg" alt="">
-          <p><strong>StatePort</strong>AI work that stays yours.</p>
+          <img src="../assets/stateport-mascot-shell.svg" alt="" width="31" height="31">
+          <p><strong>StatePort</strong>Durable AI-assisted work, kept in view.</p>
         </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="./" aria-current="page">Docs</a>
+          <a href="../tutorials/">Tutorials</a>
+          <a href="../releases/">Release status</a>
+        </nav>
         <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
       </div>
     </footer>

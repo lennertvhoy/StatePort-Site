@@ -4,44 +4,51 @@
 **Execution Mode:** operating
 **Max Items:** 3
 
-## P1 [BL-SITE-007] Obtain human acceptance of the deployed site package
+## P1 [BL-SITE-009] Review the exact product and UX overhaul
 
-**Status:** pending
+**Status:** ready_for_review
 
-The plain-language homepage, documentation entry points, walkthrough page,
-captions, and narration are deployed by Pages run `29912179462`.
+Draft PR [`#5`](https://github.com/lennertvhoy/StatePort-Site/pull/5) contains
+the audit-backed homepage, documentation, tutorial, release-ledger, 404,
+interaction, metadata, privacy, performance, and quality-contract changes. The
+behavior-bearing head `be8c63ffb14b34c0ec6c1cc657b8ea248b2eaa4b` passed
+GitHub Actions run `29914436990`.
 
-**Exit:** human review records acceptance or requested changes for the live
-copy, visual design, information architecture, and media voice.
+Review at desktop and 390px widths, then complete keyboard and screen-reader
+smoke tests. Use five tasks: explain StatePort after the first screen; distinguish
+the prototype from downloadable software; find security limits; find platform
+support; explain proposal versus validation versus human acceptance.
+
+**Exit:** human review records accepted changes or concrete revisions against
+the exact PR head. Static validation alone does not close this item.
+
+## P1 [BL-SITE-010] Merge, deploy, and verify an accepted exact revision
+
+**Status:** blocked_on_BL-SITE-009
+
+After review acceptance, merge the exact accepted PR head, record the merge
+commit, require a successful Pages deployment, and verify the public homepage,
+documentation, release ledger, 404 route, captions, media, mobile navigation,
+and browser console.
+
+**Exit:** one exact revision is separately recorded as merged, deployed,
+public-runtime verified, and human accepted. Do not collapse those states.
 
 ## P1 [BL-SITE-003] Add release-specific content only with public source evidence
 
 **Status:** pending_external
 
-Replace the release-preparation language only after a public source repository,
+Replace release-preparation language only after a public implementation source,
 license decision, versioned artifact, checksums, and verified install path exist.
 
 **Exit:** all download and release claims bind to an exact published release.
 
-## Completed since last update (2026-07-21)
+## Completed since last update (2026-07-22)
 
-- **BL-SITE-005** — Locally validated an expanded public documentation package with a
-  captioned, fixture-based local prototype walkthrough, four labelled product
-  screens, the author-designated public Stateware whitepaper and source
-  Markdown, and an Agent Kits roadmap. Static validation and desktop/mobile
-  browser review passed. The release ledger remains the single public source
-  for availability; draft review, merge, deployment, and runtime verification
-  remain pending.
-
-- **BL-SITE-004** — Authored the complete local documentation package for the
-  whitepaper topics: foundations, model, lifecycle, governance, security and
-  privacy, host portability, evidence, reference, and a receipt-reading
-  tutorial. The static validator and desktop/mobile key-route browser review
-  pass with no console errors. This worktree change is uncommitted, unpushed,
-  and not deployed.
-- **BL-SITE-001** — Local static validation passes; desktop and mobile browser
-  review completed against a loopback static server with no console errors.
-- **BL-SITE-002** — Created and pushed public repository
-  `lennertvhoy/StatePort-Site` at `d4522dbee2a39d1f2c3c64766ac222b92ed17332`.
-  Enabled GitHub Pages custom-workflow publishing. Workflow run `29853702366`
-  passed for that exact SHA, and the public URL returned HTTP 200 in a browser.
+- **BL-SITE-008** — Merged and deployed the plain-language revision. PR #2
+  validation run `29912161044` and Pages run `29912179462` passed; the public
+  runtime was verified. Human acceptance remained separate.
+- Prepared the critical audit and product/UX overhaul on a clean branch based on
+  current canonical `main`; opened draft PR #5 and closed superseded draft PR #4.
+- Expanded the deterministic quality contract and corrected the 404-page defect
+  it exposed. Behavior-bearing head validation passed in run `29914436990`.

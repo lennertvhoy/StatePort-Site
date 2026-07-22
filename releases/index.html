@@ -3,21 +3,42 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="The current availability and release status for StatePort.">
+    <meta name="description" content="The authoritative public availability ledger for StatePort documentation, prototype evidence, source access, downloads, and installation material.">
     <meta name="theme-color" content="#0B132B">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="StatePort">
+    <meta property="og:title" content="StatePort release status">
+    <meta property="og:description" content="See exactly what is public, what is viewable, and what is not yet available.">
+    <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/releases/">
+    <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-demo-source.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/releases/">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="manifest" href="../site.webmanifest">
     <link rel="stylesheet" href="../assets/site.css">
+    <link rel="stylesheet" href="../assets/site-enhancements.css" data-site-enhancements>
     <title>Release status — StatePort</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "StatePort release status",
+        "description": "The authoritative public availability ledger for StatePort.",
+        "url": "https://lennertvhoy.github.io/StatePort-Site/releases/",
+        "dateModified": "2026-07-22",
+        "inLanguage": "en"
+      }
+    </script>
   </head>
-  <body class="article-page">
+  <body class="article-page release-page">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header site-header--light">
       <a class="brand" href="../" aria-label="StatePort home">
-        <img src="../assets/stateport-mascot-shell.svg" alt="">
+        <img src="../assets/stateport-mascot-shell.svg" alt="" width="42" height="42">
         <span>StatePort</span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
-        <span class="sr-only">Toggle navigation</span>
+        <span class="sr-only">Open navigation</span>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
       </button>
       <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
@@ -30,9 +51,9 @@
     <main id="main">
       <section class="article-hero" aria-labelledby="releases-title">
         <div class="article-hero-inner">
-          <p class="document-kicker">Release ledger</p>
-          <h1 id="releases-title">Availability, without the fanfare.</h1>
-          <p>StatePort is taking shape in public. This page keeps the release details in one place.</p>
+          <p class="document-kicker">Authoritative availability ledger</p>
+          <h1 id="releases-title">What is public—and what is not.</h1>
+          <p>This page is the single source for StatePort availability. It separates documentation and prototype evidence from software, source, and installation claims.</p>
         </div>
       </section>
 
@@ -40,53 +61,83 @@
         <aside class="doc-sidebar" aria-label="Release sections">
           <h2>Release ledger</h2>
           <nav>
-            <a href="./" aria-current="page">Current status</a>
+            <a href="#current-status" aria-current="page">Current status</a>
+            <a href="#available-now">Available now</a>
+            <a href="#release-evidence">Release evidence</a>
             <a href="../docs/">Documentation</a>
-            <a href="../tutorials/">Tutorials</a>
             <a href="../">Home</a>
           </nav>
         </aside>
 
-        <article class="prose">
-          <h2>The release is still in preparation</h2>
-          <p>The documentation is public; software distribution has not started. When it does, this page will carry the exact source, checks, and install path.</p>
+        <article class="prose release-overview" data-no-toc>
+          <div class="release-summary" id="current-status">
+            <div>
+              <p class="release-summary-label">Current software status</p>
+              <h2>The release is still in preparation</h2>
+              <p>Public software distribution has not started. No download, public implementation source, versioned install guide, or supported release is being offered.</p>
+            </div>
+            <p class="release-review-date">Ledger reviewed<br><time datetime="2026-07-22">22 July 2026</time></p>
+          </div>
 
-          <dl class="release-ledger">
+          <dl class="release-ledger release-ledger--detailed" aria-label="StatePort availability">
             <div>
-              <dt>Release</dt>
-              <dd class="status-pending">In preparation</dd>
+              <dt>Public website</dt>
+              <dd><span class="status-chip status-chip--available">Available</span><small>Product story, documentation, tutorials, paper, and this ledger.</small></dd>
             </div>
             <div>
-              <dt>Downloads</dt>
-              <dd class="status-pending">Not available</dd>
+              <dt>Local prototype walkthrough</dt>
+              <dd><span class="status-chip status-chip--available">Available to view</span><small>Captioned fixture-based evidence, not an install or release.</small></dd>
             </div>
             <div>
-              <dt>Public source</dt>
-              <dd class="status-pending">In preparation</dd>
+              <dt>Software release</dt>
+              <dd><span class="status-chip status-chip--pending">In preparation</span><small>No public version has been published.</small></dd>
+            </div>
+            <div>
+              <dt>Downloads or installers</dt>
+              <dd><span class="status-chip status-chip--unavailable">Not available</span><small>No artifact is offered for installation.</small></dd>
+            </div>
+            <div>
+              <dt>Implementation source</dt>
+              <dd><span class="status-chip status-chip--unavailable">Not public</span><small>The public website is not evidence of public product source.</small></dd>
+            </div>
+            <div>
+              <dt>License</dt>
+              <dd><span class="status-chip status-chip--unavailable">Not published</span><small>No product license decision is being claimed.</small></dd>
             </div>
             <div>
               <dt>Install guide</dt>
-              <dd class="status-pending">With the release</dd>
+              <dd><span class="status-chip status-chip--unavailable">Not available</span><small>Versioned instructions will belong to an exact release.</small></dd>
             </div>
           </dl>
 
-          <h2>When it is ready</h2>
-          <p>A release earns its place here with material people can inspect and use.</p>
-          <ul>
-            <li>A public source boundary and license decision.</li>
-            <li>A versioned source and release notes.</li>
-            <li>Published artifacts or installers with checksums where appropriate.</li>
-            <li>A Docker-first installation path for the stated environment.</li>
-            <li>A clear record of what has been checked and accepted.</li>
-          </ul>
+          <section id="available-now" aria-labelledby="available-now-heading">
+            <h2 id="available-now-heading">What you can inspect today</h2>
+            <div class="availability-actions">
+              <a href="../docs/prototype-walkthrough.html">
+                <span><strong>Product walkthrough</strong><small>Watch the current local prototype and read the evidence notes.</small></span><i aria-hidden="true">↗</i>
+              </a>
+              <a href="../docs/">
+                <span><strong>Documentation path</strong><small>Move from the product experience into the Stateware and StateSpec design.</small></span><i aria-hidden="true">↗</i>
+              </a>
+              <a href="../papers/stateware-whitepaper-public-v1.1.html">
+                <span><strong>Stateware paper</strong><small>Read the longer design argument and its publication boundary.</small></span><i aria-hidden="true">↗</i>
+              </a>
+            </div>
+          </section>
 
-          <h2>Why a ledger?</h2>
-          <p>Release details deserve the same care as the work itself. One page makes it easier to see what is ready and what is still being prepared.</p>
+          <section id="release-evidence" aria-labelledby="release-evidence-heading">
+            <h2 id="release-evidence-heading">What must exist before this becomes a release</h2>
+            <p>A release earns an “available” status only when its claims bind to exact, inspectable material.</p>
+            <ol class="release-evidence-list">
+              <li><strong>Public boundary</strong><span>A clearly identified implementation source and product license decision.</span></li>
+              <li><strong>Versioned material</strong><span>An exact version, release notes, and immutable source reference.</span></li>
+              <li><strong>Installable artifacts</strong><span>Published artifacts or installers with checksums where appropriate.</span></li>
+              <li><strong>Verified path</strong><span>A Docker-first installation path tested from a clean environment for the stated platform.</span></li>
+              <li><strong>Acceptance record</strong><span>A clear account of what was validated, by whom, and what remains unaccepted.</span></li>
+            </ol>
+          </section>
 
-          <div class="inline-actions">
-            <a class="button button--ink" href="../docs/">Read the public docs</a>
-            <a class="button button--outlined" href="../tutorials/">Explore tutorials</a>
-          </div>
+          <p class="notice"><strong>Why the language is strict</strong> A polished site, a local demo, or passing static checks can support a design claim. None of them, alone, make software publicly available or accepted.</p>
         </article>
       </div>
     </main>
@@ -94,9 +145,14 @@
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="footer-mark">
-          <img src="../assets/stateport-mascot-shell.svg" alt="">
-          <p><strong>StatePort</strong>AI work that stays yours.</p>
+          <img src="../assets/stateport-mascot-shell.svg" alt="" width="31" height="31">
+          <p><strong>StatePort</strong>Durable AI-assisted work, kept in view.</p>
         </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="../docs/">Docs</a>
+          <a href="../tutorials/">Tutorials</a>
+          <a href="./" aria-current="page">Release status</a>
+        </nav>
         <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
       </div>
     </footer>

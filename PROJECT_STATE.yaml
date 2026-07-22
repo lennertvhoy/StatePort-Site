@@ -1,5 +1,5 @@
 metadata:
-  updated_at: 2026-07-22T12:20:00+02:00
+  updated_at: 2026-07-22T13:07:00+02:00
   updated_by: codex
   format_version: statespec-site-state/v1
 
@@ -13,8 +13,8 @@ project:
   name: StatePort Site
   product: StatePort
   phase: launch_preparation
-  status: plain_language_copy_refresh_deployed_human_acceptance_pending
-  purpose: public documentation, tutorials, release status, and future download home
+  status: product_ux_overhaul_in_draft_pr_behavior_head_validated_pending_review_merge_deployment_and_human_acceptance
+  purpose: public product story, documentation, tutorials, release status, and future download home
 
 source_boundary:
   implementation_repository:
@@ -55,10 +55,22 @@ site:
     - /papers/stateware-whitepaper-public-v1.1.html
     - /releases/
   accessibility:
-    - semantic_landmarks_and_skip_link
-    - keyboard_operable_navigation
+    - semantic_landmarks_and_skip_links
+    - keyboard_safe_mobile_navigation_with_focus_restoration
     - reduced_motion_fallback
     - visible_focus_states
+    - captioned_user_initiated_video
+    - increased_contrast_forced_colour_and_print_accommodations
+    - labelled_documentation_filter_and_copy_status_feedback
+  metadata_and_platform:
+    - canonical_open_graph_twitter_and_jsonld_on_primary_entry_routes
+    - web_app_manifest_with_existing_svg_icon
+    - intrinsic_media_dimensions_lazy_loading_and_async_decoding
+  privacy:
+    tracking: absent
+    remote_fonts: absent
+    third_party_scripts: absent
+    client_side_data_dependency: absent
   deployment:
     provider: GitHub Pages
     workflow: .github/workflows/deploy-pages.yml
@@ -72,8 +84,10 @@ site:
     mutation: false
 
 documentation_package:
-  status: expanded_package_and_plain_language_copy_refresh_deployed_pending_human_acceptance
+  status: deployed_plain_language_package_with_validated_product_ux_overhaul_in_draft_pr_pending_review_merge_deployment_and_human_acceptance
   scope:
+    - concrete_product_definition_and_current_availability_boundary
+    - intent_based_documentation_reading_path_catalogue_and_filter
     - foundations
     - application_model_and_state_authority
     - lifecycle_install_update_move_backup_recovery
@@ -83,6 +97,7 @@ documentation_package:
     - capability_based_platform_support_contract_and_clean_install_acceptance_story
     - evidence_ladder_and_roadmap
     - glossary_faq_and_receipt_tutorial
+    - generated_breadcrumbs_page_toc_and_previous_next_navigation
     - captioned_local_prototype_walkthrough_and_fixture_screens
     - author_designated_public_whitepaper_reader_and_source_markdown
     - planned_agent_kits_roadmap
@@ -90,7 +105,9 @@ documentation_package:
   public_claim_boundary: release_ledger_is_the_single_public_source_for_availability
   local_review:
     prior_validator: passed_2026-07-21_before_media_package
-    current_package: static_validation_contrast_regression_and_desktop_mobile_visual_review_passed_2026-07-21
+    deployed_package: static_validation_contrast_regression_and_desktop_mobile_visual_review_passed_2026-07-21
+    product_ux_overhaul_authored_source: javascript_syntax_python_compile_html_parse_and_synthetic_twenty_page_quality_contract_passed_2026-07-22
+    product_ux_overhaul_browser_and_assistive_technology_review: pending
 
 public_media_and_paper:
   status: plain_language_copy_refresh_deployed_public_runtime_verified
@@ -135,15 +152,28 @@ delivery:
   expanded_package_draft_pull_request: https://github.com/lennertvhoy/StatePort-Site/pull/1
   expanded_package_behavior_head: 072ffdf17d1b855a06956277bcfbb548f3fb8e97
   expanded_package_merge_commit: 8794d1bc9800fff186555fbd5546e7bf9c2d8fc2
-  draft_pr_validation:
+  deployed_package_validation:
     status: passed_on_final_branch_head
     scope: non_deploying_static_links_contrast_and_public_boundary_checks
     workflow: Validate_StatePort_Site
-    run_id: 29908851472
-    behavior_head_sha: 072ffdf17d1b855a06956277bcfbb548f3fb8e97
+    run_id: 29912161044
+    behavior_head_sha: 489a13f84cb9ab34ab26c679c288a92e83b36165
+  product_ux_overhaul:
+    branch: agent/site-product-ux-overhaul-mainline
+    draft_pull_request: https://github.com/lennertvhoy/StatePort-Site/pull/5
+    based_on_main_sha: 10846eaea05ebf915006fe0f4d65a1e1e4f9a82b
+    behavior_head_sha: be8c63ffb14b34c0ec6c1cc657b8ea248b2eaa4b
+    status: committed_pushed_and_draft_pr_open_not_merged_not_deployed_not_human_accepted
+    audit: SITE_AUDIT.md
+    validation:
+      status: passed_on_behavior_bearing_head
+      workflow: Validate_StatePort_Site
+      run_id: 29914436990
+      scope: repository_shape_public_boundary_structure_accessibility_metadata_media_fragments_sitemap_privacy_and_asset_budgets
+    final_state_only_head_validation_record: pull_request_conversation_after_exact_final_head_run
   pages_url: https://lennertvhoy.github.io/StatePort-Site/
-  local_validation: passed_2026-07-22_for_expanded_package_release_readiness_remediation_and_draft_pr_validation_contract
-  visual_review: passed_local_desktop_and_mobile_2026-07-21_for_expanded_package_and_local_release_readiness_remediation
+  local_validation: passed_2026-07-22_for_product_ux_overhaul_authored_source_and_synthetic_quality_contract
+  visual_review: prior_deployed_package_passed_local_desktop_and_mobile_2026-07-21_product_ux_overhaul_pending
   remote_ci:
     status: plain_language_deployment_passed_and_validation_passed
     workflow: Deploy StatePort Site
@@ -151,7 +181,7 @@ delivery:
     event: push
     head_sha: 8794d1bc9800fff186555fbd5546e7bf9c2d8fc2
   public_runtime:
-    status: verified
+    status: verified_for_deployed_plain_language_baseline_not_product_ux_overhaul
     url: https://lennertvhoy.github.io/StatePort-Site/
     checks:
       - HTTP_200
