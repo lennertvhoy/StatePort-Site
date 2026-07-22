@@ -1,5 +1,20 @@
 # Worklog
 
+## 2026-07-22 — Draft-PR validation and current-truth reconciliation prepared locally
+
+- Corrected the stale claim that the platform-support and contrast remediation
+  was uncommitted or absent from draft PR #1. It is committed as
+  `5a9ef0202221ff215bc8b3879dbe4db405d3a82b`, the draft PR head; it is still
+  unmerged, undeployed, and unaccepted.
+- Added a non-deploying draft-PR workflow that runs the existing repository
+  validator and a deterministic local-link/documentation-button-contrast
+  contract. It has read-only repository permissions and does not publish Pages.
+- Pinned every GitHub Action currently used by the Site workflows to an exact
+  full commit SHA. The validation gate refuses future mutable action tags.
+- This local evidence slice has no remote CI result yet. It does not change the
+  public site, release ledger, source availability, download status, or human
+  acceptance.
+
 ## 2026-07-21 — Local platform-support and documentation-button accessibility remediation
 
 - Added `docs/platform-support.html` as a qualification contract rather than a
@@ -18,8 +33,9 @@
   server at desktop and 390px mobile widths, and observed no browser console
   errors. The matrix remains horizontally scrollable on mobile without causing
   document-level horizontal overflow.
-- This remediation is local only: it has not been committed, pushed to draft
-  PR #1, merged, deployed, or accepted as release evidence.
+- The remediation was subsequently committed and pushed as
+  `5a9ef0202221ff215bc8b3879dbe4db405d3a82b`, the head of draft PR #1. It has
+  not been merged, deployed, or accepted as release evidence.
 
 ## 2026-07-21 — Public prototype, paper, and Agent Kits package locally validated
 

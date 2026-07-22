@@ -1,20 +1,21 @@
 # NEXT_ACTIONS — active execution queue
 
-**Updated At:** 2026-07-21
+**Updated At:** 2026-07-22
 **Execution Mode:** operating
 **Max Items:** 3
 
-## P1 [BL-SITE-006] Review the local release-readiness remediation before submission
+## P1 [BL-SITE-006] Validate the exact draft-PR site head before review
 
-**Status:** ready_for_review
+**Status:** ready_for_remote_validation
 
-The local worktree adds the documentation-button contrast repair and its
-regression gate, plus the capability-based platform-support contract and
-clean-install acceptance story. It has not changed draft PR #1, Pages, or the
-public runtime.
+The documentation-button contrast repair, regression gate, capability-based
+platform-support contract, and clean-install acceptance story are committed in
+`5a9ef0202221ff215bc8b3879dbe4db405d3a82b`, the current head of draft PR #1.
+A non-deploying validation workflow now needs to run on the exact updated PR
+head. Pages and the public runtime remain unchanged.
 
-**Exit:** an explicitly reviewed exact commit reaches draft PR #1, then its
-matching remote checks and human review are recorded separately.
+**Exit:** the exact PR head has a recorded passing validation run, followed by
+separate human review. Merge and deployment remain separate steps.
 
 ## P1 [BL-SITE-003] Add release-specific content only with public source evidence
 

@@ -108,6 +108,50 @@ def validate_documentation_button_accessibility() -> None:
             )
 
 
+def validate_action_pins() -> None:
+    """Require immutable action refs in every repository workflow."""
+    action_reference = re.compile(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+@[0-9a-f]{40}")
+    for workflow in sorted((ROOT / ".github" / "workflows").glob("*.y*ml")):
+        for line_number, line in enumerate(workflow.read_text(encoding="utf-8").splitlines(), start=1):
+            match = re.match(r"\s*uses:\s*([^\s#]+)", line)
+            if not match:
+                continue
+            reference = match.group(1)
+            if reference.startswith("./"):
+                continue
+            if not action_reference.fullmatch(reference):
+                raise AssertionError(
+                    "Workflow action must use a full immutable commit SHA: "
+                    f"{workflow.relative_to(ROOT)}:{line_number}: {reference}"
+                )
+
+
+def validate_pull_request_workflow() -> None:
+    """Keep draft-PR validation on GitHub-hosted, non-deploying authority."""
+    workflow_path = ".github/workflows/validate-site-pr.yml"
+    workflow = require(workflow_path).read_text(encoding="utf-8")
+    required_fragments = (
+        "pull_request:",
+        "contents: read",
+        "runs-on: ubuntu-latest",
+        "python3 scripts/validate_repo.py",
+        "python3 scripts/check_site_quality.py",
+    )
+    for fragment in required_fragments:
+        if fragment not in workflow:
+            raise AssertionError(f"Expected {fragment!r} in {workflow_path}")
+    forbidden_fragments = (
+        "pull_request_target",
+        "pages: write",
+        "id-token: write",
+        "deploy-pages",
+        "upload-pages-artifact",
+    )
+    for fragment in forbidden_fragments:
+        if fragment in workflow:
+            raise AssertionError(f"Draft PR workflow must not contain {fragment!r}")
+
+
 def main() -> None:
     required = (
         "AGENTS.md",
@@ -151,6 +195,8 @@ def main() -> None:
         "papers/assets/stateware-conversation.png",
         "papers/assets/stateware-approvals.png",
         ".github/workflows/deploy-pages.yml",
+        ".github/workflows/validate-site-pr.yml",
+        "scripts/check_site_quality.py",
     )
     for path in required:
         require(path)
@@ -165,7 +211,7 @@ def main() -> None:
     require_text("docs/platform-support.html", "Capability-based qualification")
     require_text("papers/stateware-whitepaper-public-v1.1.html", "Publication note")
     require_text("releases/index.html", "The release is still in preparation")
-    require_text(".github/workflows/deploy-pages.yml", "actions/deploy-pages@v4")
+    require_text(".github/workflows/deploy-pages.yml", "actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e")
 
     public_copy = "\n".join(
         page.read_text(encoding="utf-8") for page in ROOT.rglob("*.html")
@@ -175,6 +221,8 @@ def main() -> None:
 
     validate_local_references()
     validate_documentation_button_accessibility()
+    validate_action_pins()
+    validate_pull_request_workflow()
     print("StatePort Site validation: OK")
 
 
