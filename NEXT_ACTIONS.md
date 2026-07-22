@@ -6,7 +6,7 @@
 
 ## P1 [BL-SITE-012] Replace the screen slideshow with a working platform walkthrough
 
-**Status:** locally_validated_deployment_pending_human_acceptance_pending
+**Status:** deployed_public_runtime_verified_human_acceptance_pending
 
 The product-owner review correctly identified that the 52-second clean-screen
 revision still behaved like a slideshow. The replacement walkthrough is
@@ -24,9 +24,10 @@ pauses; the VTT cue text is verified to match those ten scene groups exactly.
 Only the public narration text was sent once at build time; site visitors have
 no runtime voice-service dependency.
 The site validators passed, the local site reports 1920×1200 video metadata,
-and the public-safe platform runtime was exercised before capture. This neural
-voice revision is locally validated but not deployed yet; the live site still
-serves the prior revision until this exact asset is published.
+and the public-safe platform runtime was exercised before capture. PR #16
+merged as `a51e2f7c55c02f9f2418099d10004cd7afafd2aa`; Pages deployment run
+`29923458869` passed; and the live runtime hash, duration, captions, and
+walkthrough copy were verified directly.
 
 **Exit:** exact revision is validated, reviewed at desktop and 390px widths,
 merged, Pages-deployed, public-runtime verified, and human-accepted. The

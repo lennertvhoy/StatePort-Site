@@ -1,5 +1,13 @@
 # Worklog
 
+## 2026-07-22 — Plain-language neural narration deployed
+
+- Merged PR #16 as `a51e2f7c55c02f9f2418099d10004cd7afafd2aa`; Pages deployment
+  run `29923458869` passed.
+- Verified the live H.264/AAC MP4 at 1920×1200 and 65.824 seconds, the exact
+  video hash, the VTT hash, and the 1:06 walkthrough copy.
+- Human acceptance remains separate and pending.
+
 ## 2026-07-22 — Plain-language neural narration prepared
 
 - Rejected the StudyVoice Piper track after product-owner review found that the
