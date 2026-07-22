@@ -3,27 +3,55 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="StatePort gives AI-powered work a home you can understand, keep, and pick up again.">
+    <meta name="description" content="StatePort gives ongoing AI-assisted work a durable, inspectable home for its files, decisions, permissions, and history.">
     <meta name="theme-color" content="#0B132B">
+    <meta name="color-scheme" content="light">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="StatePort">
+    <meta property="og:title" content="StatePort — Keep the work in view">
+    <meta property="og:description" content="A local-first product direction for AI-assisted work that remains readable, owned, and checkable.">
+    <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/">
+    <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-demo-home.png">
+    <meta property="og:image:width" content="1280">
+    <meta property="og:image:height" content="800">
+    <meta property="og:image:alt" content="StatePort local prototype showing named applications and their current state.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="StatePort — Keep the work in view">
+    <meta name="twitter:description" content="A durable, inspectable home for ongoing AI-assisted work.">
+    <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-demo-home.png">
+    <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="manifest" href="site.webmanifest">
     <link rel="stylesheet" href="assets/site.css">
-    <title>StatePort — Work you can pick back up</title>
+    <link rel="stylesheet" href="assets/site-enhancements.css" data-site-enhancements>
+    <title>StatePort — Keep the work in view</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "StatePort",
+        "url": "https://lennertvhoy.github.io/StatePort-Site/",
+        "description": "Public product story, documentation, tutorials, and release status for StatePort.",
+        "inLanguage": "en"
+      }
+    </script>
   </head>
-  <body>
+  <body class="home-page">
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header site-header--on-dark">
-      <a class="brand" href="./" aria-label="StatePort home">
-        <img src="assets/stateport-mascot-shell.svg" alt="">
+      <a class="brand" href="./" aria-label="StatePort home" aria-current="page">
+        <img src="assets/stateport-mascot-shell.svg" alt="" width="42" height="42">
         <span>StatePort</span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
-        <span class="sr-only">Toggle navigation</span>
+        <span class="sr-only">Open navigation</span>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
       </button>
       <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="#product">Product</a>
+        <a href="#how-it-works">How it works</a>
         <a href="docs/">Docs</a>
-        <a href="tutorials/">Tutorials</a>
         <a class="nav-release" href="releases/">Release status</a>
       </nav>
     </header>
@@ -32,14 +60,14 @@
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-inner">
           <div class="hero-copy">
-            <p class="eyebrow">A calmer home for AI work</p>
-            <h1 id="hero-title">StatePort<span>Work you can pick back up.</span></h1>
-            <p class="hero-deck">Keep your decisions, files, and conversations together. See what happened, what is ready, and what still needs your attention.</p>
+            <p class="eyebrow">Local prototype · public software release in preparation</p>
+            <h1 id="hero-title">StatePort<span>Keep the work in view.</span></h1>
+            <p class="hero-deck">StatePort gives ongoing AI-assisted work a named home for its files, decisions, permissions, and history—instead of leaving the project inside a chat.</p>
             <div class="hero-actions">
               <a class="button" href="#prototype">Watch the local prototype</a>
-              <a class="button button--quiet" href="docs/">Read the guide</a>
+              <a class="button button--quiet" href="docs/">Start with the overview</a>
             </div>
-            <p class="availability">Local preview · public release in preparation</p>
+            <p class="availability"><strong>Prototype available to view</strong><span aria-hidden="true">·</span><a href="releases/">Software not yet available</a></p>
           </div>
 
           <div class="atlas" aria-hidden="true">
@@ -55,202 +83,197 @@
               <circle class="node" cx="205" cy="176" r="11" />
               <circle class="node node--solid" cx="712" cy="767" r="8" />
             </svg>
-            <img class="atlas-mark" src="assets/stateport-mascot-shell.svg" alt="">
+            <img class="atlas-mark" src="assets/stateport-mascot-shell.svg" alt="" width="288" height="288">
             <div class="atlas-coordinates">
               <span>STATE / PORT</span>
-              <span>51.047 — 4.469</span>
-              <span>YOUR WORK / IN VIEW</span>
+              <span>DURABLE / INSPECTABLE</span>
+              <span>OWNED / PORTABLE</span>
             </div>
           </div>
-          <p class="hero-footnote">Keep it · understand it · move it</p>
+          <p class="hero-footnote">Keep it · inspect it · move it</p>
         </div>
       </section>
 
-      <section class="home-section statement" aria-labelledby="stateware-heading">
-        <p class="section-kicker reveal">The idea</p>
-        <div class="statement-copy reveal">
-          <h2 id="stateware-heading">The work should still make sense tomorrow—even if the tools change.</h2>
-          <p>StatePort keeps your decisions and working files in a place you can read, take with you, and check.</p>
-          <p>Chat can help move the work forward. It does not become the only place your work exists.</p>
+      <section class="home-section product-definition" id="product" aria-labelledby="product-heading">
+        <div class="product-definition-label reveal">
+          <p class="section-kicker">What it is</p>
+          <p class="section-note">Current product direction</p>
+        </div>
+        <div class="product-definition-copy reveal">
+          <h2 id="product-heading">A named home for work that lasts longer than one conversation.</h2>
+          <p class="product-lede">StatePort is being built as an application-first workspace. Each project keeps its current facts and evidence close, while conversations, models, and tools help around that source of truth.</p>
+          <dl class="product-facts">
+            <div>
+              <dt>The project keeps</dt>
+              <dd>Its brief, working files, decisions, progress, and history in readable form.</dd>
+            </div>
+            <div>
+              <dt>AI contributes</dt>
+              <dd>Conversation, proposals, and actions without becoming the only place the work exists.</dd>
+            </div>
+            <div>
+              <dt>People can inspect</dt>
+              <dd>What is current, what changed, what was checked, and what still needs acceptance.</dd>
+            </div>
+          </dl>
         </div>
       </section>
 
       <section class="prototype-section" id="prototype" aria-labelledby="prototype-heading">
         <div class="prototype-inner">
           <div class="prototype-intro reveal">
-            <p class="section-kicker">Inside StatePort</p>
-            <h2 id="prototype-heading">See how it feels to use.</h2>
-            <p>A short, captioned tour of picking up work, asking for help, and seeing what is ready.</p>
+            <p class="section-kicker">Current evidence</p>
+            <h2 id="prototype-heading">See the local prototype.</h2>
+            <p>An 84-second, captioned walkthrough recorded from a fixture-based local build. It demonstrates the interface direction; it is not a public install or release.</p>
           </div>
 
           <div class="prototype-stage reveal">
-            <video controls preload="metadata" playsinline poster="assets/media/stateport-demo-home.png" aria-describedby="prototype-caption">
+            <video controls preload="metadata" playsinline poster="assets/media/stateport-demo-home.png" aria-describedby="prototype-caption" width="1280" height="720">
               <source src="assets/media/stateport-local-prototype-walkthrough.mp4" type="video/mp4">
               <track kind="captions" srclang="en" label="English" src="assets/media/stateport-local-prototype-walkthrough.vtt" default>
-              Your browser does not support HTML video.
+              Your browser does not support HTML video. Read the linked walkthrough for the same information.
             </video>
-            <p id="prototype-caption">Local preview, recorded 21 July 2026. Availability lives in the release ledger.</p>
+            <p id="prototype-caption">Local preview recorded 21 July 2026. <a href="docs/prototype-walkthrough.html">Read the transcript and evidence notes.</a></p>
           </div>
 
           <div class="prototype-frames" aria-label="Prototype screens">
             <figure class="reveal">
-              <img src="assets/media/stateport-demo-home.png" alt="StatePort's desktop applications home showing named applications and their current state.">
-              <figcaption><span>01 / OPEN</span><strong>Open the work</strong><p>Return to a named project, not a blank chat.</p></figcaption>
+              <img src="assets/media/stateport-demo-home.png" alt="StatePort desktop applications home showing named applications and their current state." width="1280" height="800" loading="lazy" decoding="async">
+              <figcaption><span>01 / OPEN</span><strong>Return to named work</strong><p>Open a project with context and status instead of starting from a blank chat.</p></figcaption>
             </figure>
             <figure class="reveal">
-              <img src="assets/media/stateport-demo-conversation.png" alt="StatePort application conversation showing a user prompt and a short assistant response.">
-              <figcaption><span>02 / ASK</span><strong>Ask for help</strong><p>Use conversation without losing the rest of the work.</p></figcaption>
+              <img src="assets/media/stateport-demo-conversation.png" alt="StatePort application conversation showing a user request and a concise assistant response." width="1280" height="800" loading="lazy" decoding="async">
+              <figcaption><span>02 / ASK</span><strong>Use conversation in context</strong><p>Ask for help while the project’s durable records remain separate and inspectable.</p></figcaption>
             </figure>
             <figure class="reveal">
-              <img src="assets/media/stateport-demo-source.png" alt="StatePort application sources screen showing StudyState awaiting verified release.">
-              <figcaption><span>03 / CHECK</span><strong>Know what is ready</strong><p>See what is trusted, what is being checked, and what is not ready.</p></figcaption>
+              <img src="assets/media/stateport-demo-source.png" alt="StatePort sources screen showing a source that is awaiting verified release." width="1280" height="800" loading="lazy" decoding="async">
+              <figcaption><span>03 / INSPECT</span><strong>See what is trusted</strong><p>Distinguish what is ready, what is being checked, and what is still pending.</p></figcaption>
             </figure>
             <figure class="reveal prototype-frame--mobile">
-              <img src="assets/media/stateport-demo-mobile.png" alt="StatePort's mobile applications home showing named applications and status indicators.">
-              <figcaption><span>04 / TAKE IT</span><strong>Take it with you</strong><p>The same work stays understandable on a small screen.</p></figcaption>
+              <img src="assets/media/stateport-demo-mobile.png" alt="StatePort mobile applications home showing named applications and status indicators." width="390" height="844" loading="lazy" decoding="async">
+              <figcaption><span>04 / CONTINUE</span><strong>Keep the same project legible</strong><p>The work remains understandable on a smaller screen without becoming a different workflow.</p></figcaption>
             </figure>
           </div>
-
-          <a class="prototype-link reveal" href="docs/prototype-walkthrough.html">Read the walkthrough <span aria-hidden="true">↗</span></a>
         </div>
       </section>
 
-      <section class="home-section" aria-label="StatePort principles">
+      <section class="home-section principles-section" id="principles" aria-labelledby="principles-heading">
+        <div class="principles-header reveal">
+          <p class="section-kicker">Why it matters</p>
+          <h2 class="section-heading" id="principles-heading">Three things should remain true.</h2>
+        </div>
         <div class="principles">
           <article class="principle reveal">
             <p class="principle-index">01</p>
-            <h3>Your files stay yours</h3>
-            <p>Readable files keep the important decisions close to you, instead of hiding them in one service or chat window.</p>
+            <h3>The work stays readable</h3>
+            <p>Important facts live in inspectable state, not only in a provider’s memory or a long transcript.</p>
           </article>
           <article class="principle reveal">
             <p class="principle-index">02</p>
-            <h3>Nothing important happens in secret</h3>
-            <p>Before an important change, you can see what will happen. Afterwards, you can see what changed and what was checked.</p>
+            <h3>Important change stays explicit</h3>
+            <p>A proposal, permission decision, applied result, validation, and human acceptance remain separate facts.</p>
           </article>
           <article class="principle reveal">
             <p class="principle-index">03</p>
-            <h3>Tools can change</h3>
-            <p>Try different models and tools without losing the work that matters.</p>
+            <h3>The tools stay replaceable</h3>
+            <p>Models and execution hosts work around the project’s contracts instead of quietly becoming its owner.</p>
           </article>
         </div>
       </section>
 
-      <section class="route-section" aria-labelledby="route-heading">
+      <section class="route-section" id="how-it-works" aria-labelledby="route-heading">
         <div class="home-section">
-          <p class="section-kicker reveal">A practical route</p>
-          <h2 class="section-heading reveal" id="route-heading">How it works.</h2>
+          <p class="section-kicker reveal">How it works</p>
+          <h2 class="section-heading reveal" id="route-heading">From definition to evidence.</h2>
           <div class="route-list">
             <article class="route-step reveal">
-              <p class="route-number">01 / START</p>
-              <h3>Describe the work</h3>
-              <p>Start with the goals, rules, and information the application needs.</p>
+              <p class="route-number">01 / DEFINE</p>
+              <h3>Describe the application</h3>
+              <p>State its purpose, durable facts, requested capabilities, lifecycle rules, and validation expectations.</p>
             </article>
             <article class="route-step reveal">
-              <p class="route-number">02 / KEEP</p>
-              <h3>Keep your own copy</h3>
-              <p>Your project gets its own place for decisions, files, and history.</p>
+              <p class="route-number">02 / OWN</p>
+              <h3>Create an owned instance</h3>
+              <p>Give the project a pinned definition and a readable place for its current state and history.</p>
             </article>
             <article class="route-step reveal">
-              <p class="route-number">03 / DO</p>
-              <h3>Do the work</h3>
-              <p>Ask questions, follow progress, and use extra tools only when you need them.</p>
+              <p class="route-number">03 / WORK</p>
+              <h3>Use the right tools</h3>
+              <p>Conversations, models, and execution hosts contribute only through the capabilities the instance permits.</p>
             </article>
             <article class="route-step reveal">
-              <p class="route-number">04 / CHECK</p>
-              <h3>Check important changes</h3>
-              <p>See what changed, who approved it, and what was checked.</p>
+              <p class="route-number">04 / VERIFY</p>
+              <h3>Keep evidence of change</h3>
+              <p>Record what was requested, authorized, applied, checked, and accepted without collapsing those stages.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="kit-section" aria-labelledby="kit-heading">
-        <div class="kit-inner">
-          <div class="kit-intro reveal">
-            <p class="section-kicker">A planned next step</p>
-            <h2 id="kit-heading">Make useful tools easy to carry.</h2>
-            <p>Agent Kits are a planned way to share a focused tool with clear setup, clear limits, and a place for the work to belong.</p>
-          </div>
-          <div class="kit-flow reveal" aria-label="Planned Agent Kit components">
-            <section>
-              <span>01</span>
-              <h3>Clear starting point</h3>
-              <p>A clear starting point.</p>
-            </section>
-            <section>
-              <span>02</span>
-              <h3>Clear setup</h3>
-              <p>What it needs, stated plainly.</p>
-            </section>
-            <section>
-              <span>03</span>
-              <h3>Clear limits</h3>
-              <p>People stay in charge.</p>
-            </section>
-            <section>
-              <span>04</span>
-              <h3>Your own copy</h3>
-              <p>The work stays with you.</p>
-            </section>
-          </div>
-          <a class="button button--ink reveal" href="docs/agent-kits.html">Explore the Agent Kits roadmap</a>
+      <section class="home-section audience-section" aria-labelledby="audience-heading">
+        <div class="audience-intro reveal">
+          <p class="section-kicker">Choose a route</p>
+          <h2 class="section-heading" id="audience-heading">Explore the product or study the model.</h2>
+          <p>StatePort serves two different questions. Keeping them separate makes the first visit clearer.</p>
         </div>
-      </section>
-
-      <section class="home-section learn-grid" aria-labelledby="learn-heading">
-        <div class="reveal">
-          <p class="section-kicker">Go deeper</p>
-          <h2 class="section-heading section-heading--narrow" id="learn-heading">See how it is built.</h2>
-          <p class="learn-copy">Start with the simple idea, then explore the technical details when you are ready.</p>
+        <div class="audience-paths">
+          <article class="audience-path reveal">
+            <p class="audience-label">For prospective users</p>
+            <h3>What would it feel like?</h3>
+            <p>Follow the interface walkthrough, see the current product direction, and check exactly what is available.</p>
+            <a href="docs/prototype-walkthrough.html">Open the product walkthrough <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="audience-path reveal">
+            <p class="audience-label">For builders and operators</p>
+            <h3>How is the boundary designed?</h3>
+            <p>Read the Stateware model, StateSpec structure, governance rules, portability contract, and evidence ladder.</p>
+            <a href="docs/">Open the documentation path <span aria-hidden="true">↗</span></a>
+          </article>
         </div>
-        <div class="link-stack reveal">
-          <a href="docs/"><span>Documentation</span></a>
-          <a href="papers/stateware-whitepaper-public-v1.1.html"><span>Stateware paper</span></a>
-          <a href="docs/prototype-walkthrough.html"><span>Prototype walkthrough</span></a>
-          <a href="docs/getting-started.html"><span>Getting started</span></a>
-          <a href="tutorials/"><span>Tutorials</span></a>
-        </div>
+        <p class="roadmap-note reveal"><strong>Roadmap note:</strong> Agent Kits remain an early direction, not a released capability. <a href="docs/agent-kits.html">Read the scoped roadmap.</a></p>
       </section>
 
       <section class="release-band" aria-labelledby="release-heading">
-        <div class="release-band-inner">
+        <div class="release-band-inner release-band-inner--expanded">
           <div class="reveal">
             <p class="release-label">Release ledger</p>
-          <h2 id="release-heading">A release should be something you can use.</h2>
+            <h2 id="release-heading">Evidence before availability.</h2>
+            <p class="release-updated">Status reviewed <time datetime="2026-07-22">22 July 2026</time>.</p>
+            <a class="release-ledger-link" href="releases/">View the full release ledger <span aria-hidden="true">↗</span></a>
           </div>
           <dl class="release-status-list reveal">
             <div>
-              <dt>Current status</dt>
-              <dd>In preparation</dd>
+              <dt>Local prototype</dt>
+              <dd>Available to view</dd>
             </div>
             <div>
-              <dt>Downloads</dt>
+              <dt>Public documentation</dt>
+              <dd>Available</dd>
+            </div>
+            <div>
+              <dt>Software download</dt>
               <dd>Not available</dd>
             </div>
             <div>
-              <dt>Source access</dt>
-              <dd>In preparation</dd>
+              <dt>Implementation source</dt>
+              <dd>Not public</dd>
             </div>
           </dl>
         </div>
-      </section>
-
-      <section class="home-section closing" aria-labelledby="closing-heading">
-        <div class="reveal">
-            <p class="section-kicker">Stay oriented</p>
-            <h2 id="closing-heading">See what is ready and what is next.</h2>
-          <p>The release ledger keeps the exact availability details in one place.</p>
-        </div>
-        <a class="button button--ink reveal" href="releases/">View release status</a>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="footer-mark">
-          <img src="assets/stateport-mascot-shell.svg" alt="">
-          <p><strong>StatePort</strong>AI work that stays yours.</p>
+          <img src="assets/stateport-mascot-shell.svg" alt="" width="31" height="31">
+          <p><strong>StatePort</strong>Durable AI-assisted work, kept in view.</p>
         </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="docs/">Docs</a>
+          <a href="tutorials/">Tutorials</a>
+          <a href="releases/">Release status</a>
+        </nav>
         <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
       </div>
     </footer>
