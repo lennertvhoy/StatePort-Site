@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-07-22
 **Execution Mode:** operating
-**Project State:** plain_language_copy_refresh_pending_pages_deployment
+**Project State:** plain_language_copy_refresh_deployed_human_acceptance_pending
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -53,18 +53,20 @@
   `dbed5a9e62594ea19a5d8289c47776cbdfa3aeda` in GitHub Actions run
   `29908699477`. It exercised the public-boundary, local-link, contrast, and
   immutable-action-pin contracts only; it did not deploy Pages.
-- A follow-up plain-language revision is prepared locally: the homepage,
-  documentation entry points, walkthrough page, captions, and narration use
-  ordinary product language. This revision is not yet deployed.
+- The plain-language revision is deployed: the homepage, documentation entry
+  points, walkthrough page, captions, and narration now use ordinary product
+  language. Pages deployment run `29912179462` deployed merge commit
+  `8794d1bc9800fff186555fbd5546e7bf9c2d8fc2`.
 
 ## What is not proven
 
 - Public source availability, a licensed release, downloads, or an installation
   path for visitors.
 - Human acceptance of the copy, visual design, or information architecture.
-- Pages deployment of the plain-language revision.
+- Human acceptance of the plain-language copy, visual design, information
+  architecture, and media voice.
 
 ## Next action
 
-Deploy and then obtain human acceptance of the plain-language site package.
+Obtain human acceptance of the deployed plain-language site package.
 Keep release/download content tied to a public source release and its evidence.
