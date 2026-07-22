@@ -220,6 +220,91 @@
     });
   }
 
+  function initPrototypeGallery() {
+    const gallery = document.getElementById("prototype-gallery");
+    const items = [...document.querySelectorAll("[data-prototype-gallery-item]")];
+    if (!gallery || !items.length || typeof gallery.showModal !== "function") {
+      return;
+    }
+
+    const image = gallery.querySelector("[data-prototype-gallery-image]");
+    const counter = gallery.querySelector("[data-prototype-gallery-counter]");
+    const label = gallery.querySelector("[data-prototype-gallery-label]");
+    const summary = gallery.querySelector("[data-prototype-gallery-summary]");
+    const status = gallery.querySelector("[data-prototype-gallery-status]");
+    const closeButton = gallery.querySelector("[data-prototype-gallery-close]");
+    const previousButton = gallery.querySelector("[data-prototype-gallery-previous]");
+    const nextButton = gallery.querySelector("[data-prototype-gallery-next]");
+    if (!image || !counter || !label || !summary || !status || !closeButton || !previousButton || !nextButton) {
+      return;
+    }
+
+    let currentIndex = 0;
+    let returnFocus = null;
+
+    const setSlide = (index) => {
+      currentIndex = (index + items.length) % items.length;
+      const item = items[currentIndex];
+      const source = item.querySelector("img");
+      const figure = item.closest("figure");
+      const title = figure?.querySelector("figcaption strong")?.textContent?.trim() || source?.alt || "Prototype screen";
+      const description = figure?.querySelector("figcaption p")?.textContent?.trim() || "";
+      if (!source) {
+        return;
+      }
+
+      image.src = item.href;
+      image.alt = source.alt;
+      image.width = Number(source.getAttribute("width")) || 1920;
+      image.height = Number(source.getAttribute("height")) || 1200;
+      counter.textContent = `${String(currentIndex + 1).padStart(2, "0")} / ${String(items.length).padStart(2, "0")}`;
+      label.textContent = title;
+      summary.textContent = description;
+      status.textContent = `Screenshot ${currentIndex + 1} of ${items.length}: ${title}.`;
+      previousButton.setAttribute("aria-label", `Show previous screenshot before ${title}`);
+      nextButton.setAttribute("aria-label", `Show next screenshot after ${title}`);
+    };
+
+    const move = (offset) => setSlide(currentIndex + offset);
+
+    items.forEach((item, index) => {
+      item.addEventListener("click", (event) => {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+          return;
+        }
+        event.preventDefault();
+        returnFocus = item;
+        setSlide(index);
+        gallery.showModal();
+        closeButton.focus();
+      });
+    });
+
+    previousButton.addEventListener("click", () => move(-1));
+    nextButton.addEventListener("click", () => move(1));
+    closeButton.addEventListener("click", () => gallery.close());
+    gallery.addEventListener("click", (event) => {
+      if (event.target === gallery) {
+        gallery.close();
+      }
+    });
+    gallery.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        move(-1);
+      } else if (event.key === "ArrowRight") {
+        event.preventDefault();
+        move(1);
+      }
+    });
+    gallery.addEventListener("close", () => {
+      if (returnFocus?.isConnected) {
+        returnFocus.focus();
+      }
+      returnFocus = null;
+    });
+  }
+
   function initBreadcrumbs() {
     const path = relativePath();
     const heroInner = document.querySelector(".article-hero-inner, .error-hero-inner");
@@ -602,6 +687,7 @@
     initPrimaryNavigation();
     initReveals();
     initAtlasParallax();
+    initPrototypeGallery();
     initBreadcrumbs();
     initDocumentationNavigation();
     initPageTableOfContents();
