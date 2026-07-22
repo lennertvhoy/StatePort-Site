@@ -6,7 +6,7 @@
 
 ## P1 [BL-SITE-012] Replace the screen slideshow with a working platform walkthrough
 
-**Status:** locally_validated_deployment_pending_human_acceptance_pending
+**Status:** deployed_public_runtime_verified_human_acceptance_pending
 
 The product-owner review found that the clearer neural-voice revision still
 began too abruptly and did not explain the product's theory before touring the
@@ -25,8 +25,10 @@ There are no baked-in text overlays. Only public narration text was sent once
 at build time; visitors have no runtime voice-service dependency.
 
 Local ffprobe metadata, exact caption text, and a 16-state contact sheet were
-checked. The live site still serves PR #16's 1:06 revision until this story
-revision is merged, deployed, and verified.
+checked. PR #18 merged as `0d4875d15f3b5f613dca6a70e625ae459692cd52`; Pages
+deployment run `29924837231` passed. The live MP4 and WebVTT SHA-256 values,
+the 103.968-second video metadata, and the 1:44 walkthrough copy were verified
+directly from the public URL.
 
 **Exit:** exact revision is validated, reviewed at desktop and 390px widths,
 merged, Pages-deployed, public-runtime verified, and human-accepted. The

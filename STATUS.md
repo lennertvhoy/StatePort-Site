@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-07-22
 **Execution Mode:** operating
-**Project State:** working_platform_walkthrough_story_revision_locally_validated_deployment_pending_human_acceptance_pending
+**Project State:** working_platform_walkthrough_story_revision_deployed_public_runtime_verified_human_acceptance_pending
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -38,7 +38,7 @@
   Static validation and local runtime playback passed. PR #11 merged as
   `9567f1c223f3c536bebe51ae8f4580709a748b76`; Pages deployment run
   `29919971077` passed, and that revision was publicly verified.
-- The current public walkthrough is the 65.824-second, 1920×1200 capture using the male US
+- The previous public walkthrough was the 65.824-second, 1920×1200 capture using the male US
   `en-US-AndrewNeural` Edge neural voice and SSML-style markup. Its MP4
   SHA-256 is `b5d39209fd6bb7180f7eba651ce67e720125ad12447ed620675f2807395452d2`.
   The ten VTT cues exactly match the ten markup scene texts and the screenshot
@@ -47,8 +47,8 @@
 - PR #16 merged as `a51e2f7c55c02f9f2418099d10004cd7afafd2aa`; Pages deployment
   run `29923458869` passed. The live public runtime hash, duration, captions,
   and walkthrough copy were verified directly.
-- A clearer 103.968-second local story revision is prepared but not yet public.
-  It starts by defining StatePort and its core idea—chat helps, but the work
+- The current public walkthrough is the 103.968-second story revision. It
+  starts by defining StatePort and its core idea—chat helps, but the work
   needs a lasting home—before showing a complete checklist workflow, the
   approval and result, evidence, settings, a second workspace, and the
   takeaway. It remains a 1920×1200 working public-safe fixture with no baked
@@ -56,7 +56,10 @@
   `f57949d33bdfe9ee8bebde37dfe32446adb01c5c9136fdd6927724758aaa9467`.
   The 16 VTT cues exactly match the 16 narration scene texts; each screen is
   held for its corresponding scene and the narration has a 750 ms scene pause.
-  The public site still serves the verified PR #16 1:06 revision.
+- PR #18 merged as `0d4875d15f3b5f613dca6a70e625ae459692cd52`; Pages deployment
+  run `29924837231` passed. The public MP4 and VTT hashes, 103.968-second
+  H.264/AAC metadata, and 1:44 introductory walkthrough copy were verified
+  directly from the live URL.
 - A critical product, UX, content, accessibility, performance, metadata,
   privacy, and implementation audit is recorded in `SITE_AUDIT.md`.
 - The audit found that the visual identity and static architecture should be
@@ -101,11 +104,9 @@
 - Human acceptance of the live baseline and the proposed overhaul remains open.
 - Public source availability, a licensed release, downloads, and a verified
   installation path remain absent.
-- The clearer story revision is locally validated only. Its merge, Pages
-  deployment, public-runtime verification, and human acceptance remain open.
+- Human acceptance of the deployed story revision remains open.
 
 ## Next action
 
-Deploy the clearer story revision, verify its live media hash, duration,
-captions, and page copy, then review it at desktop and 390px widths. Keep
+Review the deployed story revision at desktop and 390px widths. Keep
 public-runtime verification and human acceptance as separate recorded steps.
