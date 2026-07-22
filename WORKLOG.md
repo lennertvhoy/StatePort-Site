@@ -1,5 +1,14 @@
 # Worklog
 
+## 2026-07-22 — StudyVoice voice revision deployed
+
+- Merged PR #14 as `b22b674bb4321e099356107874ba86a952f09fdd`; Pages deployment
+  run `29922160118` passed.
+- Verified the live MP4 is H.264/AAC, 1920×1200, and 98.364989 seconds. The
+  live WebVTT SHA-256 matches the local VTT, and its ten cue texts match the
+  ten SSML markup scene groups exactly.
+- Human acceptance remains separate and pending.
+
 ## 2026-07-22 — Re-rendered walkthrough narration with StudyVoice markup
 
 - Downloaded and rendered the male US `en_US-sam-medium` Piper voice through

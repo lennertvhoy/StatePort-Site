@@ -13,7 +13,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: launch_preparation
-  status: working_platform_walkthrough_voice_revision_locally_validated_deployment_pending_human_acceptance_pending
+  status: working_platform_walkthrough_voice_revision_deployed_public_runtime_verified_human_acceptance_pending
   purpose: public product story, documentation, tutorials, release status, and future download home
 
 source_boundary:
@@ -74,7 +74,7 @@ site:
   deployment:
     provider: GitHub Pages
     workflow: .github/workflows/deploy-pages.yml
-  status: configured_deployed_working_walkthrough_voice_revision_pending
+  status: configured_deployed_working_walkthrough_voice_revision_public_runtime_verified
     merge_commit: 9567f1c223f3c536bebe51ae8f4580709a748b76
     workflow_run: 29919971077
   brand_asset:
@@ -111,7 +111,7 @@ documentation_package:
     product_ux_overhaul_assistive_technology_and_usability_acceptance: pending
 
 public_media_and_paper:
-  status: working_platform_walkthrough_voice_revision_locally_validated_deployment_pending
+  status: working_platform_walkthrough_voice_revision_deployed_public_runtime_verified
   prototype_video:
     path: assets/media/stateport-local-prototype-walkthrough.mp4
     duration_seconds: 98.365
@@ -125,8 +125,10 @@ public_media_and_paper:
     boundary: working_public_safe_fixture_capture_with_availability_routed_to_release_ledger
     visual_treatment: clean_screens_without_baked_text_cards
     deployment:
-      status: pending_voice_revision_deployment
-      public_runtime_status: prior_revision_verified_only
+      status: deployed
+      public_runtime_status: verified_2026-07-22
+      deployed_merge_commit: b22b674bb4321e099356107874ba86a952f09fdd
+      deployed_pages_workflow_run: 29922160118
       merge_commit: 9567f1c223f3c536bebe51ae8f4580709a748b76
       workflow_run: 29919971077
       public_url: https://lennertvhoy.github.io/StatePort-Site/
