@@ -6,7 +6,7 @@
 
 ## P1 [BL-SITE-012] Replace the screen slideshow with a working platform walkthrough
 
-**Status:** deployed_public_runtime_verified_human_acceptance_pending
+**Status:** locally_validated_deployment_pending_human_acceptance_pending
 
 The product-owner review correctly identified that the 52-second clean-screen
 revision still behaved like a slideshow. The replacement walkthrough is
@@ -16,17 +16,17 @@ approval, governed result, evidence, settings, and a second application’s
 capability boundary. The spoken track and WebVTT are generated from the same
 ten scene segments, with no baked-in text overlay.
 
-The new local MP4 is 98.365 seconds with SHA-256
-`9532b8b4ca1f0874c1a0b8796f6f59e4e47f4e2df423a460050bd0cf23ba24bb`.
-Its narration is rendered through StudyVoice Piper using the male US
-`en_US-sam-medium` voice. The SSML-style markup source defines the ten scene
-sentences, pauses, and 96% pacing; the VTT cue text is verified to match those
-same ten sentence groups exactly. The model-card dataset license is Apache 2.0.
+The new local MP4 is 65.824 seconds with SHA-256
+`b5d39209fd6bb7180f7eba651ce67e720125ad12447ed620675f2807395452d2`.
+Its narration uses the male US `en-US-AndrewNeural` Edge neural voice. The
+SSML-style markup source defines ten short screen-specific scene sentences and
+pauses; the VTT cue text is verified to match those ten scene groups exactly.
+Only the public narration text was sent once at build time; site visitors have
+no runtime voice-service dependency.
 The site validators passed, the local site reports 1920×1200 video metadata,
-and the public-safe platform runtime was exercised before capture. PR #14
-merged as `b22b674bb4321e099356107874ba86a952f09fdd`; Pages deployment run
-`29922160118` passed; and the live runtime serves the Sam voice revision and
-its synchronized captions.
+and the public-safe platform runtime was exercised before capture. This neural
+voice revision is locally validated but not deployed yet; the live site still
+serves the prior revision until this exact asset is published.
 
 **Exit:** exact revision is validated, reviewed at desktop and 390px widths,
 merged, Pages-deployed, public-runtime verified, and human-accepted. The

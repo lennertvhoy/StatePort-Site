@@ -1,31 +1,31 @@
 WEBVTT
 
-00:00.000 --> 00:12.643
-Start in the catalog. Choose the app you actually need. Here, the checklist is ready, the study app is unavailable, and StatePort shows that difference instead of hiding it.
+00:00.000 --> 00:04.834
+This is the list of apps in StatePort. I am opening the checklist.
 
-00:12.643 --> 00:22.175
-Open the checklist and you get a real project view: its name, its backup state, the tools it exposes, and where the source came from.
+00:04.834 --> 00:11.948
+This is the checklist's home. It shows the project, the tools it has, and whether the backup needs attention.
 
-00:22.175 --> 00:31.623
-Ask a normal question: what should I do next? The answer comes back in the same conversation, with the project still in view.
+00:11.948 --> 00:19.322
+Here I ask, what should I do next? The answer stays inside the checklist, next to the work it is talking about.
 
-00:31.623 --> 00:43.858
-For a more controlled task, choose an action. Before it runs, StatePort shows the engine, the budget, the data it will read, and whether it can change anything.
+00:19.322 --> 00:28.832
+Now I pick an action: plan the next checklist item. Before it runs, I can see what it will do, which tool will run it, and whether it can change anything.
 
-00:43.858 --> 00:50.292
-Approval is its own step. You can review the exact task before anything executes.
+00:28.832 --> 00:35.322
+This request is waiting for my approval. I can read the exact action before I allow it to run.
 
-00:50.292 --> 00:59.256
-After execution, the result is readable: verify the portable execution boundary. The project is unchanged.
+00:35.322 --> 00:41.740
+It is finished. The result says the check is complete. Nothing in the project was changed.
 
-00:59.256 --> 01:08.920
-The evidence drawer keeps the lifecycle, receipt, and exact record together. You can inspect the result instead of trusting a screenshot.
+00:41.740 --> 00:47.326
+Later, I can review the request, the approval, and the result in one place.
 
-01:08.920 --> 01:18.828
-Settings are part of the product. You can see the instance identity, what stays editable, and which facts come from the application itself.
+00:47.326 --> 00:53.076
+These are the settings. They show what I can change, and what the app controls for me.
 
-01:18.828 --> 01:30.071
-Different application, different role. This CTO fixture opens a workbench for development work, while the project identity and recovery state stay visible.
+00:53.076 --> 00:58.826
+Here is a different app for technical work. It has a different workspace and different tools.
 
-01:30.071 --> 01:38.365
-The boundaries are visible too. Tools that are unavailable in this environment stay unavailable instead of pretending to work.
+00:58.826 --> 01:05.824
+Some tools are not available in this setup. StatePort leaves them turned off instead of pretending they work.
