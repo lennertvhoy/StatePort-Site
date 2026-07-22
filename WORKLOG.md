@@ -1,5 +1,18 @@
 # Worklog
 
+## 2026-07-22 — Re-rendered walkthrough narration with StudyVoice markup
+
+- Downloaded and rendered the male US `en_US-sam-medium` Piper voice through
+  StudyVoice. Its model-card dataset license is Apache 2.0.
+- Added an SSML-style markup source for the ten scenes, sentence boundaries,
+  pauses, and 96% pacing. Regenerated the MP4 and VTT from the same scene
+  manifest; an exact text comparison confirms all ten captions match the
+  markup sentence groups.
+- The new asset is 98.365 seconds, 1920×1200, H.264/AAC, SHA-256
+  `9532b8b4ca1f0874c1a0b8796f6f59e4e47f4e2df423a460050bd0cf23ba24bb`.
+  It is locally validated and deployment is pending; the public site still
+  serves the prior revision.
+
 ## 2026-07-22 — Working platform walkthrough deployed
 
 - Merged PR #11 as

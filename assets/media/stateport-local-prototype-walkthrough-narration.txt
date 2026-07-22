@@ -1,4 +1,6 @@
 StatePort platform walkthrough — 22 July 2026
+Voice: StudyVoice Piper, en_US-sam-medium
+Markup source: stateport-local-prototype-walkthrough-narration.ssml
 
 01 / Catalog
 Start in the catalog. Choose the app you actually need. Here, the checklist is ready, the study app is unavailable, and StatePort shows that difference instead of hiding it.

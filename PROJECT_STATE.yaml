@@ -13,7 +13,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: launch_preparation
-  status: working_platform_walkthrough_deployed_public_runtime_verified_human_acceptance_pending
+  status: working_platform_walkthrough_voice_revision_locally_validated_deployment_pending_human_acceptance_pending
   purpose: public product story, documentation, tutorials, release status, and future download home
 
 source_boundary:
@@ -74,7 +74,7 @@ site:
   deployment:
     provider: GitHub Pages
     workflow: .github/workflows/deploy-pages.yml
-  status: configured_deployed_working_walkthrough_public_runtime_verified
+  status: configured_deployed_working_walkthrough_voice_revision_pending
     merge_commit: 9567f1c223f3c536bebe51ae8f4580709a748b76
     workflow_run: 29919971077
   brand_asset:
@@ -111,22 +111,26 @@ documentation_package:
     product_ux_overhaul_assistive_technology_and_usability_acceptance: pending
 
 public_media_and_paper:
-  status: working_platform_walkthrough_deployed_public_runtime_verified
+  status: working_platform_walkthrough_voice_revision_locally_validated_deployment_pending
   prototype_video:
     path: assets/media/stateport-local-prototype-walkthrough.mp4
-    duration_seconds: 105.746
-    sha256: b69e18dfcac398e2839f2b6f6733b7cb440631903ea6fc9cf1bec603d7f76293
-    format: h264_aac_mp4_1920x1200_public_safe_platform_fixture_capture_with_plain_english_narration_and_webvtt_captions
+    duration_seconds: 98.365
+    sha256: 9532b8b4ca1f0874c1a0b8796f6f59e4e47f4e2df423a460050bd0cf23ba24bb
+    format: h264_aac_mp4_1920x1200_public_safe_platform_fixture_capture_with_studyvoice_piper_us_male_sam_medium_and_webvtt_captions
     narration_source: assets/media/stateport-local-prototype-walkthrough-narration.txt
+    markup_source: assets/media/stateport-local-prototype-walkthrough-narration.ssml
+    voice: en_US-sam-medium
+    voice_backend: StudyVoice Piper
+    voice_license: Apache-2.0_model_card_dataset_license
     boundary: working_public_safe_fixture_capture_with_availability_routed_to_release_ledger
     visual_treatment: clean_screens_without_baked_text_cards
     deployment:
-      status: deployed
-      public_runtime_status: verified_2026-07-22
+      status: pending_voice_revision_deployment
+      public_runtime_status: prior_revision_verified_only
       merge_commit: 9567f1c223f3c536bebe51ae8f4580709a748b76
       workflow_run: 29919971077
       public_url: https://lennertvhoy.github.io/StatePort-Site/
-      caption_sync: scene_level_verbatim_timed_to_exact_audio_segments
+      caption_sync: scene_level_verbatim_from_markup_sentence_text_timed_to_exact_audio_segments
   paper:
     path: papers/stateware-whitepaper-public-v1.1.md
     reader: papers/stateware-whitepaper-public-v1.1.html

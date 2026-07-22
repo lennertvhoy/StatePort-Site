@@ -1,31 +1,31 @@
 WEBVTT
 
-00:00.000 --> 00:13.619
+00:00.000 --> 00:12.643
 Start in the catalog. Choose the app you actually need. Here, the checklist is ready, the study app is unavailable, and StatePort shows that difference instead of hiding it.
 
-00:13.619 --> 00:24.471
+00:12.643 --> 00:22.175
 Open the checklist and you get a real project view: its name, its backup state, the tools it exposes, and where the source came from.
 
-00:24.471 --> 00:34.288
+00:22.175 --> 00:31.623
 Ask a normal question: what should I do next? The answer comes back in the same conversation, with the project still in view.
 
-00:34.288 --> 00:46.968
+00:31.623 --> 00:43.858
 For a more controlled task, choose an action. Before it runs, StatePort shows the engine, the budget, the data it will read, and whether it can change anything.
 
-00:46.968 --> 00:53.792
+00:43.858 --> 00:50.292
 Approval is its own step. You can review the exact task before anything executes.
 
-00:53.792 --> 01:02.709
+00:50.292 --> 00:59.256
 After execution, the result is readable: verify the portable execution boundary. The project is unchanged.
 
-01:02.709 --> 01:13.374
+00:59.256 --> 01:08.920
 The evidence drawer keeps the lifecycle, receipt, and exact record together. You can inspect the result instead of trusting a screenshot.
 
-01:13.374 --> 01:24.160
+01:08.920 --> 01:18.828
 Settings are part of the product. You can see the instance identity, what stays editable, and which facts come from the application itself.
 
-01:24.160 --> 01:36.524
+01:18.828 --> 01:30.071
 Different application, different role. This CTO fixture opens a workbench for development work, while the project identity and recovery state stay visible.
 
-01:36.524 --> 01:45.637
+01:30.071 --> 01:38.365
 The boundaries are visible too. Tools that are unavailable in this environment stay unavailable instead of pretending to work.
