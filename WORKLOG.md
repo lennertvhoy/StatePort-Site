@@ -1,6 +1,6 @@
 # Worklog
 
-## 2026-07-22 — Draft-PR validation and current-truth reconciliation prepared locally
+## 2026-07-22 — Draft-PR validation and current-truth reconciliation
 
 - Corrected the stale claim that the platform-support and contrast remediation
   was uncommitted or absent from draft PR #1. It is committed as
@@ -11,9 +11,10 @@
   contract. It has read-only repository permissions and does not publish Pages.
 - Pinned every GitHub Action currently used by the Site workflows to an exact
   full commit SHA. The validation gate refuses future mutable action tags.
-- This local evidence slice has no remote CI result yet. It does not change the
-  public site, release ledger, source availability, download status, or human
-  acceptance.
+- GitHub Actions run `29908699477` passed the non-deploying validation contract
+  for exact draft head `dbed5a9e62594ea19a5d8289c47776cbdfa3aeda`. It does not
+  change the public site, release ledger, source availability, download status,
+  or human acceptance.
 
 ## 2026-07-21 — Local platform-support and documentation-button accessibility remediation
 

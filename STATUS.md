@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-07-22
 **Execution Mode:** operating
-**Project State:** published_initial_site_with_expanded_package_and_draft_pr_remediation_pending_remote_validation_review_merge_and_deployment
+**Project State:** published_initial_site_with_expanded_package_and_draft_pr_remediation_pending_review_merge_and_deployment
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -49,6 +49,10 @@
   visible keyboard focus treatment. Desktop and mobile loopback review passed
   with no console errors; the mobile matrix scrolls inside its region without
   widening the document.
+- The non-deploying draft-PR validation workflow passed on exact head
+  `dbed5a9e62594ea19a5d8289c47776cbdfa3aeda` in GitHub Actions run
+  `29908699477`. It exercised the public-boundary, local-link, contrast, and
+  immutable-action-pin contracts only; it did not deploy Pages.
 
 ## What is not proven
 
@@ -61,7 +65,6 @@
 
 ## Next action
 
-Run the new non-deploying validation contract against the exact draft PR head,
-then record its remote result and obtain review. Merge, deployment, and
+Obtain review of the exact validated draft PR head. Merge, deployment, and
 public-runtime verification remain separate steps. Keep release/download
 content tied to a public source release and its evidence.

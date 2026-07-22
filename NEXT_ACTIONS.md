@@ -4,18 +4,18 @@
 **Execution Mode:** operating
 **Max Items:** 3
 
-## P1 [BL-SITE-006] Validate the exact draft-PR site head before review
+## P1 [BL-SITE-006] Obtain review for the exact validated site draft
 
-**Status:** ready_for_remote_validation
+**Status:** ready_for_review
 
 The documentation-button contrast repair, regression gate, capability-based
-platform-support contract, and clean-install acceptance story are committed in
-`5a9ef0202221ff215bc8b3879dbe4db405d3a82b`, the current head of draft PR #1.
-A non-deploying validation workflow now needs to run on the exact updated PR
-head. Pages and the public runtime remain unchanged.
+platform-support contract, and clean-install acceptance story plus their
+non-deploying validation workflow are committed in
+`dbed5a9e62594ea19a5d8289c47776cbdfa3aeda`, the current head of draft PR #1.
+GitHub Actions run `29908699477` passed on that exact head. Pages and the
+public runtime remain unchanged.
 
-**Exit:** the exact PR head has a recorded passing validation run, followed by
-separate human review. Merge and deployment remain separate steps.
+**Exit:** separate human review. Merge and deployment remain separate steps.
 
 ## P1 [BL-SITE-003] Add release-specific content only with public source evidence
 
