@@ -1,5 +1,5 @@
 metadata:
-  updated_at: 2026-07-21
+  updated_at: 2026-07-22
   updated_by: codex
   format_version: statespec-site-state/v1
 
@@ -13,7 +13,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: launch_preparation
-  status: initial_public_site_published_with_expanded_package_and_local_release_readiness_remediation_pending_review_merge_and_deployment
+  status: initial_public_site_published_with_expanded_package_and_draft_pr_remediation_pending_remote_validation_review_merge_and_deployment
   purpose: public documentation, tutorials, release status, and future download home
 
 source_boundary:
@@ -70,7 +70,7 @@ site:
     mutation: false
 
 documentation_package:
-  status: expanded_package_pushed_for_review_with_local_release_readiness_remediation_pending_commit_and_push
+  status: expanded_package_and_release_readiness_remediation_pushed_to_draft_pr_pending_exact_head_validation_review_merge_and_deployment
   scope:
     - foundations
     - application_model_and_state_authority
@@ -130,15 +130,19 @@ delivery:
   remote_contains_initial_commit: true
   expanded_package_branch: agent/public-showcase
   expanded_package_draft_pull_request: https://github.com/lennertvhoy/StatePort-Site/pull/1
+  expanded_package_draft_head: 5a9ef0202221ff215bc8b3879dbe4db405d3a82b
+  draft_pr_validation:
+    status: local_contract_prepared_remote_result_pending
+    scope: non_deploying_static_links_contrast_and_public_boundary_checks
   pages_url: https://lennertvhoy.github.io/StatePort-Site/
-  local_validation: passed_2026-07-21_for_expanded_package_and_local_release_readiness_remediation
+  local_validation: passed_2026-07-22_for_expanded_package_release_readiness_remediation_and_draft_pr_validation_contract
   visual_review: passed_local_desktop_and_mobile_2026-07-21_for_expanded_package_and_local_release_readiness_remediation
   remote_ci:
-    status: passed
+    status: main_deployment_passed_draft_pr_validation_not_yet_recorded
     workflow: Deploy StatePort Site
-    run_id: 29853702366
-    event: workflow_dispatch
-    head_sha: d4522dbee2a39d1f2c3c64766ac222b92ed17332
+    run_id: 29853820423
+    event: push
+    head_sha: 884acedaf7cfe7ab41f77b6f3aad354d420fc6ed
   public_runtime:
     status: verified
     url: https://lennertvhoy.github.io/StatePort-Site/
