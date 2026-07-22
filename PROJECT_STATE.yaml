@@ -130,13 +130,13 @@ delivery:
   remote_contains_initial_commit: true
   expanded_package_branch: agent/public-showcase
   expanded_package_draft_pull_request: https://github.com/lennertvhoy/StatePort-Site/pull/1
-  expanded_package_draft_head: dbed5a9e62594ea19a5d8289c47776cbdfa3aeda
+  expanded_package_behavior_head: dbed5a9e62594ea19a5d8289c47776cbdfa3aeda
   draft_pr_validation:
-    status: passed_on_exact_draft_head
+    status: passed_on_behavior_bearing_head
     scope: non_deploying_static_links_contrast_and_public_boundary_checks
     workflow: Validate_StatePort_Site
     run_id: 29908699477
-    head_sha: dbed5a9e62594ea19a5d8289c47776cbdfa3aeda
+    behavior_head_sha: dbed5a9e62594ea19a5d8289c47776cbdfa3aeda
   pages_url: https://lennertvhoy.github.io/StatePort-Site/
   local_validation: passed_2026-07-22_for_expanded_package_release_readiness_remediation_and_draft_pr_validation_contract
   visual_review: passed_local_desktop_and_mobile_2026-07-21_for_expanded_package_and_local_release_readiness_remediation

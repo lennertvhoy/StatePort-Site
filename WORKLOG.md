@@ -12,9 +12,9 @@
 - Pinned every GitHub Action currently used by the Site workflows to an exact
   full commit SHA. The validation gate refuses future mutable action tags.
 - GitHub Actions run `29908699477` passed the non-deploying validation contract
-  for exact draft head `dbed5a9e62594ea19a5d8289c47776cbdfa3aeda`. It does not
-  change the public site, release ledger, source availability, download status,
-  or human acceptance.
+  for behavior-bearing draft head `dbed5a9e62594ea19a5d8289c47776cbdfa3aeda`.
+  It does not change the public site, release ledger, source availability,
+  download status, or human acceptance.
 
 ## 2026-07-21 — Local platform-support and documentation-button accessibility remediation
 

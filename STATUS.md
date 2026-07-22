@@ -49,7 +49,7 @@
   visible keyboard focus treatment. Desktop and mobile loopback review passed
   with no console errors; the mobile matrix scrolls inside its region without
   widening the document.
-- The non-deploying draft-PR validation workflow passed on exact head
+- The non-deploying draft-PR validation workflow passed on behavior-bearing head
   `dbed5a9e62594ea19a5d8289c47776cbdfa3aeda` in GitHub Actions run
   `29908699477`. It exercised the public-boundary, local-link, contrast, and
   immutable-action-pin contracts only; it did not deploy Pages.
@@ -65,6 +65,7 @@
 
 ## Next action
 
-Obtain review of the exact validated draft PR head. Merge, deployment, and
-public-runtime verification remain separate steps. Keep release/download
-content tied to a public source release and its evidence.
+Obtain review of the draft branch, whose behavior-bearing validation head is
+recorded below. Merge, deployment, and public-runtime verification remain
+separate steps. Keep release/download content tied to a public source release
+and its evidence.
