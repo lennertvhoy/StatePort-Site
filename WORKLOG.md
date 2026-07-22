@@ -9,8 +9,10 @@
   downloaded.
 - Generated a 52-second H.264/AAC MP4 with the local Piper voice. New asset
   SHA-256: `f125eed97be3591c59f41f2fb9316648660ff025106a1f02c6d7f1e326291a9e`.
-- This revision is prepared locally and remains pending validation, merge,
-  Pages deployment, public-runtime verification, and human acceptance.
+- PR #7 merged as `b9a22283278b548628d3f4f591c159e55afa98d6`; Pages deployment
+  run `29916907351` passed. Public runtime verification matched the MP4 hash,
+  52-second duration, new captions, and clean walkthrough page. Human
+  acceptance remains separate.
 
 ## 2026-07-22 — Product/UX overhaul merged, deployed, and runtime verified
 
