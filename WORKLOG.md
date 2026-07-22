@@ -1,5 +1,14 @@
 # Worklog
 
+## 2026-07-22 — Story-first walkthrough deployed
+
+- Merged PR #18 as `0d4875d15f3b5f613dca6a70e625ae459692cd52`; Pages deployment
+  run `29924837231` passed.
+- Verified the public H.264/AAC MP4 and WebVTT hashes, 1920×1200 dimensions,
+  103.968-second duration, and the 1:44 introductory walkthrough copy directly
+  from the live site.
+- Human acceptance of the clearer product story remains separate and pending.
+
 ## 2026-07-22 — Story-first walkthrough prepared
 
 - Product-owner feedback identified the remaining comprehension gap: the
