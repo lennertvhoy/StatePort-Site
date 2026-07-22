@@ -16,7 +16,10 @@ conversation, files, decisions, what is ready, and what is still being checked.
 Validated the MP4, captions, public wording, and video playback. PR #7 merged
 as `b9a22283278b548628d3f4f591c159e55afa98d6`; Pages deployment run
 `29916907351` passed; the public MP4 hash and 52-second duration match the
-exact asset.
+exact asset. PR #9 then synchronized the spoken sections to the visible screens
+and merged as `b9d0b757536608b05433781dd32dda157893ad06`; Pages deployment run
+`29917446210` passed. The public MP4 hash is now
+`b1be27a1cc2a1001050839dbfd3b0476a2e78cfa89478a03e15f0554ed51cadc`.
 
 **Exit:** exact revision is statically validated, merged, Pages-deployed, and
 public-runtime verified. Human comprehension acceptance remains separate.
@@ -76,3 +79,6 @@ license decision, versioned artifact, checksums, and verified install path exist
 - Prepared, merged, and deployed a clean-screen, plain-narration video revision
   in response to direct product-owner feedback that the baked-in labels and
   spoken explanation were still too jargon-heavy.
+- Corrected the narration/caption timing after review found that the first
+  revision changed screens at fixed times while the audio followed a separate
+  timeline. Captions are now sentence-level and timed to regenerated audio.

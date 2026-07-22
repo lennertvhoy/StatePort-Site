@@ -115,15 +115,16 @@ public_media_and_paper:
   prototype_video:
     path: assets/media/stateport-local-prototype-walkthrough.mp4
     duration_seconds: 52.0
-    sha256: f125eed97be3591c59f41f2fb9316648660ff025106a1f02c6d7f1e326291a9e
+    sha256: b1be27a1cc2a1001050839dbfd3b0476a2e78cfa89478a03e15f0554ed51cadc
     format: h264_aac_mp4_clean_prototype_screens_with_plain_english_piper_narration_and_webvtt_captions
     narration_source: assets/media/stateport-local-prototype-walkthrough-narration.txt
     boundary: local_preview_with_availability_routed_to_release_ledger
     visual_treatment: clean_screens_without_baked_text_cards
     deployment:
-      merge_commit: b9a22283278b548628d3f4f591c159e55afa98d6
-      pages_workflow_run_id: 29916907351
+      merge_commit: b9d0b757536608b05433781dd32dda157893ad06
+      pages_workflow_run_id: 29917446210
       public_runtime_status: verified
+      caption_sync: sentence_level_verbatim_timed_to_regenerated_audio
   paper:
     path: papers/stateware-whitepaper-public-v1.1.md
     reader: papers/stateware-whitepaper-public-v1.1.html
