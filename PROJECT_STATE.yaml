@@ -13,7 +13,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: launch_preparation
-  status: product_ux_overhaul_in_draft_pr_behavior_head_validated_pending_review_merge_deployment_and_human_acceptance
+  status: product_ux_overhaul_merged_deployed_public_runtime_verified_human_acceptance_pending
   purpose: public product story, documentation, tutorials, release status, and future download home
 
 source_boundary:
@@ -75,8 +75,8 @@ site:
     provider: GitHub Pages
     workflow: .github/workflows/deploy-pages.yml
     status: configured_and_deployed_2026-07-22
-    merge_commit: 8794d1bc9800fff186555fbd5546e7bf9c2d8fc2
-    workflow_run: 29912179462
+    merge_commit: 905849ebc874391eb0449d619159fd5e78f02be2
+    workflow_run: 29915789073
   brand_asset:
     path: assets/stateport-mascot-shell.svg
     sha256: 85459d506c5e15f405a44b6604fecd1cdc64ff4fd6a2d42ddb68199fdfca2cf6
@@ -84,7 +84,7 @@ site:
     mutation: false
 
 documentation_package:
-  status: deployed_plain_language_package_with_validated_product_ux_overhaul_in_draft_pr_pending_review_merge_deployment_and_human_acceptance
+  status: deployed_product_ux_overhaul_public_runtime_verified_human_acceptance_pending
   scope:
     - concrete_product_definition_and_current_availability_boundary
     - intent_based_documentation_reading_path_catalogue_and_filter
@@ -107,7 +107,8 @@ documentation_package:
     prior_validator: passed_2026-07-21_before_media_package
     deployed_package: static_validation_contrast_regression_and_desktop_mobile_visual_review_passed_2026-07-21
     product_ux_overhaul_authored_source: javascript_syntax_python_compile_html_parse_and_synthetic_twenty_page_quality_contract_passed_2026-07-22
-    product_ux_overhaul_browser_and_assistive_technology_review: pending
+    product_ux_overhaul_browser_review: passed_exact_final_head_desktop_390_keyboard_media_console_2026-07-22
+    product_ux_overhaul_assistive_technology_and_usability_acceptance: pending
 
 public_media_and_paper:
   status: plain_language_copy_refresh_deployed_public_runtime_verified
@@ -163,17 +164,26 @@ delivery:
     draft_pull_request: https://github.com/lennertvhoy/StatePort-Site/pull/5
     based_on_main_sha: 10846eaea05ebf915006fe0f4d65a1e1e4f9a82b
     behavior_head_sha: be8c63ffb14b34c0ec6c1cc657b8ea248b2eaa4b
-    status: committed_pushed_and_draft_pr_open_not_merged_not_deployed_not_human_accepted
+    status: merged_deployed_public_runtime_verified_not_human_accepted
+    final_head_sha: 4d890658a8723bd5c44959ea6d5a455918f1e36e
+    merge_commit_sha: 905849ebc874391eb0449d619159fd5e78f02be2
+    pages_workflow_run_id: 29915789073
     audit: SITE_AUDIT.md
     validation:
       status: passed_on_behavior_bearing_head
       workflow: Validate_StatePort_Site
       run_id: 29914436990
       scope: repository_shape_public_boundary_structure_accessibility_metadata_media_fragments_sitemap_privacy_and_asset_budgets
+    final_head_validation_run_id: 29914952208
     final_state_only_head_validation_record: pull_request_conversation_after_exact_final_head_run
+    deployment:
+      provider: GitHub Pages
+      workflow: Deploy StatePort Site
+      run_id: 29915789073
+      status: passed_on_merge_commit
   pages_url: https://lennertvhoy.github.io/StatePort-Site/
   local_validation: passed_2026-07-22_for_product_ux_overhaul_authored_source_and_synthetic_quality_contract
-  visual_review: prior_deployed_package_passed_local_desktop_and_mobile_2026-07-21_product_ux_overhaul_pending
+  visual_review: product_ux_overhaul_exact_final_head_desktop_390_keyboard_media_console_passed_2026-07-22
   remote_ci:
     status: plain_language_deployment_passed_and_validation_passed
     workflow: Deploy StatePort Site
@@ -181,7 +191,7 @@ delivery:
     event: push
     head_sha: 8794d1bc9800fff186555fbd5546e7bf9c2d8fc2
   public_runtime:
-    status: verified_for_deployed_plain_language_baseline_not_product_ux_overhaul
+    status: verified_for_product_ux_overhaul_merge_commit
     url: https://lennertvhoy.github.io/StatePort-Site/
     checks:
       - HTTP_200
@@ -189,5 +199,9 @@ delivery:
       - expected_homepage_content
       - documentation_and_video_routes
       - plain_language_homepage_and_walkthrough
+      - product_ux_overhaul_homepage_docs_release_404_platform_security_and_evidence_routes
+      - mobile_no_horizontal_overflow_at_390px
+      - keyboard_navigation_and_escape_close_smoke
+      - captioned_user_initiated_video
       - browser_console_no_errors
   human_acceptance: pending

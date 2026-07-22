@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-07-22
 **Execution Mode:** operating
-**Project State:** product_ux_overhaul_in_draft_pr_behavior_head_validated_pending_review_merge_deployment_and_human_acceptance
+**Project State:** product_ux_overhaul_merged_deployed_public_runtime_verified_human_acceptance_pending
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -30,12 +30,12 @@
   documentation wayfinding, mobile focus model, release-status detail,
   metadata, media hints, and automated quality contract required substantial
   improvement.
-- The overhaul is committed and pushed on
-  `agent/site-product-ux-overhaul-mainline` as draft PR
-  [`#5`](https://github.com/lennertvhoy/StatePort-Site/pull/5). It is directly
-  based on canonical `main` SHA
-  `10846eaea05ebf915006fe0f4d65a1e1e4f9a82b`; the superseded diverged draft
-  PR #4 was closed without merge.
+- The overhaul was merged from
+  `agent/site-product-ux-overhaul-mainline` by PR
+  [`#5`](https://github.com/lennertvhoy/StatePort-Site/pull/5). Its exact final
+  head was `4d890658a8723bd5c44959ea6d5a455918f1e36e`; merge commit
+  `905849ebc874391eb0449d619159fd5e78f02be2` is now on canonical `main`.
+  The superseded diverged draft PR #4 was closed without merge.
 - The exact behavior-bearing overhaul head
   `be8c63ffb14b34c0ec6c1cc657b8ea248b2eaa4b` passed GitHub Actions run
   `29914436990`. The repository-shape/public-boundary gate and the expanded
@@ -47,13 +47,17 @@
 - Authored-source checks also passed for JavaScript syntax, Python compilation,
   HTML parsing, and a synthetic twenty-page quality-contract run. Those checks
   do not replace browser, assistive-technology, or human usability review.
+- The exact final head passed desktop and 390px browser review, keyboard
+  navigation checks, deep-page no-overflow checks, caption/media checks, and
+  clean browser-console checks. The public runtime now serves that merge
+  commit through Pages deployment run `29915789073`.
 
 ## What is not proven
 
-- PR #5 has not been merged, deployed, or verified on the public runtime.
-- The overhaul has not yet completed desktop/mobile browser, keyboard,
-  screen-reader, Lighthouse, axe, or task-based usability review on its exact
-  final head.
+- A full screen-reader session, Lighthouse run, axe run, and task-based
+  usability study have not been completed. Browser accessibility snapshots and
+  keyboard smoke checks are evidence of interaction behavior, not a complete
+  assistive-technology or usability acceptance record.
 - Static validation is not evidence of complete WCAG conformance, conversion
   improvement, product-market fit, security certification, or production
   readiness.
@@ -63,6 +67,6 @@
 
 ## Next action
 
-Review draft PR #5 against the explicit acceptance tasks in `NEXT_ACTIONS.md`.
-Keep merge, Pages deployment, public-runtime verification, and human acceptance
-as separate recorded steps.
+Obtain human acceptance of the deployed overhaul against the five explicit
+acceptance tasks in `NEXT_ACTIONS.md`. Keep merge, Pages deployment,
+public-runtime verification, and human acceptance as separate recorded steps.

@@ -1,5 +1,21 @@
 # Worklog
 
+## 2026-07-22 — Product/UX overhaul merged, deployed, and runtime verified
+
+- Reviewed exact PR #5 final head `4d890658a8723bd5c44959ea6d5a455918f1e36e`
+  at desktop and 390px widths against the five comprehension tasks.
+- Confirmed the concrete product definition, prototype-versus-software
+  boundary, security limits, platform support contract, and evidence ladder.
+- Confirmed mobile navigation open/close behavior, Escape handling, no
+  horizontal overflow on deep pages, user-initiated captioned video, and clean
+  browser console checks.
+- Merged PR #5 as `905849ebc874391eb0449d619159fd5e78f02be2`.
+- Pages deployment run `29915789073` passed. Public runtime checks returned
+  HTTP 200 for the key routes, served the new UX/content, retained the exact
+  prototype video hash, and exposed captions and the manifest.
+- Human acceptance, full screen-reader testing, Lighthouse, axe, and task-based
+  usability study remain separate and open.
+
 ## 2026-07-22 — Critical product and UX overhaul prepared and behavior head validated
 
 - Audited the deployed plain-language site across product definition,
@@ -49,9 +65,9 @@
   GitHub Actions run `29914436990`. Authored-source JavaScript syntax, Python
   compilation, HTML parsing, and a synthetic twenty-page quality-contract run
   also passed.
-- PR #5 remains unmerged, undeployed, public-runtime unverified, and human
-  unaccepted. Browser, keyboard, screen-reader, Lighthouse, axe, and task-based
-  usability review remain separate acceptance work.
+- At preparation time, PR #5 was unmerged, undeployed, public-runtime
+  unverified, and human unaccepted. Browser and human acceptance remained
+  separate work.
 
 ## 2026-07-22 — Plain-language revision deployed and verified
 
