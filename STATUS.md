@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-07-22
 **Execution Mode:** operating
-**Project State:** published_initial_site_with_expanded_package_and_draft_pr_remediation_pending_review_merge_and_deployment
+**Project State:** plain_language_copy_refresh_pending_pages_deployment
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -53,19 +53,18 @@
   `dbed5a9e62594ea19a5d8289c47776cbdfa3aeda` in GitHub Actions run
   `29908699477`. It exercised the public-boundary, local-link, contrast, and
   immutable-action-pin contracts only; it did not deploy Pages.
+- A follow-up plain-language revision is prepared locally: the homepage,
+  documentation entry points, walkthrough page, captions, and narration use
+  ordinary product language. This revision is not yet deployed.
 
 ## What is not proven
 
 - Public source availability, a licensed release, downloads, or an installation
   path for visitors.
 - Human acceptance of the copy, visual design, or information architecture.
-- Merge, Pages deployment, and public-runtime verification of the expanded
-  documentation, media, paper, roadmap, post-draft package, or the local
-  release-readiness remediation.
+- Pages deployment of the plain-language revision.
 
 ## Next action
 
-Obtain review of the draft branch, whose behavior-bearing validation head is
-recorded below. Merge, deployment, and public-runtime verification remain
-separate steps. Keep release/download content tied to a public source release
-and its evidence.
+Deploy and then obtain human acceptance of the plain-language site package.
+Keep release/download content tied to a public source release and its evidence.

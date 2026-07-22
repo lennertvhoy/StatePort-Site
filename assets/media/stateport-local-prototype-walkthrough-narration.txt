@@ -1,0 +1,17 @@
+StatePort starts with your work, not a blank chat. You open a named project
+and see what is happening, what needs attention, and what you did last time.
+
+The important files and decisions stay close to the project. In this preview,
+you can see what is ready and what is still being checked.
+
+Now ask a short question. The assistant helps move the work forward, and the
+reply stays with the project.
+
+If you need technical tools, they are there, but they do not take over the
+whole screen. If something is unavailable, the product shows that clearly.
+
+You can also see which version of the project you are looking at. A test
+version is not quietly presented as a finished release.
+
+This is a local preview, recorded on one computer. It shows the shape of the
+experience. It is not a public download or a production promise.

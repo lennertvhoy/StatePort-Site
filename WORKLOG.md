@@ -1,5 +1,19 @@
 # Worklog
 
+## 2026-07-22 — Plain-language public copy and narration revision
+
+- Responded to product-owner review that the public site and walkthrough were
+  too jargon-heavy for a first-time visitor.
+- Rewrote the homepage and documentation entry points around plain language:
+  work, files, decisions, what happened, what is ready, and what needs
+  attention. Specialist terms remain available in deeper technical pages.
+- Rewrote the walkthrough page and WebVTT captions, and replaced the spoken
+  track with a plain-English narration generated from the local Piper voice.
+  The original 83.94-second visual track was preserved; the revised MP4 is
+  `7f7ed41b2f010357369d22b402c4fbcfdd088dcc9b7d2eb9ab423c9134c12901`.
+- Local static validation, link/contrast checks, and desktop browser review
+  passed. Pages deployment of this revision remains pending.
+
 ## 2026-07-22 — Draft-PR validation and current-truth reconciliation
 
 - Corrected the stale claim that the platform-support and contrast remediation

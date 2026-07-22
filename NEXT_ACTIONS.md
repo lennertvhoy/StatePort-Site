@@ -4,19 +4,17 @@
 **Execution Mode:** operating
 **Max Items:** 3
 
-## P1 [BL-SITE-006] Obtain review for the exact validated site draft
+## P1 [BL-SITE-008] Deploy and review the plain-language site package
 
-**Status:** ready_for_review
+**Status:** ready_for_deployment
 
-The documentation-button contrast repair, regression gate, capability-based
-platform-support contract, and clean-install acceptance story plus their
-non-deploying validation workflow are committed in
-`dbed5a9e62594ea19a5d8289c47776cbdfa3aeda`, the behavior-bearing draft-PR
-head. GitHub Actions run `29908699477` passed on that exact head. Later
-documentation evidence commits do not change the workflow or public runtime.
-Pages and the public runtime remain unchanged.
+The homepage, documentation entry points, walkthrough page, captions, and
+walkthrough narration have been rewritten for non-technical readers. The
+existing public release boundary remains unchanged.
 
-**Exit:** separate human review. Merge and deployment remain separate steps.
+**Exit:** Pages serves this exact revision; human review records acceptance or
+requested changes for the live copy, visual design, information architecture,
+and media voice.
 
 ## P1 [BL-SITE-003] Add release-specific content only with public source evidence
 
