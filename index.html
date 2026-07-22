@@ -136,21 +136,35 @@
             <p id="prototype-caption">Working fixture walkthrough recorded 22 July 2026. <a href="docs/prototype-walkthrough.html">Read the transcript and evidence notes.</a></p>
           </div>
 
+          <p class="prototype-gallery-intro reveal">Click any screen to inspect it at full size.</p>
+
           <div class="prototype-frames" aria-label="Prototype screens">
             <figure class="reveal">
-              <img src="assets/media/stateport-platform-catalog.png" alt="StatePort catalog showing reviewed applications, their availability, and installed instances." width="1920" height="1200" loading="lazy" decoding="async">
+              <a class="prototype-frame-link" href="assets/media/stateport-platform-catalog.png" data-prototype-gallery-item aria-label="Open the catalog screenshot in the full-size gallery">
+                <img src="assets/media/stateport-platform-catalog.png" alt="StatePort catalog showing reviewed applications, their availability, and installed instances." width="1920" height="1200" loading="lazy" decoding="async">
+                <span class="prototype-frame-zoom" aria-hidden="true">View full size <span>↗</span></span>
+              </a>
               <figcaption><span>01 / CHOOSE</span><strong>Choose a real application</strong><p>See what is ready, what is unavailable, and what is already installed.</p></figcaption>
             </figure>
             <figure class="reveal">
-              <img src="assets/media/stateport-platform-conversation.png" alt="StatePort checklist conversation showing a user asking what to do next and an assistant answer." width="1920" height="1200" loading="lazy" decoding="async">
+              <a class="prototype-frame-link" href="assets/media/stateport-platform-conversation.png" data-prototype-gallery-item aria-label="Open the conversation screenshot in the full-size gallery">
+                <img src="assets/media/stateport-platform-conversation.png" alt="StatePort checklist conversation showing a user asking what to do next and an assistant answer." width="1920" height="1200" loading="lazy" decoding="async">
+                <span class="prototype-frame-zoom" aria-hidden="true">View full size <span>↗</span></span>
+              </a>
               <figcaption><span>02 / ASK</span><strong>Ask a useful question</strong><p>The answer stays attached to the project instead of disappearing into a separate chat.</p></figcaption>
             </figure>
             <figure class="reveal">
-              <img src="assets/media/stateport-platform-result.png" alt="StatePort governed run showing the result of selecting the next checklist item and that project state stayed unchanged." width="1920" height="1200" loading="lazy" decoding="async">
+              <a class="prototype-frame-link" href="assets/media/stateport-platform-result.png" data-prototype-gallery-item aria-label="Open the result screenshot in the full-size gallery">
+                <img src="assets/media/stateport-platform-result.png" alt="StatePort governed run showing the result of selecting the next checklist item and that project state stayed unchanged." width="1920" height="1200" loading="lazy" decoding="async">
+                <span class="prototype-frame-zoom" aria-hidden="true">View full size <span>↗</span></span>
+              </a>
               <figcaption><span>03 / RESULT</span><strong>See the work produce a result</strong><p>A bounded action returns a readable result and says whether the project changed.</p></figcaption>
             </figure>
-            <figure class="reveal prototype-frame--mobile">
-              <img src="assets/media/stateport-platform-settings.png" alt="StatePort application settings showing instance identity and the boundary between editable preferences and application-owned facts." width="1920" height="1200" loading="lazy" decoding="async">
+            <figure class="reveal">
+              <a class="prototype-frame-link" href="assets/media/stateport-platform-settings.png" data-prototype-gallery-item aria-label="Open the settings screenshot in the full-size gallery">
+                <img src="assets/media/stateport-platform-settings.png" alt="StatePort application settings showing instance identity and the boundary between editable preferences and application-owned facts." width="1920" height="1200" loading="lazy" decoding="async">
+                <span class="prototype-frame-zoom" aria-hidden="true">View full size <span>↗</span></span>
+              </a>
               <figcaption><span>04 / SETTINGS</span><strong>Make the boundaries visible</strong><p>Settings explain what the application owns, what you can change, and where the data stays.</p></figcaption>
             </figure>
           </div>
@@ -262,6 +276,33 @@
         </div>
       </section>
     </main>
+
+    <dialog class="prototype-gallery" id="prototype-gallery" aria-labelledby="prototype-gallery-title" aria-describedby="prototype-gallery-description">
+      <div class="prototype-gallery-shell">
+        <header class="prototype-gallery-header">
+          <div>
+            <p class="prototype-gallery-kicker" id="prototype-gallery-title">Prototype screens</p>
+            <p class="prototype-gallery-description" id="prototype-gallery-description">Full-size interface evidence. Use the previous and next controls, or the left and right arrow keys.</p>
+          </div>
+          <button class="prototype-gallery-close" type="button" data-prototype-gallery-close aria-label="Close full-size screenshot gallery"><span aria-hidden="true">×</span></button>
+        </header>
+
+        <div class="prototype-gallery-viewport">
+          <button class="prototype-gallery-control prototype-gallery-control--previous" type="button" data-prototype-gallery-previous aria-label="Show previous screenshot"><span aria-hidden="true">←</span></button>
+          <img class="prototype-gallery-image" data-prototype-gallery-image alt="" width="1920" height="1200">
+          <button class="prototype-gallery-control prototype-gallery-control--next" type="button" data-prototype-gallery-next aria-label="Show next screenshot"><span aria-hidden="true">→</span></button>
+        </div>
+
+        <footer class="prototype-gallery-footer">
+          <p class="prototype-gallery-counter" data-prototype-gallery-counter>01 / 04</p>
+          <div>
+            <p class="prototype-gallery-label" data-prototype-gallery-label>Choose a real application</p>
+            <p class="prototype-gallery-summary" data-prototype-gallery-summary>See what is ready, what is unavailable, and what is already installed.</p>
+          </div>
+        </footer>
+        <p class="sr-only" data-prototype-gallery-status aria-live="polite"></p>
+      </div>
+    </dialog>
 
     <footer class="site-footer">
       <div class="footer-inner">

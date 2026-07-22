@@ -650,8 +650,8 @@ select {
 
 .prototype-frames figure {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(10rem, 0.76fr);
-  gap: 1.2rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.9rem;
   align-items: start;
   margin: 0;
   padding-top: 1rem;
@@ -693,10 +693,6 @@ select {
   color: #aebbd2;
   font-size: 0.86rem;
   line-height: 1.55;
-}
-
-.prototype-frame--mobile img {
-  max-width: 178px;
 }
 
 .prototype-link {
@@ -1779,14 +1775,6 @@ select {
   .topic-list a {
     grid-template-columns: 1fr auto;
     gap: 0.55rem;
-  }
-
-  .prototype-frames figure {
-    grid-template-columns: 1fr;
-  }
-
-  .prototype-frame--mobile img {
-    max-width: 150px;
   }
 
   .kit-flow {

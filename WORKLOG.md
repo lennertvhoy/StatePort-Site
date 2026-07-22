@@ -1,5 +1,20 @@
 # Worklog
 
+## 2026-07-22 — Full-size screenshot gallery prepared
+
+- Reworked the homepage's four public-safe platform screens so the inline
+  images are materially larger and each is an ordinary direct image link when
+  JavaScript is unavailable.
+- Added a local-only static-asset gallery enhancement: one large screen at a
+  time, previous/next buttons, left/right arrow keys, Escape and outside-click
+  close, labelled controls, live slide feedback, and focus restored to the
+  source screen on close. The settings screenshot no longer receives an
+  artificial mobile-shaped crop.
+- Static checks, JavaScript syntax parsing, and desktop/390px browser review
+  passed, including button/keyboard navigation, close/focus behavior, and a
+  clean console. Deployment, public-runtime verification, and human acceptance
+  remain pending.
+
 ## 2026-07-22 — Story-first walkthrough deployed
 
 - Merged PR #18 as `0d4875d15f3b5f613dca6a70e625ae459692cd52`; Pages deployment
