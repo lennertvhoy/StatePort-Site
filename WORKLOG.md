@@ -1,6 +1,6 @@
 # Worklog
 
-## 2026-07-22 — Full-size screenshot gallery prepared
+## 2026-07-22 — Full-size screenshot gallery deployed
 
 - Reworked the homepage's four public-safe platform screens so the inline
   images are materially larger and each is an ordinary direct image link when
@@ -12,8 +12,12 @@
   artificial mobile-shaped crop.
 - Static checks, JavaScript syntax parsing, and desktop/390px browser review
   passed, including button/keyboard navigation, close/focus behavior, and a
-  clean console. Deployment, public-runtime verification, and human acceptance
-  remain pending.
+  clean console.
+- PR #20 merged as `cc856c25f7a75e1f42e076e3e30372e40399463f`; Pages deployment
+  run `29926750701` passed. The live page exposes four gallery entry points and
+  its gallery assets; a live 390px interaction check confirmed open, ArrowRight
+  navigation, Escape close, and no browser-console errors. Human acceptance
+  remains separate and pending.
 
 ## 2026-07-22 — Story-first walkthrough deployed
 

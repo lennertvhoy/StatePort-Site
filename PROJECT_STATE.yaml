@@ -1,5 +1,5 @@
 metadata:
-  updated_at: 2026-07-22T16:10:00+02:00
+  updated_at: 2026-07-22T16:05:47+02:00
   updated_by: codex
   format_version: statespec-site-state/v1
 
@@ -13,7 +13,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: launch_preparation
-  status: working_platform_walkthrough_story_revision_screenshot_gallery_locally_validated_deployment_pending_human_acceptance_pending
+  status: working_platform_walkthrough_story_revision_screenshot_gallery_deployed_public_runtime_verified_human_acceptance_pending
   purpose: public product story, documentation, tutorials, release status, and future download home
 
 source_boundary:
@@ -75,10 +75,11 @@ site:
   deployment:
     provider: GitHub Pages
     workflow: .github/workflows/deploy-pages.yml
-    status: screenshot_gallery_revision_deployment_pending
-    prior_merge_commit: 84cd4510e3aa5324a6de7b13f3ad40cc30d30493
-    prior_workflow_run: 29925047712
-  status: configured_working_walkthrough_screenshot_gallery_locally_validated_deployment_pending
+    status: screenshot_gallery_revision_deployed_public_runtime_verified
+    merge_commit: cc856c25f7a75e1f42e076e3e30372e40399463f
+    workflow_run: 29926750701
+    public_runtime_validation: live_html_four_gallery_entry_points_dialog_and_assets_plus_390px_keyboard_interaction_no_console_errors_verified_2026-07-22
+  status: configured_working_walkthrough_screenshot_gallery_deployed_public_runtime_verified
   brand_asset:
     path: assets/stateport-mascot-shell.svg
     sha256: 85459d506c5e15f405a44b6604fecd1cdc64ff4fd6a2d42ddb68199fdfca2cf6
@@ -86,7 +87,7 @@ site:
     mutation: false
 
 documentation_package:
-  status: deployed_product_ux_overhaul_story_walkthrough_screenshot_gallery_locally_validated_deployment_pending_human_acceptance_pending
+  status: deployed_product_ux_overhaul_story_walkthrough_screenshot_gallery_deployed_public_runtime_verified_human_acceptance_pending
   scope:
     - concrete_product_definition_and_current_availability_boundary
     - intent_based_documentation_reading_path_catalogue_and_filter
@@ -113,7 +114,7 @@ documentation_package:
     product_ux_overhaul_assistive_technology_and_usability_acceptance: pending
 
 public_media_and_paper:
-  status: working_platform_walkthrough_screenshot_gallery_locally_validated_deployment_pending
+  status: working_platform_walkthrough_screenshot_gallery_deployed_public_runtime_verified_human_acceptance_pending
   prototype_video:
     path: assets/media/stateport-local-prototype-walkthrough.mp4
     duration_seconds: 103.968
@@ -139,7 +140,7 @@ public_media_and_paper:
       public_runtime_validation: live_mp4_and_vtt_sha256_page_copy_and_103.968_second_metadata_verified_2026-07-22
   screenshot_gallery:
     route: index.html#prototype
-    status: locally_validated_deployment_pending
+    status: deployed_public_runtime_verified_human_acceptance_pending
     sources:
       - assets/media/stateport-platform-catalog.png
       - assets/media/stateport-platform-conversation.png
@@ -149,6 +150,12 @@ public_media_and_paper:
     progressive_enhancement: source_image_links_without_javascript_and_modal_carousel_with_javascript
     accessibility: labelled_image_links_dialog_focus_transfer_restoration_escape_close_arrow_key_navigation_and_live_slide_status
     local_validation: desktop_and_390px_browser_review_next_previous_arrow_key_escape_focus_return_and_console_checked_2026-07-22
+    deployment:
+      status: deployed
+      public_runtime_status: verified_2026-07-22
+      merge_commit: cc856c25f7a75e1f42e076e3e30372e40399463f
+      workflow_run: 29926750701
+      public_runtime_validation: live_html_and_assets_confirmed_then_390px_open_arrow_navigation_escape_close_and_clean_console_checked_2026-07-22
   paper:
     path: papers/stateware-whitepaper-public-v1.1.md
     reader: papers/stateware-whitepaper-public-v1.1.html
