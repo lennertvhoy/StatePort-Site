@@ -1,5 +1,14 @@
 # Worklog
 
+## 2026-07-22 — Working platform walkthrough deployed
+
+- Merged PR #11 as
+  `9567f1c223f3c536bebe51ae8f4580709a748b76`; Pages deployment run
+  `29919971077` passed.
+- Verified the live public URL serves the 1920×1200, 105.746-second MP4 and
+  its WebVTT captions. Human acceptance of the live product story remains
+  separate and pending.
+
 ## 2026-07-22 — Working platform walkthrough captured and surfaced
 
 - Reviewed the loopback StatePort runtime through the public-safe ChecklistState
