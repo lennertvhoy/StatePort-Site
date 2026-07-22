@@ -4,6 +4,21 @@
 **Execution Mode:** operating
 **Max Items:** 3
 
+## P1 [BL-SITE-011] Replace the jargon-heavy prototype walkthrough
+
+**Status:** ready_for_validation
+
+The next video revision removes the baked-in blue text cards and replaces the
+84-second screen recording with a 52-second walkthrough built from clean local
+prototype screens. The narration and captions use ordinary language: project,
+conversation, files, decisions, what is ready, and what is still being checked.
+
+Validate the MP4, captions, public wording, and video playback; then merge,
+deploy, and verify the public route as separate states.
+
+**Exit:** exact revision is statically validated, merged, Pages-deployed,
+public-runtime verified, and human-reviewed for comprehension.
+
 ## P1 [BL-SITE-009] Obtain human acceptance of the deployed product and UX overhaul
 
 **Status:** pending
@@ -56,3 +71,6 @@ license decision, versioned artifact, checksums, and verified install path exist
   it exposed. Behavior-bearing head validation passed in run `29914436990`.
 - Reviewed and deployed PR #5's exact final head; recorded merge, Pages, and
   public-runtime evidence separately. Human acceptance remains open.
+- Prepared a clean-screen, plain-narration video revision in response to direct
+  product-owner feedback that the baked-in labels and spoken explanation were
+  still too jargon-heavy. It is not yet deployed.

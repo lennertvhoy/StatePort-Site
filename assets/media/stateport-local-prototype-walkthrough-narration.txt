@@ -1,17 +1,17 @@
-StatePort starts with your work, not a blank chat. You open a named project
-and see what is happening, what needs attention, and what you did last time.
+Here is the StatePort preview. It gives an AI project a place to live outside
+the chat. When you come back, you can see the project, what you were doing, and
+what needs your attention.
 
-The important files and decisions stay close to the project. In this preview,
-you can see what is ready and what is still being checked.
+This is the conversation screen. You can ask for help, but the conversation is
+only one part of the project. Your files and decisions do not disappear inside
+a long chat.
 
-Now ask a short question. The assistant helps move the work forward, and the
-reply stays with the project.
+This screen shows the project information. It helps you see what is ready, what
+is still being checked, and what is only a test. That makes it easier to know
+what you can trust.
 
-If you need technical tools, they are there, but they do not take over the
-whole screen. If something is unavailable, the product shows that clearly.
+And this is the mobile view. The same project stays readable on a small screen.
 
-You can also see which version of the project you are looking at. A test
-version is not quietly presented as a finished release.
-
-This is a local preview, recorded on one computer. It shows the shape of the
-experience. It is not a public download or a production promise.
+This is a local preview made on my computer. You cannot download the software
+yet. The point of StatePort is simple: help you pick up AI work again without
+losing the work itself.
