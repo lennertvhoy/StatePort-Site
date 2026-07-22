@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-07-22
 **Execution Mode:** operating
-**Project State:** product_ux_overhaul_merged_deployed_public_runtime_verified_human_acceptance_pending
+**Project State:** product_ux_overhaul_video_plain_revision_pending_validation_deployment_human_acceptance
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -20,9 +20,10 @@
   run `29912161044`. Pages deployment run `29912179462` passed, and the live
   plain-language baseline was verified for the homepage, documentation,
   walkthrough, release status, captions, video identity, and browser console.
-- The live prototype video remains the 83.94-second captioned fixture capture
-  with SHA-256
-  `7f7ed41b2f010357369d22b402c4fbcfdd088dcc9b7d2eb9ab423c9134c12901`.
+- The next video revision is a 52-second captioned walkthrough built from
+  clean local prototype screens. Its MP4 SHA-256 is
+  `f125eed97be3591c59f41f2fb9316648660ff025106a1f02c6d7f1e326291a9e`.
+  It removes the baked-in text cards and uses a plain-English narration.
 - A critical product, UX, content, accessibility, performance, metadata,
   privacy, and implementation audit is recorded in `SITE_AUDIT.md`.
 - The audit found that the visual identity and static architecture should be
@@ -51,6 +52,9 @@
   navigation checks, deep-page no-overflow checks, caption/media checks, and
   clean browser-console checks. The public runtime now serves that merge
   commit through Pages deployment run `29915789073`.
+- The follow-up video revision is committed locally on
+  `agent/site-video-plain-20260722`; it remains pending its own validation,
+  merge, Pages deployment, and public-runtime verification.
 
 ## What is not proven
 

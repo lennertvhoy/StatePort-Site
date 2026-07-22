@@ -1,5 +1,17 @@
 # Worklog
 
+## 2026-07-22 — Clean-screen walkthrough and plain-language narration prepared
+
+- Replaced the text-card-overlaid walkthrough composition with a short video
+  built from the existing clean home, conversation, source, and mobile screens.
+- Rewrote the narration and captions around ordinary words: project, chat,
+  files, decisions, what is ready, what is being checked, and what can be
+  downloaded.
+- Generated a 52-second H.264/AAC MP4 with the local Piper voice. New asset
+  SHA-256: `f125eed97be3591c59f41f2fb9316648660ff025106a1f02c6d7f1e326291a9e`.
+- This revision is prepared locally and remains pending validation, merge,
+  Pages deployment, public-runtime verification, and human acceptance.
+
 ## 2026-07-22 — Product/UX overhaul merged, deployed, and runtime verified
 
 - Reviewed exact PR #5 final head `4d890658a8723bd5c44959ea6d5a455918f1e36e`
