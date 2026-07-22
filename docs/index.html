@@ -31,8 +31,8 @@
       <section class="article-hero" aria-labelledby="docs-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation</p>
-          <h1 id="docs-title">A durable place for work to live.</h1>
-          <p>An introduction to Stateware, StateSpec, and the design behind StatePort.</p>
+          <h1 id="docs-title">A clear guide to StatePort.</h1>
+          <p>A few plain-English pages about what StatePort is, how it works, and what is available today.</p>
         </div>
       </section>
 
@@ -60,40 +60,40 @@
         </aside>
 
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Reading guide</strong> These are field notes on the model. Software availability lives in the <a href="../releases/">release ledger</a>.</p>
+          <p class="notice notice--quiet"><strong>Start here</strong> Read this page first. The <a href="../releases/">release status</a> page tells you what you can actually download and use.</p>
 
           <h2>What is StatePort?</h2>
-          <p>StatePort is an application-first Stateware platform. A person begins with an installed application—its conversation, actions, progress, and state.</p>
-          <p>The application’s durable source of truth remains readable and inspectable. Models, agents, and execution hosts work around that truth without becoming the exclusive place where it lives.</p>
+          <p>StatePort is a place for AI-powered work to live. Instead of leaving everything in a chat, it keeps the project, its decisions, its files, and its progress together.</p>
+          <p>You can see what happened, pick up where you left off, and keep your work if the tools around it change.</p>
 
           <h2>What is Stateware?</h2>
-          <p><strong>Stateware</strong> is software whose durable, inspectable state and governed lifecycle contracts form the application boundary while agents and models remain replaceable processors.</p>
-          <p>That boundary matters when a conversation is compacted, a provider changes, an execution host is unavailable, or a person needs to understand why a change happened. The durable records should still make sense.</p>
+          <p><strong>Stateware</strong> is our name for software that keeps the important part of an application in a place people can read, own, and carry forward.</p>
+          <p>Chat and AI tools can help, but they should not be the only place your memory lives or the only way to understand what changed.</p>
 
           <h2>What is StateSpec?</h2>
-          <p><strong>StateSpec</strong> is the portable, repository-native specification used to describe an application’s durable facts, ownership, requested capabilities, lifecycle rules, and validation expectations. StateDD is the former name retained only for compatibility with older identifiers.</p>
-          <p>A StateSpec template may request what it needs. It does not grant itself permission: effective capability depends on the template request, the instance grant, and operator policy.</p>
+          <p><strong>StateSpec</strong> is the format used to describe an application: what it is for, what it needs to remember, and what it is allowed to do. You do not need to know this format to understand the product.</p>
+          <p>The deeper pages explain how StateSpec keeps permissions, changes, and ownership clear. StateDD is its former name, kept only for older files and tools.</p>
 
           <h2>How the pieces relate</h2>
           <div class="topic-list">
             <a href="foundations.html">
-              <strong>Foundations</strong>
-              <span>Understand the boundary problem and the Stateware thesis before looking at product surfaces.</span>
+              <strong>Why this exists</strong>
+              <span>See the problem with keeping important work inside a chat window.</span>
               <i aria-hidden="true">↗</i>
             </a>
             <a href="model.html">
-              <strong>Core model</strong>
-              <span>Learn the relationship between applications, instances, canonical state, authority, capability, and receipts.</span>
+              <strong>How work stays together</strong>
+              <span>Learn how a project, its files, its decisions, and its history fit together.</span>
               <i aria-hidden="true">↗</i>
             </a>
             <a href="lifecycle.html">
-              <strong>Lifecycle</strong>
-              <span>Follow install, use, update, movement, backup, and recovery as distinct responsibilities.</span>
+              <strong>From start to recovery</strong>
+              <span>Follow the whole journey: start, use, update, move, back up, and recover.</span>
               <i aria-hidden="true">↗</i>
             </a>
             <a href="governance.html">
-              <strong>Governed change</strong>
-              <span>See why proposal, authorization, execution, validation, receipt, and acceptance remain separate facts.</span>
+              <strong>Important changes</strong>
+              <span>See what should happen before a risky change, and how to check what happened afterwards.</span>
               <i aria-hidden="true">↗</i>
             </a>
             <a href="security-and-privacy.html">
@@ -102,8 +102,8 @@
               <i aria-hidden="true">↗</i>
             </a>
             <a href="hosts-and-portability.html">
-              <strong>Hosts &amp; portability</strong>
-              <span>Learn how a host declares the capabilities and limits it can support.</span>
+              <strong>Tools and devices</strong>
+              <span>See how StatePort stays useful when a model, tool, or computer changes.</span>
               <i aria-hidden="true">↗</i>
             </a>
             <a href="platform-support.html">
@@ -112,8 +112,8 @@
               <i aria-hidden="true">↗</i>
             </a>
             <a href="evidence-and-roadmap.html">
-              <strong>Evidence &amp; roadmap</strong>
-              <span>Use the claim ladder to distinguish local evidence, independent validation, acceptance, and release.</span>
+              <strong>What is proven</strong>
+              <span>Learn the difference between a demo, a test, an independent check, and a release.</span>
               <i aria-hidden="true">↗</i>
             </a>
             <a href="reference.html">
@@ -137,13 +137,13 @@
               <i aria-hidden="true">↗</i>
             </a>
             <a href="getting-started.html">
-              <strong>StateSpec basics</strong>
-              <span>Start with a small, illustrative repository shape for a durable application.</span>
+              <strong>Build the idea</strong>
+              <span>Start with a small example of how to keep a project’s important facts together.</span>
               <i aria-hidden="true">↗</i>
             </a>
             <a href="../tutorials/first-application.html">
               <strong>First application</strong>
-              <span>Walk through the decisions that make a workflow durable and governable.</span>
+              <span>Walk through the decisions that make a project easier to understand and protect.</span>
               <i aria-hidden="true">↗</i>
             </a>
             <a href="../releases/">
@@ -155,9 +155,9 @@
 
           <h2>A few useful distinctions</h2>
           <ul>
-            <li>Comparative claims need controlled, reproducible evidence.</li>
-            <li>The release ledger is the source for public availability.</li>
-            <li>A model session, generated summary, or screenshot is context—not canonical state on its own.</li>
+            <li>A demo is not the same thing as a released product.</li>
+            <li>The release status page tells you what is available.</li>
+            <li>A chat, summary, or screenshot is not the same thing as the work itself.</li>
           </ul>
 
           <div class="inline-actions">
@@ -172,7 +172,7 @@
       <div class="footer-inner">
         <div class="footer-mark">
           <img src="../assets/stateport-mascot-shell.svg" alt="">
-          <p><strong>StatePort</strong>Durable applications, built from state outward.</p>
+          <p><strong>StatePort</strong>AI work that stays yours.</p>
         </div>
         <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
       </div>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A conceptual first step with StateSpec and durable application state.">
+    <meta name="description" content="A plain-English first step for deciding what an AI project must keep and protect.">
     <meta name="theme-color" content="#0B132B">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../assets/site.css">
@@ -31,8 +31,8 @@
       <section class="article-hero" aria-labelledby="getting-started-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / StateSpec basics</p>
-          <h1 id="getting-started-title">Begin with a boundary you can inspect.</h1>
-          <p>The first useful question is not “which model?” It is “what must remain true and understandable when the model is gone?”</p>
+          <h1 id="getting-started-title">Start with what must not be lost.</h1>
+          <p>Before choosing a model or tool, decide what people should still be able to understand tomorrow.</p>
         </div>
       </section>
 
@@ -59,12 +59,12 @@
         <article class="prose">
           <p class="notice notice--quiet"><strong>Design exercise</strong> This small repository shape is a way to think through an application. <a href="../releases/">Availability lives in the release ledger.</a></p>
 
-          <h2>1. Name the durable facts</h2>
-          <p>Start by identifying what someone should still be able to inspect tomorrow: goals, decisions, policy, ownership, current work, and evidence. These are application facts, not hidden model memory.</p>
+          <h2>1. Decide what must not be lost</h2>
+          <p>Write down the things people will need later: goals, decisions, rules, who owns the work, what is happening now, and how you know it is right.</p>
           <p>Keep the question narrow. A small set of clear facts is more useful than a grand file whose meaning depends on a particular agent’s prompt.</p>
 
-          <h2>2. Make ownership visible</h2>
-          <p>StateSpec separates template-owned material, instance-owned material, generated output, and explicit overrides. That distinction makes it possible to understand what a runner may update and what it must preserve.</p>
+          <h2>2. Make ownership clear</h2>
+          <p>Separate the starting instructions, the project’s own files, generated work, and deliberate edits. Then it is clear what a tool may change and what it must leave alone.</p>
           <div class="code-panel" data-label="Illustrative repository shape"><code>example-application/
 ├── AGENTS.md              # operating constraints for people and agents
 ├── PROJECT_STATE.yaml     # current, structured truth
@@ -73,16 +73,16 @@
 ├── BACKLOG.md             # deferred work
 ├── WORKLOG.md             # history, not current truth
 └── app/                   # application-specific material</code></div>
-          <p>These familiar-looking files are useful because they make the application’s operating facts legible without relying on a chat transcript.</p>
+          <p>Files like these make the important facts easy to find without relying on a chat transcript.</p>
 
-          <h2>3. Ask for capabilities; do not grant them</h2>
-          <p>A template can declare the capabilities it needs. The effective capability must still be the intersection of the request, the specific instance grant, and the operator’s policy. This keeps “the workflow asked for it” from becoming an authorization decision.</p>
+          <h2>3. Ask for access; do not hand out unlimited access</h2>
+          <p>A tool can say what it needs to do. People and the project decide what it may actually do. “The workflow asked for it” should never be the whole permission check.</p>
 
-          <h2>4. Preserve the difference between stages</h2>
-          <p>Proposal, approval, execution, validation, and acceptance are different facts. A useful lifecycle does not collapse them into one optimistic status. Receipts help record what changed, under what authority, and what was actually checked.</p>
+          <h2>4. Keep the steps separate</h2>
+          <p>Planning a change, approving it, doing it, checking it, and accepting it are different moments. Keeping them separate makes it easier to see what really happened.</p>
 
-          <h2>5. Treat execution as replaceable</h2>
-          <p>StateSpec is intended to be portable. A particular host can be a reference implementation, but an application should be able to declare its actual needs and receive explicit degradation when another host cannot provide the same capability.</p>
+          <h2>5. Do not tie the work to one tool</h2>
+          <p>The project should remain understandable if a model, app, or computer changes. Tools should say what they can do, and be honest about what they cannot.</p>
 
           <h2>Where to go next</h2>
           <p>Use the first tutorial to turn these principles into a small hypothetical application design. Versioned installation material will live alongside the release when it is ready.</p>
@@ -98,7 +98,7 @@
       <div class="footer-inner">
         <div class="footer-mark">
           <img src="../assets/stateport-mascot-shell.svg" alt="">
-          <p><strong>StatePort</strong>Durable applications, built from state outward.</p>
+          <p><strong>StatePort</strong>AI work that stays yours.</p>
         </div>
         <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
       </div>
