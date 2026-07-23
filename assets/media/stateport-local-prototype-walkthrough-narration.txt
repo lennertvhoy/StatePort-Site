@@ -1,51 +1,21 @@
-StatePort platform walkthrough — 22 July 2026
-Voice: Microsoft Edge neural voice, en-US-AndrewNeural
-Markup source: stateport-local-prototype-walkthrough-narration.ssml
+StatePort is a harness for coding agents. It runs agents like Codex
+headlessly, in an environment you control, and gives the work a durable home
+outside the chat. Here is the preview.
 
-01 / What StatePort is
-StatePort is a home for ongoing work with AI. You do not start with a blank chat. You open the app for the work you are doing.
+This is the application you get. Open a named project and see what is
+happening, what needs attention, and what the agent last did. Your state files
+and decisions live here, not hidden inside a session.
 
-02 / What an app keeps together
-Each app keeps the work in one place: the project, the conversation, the tools, the decisions, and what happened before.
+This is the conversation. You can ask the agent for help, but the conversation
+is only one part of the project. The agent is a replaceable processor — the
+work does not live or die with the chat.
 
-03 / The basic idea
-The idea is simple. Chat helps with the work, but the project is what lasts.
+This screen shows the project information. It helps you see what is ready, what
+is still being checked, and what is only a test. That makes it easier to know
+what you can trust.
 
-04 / Choose an app
-Here I choose a checklist from the catalog. I open it to continue that work.
+And this is the mobile view. The same project stays readable on a small screen.
 
-05 / See the project
-The project opens with the things I need to see: what it is, what tools it has, and what needs attention.
-
-06 / Ask inside the work
-Now I ask a normal question: what should I do next? The answer stays inside the checklist, next to the work it is talking about.
-
-07 / Plan an action
-Next I ask StatePort to plan the next checklist item. This is an action, so it gets more care than a chat reply.
-
-08 / Review before running
-Before it can run, I can see what it will do, which tool will run it, and whether it can change the project.
-
-09 / Approve the plan
-The plan is ready, but it is waiting. I can read the exact action before I approve it.
-
-10 / Run the check
-After I approve it, StatePort runs the check.
-
-11 / Read the result
-Here is the result. It finished, and it did not change the project.
-
-12 / Check it later
-Later, I can check the request, the approval, and the result together.
-
-13 / Change settings
-Settings show what I can change, and what is fixed for this project.
-
-14 / Use another app
-Different work can use a different app. This technical workspace has tools for development work.
-
-15 / See the limits
-Some tools are not available here. StatePort leaves them turned off instead of pretending they work.
-
-16 / The takeaway
-That is the point of StatePort. AI helps inside work you can see, check, and come back to.
+This is a local preview made on my computer. You cannot download the software
+yet. The point of StatePort is simple: harness the agent, govern what it does,
+and keep the work.

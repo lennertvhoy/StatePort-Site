@@ -1,5 +1,5 @@
 metadata:
-  updated_at: 2026-07-22T16:05:47+02:00
+  updated_at: 2026-07-23T00:00:00+02:00
   updated_by: codex
   format_version: statespec-site-state/v1
 
@@ -13,8 +13,8 @@ project:
   name: StatePort Site
   product: StatePort
   phase: launch_preparation
-  status: working_platform_walkthrough_story_revision_screenshot_gallery_deployed_public_runtime_verified_human_acceptance_pending
-  purpose: public product story, documentation, tutorials, release status, and future download home
+  status: harness_narrative_and_video_rebuilt_local_validated_deploy_pending
+  purpose: public documentation, tutorials, release status, and future download home
 
 source_boundary:
   implementation_repository:
@@ -75,11 +75,9 @@ site:
   deployment:
     provider: GitHub Pages
     workflow: .github/workflows/deploy-pages.yml
-    status: screenshot_gallery_revision_deployed_public_runtime_verified
-    merge_commit: cc856c25f7a75e1f42e076e3e30372e40399463f
-    workflow_run: 29926750701
-    public_runtime_validation: live_html_four_gallery_entry_points_dialog_and_assets_plus_390px_keyboard_interaction_no_console_errors_verified_2026-07-22
-  status: configured_working_walkthrough_screenshot_gallery_deployed_public_runtime_verified
+    status: configured_and_deployed_2026-07-22
+    merge_commit: 8794d1bc9800fff186555fbd5546e7bf9c2d8fc2
+    workflow_run: 29912179462
   brand_asset:
     path: assets/stateport-mascot-shell.svg
     sha256: 85459d506c5e15f405a44b6604fecd1cdc64ff4fd6a2d42ddb68199fdfca2cf6
@@ -87,7 +85,7 @@ site:
     mutation: false
 
 documentation_package:
-  status: deployed_product_ux_overhaul_story_walkthrough_screenshot_gallery_deployed_public_runtime_verified_human_acceptance_pending
+  status: expanded_package_and_plain_language_copy_refresh_deployed_pending_human_acceptance
   scope:
     - concrete_product_definition_and_current_availability_boundary
     - intent_based_documentation_reading_path_catalogue_and_filter
@@ -114,7 +112,7 @@ documentation_package:
     product_ux_overhaul_assistive_technology_and_usability_acceptance: pending
 
 public_media_and_paper:
-  status: working_platform_walkthrough_screenshot_gallery_deployed_public_runtime_verified_human_acceptance_pending
+  status: plain_language_copy_refresh_deployed_public_runtime_verified
   prototype_video:
     path: assets/media/stateport-local-prototype-walkthrough.mp4
     duration_seconds: 103.968
@@ -190,7 +188,7 @@ delivery:
   expanded_package_draft_pull_request: https://github.com/lennertvhoy/StatePort-Site/pull/1
   expanded_package_behavior_head: 072ffdf17d1b855a06956277bcfbb548f3fb8e97
   expanded_package_merge_commit: 8794d1bc9800fff186555fbd5546e7bf9c2d8fc2
-  deployed_package_validation:
+  draft_pr_validation:
     status: passed_on_final_branch_head
     scope: non_deploying_static_links_contrast_and_public_boundary_checks
     workflow: Validate_StatePort_Site
@@ -236,9 +234,5 @@ delivery:
       - expected_homepage_content
       - documentation_and_video_routes
       - plain_language_homepage_and_walkthrough
-      - product_ux_overhaul_homepage_docs_release_404_platform_security_and_evidence_routes
-      - mobile_no_horizontal_overflow_at_390px
-      - keyboard_navigation_and_escape_close_smoke
-      - captioned_user_initiated_video
       - browser_console_no_errors
     human_acceptance: pending

@@ -1,49 +1,25 @@
 WEBVTT
 
-00:00.000 --> 00:08.358
-StatePort is a home for ongoing work with AI. You do not start with a blank chat. You open the app for the work you are doing.
+00:00:00.000 --> 00:00:11.688
+A harness for coding agents
+StatePort runs agents like Codex headlessly and gives the work a durable home outside the chat.
 
-00:08.358 --> 00:17.268
-Each app keeps the work in one place: the project, the conversation, the tools, the decisions, and what happened before.
+00:00:12.138 --> 00:00:23.871
+The application you get
+Open a named project. Your state files and decisions live here, not hidden inside a session.
 
-00:17.268 --> 00:23.130
-The idea is simple. Chat helps with the work, but the project is what lasts.
+00:00:24.321 --> 00:00:36.177
+The agent is replaceable
+Ask the agent for help in conversation. The work does not live or die with the chat.
 
-00:23.130 --> 00:28.464
-Here I choose a checklist from the catalog. I open it to continue that work.
+00:00:36.627 --> 00:00:46.261
+Know what you can trust
+See what is ready, what is being checked, and what is only a test.
 
-00:28.464 --> 00:35.766
-The project opens with the things I need to see: what it is, what tools it has, and what needs attention.
+00:00:46.711 --> 00:00:51.311
+Take it with you
+The same project stays readable on a small screen.
 
-00:35.766 --> 00:44.436
-Now I ask a normal question: what should I do next? The answer stays inside the checklist, next to the work it is talking about.
-
-00:44.436 --> 00:52.314
-Next I ask StatePort to plan the next checklist item. This is an action, so it gets more care than a chat reply.
-
-00:52.314 --> 00:59.232
-Before it can run, I can see what it will do, which tool will run it, and whether it can change the project.
-
-00:59.232 --> 01:05.454
-The plan is ready, but it is waiting. I can read the exact action before I approve it.
-
-01:05.454 --> 01:09.228
-After I approve it, StatePort runs the check.
-
-01:09.228 --> 01:14.178
-Here is the result. It finished, and it did not change the project.
-
-01:14.178 --> 01:19.584
-Later, I can check the request, the approval, and the result together.
-
-01:19.584 --> 01:24.174
-Settings show what I can change, and what is fixed for this project.
-
-01:24.174 --> 01:30.492
-Different work can use a different app. This technical workspace has tools for development work.
-
-01:30.492 --> 01:37.290
-Some tools are not available here. StatePort leaves them turned off instead of pretending they work.
-
-01:37.290 --> 01:43.968
-That is the point of StatePort. AI helps inside work you can see, check, and come back to.
+00:00:51.761 --> 00:01:01.985
+Local preview
+A local preview - not yet a public release. Harness the agent, govern what it does, keep the work.

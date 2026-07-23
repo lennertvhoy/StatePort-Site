@@ -1,220 +1,66 @@
 # Worklog
 
-## 2026-07-22 — Full-size screenshot gallery deployed
+## 2026-07-23 — Walkthrough video rebuilt and mermaid diagrams added
 
-- Reworked the homepage's four public-safe platform screens so the inline
-  images are materially larger and each is an ordinary direct image link when
-  JavaScript is unavailable.
-- Added a local-only static-asset gallery enhancement: one large screen at a
-  time, previous/next buttons, left/right arrow keys, Escape and outside-click
-  close, labelled controls, live slide feedback, and focus restored to the
-  source screen on close. The settings screenshot no longer receives an
-  artificial mobile-shaped crop.
-- Static checks, JavaScript syntax parsing, and desktop/390px browser review
-  passed, including button/keyboard navigation, close/focus behavior, and a
-  clean console.
-- PR #20 merged as `cc856c25f7a75e1f42e076e3e30372e40399463f`; Pages deployment
-  run `29926750701` passed. The live page exposes four gallery entry points and
-  its gallery assets; a live 390px interaction check confirmed open, ArrowRight
-  navigation, Escape close, and no browser-console errors. Human acceptance
-  remains separate and pending.
+- Rebuilt the local-prototype walkthrough MP4 from the reframed narration so
+  the spoken track matches the new harness narrative and the captions.
+  Method (reproducible, committed as `scripts/build_walkthrough.py`): split the
+  narration into six scenes, synthesise per-scene audio with the free public
+  Edge TTS endpoint using the `en-US-AndrewNeural` voice (build-time only, no
+  credentials, only public narration text leaves the machine), then assemble a
+  1280x720 H.264/AAC MP4 on the established `#0B132B` night background —
+  landscape screenshots scaled to 1152x720 centred, the mobile screenshot
+  centred at height-fit — with 0.45s pauses between scenes. VTT captions are
+  regenerated from the measured scene timings.
+- Result: `stateport-local-prototype-walkthrough.mp4`, 95.17s, SHA-256
+  `f8ad9dad463d14e364284488272e261bfc45b85c8fe4e22f51e9b5bf8ea31d43`; VTT has
+  six cues aligned to the audio. Frame sampling confirmed each scene shows the
+  intended screenshot and the mobile scene is centred (332x720).
+- Added two mermaid diagrams rendered to PNG (site-themed: blue accent on
+  white, ink text), generated with `@mermaid-js/mermaid-cli`:
+  `assets/diagrams/stateport-diagram-harness.png` (replaceable hosts -> harness
+  -> durable instance) on the foundations page, and
+  `assets/diagrams/stateport-diagram-template.png` (template -> harness ->
+  agent -> instance) as a recap under the homepage "How it works" steps. Added
+  a spare `.diagram-figure` card style to `site.css`. Both diagrams were also
+  copied into the implementation repository under `docs/assets/` and the
+  harness diagram was inserted into `ARCHITECTURE.md`.
+- `python3 scripts/validate_repo.py` and `check_site_quality.py` pass.
+- The reframed homepage/docs, the rebuilt video, and the diagrams are now a
+  consistent local package. It is uncommitted, unpushed, and not deployed;
+  human acceptance and the public deploy remain open. No release, download,
+  production-readiness, or host-qualification claim is made.
 
-## 2026-07-22 — Story-first walkthrough deployed
+## 2026-07-23 — Narrative reframing: StatePort as a harness for coding agents
 
-- Merged PR #18 as `0d4875d15f3b5f613dca6a70e625ae459692cd52`; Pages deployment
-  run `29924837231` passed.
-- Verified the public H.264/AAC MP4 and WebVTT hashes, 1920×1200 dimensions,
-  103.968-second duration, and the 1:44 introductory walkthrough copy directly
-  from the live site.
-- Human acceptance of the clearer product story remains separate and pending.
-
-## 2026-07-22 — Story-first walkthrough prepared
-
-- Product-owner feedback identified the remaining comprehension gap: the
-  neural-voice screen tour was clearer, but it still had too little orientation,
-  theory, and breathing room for a first-time viewer.
-- Rebuilt the narration as a 16-scene story: define StatePort, explain why a
-  conversation belongs inside lasting work, follow a checklist from catalog to
-  approved result, show later evidence and settings, contrast a second
-  workspace, and close with the product's purpose.
-- Rendered the male US `en-US-AndrewNeural` voice as continuous scene speech at
-  95% pace with a 750 ms pause after each scene. The video keeps clean,
-  uncropped 1920×1200 fixture screens and no baked text overlays.
-- The local H.264/AAC MP4 is 103.968 seconds, SHA-256
-  `f57949d33bdfe9ee8bebde37dfe32446adb01c5c9136fdd6927724758aaa9467`.
-  All 16 WebVTT cues exactly match the 16 markup scene texts; ffprobe metadata
-  and a visual 16-state contact sheet passed. Deployment, public-runtime
-  verification, and human acceptance remain pending.
-
-## 2026-07-22 — Plain-language neural narration deployed
-
-- Merged PR #16 as `a51e2f7c55c02f9f2418099d10004cd7afafd2aa`; Pages deployment
-  run `29923458869` passed.
-- Verified the live H.264/AAC MP4 at 1920×1200 and 65.824 seconds, the exact
-  video hash, the VTT hash, and the 1:06 walkthrough copy.
-- Human acceptance remains separate and pending.
-
-## 2026-07-22 — Plain-language neural narration prepared
-
-- Rejected the StudyVoice Piper track after product-owner review found that the
-  spoken content remained difficult to understand. Rewrote the ten scenes as
-  direct screen-specific actions and removed abstract product terminology.
-- Rendered the public narration text once through Microsoft Edge neural TTS
-  with the male US `en-US-AndrewNeural` voice. This avoids visitor runtime
-  calls and avoids a heavy local synthesis workload.
-- The local MP4 is 65.824 seconds, 1920×1200, H.264/AAC, SHA-256
-  `b5d39209fd6bb7180f7eba651ce67e720125ad12447ed620675f2807395452d2`.
-  All ten captions exactly match the ten markup scene groups; deployment is
-  pending.
-
-## 2026-07-22 — StudyVoice voice revision deployed
-
-- Merged PR #14 as `b22b674bb4321e099356107874ba86a952f09fdd`; Pages deployment
-  run `29922160118` passed.
-- Verified the live MP4 is H.264/AAC, 1920×1200, and 98.364989 seconds. The
-  live WebVTT SHA-256 matches the local VTT, and its ten cue texts match the
-  ten SSML markup scene groups exactly.
-- Human acceptance remains separate and pending.
-
-## 2026-07-22 — Re-rendered walkthrough narration with StudyVoice markup
-
-- Downloaded and rendered the male US `en_US-sam-medium` Piper voice through
-  StudyVoice. Its model-card dataset license is Apache 2.0.
-- Added an SSML-style markup source for the ten scenes, sentence boundaries,
-  pauses, and 96% pacing. Regenerated the MP4 and VTT from the same scene
-  manifest; an exact text comparison confirms all ten captions match the
-  markup sentence groups.
-- The new asset is 98.365 seconds, 1920×1200, H.264/AAC, SHA-256
-  `9532b8b4ca1f0874c1a0b8796f6f59e4e47f4e2df423a460050bd0cf23ba24bb`.
-  It is locally validated and deployment is pending; the public site still
-  serves the prior revision.
-
-## 2026-07-22 — Working platform walkthrough deployed
-
-- Merged PR #11 as
-  `9567f1c223f3c536bebe51ae8f4580709a748b76`; Pages deployment run
-  `29919971077` passed.
-- Verified the live public URL serves the 1920×1200, 105.746-second MP4 and
-  its WebVTT captions. Human acceptance of the live product story remains
-  separate and pending.
-
-## 2026-07-22 — Working platform walkthrough captured and surfaced
-
-- Reviewed the loopback StatePort runtime through the public-safe ChecklistState
-  and CTO Pilot Fixture applications. The working path included the catalog,
-  project overview, a real conversation answer, governed-run preparation,
-  exact approval, execution, readable result, evidence drawer, settings, and
-  capability boundaries.
-- Found and corrected a platform presentation gap: completed no-mutation runs
-  were persisted with `lifecycleState: CLOSED` while the legacy status remained
-  `result_validating`, leaving the useful result buried. The frontend now shows
-  a readable Result section, the unchanged-project fact, exact result JSON, and
-  an evidence action for that closed state. Frontend typecheck, lint, and all
-  715 frontend tests passed; the rebuilt loopback service returned a healthy
-  identity response.
-- Replaced the weak 52-second screen slideshow with a 105.746-second,
-  1920×1200 walkthrough captured from those real states. The new MP4 has no
-  baked-in text overlay; narration and captions are generated from the same
-  ten scene segments. Local MP4 SHA-256:
-  `b69e18dfcac398e2839f2b6f6733b7cb440631903ea6fc9cf1bec603d7f76293`.
-- Reworked the homepage and walkthrough page around actual platform actions,
-  results, evidence, settings, and roles. Site validation and the full quality
-  contract passed. The replacement is locally validated but remains unmerged,
-  undeployed, and not human-accepted.
-
-## 2026-07-22 — Clean-screen walkthrough and plain-language narration prepared
-
-- Replaced the text-card-overlaid walkthrough composition with a short video
-  built from the existing clean home, conversation, source, and mobile screens.
-- Rewrote the narration and captions around ordinary words: project, chat,
-  files, decisions, what is ready, what is being checked, and what can be
-  downloaded.
-- Generated a 52-second H.264/AAC MP4 with the local Piper voice. New asset
-  SHA-256: `f125eed97be3591c59f41f2fb9316648660ff025106a1f02c6d7f1e326291a9e`.
-- PR #7 merged as `b9a22283278b548628d3f4f591c159e55afa98d6`; Pages deployment
-  run `29916907351` passed. Public runtime verification matched the MP4 hash,
-  52-second duration, new captions, and clean walkthrough page. Human
-  acceptance remains separate.
-
-## 2026-07-22 — Walkthrough audio and captions synchronized
-
-- Review found that the first clean-screen revision still let the narration
-  run on a different timeline from the visible screen changes.
-- Regenerated the narration in four screen-matched sections, rebuilt the MP4,
-  and replaced summary captions with sentence-level verbatim captions timed
-  from the actual audio.
-- PR #9 merged as `b9d0b757536608b05433781dd32dda157893ad06`; Pages run
-  `29917446210` passed. Public MP4 SHA-256:
-  `b1be27a1cc2a1001050839dbfd3b0476a2e78cfa89478a03e15f0554ed51cadc`.
-
-## 2026-07-22 — Product/UX overhaul merged, deployed, and runtime verified
-
-- Reviewed exact PR #5 final head `4d890658a8723bd5c44959ea6d5a455918f1e36e`
-  at desktop and 390px widths against the five comprehension tasks.
-- Confirmed the concrete product definition, prototype-versus-software
-  boundary, security limits, platform support contract, and evidence ladder.
-- Confirmed mobile navigation open/close behavior, Escape handling, no
-  horizontal overflow on deep pages, user-initiated captioned video, and clean
-  browser console checks.
-- Merged PR #5 as `905849ebc874391eb0449d619159fd5e78f02be2`.
-- Pages deployment run `29915789073` passed. Public runtime checks returned
-  HTTP 200 for the key routes, served the new UX/content, retained the exact
-  prototype video hash, and exposed captions and the manifest.
-- Human acceptance, full screen-reader testing, Lighthouse, axe, and task-based
-  usability study remain separate and open.
-
-## 2026-07-22 — Critical product and UX overhaul prepared and behavior head validated
-
-- Audited the deployed plain-language site across product definition,
-  positioning, information architecture, visual hierarchy, content, responsive
-  interaction, keyboard access, metadata, privacy, performance, maintainability,
-  release truth, and automated validation. The durable findings, decisions,
-  acceptance criteria, rollback, and deferred work are recorded in
-  `SITE_AUDIT.md`.
-- Preserved the static HTML/CSS/progressive-JavaScript architecture, midnight
-  state-atlas visual identity, accepted byte-for-byte shell mascot, captioned
-  user-initiated prototype, zero-tracking boundary, and conservative release
-  language. A framework rewrite was rejected as cost without user value.
-- Rebuilt the homepage around a concrete product definition, current evidence,
-  a shorter operating story, separate user and builder routes, and one detailed
-  release boundary. Agent Kits was demoted to an explicitly scoped roadmap note.
-- Replaced the flat documentation wall with a recommended four-step path,
-  intent-based catalogue, accessible filter, grouped sidebars, breadcrumbs,
-  local tables of contents, previous/next navigation, and code-copy feedback.
-- Clarified tutorial sequence, time, outcomes, and proof limits. Rebuilt the
-  release ledger to distinguish available public artifacts from unavailable
-  software, implementation source, license, downloads, and installation
-  material.
-- Reworked progressive interaction: mobile navigation now manages hidden focus,
-  Escape and outside close, focus transfer, and restoration; key entry routes
-  have a no-JavaScript mobile-navigation fallback. Added print,
-  increased-contrast, forced-colour, intrinsic-media, lazy-loading, and async
-  decoding support.
-- Added canonical URLs, Open Graph/Twitter metadata, schema.org JSON-LD, and a
-  web app manifest to the primary entry routes without adding tracking or remote
-  runtime dependencies.
-- Expanded the dependency-free quality contract from local links and a narrow
-  contrast case to document structure, unique IDs, skip targets, image
-  alternatives, labelled controls, captioned video, local scripts, entry-point
-  metadata, JSON-LD, internal fragments, sitemap coverage, manifest validity,
-  tracking absence, safe DOM construction, and static asset budgets.
-- The first exact-head CI run exposed a real pre-existing 404-page defect: no
-  meta description and no skip link. Corrected the structure and replaced the
-  jargon-heavy recovery copy with clear local routes rather than exempting the
-  page from the contract.
-- While the first draft was being assembled, PR #2 merged and canonical `main`
-  advanced. Created `agent/site-product-ux-overhaul-mainline` directly from
-  current `main` SHA `10846eaea05ebf915006fe0f4d65a1e1e4f9a82b`, reapplied only
-  the intentional files as one clean commit, opened draft PR
-  [`#5`](https://github.com/lennertvhoy/StatePort-Site/pull/5), and closed the
-  superseded diverged draft PR #4 without merge.
-- Behavior-bearing head `be8c63ffb14b34c0ec6c1cc657b8ea248b2eaa4b` passed
-  GitHub Actions run `29914436990`. Authored-source JavaScript syntax, Python
-  compilation, HTML parsing, and a synthetic twenty-page quality-contract run
-  also passed.
-- At preparation time, PR #5 was unmerged, undeployed, public-runtime
-  unverified, and human unaccepted. Browser and human acceptance remained
-  separate work.
+- Responded to product-owner review that the public site read as a vague
+  generic AI-app platform and hid StatePort's actual differentiator: it is a
+  harness/wrapper that orchestrates coding agents headlessly in managed
+  environments, where each application is a Stateware template of durable state
+  files plus the cockpit scripts the agent runs.
+- Rewrote the homepage copy to lead with the harness thesis: hero deck and
+  tagline, the "idea" statement, the four-step "how it works" route
+  (WRAP / TEMPLATE / RUN / KEEP), and two of the three principles
+  ("Your state stays yours"; "Agents are replaceable" naming Codex, Pi,
+  OpenCode, and direct API). Visual structure and the one-accent system are
+  unchanged; only copy moved.
+- Rewrote the docs overview "What is StatePort?" lead, added a "Where the
+  coding agent fits" section to the foundations page, and strengthened the
+  hosts-and-portability "Where the host work stands" section to state the
+  host-neutral harness model (Codex exercised locally; OpenCode and direct-API
+  adapters in-model; Pi a reference direction).
+- Rewrote the walkthrough narration source and WebVTT captions to open and
+  close on the harness framing while keeping the middle scenes accurate to the
+  recorded UI (home, conversation, source trust, mobile).
+- `python3 scripts/validate_repo.py` and `python3 scripts/check_site_quality.py`
+  pass.
+- Truth boundaries preserved: no link to the private implementation repo; no
+  release, download, production-readiness, Pi-integration, or host-qualification
+  claim; availability stays tied to the release ledger.
+- Follow-up: the deployed MP4 spoken track carried the prior plain-language
+  narration. Done the same day — see the next entry: the MP4 was rebuilt from
+  the reframed narration.
+- This worktree change is uncommitted, unpushed, and not deployed.
 
 ## 2026-07-22 — Plain-language revision deployed and verified
 

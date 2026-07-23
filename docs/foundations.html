@@ -71,6 +71,13 @@
 + explicit authority
 + checkable lifecycle history</code></div>
 
+          <h2>Where the coding agent fits</h2>
+          <p>StatePort does not replace your coding agent — it harnesses it. A headless agent like Codex runs inside a managed environment (your machine or an isolated container), plans its work, asks approval on risky steps, and writes results into the durable instance. The agent is a replaceable processor; the Stateware boundary is what survives when the agent, model, or session changes.</p>
+          <figure class="diagram-figure reveal">
+            <img src="../assets/diagrams/stateport-diagram-harness.png" alt="Diagram: replaceable coding-agent hosts feed an AgentRunSpec into the StatePort harness, which plans, approves, runs headlessly, and validates, writing results into a durable StateSpec instance.">
+            <figcaption>The harness orchestrates replaceable hosts; the durable instance is what survives.</figcaption>
+          </figure>
+
           <h2>Why this changes the conversation</h2>
           <ul>
             <li>A person can inspect the current plan, ownership, and evidence without replaying a model session.</li>

@@ -1,8 +1,8 @@
 # StatePort Site status
 
-**Updated At:** 2026-07-22
+**Updated At:** 2026-07-23
 **Execution Mode:** operating
-**Project State:** working_platform_walkthrough_story_revision_screenshot_gallery_deployed_public_runtime_verified_human_acceptance_pending
+**Project State:** harness_narrative_and_video_rebuilt_local_validated_deploy_pending
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -70,54 +70,57 @@
   points and gallery assets; a live 390px browser check opened a screen,
   advanced it with ArrowRight, closed it with Escape, and found no console
   errors.
-- A critical product, UX, content, accessibility, performance, metadata,
-  privacy, and implementation audit is recorded in `SITE_AUDIT.md`.
-- The audit found that the visual identity and static architecture should be
-  preserved, while the first-visit product definition, homepage hierarchy,
-  documentation wayfinding, mobile focus model, release-status detail,
-  metadata, media hints, and automated quality contract required substantial
-  improvement.
-- The overhaul was merged from
-  `agent/site-product-ux-overhaul-mainline` by PR
-  [`#5`](https://github.com/lennertvhoy/StatePort-Site/pull/5). Its exact final
-  head was `4d890658a8723bd5c44959ea6d5a455918f1e36e`; merge commit
-  `905849ebc874391eb0449d619159fd5e78f02be2` is now on canonical `main`.
-  The superseded diverged draft PR #4 was closed without merge.
-- The exact behavior-bearing overhaul head
-  `be8c63ffb14b34c0ec6c1cc657b8ea248b2eaa4b` passed GitHub Actions run
-  `29914436990`. The repository-shape/public-boundary gate and the expanded
-  structure, accessibility-basics, metadata, captions, fragments, sitemap,
-  privacy, and asset-budget gate both passed.
-- The first expanded-gate run correctly exposed an existing 404-page defect:
-  it lacked a meta description and skip link. The page now uses clearer copy,
-  local recovery routes, and the same document baseline as the rest of the site.
-- Authored-source checks also passed for JavaScript syntax, Python compilation,
-  HTML parsing, and a synthetic twenty-page quality-contract run. Those checks
-  do not replace browser, assistive-technology, or human usability review.
-- The exact final head passed desktop and 390px browser review, keyboard
-  navigation checks, deep-page no-overflow checks, caption/media checks, and
-  clean browser-console checks. The public runtime now serves that merge
-  commit through Pages deployment run `29915789073`.
-- The video revision's public runtime was checked directly: the MP4 is 52
-  seconds, the new captions are served, and the walkthrough route returns HTTP
-  200. Human acceptance remains separate.
+- The public voice now leads with work, ownership, and the product surface.
+  Availability is kept in one quiet release ledger rather than repeated across
+  every page; technical documentation retains the distinctions it needs.
+- The release-readiness remediation is committed as
+  `5a9ef0202221ff215bc8b3879dbe4db405d3a82b` and is already the head of draft
+  PR #1. It adds a capability-based platform-support contract, clean-install
+  acceptance story, and scoped documentation-button contrast repair. The
+  static gate verifies the CSS override, white-on-dark WCAG contrast, and
+  visible keyboard focus treatment. Desktop and mobile loopback review passed
+  with no console errors; the mobile matrix scrolls inside its region without
+  widening the document.
+- The non-deploying draft-PR validation workflow passed on behavior-bearing head
+  `dbed5a9e62594ea19a5d8289c47776cbdfa3aeda` in GitHub Actions run
+  `29908699477`. It exercised the public-boundary, local-link, contrast, and
+  immutable-action-pin contracts only; it did not deploy Pages.
+- The plain-language revision is deployed: the homepage, documentation entry
+  points, walkthrough page, captions, and narration now use ordinary product
+  language. Pages deployment run `29912179462` deployed merge commit
+  `8794d1bc9800fff186555fbd5546e7bf9c2d8fc2`.
+- A narrative reframing is implemented locally on 2026-07-23 but **not
+  deployed**: the homepage, docs overview, foundations, hosts-and-portability,
+  walkthrough narration source, and WebVTT captions now lead with StatePort's
+  actual differentiator — it is a harness that orchestrates coding agents
+  (Codex today; Pi, OpenCode, direct API as declared hosts) headlessly in
+  managed environments, where each application is a Stateware template of
+  durable state files plus cockpit scripts.
+- The walkthrough MP4 was rebuilt from the reframed narration via a
+  reproducible build script (`scripts/build_walkthrough.py`) using the free
+  public Edge TTS `en-US-AndrewNeural` voice at build time only (no
+  credentials; only public narration text leaves the machine). The new MP4 is
+  95.17s, 1280x720 H.264/AAC, SHA-256
+  `f8ad9dad463d14e364284488272e261bfc45b85c8fe4e22f51e9b5bf8ea31d43`; its six
+  VTT cues align to the audio. Frame sampling confirmed scene/image placement.
+- Two site-themed mermaid diagrams were rendered to PNG and inserted: the
+  harness flow on the foundations page and the template-to-instance flow as a
+  recap under the homepage "How it works" steps. They were also copied into the
+  implementation repository `docs/assets/` and one added to `ARCHITECTURE.md`.
+- `validate_repo.py` and `check_site_quality.py` pass. The package is
+  uncommitted, unpushed, and not deployed.
 
 ## What is not proven
 
-- A full screen-reader session, Lighthouse run, axe run, and task-based
-  usability study have not been completed. Browser accessibility snapshots and
-  keyboard smoke checks are evidence of interaction behavior, not a complete
-  assistive-technology or usability acceptance record.
-- Static validation is not evidence of complete WCAG conformance, conversion
-  improvement, product-market fit, security certification, or production
-  readiness.
-- Human acceptance of the live baseline and the proposed overhaul remains open.
-- Public source availability, a licensed release, downloads, and a verified
-  installation path remain absent.
-- Human acceptance of the deployed story revision remains open.
-- Human acceptance of the screenshot gallery remains open.
+- Public source availability, a licensed release, downloads, or an installation
+  path for visitors.
+- Human acceptance of the copy, visual design, or information architecture.
+- Human acceptance of the plain-language copy, visual design, information
+  architecture, and media voice.
 
 ## Next action
 
-No further deployment work is queued for this slice. Human acceptance of the
-public screenshot gallery remains separate and pending.
+Regenerate the walkthrough MP4 spoken track from the reframed narration source
+so captions and audio match, then obtain human acceptance of the reframed
+harness-narrative package before deploying. Keep release/download content tied
+to a public source release and its evidence.
