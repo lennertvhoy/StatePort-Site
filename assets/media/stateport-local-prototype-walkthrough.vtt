@@ -1,25 +1,25 @@
 WEBVTT
 
 00:00:00.000 --> 00:00:11.688
-A harness for coding agents
-StatePort runs agents like Codex headlessly and gives the work a durable home outside the chat.
+StatePort is a harness for coding agents. It runs agents like Codex
+StatePort is a harness for coding agents. It runs agents like Codex headlessly, in an environment you control, and gives the work a durable home outside the chat. Here is the preview.
 
 00:00:12.138 --> 00:00:23.871
-The application you get
-Open a named project. Your state files and decisions live here, not hidden inside a session.
+This is the application you get. Open a named project and see what is
+This is the application you get. Open a named project and see what is happening, what needs attention, and what the agent last did. Your state files and decisions live here, not hidden inside a session.
 
 00:00:24.321 --> 00:00:36.177
-The agent is replaceable
-Ask the agent for help in conversation. The work does not live or die with the chat.
+This is the conversation. You can ask the agent for help, but the
+This is the conversation. You can ask the agent for help, but the conversation is only one part of the project. The agent is a replaceable processor — the work does not live or die with the chat.
 
 00:00:36.627 --> 00:00:46.261
-Know what you can trust
-See what is ready, what is being checked, and what is only a test.
+This screen shows the project information. It helps you see what is
+This screen shows the project information. It helps you see what is ready, what is still being checked, and what is only a test. That makes it easier to know what you can trust.
 
 00:00:46.711 --> 00:00:51.311
-Take it with you
-The same project stays readable on a small screen.
+And this is the mobile view. The same project stays readable on a
+And this is the mobile view. The same project stays readable on a small screen.
 
 00:00:51.761 --> 00:01:01.985
-Local preview
-A local preview - not yet a public release. Harness the agent, govern what it does, keep the work.
+This is a local preview made on my computer. You cannot download the
+This is a local preview made on my computer. You cannot download the software yet. The point of StatePort is simple: harness the agent, govern what it does, and keep the work.

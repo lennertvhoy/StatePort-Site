@@ -48,23 +48,6 @@ SCENE_IMAGE = {
     4: "stateport-demo-mobile.png",
     5: "stateport-demo-mobile.png",
 }
-# scene index -> short caption title (first line of the VTT cue body)
-SCENE_TITLE = {
-    0: "A harness for coding agents",
-    1: "The application you get",
-    2: "The agent is replaceable",
-    3: "Know what you can trust",
-    4: "Take it with you",
-    5: "Local preview",
-}
-SCENE_BODY = {
-    0: "StatePort runs agents like Codex headlessly and gives the work a durable home outside the chat.",
-    1: "Open a named project. Your state files and decisions live here, not hidden inside a session.",
-    2: "Ask the agent for help in conversation. The work does not live or die with the chat.",
-    3: "See what is ready, what is being checked, and what is only a test.",
-    4: "The same project stays readable on a small screen.",
-    5: "A local preview - not yet a public release. Harness the agent, govern what it does, keep the work.",
-}
 
 
 def run(cmd: list[str], **kw) -> subprocess.CompletedProcess:
@@ -199,12 +182,15 @@ def main() -> None:
         "-c", "copy", "-movflags", "+faststart", str(OUT_MP4),
     ])
 
-    # 4. write VTT
+    # 4. write VTT — verbatim transcript of what edge-tts spoke
     cues = ["WEBVTT", ""]
     for i in range(n_scenes):
+        text = re.sub(r"\s+", " ", paragraphs[i]).strip()
+        # first ~70 chars as the title line
+        title = text[:70].rsplit(" ", 1)[0] if len(text) > 70 else text
         cues.append(fmt_ts(scene_starts[i]) + " --> " + fmt_ts(scene_ends[i]))
-        cues.append(SCENE_TITLE[i])
-        cues.append(SCENE_BODY[i])
+        cues.append(title)
+        cues.append(text)
         cues.append("")
     OUT_VTT.write_text("\n".join(cues), encoding="utf-8")
 
