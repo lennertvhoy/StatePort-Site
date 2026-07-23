@@ -1,5 +1,5 @@
 metadata:
-  updated_at: 2026-07-22T12:20:00+02:00
+  updated_at: 2026-07-23T00:00:00+02:00
   updated_by: codex
   format_version: statespec-site-state/v1
 
@@ -13,7 +13,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: launch_preparation
-  status: plain_language_copy_refresh_deployed_human_acceptance_pending
+  status: harness_narrative_and_video_rebuilt_local_validated_deploy_pending
   purpose: public documentation, tutorials, release status, and future download home
 
 source_boundary:

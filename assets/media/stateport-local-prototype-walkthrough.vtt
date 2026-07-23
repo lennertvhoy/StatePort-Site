@@ -1,25 +1,25 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:12.000
-Your work in one place
-Open a project and pick up where you left off.
+00:00:00.000 --> 00:00:11.688
+A harness for coding agents
+StatePort runs agents like Codex headlessly and gives the work a durable home outside the chat.
 
-00:00:12.000 --> 00:00:24.000
-Files and decisions
-Keep the information behind the work close by.
+00:00:12.138 --> 00:00:23.871
+The application you get
+Open a named project. Your state files and decisions live here, not hidden inside a session.
 
-00:00:24.000 --> 00:00:44.000
-Ask for help
-Get a useful reply without losing the rest of the project.
+00:00:24.321 --> 00:00:36.177
+The agent is replaceable
+Ask the agent for help in conversation. The work does not live or die with the chat.
 
-00:00:44.000 --> 00:00:58.000
-More tools when you need them
-Extra controls stay out of the way until they help.
+00:00:36.627 --> 00:00:46.261
+Know what you can trust
+See what is ready, what is being checked, and what is only a test.
 
-00:00:58.000 --> 00:01:11.000
-Know what is ready
-See what is being tried, checked, and released.
+00:00:46.711 --> 00:00:51.311
+Take it with you
+The same project stays readable on a small screen.
 
-00:01:11.000 --> 00:01:23.940
+00:00:51.761 --> 00:01:01.985
 Local preview
-Recorded 21 July 2026 • not yet a public release
+A local preview - not yet a public release. Harness the agent, govern what it does, keep the work.

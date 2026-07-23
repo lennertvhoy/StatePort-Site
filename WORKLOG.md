@@ -1,5 +1,67 @@
 # Worklog
 
+## 2026-07-23 — Walkthrough video rebuilt and mermaid diagrams added
+
+- Rebuilt the local-prototype walkthrough MP4 from the reframed narration so
+  the spoken track matches the new harness narrative and the captions.
+  Method (reproducible, committed as `scripts/build_walkthrough.py`): split the
+  narration into six scenes, synthesise per-scene audio with the free public
+  Edge TTS endpoint using the `en-US-AndrewNeural` voice (build-time only, no
+  credentials, only public narration text leaves the machine), then assemble a
+  1280x720 H.264/AAC MP4 on the established `#0B132B` night background —
+  landscape screenshots scaled to 1152x720 centred, the mobile screenshot
+  centred at height-fit — with 0.45s pauses between scenes. VTT captions are
+  regenerated from the measured scene timings.
+- Result: `stateport-local-prototype-walkthrough.mp4`, 95.17s, SHA-256
+  `f8ad9dad463d14e364284488272e261bfc45b85c8fe4e22f51e9b5bf8ea31d43`; VTT has
+  six cues aligned to the audio. Frame sampling confirmed each scene shows the
+  intended screenshot and the mobile scene is centred (332x720).
+- Added two mermaid diagrams rendered to PNG (site-themed: blue accent on
+  white, ink text), generated with `@mermaid-js/mermaid-cli`:
+  `assets/diagrams/stateport-diagram-harness.png` (replaceable hosts -> harness
+  -> durable instance) on the foundations page, and
+  `assets/diagrams/stateport-diagram-template.png` (template -> harness ->
+  agent -> instance) as a recap under the homepage "How it works" steps. Added
+  a spare `.diagram-figure` card style to `site.css`. Both diagrams were also
+  copied into the implementation repository under `docs/assets/` and the
+  harness diagram was inserted into `ARCHITECTURE.md`.
+- `python3 scripts/validate_repo.py` and `check_site_quality.py` pass.
+- The reframed homepage/docs, the rebuilt video, and the diagrams are now a
+  consistent local package. It is uncommitted, unpushed, and not deployed;
+  human acceptance and the public deploy remain open. No release, download,
+  production-readiness, or host-qualification claim is made.
+
+## 2026-07-23 — Narrative reframing: StatePort as a harness for coding agents
+
+- Responded to product-owner review that the public site read as a vague
+  generic AI-app platform and hid StatePort's actual differentiator: it is a
+  harness/wrapper that orchestrates coding agents headlessly in managed
+  environments, where each application is a Stateware template of durable state
+  files plus the cockpit scripts the agent runs.
+- Rewrote the homepage copy to lead with the harness thesis: hero deck and
+  tagline, the "idea" statement, the four-step "how it works" route
+  (WRAP / TEMPLATE / RUN / KEEP), and two of the three principles
+  ("Your state stays yours"; "Agents are replaceable" naming Codex, Pi,
+  OpenCode, and direct API). Visual structure and the one-accent system are
+  unchanged; only copy moved.
+- Rewrote the docs overview "What is StatePort?" lead, added a "Where the
+  coding agent fits" section to the foundations page, and strengthened the
+  hosts-and-portability "Where the host work stands" section to state the
+  host-neutral harness model (Codex exercised locally; OpenCode and direct-API
+  adapters in-model; Pi a reference direction).
+- Rewrote the walkthrough narration source and WebVTT captions to open and
+  close on the harness framing while keeping the middle scenes accurate to the
+  recorded UI (home, conversation, source trust, mobile).
+- `python3 scripts/validate_repo.py` and `python3 scripts/check_site_quality.py`
+  pass.
+- Truth boundaries preserved: no link to the private implementation repo; no
+  release, download, production-readiness, Pi-integration, or host-qualification
+  claim; availability stays tied to the release ledger.
+- Follow-up: the deployed MP4 spoken track carried the prior plain-language
+  narration. Done the same day — see the next entry: the MP4 was rebuilt from
+  the reframed narration.
+- This worktree change is uncommitted, unpushed, and not deployed.
+
 ## 2026-07-22 — Plain-language revision deployed and verified
 
 - Merged PR #2 as `8794d1bc9800fff186555fbd5546e7bf9c2d8fc2` after the exact

@@ -1,8 +1,8 @@
 # StatePort Site status
 
-**Updated At:** 2026-07-22
+**Updated At:** 2026-07-23
 **Execution Mode:** operating
-**Project State:** plain_language_copy_refresh_deployed_human_acceptance_pending
+**Project State:** harness_narrative_and_video_rebuilt_local_validated_deploy_pending
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -57,6 +57,26 @@
   points, walkthrough page, captions, and narration now use ordinary product
   language. Pages deployment run `29912179462` deployed merge commit
   `8794d1bc9800fff186555fbd5546e7bf9c2d8fc2`.
+- A narrative reframing is implemented locally on 2026-07-23 but **not
+  deployed**: the homepage, docs overview, foundations, hosts-and-portability,
+  walkthrough narration source, and WebVTT captions now lead with StatePort's
+  actual differentiator — it is a harness that orchestrates coding agents
+  (Codex today; Pi, OpenCode, direct API as declared hosts) headlessly in
+  managed environments, where each application is a Stateware template of
+  durable state files plus cockpit scripts.
+- The walkthrough MP4 was rebuilt from the reframed narration via a
+  reproducible build script (`scripts/build_walkthrough.py`) using the free
+  public Edge TTS `en-US-AndrewNeural` voice at build time only (no
+  credentials; only public narration text leaves the machine). The new MP4 is
+  95.17s, 1280x720 H.264/AAC, SHA-256
+  `f8ad9dad463d14e364284488272e261bfc45b85c8fe4e22f51e9b5bf8ea31d43`; its six
+  VTT cues align to the audio. Frame sampling confirmed scene/image placement.
+- Two site-themed mermaid diagrams were rendered to PNG and inserted: the
+  harness flow on the foundations page and the template-to-instance flow as a
+  recap under the homepage "How it works" steps. They were also copied into the
+  implementation repository `docs/assets/` and one added to `ARCHITECTURE.md`.
+- `validate_repo.py` and `check_site_quality.py` pass. The package is
+  uncommitted, unpushed, and not deployed.
 
 ## What is not proven
 
@@ -68,5 +88,7 @@
 
 ## Next action
 
-Obtain human acceptance of the deployed plain-language site package.
-Keep release/download content tied to a public source release and its evidence.
+Regenerate the walkthrough MP4 spoken track from the reframed narration source
+so captions and audio match, then obtain human acceptance of the reframed
+harness-narrative package before deploying. Keep release/download content tied
+to a public source release and its evidence.

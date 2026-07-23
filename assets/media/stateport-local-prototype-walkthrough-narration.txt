@@ -1,17 +1,21 @@
-StatePort starts with your work, not a blank chat. You open a named project
-and see what is happening, what needs attention, and what you did last time.
+StatePort is a harness for coding agents. It runs agents like Codex
+headlessly, in an environment you control, and gives the work a durable home
+outside the chat. Here is the preview.
 
-The important files and decisions stay close to the project. In this preview,
-you can see what is ready and what is still being checked.
+This is the application you get. Open a named project and see what is
+happening, what needs attention, and what the agent last did. Your state files
+and decisions live here, not hidden inside a session.
 
-Now ask a short question. The assistant helps move the work forward, and the
-reply stays with the project.
+This is the conversation. You can ask the agent for help, but the conversation
+is only one part of the project. The agent is a replaceable processor — the
+work does not live or die with the chat.
 
-If you need technical tools, they are there, but they do not take over the
-whole screen. If something is unavailable, the product shows that clearly.
+This screen shows the project information. It helps you see what is ready, what
+is still being checked, and what is only a test. That makes it easier to know
+what you can trust.
 
-You can also see which version of the project you are looking at. A test
-version is not quietly presented as a finished release.
+And this is the mobile view. The same project stays readable on a small screen.
 
-This is a local preview, recorded on one computer. It shows the shape of the
-experience. It is not a public download or a production promise.
+This is a local preview made on my computer. You cannot download the software
+yet. The point of StatePort is simple: harness the agent, govern what it does,
+and keep the work.
