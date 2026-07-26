@@ -1,13 +1,28 @@
 # StatePort Site status
 
-**Updated At:** 2026-07-23
+**Updated At:** 2026-07-26
 **Execution Mode:** operating
-**Project State:** harness_narrative_and_video_rebuilt_local_validated_deploy_pending
+**Project State:** parallel_site_candidate_reconciled_local_validated_unbound_to_final_artifact
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
 ## Current truth
 
+- A local-only reconciliation candidate exists on
+  `agent/site-final-alpha-reconciliation-001`. It reconciles the Sol Ultra
+  correction branch, the alpha-alignment branch, and preserved unreachable WIP
+  `f3d35125b502b0fcf36d1c6f2c238132ea14c527`; its exact dispositions are in
+  `SITE_PARALLEL_RECONCILIATION.yaml`. It is not pushed or deployed.
+- The candidate keeps the application-first story, the application/execution
+  ownership seam, Codex-only supervised-direct scope, provider
+  non-equivalence, the site-local licence boundary, a protected responsive
+  hero, a validated media manifest, and a noindex Stateware v1.2 review
+  candidate. It does not state or imply a final StatePort bundle identity,
+  product-owner readiness, a public download, or a public release.
+- The local media candidate is validated as a six-scene 1280×720 H.264/AAC
+  package with matched stream/caption timing and exact hashes in
+  `assets/media/stateport-local-prototype-walkthrough.manifest.json`. It is
+  private-alpha evidence, not a final-release video.
 - The live public site is a static HTML/CSS/progressive-JavaScript deployment.
   It contains the product story, documentation, tutorials, release ledger,
   captioned local prototype walkthrough, public paper, and 404 route.

@@ -1,20 +1,22 @@
 # NEXT_ACTIONS — active execution queue
 
-**Updated At:** 2026-07-23
+**Updated At:** 2026-07-26
 **Execution Mode:** operating
 **Max Items:** 3
 
-## P1 [BL-SITE-007] Obtain human acceptance of the reframed harness-narrative package
+## P1 [BL-SITE-011] Review the reconciled local Site candidate against the final StatePort artifact
 
 **Status:** pending
 
-The homepage, docs, walkthrough, and diagrams are locally complete with the
-harness narrative and the rebuilt MP4 matching its captions. Human review of
-the copy, visual design, information architecture, and media voice is the
-remaining gate before merge and deploy.
+The local candidate reconciles both active Site lines and preserved WIP. Keep
+it unbound to an implementation release until the final StatePort source,
+replacement bundle, lifecycle evidence, and exact-head CI exist. Then review
+the copy, visual design, information architecture, rights boundary, and media
+against that exact artifact.
 
-**Exit:** human review records acceptance or requested changes for the live
-package — then deploy.
+**Exit:** owner records acceptance or requested changes for a Site candidate
+bound to the exact accepted private-alpha artifact. Deployment remains a
+separate explicit action.
 
 ## P1 [BL-SITE-003] Add release-specific content only with public source evidence
 
@@ -26,6 +28,13 @@ license decision, versioned artifact, checksums, and verified install path exist
 **Exit:** all download and release claims bind to an exact published release.
 
 ## Completed since last update (2026-07-23)
+
+- **BL-SITE-010** — Reconciled the Sol Ultra candidate, alpha-alignment
+  candidate, and preserved unreachable `f3d3512…` WIP on the local-only
+  `agent/site-final-alpha-reconciliation-001` branch. The complete
+  item-level disposition and rights record are in
+  `SITE_PARALLEL_RECONCILIATION.yaml` and `SITE_ASSET_RIGHTS.yaml`. No branch
+  was deleted, pushed, or deployed; no final StatePort identity was claimed.
 
 - **BL-SITE-008** — Regenerated the walkthrough MP4 spoken track from the
   reframed narration using the free public Edge TTS `en-US-AndrewNeural` voice

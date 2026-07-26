@@ -1,0 +1,70 @@
+formatVersion: stateport-site-asset-rights/v1
+reviewedAt: '2026-07-26'
+scope: local_site_candidate_only
+licenceBoundary:
+  sourceCode: MIT
+  documentationAndWrittenContent: CC-BY-4.0
+  screenshotsVideoAndDiagrams: CC-BY-4.0
+  brandAssets: all_rights_reserved
+  implementationRepository: separate_private_repository_not_licensed_by_this_file
+assets:
+  - paths: [assets/stateport-mascot-shell.svg]
+    class: brand_asset
+    rights: all_rights_reserved
+    provenance: Copied byte-for-byte from StatePort apps/web/assets/brand/stateport-mascot-shell.svg with author permission.
+    sha256: 85459d506c5e15f405a44b6604fecd1cdc64ff4fd6a2d42ddb68199fdfca2cf6
+    restrictions: [do_not_redraw, do_not_filter, do_not_substitute]
+  - paths: [assets/favicon.svg]
+    class: derived_brand_asset
+    rights: all_rights_reserved
+    provenance: Project-author derivative of the shell mascot.
+  - paths: [assets/media/stateport-demo-*.png, assets/media/stateport-platform-*.png, papers/assets/stateware-*.png]
+    class: fixture_screenshots
+    rights: CC-BY-4.0
+    provenance: Author-owned public-safe fixture captures.
+    privacy: No personal data, credentials, or third-party content is intentionally visible.
+  - paths: [assets/media/stateport-local-prototype-walkthrough.mp4, assets/media/stateport-local-prototype-walkthrough.vtt, assets/media/stateport-local-prototype-walkthrough.manifest.json]
+    class: walkthrough_media_package
+    rights: CC-BY-4.0
+    provenance: Author-owned fixture captures plus author-written narration.
+    integrity: Media manifest binds exact source, caption, and stream facts.
+    publicClaimBoundary: Private-alpha fixture evidence only; it does not establish a software release, installation path, or product-owner acceptance.
+  - paths: [assets/media/stateport-local-prototype-walkthrough-narration.txt, assets/media/stateport-local-prototype-walkthrough-narration.ssml]
+    class: narration_source
+    rights: CC-BY-4.0
+    provenance: Original author text.
+  - paths: [assets/diagrams/stateport-diagram-*.png, assets/diagrams/src/*.mmd]
+    class: diagrams
+    rights: CC-BY-4.0
+    provenance: Original project diagrams rendered with Mermaid CLI at build time.
+    thirdPartyTool: '@mermaid-js/mermaid-cli Apache-2.0; no runtime dependency shipped'
+  - paths: [papers/stateware-whitepaper-public-v1.1.md, papers/stateware-whitepaper-public-v1.1.html]
+    class: published_whitepaper
+    rights: CC-BY-4.0
+    status: existing_public_paper
+  - paths: [papers/stateware-whitepaper-public-v1.2.md, papers/stateware-whitepaper-public-v1.2.html]
+    class: private_whitepaper_candidate
+    rights: CC-BY-4.0
+    status: local_noindex_review_candidate_not_public_replacement
+thirdPartyBuildServices:
+  - service: Microsoft Edge neural TTS via edge-tts
+    use: one_time_build_time_synthesis_of_public_narration_text
+    voice: en-US-AndrewNeural
+    visitorRuntimeDependency: false
+    credentialsStored: false
+    redistributionCaveat: Re-review service terms before commercial redistribution of synthesized audio.
+  - service: Mermaid CLI
+    use: build_time_diagram_rendering_only
+    visitorRuntimeDependency: false
+privacyAndDistribution:
+  remoteFonts: absent
+  thirdPartyScripts: absent
+  analytics: absent
+  cookies: absent
+  privateImplementationSource: excluded
+  secrets: excluded
+  releaseBinding: prohibited_until_final_StatePort_artifact_evidence_exists
+reviewNeededBeforePublicDeployment:
+  - owner_acceptance_of_copy_visual_design_information_architecture_and_media_voice
+  - confirmation_that_license_boundary_is_to_become_publicly_effective
+  - final_StatePort_artifact_identity_and_claim_review

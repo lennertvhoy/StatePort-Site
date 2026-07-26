@@ -1,0 +1,156 @@
+formatVersion: stateport-site-parallel-reconciliation/v1
+reconciledAt: '2026-07-26'
+scope: local_only_no_push_no_deploy
+finalCandidate:
+  branch: agent/site-final-alpha-reconciliation-001
+  base:
+    branch: main
+    commit: 92d134bde6e13752cc05e26b6685b694b7670d9c
+  stateportBinding:
+    status: intentionally_unbound
+    reason: The StatePort replacement bundle, images, and acceptance evidence do not yet exist. This Site candidate makes no final StatePort release-identity claim.
+inputs:
+  solUltra:
+    branch: agent/site-sol-ultra-total-product-corrections-001
+    head: 1252f212f369ccf903c2ec6cf685fb9164850390
+    role: application_first_truth_media_manifest_and_private_paper_candidate
+  alphaAlignment:
+    branch: agent/site-alpha-release-alignment-001
+    head: 1e4f1ddf5d4b04eb1cc5e7d4875aeca6c699a296
+    role: licence_boundary_provider_truth_hero_and_media_review
+  preservedWip:
+    commit: f3d35125b502b0fcf36d1c6f2c238132ea14c527
+    role: unreachable_css_and_homepage_wip
+    preservation: retained_in_verified_local_preservation_bundles
+  publicBaseline:
+    branch: main
+    head: 92d134bde6e13752cc05e26b6685b694b7670d9c
+dispositionVocabulary:
+  - exact_present
+  - semantically_present
+  - missing_integrate
+  - conflicting_choose_or_rework
+  - deliberately_rejected_with_reason
+  - historical_evidence_only
+  - external_or_owner_gate
+  - unresolved
+commitDispositions:
+  - input: 81561f1a63b306966a1cc1fdb1d6ac6e90c47941
+    source: solUltra
+    material: application-first positioning, ownership seam, honest provider scope, public-boundary copy
+    disposition: exact_present
+    finalCommit: cf4017b
+    rationale: Applied intact; final copy states Codex supervised-direct as the exercised path and does not qualify Pi, OpenCode, or direct API.
+  - input: 28e8beac864f95e3c909fb2ed6b5363af357ae59
+    source: solUltra
+    material: six-scene walkthrough, verbatim captions, deterministic package validation, evidence manifest
+    disposition: exact_present
+    finalCommit: adbb071
+    rationale: Applied intact. The manifest checks H.264/AAC streams, measured caption timing, source hashes, private-alpha boundary, and current provider scope.
+  - input: 43c7be997164df84c069a3210d1df43c4a601174
+    source: solUltra
+    material: private Stateware v1.2 candidate, renderer, and claim validator
+    disposition: exact_present
+    finalCommit: fa992df
+    rationale: Applied intact. The rendered reader is noindex and explicitly does not replace public v1.1.
+  - input: 1252f212f369ccf903c2ec6cf685fb9164850390
+    source: solUltra
+    material: branch-specific private-candidate state snapshot
+    disposition: historical_evidence_only
+    rationale: The snapshot names an intermediate branch state. Final StatePort artifact identity is not available and must not be inferred by Site state.
+  - input: acd24267434d44c62475295f54489d1dd3c8ece8
+    source: alphaAlignment
+    material: deployment-history reconciliation and alignment-slice state
+    disposition: historical_evidence_only
+    rationale: Deployment history remains useful evidence, but its branch-state framing is not current final-candidate authority.
+  - input: 3b726d25ab7d54cf3f859fb47652cfce62e63929
+    source: alphaAlignment
+    material: Codex-only qualification, ownership seam, human-on-the-loop, provider non-equivalence
+    disposition: semantically_present
+    finalCommit: cf4017b
+    rationale: The final application-first copy carries these claim boundaries without importing stale private-RC wording.
+  - input: c9dca180a92a12f00ec308205d2ef9141048f439
+    source: alphaAlignment
+    material: protected two-column hero, calmer atlas, JSON-LD and enhancement stylesheet repair
+    disposition: semantically_present
+    finalCommit: 9a71dbd
+    rationale: The hero is a grid with a protected copy column; no copy overlaps the illustration, coordinates and bottom microcopy are absent, and the mobile layout stacks.
+  - input: d4a0db84df9159472053267ce3fe64ec776cb642
+    source: alphaAlignment
+    material: application CTA and alpha-status copy
+    disposition: conflicting_choose_or_rework
+    finalCommit: cf4017b
+    rationale: The clearer application CTA is retained, but the branch's v0.1.0-alpha.1 product-owner-testing wording is rejected because the replacement artifact and acceptance evidence are not yet available.
+  - input: cf219b4d494b75fbed824c7e83baa6e2fda0604d
+    source: alphaAlignment
+    material: site-local licence boundary, notice, attribution and asset review
+    disposition: exact_present
+    finalCommit: 0699ecd
+    rationale: Applied intact, with a filename correction in NOTICE for the retained private v1.2 review candidate.
+  - input: 0fde9bb8f923cfb164dd0f94a56fccef7554823d
+    source: alphaAlignment
+    material: private whitepaper v1.2 candidate
+    disposition: semantically_present
+    finalCommit: fa992df
+    rationale: Sol's independently authored v1.2 candidate was selected because it includes explicit current-versus-future limits and deterministic source/render/claim validation. Alignment's candidate remains preserved review evidence.
+  - input: 4a782251be65b6f02173b9cac2d77c04fe636e71
+    source: alphaAlignment
+    material: corrected media timing and provider-honest narration
+    disposition: semantically_present
+    finalCommit: adbb071
+    rationale: The selected media implementation is stronger: it validates exact stream-duration tolerance, VTT end timing, hashes, and a machine-readable manifest. The alignment MP4 remains historical review evidence.
+  - input: 1e4f1ddf5d4b04eb1cc5e7d4875aeca6c699a296
+    source: alphaAlignment
+    material: availability link placement within protected hero copy
+    disposition: semantically_present
+    finalCommit: 9a71dbd
+    rationale: Availability is retained within the protected copy column; it remains limited to private-alpha evidence and no public software release.
+  - input: f3d35125b502b0fcf36d1c6f2c238132ea14c527
+    source: preservedWip
+    material: CSS/index hero grid, reduced atlas density, moved availability strip
+    disposition: semantically_present
+    finalCommit: 9a71dbd
+    rationale: The protected hero grid, calmer orbit treatment, mobile stacking, and absence of coordinate/microcopy clutter are integrated. The separate release strip is deliberately not copied because the in-column availability statement is clearer and stays adjacent to the primary actions.
+behaviorDispositions:
+  - behavior: application_first_positioning_and_execution_seam
+    disposition: exact_present
+    implementation: cf4017b
+  - behavior: Codex_only_supervised_direct_and_provider_non_equivalence
+    disposition: exact_present
+    implementation: cf4017b
+  - behavior: no_public_release_download_or_private_source_claim
+    disposition: exact_present
+    implementation: cf4017b
+  - behavior: protected_hero_copy_and_responsive_atlas
+    disposition: semantically_present
+    implementation: 9a71dbd
+  - behavior: site_licence_and_asset_boundary
+    disposition: exact_present
+    implementation: 0699ecd
+  - behavior: paper_v1_2_private_review_candidate
+    disposition: exact_present
+    implementation: fa992df
+  - behavior: walkthrough_audio_caption_and_manifest_integrity
+    disposition: exact_present
+    implementation: adbb071
+  - behavior: final_StatePort_artifact_binding
+    disposition: external_or_owner_gate
+    rationale: Bind only after the StatePort reconciled source, rebuilt images, replacement bundle, lifecycle evidence, and exact-head CI exist.
+validation:
+  deterministic:
+    - python3 scripts/validate_repo.py
+    - python3 scripts/check_site_quality.py
+    - python3 scripts/build_walkthrough.py --validate-only
+    - python3 scripts/check_stateware_whitepaper_v12.py
+  localBrowser:
+    status: passed_limited_local_evidence
+    route: http://127.0.0.1:8765/
+    viewports: [1440x900, 1280x900, 1024x768, 768x900, 390x844, 320x640]
+    interaction: gallery_open_arrow_right_escape_focus_restoration
+    console: zero_messages
+    limits: Does not substitute for human visual acceptance, assistive-technology testing, or deployment verification.
+externalActions:
+  pushed: false
+  deployed: false
+  publicRelease: false
+  mainModified: false

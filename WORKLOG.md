@@ -1,5 +1,28 @@
 # Worklog
 
+## 2026-07-26 — Parallel Site reconciliation candidate assembled locally
+
+- Reconciled `agent/site-sol-ultra-total-product-corrections-001@1252f212`,
+  `agent/site-alpha-release-alignment-001@1e4f1dd`, and preserved unreachable
+  WIP `f3d35125b502b0fcf36d1c6f2c238132ea14c527` into local branch
+  `agent/site-final-alpha-reconciliation-001`.
+- Kept Sol's application-first story, ownership seam, Codex-only
+  supervised-direct scope, deterministic video manifest, and private v1.2
+  paper candidate. Kept alignment's independent site licence and attribution
+  boundary. Reworked the shared hero into a protected two-column composition
+  with a calmer atlas and responsive stacking.
+- The preserved WIP's visual objective is semantically present. Its separate
+  release strip was not copied because the final in-column availability status
+  remains adjacent to the primary actions and avoids a duplicate status band.
+- `python3 scripts/validate_repo.py`, `python3 scripts/check_site_quality.py`,
+  `python3 scripts/build_walkthrough.py --validate-only`, and
+  `python3 scripts/check_stateware_whitepaper_v12.py` passed. Local browser
+  checks covered desktop/mobile widths and gallery keyboard open/next/Escape
+  behavior with zero console messages.
+- No push, deployment, publication, main mutation, or final StatePort
+  artifact binding occurred. Human acceptance and any future deployment remain
+  separate owner gates.
+
 ## 2026-07-23 — Walkthrough video rebuilt and mermaid diagrams added
 
 - Rebuilt the local-prototype walkthrough MP4 from the reframed narration so
