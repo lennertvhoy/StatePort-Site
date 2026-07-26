@@ -23,7 +23,18 @@
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="manifest" href="site.webmanifest">
     <link rel="stylesheet" href="assets/site.css">
-    <title>StatePort — A harness for coding agents</title>
+    <link rel="stylesheet" href="assets/site-enhancements.css" data-site-enhancements>
+    <title>StatePort — Durable applications, managed agents</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "StatePort",
+        "description": "A local platform for durable, user-owned AI applications with a managed harness for coding agents.",
+        "url": "https://lennertvhoy.github.io/StatePort-Site/",
+        "inLanguage": "en"
+      }
+    </script>
   </head>
   <body class="home-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -61,29 +72,19 @@
 
           <div class="atlas" aria-hidden="true">
             <svg viewBox="0 0 900 900" fill="none">
-              <circle class="orbit orbit--light" cx="450" cy="450" r="365" />
-              <circle class="orbit" cx="450" cy="450" r="272" />
-              <circle class="orbit orbit--light" cx="450" cy="450" r="169" />
-              <path class="route" d="M124 638C199 445 313 300 480 246c134-44 218-6 299 89" />
-              <path class="route" d="M206 176c140 78 213 167 237 296 23 126 99 220 269 296" />
-              <circle class="node" cx="126" cy="635" r="11" />
-              <circle class="node node--solid" cx="480" cy="246" r="9" />
-              <circle class="node" cx="780" cy="336" r="12" />
-              <circle class="node" cx="205" cy="176" r="11" />
-              <circle class="node node--solid" cx="712" cy="767" r="8" />
+              <circle class="orbit orbit--light" cx="450" cy="450" r="330" />
+              <circle class="orbit" cx="450" cy="450" r="210" />
+              <path class="route" d="M164 285C300 200 600 200 736 285" />
+              <circle class="node" cx="164" cy="285" r="11" />
+              <circle class="node" cx="736" cy="285" r="12" />
+              <circle class="node node--solid" cx="555" cy="632" r="9" />
             </svg>
             <img class="atlas-mark" src="assets/stateport-mascot-shell.svg" alt="" width="288" height="288">
-            <div class="atlas-coordinates">
-              <span>STATE / PORT</span>
-              <span>DURABLE / INSPECTABLE</span>
-              <span>OWNED / PORTABLE</span>
-            </div>
           </div>
-          <p class="hero-footnote">Wrap the agent · own the state · keep the work</p>
         </div>
       </section>
 
-      <section class="home-section statement" aria-labelledby="stateware-heading">
+      <section class="home-section statement" id="product" aria-labelledby="stateware-heading">
         <p class="section-kicker reveal">The idea</p>
         <div class="statement-copy reveal">
           <h2 id="stateware-heading">Agents do the work. The work stays yours.</h2>
