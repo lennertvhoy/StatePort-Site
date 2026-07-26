@@ -1,0 +1,14 @@
+flowchart TB
+    SPEC["AgentRunSpec<br/>plan + bounds + base SHA"]
+    subgraph HOSTS["Profiled execution providers"]
+        CX["Codex CLI — qualified (private alpha)"]
+        OC["OpenCode — unqualified"]
+        PI["Pi — reference direction"]
+    end
+    HARNESS["StatePort harness<br/>plan · approve · run<br/>headless · validate"]
+    DB[("Durable StateSpec instance<br/>state files + cockpit scripts")]
+    SPEC --> HARNESS
+    HOSTS --> HARNESS
+    HARNESS --> DB
+    classDef harness fill:#2f7dff,color:#ffffff,stroke:#155fdc;
+    class HARNESS harness;

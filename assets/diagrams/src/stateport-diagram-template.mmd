@@ -1,0 +1,10 @@
+flowchart LR
+    T["Stateware template<br/>state files (MD/YAML)<br/>+ cockpit scripts"]
+    H["StatePort harness<br/>wraps the agent<br/>runs it governed"]
+    A["Headless agent<br/>in a managed<br/>environment"]
+    I[("Durable instance<br/>decisions, files,<br/>history, receipts")]
+    T --> H --> A --> I
+    classDef harness fill:#2f7dff,color:#ffffff,stroke:#155fdc;
+    classDef instance fill:#0b132b,color:#ffffff,stroke:#0b132b;
+    class H harness;
+    class I instance;

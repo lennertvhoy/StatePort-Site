@@ -64,7 +64,7 @@
           <p>Stateware moves the boundary outward: an application is a durable instance with an explicit definition, user-controlled canonical state, declared authority, and a checkable lifecycle history. A conversation can be valuable operational context, but it is not automatically the authority for a person’s domain facts.</p>
 
           <h2>What Stateware means</h2>
-          <p><strong>Stateware</strong> is software whose durable, inspectable state and governed lifecycle contracts form the application boundary while agents and models remain replaceable processors. The aim is work that is easier to understand, preserve, and review.</p>
+          <p><strong>Stateware</strong> is software whose durable, inspectable state and governed lifecycle contracts form the application boundary, independent of any single agent or model provider. The aim is work that is easier to understand, preserve, and review.</p>
           <div class="code-panel" data-label="The working idea"><code>installed instance
 = pinned definition
 + user-controlled canonical state
@@ -72,10 +72,10 @@
 + checkable lifecycle history</code></div>
 
           <h2>Where the coding agent fits</h2>
-          <p>StatePort does not replace your coding agent — it harnesses it. A headless agent like Codex runs inside a managed environment (your machine or an isolated container), plans its work, asks approval on risky steps, and writes results into the durable instance. The agent is a replaceable processor; the Stateware boundary is what survives when the agent, model, or session changes.</p>
+          <p>StatePort does not replace your coding agent — it harnesses it. A headless agent like Codex runs inside a managed environment (your machine or an isolated container), plans its work, asks approval when consequences justify it, and writes results into the durable instance. Provider capabilities and behaviour differ and are explicitly profiled; the Stateware boundary is what survives when the agent, model, or session changes.</p>
           <figure class="diagram-figure reveal">
-            <img src="../assets/diagrams/stateport-diagram-harness.png" alt="Diagram: replaceable coding-agent hosts feed an AgentRunSpec into the StatePort harness, which plans, approves, runs headlessly, and validates, writing results into a durable StateSpec instance.">
-            <figcaption>The harness orchestrates replaceable hosts; the durable instance is what survives.</figcaption>
+            <img src="../assets/diagrams/stateport-diagram-harness.png" alt="Diagram: profiled coding-agent providers feed an AgentRunSpec into the StatePort harness, which plans, approves, runs headlessly, and validates, writing results into a durable StateSpec instance.">
+            <figcaption>The harness orchestrates profiled execution providers; the durable instance is what survives.</figcaption>
           </figure>
 
           <h2>Why this changes the conversation</h2>
