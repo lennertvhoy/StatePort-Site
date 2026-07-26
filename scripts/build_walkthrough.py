@@ -18,10 +18,12 @@ ffprobe, and the `edge-tts` python package.
 from __future__ import annotations
 
 import asyncio
+import os
 import re
 import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,7 +31,7 @@ MEDIA = ROOT / "assets" / "media"
 NARRATION = MEDIA / "stateport-local-prototype-walkthrough-narration.txt"
 OUT_MP4 = MEDIA / "stateport-local-prototype-walkthrough.mp4"
 OUT_VTT = MEDIA / "stateport-local-prototype-walkthrough.vtt"
-WORK = Path("/tmp/opencode/walkthrough-build")
+WORK = Path(os.environ.get("WALKTHROUGH_WORK_DIR", tempfile.gettempdir())) / "walkthrough-build"
 
 VOICE = "en-US-AndrewNeural"
 RATE = "+0%"
@@ -175,11 +177,24 @@ def main() -> None:
             lines.append(f"file '{sil}'")
     concat_list.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-    # 3. concat -> final mp4
+    # 3. concat -> final mp4 via the concat filter (full re-encode).
+    # The concat *demuxer* with stream copy corrupts the AAC timeline of
+    # these clips (audio drifts ~30s past the video); the filter rebuilds
+    # both streams from decoded frames and stays exact.
+    filter_inputs: list[str] = []
+    for line in lines:
+        clip_path = line.split("'")[1]
+        filter_inputs.extend(["-i", clip_path])
+    concat_segments = "".join(f"[{index}:v][{index}:a]" for index in range(len(lines)))
     run([
         "ffmpeg", "-y", "-v", "error",
-        "-f", "concat", "-safe", "0", "-i", str(concat_list),
-        "-c", "copy", "-movflags", "+faststart", str(OUT_MP4),
+        *filter_inputs,
+        "-filter_complex", f"{concat_segments}concat=n={len(lines)}:v=1:a=1[v][a]",
+        "-map", "[v]", "-map", "[a]",
+        "-c:v", "libx264", "-tune", "stillimage", "-preset", "medium",
+        "-pix_fmt", "yuv420p", "-r", str(FPS),
+        "-c:a", "aac", "-b:a", "128k", "-ac", "2",
+        "-movflags", "+faststart", str(OUT_MP4),
     ])
 
     # 4. write VTT — verbatim transcript of what edge-tts spoke

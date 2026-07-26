@@ -1,25 +1,25 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:11.688
-StatePort is a harness for coding agents. It runs agents like Codex
-StatePort is a harness for coding agents. It runs agents like Codex headlessly, in an environment you control, and gives the work a durable home outside the chat. Here is the preview.
+00:00:00.000 --> 00:00:12.552
+StatePort gives AI-assisted work a durable home. Your applications
+StatePort gives AI-assisted work a durable home. Your applications keep their own state, history, and continuity — and a managed harness runs the coding agents that help with the work. Here is the preview.
 
-00:00:12.138 --> 00:00:23.871
+00:00:13.002 --> 00:00:24.735
 This is the application you get. Open a named project and see what is
 This is the application you get. Open a named project and see what is happening, what needs attention, and what the agent last did. Your state files and decisions live here, not hidden inside a session.
 
-00:00:24.321 --> 00:00:36.177
+00:00:25.185 --> 00:00:41.619
 This is the conversation. You can ask the agent for help, but the
-This is the conversation. You can ask the agent for help, but the conversation is only one part of the project. The agent is a replaceable processor — the work does not live or die with the chat.
+This is the conversation. You can ask the agent for help, but the conversation is only one part of the project. StatePort preserves the canonical application state — provider capabilities differ and are explicitly profiled, and the work does not live or die with the chat.
 
-00:00:36.627 --> 00:00:46.261
+00:00:42.069 --> 00:00:51.702
 This screen shows the project information. It helps you see what is
 This screen shows the project information. It helps you see what is ready, what is still being checked, and what is only a test. That makes it easier to know what you can trust.
 
-00:00:46.711 --> 00:00:51.311
+00:00:52.152 --> 00:00:56.752
 And this is the mobile view. The same project stays readable on a
 And this is the mobile view. The same project stays readable on a small screen.
 
-00:00:51.761 --> 00:01:01.985
-This is a local preview made on my computer. You cannot download the
-This is a local preview made on my computer. You cannot download the software yet. The point of StatePort is simple: harness the agent, govern what it does, and keep the work.
+00:00:57.202 --> 00:01:14.194
+This is a local preview made on my computer. The software is in
+This is a local preview made on my computer. The software is in private alpha testing, with Codex CLI as the only qualified provider, and you cannot download it yet. The point of StatePort is simple: give the work a durable home, supervise the agent, and keep what matters.

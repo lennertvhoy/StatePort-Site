@@ -1,74 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <speak version="1.1" xml:lang="en-US">
   <voice name="en-US-AndrewNeural">
-    <prosody rate="95%">
+    <prosody rate="+0%">
       <p id="scene-01">
-        <s>StatePort is a home for ongoing work with AI.</s>
-        <break time="500ms"/>
-        <s>You do not start with a blank chat. You open the app for the work you are doing.</s>
+        <s>StatePort gives AI-assisted work a durable home.</s>
+        <break time="450ms"/>
+        <s>Your applications keep their own state, history, and continuity — and a managed harness runs the coding agents that help with the work.</s>
+        <s>Here is the preview.</s>
       </p>
       <p id="scene-02">
-        <s>Each app keeps the work in one place: the project, the conversation, the tools, the decisions, and what happened before.</s>
+        <s>This is the application you get.</s>
+        <break time="450ms"/>
+        <s>Open a named project and see what is happening, what needs attention, and what the agent last did.</s>
+        <s>Your state files and decisions live here, not hidden inside a session.</s>
       </p>
       <p id="scene-03">
-        <s>The idea is simple.</s>
+        <s>This is the conversation.</s>
         <break time="450ms"/>
-        <s>Chat helps with the work, but the project is what lasts.</s>
+        <s>You can ask the agent for help, but the conversation is only one part of the project.</s>
+        <s>StatePort preserves the canonical application state — provider capabilities differ and are explicitly profiled, and the work does not live or die with the chat.</s>
       </p>
       <p id="scene-04">
-        <s>Here I choose a checklist from the catalog.</s>
+        <s>This screen shows the project information.</s>
         <break time="450ms"/>
-        <s>I open it to continue that work.</s>
+        <s>It helps you see what is ready, what is still being checked, and what is only a test.</s>
+        <s>That makes it easier to know what you can trust.</s>
       </p>
       <p id="scene-05">
-        <s>The project opens with the things I need to see: what it is, what tools it has, and what needs attention.</s>
+        <s>And this is the mobile view.</s>
+        <break time="450ms"/>
+        <s>The same project stays readable on a small screen.</s>
       </p>
       <p id="scene-06">
-        <s>Now I ask a normal question: what should I do next?</s>
+        <s>This is a local preview made on my computer.</s>
         <break time="450ms"/>
-        <s>The answer stays inside the checklist, next to the work it is talking about.</s>
-      </p>
-      <p id="scene-07">
-        <s>Next I ask StatePort to plan the next checklist item.</s>
-        <break time="450ms"/>
-        <s>This is an action, so it gets more care than a chat reply.</s>
-      </p>
-      <p id="scene-08">
-        <s>Before it can run, I can see what it will do, which tool will run it, and whether it can change the project.</s>
-      </p>
-      <p id="scene-09">
-        <s>The plan is ready, but it is waiting.</s>
-        <break time="450ms"/>
-        <s>I can read the exact action before I approve it.</s>
-      </p>
-      <p id="scene-10">
-        <s>After I approve it, StatePort runs the check.</s>
-      </p>
-      <p id="scene-11">
-        <s>Here is the result.</s>
-        <break time="450ms"/>
-        <s>It finished, and it did not change the project.</s>
-      </p>
-      <p id="scene-12">
-        <s>Later, I can check the request, the approval, and the result together.</s>
-      </p>
-      <p id="scene-13">
-        <s>Settings show what I can change, and what is fixed for this project.</s>
-      </p>
-      <p id="scene-14">
-        <s>Different work can use a different app.</s>
-        <break time="450ms"/>
-        <s>This technical workspace has tools for development work.</s>
-      </p>
-      <p id="scene-15">
-        <s>Some tools are not available here.</s>
-        <break time="450ms"/>
-        <s>StatePort leaves them turned off instead of pretending they work.</s>
-      </p>
-      <p id="scene-16">
-        <s>That is the point of StatePort.</s>
-        <break time="450ms"/>
-        <s>AI helps inside work you can see, check, and come back to.</s>
+        <s>The software is in private alpha testing, with Codex CLI as the only qualified provider, and you cannot download it yet.</s>
+        <s>The point of StatePort is simple: give the work a durable home, supervise the agent, and keep what matters.</s>
       </p>
     </prosody>
   </voice>

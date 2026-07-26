@@ -1,14 +1,15 @@
-StatePort is a harness for coding agents. It runs agents like Codex
-headlessly, in an environment you control, and gives the work a durable home
-outside the chat. Here is the preview.
+StatePort gives AI-assisted work a durable home. Your applications keep
+their own state, history, and continuity — and a managed harness runs the
+coding agents that help with the work. Here is the preview.
 
 This is the application you get. Open a named project and see what is
 happening, what needs attention, and what the agent last did. Your state files
 and decisions live here, not hidden inside a session.
 
 This is the conversation. You can ask the agent for help, but the conversation
-is only one part of the project. The agent is a replaceable processor — the
-work does not live or die with the chat.
+is only one part of the project. StatePort preserves the canonical application
+state — provider capabilities differ and are explicitly profiled, and the work
+does not live or die with the chat.
 
 This screen shows the project information. It helps you see what is ready, what
 is still being checked, and what is only a test. That makes it easier to know
@@ -16,6 +17,7 @@ what you can trust.
 
 And this is the mobile view. The same project stays readable on a small screen.
 
-This is a local preview made on my computer. You cannot download the software
-yet. The point of StatePort is simple: harness the agent, govern what it does,
-and keep the work.
+This is a local preview made on my computer. The software is in private alpha
+testing, with Codex CLI as the only qualified provider, and you cannot download
+it yet. The point of StatePort is simple: give the work a durable home,
+supervise the agent, and keep what matters.
