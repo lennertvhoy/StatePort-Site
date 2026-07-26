@@ -65,9 +65,20 @@
           <h2>Capability before branding</h2>
           <p>Instead of assuming that a named host is interchangeable with another, a host should state its capabilities: structured events, cancellation, sandbox support, tool boundaries, output reporting, token telemetry, and the authentication route class. Missing support should produce an honest degradation, not an invented equivalence.</p>
 
-          <h2>Where the host work stands</h2>
-          <p>StatePort is a host-neutral harness: it orchestrates coding agents headlessly and lets each host declare what it can actually do. A narrow direct-Codex path has been exercised locally as the first integrated host; OpenCode and direct-API adapters are part of the model, and Pi remains a reference-host direction. Hosts are replaceable — the durable Stateware instance does not depend on any one of them.</p>
+          <h2>Where provider work stands</h2>
+          <p>The current private-alpha integration is Codex in <strong>supervised-direct</strong> mode. Pi is a reference direction, while OpenCode and direct-API execution are not implemented or qualified product paths. StatePort therefore does not claim supported provider replacement today.</p>
+          <p>The portability goal is narrower and testable: canonical application state must remain understandable and recoverable without a hidden provider session. A different qualified provider may continue from declared inputs, but its behavior, security boundary, evidence quality, tools, and results can differ. Those are separate claims that require separate validation.</p>
           <p>The <a href="platform-support.html">platform-support contract</a> separates browser/storage qualification from host-integrated proof. The release ledger will carry supported installation and host coverage as they are verified.</p>
+
+          <h2>Five different portability claims</h2>
+          <ul>
+            <li><strong>State and package portability:</strong> the application definition and owned state can be moved and validated.</li>
+            <li><strong>Execution compatibility:</strong> a provider can consume the declared inputs and return a candidate result.</li>
+            <li><strong>Behavioral equivalence:</strong> two providers produce sufficiently similar outcomes under controlled conditions.</li>
+            <li><strong>Security equivalence:</strong> their effective authority and isolation are demonstrably comparable.</li>
+            <li><strong>Evidence equivalence:</strong> their observations and receipts support the same confidence.</li>
+          </ul>
+          <p>StatePort’s thesis starts with state continuity and declared capability. Continuity does not imply equivalence, and StatePort does not assume the other four levels.</p>
 
           <h2>What stronger evidence would look like</h2>
           <p>Useful host evidence binds the exact application state, adapter and host versions, declared sandbox, model, context policy, authentication route class, validation commands, output artifacts, and observed failure/degradation modes. A provider label alone does not explain the result.</p>

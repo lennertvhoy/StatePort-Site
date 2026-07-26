@@ -49,6 +49,7 @@ class DocumentFacts:
     language: str | None = None
     title_parts: list[str] = field(default_factory=list)
     description: str | None = None
+    robots: str | None = None
     viewport: str | None = None
     canonical: str | None = None
     manifest: str | None = None
@@ -103,6 +104,8 @@ class QualityParser(HTMLParser):
             content = values.get("content", "").strip()
             if name == "description":
                 self.facts.description = content
+            elif name == "robots":
+                self.facts.robots = content.lower()
             elif name == "viewport":
                 self.facts.viewport = content
             if property_name:
@@ -347,8 +350,14 @@ def validate_sitemap(documents: dict[Path, DocumentFacts]) -> None:
     expected = {
         public_url(path)
         for path in documents
-        if path != Path("404.html")
+        if path != Path("404.html") and documents[path].robots != "noindex, nofollow"
     }
+    private_candidates = {
+        path for path, facts in documents.items() if facts.robots == "noindex, nofollow"
+    }
+    for path in private_candidates:
+        if path != Path("papers/stateware-whitepaper-public-v1.2.html"):
+            raise AssertionError(f"unexpected noindex page without release disposition: {path}")
     missing = sorted(expected.difference(locations))
     extra = sorted(locations.difference(expected))
     if missing:

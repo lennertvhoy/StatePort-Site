@@ -49,7 +49,7 @@
             <a href="platform-support.html">Platform support</a>
             <a href="prototype-walkthrough.html">Prototype walkthrough</a>
             <a href="agent-kits.html" aria-current="page">Agent Kits roadmap</a>
-            <a href="../papers/stateware-whitepaper-public-v1.1.html">Stateware paper</a>
+            <a href="../papers/stateware-whitepaper-public-v1.1.html">Historical paper v1.1</a>
             <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
             <a href="../releases/">Release status</a>
           </nav>
@@ -83,8 +83,8 @@
             </section>
           </div>
 
-          <h2>Docker-first, later</h2>
-          <p>The first distribution profile under consideration is Docker/OCI. An image is a replaceable execution artifact; durable StateSpec data and credentials stay outside it. A kit should remain inspectable, mount an owned instance deliberately, and use the same lease, validation, transaction, and receipt contracts as agent-native use.</p>
+          <h2>OCI-first, later</h2>
+          <p>The current private-alpha packaging target is rootless Podman; broader OCI-runtime qualification remains future work. An image is an execution artifact, while durable StateSpec data and credentials stay outside it. A kit should remain inspectable, mount an owned instance deliberately, and use the same lease, validation, transaction, and receipt contracts as agent-native use.</p>
 
           <h2>Separate from StateBench</h2>
           <p>A kit earns its value by solving a real use case. StateBench may later evaluate an exact configuration under controlled conditions; release trust and permissions remain separate concerns.</p>
@@ -94,7 +94,7 @@
             <li>Publish an exact release source and its acceptance criteria.</li>
             <li>Design a versioned schema, threat model, and public/private fixture policy.</li>
             <li>Define ownership-aware install, update, export, import, rollback, and revocation behavior.</li>
-            <li>Bind Docker/OCI provenance and a release identity while keeping data and credentials outside image layers.</li>
+            <li>Bind OCI provenance, the qualified runtime, and a release identity while keeping data and credentials outside image layers.</li>
             <li>Validate one exact release candidate through CLI, application, degraded-host, and human-acceptance journeys.</li>
           </ul>
 

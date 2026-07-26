@@ -3,27 +3,37 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="StatePort is a harness that runs coding agents like Codex headlessly in environments you control, and gives each application a durable home of state files and scripts.">
+    <meta name="description" content="StatePort gives durable AI-assisted applications a local-first home, while managed coding-agent runs remain bounded execution rather than the source of truth.">
     <meta name="theme-color" content="#0B132B">
     <meta name="color-scheme" content="light">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="StatePort — Keep the work in view">
-    <meta property="og:description" content="A local-first product direction for AI-assisted work that remains readable, owned, and checkable.">
+    <meta property="og:title" content="StatePort — Work that continues after the chat">
+    <meta property="og:description" content="Durable applications, managed coding-agent execution, and a clear boundary between proposed work and accepted state.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-platform-catalog.png">
     <meta property="og:image:width" content="1920">
     <meta property="og:image:height" content="1200">
     <meta property="og:image:alt" content="StatePort catalog showing reviewed applications, their availability, and installed instances.">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="StatePort — Keep the work in view">
-    <meta name="twitter:description" content="A durable, inspectable home for ongoing AI-assisted work.">
+    <meta name="twitter:title" content="StatePort — Work that continues after the chat">
+    <meta name="twitter:description" content="Durable applications with managed agent execution and user-owned state.">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-platform-catalog.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="manifest" href="site.webmanifest">
     <link rel="stylesheet" href="assets/site.css">
-    <title>StatePort — A harness for coding agents</title>
+    <link rel="stylesheet" href="assets/site-enhancements.css" data-site-enhancements>
+    <title>StatePort — Durable applications, managed execution</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "StatePort",
+        "description": "Public product direction and private-alpha evidence for durable AI-assisted applications with managed coding-agent execution.",
+        "url": "https://lennertvhoy.github.io/StatePort-Site/"
+      }
+    </script>
   </head>
   <body class="home-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -49,46 +59,35 @@
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-inner">
           <div class="hero-copy">
-            <p class="eyebrow">A harness for coding agents</p>
-            <h1 id="hero-title">StatePort<span>Agents that run on your terms.</span></h1>
-            <p class="hero-deck">StatePort wraps coding agents like Codex and runs them headlessly in environments you control — your machine, or an isolated container. Each application is a Stateware template: durable state files plus the cockpit scripts the agent runs. The agent is a replaceable processor; the work stays yours.</p>
+            <p class="eyebrow">Durable applications · managed execution</p>
+            <h1 id="hero-title">StatePort<span>Work that continues after the chat.</span></h1>
+            <p class="hero-deck">Open a named application with its own goals, state, decisions, and evidence. When work needs a coding agent, StatePort prepares and supervises a bounded run. The application remains the source of truth; the agent session does not.</p>
             <div class="hero-actions">
-              <a class="button" href="#prototype">Watch the working walkthrough</a>
-              <a class="button button--quiet" href="docs/">Start with the overview</a>
+              <a class="button" href="#prototype">See the application workflow</a>
+              <a class="button button--quiet" href="docs/">Read the product overview</a>
             </div>
-            <p class="availability"><strong>Prototype available to view</strong><span aria-hidden="true">·</span><a href="releases/">Software not yet available</a></p>
+            <p class="availability"><strong>Private-alpha evidence available to view</strong><span aria-hidden="true">·</span><a href="releases/">No public software release</a></p>
           </div>
 
           <div class="atlas" aria-hidden="true">
             <svg viewBox="0 0 900 900" fill="none">
-              <circle class="orbit orbit--light" cx="450" cy="450" r="365" />
               <circle class="orbit" cx="450" cy="450" r="272" />
-              <circle class="orbit orbit--light" cx="450" cy="450" r="169" />
               <path class="route" d="M124 638C199 445 313 300 480 246c134-44 218-6 299 89" />
-              <path class="route" d="M206 176c140 78 213 167 237 296 23 126 99 220 269 296" />
               <circle class="node" cx="126" cy="635" r="11" />
               <circle class="node node--solid" cx="480" cy="246" r="9" />
               <circle class="node" cx="780" cy="336" r="12" />
-              <circle class="node" cx="205" cy="176" r="11" />
-              <circle class="node node--solid" cx="712" cy="767" r="8" />
             </svg>
             <img class="atlas-mark" src="assets/stateport-mascot-shell.svg" alt="" width="288" height="288">
-            <div class="atlas-coordinates">
-              <span>STATE / PORT</span>
-              <span>DURABLE / INSPECTABLE</span>
-              <span>OWNED / PORTABLE</span>
-            </div>
           </div>
-          <p class="hero-footnote">Wrap the agent · own the state · keep the work</p>
         </div>
       </section>
 
-      <section class="home-section statement" aria-labelledby="stateware-heading">
+      <section class="home-section statement" id="product" aria-labelledby="stateware-heading">
         <p class="section-kicker reveal">The idea</p>
         <div class="statement-copy reveal">
-          <h2 id="stateware-heading">The agent is replaceable. The work is not.</h2>
-          <p>A coding agent is good at doing the work, not at being the work. StatePort is the harness around it: it runs the agent headlessly, governs its risky steps, and writes the result into durable state you own.</p>
-          <p>Chat and agent sessions help move things forward. They do not become the only place your work exists.</p>
+          <h2 id="stateware-heading">The application is the durable thing.</h2>
+          <p>A coding agent can perform work. It should not own the goal, permissions, state, evidence, or acceptance. StatePort owns that boundary; the execution harness owns how an authorized run is carried out.</p>
+          <p>Chat remains useful inside the application, but neither a transcript nor a provider session silently becomes its canonical state.</p>
         </div>
       </section>
 
@@ -96,8 +95,8 @@
         <div class="prototype-inner">
           <div class="prototype-intro reveal">
             <p class="section-kicker">Current evidence</p>
-            <h2 id="prototype-heading">See the platform working.</h2>
-            <p>A captioned walkthrough of the working public-safe fixture: a real conversation, a bounded run, its result, evidence, and the settings around it.</p>
+            <h2 id="prototype-heading">Follow one application workflow.</h2>
+            <p>A captioned private-alpha fixture shows the application catalog, an in-application conversation, its owned source, and the mobile view. The stills below add the current result and settings surfaces.</p>
           </div>
 
           <div class="prototype-stage reveal">
@@ -106,7 +105,7 @@
               <track kind="captions" srclang="en" label="English" src="assets/media/stateport-local-prototype-walkthrough.vtt" default>
               Your browser does not support HTML video. Read the linked walkthrough for the same information.
             </video>
-            <p id="prototype-caption">Local preview, recorded 23 July 2026. Availability lives in the release ledger.</p>
+            <p id="prototype-caption">Local private-alpha evidence, not a public release or a production application. Availability lives in the release ledger.</p>
           </div>
 
           <p class="prototype-gallery-intro reveal">Click any screen to inspect it at full size.</p>
@@ -117,28 +116,28 @@
                 <img src="assets/media/stateport-platform-catalog.png" alt="StatePort catalog showing reviewed applications, their availability, and installed instances." width="1920" height="1200" loading="lazy" decoding="async">
                 <span class="prototype-frame-zoom" aria-hidden="true">View full size <span>↗</span></span>
               </a>
-              <figcaption><span>01 / CHOOSE</span><strong>Choose a real application</strong><p>See what is ready, what is unavailable, and what is already installed.</p></figcaption>
+              <figcaption><span>01 / OPEN</span><strong>Open a named application</strong><p>See its purpose, current state, and honest availability before starting work.</p></figcaption>
             </figure>
             <figure class="reveal">
               <a class="prototype-frame-link" href="assets/media/stateport-platform-conversation.png" data-prototype-gallery-item aria-label="Open the conversation screenshot in the full-size gallery">
                 <img src="assets/media/stateport-platform-conversation.png" alt="StatePort checklist conversation showing a user asking what to do next and an assistant answer." width="1920" height="1200" loading="lazy" decoding="async">
                 <span class="prototype-frame-zoom" aria-hidden="true">View full size <span>↗</span></span>
               </a>
-              <figcaption><span>02 / ASK</span><strong>Ask a useful question</strong><p>The answer stays attached to the project instead of disappearing into a separate chat.</p></figcaption>
+              <figcaption><span>02 / ASK</span><strong>Ask within the application</strong><p>The conversation stays connected to the durable work without becoming its source of truth.</p></figcaption>
             </figure>
             <figure class="reveal">
               <a class="prototype-frame-link" href="assets/media/stateport-platform-result.png" data-prototype-gallery-item aria-label="Open the result screenshot in the full-size gallery">
                 <img src="assets/media/stateport-platform-result.png" alt="StatePort governed run showing the result of selecting the next checklist item and that project state stayed unchanged." width="1920" height="1200" loading="lazy" decoding="async">
                 <span class="prototype-frame-zoom" aria-hidden="true">View full size <span>↗</span></span>
               </a>
-              <figcaption><span>03 / RESULT</span><strong>See the work produce a result</strong><p>A bounded action returns a readable result and says whether the project changed.</p></figcaption>
+              <figcaption><span>03 / REVIEW</span><strong>Inspect a bounded result</strong><p>The result says what ran, what was observed, and whether canonical state changed.</p></figcaption>
             </figure>
             <figure class="reveal">
               <a class="prototype-frame-link" href="assets/media/stateport-platform-settings.png" data-prototype-gallery-item aria-label="Open the settings screenshot in the full-size gallery">
                 <img src="assets/media/stateport-platform-settings.png" alt="StatePort application settings showing instance identity and the boundary between editable preferences and application-owned facts." width="1920" height="1200" loading="lazy" decoding="async">
                 <span class="prototype-frame-zoom" aria-hidden="true">View full size <span>↗</span></span>
               </a>
-              <figcaption><span>04 / SETTINGS</span><strong>Make the boundaries visible</strong><p>Settings explain what the application owns, what you can change, and where the data stays.</p></figcaption>
+              <figcaption><span>04 / CONTROL</span><strong>See state and controls</strong><p>Settings distinguish application-owned facts, user choices, capabilities, and unavailable functions.</p></figcaption>
             </figure>
           </div>
         </div>
@@ -152,18 +151,18 @@
         <div class="principles">
           <article class="principle reveal">
             <p class="principle-index">01</p>
-            <h3>Your state stays yours</h3>
-            <p>Each application is a template of durable state files and scripts you can read, edit, and carry with you — not a session locked inside a chat.</p>
+            <h3>Purpose and state outlive a session</h3>
+            <p>Each instance has a pinned definition, user-controlled state, declared authority, and history that can be inspected without replaying a chat.</p>
           </article>
           <article class="principle reveal">
             <p class="principle-index">02</p>
-            <h3>Important change stays explicit</h3>
-            <p>A proposal, permission decision, applied result, validation, and human acceptance remain separate facts.</p>
+            <h3>Authority and evidence stay explicit</h3>
+            <p>Intent, permission, candidate output, validation, application, and human acceptance remain separate facts.</p>
           </article>
           <article class="principle reveal">
             <p class="principle-index">03</p>
-            <h3>Agents are replaceable</h3>
-            <p>The harness orchestrates Codex today; Pi, OpenCode, and direct API are declared hosts with their own capabilities. Swap the agent without losing the work.</p>
+            <h3>Execution is capability-bound</h3>
+            <p>The current private-alpha path is Codex in supervised-direct mode. A future provider change must declare its different behavior and limitations; continuity does not imply equivalence.</p>
           </article>
         </div>
       </section>
@@ -171,32 +170,45 @@
       <section class="route-section" id="how-it-works" aria-labelledby="route-heading">
         <div class="home-section">
           <p class="section-kicker reveal">How it works</p>
-          <h2 class="section-heading reveal" id="route-heading">From definition to evidence.</h2>
+          <h2 class="section-heading reveal" id="route-heading">From purpose to accepted change.</h2>
           <div class="route-list">
             <article class="route-step reveal">
-              <p class="route-number">01 / WRAP</p>
-              <h3>Wrap a coding agent</h3>
-              <p>StatePort runs agents like Codex headlessly in an environment you control — your machine, or an isolated container.</p>
+              <p class="route-number">01 / OPEN</p>
+              <h3>Start from the application</h3>
+              <p>See the objective, durable state, recent change, and anything that needs attention before asking an agent to act.</p>
             </article>
             <article class="route-step reveal">
-              <p class="route-number">02 / TEMPLATE</p>
-              <h3>Give the work a home</h3>
-              <p>Each application is a Stateware template: durable state files plus the cockpit scripts the agent is allowed to run.</p>
+              <p class="route-number">02 / PREPARE</p>
+              <h3>Bind intent and authority</h3>
+              <p>StatePort prepares an exact action against an exact instance revision, with the effective capabilities and approval policy visible.</p>
             </article>
             <article class="route-step reveal">
-              <p class="route-number">03 / RUN</p>
-              <h3>Let it run, governed</h3>
-              <p>The harness plans, asks approval on risky steps, runs the agent, and records what changed. The agent never owns the truth.</p>
+              <p class="route-number">03 / EXECUTE</p>
+              <h3>Supervise bounded execution</h3>
+              <p>The harness runs the current provider inside its declared boundary. StatePort captures observations and keeps candidate output noncanonical.</p>
             </article>
             <article class="route-step reveal">
-              <p class="route-number">04 / KEEP</p>
-              <h3>Keep the result</h3>
-              <p>Decisions, files, and history stay in your instance. Swap the agent or model and the work is still there.</p>
+              <p class="route-number">04 / ACCEPT</p>
+              <h3>Validate before acceptance</h3>
+              <p>A finished run, a produced candidate, a passed validator, an applied change, and human acceptance remain distinguishable.</p>
             </article>
           </div>
-          <figure class="diagram-figure reveal">
-            <img src="assets/diagrams/stateport-diagram-template.png" alt="Diagram: a Stateware template of state files and cockpit scripts flows through the StatePort harness, which runs a headless agent in a managed environment, writing results into a durable instance.">
-            <figcaption>From a Stateware template to a durable instance — the agent does the work, the harness governs it, the instance keeps it.</figcaption>
+          <figure class="ownership-map reveal">
+            <div class="ownership-plane">
+              <p>Application plane</p>
+              <h3>Purpose and continuity</h3>
+              <p>Definition, goals, canonical state, decisions, progress, and application-facing history.</p>
+            </div>
+            <div class="ownership-boundary">
+              <p>StatePort owns the seam</p>
+              <span>intent · authority · state · evidence · acceptance</span>
+            </div>
+            <div class="ownership-plane ownership-plane--execution">
+              <p>Execution plane</p>
+              <h3>Bounded work</h3>
+              <p>Environment, process lifecycle, cancellation, provider invocation, observations, and candidate results.</p>
+            </div>
+            <figcaption>The application provides purpose and continuity. The execution provider performs work. StatePort owns the boundary between them.</figcaption>
           </figure>
         </div>
       </section>
@@ -229,7 +241,7 @@
           <div class="reveal">
             <p class="release-label">Release ledger</p>
             <h2 id="release-heading">Evidence before availability.</h2>
-            <p class="release-updated">Status reviewed <time datetime="2026-07-22">22 July 2026</time>.</p>
+            <p class="release-updated">Status reviewed <time datetime="2026-07-26">26 July 2026</time>.</p>
             <a class="release-ledger-link" href="releases/">View the full release ledger <span aria-hidden="true">↗</span></a>
           </div>
           <dl class="release-status-list reveal">
@@ -273,8 +285,8 @@
         <footer class="prototype-gallery-footer">
           <p class="prototype-gallery-counter" data-prototype-gallery-counter>01 / 04</p>
           <div>
-            <p class="prototype-gallery-label" data-prototype-gallery-label>Choose a real application</p>
-            <p class="prototype-gallery-summary" data-prototype-gallery-summary>See what is ready, what is unavailable, and what is already installed.</p>
+            <p class="prototype-gallery-label" data-prototype-gallery-label>Open a named application</p>
+            <p class="prototype-gallery-summary" data-prototype-gallery-summary>See its purpose, current state, and honest availability before starting work.</p>
           </div>
         </footer>
         <p class="sr-only" data-prototype-gallery-status aria-live="polite"></p>

@@ -261,7 +261,7 @@ select {
 .hero-copy {
   position: relative;
   z-index: 4;
-  width: min(660px, 100%);
+  width: min(600px, 100%);
 }
 
 .eyebrow,
@@ -318,7 +318,7 @@ select {
 }
 
 .hero-deck {
-  max-width: 34rem;
+  max-width: 36rem;
   margin: 2.2rem 0 0;
   color: #dce5f6;
   font-size: clamp(1.05rem, 1.8vw, 1.24rem);
@@ -411,11 +411,12 @@ select {
 .atlas {
   position: absolute;
   z-index: 1;
-  right: -12vw;
+  right: -18vw;
   bottom: -4rem;
-  width: min(69vw, 960px);
+  width: min(64vw, 900px);
   aspect-ratio: 1;
   color: var(--blue);
+  opacity: 0.78;
   pointer-events: none;
   transform: translate3d(var(--atlas-x, 0), var(--atlas-y, 0), 0);
   transition: transform 460ms var(--ease);
@@ -426,7 +427,7 @@ select {
   inset: 10%;
   border: 1px solid rgba(34, 211, 238, 0.24);
   border-radius: 50%;
-  box-shadow: 0 0 0 90px rgba(47, 125, 255, 0.025), 0 0 0 180px rgba(47, 125, 255, 0.022);
+  box-shadow: 0 0 0 90px rgba(47, 125, 255, 0.022);
   content: "";
 }
 
@@ -474,40 +475,6 @@ select {
   height: 37%;
   filter: none;
   transform: rotate(-5deg);
-}
-
-.atlas-coordinates {
-  position: absolute;
-  right: 12%;
-  bottom: 19%;
-  display: grid;
-  gap: 0.26rem;
-  color: rgba(220, 229, 246, 0.7);
-  font-family: var(--mono);
-  font-size: 0.61rem;
-  letter-spacing: 0.08em;
-}
-
-.hero-footnote {
-  position: absolute;
-  z-index: 4;
-  right: 0;
-  bottom: 1.8rem;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  color: #9aabc9;
-  font-family: var(--mono);
-  font-size: 0.63rem;
-  letter-spacing: 0.085em;
-  text-transform: uppercase;
-}
-
-.hero-footnote::before {
-  width: 3.5rem;
-  height: 1px;
-  background: currentColor;
-  content: "";
 }
 
 .home-section {
@@ -893,6 +860,83 @@ select {
   max-width: 38rem;
   margin: 0;
   color: #c8d3e7;
+}
+
+.ownership-map {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.72fr) minmax(0, 1fr);
+  margin: clamp(3.2rem, 7vw, 5.5rem) 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.26);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.26);
+}
+
+.ownership-plane,
+.ownership-boundary {
+  min-height: 15rem;
+  padding: 1.65rem clamp(1rem, 2.5vw, 2rem) 1.8rem;
+}
+
+.ownership-plane {
+  padding-left: 0;
+}
+
+.ownership-plane--execution {
+  padding-right: 0;
+  padding-left: clamp(1rem, 2.5vw, 2rem);
+}
+
+.ownership-plane > p:first-child,
+.ownership-boundary > p {
+  margin: 0;
+  color: var(--cyan);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ownership-plane h3 {
+  margin: 2.2rem 0 0;
+  font-family: var(--display);
+  font-size: clamp(1.75rem, 3vw, 2.55rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.ownership-plane > p:last-child {
+  max-width: 28rem;
+  margin: 1rem 0 0;
+  color: #c8d3e7;
+  line-height: 1.58;
+}
+
+.ownership-boundary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.26);
+  border-left: 1px solid rgba(255, 255, 255, 0.26);
+  background: rgba(47, 125, 255, 0.08);
+  text-align: center;
+}
+
+.ownership-boundary span {
+  display: block;
+  margin-top: 1.1rem;
+  color: #dce5f6;
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.ownership-map figcaption {
+  grid-column: 1 / -1;
+  padding: 1.1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  color: #aebbd2;
+  font-size: 0.82rem;
+  line-height: 1.55;
 }
 
 .learn-grid {
@@ -1567,6 +1611,18 @@ select {
   }
 }
 
+@media (max-width: 1180px) {
+  .hero-copy {
+    width: min(560px, 58vw);
+  }
+
+  .atlas {
+    right: -10vw;
+    width: min(52vw, 720px);
+    opacity: 0.46;
+  }
+}
+
 @media (max-width: 800px) {
   :root {
     --page: min(100% - 32px, 1180px);
@@ -1632,19 +1688,19 @@ select {
     padding-bottom: 5rem;
   }
 
+  .hero-copy {
+    width: 100%;
+  }
+
   .hero-deck {
     max-width: 31rem;
   }
 
   .atlas {
-    right: -42vw;
+    right: -35vw;
     bottom: -3rem;
-    width: min(129vw, 790px);
-    opacity: 0.67;
-  }
-
-  .hero-footnote {
-    display: none;
+    width: min(92vw, 650px);
+    opacity: 0.2;
   }
 
   .statement,
@@ -1691,6 +1747,32 @@ select {
   .route-section::after {
     right: -30%;
     width: 90vw;
+  }
+
+  .ownership-map {
+    grid-template-columns: 1fr;
+  }
+
+  .ownership-plane,
+  .ownership-plane--execution,
+  .ownership-boundary {
+    min-height: auto;
+    padding: 1.5rem 0;
+  }
+
+  .ownership-boundary {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.26);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.26);
+    text-align: left;
+  }
+
+  .ownership-plane h3 {
+    margin-top: 1.2rem;
+  }
+
+  .ownership-map figcaption {
+    grid-column: auto;
   }
 
   .release-band-inner {
