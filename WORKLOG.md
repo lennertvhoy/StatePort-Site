@@ -1,5 +1,32 @@
 # Worklog
 
+## 2026-07-26 — Deployment-state reconciliation and alpha-alignment slice opened
+
+- Corrected stale current-truth claims. The 2026-07-23 entries below recorded
+  the harness-narrative package as "uncommitted, unpushed, and not deployed";
+  in fact it was committed on `main` the same day (`690b5f4` narrative and
+  media rebuild, `92d134b` VTT verbatim fix) and deployed by Pages run
+  `30043401841` (passed 2026-07-23, confirmed via
+  `gh run list --repo lennertvhoy/StatePort-Site`). `STATUS.md`,
+  `NEXT_ACTIONS.md`, and `PROJECT_STATE.yaml` now record this.
+- Re-verified the live walkthrough media against the repository on 2026-07-26:
+  `curl` of the live MP4 and VTT SHA-256 match the working-tree files exactly
+  (MP4 `057588edf3db94d9e022a1ca244edf5de9bddbb482f786e221bd0adf4d1875e1`,
+  VTT `cab9d1ed26a31618874ef5c895a1d9cb1da6352a254118252dd67f74855a734d`;
+  95.173 s, 1280x720 H.264/AAC per `ffprobe`). The hash `f8ad9dad…` recorded
+  on 2026-07-23 was the pre-VTT-fix intermediate build inside `690b5f4`; the
+  deployed build is the `92d134b` re-render. Earlier walkthrough revisions and
+  their merge/Pages/runtime records below remain as history only.
+- Removed the exact local filesystem path from `PROJECT_STATE.yaml`
+  (`delivery.local_repository`); public state files no longer carry local
+  machine paths.
+- Opened local branch `agent/site-alpha-release-alignment-001` (base
+  `92d134b`) for the v0.1.0-alpha.1 private-RC site alignment: hero visual
+  repair, product-truth copy corrections, CTA/alpha-status note, site licence
+  boundary, whitepaper v1.2 candidate, and walkthrough rebuild. Local only —
+  no push, no Pages deploy, no release-ledger availability change, no
+  whitepaper publication without owner direction.
+
 ## 2026-07-23 — Walkthrough video rebuilt and mermaid diagrams added
 
 - Rebuilt the local-prototype walkthrough MP4 from the reframed narration so

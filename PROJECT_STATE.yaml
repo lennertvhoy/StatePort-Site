@@ -1,6 +1,6 @@
 metadata:
-  updated_at: 2026-07-23T00:00:00+02:00
-  updated_by: codex
+  updated_at: 2026-07-26T00:00:00+02:00
+  updated_by: kimi-code-agent
   format_version: statespec-site-state/v1
 
 workflow:
@@ -13,7 +13,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: launch_preparation
-  status: harness_narrative_and_video_rebuilt_local_validated_deploy_pending
+  status: alpha_release_alignment_local_in_progress
   purpose: public documentation, tutorials, release status, and future download home
 
 source_boundary:
@@ -75,9 +75,9 @@ site:
   deployment:
     provider: GitHub Pages
     workflow: .github/workflows/deploy-pages.yml
-    status: configured_and_deployed_2026-07-22
-    merge_commit: 8794d1bc9800fff186555fbd5546e7bf9c2d8fc2
-    workflow_run: 29912179462
+    status: deployed_2026-07-23
+    merge_commit: 92d134b
+    workflow_run: 30043401841
   brand_asset:
     path: assets/stateport-mascot-shell.svg
     sha256: 85459d506c5e15f405a44b6604fecd1cdc64ff4fd6a2d42ddb68199fdfca2cf6
@@ -112,12 +112,13 @@ documentation_package:
     product_ux_overhaul_assistive_technology_and_usability_acceptance: pending
 
 public_media_and_paper:
-  status: plain_language_copy_refresh_deployed_public_runtime_verified
+  status: harness_narrative_deployed_public_hash_reverified_2026-07-26
   prototype_video:
     path: assets/media/stateport-local-prototype-walkthrough.mp4
-    duration_seconds: 103.968
-    sha256: f57949d33bdfe9ee8bebde37dfe32446adb01c5c9136fdd6927724758aaa9467
-    format: h264_aac_mp4_1920x1200_public_safe_platform_fixture_capture_with_edge_neural_us_male_story_first_narration_and_webvtt_captions
+    duration_seconds: 95.173
+    sha256: 057588edf3db94d9e022a1ca244edf5de9bddbb482f786e221bd0adf4d1875e1
+    vtt_sha256: cab9d1ed26a31618874ef5c895a1d9cb1da6352a254118252dd67f74855a734d
+    format: h264_aac_mp4_1280x720_public_safe_platform_fixture_capture_with_edge_neural_us_male_harness_narration_and_verbatim_webvtt_captions
     narration_source: assets/media/stateport-local-prototype-walkthrough-narration.txt
     markup_source: assets/media/stateport-local-prototype-walkthrough-narration.ssml
     voice: en-US-AndrewNeural
@@ -125,17 +126,16 @@ public_media_and_paper:
     synthesis_boundary: public_narration_text_sent_once_at_build_time_no_visitor_runtime_dependency
     boundary: working_public_safe_fixture_capture_with_availability_routed_to_release_ledger
     visual_treatment: clean_screens_without_baked_text_cards
-    story_structure: what_stateport_is_why_chat_lives_inside_work_real_workflow_controls_and_takeaway
-    pacing: 95_percent_narration_rate_with_natural_scene_delivery_and_750ms_scene_tail_pauses
+    superseded_hash_note: f8ad9dad463d14e364284488272e261bfc45b85c8fe4e22f51e9b5bf8ea31d43 was the pre-VTT-fix intermediate build in 690b5f4
     deployment:
       status: deployed
-      public_runtime_status: verified_2026-07-22
-      merge_commit: 0d4875d15f3b5f613dca6a70e625ae459692cd52
-      workflow_run: 29924837231
+      public_runtime_status: hash_reverified_2026-07-26
+      merge_commit: 92d134b
+      workflow_run: 30043401841
       public_url: https://lennertvhoy.github.io/StatePort-Site/
-      caption_sync: sixteen_scene_cues_verbatim_from_markup_sentence_text_timed_to_exact_audio_segments
-      local_validation: ffprobe_h264_aac_1920x1200_103.968_seconds_caption_text_exact_and_contact_sheet_checked_2026-07-22
-      public_runtime_validation: live_mp4_and_vtt_sha256_page_copy_and_103.968_second_metadata_verified_2026-07-22
+      caption_sync: six_scene_cues_verbatim_from_narration_text_timed_to_exact_audio_segments
+      local_validation: ffprobe_h264_aac_1280x720_95.173_seconds_caption_text_exact_and_frame_sampling_checked_2026-07-23
+      public_runtime_validation: live_mp4_and_vtt_sha256_match_repository_files_2026-07-26
   screenshot_gallery:
     route: index.html#prototype
     status: deployed_public_runtime_verified_human_acceptance_pending
@@ -179,7 +179,7 @@ release_ledger:
   visitor_message: public release preparation is in progress; no download is offered
 
 delivery:
-  local_repository: /home/ff/Documents/Projects/StatePort-Site
+  local_repository: local_working_copy_path_intentionally_not_recorded_in_public_state_files
   remote_repository: https://github.com/lennertvhoy/StatePort-Site
   default_branch: main
   initial_commit: d4522dbee2a39d1f2c3c64766ac222b92ed17332
@@ -220,19 +220,25 @@ delivery:
   local_validation: passed_2026-07-22_for_product_ux_overhaul_authored_source_and_synthetic_quality_contract
   visual_review: product_ux_overhaul_exact_final_head_desktop_390_keyboard_media_console_passed_2026-07-22
   remote_ci:
-    status: plain_language_deployment_passed_and_validation_passed
+    status: harness_narrative_deployment_passed
     workflow: Deploy StatePort Site
-    run_id: 29912179462
+    run_id: 30043401841
     event: push
-    head_sha: 8794d1bc9800fff186555fbd5546e7bf9c2d8fc2
+    head_sha: 92d134b
   public_runtime:
-    status: verified_for_product_ux_overhaul_merge_commit
+    status: verified_for_harness_narrative_head_92d134b
     url: https://lennertvhoy.github.io/StatePort-Site/
     checks:
       - HTTP_200
       - expected_document_title
       - expected_homepage_content
       - documentation_and_video_routes
-      - plain_language_homepage_and_walkthrough
+      - live_walkthrough_mp4_and_vtt_sha256_match_repository_2026-07-26
       - browser_console_no_errors
     human_acceptance: pending
+  alpha_release_alignment:
+    branch: agent/site-alpha-release-alignment-001
+    base_sha: 92d134b
+    scope: hero_repair_product_truth_copy_ctas_alpha_note_licence_boundary_whitepaper_v1_2_candidate_walkthrough_rebuild
+    constraints: local_only_no_push_no_pages_deploy_no_release_ledger_availability_change_no_whitepaper_publication
+    status: in_progress
