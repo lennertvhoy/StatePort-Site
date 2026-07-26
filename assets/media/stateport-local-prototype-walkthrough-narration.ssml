@@ -1,75 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <speak version="1.1" xml:lang="en-US">
   <voice name="en-US-AndrewNeural">
-    <prosody rate="95%">
-      <p id="scene-01">
-        <s>StatePort is a home for ongoing work with AI.</s>
-        <break time="500ms"/>
-        <s>You do not start with a blank chat. You open the app for the work you are doing.</s>
-      </p>
-      <p id="scene-02">
-        <s>Each app keeps the work in one place: the project, the conversation, the tools, the decisions, and what happened before.</s>
-      </p>
-      <p id="scene-03">
-        <s>The idea is simple.</s>
-        <break time="450ms"/>
-        <s>Chat helps with the work, but the project is what lasts.</s>
-      </p>
-      <p id="scene-04">
-        <s>Here I choose a checklist from the catalog.</s>
-        <break time="450ms"/>
-        <s>I open it to continue that work.</s>
-      </p>
-      <p id="scene-05">
-        <s>The project opens with the things I need to see: what it is, what tools it has, and what needs attention.</s>
-      </p>
-      <p id="scene-06">
-        <s>Now I ask a normal question: what should I do next?</s>
-        <break time="450ms"/>
-        <s>The answer stays inside the checklist, next to the work it is talking about.</s>
-      </p>
-      <p id="scene-07">
-        <s>Next I ask StatePort to plan the next checklist item.</s>
-        <break time="450ms"/>
-        <s>This is an action, so it gets more care than a chat reply.</s>
-      </p>
-      <p id="scene-08">
-        <s>Before it can run, I can see what it will do, which tool will run it, and whether it can change the project.</s>
-      </p>
-      <p id="scene-09">
-        <s>The plan is ready, but it is waiting.</s>
-        <break time="450ms"/>
-        <s>I can read the exact action before I approve it.</s>
-      </p>
-      <p id="scene-10">
-        <s>After I approve it, StatePort runs the check.</s>
-      </p>
-      <p id="scene-11">
-        <s>Here is the result.</s>
-        <break time="450ms"/>
-        <s>It finished, and it did not change the project.</s>
-      </p>
-      <p id="scene-12">
-        <s>Later, I can check the request, the approval, and the result together.</s>
-      </p>
-      <p id="scene-13">
-        <s>Settings show what I can change, and what is fixed for this project.</s>
-      </p>
-      <p id="scene-14">
-        <s>Different work can use a different app.</s>
-        <break time="450ms"/>
-        <s>This technical workspace has tools for development work.</s>
-      </p>
-      <p id="scene-15">
-        <s>Some tools are not available here.</s>
-        <break time="450ms"/>
-        <s>StatePort leaves them turned off instead of pretending they work.</s>
-      </p>
-      <p id="scene-16">
-        <s>That is the point of StatePort.</s>
-        <break time="450ms"/>
-        <s>AI helps inside work you can see, check, and come back to.</s>
-      </p>
+    <prosody rate="+0%" pitch="+0Hz">
+      <p id="scene-01">StatePort starts with named applications, not a blank chat. This private-alpha fixture shows ongoing work with its own purpose, durable state, decisions, and history.</p>
+      <p id="scene-02">The application plane provides purpose and continuity. StatePort owns intent, authority, canonical state, evidence, and acceptance. Those facts do not belong to an agent session.</p>
+      <p id="scene-03">Conversation is one view inside the application. The execution plane is separate: the harness runs an authorized task and returns observations and candidate output, but it does not own accepted state.</p>
+      <p id="scene-04">The source view says whether an application source is verified. A development candidate can provide isolated-test evidence, but it does not silently become a canonical release or production install.</p>
+      <p id="scene-05">The same application list remains readable on a small screen. This is a local interface view, not evidence of a separate mobile release.</p>
+      <p id="scene-06">This private alpha has one exercised provider path: Codex in supervised-direct mode. Other providers are not qualified by this walkthrough, and there is no public software download yet.</p>
     </prosody>
   </voice>
 </speak>
