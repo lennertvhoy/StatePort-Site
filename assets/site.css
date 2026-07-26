@@ -251,6 +251,8 @@ select {
 .hero-inner {
   position: relative;
   display: grid;
+  grid-template-columns: minmax(0, 34rem) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 6rem);
   align-items: center;
   width: var(--page);
   min-height: inherit;
@@ -261,7 +263,8 @@ select {
 .hero-copy {
   position: relative;
   z-index: 4;
-  width: min(600px, 100%);
+  width: 100%;
+  max-width: 34rem;
 }
 
 .eyebrow,
@@ -409,11 +412,10 @@ select {
 }
 
 .atlas {
-  position: absolute;
+  position: relative;
   z-index: 1;
-  right: -18vw;
-  bottom: -4rem;
-  width: min(64vw, 900px);
+  justify-self: center;
+  width: min(100%, 430px);
   aspect-ratio: 1;
   color: var(--blue);
   opacity: 0.78;
@@ -469,8 +471,8 @@ select {
 
 .atlas-mark {
   position: absolute;
-  top: 32%;
-  left: 33.75%;
+  top: 31.5%;
+  left: 31.5%;
   width: 37%;
   height: 37%;
   filter: none;
@@ -1679,13 +1681,15 @@ select {
   }
 
   .hero {
-    min-height: max(650px, calc(100svh - 72px));
+    min-height: 0;
     margin-top: -72px;
   }
 
   .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 2.75rem;
     padding-top: 9.2rem;
-    padding-bottom: 5rem;
+    padding-bottom: 4.5rem;
   }
 
   .hero-copy {
@@ -1697,10 +1701,8 @@ select {
   }
 
   .atlas {
-    right: -35vw;
-    bottom: -3rem;
-    width: min(92vw, 650px);
-    opacity: 0.2;
+    justify-self: center;
+    width: min(74vw, 340px);
   }
 
   .statement,
