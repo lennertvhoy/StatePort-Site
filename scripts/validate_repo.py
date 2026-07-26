@@ -205,7 +205,7 @@ def main() -> None:
     require_text("STATUS.md", "**Execution Mode:** operating")
     require_text("PROJECT_STATE.yaml", "statedd_mode: operating")
     require_text("index.html", "StatePort")
-    require_text("index.html", "Watch the working walkthrough")
+    require_text("index.html", "See the application at work")
     require_text("docs/prototype-walkthrough.html", "Working fixture")
     require_text("docs/agent-kits.html", "Early direction")
     require_text("docs/platform-support.html", "Capability-based qualification")
