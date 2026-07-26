@@ -1378,6 +1378,11 @@ video {
     grid-row: 1 / span 2;
   }
 
+  .hero .availability a {
+    grid-column: 2;
+    justify-self: start;
+  }
+
   .hero .availability > span[aria-hidden="true"] {
     display: none;
   }
