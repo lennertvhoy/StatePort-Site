@@ -198,3 +198,13 @@
 - Verified `https://lennertvhoy.github.io/StatePort-Site/` in a browser: HTTP
   200, expected title and content, no console errors. Human acceptance remains
   separately unproven.
+## 2026-07-26 — Sol Ultra site truth correction
+
+- Reframed the homepage and documentation around durable applications first,
+  retaining the managed execution plane and ownership seam.
+- Corrected provider/portability claims, added private noindex Stateware v1.2,
+  rebuilt the walkthrough and manifest, and made quality validation explicitly
+  exclude only the private candidate from the public sitemap.
+- Local branch `agent/site-sol-ultra-total-product-corrections-001` at
+  `43c7be9`; site quality, repository validation, paper, and media checks pass.
+- No push, merge, Pages trigger, or deployment performed.

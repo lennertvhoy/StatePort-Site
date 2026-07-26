@@ -1,12 +1,21 @@
 # StatePort Site status
 
-**Updated At:** 2026-07-23
+**Updated At:** 2026-07-26
 **Execution Mode:** operating
-**Project State:** harness_narrative_and_video_rebuilt_local_validated_deploy_pending
+**Project State:** application_first_truth_rebuilt_local_validated_private_candidate_deploy_pending
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
 ## Current truth
+
+- Local correction branch `agent/site-sol-ultra-total-product-corrections-001`
+  is at `43c7be9`. It is not pushed or deployed.
+- The homepage and docs lead with durable applications while retaining the
+  managed execution plane and ownership seam. Codex supervised-direct is the
+  only exercised provider; Pi/OpenCode/direct API are not qualified.
+- Stateware v1.2 is a private noindex candidate and does not replace public
+  v1.1. The walkthrough was rebuilt with verbatim captions and a media
+  manifest; its exact identity is recorded in the private audit.
 
 - The live public site is a static HTML/CSS/progressive-JavaScript deployment.
   It contains the product story, documentation, tutorials, release ledger,

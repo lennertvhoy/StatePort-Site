@@ -1,20 +1,20 @@
 # NEXT_ACTIONS — active execution queue
 
-**Updated At:** 2026-07-23
+**Updated At:** 2026-07-26
 **Execution Mode:** operating
 **Max Items:** 3
 
-## P1 [BL-SITE-007] Obtain human acceptance of the reframed harness-narrative package
+## P1 [BL-SITE-007] Obtain human acceptance of the application-first package
 
 **Status:** pending
 
 The homepage, docs, walkthrough, and diagrams are locally complete with the
-harness narrative and the rebuilt MP4 matching its captions. Human review of
+application-first narrative and rebuilt MP4 matching its captions. Human review of
 the copy, visual design, information architecture, and media voice is the
 remaining gate before merge and deploy.
 
-**Exit:** human review records acceptance or requested changes for the live
-package — then deploy.
+**Exit:** human review records acceptance or requested changes for the local
+package; only an explicit owner directive may then push or deploy.
 
 ## P1 [BL-SITE-003] Add release-specific content only with public source evidence
 
