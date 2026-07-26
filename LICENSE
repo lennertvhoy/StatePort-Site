@@ -1,0 +1,41 @@
+# StatePort Site — licensing boundary
+
+This repository is the public StatePort website. Its contents are licensed
+per component as follows. This boundary is independent of the StatePort
+implementation repository; no licence choice made there applies here, and
+none made here applies there.
+
+## 1. Source code — MIT License
+
+The site's own source code — HTML, CSS, JavaScript, Python build and
+validation scripts, GitHub workflow definitions, and Mermaid diagram sources
+— is licensed under the MIT License. The full text is in
+`LICENSES/MIT.txt`.
+
+## 2. Documentation and written content — CC BY 4.0
+
+The written content — documentation pages, tutorials, release-ledger text,
+the Stateware whitepaper sources and their rendered readers, and the
+walkthrough narration scripts — is licensed under the Creative Commons
+Attribution 4.0 International License. The full text is in
+`LICENSES/CC-BY-4.0.txt`.
+
+## 3. Brand assets — all rights reserved
+
+The StatePort name, the shell mascot (`assets/stateport-mascot-shell.svg`),
+and assets derived from it (including `assets/favicon.svg`) are brand assets
+of the project author and are **not** licensed for reuse. The mascot is
+copied byte-for-byte from the StatePort implementation repository with the
+author's permission; its provenance and checksum are recorded in
+`PROJECT_DNA.yaml`.
+
+## 4. Media captures — CC BY 4.0, with third-party service notes
+
+Screenshots, the prototype walkthrough video, and diagrams in this
+repository are original works of the project author, created from
+public-safe fixture data, and are licensed under CC BY 4.0 like the other
+written content. Third-party services used at build time (recorded in
+`NOTICE`) retain their own terms; no third-party media, font, or stock
+asset is redistributed in this repository.
+
+See `NOTICE` for the full asset inventory and attribution review.

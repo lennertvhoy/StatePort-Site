@@ -50,3 +50,13 @@ the sitemap and manifest, tracking absence, and static asset budgets.
 Pushes to `main` invoke `.github/workflows/deploy-pages.yml`. The workflow uses
 the GitHub Pages custom-workflow flow; Pages must be enabled for the repository.
 Pull requests run the non-deploying validation workflow.
+
+## License
+
+This repository has its own licensing boundary, independent of the StatePort
+implementation repository: site source code under MIT, written content and
+media under CC BY 4.0, and brand assets (name, shell mascot, derivatives)
+all rights reserved. See `LICENSE` for the boundary, `NOTICE` for the asset
+inventory and attribution review, and `LICENSES/` for the full texts. The
+licence choice is recorded locally and takes public effect only when the
+owner accepts and publishes it.
