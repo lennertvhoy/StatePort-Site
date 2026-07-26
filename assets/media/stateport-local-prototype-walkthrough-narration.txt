@@ -1,21 +1,22 @@
-StatePort is a harness for coding agents. It runs agents like Codex
-headlessly, in an environment you control, and gives the work a durable home
-outside the chat. Here is the preview.
+StatePort starts with named applications, not a blank chat. This private-alpha
+fixture shows ongoing work with its own purpose, durable state, decisions, and
+history.
 
-This is the application you get. Open a named project and see what is
-happening, what needs attention, and what the agent last did. Your state files
-and decisions live here, not hidden inside a session.
+The application plane provides purpose and continuity. StatePort owns intent,
+authority, canonical state, evidence, and acceptance. Those facts do not belong
+to an agent session.
 
-This is the conversation. You can ask the agent for help, but the conversation
-is only one part of the project. The agent is a replaceable processor — the
-work does not live or die with the chat.
+Conversation is one view inside the application. The execution plane is
+separate: the harness runs an authorized task and returns observations and
+candidate output, but it does not own accepted state.
 
-This screen shows the project information. It helps you see what is ready, what
-is still being checked, and what is only a test. That makes it easier to know
-what you can trust.
+The source view says whether an application source is verified. A development
+candidate can provide isolated-test evidence, but it does not silently become a
+canonical release or production install.
 
-And this is the mobile view. The same project stays readable on a small screen.
+The same application list remains readable on a small screen. This is a local
+interface view, not evidence of a separate mobile release.
 
-This is a local preview made on my computer. You cannot download the software
-yet. The point of StatePort is simple: harness the agent, govern what it does,
-and keep the work.
+This private alpha has one exercised provider path: Codex in supervised-direct
+mode. Other providers are not qualified by this walkthrough, and there is no
+public software download yet.

@@ -1,25 +1,19 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:11.688
-StatePort is a harness for coding agents. It runs agents like Codex
-StatePort is a harness for coding agents. It runs agents like Codex headlessly, in an environment you control, and gives the work a durable home outside the chat. Here is the preview.
+00:00:00.000 --> 00:00:11.088
+StatePort starts with named applications, not a blank chat. This private-alpha fixture shows ongoing work with its own purpose, durable state, decisions, and history.
 
-00:00:12.138 --> 00:00:23.871
-This is the application you get. Open a named project and see what is
-This is the application you get. Open a named project and see what is happening, what needs attention, and what the agent last did. Your state files and decisions live here, not hidden inside a session.
+00:00:11.538 --> 00:00:23.874
+The application plane provides purpose and continuity. StatePort owns intent, authority, canonical state, evidence, and acceptance. Those facts do not belong to an agent session.
 
-00:00:24.321 --> 00:00:36.177
-This is the conversation. You can ask the agent for help, but the
-This is the conversation. You can ask the agent for help, but the conversation is only one part of the project. The agent is a replaceable processor — the work does not live or die with the chat.
+00:00:24.338 --> 00:00:37.106
+Conversation is one view inside the application. The execution plane is separate: the harness runs an authorized task and returns observations and candidate output, but it does not own accepted state.
 
-00:00:36.627 --> 00:00:46.261
-This screen shows the project information. It helps you see what is
-This screen shows the project information. It helps you see what is ready, what is still being checked, and what is only a test. That makes it easier to know what you can trust.
+00:00:37.571 --> 00:00:49.259
+The source view says whether an application source is verified. A development candidate can provide isolated-test evidence, but it does not silently become a canonical release or production install.
 
-00:00:46.711 --> 00:00:51.311
-And this is the mobile view. The same project stays readable on a
-And this is the mobile view. The same project stays readable on a small screen.
+00:00:49.709 --> 00:00:57.989
+The same application list remains readable on a small screen. This is a local interface view, not evidence of a separate mobile release.
 
-00:00:51.761 --> 00:01:01.985
-This is a local preview made on my computer. You cannot download the
-This is a local preview made on my computer. You cannot download the software yet. The point of StatePort is simple: harness the agent, govern what it does, and keep the work.
+00:00:58.443 --> 00:01:10.083
+This private alpha has one exercised provider path: Codex in supervised-direct mode. Other providers are not qualified by this walkthrough, and there is no public software download yet.

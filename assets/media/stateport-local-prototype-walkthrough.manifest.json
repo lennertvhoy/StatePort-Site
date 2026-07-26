@@ -1,0 +1,119 @@
+{
+  "artifacts": {
+    "mp4": {
+      "audioChannels": 2,
+      "audioCodec": "aac",
+      "audioDurationSeconds": 70.090667,
+      "audioSampleRateHz": 48000,
+      "formatDurationSeconds": 70.100016,
+      "height": 720,
+      "path": "assets/media/stateport-local-prototype-walkthrough.mp4",
+      "sha256": "358d1791f8711ec58f17d876c8980ad74b6dee586a77eb75a2a61c19abf1278a",
+      "videoCodec": "h264",
+      "videoDurationSeconds": 70.1,
+      "width": 1280
+    },
+    "narration": {
+      "path": "assets/media/stateport-local-prototype-walkthrough-narration.txt",
+      "sceneCount": 6,
+      "sha256": "49748d34582d6c6094c91082b10df100221bbdc357d73f92824ed6430053e549"
+    },
+    "ssml": {
+      "path": "assets/media/stateport-local-prototype-walkthrough-narration.ssml",
+      "sceneCount": 6,
+      "sha256": "41c1a872932901066a6b1d1af3ba369ed5aa57791cae2278de91532d4e640396"
+    },
+    "vtt": {
+      "cueCount": 6,
+      "lastCueEndSeconds": 70.083,
+      "path": "assets/media/stateport-local-prototype-walkthrough.vtt",
+      "sha256": "7e9b1cf1b187983fadcebf0621a9de7c9cc9496f2a2d3811c4c053c0b4a1ac44"
+    }
+  },
+  "build": {
+    "audioSampleRateHz": 48000,
+    "builder": "scripts/build_walkthrough.py",
+    "builderSha256": "16cab715e1a40c745d41d71f83537b7f3ccf4a4cb6c8d2a21d329570912e2969",
+    "durationToleranceSeconds": 0.08,
+    "framesPerSecond": 30,
+    "height": 720,
+    "pitch": "+0Hz",
+    "rate": "+0%",
+    "sceneGapSeconds": 0.45,
+    "voice": "en-US-AndrewNeural",
+    "width": 1280
+  },
+  "claimBoundary": {
+    "availability": "private_alpha_fixture_not_public_release",
+    "executionMode": "supervised_direct",
+    "executionProvider": "codex",
+    "otherProvidersQualified": false,
+    "shownViews": [
+      "applications_home_and_catalog",
+      "application_conversation",
+      "application_source_status",
+      "mobile_applications_home"
+    ]
+  },
+  "formatVersion": "stateport-walkthrough-media/v1",
+  "ownershipSeam": {
+    "harnessOwns": "authorized_execution_behavior",
+    "statePortOwns": [
+      "intent",
+      "authority",
+      "canonical_state",
+      "evidence",
+      "acceptance"
+    ]
+  },
+  "scenes": [
+    {
+      "caption": "StatePort starts with named applications, not a blank chat. This private-alpha fixture shows ongoing work with its own purpose, durable state, decisions, and history.",
+      "endSeconds": 11.088,
+      "id": "scene-01",
+      "image": "assets/media/stateport-demo-home.png",
+      "imageSha256": "3617f096e0eac220bfc99a685e005e89b8def00bb26d58289e3ed9ed7f64ca07",
+      "startSeconds": 0.0
+    },
+    {
+      "caption": "The application plane provides purpose and continuity. StatePort owns intent, authority, canonical state, evidence, and acceptance. Those facts do not belong to an agent session.",
+      "endSeconds": 23.874,
+      "id": "scene-02",
+      "image": "assets/media/stateport-demo-home.png",
+      "imageSha256": "3617f096e0eac220bfc99a685e005e89b8def00bb26d58289e3ed9ed7f64ca07",
+      "startSeconds": 11.538
+    },
+    {
+      "caption": "Conversation is one view inside the application. The execution plane is separate: the harness runs an authorized task and returns observations and candidate output, but it does not own accepted state.",
+      "endSeconds": 37.106,
+      "id": "scene-03",
+      "image": "assets/media/stateport-demo-conversation.png",
+      "imageSha256": "056c40e2ef5d19c64d73729f4f4c21f8647c5d47b347c46e993e38dceb95833a",
+      "startSeconds": 24.338
+    },
+    {
+      "caption": "The source view says whether an application source is verified. A development candidate can provide isolated-test evidence, but it does not silently become a canonical release or production install.",
+      "endSeconds": 49.259,
+      "id": "scene-04",
+      "image": "assets/media/stateport-demo-source.png",
+      "imageSha256": "8f98c600ededf4afd2ef4d6e4594298533f223531e49d8019a24048e26666f9a",
+      "startSeconds": 37.571
+    },
+    {
+      "caption": "The same application list remains readable on a small screen. This is a local interface view, not evidence of a separate mobile release.",
+      "endSeconds": 57.989,
+      "id": "scene-05",
+      "image": "assets/media/stateport-demo-mobile.png",
+      "imageSha256": "e8ae632b5a05714874f89800b7bbc6e70fea22a46f217c6cad684c31b0a8e8ed",
+      "startSeconds": 49.709
+    },
+    {
+      "caption": "This private alpha has one exercised provider path: Codex in supervised-direct mode. Other providers are not qualified by this walkthrough, and there is no public software download yet.",
+      "endSeconds": 70.083,
+      "id": "scene-06",
+      "image": "assets/media/stateport-demo-mobile.png",
+      "imageSha256": "e8ae632b5a05714874f89800b7bbc6e70fea22a46f217c6cad684c31b0a8e8ed",
+      "startSeconds": 58.443
+    }
+  ]
+}
