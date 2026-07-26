@@ -47,7 +47,14 @@ def validate_local_references() -> None:
             target_text = parsed.path
             if not target_text:
                 continue
-            target = (page.parent / target_text).resolve()
+            if target_text.startswith("/StatePort-Site/"):
+                target = (ROOT / target_text.removeprefix("/StatePort-Site/")).resolve()
+            elif target_text.startswith("/"):
+                raise AssertionError(
+                    f"Unrecognized site-root reference in {page.relative_to(ROOT)}: {reference}"
+                )
+            else:
+                target = (page.parent / target_text).resolve()
             if ROOT not in target.parents and target != ROOT:
                 raise AssertionError(f"Escaping local reference in {page.relative_to(ROOT)}: {reference}")
             if not target.exists():
@@ -205,8 +212,8 @@ def main() -> None:
     require_text("STATUS.md", "**Execution Mode:** operating")
     require_text("PROJECT_STATE.yaml", "statedd_mode: operating")
     require_text("index.html", "StatePort")
-    require_text("index.html", "Watch the working walkthrough")
-    require_text("docs/prototype-walkthrough.html", "Working fixture")
+    require_text("index.html", "See the application workflow")
+    require_text("docs/prototype-walkthrough.html", "Private-alpha fixture")
     require_text("docs/agent-kits.html", "Early direction")
     require_text("docs/platform-support.html", "Capability-based qualification")
     require_text("papers/stateware-whitepaper-public-v1.1.html", "Publication note")
@@ -218,6 +225,36 @@ def main() -> None:
     )
     if "github.com/lennertvhoy/StatePort" in public_copy:
         raise AssertionError("Public pages must not link to the private implementation repository")
+
+    current_truth_paths = (
+        "index.html",
+        "docs/index.html",
+        "docs/foundations.html",
+        "docs/hosts-and-portability.html",
+        "docs/reference.html",
+        "assets/media/stateport-local-prototype-walkthrough-narration.txt",
+        "assets/media/stateport-local-prototype-walkthrough.vtt",
+    )
+    stale_claims = (
+        "replaceable processor",
+        "replaceable processors",
+        "swap the agent",
+    )
+    for path in current_truth_paths:
+        normalized = require(path).read_text(encoding="utf-8").lower()
+        for claim in stale_claims:
+            if claim in normalized:
+                raise AssertionError(f"Stale portability claim {claim!r} remains in {path}")
+
+    hosts_copy = require("docs/hosts-and-portability.html").read_text(encoding="utf-8").lower()
+    required_host_boundaries = (
+        "codex in <strong>supervised-direct</strong> mode",
+        "opencode and direct-api execution are not implemented or qualified",
+        "continuity does not imply equivalence",
+    )
+    for boundary in required_host_boundaries:
+        if boundary not in hosts_copy:
+            raise AssertionError(f"Missing provider truth boundary in hosts page: {boundary!r}")
 
     validate_local_references()
     validate_documentation_button_accessibility()

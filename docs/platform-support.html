@@ -76,27 +76,27 @@
               <tbody>
                 <tr>
                   <th scope="row">Linux</th>
-                  <td>Primary qualification target.</td>
-                  <td>Codex CLI and Linux isolation can be qualified.</td>
-                  <td>First supported release.</td>
+                  <td>Private-alpha qualification target: Linux x86_64 with rootless Podman.</td>
+                  <td>Codex in supervised-direct mode; exact candidate evidence remains private.</td>
+                  <td>Candidate testing only; no supported public release.</td>
                 </tr>
                 <tr>
                   <th scope="row">Docker Desktop for Linux</th>
-                  <td>Clean-install acceptance target.</td>
-                  <td>Requires explicit provider-authentication and sandbox qualification.</td>
-                  <td>Must pass before release.</td>
+                  <td>Not qualified.</td>
+                  <td>Provider authentication and effective isolation require separate proof.</td>
+                  <td>Future evaluation; not a release gate for the current private alpha.</td>
                 </tr>
                 <tr>
                   <th scope="row">macOS + Docker Desktop</th>
-                  <td>Expected UI and durable-storage path.</td>
+                  <td>Not qualified.</td>
                   <td>Bubblewrap is Linux-specific; host adapters require separate proof.</td>
-                  <td>Preview only after testing.</td>
+                  <td>Future evaluation.</td>
                 </tr>
                 <tr>
                   <th scope="row">Windows + Docker Desktop / WSL 2</th>
-                  <td>Expected UI and durable-storage path.</td>
+                  <td>Not qualified.</td>
                   <td>Filesystem, terminal, provider, and WSL behaviour require separate proof.</td>
-                  <td>Preview only after testing.</td>
+                  <td>Future evaluation.</td>
                 </tr>
               </tbody>
             </table>
@@ -105,14 +105,14 @@
           <p>The matrix names a release contract, not a promise that every row is currently available. The <a href="hosts-and-portability.html">host-portability page</a> explains why provider identity alone cannot substitute for capability and degradation evidence.</p>
 
           <h2>The first clean-install user story</h2>
-          <p>This is the first end-to-end scenario a later signed release must demonstrate. It is not an installation guide yet: the exact commands, image digests, and release identity belong with that release.</p>
+          <p>This is the end-to-end scenario a later public release must demonstrate. It is not an installation guide yet: the exact commands, image digests, and release identity belong with that release.</p>
           <ol>
-            <li>Install the supported Docker and Compose environment.</li>
+            <li>Install the qualified rootless Podman and Compose environment.</li>
             <li>Start an exact signed StatePort release from an empty data directory.</li>
             <li>Complete first-run diagnostics.</li>
             <li>Import existing StateSpec repositories through an explicit, reviewed path.</li>
             <li>Instantiate a new application from an accepted canonical template.</li>
-            <li>Configure Codex or another supported host without copying credentials into StatePort.</li>
+            <li>Configure the qualified Codex route without copying credentials into StatePort.</li>
             <li>Prove conversation, terminal, backup, restore, and governed-change workflows.</li>
             <li>Stop the old service only after data and recovery acceptance pass.</li>
           </ol>

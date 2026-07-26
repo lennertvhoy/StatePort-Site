@@ -64,19 +64,24 @@
           <p>Stateware moves the boundary outward: an application is a durable instance with an explicit definition, user-controlled canonical state, declared authority, and a checkable lifecycle history. A conversation can be valuable operational context, but it is not automatically the authority for a person’s domain facts.</p>
 
           <h2>What Stateware means</h2>
-          <p><strong>Stateware</strong> is software whose durable, inspectable state and governed lifecycle contracts form the application boundary while agents and models remain replaceable processors. The aim is work that is easier to understand, preserve, and review.</p>
+          <p><strong>Stateware</strong> is software whose versioned definition, durable state, explicit authority, and lifecycle contracts give an ongoing application a boundary outside any model session. Models and execution providers remain important, opinionated runtime dependencies; continuity does not make them behaviorally interchangeable.</p>
           <div class="code-panel" data-label="The working idea"><code>installed instance
 = pinned definition
 + user-controlled canonical state
 + explicit authority
 + checkable lifecycle history</code></div>
 
-          <h2>Where the coding agent fits</h2>
-          <p>StatePort does not replace your coding agent — it harnesses it. A headless agent like Codex runs inside a managed environment (your machine or an isolated container), plans its work, asks approval on risky steps, and writes results into the durable instance. The agent is a replaceable processor; the Stateware boundary is what survives when the agent, model, or session changes.</p>
-          <figure class="diagram-figure reveal">
-            <img src="../assets/diagrams/stateport-diagram-harness.png" alt="Diagram: replaceable coding-agent hosts feed an AgentRunSpec into the StatePort harness, which plans, approves, runs headlessly, and validates, writing results into a durable StateSpec instance.">
-            <figcaption>The harness orchestrates replaceable hosts; the durable instance is what survives.</figcaption>
-          </figure>
+          <h2>Two product planes, one ownership seam</h2>
+          <p>The application plane supplies purpose and continuity: the definition, goals, canonical state, decisions, and application-facing history. The execution plane supplies bounded work: environment setup, process lifecycle, provider invocation, cancellation, observations, and candidate results.</p>
+          <p>StatePort owns intent, authority, state, evidence, and acceptance at the seam. The harness owns execution behavior and must not silently promote its session, summary, or output into application truth. Today’s private-alpha route uses Codex in supervised-direct mode; other providers remain future qualification work.</p>
+          <div class="code-panel" data-label="The ownership seam"><code>application plane
+  purpose · definition · canonical state
+
+StatePort boundary
+  intent · authority · evidence · acceptance
+
+execution plane
+  environment · provider · process · candidate output</code></div>
 
           <h2>Why this changes the conversation</h2>
           <ul>

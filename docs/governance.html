@@ -64,14 +64,21 @@
 → prepared proposal and preconditions
 → exact grant or approval
 → bounded execution
-→ transactional apply
+→ observed result or transactional apply
 → validation result
 → receipt
 → optional independent or human acceptance</code></div>
-          <p>The order matters. A model can propose without gaining authority. An applied change can fail validation. A locally validated result can remain pending independent review. Keeping those facts separate makes failure visible instead of hiding it behind “done.”</p>
+          <p>The order matters. A model can propose without gaining authority. The current Codex path is supervised-direct, so a receipt after execution does not retroactively make that write transactional. An applied change can fail validation, and a locally validated result can remain pending external or human review.</p>
 
-          <h2>Authority should be specific</h2>
-          <p>Routine work may fit inside a bounded, revocable standing grant. Destructive, expensive, or external side effects should stop for a fresh decision. The exact policy depends on the application, but neither a template nor an assistant gets to widen its own authority.</p>
+          <h2>Oversight is a policy for each action</h2>
+          <p>Routine, reversible work may fit inside a bounded, revocable standing grant so a person can supervise without becoming the workflow engine. Destructive, expensive, sensitive, uncertain, or external side effects should stop for a fresh decision. Neither a template nor an assistant gets to widen its own authority.</p>
+          <ul>
+            <li><strong>Human-driven:</strong> the person performs or explicitly starts each step.</li>
+            <li><strong>Human-in-the-loop:</strong> execution pauses for a decision at a defined point.</li>
+            <li><strong>Human-on-the-loop:</strong> bounded routine work proceeds while the person can inspect, interrupt, or redirect it.</li>
+            <li><strong>Bounded autonomy:</strong> a future mode for policy-approved work inside measured limits.</li>
+          </ul>
+          <p>These modes belong to actions, not permanent application labels. The present public fixture demonstrates human-driven and approval-gated flows; it does not prove proactive human-on-the-loop operation.</p>
 
           <h2>Receipts help a person ask the right questions</h2>
           <ul>
