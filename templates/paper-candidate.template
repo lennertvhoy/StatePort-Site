@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="$title$ — a candidate Stateware whitepaper, not yet published.">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+    <title>$title$ (candidate $version$) — StatePort</title>
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-shell.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="../docs/">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-release" href="../releases/">Release status</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="paper-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Candidate whitepaper / $version$ — not yet published</p>
+          <h1 id="paper-title">$title$</h1>
+          <p>$subtitle$</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+        <aside class="doc-sidebar" aria-label="Paper navigation">
+          <h2>Stateware paper</h2>
+          <nav>
+            <a href="./stateware-whitepaper-candidate-v1.2.html" aria-current="page">Candidate 1.2 (unpublished)</a>
+            <a href="./stateware-whitepaper-candidate-v1.2.md">Candidate source Markdown</a>
+            <a href="./stateware-whitepaper-public-v1.1.html">Current public paper (1.1)</a>
+            <a href="../docs/">Documentation</a>
+            <a href="../releases/">Release status</a>
+          </nav>
+        </aside>
+        <article class="prose paper-prose">
+          <p class="notice"><strong>Candidate note</strong> This is an unpublished candidate, version $version$ ($date$), prepared for owner review. The current public paper remains <a href="./stateware-whitepaper-public-v1.1.html">version 1.1</a>. <a href="../releases/">Software availability lives in the release ledger.</a></p>
+$body$
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-shell.svg" alt="">
+          <p><strong>StatePort</strong>Durable applications, built from state outward.</p>
+        </div>
+        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+      </div>
+    </footer>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>
