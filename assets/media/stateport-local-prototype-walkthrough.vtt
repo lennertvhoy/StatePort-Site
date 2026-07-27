@@ -1,25 +1,30 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:08.633
-Hi! This is StatePort — a place on your own computer where the work
-Hi! This is StatePort — a place on your own computer where the work you do with AI can live. Let me show you what that means, in about a minute.
+00:00:00.000 --> 00:00:09.000
+Most AI tools start with an empty chat. StatePort
+starts with an app for work you want to continue.
 
-00:00:09.083 --> 00:00:19.183
-This is one of those projects. Instead of hiding inside a chat, it
-This is one of those projects. Instead of hiding inside a chat, it keeps its own notes: what the goal is, what happened so far, and what needs your attention next.
+00:00:09.750 --> 00:00:18.318
+Your goal, files, decisions, history, and AI
+conversations stay together.
 
-00:00:19.633 --> 00:00:34.321
-You can still chat with an AI helper — here it is called a coding
-You can still chat with an AI helper — here it is called a coding agent. StatePort runs it for you inside a container: a sealed-off workspace on your machine, so the agent can only touch what you allow, and it asks before anything important changes.
+00:00:19.068 --> 00:00:26.268
+You can ask an AI coding helper a normal question, or
+let it prepare useful work.
 
-00:00:34.771 --> 00:00:42.763
-This page is the project's memory: what is finished, what is still
-This page is the project's memory: what is finished, what is still being checked, and what is only an experiment — so you know what to trust.
+00:00:27.018 --> 00:00:37.986
+When the AI runs code, StatePort gives it a sealed-off
+container instead of unlimited access to your
+computer.
 
-00:00:43.213 --> 00:00:46.513
-And yes — the same project reads fine on your phone.
-And yes — the same project reads fine on your phone.
+00:00:38.736 --> 00:00:46.392
+Routine work can keep moving. Important changes stay
+visible for you to review.
 
-00:00:46.963 --> 00:01:04.147
-One honest note: this is a preview from my own computer. StatePort is
-One honest note: this is a preview from my own computer. StatePort is in private alpha, works with one AI coding tool so far, and can't be downloaded yet. The idea is simple: give AI work a real home, keep you in charge, and keep what's yours, yours.
+00:00:47.136 --> 00:00:52.944
+Close it. Return later. The app still knows what you
+were doing.
+
+00:00:53.694 --> 00:01:01.605
+StatePort gives ongoing AI work a home you can
+inspect, control, and keep.

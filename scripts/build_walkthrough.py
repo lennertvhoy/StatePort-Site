@@ -18,37 +18,44 @@ ffprobe, and the `edge-tts` python package.
 from __future__ import annotations
 
 import asyncio
+import hashlib
+import importlib.metadata
+import json
 import os
 import re
 import shutil
 import subprocess
 import sys
 import tempfile
+import textwrap
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 MEDIA = ROOT / "assets" / "media"
 NARRATION = MEDIA / "stateport-local-prototype-walkthrough-narration.txt"
+NARRATION_SSML = MEDIA / "stateport-local-prototype-walkthrough-narration.ssml"
 OUT_MP4 = MEDIA / "stateport-local-prototype-walkthrough.mp4"
 OUT_VTT = MEDIA / "stateport-local-prototype-walkthrough.vtt"
+OUT_MANIFEST = MEDIA / "stateport-local-prototype-walkthrough.manifest.json"
 WORK = Path(os.environ.get("WALKTHROUGH_WORK_DIR", tempfile.gettempdir())) / "walkthrough-build"
 
 VOICE = "en-US-AndrewNeural"
-RATE = "+0%"
+RATE = "-35%"
 PITCH = "+0Hz"
-GAP_S = 0.45          # silence between scenes
+GAP_S = 0.75          # quiet hold on the prior screen between scenes
 WIDTH, HEIGHT = 1280, 720
 BG = "0x0B132B"
 FPS = 30
 
 # scene index -> screenshot file
 SCENE_IMAGE = {
-    0: "stateport-demo-home.png",
-    1: "stateport-demo-home.png",
-    2: "stateport-demo-conversation.png",
-    3: "stateport-demo-source.png",
-    4: "stateport-demo-mobile.png",
-    5: "stateport-demo-mobile.png",
+    0: "stateport-platform-catalog.png",
+    1: "stateport-platform-settings.png",
+    2: "stateport-platform-conversation.png",
+    3: "stateport-platform-settings.png",
+    4: "stateport-platform-result.png",
+    5: "stateport-platform-catalog.png",
+    6: "stateport-platform-catalog.png",
 }
 
 
@@ -61,6 +68,23 @@ def probe_duration(path: Path) -> float:
         ["ffprobe", "-v", "error", "-show_entries", "format=duration",
          "-of", "csv=p=0", str(path)], text=True)
     return float(out.strip())
+
+
+def probe_stream_duration(path: Path, selector: str) -> float:
+    out = subprocess.check_output(
+        ["ffprobe", "-v", "error", "-select_streams", selector,
+         "-show_entries", "stream=duration", "-of", "csv=p=0", str(path)],
+        text=True,
+    )
+    return float(out.strip())
+
+
+def sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 async def synth_scene(scene: int, text: str, dst: Path) -> None:
@@ -89,31 +113,21 @@ def image_size(path: Path) -> tuple[int, int]:
     return int(w), int(h)
 
 
-def build_scene_clip(scene: int, audio: Path, image: Path, dst: Path) -> None:
-    dur = probe_duration(audio)
+def build_scene_clip(scene: int, audio: Path, image: Path, dst: Path, hold: float) -> None:
+    spoken_duration = probe_duration(audio)
+    total_duration = spoken_duration + hold
     filt = image_filter(image)
     run([
         "ffmpeg", "-y", "-v", "error",
         "-f", "lavfi", "-i", f"color=c={BG}:s={WIDTH}x{HEIGHT}:r={FPS}",
         "-loop", "1", "-i", str(image),
         "-i", str(audio),
-        "-t", f"{dur:.3f}",
+        "-t", f"{total_duration:.3f}",
         "-filter_complex",
-        f"[1:v]{filt},setsar=1[img];[0:v][img]overlay=x=(W-w)/2:y=(H-h)/2,format=yuv420p[v]",
-        "-map", "[v]", "-map", "2:a",
-        "-c:v", "libx264", "-tune", "stillimage", "-preset", "medium",
-        "-pix_fmt", "yuv420p", "-r", str(FPS),
-        "-c:a", "aac", "-b:a", "128k", "-ac", "2",
-        "-shortest", str(dst),
-    ])
-
-
-def build_silence_clip(seconds: float, dst: Path) -> None:
-    run([
-        "ffmpeg", "-y", "-v", "error",
-        "-f", "lavfi", "-i", f"color=c={BG}:s={WIDTH}x{HEIGHT}:r={FPS}",
-        "-f", "lavfi", "-i", f"anullsrc=channel_layout=stereo:sample_rate=44100",
-        "-t", f"{seconds:.3f}",
+        f"[1:v]{filt},setsar=1[img];"
+        f"[0:v][img]overlay=x=(W-w)/2:y=(H-h)/2,format=yuv420p[v];"
+        f"[2:a]apad=pad_dur={hold:.3f},atrim=duration={total_duration:.3f}[a]",
+        "-map", "[v]", "-map", "[a]",
         "-c:v", "libx264", "-tune", "stillimage", "-preset", "medium",
         "-pix_fmt", "yuv420p", "-r", str(FPS),
         "-c:a", "aac", "-b:a", "128k", "-ac", "2",
@@ -127,6 +141,79 @@ def fmt_ts(seconds: float) -> str:
     m, ms = divmod(ms, 60000)
     s, ms = divmod(ms, 1000)
     return f"{h:02d}:{m:02d}:{s:02d}.{ms:03d}"
+
+
+def first_line(command: list[str]) -> str:
+    return subprocess.check_output(command, text=True).splitlines()[0].strip()
+
+
+def write_manifest(
+    paragraphs: list[str], scene_starts: list[float], scene_ends: list[float]
+) -> None:
+    source_images = sorted({MEDIA / value for value in SCENE_IMAGE.values()})
+    payload = {
+        "schema": "stateport-walkthrough-build/v1",
+        "rebuildCommand": "python3 scripts/build_walkthrough.py",
+        "narrationContract": "seven exact public-copy paragraphs; one verbatim WebVTT cue per paragraph",
+        "toolchain": {
+            "edgeTts": importlib.metadata.version("edge-tts"),
+            "ffmpeg": first_line(["ffmpeg", "-version"]),
+            "voice": VOICE,
+            "rate": RATE,
+            "pitch": PITCH,
+        },
+        "video": {
+            "width": WIDTH,
+            "height": HEIGHT,
+            "fps": FPS,
+            "gapSeconds": GAP_S,
+            "durationSeconds": round(probe_duration(OUT_MP4), 3),
+        },
+        "inputs": {
+            "builder": {
+                "path": str(Path(__file__).resolve().relative_to(ROOT)),
+                "sha256": sha256(Path(__file__).resolve()),
+            },
+            "narration": {
+                "path": str(NARRATION.relative_to(ROOT)),
+                "sha256": sha256(NARRATION),
+            },
+            "narrationMarkup": {
+                "path": str(NARRATION_SSML.relative_to(ROOT)),
+                "sha256": sha256(NARRATION_SSML),
+            },
+            "images": [
+                {
+                    "path": str(path.relative_to(ROOT)),
+                    "sha256": sha256(path),
+                }
+                for path in source_images
+            ],
+        },
+        "scenes": [
+            {
+                "number": index + 1,
+                "image": f"assets/media/{SCENE_IMAGE[index]}",
+                "start": fmt_ts(scene_starts[index]),
+                "end": fmt_ts(scene_ends[index]),
+                "caption": re.sub(r"\s+", " ", paragraph).strip(),
+            }
+            for index, paragraph in enumerate(paragraphs)
+        ],
+        "outputs": {
+            "mp4": {
+                "path": str(OUT_MP4.relative_to(ROOT)),
+                "sha256": sha256(OUT_MP4),
+                "bytes": OUT_MP4.stat().st_size,
+            },
+            "vtt": {
+                "path": str(OUT_VTT.relative_to(ROOT)),
+                "sha256": sha256(OUT_VTT),
+                "bytes": OUT_VTT.stat().st_size,
+            },
+        },
+    }
+    OUT_MANIFEST.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
 def main() -> None:
@@ -155,7 +242,8 @@ def main() -> None:
         audio_files.append(dst)
         print(f"  scene {i}: {probe_duration(dst):.2f}s")
 
-    # 2. build a video clip per scene + silence transitions
+    # 2. build one video clip per scene. The final 0.75 seconds holds the
+    # current UI screen while the audio rests, avoiding blank transition cards.
     concat_list = WORK / "concat.txt"
     lines: list[str] = []
     scene_starts: list[float] = []
@@ -164,17 +252,13 @@ def main() -> None:
     n_scenes = len(paragraphs)
     for i, audio in enumerate(audio_files):
         clip = WORK / f"clip_{i}.mp4"
-        build_scene_clip(i, audio, MEDIA / SCENE_IMAGE[i], clip)
-        dur = probe_duration(clip)
+        spoken_duration = probe_duration(audio)
+        hold = GAP_S if i < n_scenes - 1 else 0.0
+        build_scene_clip(i, audio, MEDIA / SCENE_IMAGE[i], clip, hold)
         scene_starts.append(cursor)
-        cursor += dur
-        scene_ends.append(cursor)
+        scene_ends.append(cursor + spoken_duration)
         lines.append(f"file '{clip}'")
-        if i < n_scenes - 1:
-            sil = WORK / f"sil_{i}.mp4"
-            build_silence_clip(GAP_S, sil)
-            cursor += probe_duration(sil)
-            lines.append(f"file '{sil}'")
+        cursor += probe_duration(clip)
     concat_list.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
     # 3. concat -> final mp4 via the concat filter (full re-encode).
@@ -197,21 +281,22 @@ def main() -> None:
         "-movflags", "+faststart", str(OUT_MP4),
     ])
 
-    # 4. write VTT — verbatim transcript of what edge-tts spoke
+    # 4. write VTT — exactly one verbatim cue per narration paragraph.
+    # Use the measured final audio-stream duration for the final cue endpoint.
+    scene_ends[-1] = probe_stream_duration(OUT_MP4, "a:0")
     cues = ["WEBVTT", ""]
     for i in range(n_scenes):
         text = re.sub(r"\s+", " ", paragraphs[i]).strip()
-        # first ~70 chars as the title line
-        title = text[:70].rsplit(" ", 1)[0] if len(text) > 70 else text
         cues.append(fmt_ts(scene_starts[i]) + " --> " + fmt_ts(scene_ends[i]))
-        cues.append(title)
-        cues.append(text)
+        cues.extend(textwrap.wrap(text, width=54, break_long_words=False, break_on_hyphens=False))
         cues.append("")
     OUT_VTT.write_text("\n".join(cues), encoding="utf-8")
+    write_manifest(paragraphs, scene_starts, scene_ends)
 
     total = probe_duration(OUT_MP4)
     print(f"\nWrote {OUT_MP4.relative_to(ROOT)} ({total:.2f}s)")
     print(f"Wrote {OUT_VTT.relative_to(ROOT)} ({n_scenes} cues)")
+    print(f"Wrote {OUT_MANIFEST.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":
