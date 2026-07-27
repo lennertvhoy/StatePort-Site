@@ -1,0 +1,114 @@
+{
+  "schema": "stateport-walkthrough-build/v1",
+  "rebuildCommand": "python3 scripts/build_walkthrough.py",
+  "narrationContract": "seven exact public-copy paragraphs; one verbatim WebVTT cue per paragraph",
+  "toolchain": {
+    "edgeTts": "7.2.8",
+    "ffmpeg": "ffmpeg version 8.1.2 Copyright (c) 2000-2026 the FFmpeg developers",
+    "voice": "en-US-AndrewNeural",
+    "rate": "-35%",
+    "pitch": "+0Hz"
+  },
+  "video": {
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "gapSeconds": 0.75,
+    "durationSeconds": 61.605
+  },
+  "inputs": {
+    "builder": {
+      "path": "scripts/build_walkthrough.py",
+      "sha256": "46a988802e4f8aa5ee0c98befc397143ff2c564e7fb90e355640fc3bb7ed8073"
+    },
+    "narration": {
+      "path": "assets/media/stateport-local-prototype-walkthrough-narration.txt",
+      "sha256": "3235e265d9a7a404f6840e3220396cf254bdd9d186cffc544c81fba51185cdb0"
+    },
+    "narrationMarkup": {
+      "path": "assets/media/stateport-local-prototype-walkthrough-narration.ssml",
+      "sha256": "03d94e07414f9c46cc549d837ceb572e7a241110c19cfb5d94108fee53e80c7b"
+    },
+    "images": [
+      {
+        "path": "assets/media/stateport-platform-catalog.png",
+        "sha256": "0cde7339c4ae7d3b58a56ad839351af3b2b38f0e7c3d11e9125ad762413bc940"
+      },
+      {
+        "path": "assets/media/stateport-platform-conversation.png",
+        "sha256": "0958f46ec4c941fb87384fc950f09ece4f4f74011f45303e3523b07d74dc389e"
+      },
+      {
+        "path": "assets/media/stateport-platform-result.png",
+        "sha256": "2d5590e6acc70ae8a1f8e648336e39cd67c00f9e32429dce3905b035259862d7"
+      },
+      {
+        "path": "assets/media/stateport-platform-settings.png",
+        "sha256": "fbd3dc7a8f2d945898d3228e1c066c958ad9609033ff1e7348d22e085a3ef71e"
+      }
+    ]
+  },
+  "scenes": [
+    {
+      "number": 1,
+      "image": "assets/media/stateport-platform-catalog.png",
+      "start": "00:00:00.000",
+      "end": "00:00:09.000",
+      "caption": "Most AI tools start with an empty chat. StatePort starts with an app for work you want to continue."
+    },
+    {
+      "number": 2,
+      "image": "assets/media/stateport-platform-settings.png",
+      "start": "00:00:09.750",
+      "end": "00:00:18.318",
+      "caption": "Your goal, files, decisions, history, and AI conversations stay together."
+    },
+    {
+      "number": 3,
+      "image": "assets/media/stateport-platform-conversation.png",
+      "start": "00:00:19.068",
+      "end": "00:00:26.268",
+      "caption": "You can ask an AI coding helper a normal question, or let it prepare useful work."
+    },
+    {
+      "number": 4,
+      "image": "assets/media/stateport-platform-settings.png",
+      "start": "00:00:27.018",
+      "end": "00:00:37.986",
+      "caption": "When the AI runs code, StatePort gives it a sealed-off container instead of unlimited access to your computer."
+    },
+    {
+      "number": 5,
+      "image": "assets/media/stateport-platform-result.png",
+      "start": "00:00:38.736",
+      "end": "00:00:46.392",
+      "caption": "Routine work can keep moving. Important changes stay visible for you to review."
+    },
+    {
+      "number": 6,
+      "image": "assets/media/stateport-platform-catalog.png",
+      "start": "00:00:47.136",
+      "end": "00:00:52.944",
+      "caption": "Close it. Return later. The app still knows what you were doing."
+    },
+    {
+      "number": 7,
+      "image": "assets/media/stateport-platform-catalog.png",
+      "start": "00:00:53.694",
+      "end": "00:01:01.605",
+      "caption": "StatePort gives ongoing AI work a home you can inspect, control, and keep."
+    }
+  ],
+  "outputs": {
+    "mp4": {
+      "path": "assets/media/stateport-local-prototype-walkthrough.mp4",
+      "sha256": "9b0f641c0de26b81d9c527f8e38b39078f74fb8e7b69dc83fc666a30e7103aab",
+      "bytes": 1343810
+    },
+    "vtt": {
+      "path": "assets/media/stateport-local-prototype-walkthrough.vtt",
+      "sha256": "89ac331bbe96f92827cf8d70e14a52019b3307d0f53fa70544937f4ce6dd9bfb",
+      "bytes": 811
+    }
+  }
+}
