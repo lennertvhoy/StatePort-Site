@@ -71,6 +71,38 @@ video {
   max-width: 43rem;
 }
 
+.hero-points {
+  display: grid;
+  gap: 0.7rem;
+  max-width: 43rem;
+  margin: 1.6rem 0 0;
+  padding: 0;
+  color: #c3cfe6;
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+  line-height: 1.55;
+  list-style: none;
+}
+
+.hero-points li {
+  position: relative;
+  padding-left: 1.4rem;
+}
+
+.hero-points li::before {
+  position: absolute;
+  top: 0.62em;
+  left: 0;
+  width: 0.5rem;
+  height: 1px;
+  background: var(--cyan);
+  content: "";
+}
+
+.hero-points strong {
+  color: var(--white);
+  font-weight: 600;
+}
+
 .home-section[id],
 .prototype-section[id],
 .route-section[id] {
