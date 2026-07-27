@@ -1,23 +1,21 @@
-StatePort gives AI-assisted work a durable home. Your applications keep
-their own state, history, and continuity — and a managed harness runs the
-coding agents that help with the work. Here is the preview.
+Hi! This is StatePort — a place on your own computer where the work you do
+with AI can live. Let me show you what that means, in about a minute.
 
-This is the application you get. Open a named project and see what is
-happening, what needs attention, and what the agent last did. Your state files
-and decisions live here, not hidden inside a session.
+This is one of those projects. Instead of hiding inside a chat, it keeps its
+own notes: what the goal is, what happened so far, and what needs your
+attention next.
 
-This is the conversation. You can ask the agent for help, but the conversation
-is only one part of the project. StatePort preserves the canonical application
-state — provider capabilities differ and are explicitly profiled, and the work
-does not live or die with the chat.
+You can still chat with an AI helper — here it is called a coding agent.
+StatePort runs it for you inside a container: a sealed-off workspace on your
+machine, so the agent can only touch what you allow, and it asks before
+anything important changes.
 
-This screen shows the project information. It helps you see what is ready, what
-is still being checked, and what is only a test. That makes it easier to know
-what you can trust.
+This page is the project's memory: what is finished, what is still being
+checked, and what is only an experiment — so you know what to trust.
 
-And this is the mobile view. The same project stays readable on a small screen.
+And yes — the same project reads fine on your phone.
 
-This is a local preview made on my computer. The software is in private alpha
-testing, with Codex CLI as the only qualified provider, and you cannot download
-it yet. The point of StatePort is simple: give the work a durable home,
-supervise the agent, and keep what matters.
+One honest note: this is a preview from my own computer. StatePort is in
+private alpha, works with one AI coding tool so far, and can't be downloaded
+yet. The idea is simple: give AI work a real home, keep you in charge, and
+keep what's yours, yours.

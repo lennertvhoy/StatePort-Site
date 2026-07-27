@@ -1,25 +1,25 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:12.552
-StatePort gives AI-assisted work a durable home. Your applications
-StatePort gives AI-assisted work a durable home. Your applications keep their own state, history, and continuity — and a managed harness runs the coding agents that help with the work. Here is the preview.
+00:00:00.000 --> 00:00:08.633
+Hi! This is StatePort — a place on your own computer where the work
+Hi! This is StatePort — a place on your own computer where the work you do with AI can live. Let me show you what that means, in about a minute.
 
-00:00:13.002 --> 00:00:24.735
-This is the application you get. Open a named project and see what is
-This is the application you get. Open a named project and see what is happening, what needs attention, and what the agent last did. Your state files and decisions live here, not hidden inside a session.
+00:00:09.083 --> 00:00:19.183
+This is one of those projects. Instead of hiding inside a chat, it
+This is one of those projects. Instead of hiding inside a chat, it keeps its own notes: what the goal is, what happened so far, and what needs your attention next.
 
-00:00:25.185 --> 00:00:41.619
-This is the conversation. You can ask the agent for help, but the
-This is the conversation. You can ask the agent for help, but the conversation is only one part of the project. StatePort preserves the canonical application state — provider capabilities differ and are explicitly profiled, and the work does not live or die with the chat.
+00:00:19.633 --> 00:00:34.321
+You can still chat with an AI helper — here it is called a coding
+You can still chat with an AI helper — here it is called a coding agent. StatePort runs it for you inside a container: a sealed-off workspace on your machine, so the agent can only touch what you allow, and it asks before anything important changes.
 
-00:00:42.069 --> 00:00:51.702
-This screen shows the project information. It helps you see what is
-This screen shows the project information. It helps you see what is ready, what is still being checked, and what is only a test. That makes it easier to know what you can trust.
+00:00:34.771 --> 00:00:42.763
+This page is the project's memory: what is finished, what is still
+This page is the project's memory: what is finished, what is still being checked, and what is only an experiment — so you know what to trust.
 
-00:00:52.152 --> 00:00:56.752
-And this is the mobile view. The same project stays readable on a
-And this is the mobile view. The same project stays readable on a small screen.
+00:00:43.213 --> 00:00:46.513
+And yes — the same project reads fine on your phone.
+And yes — the same project reads fine on your phone.
 
-00:00:57.202 --> 00:01:14.194
-This is a local preview made on my computer. The software is in
-This is a local preview made on my computer. The software is in private alpha testing, with Codex CLI as the only qualified provider, and you cannot download it yet. The point of StatePort is simple: give the work a durable home, supervise the agent, and keep what matters.
+00:00:46.963 --> 00:01:04.147
+One honest note: this is a preview from my own computer. StatePort is
+One honest note: this is a preview from my own computer. StatePort is in private alpha, works with one AI coding tool so far, and can't be downloaded yet. The idea is simple: give AI work a real home, keep you in charge, and keep what's yours, yours.
