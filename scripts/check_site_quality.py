@@ -9,6 +9,7 @@ asset discipline without a JavaScript toolchain or network access.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+import hashlib
 from html.parser import HTMLParser
 import json
 from pathlib import Path
@@ -68,6 +69,7 @@ class DocumentFacts:
     controls: list[dict[str, str]] = field(default_factory=list)
     video_count: int = 0
     caption_track_count: int = 0
+    page_audiences: list[str] = field(default_factory=list)
 
     @property
     def title(self) -> str:
@@ -80,6 +82,7 @@ class QualityParser(HTMLParser):
         self.facts = DocumentFacts(path=path)
         self._in_title = False
         self._json_ld_parts: list[str] | None = None
+        self._page_audience_parts: list[str] | None = None
 
     @staticmethod
     def attrs_dict(attrs: list[tuple[str, str | None]]) -> dict[str, str]:
@@ -87,11 +90,15 @@ class QualityParser(HTMLParser):
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         values = self.attrs_dict(attrs)
+        classes = set(values.get("class", "").split())
         element_id = values.get("id")
         if element_id:
             if element_id in self.facts.ids:
                 self.facts.duplicate_ids.add(element_id)
             self.facts.ids.add(element_id)
+
+        if tag == "p" and "page-audience" in classes:
+            self._page_audience_parts = []
 
         if tag == "html":
             self.facts.language = values.get("lang")
@@ -152,6 +159,9 @@ class QualityParser(HTMLParser):
     def handle_endtag(self, tag: str) -> None:
         if tag == "title":
             self._in_title = False
+        elif tag == "p" and self._page_audience_parts is not None:
+            self.facts.page_audiences.append("".join(self._page_audience_parts).strip())
+            self._page_audience_parts = None
         elif tag == "script" and self._json_ld_parts is not None:
             self.facts.json_ld.append("".join(self._json_ld_parts).strip())
             self._json_ld_parts = None
@@ -159,6 +169,8 @@ class QualityParser(HTMLParser):
     def handle_data(self, data: str) -> None:
         if self._in_title:
             self.facts.title_parts.append(data)
+        if self._page_audience_parts is not None:
+            self._page_audience_parts.append(data)
         if self._json_ld_parts is not None:
             self._json_ld_parts.append(data)
 
@@ -183,6 +195,14 @@ def require_file(path: str) -> Path:
 
 def validate_document_basics(documents: dict[Path, DocumentFacts]) -> None:
     titles: dict[str, Path] = {}
+    allowed_audiences = {
+        "New user",
+        "App user",
+        "Operator",
+        "App builder",
+        "Platform developer",
+        "Reference",
+    }
     for path, facts in documents.items():
         if facts.language != "en":
             raise AssertionError(f"{path}: expected <html lang=\"en\">")
@@ -202,6 +222,15 @@ def validate_document_basics(documents: dict[Path, DocumentFacts]) -> None:
         if facts.duplicate_ids:
             duplicates = ", ".join(sorted(facts.duplicate_ids))
             raise AssertionError(f"{path}: duplicate id values: {duplicates}")
+        if len(facts.page_audiences) != 1:
+            raise AssertionError(
+                f"{path}: expected exactly one visible page audience label, "
+                f"found {len(facts.page_audiences)}"
+            )
+        if facts.page_audiences[0] not in allowed_audiences:
+            raise AssertionError(
+                f"{path}: unsupported page audience label: {facts.page_audiences[0]!r}"
+            )
         if "#main" not in facts.skip_links or "main" not in facts.ids:
             raise AssertionError(f"{path}: skip link must target #main")
 
@@ -290,8 +319,116 @@ def validate_home_media_hints(documents: dict[Path, DocumentFacts]) -> None:
             raise AssertionError(f"index.html: media image requires intrinsic dimensions: {source}")
         if image.get("decoding") != "async":
             raise AssertionError(f"index.html: media image should decode asynchronously: {source}")
+        if image.get("fetchpriority") == "high":
+            if image.get("loading") == "lazy":
+                raise AssertionError(f"index.html: priority hero media must not lazy-load: {source}")
+            continue
         if image.get("loading") != "lazy":
             raise AssertionError(f"index.html: below-the-fold media image should lazy-load: {source}")
+
+
+def file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def normalize_text(value: str) -> str:
+    return re.sub(r"\s+", " ", value).strip()
+
+
+def validate_homepage_and_documentation_contract() -> None:
+    home = require_file("index.html").read_text(encoding="utf-8")
+    exact_home_markup = (
+        '<p class="eyebrow">Durable apps for ongoing AI work</p>',
+        '<h1 id="hero-title">Give AI work a home you can come back to.</h1>',
+        '<p class="hero-deck">StatePort turns ongoing work into durable apps. It coordinates coding agents inside isolated containers, keeps your data under your control, and shows you important changes before they happen.</p>',
+        '<h2>Coding agents, coordinated</h2>',
+        '<p>AI helpers can work on real projects without making the chat your source of truth.</p>',
+        '<h2>Isolated containers</h2>',
+        '<p>Code runs in a controlled workspace instead of getting unlimited access to your computer.</p>',
+        '<h2>Your apps and state</h2>',
+        '<p>Goals, files, decisions, and history stay with the application.</p>',
+        '<a class="button" href="#prototype">Watch the 60-second tour</a>',
+        '<a class="button button--quiet" href="#how-it-works">See how StatePort works</a>',
+    )
+    for fragment in exact_home_markup:
+        if fragment not in home:
+            raise AssertionError(f"index.html: expected exact hero markup: {fragment!r}")
+    if 'class="hero-copy"' not in home or 'class="hero-visual"' not in home:
+        raise AssertionError("index.html: hero requires separate copy and visual grid children")
+    if "stateport-platform-catalog.png" not in home or 'fetchpriority="high"' not in home:
+        raise AssertionError("index.html: hero requires the priority-loaded public-safe product screen")
+    if home.count('class="hero-orbit"') != 1:
+        raise AssertionError("index.html: hero decoration must stay to one subdued orbit graphic")
+
+    docs = require_file("docs/index.html").read_text(encoding="utf-8")
+    required_levels = {
+        "Level 1": ("New here", "What StatePort is", "Why it exists", "5-minute tour", "Open first app", "Ask AI for help", "What happens before a change", "Report a problem", "Backup an app"),
+        "Level 2": ("Use StatePort", "Applications", "Conversation", "Runs", "Files", "Recovery", "Settings", "Bug reports", "StudyState", "ChecklistState"),
+        "Level 3": ("Operate", "rootless Podman", "Codex setup", "container isolation", "backup/restore", "logs", "support bundle", "SELinux", "security model"),
+        "Level 4": ("Build", "Stateware", "StateSpec", "app packages", "execution providers", "intent", "authority", "evidence", "lifecycle", "deployment targets"),
+        "Level 5": ("Reference", "schemas", "APIs", "CLI", "manifests", "receipts", "threat models", "ADRs", "provider matrix", "release evidence"),
+    }
+    for level, topics in required_levels.items():
+        if level not in docs:
+            raise AssertionError(f"docs/index.html: missing documentation layer {level}")
+        for topic in topics:
+            if topic not in docs:
+                raise AssertionError(f"docs/index.html: {level} is missing topic {topic!r}")
+
+
+def validate_walkthrough_contract() -> None:
+    narration_path = require_file("assets/media/stateport-local-prototype-walkthrough-narration.txt")
+    vtt_path = require_file("assets/media/stateport-local-prototype-walkthrough.vtt")
+    manifest_path = require_file("assets/media/stateport-local-prototype-walkthrough.manifest.json")
+    expected = (
+        "Most AI tools start with an empty chat. StatePort starts with an app for work you want to continue.",
+        "Your goal, files, decisions, history, and AI conversations stay together.",
+        "You can ask an AI coding helper a normal question, or let it prepare useful work.",
+        "When the AI runs code, StatePort gives it a sealed-off container instead of unlimited access to your computer.",
+        "Routine work can keep moving. Important changes stay visible for you to review.",
+        "Close it. Return later. The app still knows what you were doing.",
+        "StatePort gives ongoing AI work a home you can inspect, control, and keep.",
+    )
+    narration = tuple(
+        normalize_text(paragraph)
+        for paragraph in narration_path.read_text(encoding="utf-8").split("\n\n")
+        if paragraph.strip()
+    )
+    if narration != expected:
+        raise AssertionError("Walkthrough narration does not match the seven approved beginner beats")
+
+    blocks = vtt_path.read_text(encoding="utf-8").strip().split("\n\n")
+    if not blocks or blocks[0].strip() != "WEBVTT":
+        raise AssertionError("Walkthrough captions require a WEBVTT header")
+    captions: list[str] = []
+    timings: list[str] = []
+    for block in blocks[1:]:
+        lines = block.splitlines()
+        if len(lines) < 2 or " --> " not in lines[0]:
+            raise AssertionError("Walkthrough captions contain a malformed cue")
+        timings.append(lines[0])
+        captions.append(normalize_text(" ".join(lines[1:])))
+    if tuple(captions) != expected:
+        raise AssertionError("Walkthrough captions must match the spoken narration word for word")
+
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    duration = float(manifest["video"]["durationSeconds"])
+    if not 60 <= duration <= 75:
+        raise AssertionError(f"Walkthrough duration must be 60–75 seconds, found {duration}")
+    if manifest["video"]["width"] != 1280 or manifest["video"]["height"] != 720:
+        raise AssertionError("Walkthrough manifest must record a 1280x720 build")
+    if len(manifest.get("scenes", [])) != len(expected):
+        raise AssertionError("Walkthrough manifest must record all seven scenes")
+    if timings[-1].split(" --> ")[1] != manifest["scenes"][-1]["end"]:
+        raise AssertionError("Final caption endpoint must match the recorded audio endpoint")
+    for output in manifest["outputs"].values():
+        path = require_file(output["path"])
+        if file_sha256(path) != output["sha256"] or path.stat().st_size != output["bytes"]:
+            raise AssertionError(f"Walkthrough manifest digest mismatch: {output['path']}")
 
 
 def resolve_local_page(source_page: Path, href_path: str) -> Path:
@@ -405,6 +542,8 @@ def main() -> None:
     validate_document_basics(documents)
     validate_entrypoint_metadata(documents)
     validate_home_media_hints(documents)
+    validate_homepage_and_documentation_contract()
+    validate_walkthrough_contract()
     validate_fragments(documents)
     validate_sitemap(documents)
     validate_manifest()

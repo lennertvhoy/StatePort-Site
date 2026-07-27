@@ -187,7 +187,7 @@
 
   function initAtlasParallax() {
     const hero = document.querySelector(".hero");
-    const atlas = document.querySelector(".atlas");
+    const atlas = document.querySelector(".hero-visual");
     if (!hero || !atlas || reducedMotion.matches || !window.matchMedia("(pointer: fine)").matches) {
       return;
     }

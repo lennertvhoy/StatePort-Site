@@ -185,6 +185,7 @@ def main() -> None:
         "assets/stateport-mascot-shell.svg",
         "assets/media/stateport-local-prototype-walkthrough.mp4",
         "assets/media/stateport-local-prototype-walkthrough.vtt",
+        "assets/media/stateport-local-prototype-walkthrough.manifest.json",
         "assets/media/stateport-demo-home.png",
         "assets/media/stateport-demo-conversation.png",
         "assets/media/stateport-demo-source.png",
@@ -205,7 +206,11 @@ def main() -> None:
     require_text("STATUS.md", "**Execution Mode:** operating")
     require_text("PROJECT_STATE.yaml", "statedd_mode: operating")
     require_text("index.html", "StatePort")
-    require_text("index.html", "See the application at work")
+    require_text("index.html", "Give AI work a home you can come back to.")
+    require_text("index.html", "Watch the 60-second tour")
+    require_text("index.html", "See how StatePort works")
+    require_text("docs/index.html", "Level 1")
+    require_text("docs/index.html", "Level 5")
     require_text("docs/prototype-walkthrough.html", "Working fixture")
     require_text("docs/agent-kits.html", "Early direction")
     require_text("docs/platform-support.html", "Capability-based qualification")
