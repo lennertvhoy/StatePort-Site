@@ -1,6 +1,6 @@
 # StatePort Site status
 
-**Updated At:** 2026-07-26
+**Updated At:** 2026-07-27
 **Execution Mode:** operating
 **Project State:** alpha_release_alignment_local_in_progress
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
@@ -50,6 +50,16 @@
   narration/media rebuild. It is local-only: no push, no Pages deploy, no
   public release-ledger change, and no whitepaper re-publication without owner
   direction.
+- A local **noob-friendly copy** slice sits on branch
+  `agent/noob-friendly-copy-001` (base `1e4f1dd`, the alpha-alignment head),
+  on the owner directive that first-time, non-engineer visitors come first:
+  a plain-language hero with an accurate technical trio, a beginner-level
+  walkthrough narration rebuilt locally (64.292 s, MP4 SHA-256
+  `fcb6efd6f1acbe8fed76352972b01ced4a4ffff7885fdc8549d2f51aef01aaf6`, VTT
+  SHA-256 `149adacabae30771af5b69c7a542abc78981da731c17055011d46aaa866acb4d`,
+  six verbatim cues), and "New here?" orientations on the two beginner entry
+  docs. Local-only: no push, no Pages deploy; the deployed public walkthrough
+  remains the 95.173 s `057588ed…` build recorded above.
 
 ## What is not proven
 

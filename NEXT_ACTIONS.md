@@ -1,6 +1,6 @@
 # NEXT_ACTIONS — active execution queue
 
-**Updated At:** 2026-07-26
+**Updated At:** 2026-07-27
 **Execution Mode:** operating
 **Max Items:** 3
 
@@ -15,7 +15,9 @@ human-on-the-loop); CTA and clearly-local alpha-status note; site licence
 boundary (LICENSE, NOTICE, asset inventory); whitepaper v1.2 candidate beside
 the untouched public v1.1; walkthrough narration/media rebuild from corrected
 copy. No push, no Pages deploy, no release-ledger availability change, and no
-whitepaper publication without explicit owner direction.
+whitepaper publication without explicit owner direction. The noob-friendly
+copy sub-package on `agent/noob-friendly-copy-001` (BL-SITE-012, completed
+below) builds on this branch and joins the same owner review.
 
 **Exit:** package committed locally with repo validators, link/a11y checks,
 and a browser pass at 1440/1280/1024/768/390/320 plus zoom 120/150% recorded
@@ -40,6 +42,17 @@ Replace release-preparation language only after a public implementation source,
 license decision, versioned artifact, checksums, and verified install path exist.
 
 **Exit:** all download and release claims bind to an exact published release.
+
+## Completed since last update (2026-07-27)
+
+- **BL-SITE-012** — Prepared the local noob-friendly copy package on
+  `agent/noob-friendly-copy-001` (base `1e4f1dd`, local only): plain-language
+  hero with an accurate technical trio (`e990b26`), beginner-level walkthrough
+  narration with a locally rebuilt MP4/VTT (64.292 s, six verbatim cues) and a
+  matching storyboard (`06ed537`), and "New here?" orientations on the two
+  beginner entry docs (`fb4162d`). `validate_repo.py` and
+  `check_site_quality.py` pass. No push, no deploy, papers untouched; owner
+  review and human acceptance pending.
 
 ## Completed since last update (2026-07-26)
 

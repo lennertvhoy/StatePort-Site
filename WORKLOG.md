@@ -1,5 +1,38 @@
 # Worklog
 
+## 2026-07-27 — Noob-friendly copy and beginner walkthrough narration
+
+- Opened local branch `agent/noob-friendly-copy-001` (base
+  `1e4f1ddf5d4b04eb1cc5e7d4875aeca6c699a296`, the head of
+  `agent/site-alpha-release-alignment-001`) on the owner directive that the
+  walkthrough video must be understandable to non-engineers first, since most
+  visitors only open the site and maybe watch the video. Local only — no
+  push, no Pages deploy, no release-ledger or whitepaper change.
+- Rewrote the homepage hero (`e990b26`): a plain-English deck a non-engineer
+  can parse, then an accurate three-point technical layer (a coding agent
+  orchestrated safely with approvals and records; containers on the visitor's
+  own machine; applications and data that stay theirs across provider or
+  model changes). Title/meta/og/twitter/JSON-LD descriptions moved to the
+  same register; the meta description was shortened to fit the 80–170
+  character quality contract. The private-alpha note, release-ledger routing,
+  and deployed-product claims are unchanged.
+- Rebuilt the walkthrough from a beginner-level narration (`06ed537`):
+  `scripts/build_walkthrough.py` with the work directory under `output/`
+  (tmpfs discipline), en-US-AndrewNeural, six scenes and screenshots kept.
+  New local media: 64.292 s, 1280x720 H.264/AAC, MP4 SHA-256
+  `fcb6efd6f1acbe8fed76352972b01ced4a4ffff7885fdc8549d2f51aef01aaf6`, VTT
+  SHA-256 `149adacabae30771af5b69c7a542abc78981da731c17055011d46aaa866acb4d`;
+  six verbatim cues timed to the actual audio. The SSML markup source and the
+  walkthrough-page storyboard, duration note (1 minute 4 seconds), and header
+  copy were updated to match. The deployed public walkthrough (95.173 s,
+  `057588ed…`) remains the live artifact; nothing was deployed.
+- Added short "New here?" orientation paragraphs to the two beginner entry
+  pages — `docs/getting-started.html` and `tutorials/first-application.html`
+  (`fb4162d`). Deep technical docs are untouched.
+- `python3 scripts/validate_repo.py` and `python3 scripts/check_site_quality.py`
+  both pass on the final head. Human acceptance of the new copy and media
+  voice remains unproven and owner-gated.
+
 ## 2026-07-26 — Deployment-state reconciliation and alpha-alignment slice opened
 
 - Corrected stale current-truth claims. The 2026-07-23 entries below recorded

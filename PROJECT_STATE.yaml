@@ -1,5 +1,5 @@
 metadata:
-  updated_at: 2026-07-26T00:00:00+02:00
+  updated_at: 2026-07-27T00:00:00+02:00
   updated_by: kimi-code-agent
   format_version: statespec-site-state/v1
 
@@ -242,3 +242,24 @@ delivery:
     scope: hero_repair_product_truth_copy_ctas_alpha_note_licence_boundary_whitepaper_v1_2_candidate_walkthrough_rebuild
     constraints: local_only_no_push_no_pages_deploy_no_release_ledger_availability_change_no_whitepaper_publication
     status: in_progress
+  noob_friendly_copy:
+    branch: agent/noob-friendly-copy-001
+    base_branch: agent/site-alpha-release-alignment-001
+    base_sha: 1e4f1ddf5d4b04eb1cc5e7d4875aeca6c699a296
+    scope: plain_language_hero_beginner_walkthrough_narration_and_storyboard_beginner_entry_doc_orientation
+    constraints: local_only_no_push_no_pages_deploy_no_release_ledger_change_papers_untouched
+    commits:
+      copy: e990b26
+      media: 06ed537
+      docs: fb4162d
+    local_walkthrough:
+      duration_seconds: 64.292
+      sha256: fcb6efd6f1acbe8fed76352972b01ced4a4ffff7885fdc8549d2f51aef01aaf6
+      vtt_sha256: 149adacabae30771af5b69c7a542abc78981da731c17055011d46aaa866acb4d
+      narration_source: assets/media/stateport-local-prototype-walkthrough-narration.txt
+      markup_source: assets/media/stateport-local-prototype-walkthrough-narration.ssml
+      voice: en-US-AndrewNeural
+      caption_sync: six_scene_cues_verbatim_from_narration_text_timed_to_exact_audio_segments
+      status: regenerated_locally_not_deployed_deployed_public_video_unchanged
+    validation: validate_repo_and_check_site_quality_passed_2026-07-27
+    status: committed_locally_pending_owner_review
