@@ -3,34 +3,34 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="StatePort gives AI-assisted work a lasting home on your own computer: a coding agent, orchestrated safely in containers, with your apps and data staying yours.">
+    <meta name="description" content="StatePort turns ongoing AI work into durable apps, coordinating coding agents in isolated containers while your data stays under your control.">
     <meta name="theme-color" content="#0B132B">
     <meta name="color-scheme" content="light">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="StatePort — Keep the work in view">
-    <meta property="og:description" content="A lasting home on your own computer for the work you do with AI — readable, owned, and checkable.">
+    <meta property="og:title" content="StatePort — Give AI work a home">
+    <meta property="og:description" content="Durable apps for ongoing AI work, with coding agents coordinated inside isolated containers and important changes kept visible.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-platform-catalog.png">
     <meta property="og:image:width" content="1920">
     <meta property="og:image:height" content="1200">
     <meta property="og:image:alt" content="StatePort catalog showing reviewed applications, their availability, and installed instances.">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="StatePort — Keep the work in view">
-    <meta name="twitter:description" content="A lasting, inspectable home on your own computer for ongoing AI-assisted work.">
+    <meta name="twitter:title" content="StatePort — Give AI work a home">
+    <meta name="twitter:description" content="Durable apps for ongoing AI work, with your data under your control.">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-platform-catalog.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="manifest" href="site.webmanifest">
     <link rel="stylesheet" href="assets/site.css">
     <link rel="stylesheet" href="assets/site-enhancements.css" data-site-enhancements>
-    <title>StatePort — A lasting home for AI-assisted work</title>
+    <title>StatePort — Give AI work a home you can return to</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "StatePort",
-        "description": "A lasting home on your own computer for AI-assisted work, with a coding agent orchestrated under your supervision.",
+        "description": "Durable apps for ongoing AI work, with coding agents coordinated inside isolated containers and important changes kept visible.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/",
         "inLanguage": "en"
       }
@@ -60,31 +60,40 @@
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-inner">
           <div class="hero-copy">
-            <p class="eyebrow">A lasting home for AI-assisted work</p>
-            <h1 id="hero-title">StatePort<span>Agents that run on your terms.</span></h1>
-            <p class="hero-deck">Most AI work happens in a chat window — easy to start, easy to lose, and hard to check afterwards. StatePort gives that work a lasting home on your own computer: every project keeps its goals, decisions, and history in files you can open, read, and take with you.</p>
-            <ul class="hero-points">
-              <li><strong>Your own coding agent, orchestrated safely.</strong> StatePort drives an AI coding agent for you, asks before anything important happens, and keeps a record of what it did.</li>
-              <li><strong>Everything runs in containers on your machine.</strong> Each project is boxed into its own container, with permissions you can see.</li>
-              <li><strong>Your apps and data stay yours.</strong> Change the AI provider or model later, and the work is still there.</li>
-            </ul>
+            <p class="page-audience page-audience--hero">New user</p>
+            <p class="eyebrow">Durable apps for ongoing AI work</p>
+            <h1 id="hero-title">Give AI work a home you can come back to.</h1>
+            <p class="hero-deck">StatePort turns ongoing work into durable apps. It coordinates coding agents inside isolated containers, keeps your data under your control, and shows you important changes before they happen.</p>
             <div class="hero-actions">
-              <a class="button" href="#prototype">See the application at work</a>
-              <a class="button button--quiet" href="docs/foundations.html">Read the architecture</a>
+              <a class="button" href="#prototype">Watch the 60-second tour</a>
+              <a class="button button--quiet" href="#how-it-works">See how StatePort works</a>
             </div>
             <p class="availability"><strong>Private alpha:</strong><span>v0.1.0-alpha.1 in product-owner testing — rootless Podman on Linux, Codex CLI only, no public download.</span><a href="releases/">Release ledger</a></p>
           </div>
 
-          <div class="atlas" aria-hidden="true">
-            <svg viewBox="0 0 900 900" fill="none">
-              <circle class="orbit orbit--light" cx="450" cy="450" r="330" />
-              <circle class="orbit" cx="450" cy="450" r="210" />
-              <path class="route" d="M164 285C300 200 600 200 736 285" />
-              <circle class="node" cx="164" cy="285" r="11" />
-              <circle class="node" cx="736" cy="285" r="12" />
-              <circle class="node node--solid" cx="555" cy="632" r="9" />
+          <div class="hero-visual">
+            <svg class="hero-orbit" viewBox="0 0 760 620" fill="none" aria-hidden="true">
+              <ellipse cx="380" cy="310" rx="330" ry="250" />
+              <circle cx="668" cy="188" r="7" />
             </svg>
-            <img class="atlas-mark" src="assets/stateport-mascot-shell.svg" alt="" width="288" height="288">
+            <div class="hero-screen">
+              <img src="assets/media/stateport-platform-catalog.png" alt="StatePort application catalog showing reviewed apps, installed instances, and honest availability states." width="1920" height="1200" decoding="async" fetchpriority="high">
+            </div>
+          </div>
+
+          <div class="hero-cards" aria-label="What StatePort keeps under control">
+            <article>
+              <h2>Coding agents, coordinated</h2>
+              <p>AI helpers can work on real projects without making the chat your source of truth.</p>
+            </article>
+            <article>
+              <h2>Isolated containers</h2>
+              <p>Code runs in a controlled workspace instead of getting unlimited access to your computer.</p>
+            </article>
+            <article>
+              <h2>Your apps and state</h2>
+              <p>Goals, files, decisions, and history stay with the application.</p>
+            </article>
           </div>
         </div>
       </section>
@@ -112,7 +121,7 @@
               <track kind="captions" srclang="en" label="English" src="assets/media/stateport-local-prototype-walkthrough.vtt" default>
               Your browser does not support HTML video. Read the linked walkthrough for the same information.
             </video>
-            <p id="prototype-caption">Local preview; plain-language narration and captions rebuilt 27 July 2026. Availability lives in the release ledger.</p>
+            <p id="prototype-caption">62-second local preview built from current public-safe screens, with word-for-word captions. Availability lives in the release ledger.</p>
           </div>
 
           <p class="prototype-gallery-intro reveal">Click any screen to inspect it at full size.</p>

@@ -30,6 +30,7 @@
     <main id="main">
       <section class="article-hero" aria-labelledby="paper-title">
         <div class="article-hero-inner">
+          <p class="page-audience">Platform developer</p>
           <p class="document-kicker">Public whitepaper / $version$</p>
           <h1 id="paper-title">$title$</h1>
           <p>$subtitle$</p>
