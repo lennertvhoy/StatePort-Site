@@ -477,7 +477,7 @@ select {
 .hero-screen {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 8 / 5;
   border: 1px solid rgba(195, 214, 249, 0.32);
   border-radius: 0.8rem;
   background: #eef0f2;
@@ -486,10 +486,10 @@ select {
 }
 
 .hero-screen img {
-  width: 164%;
-  height: auto;
-  max-width: none;
-  transform: translateX(-19.5%);
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .hero-cards {
