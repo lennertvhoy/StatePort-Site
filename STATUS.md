@@ -60,6 +60,10 @@
   six verbatim cues), and "New here?" orientations on the two beginner entry
   docs. Local-only: no push, no Pages deploy; the deployed public walkthrough
   remains the 95.173 s `057588ed…` build recorded above.
+- The local owner-test candidate `candidate/local-user-test-001` includes
+  hero correction `4967425`: the complete catalog UI is shown at its native
+  16:10 ratio instead of a deliberately enlarged, clipped crop. It is not
+  deployed; owner review remains required before any Pages action.
 
 ## What is not proven
 

@@ -1,5 +1,14 @@
 # Worklog
 
+## 2026-07-27 — Local owner-test hero framing correction
+
+- Corrected the homepage hero screenshot on `candidate/local-user-test-001`
+  (`4967425`). The catalog UI now uses its complete native 16:10 frame rather
+  than a 164%-wide, horizontally clipped crop.
+- `python3 scripts/check_site_quality.py` and
+  `python3 scripts/validate_repo.py` passed. Preview is local only; no push,
+  Pages deployment, or public-release claim was made.
+
 ## 2026-07-27 — Noob-friendly copy and beginner walkthrough narration
 
 - Opened local branch `agent/noob-friendly-copy-001` (base

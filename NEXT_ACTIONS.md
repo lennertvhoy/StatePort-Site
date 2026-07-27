@@ -19,6 +19,11 @@ whitepaper publication without explicit owner direction. The noob-friendly
 copy sub-package on `agent/noob-friendly-copy-001` (BL-SITE-012, completed
 below) builds on this branch and joins the same owner review.
 
+The local owner-test site candidate additionally corrects the hero screenshot
+framing at `4967425`: the complete 16:10 catalog UI is visible rather than
+being intentionally enlarged and clipped. It is local-only and awaits owner
+review; no Pages deployment is authorized.
+
 **Exit:** package committed locally with repo validators, link/a11y checks,
 and a browser pass at 1440/1280/1024/768/390/320 plus zoom 120/150% recorded
 as evidence; owner review requested.

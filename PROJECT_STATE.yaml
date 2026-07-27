@@ -1,5 +1,5 @@
 metadata:
-  updated_at: 2026-07-27T00:00:00+02:00
+  updated_at: 2026-07-27T20:47:00+02:00
   updated_by: kimi-code-agent
   format_version: statespec-site-state/v1
 
@@ -263,3 +263,9 @@ delivery:
       status: regenerated_locally_not_deployed_deployed_public_video_unchanged
     validation: validate_repo_and_check_site_quality_passed_2026-07-27
     status: committed_locally_pending_owner_review
+  local_user_test_hero_correction:
+    branch: candidate/local-user-test-001
+    commit: 4967425
+    scope: complete_uncropped_16_by_10_catalog_ui_in_homepage_hero
+    validation: validate_repo_and_check_site_quality_passed_2026-07-27
+    status: committed_locally_not_deployed_pending_owner_review
