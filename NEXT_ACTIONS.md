@@ -1,6 +1,6 @@
 # NEXT_ACTIONS — active execution queue
 
-**Updated At:** 2026-07-27
+**Updated At:** 2026-07-28
 **Execution Mode:** operating
 **Max Items:** 3
 
@@ -42,6 +42,16 @@ Replace release-preparation language only after a public implementation source,
 license decision, versioned artifact, checksums, and verified install path exist.
 
 **Exit:** all download and release claims bind to an exact published release.
+
+## Completed since last update (2026-07-28)
+
+- **BL-SUPPORT-001** — Implemented the local Ko-fi Free support integration as
+  behaviour commit `616f01e` on `agent/support-link-001`: a restrained
+  About/Support section, footer destination, deterministic static renderer,
+  accessible external-link contract, and fail-closed validation. The public
+  links are intentionally omitted because no owner-provided Ko-fi URL or
+  attestation that Contributor mode is disabled exists. No account, push, or
+  deployment was performed. Owner activation steps are in `SUPPORT_SETUP.md`.
 
 ## Completed since last update (2026-07-27)
 

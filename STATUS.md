@@ -1,6 +1,6 @@
 # StatePort Site status
 
-**Updated At:** 2026-07-27
+**Updated At:** 2026-07-28
 **Execution Mode:** operating
 **Project State:** alpha_release_alignment_local_in_progress
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
@@ -60,6 +60,14 @@
   six verbatim cues), and "New here?" orientations on the two beginner entry
   docs. Local-only: no push, no Pages deploy; the deployed public walkthrough
   remains the 95.173 s `057588ed…` build recorded above.
+- A local **support-link** slice is implemented on branch
+  `agent/support-link-001` as behaviour commit `616f01e`: a restrained
+  About/Support section, deterministic Ko-fi Free configuration renderer, and
+  validation for the homepage and footer destinations. It is fail closed:
+  there is no configured Ko-fi URL and no owner attestation that Contributor
+  mode is disabled, so no public Ko-fi link is rendered. No account was
+  created, no external settings were changed, and nothing was pushed or
+  deployed.
 
 ## What is not proven
 
@@ -68,6 +76,8 @@
 - Human acceptance of the copy, visual design, information architecture, and
   media voice — including the deployed harness-narrative package.
 - Human acceptance of the alpha-alignment package now in local preparation.
+- A StatePort-owned Ko-fi destination and owner verification that the account
+  uses Ko-fi Free with Contributor mode disabled.
 
 ## Next action
 

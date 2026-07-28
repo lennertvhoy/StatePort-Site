@@ -1,5 +1,31 @@
 # Worklog
 
+## 2026-07-28 — Fail-closed Ko-fi support integration
+
+- Implemented `BL-SUPPORT-001` locally on `agent/support-link-001` as behaviour
+  commit `616f01e5007f2a04e673484d9cd9d2eeb45e59ff`. The homepage now has a
+  cardless About/Support section using the approved independent-development
+  copy. When activated, the same plain external `Support StatePort` link is
+  rendered there and in the existing footer; it announces its new-tab
+  behaviour and uses `external noopener noreferrer`.
+- Added `config/support.json`, `scripts/render_support.py`, and
+  `SUPPORT_SETUP.md`. The renderer accepts only a direct HTTPS `ko-fi.com`
+  profile URL and requires an explicit settings attestation before emitting
+  either link. The owner setup requires Ko-fi Free, Contributor mode disabled,
+  one-time tips, and no memberships, gated content, or supporter obligations.
+  The repository cannot verify those provider-side settings and no account was
+  created or modified during this slice.
+- The current configuration has `publicUrl: null` and
+  `settingsAttested: false`; the visible section says the link is being
+  configured and the footer contains no support destination. This is the
+  intended fail-closed state, not a claim that support is publicly available.
+- Added four renderer tests covering disabled, unattested, enabled-accessible,
+  and malicious/ambiguous URL cases. `render_support.py --check`, the unit
+  tests, `scripts/validate_repo.py`, `scripts/check_site_quality.py`, and
+  `git diff --check` pass. Local browser review at 1440px and 390px confirmed
+  the section layout and semantic structure with no console errors. No push or
+  deployment was performed; human acceptance remains separate.
+
 ## 2026-07-27 — Noob-friendly copy and beginner walkthrough narration
 
 - Opened local branch `agent/noob-friendly-copy-001` (base
