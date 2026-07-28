@@ -8,6 +8,8 @@ from pathlib import Path
 import re
 from urllib.parse import urlsplit
 
+from render_support import load_config, rendered_home, support_enabled
+
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -152,6 +154,34 @@ def validate_pull_request_workflow() -> None:
             raise AssertionError(f"Draft PR workflow must not contain {fragment!r}")
 
 
+def validate_support_configuration() -> None:
+    """Keep the static support integration synchronized and fail closed."""
+    config = load_config()
+    homepage = require("index.html").read_text(encoding="utf-8")
+    if homepage != rendered_home(homepage, config):
+        raise AssertionError(
+            "index.html support blocks are stale; run python3 scripts/render_support.py"
+        )
+
+    if support_enabled(config):
+        if homepage.count("data-support-link") != 2:
+            raise AssertionError("Enabled support requires exactly one homepage and one footer link")
+        if homepage.count('target="_blank"') < 2:
+            raise AssertionError("Support links must announce and safely open their external destination")
+        if homepage.count('rel="external noopener noreferrer"') != 2:
+            raise AssertionError("Support links require external, noopener, and noreferrer relations")
+        if homepage.count("opens in a new tab") != 2:
+            raise AssertionError("Support links must expose new-tab behavior to assistive technology")
+    else:
+        public_copy = "\n".join(
+            page.read_text(encoding="utf-8") for page in ROOT.rglob("*.html")
+        )
+        if "data-support-link" in homepage or "ko-fi.com" in public_copy.lower():
+            raise AssertionError("Unattested support configuration must expose no public Ko-fi link")
+        if homepage.count("data-support-pending") != 1:
+            raise AssertionError("Fail-closed homepage must explain that support is being configured")
+
+
 def main() -> None:
     required = (
         "AGENTS.md",
@@ -161,6 +191,8 @@ def main() -> None:
         "NEXT_ACTIONS.md",
         "BACKLOG.md",
         "WORKLOG.md",
+        "SUPPORT_SETUP.md",
+        "config/support.json",
         "index.html",
         "404.html",
         "docs/index.html",
@@ -197,6 +229,8 @@ def main() -> None:
         ".github/workflows/deploy-pages.yml",
         ".github/workflows/validate-site-pr.yml",
         "scripts/check_site_quality.py",
+        "scripts/render_support.py",
+        "scripts/test_render_support.py",
     )
     for path in required:
         require(path)
@@ -223,6 +257,7 @@ def main() -> None:
     validate_documentation_button_accessibility()
     validate_action_pins()
     validate_pull_request_workflow()
+    validate_support_configuration()
     print("StatePort Site validation: OK")
 
 
