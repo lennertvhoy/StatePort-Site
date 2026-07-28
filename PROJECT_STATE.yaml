@@ -1,6 +1,6 @@
 metadata:
-  updated_at: 2026-07-27T20:47:00+02:00
-  updated_by: kimi-code-agent
+  updated_at: 2026-07-28T18:31:00+02:00
+  updated_by: codex
   format_version: statespec-site-state/v1
 
 workflow:
@@ -269,3 +269,26 @@ delivery:
     scope: complete_uncropped_16_by_10_catalog_ui_in_homepage_hero
     validation: validate_repo_and_check_site_quality_passed_2026-07-27
     status: committed_locally_not_deployed_pending_owner_review
+  local_user_test_truth_alignment:
+    branch: candidate/local-user-test-001
+    content_head: 7779112ea6f20db03c730de2359e39cab1471028
+    scope: current_candidate_vs_historical_packaging_proof_ladder_containment_and_recovery_claims_problem_report_boundary_unpublished_paper_exclusion_and_walkthrough_rebuild
+    constraints: local_only_no_push_no_pages_deploy_no_product_validation_transfer_no_human_acceptance
+    local_walkthrough:
+      duration_seconds: 65.372
+      format: h264_aac_mp4_1280x720_public_safe_historical_fixture
+      sha256: df6a160965d2f57fe7255a4e87bff39e381b4ed70d0597eb4ac7f502691e281e
+      vtt_sha256: 9eeb973ddac1a2b9ecc15094d79692ef866cebd4919e981067a464934ff1af82
+      narration_sha256: ff6b3afcff0dd684961765caea37d31df23cd415165680c0754acec54ca6dd67
+      voice: en-US-AndrewNeural
+      synthesis_boundary: public_narration_text_sent_at_build_time_no_credentials_or_visitor_runtime_dependency
+    validation:
+      repository: passed_2026-07-28
+      quality_contract: passed_21_pages_2026-07-28
+      browser: passed_loopback_1440x900_and_390x844_home_release_and_problem_report_routes_zero_console_errors_or_warnings_2026-07-28
+    review:
+      class: internal_multi_agent
+      independence: not_established
+      human_validation: not_tested
+      human_acceptance: not_tested
+    status: committed_locally_not_pushed_not_deployed_pending_owner_review_and_full_requested_viewport_matrix

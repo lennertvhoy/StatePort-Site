@@ -1,6 +1,6 @@
 # StatePort Site status
 
-**Updated At:** 2026-07-27
+**Updated At:** 2026-07-28
 **Execution Mode:** operating
 **Project State:** alpha_release_alignment_local_in_progress
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
@@ -64,6 +64,19 @@
   hero correction `4967425`: the complete catalog UI is shown at its native
   16:10 ratio instead of a deliberately enlarged, clipped crop. It is not
   deployed; owner review remains required before any Pages action.
+- The same local owner-test candidate now carries truth-aligned checkpoint
+  content through `7779112`: the current product candidate is separated from
+  historical Podman evidence, exact-source agent validation is separated from
+  human validation and acceptance, universal containment/recovery claims are
+  narrowed, and the local problem-report boundary is documented. The rebuilt
+  public-safe historical-fixture tour is 65.372 seconds (1280x720 H.264/AAC;
+  MP4 SHA-256 `df6a160965d2f57fe7255a4e87bff39e381b4ed70d0597eb4ac7f502691e281e`;
+  VTT SHA-256 `9eeb973ddac1a2b9ecc15094d79692ef866cebd4919e981067a464934ff1af82`).
+  Both Site validators pass, and final loopback browser review passed at
+  1440x900 and 390x844 for the homepage, release ledger, and problem-report
+  instructions with zero console errors or warnings. This evidence is local
+  only: no push, Pages deployment, product-candidate validation, human review,
+  or human acceptance follows from it.
 
 ## What is not proven
 
@@ -72,6 +85,8 @@
 - Human acceptance of the copy, visual design, information architecture, and
   media voice — including the deployed harness-narrative package.
 - Human acceptance of the alpha-alignment package now in local preparation.
+- Exact-source validation or acceptance of the current StatePort product
+  candidate; this Site preview reports that process but cannot prove it.
 
 ## Next action
 

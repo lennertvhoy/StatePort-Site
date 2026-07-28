@@ -1,5 +1,36 @@
 # Worklog
 
+## 2026-07-28 — Local owner-checkpoint truth alignment
+
+- Audited the local Site owner-test candidate against the exact StatePort
+  candidate boundary. Corrected copy that conflated the current native
+  loopback candidate with historical rootless-Podman packaging evidence,
+  treated agent validation as human acceptance, implied universal container
+  isolation or recovery controls, and exposed the unpublished v1.2 candidate
+  paper through the sitemap.
+- Added the complete evidence ladder and a local problem-report guide that
+  explains optional screenshot handling, safe candidate/runtime/instance
+  context, privacy exclusions, local evidence storage, and the absence of an
+  active public support or vulnerability-intake route. The current product
+  candidate is reported as undergoing exact-source revalidation; earlier
+  terminal evidence is not transferred across the new behavioural head.
+- Rebuilt the public-safe historical-fixture walkthrough from the corrected
+  containment narration using the existing build pipeline and public
+  `en-US-AndrewNeural` voice. Result: 65.372 s, 1280x720 H.264/AAC, MP4
+  SHA-256 `df6a160965d2f57fe7255a4e87bff39e381b4ed70d0597eb4ac7f502691e281e`,
+  VTT SHA-256 `9eeb973ddac1a2b9ecc15094d79692ef866cebd4919e981067a464934ff1af82`,
+  narration SHA-256 `ff6b3afcff0dd684961765caea37d31df23cd415165680c0754acec54ca6dd67`.
+- Content heads are `90a1757` (truth-aligned package) and `7779112`
+  (exact-source validation-boundary correction). `python3
+  scripts/validate_repo.py`, `python3 scripts/check_site_quality.py`, and
+  `git diff --check` passed. Final loopback browser review passed at 1440x900
+  and 390x844 on the homepage, release ledger, and problem-report instructions
+  with zero console errors or warnings. The wider requested viewport/zoom
+  matrix remains open.
+- Review class is `internal_multi_agent` with independence not established.
+  No push, Pages deployment, product-candidate validation, public release,
+  human validation, or human acceptance was performed or inferred.
+
 ## 2026-07-27 — Local owner-test hero framing correction
 
 - Corrected the homepage hero screenshot on `candidate/local-user-test-001`

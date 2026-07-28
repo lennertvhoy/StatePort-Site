@@ -1,6 +1,6 @@
 # NEXT_ACTIONS — active execution queue
 
-**Updated At:** 2026-07-27
+**Updated At:** 2026-07-28
 **Execution Mode:** operating
 **Max Items:** 3
 
@@ -23,6 +23,16 @@ The local owner-test site candidate additionally corrects the hero screenshot
 framing at `4967425`: the complete 16:10 catalog UI is visible rather than
 being intentionally enlarged and clipped. It is local-only and awaits owner
 review; no Pages deployment is authorized.
+
+Truth-alignment content through `7779112` now separates the current product
+candidate from historical Podman packaging evidence, exposes the full proof
+ladder, narrows containment/recovery wording, documents the local-only
+problem-report path, excludes the unpublished v1.2 candidate paper from the
+sitemap, and rebuilds the historical-fixture tour (65.372 s; MP4
+`df6a1609…`; VTT `9eeb973d…`). Both Site validators and final 1440x900 plus
+390x844 browser review pass with a clean console. The wider requested viewport
+and zoom matrix remains open, so this action stays `in_progress`; no push,
+deploy, product validation, human review, or acceptance is claimed.
 
 **Exit:** package committed locally with repo validators, link/a11y checks,
 and a browser pass at 1440/1280/1024/768/390/320 plus zoom 120/150% recorded
