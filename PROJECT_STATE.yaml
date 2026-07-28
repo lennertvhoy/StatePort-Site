@@ -1,6 +1,6 @@
 metadata:
-  updated_at: 2026-07-27T00:00:00+02:00
-  updated_by: kimi-code-agent
+  updated_at: 2026-07-28T20:48:00+02:00
+  updated_by: codex-agent
   format_version: statespec-site-state/v1
 
 workflow:
@@ -72,6 +72,16 @@ site:
     remote_fonts: absent
     third_party_scripts: absent
     client_side_data_dependency: absent
+  support:
+    provider: ko-fi
+    plan: free
+    integration: plain_external_link_without_widget_or_third_party_script
+    configuration: config/support.json
+    rendering: deterministic_static_fail_closed
+    public_url: null
+    settings_attested: false
+    required_external_setting: contributor_mode_disabled_with_one_time_tips_only
+    public_link_status: omitted_pending_owner_url_and_settings_attestation
   deployment:
     provider: GitHub Pages
     workflow: .github/workflows/deploy-pages.yml
@@ -263,3 +273,18 @@ delivery:
       status: regenerated_locally_not_deployed_deployed_public_video_unchanged
     validation: validate_repo_and_check_site_quality_passed_2026-07-27
     status: committed_locally_pending_owner_review
+  support_link:
+    branch: agent/support-link-001
+    base_sha: 7e6f8d07884ebdcb9f9e74bf0736e01d58284b0f
+    behavior_commit: 616f01e5007f2a04e673484d9cd9d2eeb45e59ff
+    scope: homepage_about_support_section_footer_link_render_configuration_and_validation
+    constraints: local_only_no_push_no_deploy_no_account_creation_no_invented_destination
+    validation:
+      render_check: passed_2026-07-28
+      unit_tests: four_passed_2026-07-28
+      repository_validator: passed_2026-07-28
+      site_quality_contract: passed_2026-07-28
+      browser_review: desktop_1440_and_mobile_390_support_section_layout_and_console_passed_2026-07-28
+    activation_blocker: owner_must_supply_valid_https_kofi_page_and_attest_free_plan_contributor_mode_disabled_settings
+    public_link_status: omitted_fail_closed
+    status: implemented_locally_pending_external_configuration_and_owner_review
