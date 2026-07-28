@@ -541,6 +541,38 @@ video {
   align-items: start;
 }
 
+/* Independent support */
+
+.support-section {
+  display: grid;
+  grid-template-columns: minmax(130px, 0.35fr) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 8.4rem);
+  border-top: 1px solid var(--line);
+}
+
+.support-copy {
+  max-width: 46rem;
+}
+
+.support-copy > p {
+  max-width: 38rem;
+  margin: 1.4rem 0 0;
+  color: var(--muted);
+  font-size: 1.06rem;
+  line-height: 1.65;
+}
+
+.support-copy .support-link {
+  margin-top: 1.65rem;
+}
+
+.support-copy .support-pending {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.035em;
+}
+
 .release-updated {
   margin: 1.35rem 0 0;
   color: var(--muted);
@@ -1365,6 +1397,11 @@ video {
   .footer-inner {
     grid-template-columns: 1fr;
     align-items: start;
+  }
+
+  .support-section {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
   }
 
   .footer-nav {
