@@ -6,9 +6,9 @@ own notes: what the goal is, what happened so far, and what needs your
 attention next.
 
 You can still chat with an AI helper — here it is called a coding agent.
-StatePort runs it for you inside a container: a sealed-off workspace on your
-machine, so the agent can only touch what you allow, and it asks before
-anything important changes.
+StatePort runs it through a managed workspace on your machine. A job can use a
+sandbox or container when you configure one. The agent gets bounded tools and
+permissions, and asks before anything important changes.
 
 This page is the project's memory: what is finished, what is still being
 checked, and what is only an experiment — so you know what to trust.

@@ -1,5 +1,26 @@
 # Worklog
 
+## 2026-07-28 — Runtime-language and hidden-support reconciliation
+
+- Corrected the local candidate's categorical container claim. Homepage
+  metadata and hero copy now state that the application and durable files run
+  locally while declared agent jobs may use a sandbox or container when the
+  operator configures one and the host supports it. The walkthrough page and
+  narration source use the same boundary.
+- Rebuilt the local narrated walkthrough so its spoken track and six verbatim
+  captions agree with the corrected copy: 66.254 seconds, MP4 SHA-256
+  `79cf3b1377e0bb3bfcbb540bdbedbf1d522016ccc8b82520f8f35ee92f9eaf42`, VTT
+  SHA-256 `c1d74a9107c5b19ba47e64a6878ccdbb2e1944605cef71f97c9d09353c3cb582`.
+  The deployed public video remains unchanged.
+- Changed fail-closed support rendering to omit both the Ko-fi destination and
+  any "being configured" message until a valid owner-provided URL and settings
+  attestation exist. The independent About section remains useful without a
+  dead-end support call to action.
+- `render_support.py --check`, four renderer unit tests,
+  `scripts/validate_repo.py`, `scripts/check_site_quality.py`, and
+  `git diff --check` pass. This is local validation only: no push, deploy,
+  public-runtime verification, or human acceptance occurred.
+
 ## 2026-07-28 — Fail-closed Ko-fi support integration
 
 - Implemented `BL-SUPPORT-001` locally on `agent/support-link-001` as behaviour

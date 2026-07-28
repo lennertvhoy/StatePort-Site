@@ -178,8 +178,8 @@ def validate_support_configuration() -> None:
         )
         if "data-support-link" in homepage or "ko-fi.com" in public_copy.lower():
             raise AssertionError("Unattested support configuration must expose no public Ko-fi link")
-        if homepage.count("data-support-pending") != 1:
-            raise AssertionError("Fail-closed homepage must explain that support is being configured")
+        if "data-support-pending" in homepage or "support link is being configured" in homepage.lower():
+            raise AssertionError("Fail-closed support must remain hidden instead of exposing a dead end")
 
 
 def main() -> None:

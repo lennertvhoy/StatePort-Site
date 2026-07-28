@@ -15,7 +15,9 @@
       <p id="scene-03">
         <s>You can still chat with an AI helper — here it is called a coding agent.</s>
         <break time="450ms"/>
-        <s>StatePort runs it for you inside a container: a sealed-off workspace on your machine, so the agent can only touch what you allow, and it asks before anything important changes.</s>
+        <s>StatePort runs it through a managed workspace on your machine.</s>
+        <s>A job can use a sandbox or container when you configure one.</s>
+        <s>The agent gets bounded tools and permissions, and asks before anything important changes.</s>
       </p>
       <p id="scene-04">
         <s>This page is the project's memory: what is finished, what is still being checked, and what is only an experiment — so you know what to trust.</s>

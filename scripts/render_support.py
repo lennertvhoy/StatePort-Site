@@ -92,10 +92,7 @@ def rendered_home(document: str, config: dict[str, object]) -> str:
             '<span class="sr-only"> (opens in a new tab)</span></a>'
         )
     else:
-        section = (
-            '            <p class="support-pending" data-support-pending>'
-            'The support link is being configured.</p>'
-        )
+        section = ""
         footer = ""
 
     rendered = replace_block(document, SECTION_START, SECTION_END, section)
@@ -133,7 +130,7 @@ def main() -> int:
     if support_enabled(config):
         print("Rendered the attested Ko-fi Free support link into index.html")
     else:
-        print("Rendered the fail-closed support state; no public Ko-fi link is present")
+        print("Rendered the fail-closed support state; support remains hidden")
     return 0
 
 

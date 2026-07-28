@@ -54,9 +54,9 @@
   `agent/noob-friendly-copy-001` (base `1e4f1dd`, the alpha-alignment head),
   on the owner directive that first-time, non-engineer visitors come first:
   a plain-language hero with an accurate technical trio, a beginner-level
-  walkthrough narration rebuilt locally (64.292 s, MP4 SHA-256
-  `fcb6efd6f1acbe8fed76352972b01ced4a4ffff7885fdc8549d2f51aef01aaf6`, VTT
-  SHA-256 `149adacabae30771af5b69c7a542abc78981da731c17055011d46aaa866acb4d`,
+  walkthrough narration rebuilt locally (66.254 s, MP4 SHA-256
+  `79cf3b1377e0bb3bfcbb540bdbedbf1d522016ccc8b82520f8f35ee92f9eaf42`, VTT
+  SHA-256 `c1d74a9107c5b19ba47e64a6878ccdbb2e1944605cef71f97c9d09353c3cb582`,
   six verbatim cues), and "New here?" orientations on the two beginner entry
   docs. Local-only: no push, no Pages deploy; the deployed public walkthrough
   remains the 95.173 s `057588ed…` build recorded above.
@@ -65,9 +65,16 @@
   About/Support section, deterministic Ko-fi Free configuration renderer, and
   validation for the homepage and footer destinations. It is fail closed:
   there is no configured Ko-fi URL and no owner attestation that Contributor
-  mode is disabled, so no public Ko-fi link is rendered. No account was
+  mode is disabled, so no public Ko-fi link or pending-support message is
+  rendered. No account was
   created, no external settings were changed, and nothing was pushed or
   deployed.
+- The local candidate now states the runtime boundary accurately: the
+  StatePort application and durable files run locally, while declared agent
+  jobs may use a sandbox or container when configured and supported. The
+  homepage, walkthrough page, spoken narration source, captions, and rebuilt
+  local video agree on that boundary. This correction is local-only and is not
+  a claim about the currently deployed site.
 
 ## What is not proven
 

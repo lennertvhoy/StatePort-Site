@@ -45,11 +45,18 @@ license decision, versioned artifact, checksums, and verified install path exist
 
 ## Completed since last update (2026-07-28)
 
+- **BL-SITE-013** — Reconciled the local candidate's runtime and support copy:
+  native local application/state is now distinguished from optional declared
+  sandbox or container jobs; the walkthrough narration, captions and local
+  66.254-second video were rebuilt to match; unattested support renders no link
+  and no "being configured" dead end. Repository validation, the 21-page site
+  quality contract, support rendering, and four support tests pass. Local only;
+  no push, deploy, public-runtime claim, or human-acceptance claim.
 - **BL-SUPPORT-001** — Implemented the local Ko-fi Free support integration as
   behaviour commit `616f01e` on `agent/support-link-001`: a restrained
   About/Support section, footer destination, deterministic static renderer,
   accessible external-link contract, and fail-closed validation. The public
-  links are intentionally omitted because no owner-provided Ko-fi URL or
+  links and pending-state copy are intentionally omitted because no owner-provided Ko-fi URL or
   attestation that Contributor mode is disabled exists. No account, push, or
   deployment was performed. Owner activation steps are in `SUPPORT_SETUP.md`.
 

@@ -1,5 +1,5 @@
 metadata:
-  updated_at: 2026-07-28T20:48:00+02:00
+  updated_at: 2026-07-28T22:10:00+02:00
   updated_by: codex-agent
   format_version: statespec-site-state/v1
 
@@ -81,7 +81,7 @@ site:
     public_url: null
     settings_attested: false
     required_external_setting: contributor_mode_disabled_with_one_time_tips_only
-    public_link_status: omitted_pending_owner_url_and_settings_attestation
+    public_link_status: fully_hidden_pending_owner_url_and_settings_attestation
   deployment:
     provider: GitHub Pages
     workflow: .github/workflows/deploy-pages.yml
@@ -263,9 +263,9 @@ delivery:
       media: 06ed537
       docs: fb4162d
     local_walkthrough:
-      duration_seconds: 64.292
-      sha256: fcb6efd6f1acbe8fed76352972b01ced4a4ffff7885fdc8549d2f51aef01aaf6
-      vtt_sha256: 149adacabae30771af5b69c7a542abc78981da731c17055011d46aaa866acb4d
+      duration_seconds: 66.254
+      sha256: 79cf3b1377e0bb3bfcbb540bdbedbf1d522016ccc8b82520f8f35ee92f9eaf42
+      vtt_sha256: c1d74a9107c5b19ba47e64a6878ccdbb2e1944605cef71f97c9d09353c3cb582
       narration_source: assets/media/stateport-local-prototype-walkthrough-narration.txt
       markup_source: assets/media/stateport-local-prototype-walkthrough-narration.ssml
       voice: en-US-AndrewNeural
@@ -286,5 +286,11 @@ delivery:
       site_quality_contract: passed_2026-07-28
       browser_review: desktop_1440_and_mobile_390_support_section_layout_and_console_passed_2026-07-28
     activation_blocker: owner_must_supply_valid_https_kofi_page_and_attest_free_plan_contributor_mode_disabled_settings
-    public_link_status: omitted_fail_closed
+    public_link_status: omitted_fail_closed_without_pending_message
     status: implemented_locally_pending_external_configuration_and_owner_review
+  runtime_copy_reconciliation:
+    scope: homepage_metadata_hero_walkthrough_page_narration_captions_and_local_video
+    boundary: native_local_application_and_durable_state_with_optional_declared_sandbox_or_container_jobs
+    support_boundary: no_link_and_no_pending_message_until_configuration_and_owner_attestation
+    validation: repository_validator_site_quality_support_renderer_and_unit_tests_passed_2026-07-28
+    deployment: local_only_not_pushed_not_deployed_not_human_accepted

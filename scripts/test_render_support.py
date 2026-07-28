@@ -25,7 +25,8 @@ class SupportRenderTests(unittest.TestCase):
             "settingsAttested": False,
         }
         rendered = rendered_home(SHELL, config)
-        self.assertIn("data-support-pending", rendered)
+        self.assertNotIn("data-support-pending", rendered)
+        self.assertNotIn("being configured", rendered)
         self.assertNotIn("data-support-link", rendered)
         self.assertNotIn("ko-fi.com", rendered)
 
