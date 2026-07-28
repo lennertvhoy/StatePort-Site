@@ -5,7 +5,7 @@
       <p id="scene-01">Most AI tools start with an empty chat. StatePort starts with an app for work you want to continue.</p>
       <p id="scene-02">Your goal, files, decisions, history, and AI conversations stay together.</p>
       <p id="scene-03">You can ask an AI coding helper a normal question, or let it prepare useful work.</p>
-      <p id="scene-04">When the AI runs code, StatePort gives it a sealed-off container instead of unlimited access to your computer.</p>
+      <p id="scene-04">When AI runs code, StatePort limits where it can work and what it can do. A container is one option, not a promise that the whole service lives inside one.</p>
       <p id="scene-05">Routine work can keep moving. Important changes stay visible for you to review.</p>
       <p id="scene-06">Close it. Return later. The app still knows what you were doing.</p>
       <p id="scene-07">StatePort gives ongoing AI work a home you can inspect, control, and keep.</p>

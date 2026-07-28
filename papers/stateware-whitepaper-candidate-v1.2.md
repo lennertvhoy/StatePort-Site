@@ -55,14 +55,15 @@ exercised against StatePort's real local service. It is not presented as a
 hosted service, a production-qualified product, or a completed third-party
 application ecosystem.
 
-**Current delivery versus future architecture.** The current delivery of the
-reference implementation is StatePort v0.1.0-alpha.1, a **private
-product-owner candidate**: rootless Podman on Linux (x86_64), loopback-only,
-a single local user, and Codex CLI 0.145.0 as the only qualified execution
-provider — operator-authenticated, running in supervised direct mode with
-external side effects denied by default, no bounded or unattended autonomy,
-and no transactional mode. There is no public download, no remote CI
-verification, and no independent security review. The wider architecture this
+**Current delivery versus future architecture.** The current product lane is
+an exact, private, loopback-only, single-user local candidate. Its bounded
+Firefox terminal lifecycle has exact-runtime agent validation; broader human
+validation, owner acceptance, remote CI, and release closure have not occurred.
+Codex CLI is the only exercised execution-provider lane. Historical rootless
+Podman packaging evidence on Linux x86_64 is a separate evidence lane, not the
+identity or acceptance proof of the current product candidate. There is no
+public download, independent security review, or production qualification. The
+wider architecture this
 paper describes — catalogues of community applications, multiple qualified
 providers, team deployments — is a direction, not a description of what the
 alpha delivers. Where the two differ, this paper now says so explicitly.
@@ -126,11 +127,11 @@ emphasis and accuracy learned from building the reference implementation:
 1. **Applications and ongoing work come before governance.** The model
    exists to give work a durable home; governance is the enabling layer
    that protects that work, not the product's center.
-2. **Oversight is per-action, human-on-the-loop.** Routine, reversible work
-   proceeds while the owner supervises — with visibility, interruption,
-   pause, redirect, rollback, and escalation; approval becomes a distinct
-   event only when consequences justify it. Not every action is a
-   governance transaction.
+2. **Oversight is per-action, human-on-the-loop.** Policy may allow routine,
+   reversible work while the owner supervises, with visibility, bounded
+   cancellation, and escalation. Pause, redirect, compensation, and rollback
+   remain operation- and runtime-specific capabilities; approval becomes a
+   distinct event when consequences and policy require it.
 3. **Governance is an enabling layer.** It makes supervision cheap and
    failure visible; it is not a toll wrapped around every act.
 4. **Both product planes are valid.** Stateware has an application plane
@@ -565,11 +566,12 @@ small enough to judge in seconds. Oversight stops being a bottleneck and
 becomes an inbox.
 
 The everyday posture is **human-on-the-loop** rather than
-human-on-every-action. Routine, reversible work proceeds while the owner
-supervises: the work is visible as it happens, and the owner can interrupt,
-pause, redirect, roll back, or escalate at any point. Approval becomes a
-distinct event only where consequences justify it — the destructive, the
-external, the expensive, the irreversible. A system that treats every
+human-on-every-action. Policy may allow routine, reversible work while the owner
+supervises: the work is visible as it happens, with bounded cancellation and an
+escalation path. Pause, redirect, compensation, and rollback depend on the
+operation and validated runtime and are never universal promises. Approval
+becomes a distinct event where consequences and policy require it — the
+destructive, the external, the expensive, the irreversible. A system that treats every
 keystroke as a governance transaction trains its owner to rubber-stamp; a
 system that reserves decisions for what matters keeps them meaningful.
 

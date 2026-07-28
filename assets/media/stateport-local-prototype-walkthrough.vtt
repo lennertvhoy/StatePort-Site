@@ -12,19 +12,19 @@ conversations stay together.
 You can ask an AI coding helper a normal question, or
 let it prepare useful work.
 
-00:00:27.018 --> 00:00:37.986
-When the AI runs code, StatePort gives it a sealed-off
-container instead of unlimited access to your
-computer.
+00:00:27.018 --> 00:00:41.778
+When AI runs code, StatePort limits where it can work
+and what it can do. A container is one option, not a
+promise that the whole service lives inside one.
 
-00:00:38.736 --> 00:00:46.392
+00:00:42.518 --> 00:00:50.174
 Routine work can keep moving. Important changes stay
 visible for you to review.
 
-00:00:47.136 --> 00:00:52.944
+00:00:50.918 --> 00:00:56.726
 Close it. Return later. The app still knows what you
 were doing.
 
-00:00:53.694 --> 00:01:01.605
+00:00:57.476 --> 00:01:05.372
 StatePort gives ongoing AI work a home you can
 inspect, control, and keep.

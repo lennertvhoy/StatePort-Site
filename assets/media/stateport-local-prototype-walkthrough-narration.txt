@@ -4,7 +4,7 @@ Your goal, files, decisions, history, and AI conversations stay together.
 
 You can ask an AI coding helper a normal question, or let it prepare useful work.
 
-When the AI runs code, StatePort gives it a sealed-off container instead of unlimited access to your computer.
+When AI runs code, StatePort limits where it can work and what it can do. A container is one option, not a promise that the whole service lives inside one.
 
 Routine work can keep moving. Important changes stay visible for you to review.
 

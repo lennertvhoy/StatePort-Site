@@ -14,7 +14,7 @@
     "height": 720,
     "fps": 30,
     "gapSeconds": 0.75,
-    "durationSeconds": 61.605
+    "durationSeconds": 65.372
   },
   "inputs": {
     "builder": {
@@ -23,11 +23,11 @@
     },
     "narration": {
       "path": "assets/media/stateport-local-prototype-walkthrough-narration.txt",
-      "sha256": "3235e265d9a7a404f6840e3220396cf254bdd9d186cffc544c81fba51185cdb0"
+      "sha256": "ff6b3afcff0dd684961765caea37d31df23cd415165680c0754acec54ca6dd67"
     },
     "narrationMarkup": {
       "path": "assets/media/stateport-local-prototype-walkthrough-narration.ssml",
-      "sha256": "03d94e07414f9c46cc549d837ceb572e7a241110c19cfb5d94108fee53e80c7b"
+      "sha256": "9458f35735d98667182a5371900bb12a0372b068686513e2a25ccf152e40d6f8"
     },
     "images": [
       {
@@ -74,41 +74,41 @@
       "number": 4,
       "image": "assets/media/stateport-platform-settings.png",
       "start": "00:00:27.018",
-      "end": "00:00:37.986",
-      "caption": "When the AI runs code, StatePort gives it a sealed-off container instead of unlimited access to your computer."
+      "end": "00:00:41.778",
+      "caption": "When AI runs code, StatePort limits where it can work and what it can do. A container is one option, not a promise that the whole service lives inside one."
     },
     {
       "number": 5,
       "image": "assets/media/stateport-platform-result.png",
-      "start": "00:00:38.736",
-      "end": "00:00:46.392",
+      "start": "00:00:42.518",
+      "end": "00:00:50.174",
       "caption": "Routine work can keep moving. Important changes stay visible for you to review."
     },
     {
       "number": 6,
       "image": "assets/media/stateport-platform-catalog.png",
-      "start": "00:00:47.136",
-      "end": "00:00:52.944",
+      "start": "00:00:50.918",
+      "end": "00:00:56.726",
       "caption": "Close it. Return later. The app still knows what you were doing."
     },
     {
       "number": 7,
       "image": "assets/media/stateport-platform-catalog.png",
-      "start": "00:00:53.694",
-      "end": "00:01:01.605",
+      "start": "00:00:57.476",
+      "end": "00:01:05.372",
       "caption": "StatePort gives ongoing AI work a home you can inspect, control, and keep."
     }
   ],
   "outputs": {
     "mp4": {
       "path": "assets/media/stateport-local-prototype-walkthrough.mp4",
-      "sha256": "9b0f641c0de26b81d9c527f8e38b39078f74fb8e7b69dc83fc666a30e7103aab",
-      "bytes": 1343810
+      "sha256": "df6a160965d2f57fe7255a4e87bff39e381b4ed70d0597eb4ac7f502691e281e",
+      "bytes": 1443638
     },
     "vtt": {
       "path": "assets/media/stateport-local-prototype-walkthrough.vtt",
-      "sha256": "89ac331bbe96f92827cf8d70e14a52019b3307d0f53fa70544937f4ce6dd9bfb",
-      "bytes": 811
+      "sha256": "9eeb973ddac1a2b9ecc15094d79692ef866cebd4919e981067a464934ff1af82",
+      "bytes": 856
     }
   }
 }

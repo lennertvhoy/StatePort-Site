@@ -76,9 +76,9 @@
               <p class="release-summary-label">Current software status</p>
               <h2>The release is still in preparation</h2>
               <p>Public software distribution has not started. No download, public implementation source, versioned install guide, or supported release is being offered.</p>
-              <p>A private v0.1.0-alpha.1 candidate is being prepared for owner testing: rootless Podman on Linux (x86_64), loopback-only, a single local user, and Codex CLI as the only qualified execution provider, with external side effects denied by default. Owner testing has not started. It is not a public release — there is no public download, no remote CI verification, no independent security review, and no production-readiness claim.</p>
+              <p>The current product lane is an exact local, loopback-only, single-user candidate. Its bounded Firefox terminal lifecycle is agent-validated; broader human validation, owner acceptance, remote CI, and release closure have not occurred. A separate historical lane exercised rootless Podman packaging on Linux x86_64. That packaging evidence is not the identity of the current product candidate and cannot be used as its acceptance proof. Codex CLI is the only exercised provider lane.</p>
             </div>
-            <p class="release-review-date">Ledger reviewed<br><time datetime="2026-07-26">26 July 2026</time></p>
+            <p class="release-review-date">Ledger reviewed<br><time datetime="2026-07-28">28 July 2026</time></p>
           </div>
 
           <dl class="release-ledger release-ledger--detailed" aria-label="StatePort availability">
@@ -137,6 +137,7 @@
               <li><strong>Verified path</strong><span>A Docker-first installation path tested from a clean environment for the stated platform.</span></li>
               <li><strong>Acceptance record</strong><span>A clear account of what was validated, by whom, and what remains unaccepted.</span></li>
             </ol>
+            <p><strong>Proof ladder:</strong> automated validation, exact-runtime agent validation, human validation, human acceptance, remote closure, and release are separate states. Evidence never transfers implicitly between branches, commits, runtimes, instances, provider configurations, or packaging lanes.</p>
           </section>
 
           <p class="notice"><strong>Why the language is strict</strong> A polished site, a local demo, or passing static checks can support a design claim. None of them, alone, make software publicly available or accepted.</p>

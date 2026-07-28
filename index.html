@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="StatePort turns ongoing AI work into durable apps, coordinating coding agents in isolated containers while your data stays under your control.">
+    <meta name="description" content="StatePort turns ongoing AI work into durable apps, coordinating bounded agent execution while your data stays under your control.">
     <meta name="theme-color" content="#0B132B">
     <meta name="color-scheme" content="light">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="StatePort — Give AI work a home">
-    <meta property="og:description" content="Durable apps for ongoing AI work, with coding agents coordinated inside isolated containers and important changes kept visible.">
+    <meta property="og:description" content="Durable apps for ongoing AI work, with bounded agent execution and important changes kept visible.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-platform-catalog.png">
     <meta property="og:image:width" content="1920">
@@ -30,7 +30,7 @@
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "StatePort",
-        "description": "Durable apps for ongoing AI work, with coding agents coordinated inside isolated containers and important changes kept visible.",
+        "description": "Durable apps for ongoing AI work, with bounded agent execution and important changes kept visible.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/",
         "inLanguage": "en"
       }
@@ -63,12 +63,12 @@
             <p class="page-audience page-audience--hero">New user</p>
             <p class="eyebrow">Durable apps for ongoing AI work</p>
             <h1 id="hero-title">Give AI work a home you can come back to.</h1>
-            <p class="hero-deck">StatePort turns ongoing work into durable apps. It coordinates coding agents inside isolated containers, keeps your data under your control, and shows you important changes before they happen.</p>
+            <p class="hero-deck">StatePort turns ongoing work into durable apps. It coordinates coding agents through explicit permissions and isolated workspaces, keeps your data under your control, and shows you important changes before they happen.</p>
             <div class="hero-actions">
-              <a class="button" href="#prototype">Watch the 60-second tour</a>
+              <a class="button" href="#prototype">Watch the 65-second tour</a>
               <a class="button button--quiet" href="#how-it-works">See how StatePort works</a>
             </div>
-            <p class="availability"><strong>Private alpha:</strong><span>v0.1.0-alpha.1 is being prepared for owner testing — rootless Podman on Linux, Codex CLI only, no public download.</span><a href="releases/">Release ledger</a></p>
+            <p class="availability"><strong>Private local alpha:</strong><span>an exact local product candidate is agent-validated for a bounded terminal journey and awaits human testing. Historical Podman packaging evidence is separate. No public download.</span><a href="releases/">Release ledger</a></p>
           </div>
 
           <div class="hero-visual">
@@ -87,8 +87,8 @@
               <p>AI helpers can work on real projects without making the chat your source of truth.</p>
             </article>
             <article>
-              <h2>Isolated containers</h2>
-              <p>Code runs in a controlled workspace instead of getting unlimited access to your computer.</p>
+              <h2>Bounded execution</h2>
+              <p>Code runs with declared permissions in an isolated workspace. The service itself may run natively or as a replaceable packaged artifact.</p>
             </article>
             <article>
               <h2>Your apps and state</h2>
@@ -102,7 +102,7 @@
         <p class="section-kicker reveal">The idea</p>
         <div class="statement-copy reveal">
           <h2 id="stateware-heading">Agents do the work. The work stays yours.</h2>
-          <p>A coding agent is good at doing the work, not at being the work. StatePort is the home around it: each application keeps durable state you can read and carry, and the harness supervises what the agent does — approval when consequences justify it, and visibility, pause, and rollback throughout.</p>
+          <p>A coding agent is good at doing the work, not at being the work. StatePort is the home around it: each application keeps durable state you can read and carry, and the harness makes authority, execution, evidence, and acceptance distinct. Approval is required when policy and consequences demand it.</p>
           <p>Chat and agent sessions help move things forward. They do not become the only place your work exists.</p>
         </div>
       </section>
@@ -111,8 +111,8 @@
         <div class="prototype-inner">
           <div class="prototype-intro reveal">
             <p class="section-kicker">Current evidence</p>
-            <h2 id="prototype-heading">See the platform working.</h2>
-            <p>A captioned walkthrough of the working public-safe fixture: a real conversation, a bounded run, its result, evidence, and the settings around it.</p>
+            <h2 id="prototype-heading">See an earlier fixture journey.</h2>
+            <p>A captioned walkthrough of a public-safe local fixture: a conversation, a bounded run, its result, evidence, and the settings around it. It is historical product evidence, not validation or acceptance of the current candidate.</p>
           </div>
 
           <div class="prototype-stage reveal">
@@ -121,7 +121,7 @@
               <track kind="captions" srclang="en" label="English" src="assets/media/stateport-local-prototype-walkthrough.vtt" default>
               Your browser does not support HTML video. Read the linked walkthrough for the same information.
             </video>
-            <p id="prototype-caption">62-second local preview built from current public-safe screens, with word-for-word captions. Availability lives in the release ledger.</p>
+            <p id="prototype-caption">65-second local preview rebuilt from public-safe fixture screens, with word-for-word captions. This historical fixture is not current-candidate acceptance; availability lives in the release ledger.</p>
           </div>
 
           <p class="prototype-gallery-intro reveal">Click any screen to inspect it at full size.</p>
@@ -201,7 +201,7 @@
             <article class="route-step reveal">
               <p class="route-number">03 / RUN</p>
               <h3>Let it run, governed</h3>
-              <p>The harness plans, runs the agent, asks approval when consequences justify it, and records what changed. You can watch, pause, redirect, or roll back; the agent never owns the truth.</p>
+              <p>The harness plans and runs the agent within declared authority, requires approval when policy demands it, and records what changed. Cancellation and recovery depend on the exact operation and validated runtime; the agent never owns the truth.</p>
             </article>
             <article class="route-step reveal">
               <p class="route-number">04 / KEEP</p>
@@ -244,7 +244,7 @@
           <div class="reveal">
             <p class="release-label">Release ledger</p>
             <h2 id="release-heading">Evidence before availability.</h2>
-            <p class="release-updated">Status reviewed <time datetime="2026-07-26">26 July 2026</time>.</p>
+            <p class="release-updated">Status reviewed <time datetime="2026-07-28">28 July 2026</time>.</p>
             <a class="release-ledger-link" href="releases/">View the full release ledger <span aria-hidden="true">↗</span></a>
           </div>
           <dl class="release-status-list reveal">

@@ -60,13 +60,24 @@
         <article class="prose">
           <p class="notice notice--quiet"><strong>Reading guide</strong> This page explores the model. <a href="../releases/">Availability lives in the release ledger.</a></p>
 
-          <h2>Four useful evidence states</h2>
+          <h2>Six useful evidence states</h2>
           <div class="code-panel" data-label="A claim ladder"><code>implemented
-→ locally validated
-→ independently accepted
-→ human accepted
+→ automated validation
+→ exact-runtime agent validation
+→ human validation
+→ human acceptance
+→ remote closure
 → released</code></div>
-          <p>These states do not collapse into one another. Local validation can be valuable and still be self-adjudicated. Independent CI can test an exact source without proving user value. Human acceptance can evaluate a product journey without converting an unresolved source into a release.</p>
+          <p>These states do not collapse into one another. Automated tests can pass without proving the interface works. An agent journey must bind source, runtime, instance, actions, durable results, and uncertainty. Human validation assesses usability and trust; human acceptance is an explicit decision on one exact candidate. Remote CI and a release remain separate again.</p>
+
+          <h2 id="report-a-problem">Report a problem during the local checkpoint</h2>
+          <p>The local StatePort candidate includes an in-product <strong>Report a problem</strong> control. Describe what you expected and what happened, optionally attach the current screenshot, then review the captured route and runtime context before saving. The report stays in the local StatePort evidence store for operator review; it does not upload itself, open a public issue, launch an agent, or change product source.</p>
+          <ul>
+            <li>Include the candidate/build identity and application instance when they are visible.</li>
+            <li>Never include passwords, tokens, private conversation text, learner data, or unrelated files.</li>
+            <li>If the control is unavailable, record the same facts in the private owner-test notes and mark the reporting path itself as failed.</li>
+            <li>No public support or vulnerability intake route is active yet; security reports need a separately activated private route before external testing begins.</li>
+          </ul>
 
           <h2>What is public today</h2>
           <p>This website brings together the documentation, prototype, paper, and release ledger. Software availability is recorded separately, with its exact source and evidence.</p>
@@ -74,7 +85,8 @@
           <h2>What remains open</h2>
           <ul>
             <li>A public source release, licensing decision, artifacts, and verified install path.</li>
-            <li>Independent validation of the exact delivered source and its packaged runtime.</li>
+            <li>Human validation and acceptance of the exact local product candidate.</li>
+            <li>Independent validation of an exact delivered source and its packaged runtime.</li>
             <li>Canonical upstream release acceptance for application packages.</li>
             <li>External-user and human product acceptance.</li>
             <li>Controlled evaluation before any comparative or performance claim.</li>

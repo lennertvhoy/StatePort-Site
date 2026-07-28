@@ -51,6 +51,7 @@ class DocumentFacts:
     title_parts: list[str] = field(default_factory=list)
     description: str | None = None
     viewport: str | None = None
+    robots: set[str] = field(default_factory=set)
     canonical: str | None = None
     manifest: str | None = None
     social: dict[str, str] = field(default_factory=dict)
@@ -112,6 +113,8 @@ class QualityParser(HTMLParser):
                 self.facts.description = content
             elif name == "viewport":
                 self.facts.viewport = content
+            elif name == "robots":
+                self.facts.robots = {token.strip().lower() for token in content.split(",") if token.strip()}
             if property_name:
                 self.facts.social[property_name] = content
             if name and name.startswith("twitter:"):
@@ -344,14 +347,14 @@ def validate_homepage_and_documentation_contract() -> None:
     exact_home_markup = (
         '<p class="eyebrow">Durable apps for ongoing AI work</p>',
         '<h1 id="hero-title">Give AI work a home you can come back to.</h1>',
-        '<p class="hero-deck">StatePort turns ongoing work into durable apps. It coordinates coding agents inside isolated containers, keeps your data under your control, and shows you important changes before they happen.</p>',
+        '<p class="hero-deck">StatePort turns ongoing work into durable apps. It coordinates coding agents through explicit permissions and isolated workspaces, keeps your data under your control, and shows you important changes before they happen.</p>',
         '<h2>Coding agents, coordinated</h2>',
         '<p>AI helpers can work on real projects without making the chat your source of truth.</p>',
-        '<h2>Isolated containers</h2>',
-        '<p>Code runs in a controlled workspace instead of getting unlimited access to your computer.</p>',
+        '<h2>Bounded execution</h2>',
+        '<p>Code runs with declared permissions in an isolated workspace. The service itself may run natively or as a replaceable packaged artifact.</p>',
         '<h2>Your apps and state</h2>',
         '<p>Goals, files, decisions, and history stay with the application.</p>',
-        '<a class="button" href="#prototype">Watch the 60-second tour</a>',
+        '<a class="button" href="#prototype">Watch the 65-second tour</a>',
         '<a class="button button--quiet" href="#how-it-works">See how StatePort works</a>',
     )
     for fragment in exact_home_markup:
@@ -366,9 +369,9 @@ def validate_homepage_and_documentation_contract() -> None:
 
     docs = require_file("docs/index.html").read_text(encoding="utf-8")
     required_levels = {
-        "Level 1": ("New here", "What StatePort is", "Why it exists", "5-minute tour", "Open first app", "Ask AI for help", "What happens before a change", "Report a problem", "Backup an app"),
-        "Level 2": ("Use StatePort", "Applications", "Conversation", "Runs", "Files", "Recovery", "Settings", "Bug reports", "StudyState", "ChecklistState"),
-        "Level 3": ("Operate", "rootless Podman", "Codex setup", "container isolation", "backup/restore", "logs", "support bundle", "SELinux", "security model"),
+        "Level 1": ("New here", "What StatePort is", "Why it exists", "5-minute tour", "Preview the first-app journey", "Preview an AI-assisted journey", "What happens before a change", "Report a local test problem", "Understand backup and recovery"),
+        "Level 2": ("Use StatePort", "Applications", "Conversation", "Runs", "Files", "Recovery", "Settings", "Local bug reports", "StudyState", "ChecklistState"),
+        "Level 3": ("Operate", "Container and host qualification", "Codex provider boundary", "Isolation boundaries", "Backup and restore model", "Evidence and logs", "Problem-report context", "SELinux", "security model"),
         "Level 4": ("Build", "Stateware", "StateSpec", "app packages", "execution providers", "intent", "authority", "evidence", "lifecycle", "deployment targets"),
         "Level 5": ("Reference", "schemas", "APIs", "CLI", "manifests", "receipts", "threat models", "ADRs", "provider matrix", "release evidence"),
     }
@@ -379,6 +382,36 @@ def validate_homepage_and_documentation_contract() -> None:
             if topic not in docs:
                 raise AssertionError(f"docs/index.html: {level} is missing topic {topic!r}")
 
+    evidence = require_file("docs/evidence-and-roadmap.html").read_text(encoding="utf-8")
+    for fragment in (
+        'id="report-a-problem"',
+        "exact-runtime agent validation",
+        "human validation",
+        "human acceptance",
+        "does not upload itself",
+    ):
+        if fragment not in evidence:
+            raise AssertionError(f"docs/evidence-and-roadmap.html: missing truth boundary {fragment!r}")
+
+    checked_copy = "\n".join(
+        require_file(path).read_text(encoding="utf-8")
+        for path in (
+            "index.html",
+            "releases/index.html",
+            "docs/prototype-walkthrough.html",
+            "docs/governance.html",
+            "papers/stateware-whitepaper-candidate-v1.2.html",
+        )
+    )
+    for forbidden in (
+        "coding agents inside isolated containers",
+        "sealed-off container",
+        "pause, redirect, rollback, and escalation",
+        "v0.1.0-alpha.1, a <strong>private product-owner candidate</strong>",
+    ):
+        if forbidden in checked_copy:
+            raise AssertionError(f"public candidate copy repeats an overbroad claim: {forbidden!r}")
+
 
 def validate_walkthrough_contract() -> None:
     narration_path = require_file("assets/media/stateport-local-prototype-walkthrough-narration.txt")
@@ -388,7 +421,7 @@ def validate_walkthrough_contract() -> None:
         "Most AI tools start with an empty chat. StatePort starts with an app for work you want to continue.",
         "Your goal, files, decisions, history, and AI conversations stay together.",
         "You can ask an AI coding helper a normal question, or let it prepare useful work.",
-        "When the AI runs code, StatePort gives it a sealed-off container instead of unlimited access to your computer.",
+        "When AI runs code, StatePort limits where it can work and what it can do. A container is one option, not a promise that the whole service lives inside one.",
         "Routine work can keep moving. Important changes stay visible for you to review.",
         "Close it. Return later. The app still knows what you were doing.",
         "StatePort gives ongoing AI work a home you can inspect, control, and keep.",
@@ -484,7 +517,7 @@ def validate_sitemap(documents: dict[Path, DocumentFacts]) -> None:
     expected = {
         public_url(path)
         for path in documents
-        if path != Path("404.html")
+        if path != Path("404.html") and "noindex" not in documents[path].robots
     }
     missing = sorted(expected.difference(locations))
     extra = sorted(locations.difference(expected))
