@@ -6,7 +6,7 @@
 
 ## P1 [BL-SITE-010] Complete the local alpha release alignment package
 
-**Status:** in_progress
+**Status:** local_validation_complete_owner_review_pending
 
 Branch `agent/site-alpha-release-alignment-001` (base `92d134b`, local only).
 Scope: hero visual repair with a protected copy column; product-truth copy
@@ -30,13 +30,18 @@ ladder, narrows containment/recovery wording, documents the local-only
 problem-report path, excludes the unpublished v1.2 candidate paper from the
 sitemap, and rebuilds the historical-fixture tour (65.372 s; MP4
 `df6a1609…`; VTT `9eeb973d…`). Both Site validators and final 1440x900 plus
-390x844 browser review pass with a clean console. The wider requested viewport
-and zoom matrix remains open, so this action stays `in_progress`; no push,
-deploy, product validation, human review, or acceptance is claimed.
+390x844 browser review pass with a clean console. The requested matrix is now
+complete at tested content source `1a307e6`: homepage
+1440/1280/1024/768/390/320 plus 120%/150%-equivalent layout widths, and
+release/problem-report checks at 1440/390/320. No horizontal overflow was
+observed; all 26 reveal elements appeared on scroll; mobile Escape/focus return
+passed; console errors and warnings were zero. Availability copy now reports
+completed local automated and exact-runtime agent validation without implying
+human validation or acceptance. No push, deploy, independent product
+validation, human review, or acceptance is claimed.
 
-**Exit:** package committed locally with repo validators, link/a11y checks,
-and a browser pass at 1440/1280/1024/768/390/320 plus zoom 120/150% recorded
-as evidence; owner review requested.
+**Exit:** local validation requirements are complete; owner review is now the
+exact next gate under `BL-SITE-007`.
 
 ## P1 [BL-SITE-007] Obtain human acceptance of the public site package
 

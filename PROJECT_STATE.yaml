@@ -1,5 +1,5 @@
 metadata:
-  updated_at: 2026-07-28T18:31:00+02:00
+  updated_at: 2026-07-28T20:13:44+02:00
   updated_by: codex
   format_version: statespec-site-state/v1
 
@@ -13,7 +13,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: launch_preparation
-  status: alpha_release_alignment_local_in_progress
+  status: alpha_release_alignment_local_owner_review_ready
   purpose: public documentation, tutorials, release status, and future download home
 
 source_boundary:
@@ -241,7 +241,7 @@ delivery:
     base_sha: 92d134b
     scope: hero_repair_product_truth_copy_ctas_alpha_note_licence_boundary_whitepaper_v1_2_candidate_walkthrough_rebuild
     constraints: local_only_no_push_no_pages_deploy_no_release_ledger_availability_change_no_whitepaper_publication
-    status: in_progress
+    status: local_owner_review_ready_no_deploy_authority
   noob_friendly_copy:
     branch: agent/noob-friendly-copy-001
     base_branch: agent/site-alpha-release-alignment-001
@@ -285,10 +285,17 @@ delivery:
     validation:
       repository: passed_2026-07-28
       quality_contract: passed_21_pages_2026-07-28
-      browser: passed_loopback_1440x900_and_390x844_home_release_and_problem_report_routes_zero_console_errors_or_warnings_2026-07-28
+      browser: passed_loopback_home_1440_1280_1024_768_390_320_and_120_150_percent_equivalent_layout_widths_release_and_problem_report_1440_390_320_zero_overflow_zero_console_errors_or_warnings_2026-07-28
+      revealContract: all_26_homepage_reveal_elements_visible_after_ordinary_scroll
+      mobileNavigation: open_escape_close_focus_return_passed_at_320
+      testedContentSource: 1a307e6e1af740950dfb34d2076ab0f4f75abc68
+      availabilityCopy: completed_local_automated_and_exact_runtime_agent_validation_human_validation_and_owner_acceptance_open
     review:
       class: internal_multi_agent
       independence: not_established
       human_validation: not_tested
       human_acceptance: not_tested
-    status: committed_locally_not_pushed_not_deployed_pending_owner_review_and_full_requested_viewport_matrix
+    matrixReview:
+      class: implementing_session
+      independence: not_established
+    status: local_owner_review_ready_not_pushed_not_deployed_not_human_accepted

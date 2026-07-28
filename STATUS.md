@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-07-28
 **Execution Mode:** operating
-**Project State:** alpha_release_alignment_local_in_progress
+**Project State:** alpha_release_alignment_local_owner_review_ready
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -77,6 +77,17 @@
   instructions with zero console errors or warnings. This evidence is local
   only: no push, Pages deployment, product-candidate validation, human review,
   or human acceptance follows from it.
+- The local owner-test candidate now completes the requested Site viewport and
+  zoom matrix at tested content source `1a307e6`: homepage
+  1440/1280/1024/768/390/320 and 120%/150%-equivalent layout widths, plus
+  desktop/390/320 release-ledger and problem-report checks. All views had no
+  document-level horizontal overflow; all 26 homepage reveal elements became
+  visible through ordinary scroll; mobile navigation opened, closed with
+  Escape, and returned focus; console errors and warnings were zero. Public
+  availability copy now truthfully reports completed local automated and
+  exact-runtime agent validation while keeping human validation, owner
+  acceptance, remote CI, and release closure explicitly open. This is local
+  owner-review readiness, not deployment or acceptance.
 
 ## What is not proven
 
@@ -85,13 +96,13 @@
 - Human acceptance of the copy, visual design, information architecture, and
   media voice — including the deployed harness-narrative package.
 - Human acceptance of the alpha-alignment package now in local preparation.
-- Exact-source validation or acceptance of the current StatePort product
-  candidate; this Site preview reports that process but cannot prove it.
+- Independent validation or acceptance of the current StatePort product
+  candidate; this Site preview reports the private repository's bounded
+  validation classification but cannot independently prove or broaden it.
 
 ## Next action
 
-Complete and locally validate the alpha-alignment package on
-`agent/site-alpha-release-alignment-001`, then obtain owner review. Merge,
-deploy, and any release-ledger or whitepaper publication change remain
-owner-gated. Keep release/download content tied to a public source release
-and its evidence.
+Obtain owner review of local candidate `candidate/local-user-test-001` at the
+recorded owner-review-ready state. Merge, deploy, and any release-ledger or
+whitepaper publication change remain owner-gated. Keep release/download
+content tied to a public source release and its evidence.

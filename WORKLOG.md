@@ -1,5 +1,26 @@
 # Worklog
 
+## 2026-07-28 — Owner-test Site matrix complete and validation copy aligned
+
+- Re-ran both deterministic gates on the clean local owner-test candidate:
+  `scripts/validate_repo.py` passed and `scripts/check_site_quality.py` passed
+  all 21 pages.
+- Completed the remaining loopback browser matrix: homepage at
+  1440/1280/1024/768/390/320 and 120%/150%-equivalent layout widths; release
+  ledger and problem-report instructions at 1440/390/320. Each viewport had
+  `scrollWidth == innerWidth`; all 26 homepage reveal elements became visible
+  through scroll; mobile navigation opened, Escape closed it, and focus
+  returned to the toggle. Browser console: zero errors and zero warnings.
+- Preview review caught one newly stale statement after the private product
+  candidate completed exact-runtime agent validation. Updated only the
+  bounded homepage and release-ledger availability wording at
+  `1a307e6e1af740950dfb34d2076ab0f4f75abc68`: local automated and
+  exact-runtime agent validation passed; human validation, owner acceptance,
+  remote CI, release closure, and public download remain open or absent.
+- Classification: local Site owner-review readiness; review independence not
+  established. No push, Pages deployment, public-runtime change, product
+  acceptance, human validation, or human acceptance was performed.
+
 ## 2026-07-28 — Local owner-checkpoint truth alignment
 
 - Audited the local Site owner-test candidate against the exact StatePort
