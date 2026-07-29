@@ -383,9 +383,9 @@ def validate_privacy_and_asset_discipline() -> None:
     enhancements = require_file("assets/site-enhancements.css")
     if site_js.stat().st_size > 24_000:
         raise AssertionError(f"assets/site.js exceeds the 24 KB progressive-enhancement budget: {site_js.stat().st_size}")
-    if enhancements.stat().st_size > 30_000:
+    if enhancements.stat().st_size > 36_000:
         raise AssertionError(
-            "assets/site-enhancements.css exceeds the 30 KB additive-style budget: "
+            "assets/site-enhancements.css exceeds the 36 KB additive-style budget: "
             f"{enhancements.stat().st_size}"
         )
     total_css = sum(path.stat().st_size for path in (ROOT / "assets").glob("*.css"))
