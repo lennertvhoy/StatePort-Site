@@ -2,13 +2,15 @@ from __future__ import annotations
 
 import tempfile
 from pathlib import Path
+import sys
 import unittest
 from unittest.mock import patch
 
-try:
-    from scripts import validate_repo
-except ModuleNotFoundError:  # Direct execution keeps only scripts/ on sys.path.
-    import validate_repo
+SCRIPTS = Path(__file__).resolve().parent
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS))
+
+import validate_repo
 
 
 PENDING_COPY = "Agent validation passed; owner acceptance remains pending."
