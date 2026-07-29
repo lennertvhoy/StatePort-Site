@@ -5,7 +5,10 @@ from pathlib import Path
 import unittest
 from unittest.mock import patch
 
-import validate_repo
+try:
+    from scripts import validate_repo
+except ModuleNotFoundError:  # Direct execution keeps only scripts/ on sys.path.
+    import validate_repo
 
 
 PENDING_COPY = "Agent validation passed; owner acceptance remains pending."
