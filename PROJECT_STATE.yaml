@@ -1,5 +1,5 @@
 metadata:
-  updated_at: 2026-07-28T22:10:00+02:00
+  updated_at: 2026-07-29T12:00:00+02:00
   updated_by: codex-agent
   format_version: statespec-site-state/v1
 
@@ -13,7 +13,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: launch_preparation
-  status: alpha_release_alignment_local_in_progress
+  status: StudyState_public_alpha_trust_site_owner_review_checkpoint
   purpose: public documentation, tutorials, release status, and future download home
 
 source_boundary:
@@ -187,6 +187,27 @@ release_ledger:
   source_license_published: false
   intended_first_distribution: docker_first_when_release_is_published
   visitor_message: public release preparation is in progress; no download is offered
+
+public_alpha_trust_successor:
+  branch: agent/public-alpha-trust-closure-001
+  behavioural_head: 6357bc73135fa40cb7b5ecfa18bc505fb960d5df
+  rejected_predecessor: ce63e380c5287d24a673807b533b05d18d52bf74
+  status: local_agent_validated_owner_acceptance_not_performed
+  positioning:
+    primary_product: StudyState
+    hero: learning_that_survives_the_chat
+    journey: recommended_activity_reflection_exact_review_approval_restart_persistence_Undo
+    platform_architecture: one_layer_deeper
+  boundaries:
+    support: hidden_pending_verified_URL_and_attestation
+    download: absent
+    packaging: blocked_pending_paired_candidate_owner_acceptance
+    publication: not_authorized
+  validation:
+    repository: passed
+    quality_contract: passed_21_pages
+    renderer: passed_4_tests_6_subtests
+    browser: desktop_and_320px_review_passed_no_overflow_keyboard_skip_visible
 
 delivery:
   local_repository: local_working_copy_path_intentionally_not_recorded_in_public_state_files

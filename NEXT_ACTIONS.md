@@ -1,115 +1,34 @@
 # NEXT_ACTIONS — active execution queue
 
-**Updated At:** 2026-07-28
+**Updated At:** 2026-07-29
 **Execution Mode:** operating
-**Max Items:** 3
+**Max Items:** 1
 
-## P1 [BL-SITE-010] Complete the local alpha release alignment package
+## P0 [BL-SITE-PUBLIC-ALPHA-TRUST-001] Owner checkpoint
 
-**Status:** in_progress
+**Status:** exact local behavioural head
+`6357bc73135fa40cb7b5ecfa18bc505fb960d5df` is implementation-complete and
+agent-validated; human validation and acceptance are not performed.
 
-Branch `agent/site-alpha-release-alignment-001` (base `92d134b`, local only).
-Scope: hero visual repair with a protected copy column; product-truth copy
-corrections (provider honesty, both product planes, ownership seam,
-human-on-the-loop); CTA and clearly-local alpha-status note; site licence
-boundary (LICENSE, NOTICE, asset inventory); whitepaper v1.2 candidate beside
-the untouched public v1.1; walkthrough narration/media rebuild from corrected
-copy. No push, no Pages deploy, no release-ledger availability change, and no
-whitepaper publication without explicit owner direction. The noob-friendly
-copy sub-package on `agent/noob-friendly-copy-001` (BL-SITE-012, completed
-below) builds on this branch and joins the same owner review.
+Review the homepage as the public entrance to the paired StudyState candidate:
 
-**Exit:** package committed locally with repo validators, link/a11y checks,
-and a browser pass at 1440/1280/1024/768/390/320 plus zoom 120/150% recorded
-as evidence; owner review requested.
+- StudyState and its learner value dominate the first viewport.
+- The journey is recommended activity → reflection → exact review → approval →
+  restart persistence → Undo.
+- Platform architecture remains available below the product story.
+- Local-first scope and limitations stay truthful.
+- Support remains hidden without a verified URL and account attestation.
+- No release or download is presented.
 
-## P1 [BL-SITE-007] Obtain human acceptance of the public site package
+The owner classifies only this exact local head as `accepted`,
+`conditionally_accepted`, or `rejected`. Do not push, merge, deploy, publish,
+change the release ledger, or infer acceptance.
 
-**Status:** pending
+## Blocked
 
-The deployed harness-narrative package (and now the alpha-alignment package
-behind it) still needs human review of copy, visual design, information
-architecture, and media voice.
-
-**Exit:** human review records acceptance or requested changes for the live
-package.
-
-## P1 [BL-SITE-003] Add release-specific content only with public source evidence
-
-**Status:** pending_external
-
-Replace release-preparation language only after a public implementation source,
-license decision, versioned artifact, checksums, and verified install path exist.
-
-**Exit:** all download and release claims bind to an exact published release.
-
-## Completed since last update (2026-07-28)
-
-- **BL-SITE-013** — Reconciled the local candidate's runtime and support copy:
-  native local application/state is now distinguished from optional declared
-  sandbox or container jobs; the walkthrough narration, captions and local
-  66.254-second video were rebuilt to match; unattested support renders no link
-  and no "being configured" dead end. Repository validation, the 21-page site
-  quality contract, support rendering, and four support tests pass. Local only;
-  no push, deploy, public-runtime claim, or human-acceptance claim.
-- **BL-SUPPORT-001** — Implemented the local Ko-fi Free support integration as
-  behaviour commit `616f01e` on `agent/support-link-001`: a restrained
-  About/Support section, footer destination, deterministic static renderer,
-  accessible external-link contract, and fail-closed validation. The public
-  links and pending-state copy are intentionally omitted because no owner-provided Ko-fi URL or
-  attestation that Contributor mode is disabled exists. No account, push, or
-  deployment was performed. Owner activation steps are in `SUPPORT_SETUP.md`.
-
-## Completed since last update (2026-07-27)
-
-- **BL-SITE-012** — Prepared the local noob-friendly copy package on
-  `agent/noob-friendly-copy-001` (base `1e4f1dd`, local only): plain-language
-  hero with an accurate technical trio (`e990b26`), beginner-level walkthrough
-  narration with a locally rebuilt MP4/VTT (64.292 s, six verbatim cues) and a
-  matching storyboard (`06ed537`), and "New here?" orientations on the two
-  beginner entry docs (`fb4162d`). `validate_repo.py` and
-  `check_site_quality.py` pass. No push, no deploy, papers untouched; owner
-  review and human acceptance pending.
-
-## Completed since last update (2026-07-26)
-
-- **BL-SITE-011** — Reconciled stale deployment state. The harness-narrative
-  package was in fact committed on `main` (`690b5f4`, `92d134b`) and deployed
-  via Pages run `30043401841` (2026-07-23); earlier "uncommitted, unpushed,
-  not deployed" state claims were corrected. Re-verified the live walkthrough
-  media against the repository on 2026-07-26: MP4 SHA-256
-  `057588edf3db94d9e022a1ca244edf5de9bddbb482f786e221bd0adf4d1875e1`, VTT
-  SHA-256 `cab9d1ed26a31618874ef5c895a1d9cb1da6352a254118252dd67f74855a734d`;
-  the previously recorded `f8ad9dad…` hash was the superseded pre-VTT-fix
-  build. Removed the exact local filesystem path from `PROJECT_STATE.yaml`.
-
-## Completed since last update (2026-07-23)
-
-- **BL-SITE-008** — Regenerated the walkthrough MP4 spoken track from the
-  reframed narration using the free public Edge TTS `en-US-AndrewNeural` voice
-  at build time (no credentials); six VTT cues aligned to the audio. The
-  reproducible build script is committed at `scripts/build_walkthrough.py`.
-  (Final deployed build is the `92d134b` re-render with verbatim cues — see
-  the 2026-07-26 reconciliation above.)
-- **BL-SITE-009** — Added two site-themed mermaid diagrams (harness flow,
-  template-to-instance flow) rendered to PNG and inserted into the foundations
-  page and the homepage "How it works" section. Added `.diagram-figure` CSS
-  card style.
-
-## Completed since last update (2026-07-21)
-
-- **BL-SITE-008** — Merged and deployed the plain-language revision. PR #2
-  validation run `29912161044` and Pages run `29912179462` passed; the public
-  runtime was verified. Human acceptance remained separate.
-- Prepared the critical audit and product/UX overhaul on a clean branch based on
-  current canonical `main`; opened draft PR #5 and closed superseded draft PR #4.
-- Expanded the deterministic quality contract and corrected the 404-page defect
-  it exposed. Behavior-bearing head validation passed in run `29914436990`.
-- Reviewed and deployed PR #5's exact final head; recorded merge, Pages, and
-  public-runtime evidence separately. Human acceptance remains open.
-- Prepared, merged, and deployed a clean-screen, plain-narration video revision
-  in response to direct product-owner feedback that the baked-in labels and
-  spoken explanation were still too jargon-heavy.
-- Corrected the narration/caption timing after review found that the first
-  revision changed screens at fixed times while the audio followed a separate
-  timeline. Captions are now sentence-level and timed to regenerated audio.
+- Public-alpha packaging is blocked until the paired StatePort trust-closure
+  candidate receives owner acceptance.
+- Release-specific content remains blocked on public source, license, artifact,
+  checksum, install-path, and exact remote evidence.
+- Ko-fi support remains fail-closed until the owner supplies the real URL and
+  attests Ko-fi Free, Contributor-disabled, one-time-tip settings.

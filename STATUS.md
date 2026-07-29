@@ -1,8 +1,8 @@
 # StatePort Site status
 
-**Updated At:** 2026-07-28
+**Updated At:** 2026-07-29
 **Execution Mode:** operating
-**Project State:** alpha_release_alignment_local_in_progress
+**Project State:** StudyState_public_alpha_trust_site_owner_review_checkpoint
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -75,6 +75,18 @@
   homepage, walkthrough page, spoken narration source, captions, and rebuilt
   local video agree on that boundary. This correction is local-only and is not
   a claim about the currently deployed site.
+- Rejected local subject `ce63e380c5287d24a673807b533b05d18d52bf74`
+  remains immutable evidence. Its public-alpha promotion was rejected because
+  the homepage still led with the platform instead of the StudyState product.
+- Successor branch `agent/public-alpha-trust-closure-001` at behavioural head
+  `6357bc73135fa40cb7b5ecfa18bc505fb960d5df` now leads with StudyState,
+  “Learning that survives the chat,” the recommended learner activity, exact
+  review, approval, restart persistence, and Undo. Platform evidence is one
+  layer deeper, support remains hidden, and no download is offered.
+- The exact successor passes repository validation, the 21-page quality
+  contract, four renderer tests / six subtests, and desktop/320px browser review
+  with no horizontal overflow and a visible keyboard skip link. It remains
+  local-only and has not received human acceptance.
 
 ## What is not proven
 
@@ -82,14 +94,13 @@
   path for visitors.
 - Human acceptance of the copy, visual design, information architecture, and
   media voice — including the deployed harness-narrative package.
-- Human acceptance of the alpha-alignment package now in local preparation.
+- Human acceptance of the exact StudyState-centred successor.
 - A StatePort-owned Ko-fi destination and owner verification that the account
   uses Ko-fi Free with Contributor mode disabled.
 
 ## Next action
 
-Complete and locally validate the alpha-alignment package on
-`agent/site-alpha-release-alignment-001`, then obtain owner review. Merge,
-deploy, and any release-ledger or whitepaper publication change remain
-owner-gated. Keep release/download content tied to a public source release
-and its evidence.
+Owner-review exact local head
+`6357bc73135fa40cb7b5ecfa18bc505fb960d5df` alongside the paired StatePort
+trust-closure candidate. Keep packaging, merge, push, deploy, release-ledger,
+and whitepaper publication blocked until the owner verdict.

@@ -1,5 +1,29 @@
 # Worklog
 
+## 2026-07-29 — StudyState-centred public-alpha trust successor
+
+- Preserved rejected site head `ce63e380` and created isolated successor branch
+  `agent/public-alpha-trust-closure-001` from it; the rejected head was not
+  amended, rebased, squashed, or repurposed.
+- Reworked the first viewport around StudyState and “Learning that survives the
+  chat.” The visual hierarchy presents a state-derived next activity and the
+  learner sequence—reflect, exact review, approve, restart persistence, Undo—
+  before platform architecture or implementation detail.
+- Added a five-step StudyState journey and moved the older platform walkthrough
+  under an explicit deeper-evidence boundary. Kept local-alpha limitations,
+  absent download, and fail-closed support truthful.
+- The frontend design skill shaped the restrained dark learning-path treatment,
+  content ordering, responsive behavior, and limited motion. No new generated
+  imagery or JavaScript dependency was introduced.
+- Exact behavioural head `6357bc7` passes repository validation, the 21-page
+  site quality contract, and four renderer tests / six subtests. Desktop and
+  320px browser review found no horizontal overflow; keyboard Tab reaches the
+  visible skip link first.
+- Classification: local static-site content and validation-tooling change;
+  agent-validated, human validation and acceptance not performed. No push,
+  merge, deployment, publication, release-ledger change, support activation, or
+  download was performed.
+
 ## 2026-07-28 — Runtime-language and hidden-support reconciliation
 
 - Corrected the local candidate's categorical container claim. Homepage
