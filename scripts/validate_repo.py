@@ -182,6 +182,32 @@ def validate_support_configuration() -> None:
             raise AssertionError("Fail-closed support must remain hidden instead of exposing a dead end")
 
 
+def validate_public_acceptance_truth() -> None:
+    """Fail closed on affirmative human/owner claims without exact state."""
+
+    state = require("PROJECT_STATE.yaml").read_text(encoding="utf-8")
+    homepage = require("index.html").read_text(encoding="utf-8")
+    owner_accepted = bool(
+        re.search(r"(?m)^\s+ownerAcceptance:\s+accepted\s*$", state)
+        and re.search(r"(?m)^\s+behavioural_head:\s+[0-9a-f]{40,64}\s*$", state)
+    )
+    if not owner_accepted:
+        unsupported = re.compile(
+            r"\b(?:owner|human)[ -](?:accepted|validated)\b",
+            flags=re.IGNORECASE,
+        )
+        for page in sorted(ROOT.rglob("*.html")):
+            match = unsupported.search(page.read_text(encoding="utf-8"))
+            if match:
+                raise AssertionError(
+                    f"{page.relative_to(ROOT)}: unsupported public acceptance claim {match.group(0)!r}"
+                )
+    if "Agent validation passed; owner acceptance remains pending." not in homepage:
+        raise AssertionError(
+            "Homepage must state that agent validation passed and owner acceptance remains pending"
+        )
+
+
 def main() -> None:
     required = (
         "AGENTS.md",
@@ -261,6 +287,7 @@ def main() -> None:
     validate_action_pins()
     validate_pull_request_workflow()
     validate_support_configuration()
+    validate_public_acceptance_truth()
     print("StatePort Site validation: OK")
 
 

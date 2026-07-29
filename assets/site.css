@@ -27,7 +27,6 @@ html {
 }
 
 body {
-  min-width: 320px;
   margin: 0;
   color: var(--ink);
   background: var(--paper);
@@ -209,10 +208,6 @@ select {
   color: var(--night);
   background: var(--cyan);
   border-color: var(--cyan);
-}
-
-.page-main {
-  overflow: clip;
 }
 
 .hero {
