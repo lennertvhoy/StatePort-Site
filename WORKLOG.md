@@ -1,5 +1,23 @@
 # Worklog
 
+## 2026-07-29 — Owner-review presentation closure
+
+- Removed the unsupported “owner-accepted” StudyState claim. The homepage now
+  states that agent validation passed and owner acceptance remains pending.
+- Added a dependency-free public-copy guard plus three regression tests. While
+  owner acceptance is pending, affirmative `owner/human accepted/validated`
+  language fails repository validation; acceptance language becomes available
+  only when exact behavioural-head state also records owner acceptance.
+- Diagnosed the 320px failure in a headed browser: the vertical scrollbar left
+  a 305px layout viewport while `body { min-width: 320px; }` forced a 320px
+  document. Removed that minimum and the pre-existing global `.page-main`
+  overflow clip instead of concealing the defect.
+- Browser validation passes at 320x568, 360x800, 390x844, and 640px with 200%
+  CSS zoom; client and scroll widths match. First Tab reaches the visible skip
+  link and the console has no errors.
+- Behavioural head `2bf6a9d26a106dcfbef361c68671475ee3e878b1` is local-only.
+  No human validation, owner acceptance, push, merge, deploy, or publication.
+
 ## 2026-07-29 — StudyState-centred public-alpha trust successor
 
 - Preserved rejected site head `ce63e380` and created isolated successor branch

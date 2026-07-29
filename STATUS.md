@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-07-29
 **Execution Mode:** operating
-**Project State:** StudyState_public_alpha_trust_site_owner_review_checkpoint
+**Project State:** StudyState_owner_review_presentation_site_checkpoint
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -78,15 +78,19 @@
 - Rejected local subject `ce63e380c5287d24a673807b533b05d18d52bf74`
   remains immutable evidence. Its public-alpha promotion was rejected because
   the homepage still led with the platform instead of the StudyState product.
-- Successor branch `agent/public-alpha-trust-closure-001` at behavioural head
-  `6357bc73135fa40cb7b5ecfa18bc505fb960d5df` now leads with StudyState,
+- Successor branch `agent/owner-review-presentation-closure-001` at behavioural
+  head `2bf6a9d26a106dcfbef361c68671475ee3e878b1` leads with StudyState,
   “Learning that survives the chat,” the recommended learner activity, exact
   review, approval, restart persistence, and Undo. Platform evidence is one
   layer deeper, support remains hidden, and no download is offered.
+- Public copy now states agent validation passed and owner acceptance remains
+  pending. A fail-closed validator rejects affirmative owner/human acceptance
+  language unless exact candidate state records acceptance.
 - The exact successor passes repository validation, the 21-page quality
-  contract, four renderer tests / six subtests, and desktop/320px browser review
-  with no horizontal overflow and a visible keyboard skip link. It remains
-  local-only and has not received human acceptance.
+  contract, four renderer tests / six subtests, three truth-boundary tests, and
+  320/360/390 plus 200%-equivalent browser checks. Removing the body minimum and
+  global page clip fixes the source of overflow; the skip link remains first in
+  keyboard order and the browser console is clean. It remains local-only.
 
 ## What is not proven
 
@@ -101,6 +105,7 @@
 ## Next action
 
 Owner-review exact local head
-`6357bc73135fa40cb7b5ecfa18bc505fb960d5df` alongside the paired StatePort
-trust-closure candidate. Keep packaging, merge, push, deploy, release-ledger,
+`2bf6a9d26a106dcfbef361c68671475ee3e878b1` alongside paired StatePort head
+`c79fa95408f31a631182d9b5435de8f09cac7129`. Keep packaging, dependency
+security, merge, push, deploy, release-ledger,
 and whitepaper publication blocked until the owner verdict.

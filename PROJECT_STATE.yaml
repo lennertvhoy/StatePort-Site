@@ -1,5 +1,5 @@
 metadata:
-  updated_at: 2026-07-29T12:00:00+02:00
+  updated_at: 2026-07-29T12:55:36+02:00
   updated_by: codex-agent
   format_version: statespec-site-state/v1
 
@@ -13,7 +13,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: launch_preparation
-  status: StudyState_public_alpha_trust_site_owner_review_checkpoint
+  status: StudyState_owner_review_presentation_site_checkpoint
   purpose: public documentation, tutorials, release status, and future download home
 
 source_boundary:
@@ -189,10 +189,14 @@ release_ledger:
   visitor_message: public release preparation is in progress; no download is offered
 
 public_alpha_trust_successor:
-  branch: agent/public-alpha-trust-closure-001
-  behavioural_head: 6357bc73135fa40cb7b5ecfa18bc505fb960d5df
+  branch: agent/owner-review-presentation-closure-001
+  behavioural_head: 2bf6a9d26a106dcfbef361c68671475ee3e878b1
   rejected_predecessor: ce63e380c5287d24a673807b533b05d18d52bf74
-  status: local_agent_validated_owner_acceptance_not_performed
+  status: local_agent_validated_owner_acceptance_pending
+  acceptance:
+    agentValidation: passed
+    humanValidation: pending
+    ownerAcceptance: pending
   positioning:
     primary_product: StudyState
     hero: learning_that_survives_the_chat
@@ -207,7 +211,9 @@ public_alpha_trust_successor:
     repository: passed
     quality_contract: passed_21_pages
     renderer: passed_4_tests_6_subtests
-    browser: desktop_and_320px_review_passed_no_overflow_keyboard_skip_visible
+    truth_boundary: passed_3_tests
+    browser: 320x568_360x800_390x844_and_200_percent_equivalent_no_overflow_keyboard_skip_visible_zero_console_errors
+    overflow_repair: removed_body_320px_minimum_and_global_page_clip
 
 delivery:
   local_repository: local_working_copy_path_intentionally_not_recorded_in_public_state_files

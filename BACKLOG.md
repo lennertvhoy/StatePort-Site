@@ -1,5 +1,13 @@
 # Backlog
 
+## Active owner checkpoint
+
+- **BL-SITE-OWNER-REVIEW-PRESENTATION-001** — Exact behavioural head
+  `2bf6a9d26a106dcfbef361c68671475ee3e878b1` removes and guards unsupported
+  acceptance claims and repairs narrow overflow at its source. Agent validation
+  passed; owner acceptance, packaging, dependency security, push, and deploy
+  remain pending or blocked.
+
 ## Deferred until a public release exists
 
 - **BL-DOCS-001** — Versioned documentation, a changelog, and API/CLI reference
