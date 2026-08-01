@@ -1,6 +1,6 @@
 # NEXT_ACTIONS — active execution queue
 
-**Updated At:** 2026-07-31
+**Updated At:** 2026-08-01
 **Execution Mode:** operating
 **Max Items:** 3
 
@@ -42,6 +42,23 @@ Replace release-preparation language only after a public implementation source,
 license decision, versioned artifact, checksums, and verified install path exist.
 
 **Exit:** all download and release claims bind to an exact published release.
+
+## Completed since last update (2026-08-01)
+
+- **BL-SITE-015** — Rebalanced the public copy application-first and added
+  the missing product pages on `agent/noob-friendly-copy-001` (local only):
+  homepage hero, metadata, and lead sections now lead with durable,
+  user-owned applications (StudyState as the primary example) and governed
+  container deployment as the second pillar; new pages
+  `docs/study-state.html`, `docs/deployments.html`, `docs/limitations.html`,
+  and `docs/updates.html` are added to the sitemap, the documentation hub
+  catalogue and sidebars, the homepage pillars section and availability
+  line, and the release ledger. The availability line now states the public
+  download is in preparation while still not existing; deployment
+  upgrade/rollback is stated as not yet supported; the updates page is
+  framed as design/target. `validate_repo.py` and `check_site_quality.py`
+  pass on every commit. No push, no deploy, no release-ledger availability
+  change; owner review and human acceptance pending.
 
 ## Completed since last update (2026-07-31)
 

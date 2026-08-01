@@ -1,5 +1,53 @@
 # Worklog
 
+## 2026-08-01 — Application-first homepage and product pages
+
+- **BL-SITE-015.** The homepage was coding-agent-framed ("StatePort drives an
+  AI coding agent for you") and neither StudyState nor container deployment
+  appeared on it. Rebalanced the hero, metadata, and lead statement so the
+  installed application is the product: durable, user-owned AI applications
+  with state that survives sessions and change that stays reviewable and
+  undoable. Added a two-pillar section naming StudyState (primary example)
+  and governed container deployment (second pillar), with links into the
+  new documentation.
+- Created four documentation pages from verified product truth in the
+  private StatePort repository (StudyState application-experience and sample
+  fixtures, the deployment package contract, the alpha limitations record,
+  and the release programme): `docs/study-state.html` (Focus default,
+  start/pause/redirect lifecycle, reflection → review → explicit apply,
+  persistent Undo with receipts, restart durability, and deliberate
+  non-goals), `docs/deployments.html` (inspect → plan → digest-bound
+  approval → apply with health checks → operate → remove/purge, the alpha
+  refusal contract, and an explicit not-yet-supported list including
+  upgrade/rollback revisions, remote hosts, registry distribution, and any
+  cloud deployment), `docs/limitations.html` (single-user local product,
+  Linux AMD64 + rootless Podman only, Codex CLI as the only exercised
+  execution provider, no hosted service, no public download, no independent
+  security review, no Azure deployment), and `docs/updates.html` (digest-
+  pinned release bundles and approval-before-application as the design,
+  health-gated update with rollback-or-truthful-refusal as the acceptance
+  target, clearly marked as not user-available; signing stated as not yet
+  established).
+- Deliberately weakened the slice brief where the source material disagreed:
+  deployment "update and rollback" is excluded from the current deployment
+  slice in the implementation repository, so it is presented as future
+  work; a "signed release index" has no evidence (signing is explicitly
+  listed as not established), so the updates page says so; no "manual/notify
+  update policy" exists in the sources, so the page describes the governance
+  default (no silent background updating) instead.
+- Wired discovery: sitemap entries with current lastmod, documentation hub
+  catalogue entries with filter keywords, the four pages in every
+  documentation sidebar, homepage pillar and availability links, a
+  limitations link in the release-ledger summary and sidebar, and
+  cross-links between the new pages. The release ledger's "Not available"
+  honesty is unchanged; no download or install page was created; the
+  fail-closed support link remains hidden; no contribution intake was added.
+- `python3 scripts/validate_repo.py` and `python3
+  scripts/check_site_quality.py` pass on each of the seven commits. Local
+  only on `agent/noob-friendly-copy-001`; no push, no Pages deploy, no
+  release-ledger availability change. Owner review and human acceptance
+  remain pending.
+
 ## 2026-07-31 — Pre-render whitepaper Mermaid diagrams to inline SVG
 
 - **BL-SITE-014.** The public and candidate Stateware whitepapers emitted

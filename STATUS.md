@@ -1,6 +1,6 @@
 # StatePort Site status
 
-**Updated At:** 2026-07-31
+**Updated At:** 2026-08-01
 **Execution Mode:** operating
 **Project State:** alpha_release_alignment_local_in_progress
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
@@ -83,6 +83,19 @@
   Markdown source, with a validator guard against regressions. This is
   local-only; the **deployed live site still shows raw diagram text** until
   the owner merges to `main` (Pages auto-deploys on push to `main`).
+- A local **application-first rebalance** slice (BL-SITE-015) is implemented
+  on `agent/noob-friendly-copy-001`: the homepage hero and lead sections now
+  put durable, user-owned applications first, name StudyState as the primary
+  example, and present governed container deployment as the second pillar;
+  four new documentation pages (`docs/study-state.html`,
+  `docs/deployments.html`, `docs/limitations.html`, `docs/updates.html`) are
+  cross-linked from the homepage, the documentation hub, the documentation
+  sidebars, and the release ledger, and listed in the sitemap. The updates
+  page is explicitly framed as design/target where the candidate does not
+  yet deliver it, and deployment upgrade/rollback is stated as not yet
+  supported. The alpha-availability line now says the public download is in
+  preparation; it still does not exist. Local-only: no push, no Pages
+  deploy, no release-ledger availability change.
 
 ## What is not proven
 

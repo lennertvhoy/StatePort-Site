@@ -1,6 +1,6 @@
 metadata:
-  updated_at: 2026-07-31T16:05:00+02:00
-  updated_by: codex-agent
+  updated_at: 2026-08-01T21:55:00+02:00
+  updated_by: kimi-agent
   format_version: statespec-site-state/v1
 
 workflow:
@@ -49,6 +49,10 @@ site:
     - /docs/prototype-walkthrough.html
     - /docs/agent-kits.html
     - /docs/getting-started.html
+    - /docs/study-state.html
+    - /docs/deployments.html
+    - /docs/limitations.html
+    - /docs/updates.html
     - /tutorials/
     - /tutorials/first-application.html
     - /tutorials/reading-a-receipt.html
@@ -294,3 +298,21 @@ delivery:
     support_boundary: no_link_and_no_pending_message_until_configuration_and_owner_attestation
     validation: repository_validator_site_quality_support_renderer_and_unit_tests_passed_2026-07-28
     deployment: local_only_not_pushed_not_deployed_not_human_accepted
+  application_first_rebalance:
+    branch: agent/noob-friendly-copy-001
+    scope: application_first_homepage_hero_and_pillars_studystate_deployments_limitations_updates_pages_hub_sidebar_sitemap_and_ledger_crosslinks
+    new_routes:
+      - /docs/study-state.html
+      - /docs/deployments.html
+      - /docs/limitations.html
+      - /docs/updates.html
+    honest_boundaries:
+      - deployment_upgrade_rollback_stated_as_not_yet_supported
+      - updates_page_framed_as_design_target_not_user_available
+      - release_signing_stated_as_not_established
+      - public_download_in_preparation_and_still_not_existing
+      - release_ledger_not_available_status_unchanged
+      - fail_closed_support_link_remains_hidden
+    constraints: local_only_no_push_no_pages_deploy_no_release_ledger_availability_change
+    validation: validate_repo_and_check_site_quality_passed_on_every_commit_2026-08-01
+    status: committed_locally_pending_owner_review
