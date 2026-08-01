@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="StatePort governs supported container deployments locally: inspect, plan, approve by digest, run on rootless Podman with health checks, and keep receipts at every step.">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+    <title>Container deployments — StatePort</title>
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-shell.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="./" aria-current="page">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-release" href="../releases/">Release status</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="deployments-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Documentation / Deployments</p>
+          <h1 id="deployments-title">A deployment you approved, or no deployment at all.</h1>
+          <p>StatePort can inspect a project, propose an exact container deployment plan, and run it on your own machine — but nothing is applied until you approve the exact plan, and every step leaves a receipt.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+        <aside class="doc-sidebar" aria-label="Documentation sections">
+          <h2>Documentation</h2>
+          <nav>
+            <a href="./">Overview</a>
+            <a href="foundations.html">Foundations</a>
+            <a href="model.html">Model</a>
+            <a href="lifecycle.html">Lifecycle</a>
+            <a href="governance.html">Governance</a>
+            <a href="security-and-privacy.html">Security &amp; privacy</a>
+            <a href="hosts-and-portability.html">Hosts &amp; portability</a>
+            <a href="platform-support.html">Platform support</a>
+            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="reference.html">Reference &amp; FAQ</a>
+            <a href="getting-started.html">Getting started</a>
+            <a href="deployments.html" aria-current="page">Deployments</a>
+            <a href="../tutorials/">Tutorials</a>
+            <a href="../releases/">Release status</a>
+          </nav>
+        </aside>
+
+        <article class="prose">
+          <p class="notice notice--quiet"><strong>Availability boundary</strong> The deployment foundation runs inside the private local alpha on Linux with rootless Podman. This page describes what is implemented there; <a href="../releases/">availability lives in the release ledger</a>.</p>
+
+          <h2>What a governed deployment is</h2>
+          <p>StatePort treats a deployment as durable state, not as a command someone once ran. Plans, approvals, accepted revisions, observations, transitions, and receipts remain StatePort records even when the container runtime is absent. Podman is a replaceable execution adapter: it performs bounded operations and reports what it observed — it is evidence, never the source of truth.</p>
+
+          <h2>How a deployment happens</h2>
+          <ol>
+            <li><strong>Inspect.</strong> StatePort reads the project without changing it, bound to the exact committed source — never an uncontrolled working tree.</li>
+            <li><strong>Plan.</strong> The inspection becomes an exact, versioned plan: services, images, ports, storage, and generated configuration, in one reviewable document.</li>
+            <li><strong>Approve.</strong> You approve the plan by its digest. Change any part of the plan, the source, or the target, and the approval no longer applies.</li>
+            <li><strong>Apply and verify.</strong> The adapter builds and starts the deployment on local rootless Podman with deterministic names and ownership labels, then waits for the declared health checks before calling it healthy.</li>
+            <li><strong>Operate.</strong> Status, logs, and restart stay observable afterwards; an interrupted operation is reconciled from its records rather than silently replayed.</li>
+            <li><strong>Remove, or purge.</strong> Ordinary removal stops the runtime but keeps the named data volumes. Purging the data is a separate plan with its own exact approval.</li>
+          </ol>
+          <p>Every transition produces a receipt, and receipts are hash-chained: a failed or interrupted step stays visible instead of being retried blindly.</p>
+
+          <h2>What the plan refuses</h2>
+          <p>The alpha contract deliberately refuses deployment shapes it cannot govern safely: root containers, privileged or host namespaces, host bind mounts, mutable image tags, missing health checks, plaintext secret-like configuration, and exposure beyond the loopback interface. A refusal is a recorded outcome, not an error to work around.</p>
+
+          <h2>What is not supported yet</h2>
+          <ul>
+            <li>Upgrade and rollback between deployment revisions — planned for a later slice; today, changing a deployment means a new reviewed plan.</li>
+            <li>Remote hosts over SSH, image-registry distribution, and a dedicated deployment interface.</li>
+            <li>Arbitrary projects. Support is limited to projects that satisfy the documented deployment contract, plus reviewable assisted proposals for recognizable Python, Node, and static-web repositories.</li>
+            <li>Cloud or public-network deployment, including Azure. The current target is a single local machine.</li>
+          </ul>
+
+          <div class="inline-actions">
+            <a class="button button--ink" href="governance.html">How governed change works</a>
+            <a class="button button--outlined" href="../releases/">Check availability</a>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-shell.svg" alt="">
+          <p><strong>StatePort</strong>AI work that stays yours.</p>
+        </div>
+        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+      </div>
+    </footer>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>
