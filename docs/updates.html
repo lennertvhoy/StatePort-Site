@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="How StatePort updates are designed to work: exact digest-pinned releases, explicit approval, health-gated change with rollback-or-truthful-refusal — and what is not delivered yet.">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+    <title>How updates will work — StatePort</title>
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-shell.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="./" aria-current="page">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-release" href="../releases/">Release status</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="updates-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Documentation / Updates</p>
+          <h1 id="updates-title">An update is a change you approve, like any other.</h1>
+          <p>This page describes the update design StatePort is being built against. Most of it is not user-available yet — where design and delivery differ, this page says so.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+        <aside class="doc-sidebar" aria-label="Documentation sections">
+          <h2>Documentation</h2>
+          <nav>
+            <a href="./">Overview</a>
+            <a href="foundations.html">Foundations</a>
+            <a href="model.html">Model</a>
+            <a href="lifecycle.html">Lifecycle</a>
+            <a href="governance.html">Governance</a>
+            <a href="security-and-privacy.html">Security &amp; privacy</a>
+            <a href="hosts-and-portability.html">Hosts &amp; portability</a>
+            <a href="platform-support.html">Platform support</a>
+            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="reference.html">Reference &amp; FAQ</a>
+            <a href="getting-started.html">Getting started</a>
+            <a href="updates.html" aria-current="page">Updates</a>
+            <a href="../tutorials/">Tutorials</a>
+            <a href="../releases/">Release status</a>
+          </nav>
+        </aside>
+
+        <article class="prose">
+          <p class="notice"><strong>Design, not availability</strong> No public release exists, so there is nothing to update today. This is the target contract an update must satisfy before it ships, not a description of a feature you can use now.</p>
+
+          <h2>Exact releases, pinned by digest</h2>
+          <p>An update starts from an exact, versioned release — never a moving “latest”. The release bundle contract already rejects mutable image tags and uncontrolled provenance: installable material is rendered with image digests pinned, so what you approved is bit-for-bit what runs. Cryptographic signing and provenance attestations are part of the release programme but are <strong>not yet established</strong>; no signed release index exists today.</p>
+
+          <h2>Approval before application</h2>
+          <p>Updates follow the same governance rule as every other consequential change: StatePort proposes an exact change, you review it, and only an explicit approval lets it proceed. Automatic background updating is not part of the design — the default posture is that the user decides when a known, described update is applied.</p>
+
+          <h2>Health-gated, with rollback-or-truthful-refusal</h2>
+          <p>The target update path applies the new version, waits for health checks to pass, and only then treats the update as successful. If health does not pass, the system rolls back to the prior accepted state — or, where a safe rollback cannot be proven, it refuses truthfully and says so instead of guessing. This health-gated update with rollback is an explicit requirement of the alpha acceptance programme; it is <strong>not fully delivered</strong> in the current candidate, and deployment revisions do not yet support upgrade and rollback.</p>
+
+          <h2>Receipts either way</h2>
+          <p>Applied, refused, and failed updates all leave receipts. A failed update stays visible as a failed update; it is never silently retried, because retrying an operation with unknown external effects can do more harm than the original failure.</p>
+
+          <h2>What must exist before this is real</h2>
+          <ul>
+            <li>A published release with exact versions, release notes, and immutable artifacts.</li>
+            <li>A verified install and upgrade path from a clean supported environment.</li>
+            <li>Delivered upgrade and rollback between revisions, with their receipts.</li>
+            <li>Signing and provenance for the release index and images.</li>
+          </ul>
+          <p>The <a href="../releases/">release ledger</a> records when each of these becomes true.</p>
+
+          <div class="inline-actions">
+            <a class="button button--ink" href="lifecycle.html">Lifecycle and recovery</a>
+            <a class="button button--outlined" href="limitations.html">Read the current limitations</a>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-shell.svg" alt="">
+          <p><strong>StatePort</strong>AI work that stays yours.</p>
+        </div>
+        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+      </div>
+    </footer>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>
