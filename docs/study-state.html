@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="StudyState is the first StatePort application: a study coach whose state survives sessions and whose changes you review, apply, and can undo.">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+    <title>StudyState — StatePort</title>
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-shell.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="./" aria-current="page">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-release" href="../releases/">Release status</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="study-state-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Documentation / Applications</p>
+          <h1 id="study-state-title">StudyState: a study coach that remembers.</h1>
+          <p>The first StatePort application shows what a durable, user-owned AI application feels like: it keeps your learning state, proposes changes you can check, and never makes you start over.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+        <aside class="doc-sidebar" aria-label="Documentation sections">
+          <h2>Documentation</h2>
+          <nav>
+            <a href="./">Overview</a>
+            <a href="foundations.html">Foundations</a>
+            <a href="model.html">Model</a>
+            <a href="lifecycle.html">Lifecycle</a>
+            <a href="governance.html">Governance</a>
+            <a href="security-and-privacy.html">Security &amp; privacy</a>
+            <a href="hosts-and-portability.html">Hosts &amp; portability</a>
+            <a href="platform-support.html">Platform support</a>
+            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="reference.html">Reference &amp; FAQ</a>
+            <a href="getting-started.html">Getting started</a>
+            <a href="study-state.html" aria-current="page">StudyState</a>
+            <a href="../tutorials/">Tutorials</a>
+            <a href="../releases/">Release status</a>
+          </nav>
+        </aside>
+
+        <article class="prose">
+          <p class="notice notice--quiet"><strong>Availability boundary</strong> StudyState runs inside the private local alpha. This page describes the product as implemented there; <a href="../releases/">availability lives in the release ledger</a>.</p>
+
+          <h2>What StudyState is</h2>
+          <p>StudyState is a study coach: an installed application with durable goals, learning activities, evidence, and review. It is not a chat window with a memory problem. The application is the product — the conversation belongs to the application, and everything the coach knows about your learning lives in state files you can open and read.</p>
+          <p>Advanced controls — learning state, activity history, context, governed runs, and receipts — stay out of the way until you ask for them. The everyday surface is the application itself.</p>
+
+          <h2>The Focus default: what to do next, and why</h2>
+          <p>The default view answers one question: what should I do next, and why? StudyState plans the next learning activity from your durable learning state, so the suggestion is grounded in your goals and history rather than in whatever happened to be said last in a chat.</p>
+
+          <h2>Lifecycle you control</h2>
+          <p>A learning activity is not a runaway process. You can start it, pause it, pick it back up later, or redirect — pausing the current activity and starting an exact other one. The coach proposes; the state changes only through those deliberate transitions.</p>
+
+          <h2>Reflection becomes a change you review</h2>
+          <p>When you reflect on what you learned, StudyState turns that reflection into an exact proposed change to your learning state — nothing is rewritten in the background. You review the proposal and explicitly apply it, or you do not. Planning a change, applying it, and checking it remain separate moments.</p>
+
+          <h2>Undo that persists, with receipts</h2>
+          <p>Every applied change can be undone: StudyState restores the exact prior state recorded by the last applied update. Undo is not a best-effort approximation, and it does not disappear when the session ends. Applied changes and their undo steps carry linked receipts, so you can always trace what happened, when, and on whose approval.</p>
+
+          <h2>State that survives restarts</h2>
+          <p>Your goals, activities, and evidence live in durable files on your own machine. Close the application, restart the computer, or come back next week — the learning state is still there, unchanged, and still yours. Changing the AI provider or model later does not strand the work.</p>
+
+          <h2>What StudyState deliberately does not do</h2>
+          <ul>
+            <li>It does not judge the quality of its own coaching. The current alpha runs deterministic, synthetic test activity — not a live tutor model making autonomous teaching decisions.</li>
+            <li>It does not change your learning state silently. Mutations are proposed, reviewed, and explicitly applied.</li>
+            <li>It does not adopt an existing private learning history in place; importing one is a separate, reviewable transaction.</li>
+            <li>It is not yet a released product. The canonical StudyState production release remains unresolved; the alpha uses an exact local-alpha input, not a production-eligible release.</li>
+          </ul>
+
+          <div class="inline-actions">
+            <a class="button button--ink" href="model.html">How the model works</a>
+            <a class="button button--outlined" href="../releases/">Check availability</a>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-shell.svg" alt="">
+          <p><strong>StatePort</strong>AI work that stays yours.</p>
+        </div>
+        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+      </div>
+    </footer>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>
