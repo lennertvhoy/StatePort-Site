@@ -1,0 +1,8 @@
+flowchart LR
+    P[Propose<br/>exact, inspectable intent] --> G{Gate<br/>capability & policy check}
+    G -->|within standing authority| V[Validate<br/>against the application's rules]
+    G -->|consequential| A[Approve<br/>human decision, bound to the exact proposal]
+    A --> V
+    V --> AP[Apply<br/>system executes, not the agent]
+    AP --> R[Record<br/>receipt & history]
+    P -.->|rejected or invalid| X[Nothing happens<br/>state untouched]

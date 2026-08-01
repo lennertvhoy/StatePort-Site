@@ -1,6 +1,6 @@
 # StatePort Site status
 
-**Updated At:** 2026-07-28
+**Updated At:** 2026-07-31
 **Execution Mode:** operating
 **Project State:** alpha_release_alignment_local_in_progress
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
@@ -75,6 +75,14 @@
   homepage, walkthrough page, spoken narration source, captions, and rebuilt
   local video agree on that boundary. This correction is local-only and is not
   a claim about the currently deployed site.
+- A local **whitepaper diagram render** fix (BL-SITE-014) is implemented on
+  `agent/noob-friendly-copy-001`: the public v1.1 and candidate v1.2 papers
+  previously showed Mermaid diagrams as raw text because the static pages
+  loaded no renderer. A build-time step now inlines static, project-themed,
+  id-scoped SVG (no client JavaScript, no third-party runtime) from the
+  Markdown source, with a validator guard against regressions. This is
+  local-only; the **deployed live site still shows raw diagram text** until
+  the owner merges to `main` (Pages auto-deploys on push to `main`).
 
 ## What is not proven
 

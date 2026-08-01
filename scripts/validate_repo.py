@@ -154,6 +154,21 @@ def validate_pull_request_workflow() -> None:
             raise AssertionError(f"Draft PR workflow must not contain {fragment!r}")
 
 
+def validate_paper_diagrams() -> None:
+    """Paper Mermaid blocks must ship as pre-rendered inline SVG, not raw text."""
+    for page in sorted((ROOT / "papers").glob("*.html")):
+        text = page.read_text(encoding="utf-8")
+        if "<pre class=\"mermaid\">" in text:
+            raise AssertionError(
+                f"Unrendered Mermaid block in {page.relative_to(ROOT)}: "
+                "run python3 scripts/render_paper_diagrams.py"
+            )
+        if "class=\"paper-diagram\"" not in text:
+            raise AssertionError(
+                f"Expected at least one rendered diagram in {page.relative_to(ROOT)}"
+            )
+
+
 def validate_support_configuration() -> None:
     """Keep the static support integration synchronized and fail closed."""
     config = load_config()
@@ -229,8 +244,10 @@ def main() -> None:
         ".github/workflows/deploy-pages.yml",
         ".github/workflows/validate-site-pr.yml",
         "scripts/check_site_quality.py",
+        "scripts/render_paper_diagrams.py",
         "scripts/render_support.py",
         "scripts/test_render_support.py",
+        "config/mermaid-theme.json",
     )
     for path in required:
         require(path)
@@ -255,6 +272,7 @@ def main() -> None:
 
     validate_local_references()
     validate_documentation_button_accessibility()
+    validate_paper_diagrams()
     validate_action_pins()
     validate_pull_request_workflow()
     validate_support_configuration()

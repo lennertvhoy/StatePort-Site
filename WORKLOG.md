@@ -1,5 +1,43 @@
 # Worklog
 
+## 2026-07-31 — Pre-render whitepaper Mermaid diagrams to inline SVG
+
+- **BL-SITE-014.** The public and candidate Stateware whitepapers emitted
+  ```` ```mermaid ```` blocks as `<pre class="mermaid"><code>…</code></pre>`,
+  but the static pages loaded no Mermaid runtime, so every diagram rendered
+  as raw source text on the live site (e.g. the v1.1 paper's six
+  architecture/flow figures).
+- Fix follows the repo's existing build-time convention (`.mmd` → rendered
+  artifact, committed) instead of adding a client-side library: Markdown
+  stays the source of truth and renders natively on GitHub; a new
+  `scripts/render_paper_diagrams.py` renders each block to a static SVG via
+  `mmdc` with the project theme (`config/mermaid-theme.json`), scopes every
+  internal id per-diagram so the six inline SVGs never collide, and inlines
+  the result into `papers/*.html`. The source `.mmd` files are kept under
+  `assets/diagrams/src/paper/` for traceability.
+- No visitor-runtime JavaScript and no third-party dependency are added, so
+  the diagrams display with JavaScript disabled, consistent with the
+  site's static-first policy; the existing global `prefers-reduced-motion`
+  rule covers the diagrams. Added `.paper-diagram` styling: diagrams render
+  at natural size with legible labels and scroll horizontally inside a
+  contained figure when wider than the column.
+- Label-clipping correction: mermaid bakes each label's
+  `<foreignObject width/height>` from its render-time font metrics, and any
+  visitor whose font differs (the common case, since Inter is not bundled)
+  had the text cropped by `overflow: hidden`. Added
+  `.paper-diagram foreignObject { overflow: visible }` so labels are never
+  cut off; every label still fits inside its node rect, so there is no
+  neighbour overlap.
+- Verified locally: both papers show six figures each with theme-coloured
+  nodes/labels (15 px), zero of 83 label foreignObjects clip, wide diagrams
+  scroll, zero console errors, `scripts/validate_repo.py` (including a new
+  guard that rejects unrendered `<pre class="mermaid">` in any paper HTML)
+  and `scripts/check_site_quality.py` pass.
+- Local only on `agent/noob-friendly-copy-001`. No push, no Pages deploy,
+  no release-ledger or whitepaper publication change. The live site still
+  shows raw diagram text until the owner merges this to `main` (Pages
+  auto-deploys on push to `main`) and accepts it.
+
 ## 2026-07-28 — Runtime-language and hidden-support reconciliation
 
 - Corrected the local candidate's categorical container claim. Homepage

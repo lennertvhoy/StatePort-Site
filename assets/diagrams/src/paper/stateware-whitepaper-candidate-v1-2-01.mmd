@@ -1,0 +1,21 @@
+flowchart TB
+    subgraph BOUNDARY["The application"]
+        S[(Canonical state<br/>user-owned, durable, readable)]
+        GOV[Governance<br/>capabilities · approvals · validation · receipts]
+    end
+
+    subgraph VIEWS["Projections — replaceable"]
+        C[Conversation]
+        F[Files & previews]
+        D[Dashboards]
+        N[Notifications]
+    end
+
+    subgraph ENGINES["Engines — profiled"]
+        M1[Model / agent A]
+        M2[Model / agent B]
+    end
+
+    S --> C & F & D & N
+    ENGINES --> GOV
+    GOV -->|"governed transactions"| S

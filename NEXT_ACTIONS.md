@@ -1,6 +1,6 @@
 # NEXT_ACTIONS — active execution queue
 
-**Updated At:** 2026-07-28
+**Updated At:** 2026-07-31
 **Execution Mode:** operating
 **Max Items:** 3
 
@@ -42,6 +42,20 @@ Replace release-preparation language only after a public implementation source,
 license decision, versioned artifact, checksums, and verified install path exist.
 
 **Exit:** all download and release claims bind to an exact published release.
+
+## Completed since last update (2026-07-31)
+
+- **BL-SITE-014** — Fixed unrendered Mermaid diagrams in the whitepapers.
+  The public v1.1 and candidate v1.2 papers emitted `<pre class="mermaid">`
+  blocks but loaded no runtime, so diagrams showed as raw text on the live
+  site. Added a build-time renderer (`scripts/render_paper_diagrams.py` +
+  `config/mermaid-theme.json`) that inlines static, id-scoped SVG into
+  `papers/*.html` from the Markdown source, with `.paper-diagram` styling
+  and a validator guard. No client JS or third-party runtime added.
+  `validate_repo.py` and `check_site_quality.py` pass. Local only on
+  `agent/noob-friendly-copy-001`; not pushed or deployed — the live site
+  remains affected until the owner merges to `main` (Pages auto-deploys
+  on push to `main`).
 
 ## Completed since last update (2026-07-28)
 

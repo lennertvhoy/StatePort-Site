@@ -1316,6 +1316,28 @@ select {
   max-width: 29ch;
 }
 
+.paper-diagram {
+  margin: 2rem 0;
+  padding: 1.15rem;
+  text-align: center;
+  background: var(--paper-deep);
+  border: 1px solid var(--line);
+  overflow-x: auto;
+}
+
+.paper-diagram__svg {
+  display: block;
+  margin: 0 auto;
+  height: auto;
+}
+
+/* Mermaid bakes fixed <foreignObject> sizes from render-time font metrics that
+   can differ from the visitor's font; stop them from clipping the labels. */
+.paper-diagram foreignObject,
+.paper-diagram foreignObject > div {
+  overflow: visible !important;
+}
+
 .code-panel {
   position: relative;
   margin: 1.75rem 0;

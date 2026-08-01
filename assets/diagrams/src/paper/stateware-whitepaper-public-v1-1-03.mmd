@@ -1,0 +1,9 @@
+flowchart TB
+    S[(Canonical state<br/>the only truth)]
+    S --> CV[Conversation view]
+    S --> FV[File & preview views]
+    S --> TV[Terminal view]
+    S --> DV[Dashboards & notifications]
+    S --> CX[Compiled model context<br/>bounded, task-scoped, disposable]
+    CX -.->|consumed once, then discarded| OUT[Model output]
+    OUT -.->|never writes state directly| S

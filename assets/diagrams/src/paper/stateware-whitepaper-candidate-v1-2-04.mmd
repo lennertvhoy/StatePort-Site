@@ -1,0 +1,5 @@
+flowchart LR
+    SRC[Canonical source<br/>designated origin] --> REL[Release<br/>immutable, identified]
+    REL --> RES[Resolution<br/>fetch & verify exact content]
+    RES --> INS[Install<br/>new instance with recorded provenance]
+    REL -.->|later| UPG[Update<br/>existing instance, governed]

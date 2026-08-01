@@ -1,0 +1,7 @@
+flowchart LR
+    APP[Application<br/>reusable definition] -->|install| I1[Instance<br/>Amira's study coach]
+    APP -->|install| I2[Instance<br/>Ben's study coach]
+    APP -->|install| I3[Instance<br/>Class 3B]
+    I1 -.->|private state| S1[(owned state)]
+    I2 -.->|private state| S2[(owned state)]
+    I3 -.->|private state| S3[(owned state)]
