@@ -295,7 +295,11 @@ def validate_home_media_hints(documents: dict[Path, DocumentFacts]) -> None:
 
 
 def resolve_local_page(source_page: Path, href_path: str) -> Path:
-    target = (ROOT / source_page.parent / unquote(href_path)).resolve()
+    if href_path.startswith("/StatePort-Site/"):
+        # Site-root-absolute link (see 404.html, served at arbitrary depth).
+        target = (ROOT / href_path[len("/StatePort-Site/"):]).resolve()
+    else:
+        target = (ROOT / source_page.parent / unquote(href_path)).resolve()
     try:
         relative = target.relative_to(ROOT)
     except ValueError as exc:

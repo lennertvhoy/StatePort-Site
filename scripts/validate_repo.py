@@ -49,7 +49,12 @@ def validate_local_references() -> None:
             target_text = parsed.path
             if not target_text:
                 continue
-            target = (page.parent / target_text).resolve()
+            if target_text.startswith("/StatePort-Site/"):
+                # Site-root-absolute reference (used by 404.html, which is
+                # served at arbitrary deep URLs on GitHub Pages).
+                target = (ROOT / target_text[len("/StatePort-Site/"):]).resolve()
+            else:
+                target = (page.parent / target_text).resolve()
             if ROOT not in target.parents and target != ROOT:
                 raise AssertionError(f"Escaping local reference in {page.relative_to(ROOT)}: {reference}")
             if not target.exists():
