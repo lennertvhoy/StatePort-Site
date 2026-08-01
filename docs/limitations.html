@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The honest current boundaries of StatePort: a single-user local alpha on Linux with rootless Podman and Codex CLI, no public download, and no independent security review.">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+    <title>Current limitations — StatePort</title>
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-shell.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="./" aria-current="page">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-release" href="../releases/">Release status</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="limitations-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Documentation / Limitations</p>
+          <h1 id="limitations-title">What StatePort is not, today.</h1>
+          <p>Every claim on this site is bounded by the limits collected here. If a page seems to promise more than this page allows, this page wins.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+        <aside class="doc-sidebar" aria-label="Documentation sections">
+          <h2>Documentation</h2>
+          <nav>
+            <a href="./">Overview</a>
+            <a href="foundations.html">Foundations</a>
+            <a href="model.html">Model</a>
+            <a href="lifecycle.html">Lifecycle</a>
+            <a href="governance.html">Governance</a>
+            <a href="security-and-privacy.html">Security &amp; privacy</a>
+            <a href="hosts-and-portability.html">Hosts &amp; portability</a>
+            <a href="platform-support.html">Platform support</a>
+            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="reference.html">Reference &amp; FAQ</a>
+            <a href="getting-started.html">Getting started</a>
+            <a href="limitations.html" aria-current="page">Limitations</a>
+            <a href="../tutorials/">Tutorials</a>
+            <a href="../releases/">Release status</a>
+          </nav>
+        </aside>
+
+        <article class="prose">
+          <p class="notice notice--quiet"><strong>Availability boundary</strong> StatePort is a private alpha in product-owner testing. The <a href="../releases/">release ledger</a> remains the single source for what is publicly available — today, no download exists.</p>
+
+          <h2>Availability</h2>
+          <ul>
+            <li>No public download, installer, or published release exists yet. A public download is in preparation and will be announced in the release ledger only when its evidence exists.</li>
+            <li>The implementation source is not public, and no product license decision has been published.</li>
+            <li>There is no hosted service: StatePort is not offered as a managed or cloud product.</li>
+          </ul>
+
+          <h2>Product shape</h2>
+          <ul>
+            <li>StatePort is a single-user, local product. The normal local service binds to the loopback interface only; multi-user, public-network, SSO, and managed-service operation are not qualified.</li>
+            <li>The user interface and documentation are English-only.</li>
+          </ul>
+
+          <h2>Platform and execution host</h2>
+          <ul>
+            <li>The only supported evaluation shape is Linux (x86-64) with rootless Podman. macOS, Windows, ARM64, and other platforms have no acceptance claim.</li>
+            <li>Codex CLI is the only execution provider exercised in the alpha. Pi is a reference direction, OpenCode is unqualified, and no provider is claimed equivalent to another.</li>
+          </ul>
+
+          <h2>Security and compliance</h2>
+          <ul>
+            <li>No independent security review, formal audit, or penetration test has been performed.</li>
+            <li>StatePort makes no GDPR, NIS2, or other legal or compliance certification claim.</li>
+            <li>There is no active public support or vulnerability-reporting route yet.</li>
+          </ul>
+
+          <h2>Deployments and updates</h2>
+          <ul>
+            <li>Container deployment is local-only and limited to projects that satisfy the documented contract (plus assisted proposals for recognizable Python, Node, and static-web repositories) — not “deploy anything”.</li>
+            <li>Upgrade and rollback between deployment revisions are not delivered yet; the alpha acceptance programme requires upgrade and rollback-or-truthful-refusal before a public release.</li>
+            <li>There is no Azure or other cloud deployment yet.</li>
+            <li>Backup and restore commands exist, but a restore cannot undo external side effects, and unknown or non-idempotent operations are never automatically retried.</li>
+          </ul>
+
+          <h2>Applications</h2>
+          <ul>
+            <li>StudyState's canonical production release remains unresolved; the alpha uses an exact local-alpha input, not a production-eligible release.</li>
+            <li>The alpha's study activity is deterministic synthetic execution for testing — not evidence of tutoring quality or of a live autonomous model.</li>
+          </ul>
+
+          <h2>Evidence</h2>
+          <ul>
+            <li>No human acceptance, clean-host installation proof, or independent validation of a release candidate has been recorded.</li>
+            <li>No comparative or performance claim is made; none should be inferred from walkthroughs or documentation.</li>
+          </ul>
+
+          <div class="inline-actions">
+            <a class="button button--ink" href="../releases/">View release status</a>
+            <a class="button button--outlined" href="evidence-and-roadmap.html">How claims earn their status</a>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-shell.svg" alt="">
+          <p><strong>StatePort</strong>AI work that stays yours.</p>
+        </div>
+        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+      </div>
+    </footer>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>
