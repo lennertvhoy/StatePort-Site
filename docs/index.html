@@ -25,7 +25,7 @@
         "headline": "StatePort documentation",
         "description": "A guided introduction to the StatePort product, Stateware model, and StateSpec system design.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/docs/",
-        "dateModified": "2026-07-22",
+        "dateModified": "2026-08-01",
         "inLanguage": "en"
       }
     </script>
@@ -63,6 +63,8 @@
           <nav>
             <a href="./" aria-current="page">Documentation home</a>
             <a href="prototype-walkthrough.html">Product walkthrough</a>
+            <a href="study-state.html">StudyState application</a>
+            <a href="deployments.html">Container deployments</a>
             <a href="foundations.html">Why StatePort exists</a>
             <a href="model.html">How the model works</a>
             <a href="getting-started.html">StateSpec basics</a>
@@ -74,7 +76,7 @@
           <p class="notice notice--quiet"><strong>Availability boundary</strong> These pages explain the product direction and design model. The <a href="../releases/">release ledger</a> is the source for what can actually be downloaded or installed.</p>
 
           <h2>What is StatePort?</h2>
-          <p>StatePort is a local platform with two cooperating planes. On the <strong>application plane</strong>, durable, user-owned applications keep named state, history, goals, context, and continuity over time — a study coach, a checklist, future domain applications. On the <strong>execution plane</strong>, a managed harness runs coding agents headlessly in environments you control, with supervision, permissions, isolation, cancellation, and evidence. Neither plane replaces the other.</p>
+          <p>StatePort is a local platform with two cooperating planes. On the <strong>application plane</strong>, durable, user-owned applications keep named state, history, goals, context, and continuity over time — <a href="study-state.html">a study coach</a>, a checklist, future domain applications. On the <strong>execution plane</strong>, a managed harness runs coding agents headlessly in environments you control, with supervision, permissions, isolation, cancellation, and evidence — including <a href="deployments.html">governed container deployments</a> you approve before anything runs. Neither plane replaces the other.</p>
           <p>Each application is a Stateware template: durable state files (Markdown and YAML) plus the cockpit scripts the agent is allowed to run. StatePort owns intent, authority, state, evidence, and acceptance; the agent owns execution behaviour and must never silently become the source of truth.</p>
 
           <section class="docs-catalogue-section" aria-labelledby="catalogue-heading">
@@ -96,6 +98,12 @@
                 <div class="docs-index-links">
                   <a class="docs-index-link" href="prototype-walkthrough.html" data-doc-entry data-keywords="product demo video transcript interface prototype evidence">
                     <span><strong>Prototype walkthrough</strong><small>See the current local interface and the limits of that evidence.</small></span><i aria-hidden="true">↗</i>
+                  </a>
+                  <a class="docs-index-link" href="study-state.html" data-doc-entry data-keywords="studystate study coach application focus lifecycle reflection undo receipts durable state restart">
+                    <span><strong>StudyState</strong><small>Meet the first application: a study coach whose changes you review, apply, and can undo.</small></span><i aria-hidden="true">↗</i>
+                  </a>
+                  <a class="docs-index-link" href="deployments.html" data-doc-entry data-keywords="deployment container podman plan approval health receipts inspect rollback">
+                    <span><strong>Container deployments</strong><small>Inspect, plan, approve by digest, and run locally with health checks and receipts.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="foundations.html" data-doc-entry data-keywords="why problem chat durable work ownership stateware">
                     <span><strong>Why StatePort exists</strong><small>Understand the boundary problem before the terminology.</small></span><i aria-hidden="true">↗</i>
@@ -130,6 +138,9 @@
                   <a class="docs-index-link" href="lifecycle.html" data-doc-entry data-keywords="lifecycle install update move backup recovery restore">
                     <span><strong>Lifecycle</strong><small>Keep install, use, update, movement, backup, and recovery distinct.</small></span><i aria-hidden="true">↗</i>
                   </a>
+                  <a class="docs-index-link" href="updates.html" data-doc-entry data-keywords="updates upgrade rollback health digest pinned release design target">
+                    <span><strong>How updates will work</strong><small>Read the update design — and exactly which parts are not delivered yet.</small></span><i aria-hidden="true">↗</i>
+                  </a>
                   <a class="docs-index-link" href="governance.html" data-doc-entry data-keywords="governance permission capability approval receipt acceptance authority">
                     <span><strong>Governed change</strong><small>Understand capability grants, approvals, receipts, and acceptance.</small></span><i aria-hidden="true">↗</i>
                   </a>
@@ -150,6 +161,9 @@
                 <div class="docs-index-links">
                   <a class="docs-index-link" href="evidence-and-roadmap.html" data-doc-entry data-keywords="evidence roadmap claim proof validation acceptance release">
                     <span><strong>Evidence and roadmap</strong><small>Distinguish a local observation, independent validation, acceptance, and release.</small></span><i aria-hidden="true">↗</i>
+                  </a>
+                  <a class="docs-index-link" href="limitations.html" data-doc-entry data-keywords="limitations boundaries alpha single user linux podman codex security review download">
+                    <span><strong>Current limitations</strong><small>Read the honest boundaries of the private alpha in one place.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="reference.html" data-doc-entry data-keywords="reference glossary faq terms definition statedd statespec stateware">
                     <span><strong>Reference and FAQ</strong><small>Keep the public terms and important distinctions close at hand.</small></span><i aria-hidden="true">↗</i>
