@@ -61,6 +61,19 @@
   4rem max gap) so the mascot renders ~610px at 1440px and ~284px at
   390px, and the footer mark 44→55px. Playwright-measured, 0 console
   errors, no horizontal overflow at 390px; both validators pass.
+- Made mascot sizes viewport-driven after owner feedback that fixed pixel
+  sizes still read small on a wide monitor (commit `c2dcccf`): header
+  brand mark `clamp(44px, 4.5vw, 84px)`, footer mark
+  `clamp(44px, 4vw, 68px)`, hero atlas `min(100%, 44vw, 880px)` with the
+  mascot at 88% (up to ~840px rendered on wide monitors) and the hero
+  canvas widened to `min(1500px, calc(100% - 48px))` (header/footer stay
+  on the 1180px page). The text column returned to 34rem because the
+  vw-scaled hero H1 broke mid-word in a 30rem column at the 9.8rem font
+  cap. Every page's `assets/site.css` link now carries a `?v=2026-08-02-3`
+  cache-buster so returning browsers pick up the new sizes (the repo
+  validators strip query strings before reference checks; both pass).
+  Playwright-verified at wide/1440/390 emulation: 0 console errors, H1
+  single-line everywhere, no horizontal overflow, nav single-row.
 
 ## 2026-08-01 — Application-first homepage and product pages
 

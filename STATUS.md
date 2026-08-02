@@ -14,8 +14,10 @@
   `download/` route holding the complete Linux AMD64 alpha download
   structure with every artifact value marked `PENDING-FINAL-CANDIDATE`, and a
   mascot visibility enlargement after owner feedback (dark-theme surfaces
-  render the light mascot variant for contrast: header brand mark 65px,
-  hero mascot ~610px desktop at 88% of a 640px atlas, footer 55px,
+  render the light mascot variant for contrast; sizes are viewport-driven:
+  header brand mark `clamp(44px, 4.5vw, 84px)`, hero mascot 88% of a
+  `min(100%, 44vw, 880px)` atlas (~840px on wide monitors), footer mark
+  `clamp(44px, 4vw, 68px)`; `assets/site.css` cache-busted on every page;
   Playwright-measured, no overflow at 390px).
   No artifact is offered; the release ledger's availability is unchanged.
   Local only: no push, no Pages deploy; the final candidate digests,
