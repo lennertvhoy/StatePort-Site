@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="The honest current boundaries of StatePort: a single-user local alpha on Linux with rootless Podman and Codex CLI, no public download, and no independent security review.">
+    <meta name="description" content="The honest current boundaries of StatePort: a single-user local alpha on Linux with rootless Podman, no public download, and no independent security review.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="Current limitations — what StatePort is not, today">
-    <meta property="og:description" content="The honest current boundaries of StatePort: a single-user local alpha on Linux with rootless Podman and Codex CLI, no public download, and no independent security review.">
+    <meta property="og:description" content="The honest current boundaries of StatePort: a single-user local alpha on Linux with rootless Podman, no public download, and no independent security review.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/limitations.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-demo-home.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -25,9 +25,9 @@
         "@context": "https://schema.org",
         "@type": "TechArticle",
         "headline": "Current limitations: what StatePort is not, today",
-        "description": "The honest current boundaries of StatePort: a single-user local alpha on Linux with rootless Podman and Codex CLI, no public download, and no independent security review.",
+        "description": "The honest current boundaries of StatePort: a single-user local alpha on Linux with rootless Podman, no public download, and no independent security review.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/docs/limitations.html",
-        "dateModified": "2026-08-01",
+        "dateModified": "2026-08-02",
         "inLanguage": "en"
       }
     </script>
@@ -102,12 +102,13 @@
           <h2>Platform and execution host</h2>
           <ul>
             <li>The only supported evaluation shape is Linux (x86-64) with rootless Podman. macOS, Windows, ARM64, and other platforms have no acceptance claim.</li>
-            <li>Codex CLI is the only execution provider exercised in the alpha. Pi is a reference direction, OpenCode is unqualified, and no provider is claimed equivalent to another.</li>
+            <li>In the alpha candidate, StudyState executes through the bundled synthetic executor — a deterministic, model-free execution host. Model-backed execution requires a separately authenticated execution host (for example Codex CLI or a direct API adapter) and is not part of the no-checkout install. No execution provider is claimed equivalent to another.</li>
           </ul>
 
           <h2>Security and compliance</h2>
           <ul>
             <li>No independent security review, formal audit, or penetration test has been performed.</li>
+            <li>Release signatures for this private candidate are not uploaded to a public transparency log; verification relies on the pinned alpha release public key and its recorded fingerprint.</li>
             <li>StatePort makes no GDPR, NIS2, or other legal or compliance certification claim.</li>
             <li>There is no active public support or vulnerability-reporting route yet.</li>
           </ul>
@@ -115,8 +116,11 @@
           <h2>Deployments and updates</h2>
           <ul>
             <li>Container deployment is local-only and limited to projects that satisfy the documented contract (plus assisted proposals for recognizable Python, Node, and static-web repositories) — not “deploy anything”.</li>
-            <li>Upgrade and rollback between deployment revisions are not delivered yet; the alpha acceptance programme requires upgrade and rollback-or-truthful-refusal before a public release.</li>
-            <li>There is no Azure or other cloud deployment yet.</li>
+            <li>Deployment governance for unrelated projects is a host-CLI capability. The browser does not expose deployment plan, apply, update, or rollback for unrelated projects, and no preview gateway exists — deployments bind loopback host ports directly.</li>
+            <li>In-place update of StatePort's own services is delivered in the candidate through a signed release index and a pinned trust root, with approval-gated, health-gated apply and automatic rollback. The alpha default update policy is <code>notify</code>: you are told an update exists, and nothing is applied without your authorization.</li>
+            <li>Trust-root rotation is a manual, out-of-band operator act; a release artifact can never rotate trust by itself.</li>
+            <li>Guided uninstall (stops services, preserves all data) and purge (also removes data, and refuses unless you confirm the exact installed identity ID) are delivered. Purge does not remove the podman networks the installation created — remove them explicitly afterwards if desired.</li>
+            <li>There is no Azure or other cloud deployment yet; the Azure code is validated offline but has never been applied.</li>
             <li>Backup and restore commands exist, but a restore cannot undo external side effects, and unknown or non-idempotent operations are never automatically retried.</li>
           </ul>
 

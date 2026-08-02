@@ -29,7 +29,7 @@
         "name": "StatePort release status",
         "description": "The authoritative public availability ledger for StatePort.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/releases/",
-        "dateModified": "2026-07-26",
+        "dateModified": "2026-08-02",
         "inLanguage": "en"
       }
     </script>
@@ -80,9 +80,9 @@
               <p class="release-summary-label">Current software status</p>
               <h2>The release is still in preparation</h2>
               <p>Public software distribution has not started. No download, public implementation source, versioned install guide, or supported release is being offered.</p>
-              <p>A private v0.1.0-alpha.1 candidate is in product-owner testing: rootless Podman on Linux (x86_64), loopback-only, a single local user, and Codex CLI as the only qualified execution provider, with external side effects denied by default. It is not a public release — there is no public download, no remote CI verification, no independent security review, and no production-readiness claim. The <a href="../docs/limitations.html">current limitations page</a> collects every boundary in one place.</p>
+              <p>A private v0.1.0-alpha.1 candidate is in product-owner testing: rootless Podman on Linux (x86_64), loopback-only, a single local user, and StudyState executing through the bundled synthetic executor (model-backed execution requires a separately authenticated host), with external side effects denied by default. Its supply chain is signed: digest-pinned images, a signed release index verified against a pinned alpha release public key, SPDX SBOMs, and vulnerability-scan dispositions. The no-checkout installer, the approval-gated and health-gated updater with automatic rollback, and guided uninstall and purge are all delivered in the candidate with receipts. It is not a public release — there is no public download, no remote CI verification, no independent security review, and no production-readiness claim, and human acceptance is pending. The <a href="../docs/limitations.html">current limitations page</a> collects every boundary in one place.</p>
             </div>
-            <p class="release-review-date">Ledger reviewed<br><time datetime="2026-07-26">26 July 2026</time></p>
+            <p class="release-review-date">Ledger reviewed<br><time datetime="2026-08-02">2 August 2026</time></p>
           </div>
 
           <dl class="release-ledger release-ledger--detailed" aria-label="StatePort availability">
@@ -138,7 +138,7 @@
               <li><strong>Public boundary</strong><span>A clearly identified implementation source and product license decision.</span></li>
               <li><strong>Versioned material</strong><span>An exact version, release notes, and immutable source reference.</span></li>
               <li><strong>Installable artifacts</strong><span>Published artifacts or installers with checksums where appropriate.</span></li>
-              <li><strong>Verified path</strong><span>A Docker-first installation path tested from a clean environment for the stated platform.</span></li>
+              <li><strong>Verified path</strong><span>An installation path tested from a clean environment for the stated platform.</span></li>
               <li><strong>Acceptance record</strong><span>A clear account of what was validated, by whom, and what remains unaccepted.</span></li>
             </ol>
           </section>
