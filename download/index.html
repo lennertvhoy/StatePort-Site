@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+    <meta name="description" content="The prepared download structure for the StatePort Linux alpha: version, checksums, signatures, images, and install lifecycle — every artifact value pending the final candidate.">
+    <meta name="theme-color" content="#0B132B">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="StatePort">
+    <meta property="og:title" content="Download StatePort — structure ready, artifacts pending">
+    <meta property="og:description" content="The complete download structure for the Linux alpha, with every version, digest, checksum, and signature field marked PENDING-FINAL-CANDIDATE. No artifact is offered yet.">
+    <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/download/">
+    <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-demo-source.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/download/">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+    <link rel="manifest" href="../site.webmanifest">
+    <link rel="stylesheet" href="../assets/site.css">
+    <link rel="stylesheet" href="../assets/site-enhancements.css" data-site-enhancements>
+    <title>Download — StatePort</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Download StatePort",
+        "description": "The prepared download structure for the StatePort Linux alpha. No artifact is offered for installation; every version, digest, checksum, and signature value is pending the final candidate.",
+        "url": "https://lennertvhoy.github.io/StatePort-Site/download/",
+        "dateModified": "2026-08-02",
+        "inLanguage": "en"
+      }
+    </script>
+  </head>
+  <body class="article-page release-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-block-arch-dark.svg" alt="" width="42" height="42">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Open navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="../docs/">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-release" href="../releases/">Release status</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="download-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Download / Linux alpha</p>
+          <h1 id="download-title">The download is not open yet.</h1>
+          <p>This page holds the complete structure the first public alpha will ship with — so you can see exactly what an install will involve before any artifact exists.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+        <aside class="doc-sidebar" aria-label="Download sections">
+          <h2>Download</h2>
+          <nav>
+            <a href="#status" aria-current="page">Status</a>
+            <a href="#prerequisites">Prerequisites</a>
+            <a href="#verification">Installer and verification</a>
+            <a href="#release-index">Release index and source</a>
+            <a href="#images">Images and digests</a>
+            <a href="#compose-quadlet">Compose and Quadlet</a>
+            <a href="#lifecycle">Install and update lifecycle</a>
+            <a href="#alpha-limitations">Alpha limitations</a>
+            <a href="../releases/">Release status</a>
+            <a href="../docs/limitations.html">Current limitations</a>
+          </nav>
+        </aside>
+
+        <article class="prose release-overview" data-no-toc>
+          <p class="notice"><strong>No artifact is offered for installation.</strong> Every version, digest, checksum, and signature field on this page reads <code>PENDING-FINAL-CANDIDATE</code> because the primary integrator has not yet issued the final candidate values. When those values exist, this page fills them in without changing its structure — and the <a href="../releases/">release ledger</a> records the change of availability, not this page alone.</p>
+
+          <section id="status" aria-labelledby="status-heading">
+            <h2 id="status-heading">Status</h2>
+            <dl class="release-ledger release-ledger--detailed" aria-label="Download availability">
+              <div>
+                <dt>Channel</dt>
+                <dd><span class="status-chip status-chip--pending">Alpha</span><small>Single user, single machine, loopback-only, local rootless Podman.</small></dd>
+              </div>
+              <div>
+                <dt>Version</dt>
+                <dd><span class="status-chip status-chip--pending">In preparation</span><small><code>PENDING-FINAL-CANDIDATE</code> — expected from the v0.1.0-alpha.1 candidate line now in product-owner testing.</small></dd>
+              </div>
+              <div>
+                <dt>Download</dt>
+                <dd><span class="status-chip status-chip--unavailable">Not available</span><small>No installer, image, or archive is published. Human acceptance of the candidate is pending.</small></dd>
+              </div>
+            </dl>
+            <p>Nothing on this page is a release. The alpha label means: no production-readiness claim, no multi-user or hosted operation, no independent security review, and no comparative or performance claim.</p>
+          </section>
+
+          <section id="prerequisites" aria-labelledby="prerequisites-heading">
+            <h2 id="prerequisites-heading">Prerequisites</h2>
+            <ul>
+              <li><strong>Ubuntu 24.04 LTS on x86-64 (AMD64)</strong> — the only supported evaluation shape. macOS, Windows, ARM64, and other platforms have no acceptance claim.</li>
+              <li><strong>Rootless Podman</strong> — StatePort runs its services as an unprivileged user; no root daemon is required.</li>
+              <li><strong>No source checkout</strong> — the installer is self-contained; you do not clone the implementation repository (which is not public) to install.</li>
+            </ul>
+          </section>
+
+          <section id="verification" aria-labelledby="verification-heading">
+            <h2 id="verification-heading">Installer and verification</h2>
+            <p>The install starts from one no-checkout installer. Before it changes anything, you verify it against the values published beside it:</p>
+            <dl class="release-ledger release-ledger--detailed" aria-label="Installer artifact fields">
+              <div>
+                <dt>Installer artifact</dt>
+                <dd><code>PENDING-FINAL-CANDIDATE</code></dd>
+              </div>
+              <div>
+                <dt>SHA-256 checksum</dt>
+                <dd><code>PENDING-FINAL-CANDIDATE</code></dd>
+              </div>
+              <div>
+                <dt>Cosign signature</dt>
+                <dd><code>PENDING-FINAL-CANDIDATE</code><small>Pinned-public-key signature under the StatePort alpha release key.</small></dd>
+              </div>
+              <div>
+                <dt>Alpha release public key</dt>
+                <dd><code>PENDING-FINAL-CANDIDATE</code></dd>
+              </div>
+              <div>
+                <dt>Key fingerprint</dt>
+                <dd><code>PENDING-FINAL-CANDIDATE</code><small>Signatures for the candidate are not uploaded to a public transparency log; verification relies on the pinned key and its recorded fingerprint.</small></dd>
+              </div>
+            </dl>
+            <p>Tampering with any signed field, image digest, or artifact refuses the install. The step-by-step commands will ship with the release notes of the exact version they belong to.</p>
+          </section>
+
+          <section id="release-index" aria-labelledby="release-index-heading">
+            <h2 id="release-index-heading">Release index and source archive</h2>
+            <dl class="release-ledger release-ledger--detailed" aria-label="Release index and source fields">
+              <div>
+                <dt>Signed release index</dt>
+                <dd><code>PENDING-FINAL-CANDIDATE</code><small>The <code>stateport.release-index/v1</code> index is signed by the alpha release key and verified against the trust root pinned at install time. Updates are discovered through it — never a moving “latest”.</small></dd>
+              </div>
+              <div>
+                <dt>Source archive</dt>
+                <dd><code>PENDING-FINAL-CANDIDATE</code><small>The implementation source is not public and no product license decision has been published; whether a source archive accompanies the alpha remains part of the pending release decision.</small></dd>
+              </div>
+            </dl>
+          </section>
+
+          <section id="images" aria-labelledby="images-heading">
+            <h2 id="images-heading">Images and digests</h2>
+            <p>The alpha runs from digest-pinned container images — what you approved is bit-for-bit what runs. Alongside the images, the candidate ships SPDX SBOMs and vulnerability-scan dispositions.</p>
+            <dl class="release-ledger release-ledger--detailed" aria-label="Image fields">
+              <div>
+                <dt>Image digests</dt>
+                <dd><code>PENDING-FINAL-CANDIDATE</code></dd>
+              </div>
+              <div>
+                <dt>SPDX SBOMs</dt>
+                <dd><code>PENDING-FINAL-CANDIDATE</code></dd>
+              </div>
+              <div>
+                <dt>Vulnerability-scan dispositions</dt>
+                <dd><code>PENDING-FINAL-CANDIDATE</code></dd>
+              </div>
+            </dl>
+          </section>
+
+          <section id="compose-quadlet" aria-labelledby="compose-quadlet-heading">
+            <h2 id="compose-quadlet-heading">Compose and Quadlet</h2>
+            <p>The installer assembles the local services for rootless Podman and wires them into the user session: a Compose definition describes the service set, and Quadlet units keep the containers running under the unprivileged user. The exact Compose file and Quadlet units ship inside the installer and are recorded in the release evidence.</p>
+            <dl class="release-ledger release-ledger--detailed" aria-label="Compose and Quadlet fields">
+              <div>
+                <dt>Compose definition</dt>
+                <dd><code>PENDING-FINAL-CANDIDATE</code></dd>
+              </div>
+              <div>
+                <dt>Quadlet units</dt>
+                <dd><code>PENDING-FINAL-CANDIDATE</code></dd>
+              </div>
+            </dl>
+          </section>
+
+          <section id="lifecycle" aria-labelledby="lifecycle-heading">
+            <h2 id="lifecycle-heading">Install and update lifecycle</h2>
+            <ul>
+              <li><strong>Install</strong> — the verified installer pins the release trust root out of band, pulls the digest-pinned images, and starts the services with health checks. The full install will be tested from a clean environment before the version is published.</li>
+              <li><strong>Update policy</strong> — the alpha default is <code>notify</code>: you are told an update exists and nothing is applied without your authorization. Applying an update is approval-gated and health-gated, with automatic rollback to the retained predecessor if the successor is unhealthy. Details: <a href="../docs/updates.html">how updates work in the alpha</a>.</li>
+              <li><strong>Backup</strong> — backup and restore commands exist for the durable state. A restore cannot undo external side effects, and unknown or non-idempotent operations are never automatically retried.</li>
+              <li><strong>Uninstall</strong> — guided uninstall stops the services and preserves all data; purge also removes the data and refuses unless you confirm the exact installed identity ID. Purge does not remove the Podman networks the installation created.</li>
+            </ul>
+          </section>
+
+          <section id="alpha-limitations" aria-labelledby="alpha-limitations-heading">
+            <h2 id="alpha-limitations-heading">Alpha limitations</h2>
+            <ul>
+              <li>Single local user on a single machine; the services bind the loopback interface only. Multi-user, public-network, SSO, and managed-service operation are not qualified.</li>
+              <li>No hosted service: StatePort is not offered as a managed or cloud product, and no Azure or other cloud deployment exists.</li>
+              <li>No independent security review, formal audit, or penetration test has been performed.</li>
+              <li>Model-backed execution requires a separately authenticated execution host; the no-checkout install runs StudyState through the bundled deterministic synthetic executor.</li>
+              <li>Human acceptance of the candidate is pending; reviews so far are internal multi-agent reviews with independence not established.</li>
+            </ul>
+            <p>The <a href="../docs/limitations.html">current limitations page</a> collects every boundary in one place. If any page seems to promise more, the limitations page wins.</p>
+            <div class="inline-actions">
+              <a class="button button--ink" href="../releases/">View release status</a>
+              <a class="button button--outlined" href="../docs/limitations.html">Read the current limitations</a>
+            </div>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-block-arch-dark.svg" alt="" width="31" height="31">
+          <p><strong>StatePort</strong>Durable AI-assisted work, kept in view.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="../docs/">Docs</a>
+          <a href="../tutorials/">Tutorials</a>
+          <a href="../releases/">Release status</a>
+        </nav>
+        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+      </div>
+    </footer>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>
