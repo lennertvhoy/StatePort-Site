@@ -1,5 +1,38 @@
 # Worklog
 
+## 2026-08-02 — Public-alpha site quality slice
+
+- Worked on the local-only branch `agent/public-alpha-site-quality-001`
+  (continuing the same-day mascot, whitepaper, OG/JSON-LD, CSP, and updater
+  copy commits already on that branch).
+- Audited every published page for broken internal links, stale claims, and
+  terminology. `StateDD` appears only as a clearly labelled legacy
+  compatibility name (footer line and reference page); no production-readiness,
+  hosted-SaaS, multi-user, independent-audit, completed-Azure, or
+  "deploy anything" claim exists on any page.
+- `docs/security-and-privacy.html` gained an explicit "Reporting a security
+  issue" section: no public vulnerability-reporting route exists yet and the
+  intake address will be published in the release ledger with the first
+  public release, instead of an unwatched channel (commit `4cb496f`).
+- Added `download/index.html`: the complete Linux AMD64 alpha download
+  structure (alpha label, Ubuntu 24.04 + rootless Podman prerequisites,
+  no-checkout installer, SHA-256 checksum, Cosign signature, alpha release
+  public key and fingerprint, signed release index, source archive, image
+  digests, SPDX SBOMs, vulnerability-scan dispositions, Compose definition,
+  Quadlet units, install/update-policy/backup/uninstall lifecycle, and alpha
+  limitations). Every artifact value is marked `PENDING-FINAL-CANDIDATE`;
+  no artifact is offered and human acceptance remains pending. Wired it into
+  `sitemap.xml`, the release-ledger sidebar and "Downloads or installers"
+  row, and the homepage availability line (commit `4532d88`).
+- Verified the block-arch mascot and favicon copies are byte-identical
+  (SHA-256) to the canonical `apps/web/assets/brand/` sources in the private
+  StatePort repository and parse as well-formed XML; no asset change needed.
+- Validation: `scripts/validate_repo.py` and `scripts/check_site_quality.py`
+  pass (26 pages). Browser spot-check over a loopback server on the download,
+  home, and release pages: zero console errors and no horizontal overflow at
+  desktop and narrow viewports. Local only: no push, no deploy, no
+  release-ledger availability change.
+
 ## 2026-08-01 — Application-first homepage and product pages
 
 - **BL-SITE-015.** The homepage was coding-agent-framed ("StatePort drives an

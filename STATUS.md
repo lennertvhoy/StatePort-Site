@@ -1,6 +1,6 @@
 # StatePort Site status
 
-**Updated At:** 2026-08-01
+**Updated At:** 2026-08-02
 **Execution Mode:** operating
 **Project State:** alpha_release_alignment_local_in_progress
 **Repository:** https://github.com/lennertvhoy/StatePort-Site
@@ -8,6 +8,15 @@
 
 ## Current truth
 
+- A local **public-alpha site quality** slice sits on branch
+  `agent/public-alpha-site-quality-001`: a full-page claim and terminology
+  audit, an explicit no-security-reporting-route statement, and a new
+  `download/` route holding the complete Linux AMD64 alpha download
+  structure with every artifact value marked `PENDING-FINAL-CANDIDATE`.
+  No artifact is offered; the release ledger's availability is unchanged.
+  Local only: no push, no Pages deploy; the final candidate digests,
+  checksums, signatures, and release key material remain with the primary
+  integrator.
 - The live public site is a static HTML/CSS/progressive-JavaScript deployment.
   It contains the product story, documentation, tutorials, release ledger,
   captioned local prototype walkthrough, public paper, and 404 route.

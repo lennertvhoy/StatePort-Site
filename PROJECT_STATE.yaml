@@ -1,5 +1,5 @@
 metadata:
-  updated_at: 2026-08-01T21:55:00+02:00
+  updated_at: 2026-08-02T18:37:00+02:00
   updated_by: kimi-agent
   format_version: statespec-site-state/v1
 
@@ -58,6 +58,7 @@ site:
     - /tutorials/reading-a-receipt.html
     - /papers/stateware-whitepaper-public-v1.1.html
     - /releases/
+    - /download/
   accessibility:
     - semantic_landmarks_and_skip_links
     - keyboard_safe_mobile_navigation_with_focus_restoration
@@ -315,4 +316,22 @@ delivery:
       - fail_closed_support_link_remains_hidden
     constraints: local_only_no_push_no_pages_deploy_no_release_ledger_availability_change
     validation: validate_repo_and_check_site_quality_passed_on_every_commit_2026-08-01
+    status: committed_locally_pending_owner_review
+  public_alpha_site_quality:
+    branch: agent/public-alpha-site-quality-001
+    scope: full_page_claim_and_terminology_audit_security_reporting_honesty_download_page_structure_with_pending_final_candidate_values
+    new_routes:
+      - /download/
+    download_page:
+      artifact_values: pending_final_candidate
+      fields_pending: version installer_artifact sha256_checksum cosign_signature alpha_release_public_key key_fingerprint signed_release_index source_archive image_digests sboms vulnerability_scan_dispositions compose_definition quadlet_units
+      availability: no_artifact_offered_human_acceptance_pending
+    honest_boundaries:
+      - no_security_reporting_route_stated_explicitly_on_security_page
+      - download_page_marks_every_artifact_value_pending_final_candidate
+      - release_ledger_availability_unchanged
+      - fail_closed_support_link_remains_hidden
+      - mascot_and_favicon_byte_identical_to_canonical_apps_web_brand_copies
+    constraints: local_only_no_push_no_pages_deploy_no_release_ledger_availability_change
+    validation: validate_repo_and_check_site_quality_passed_on_every_commit_2026-08-02_browser_spot_check_no_console_errors_no_horizontal_overflow
     status: committed_locally_pending_owner_review

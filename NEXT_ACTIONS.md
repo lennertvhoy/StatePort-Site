@@ -1,6 +1,6 @@
 # NEXT_ACTIONS — active execution queue
 
-**Updated At:** 2026-08-01
+**Updated At:** 2026-08-02
 **Execution Mode:** operating
 **Max Items:** 3
 
@@ -42,6 +42,23 @@ Replace release-preparation language only after a public implementation source,
 license decision, versioned artifact, checksums, and verified install path exist.
 
 **Exit:** all download and release claims bind to an exact published release.
+
+## Completed since last update (2026-08-02)
+
+- **BL-SITE-016** — Public-alpha site quality pass on
+  `agent/public-alpha-site-quality-001` (local only). Full-page claim and
+  terminology audit (legacy `StateDD` labelling verified; no forbidden
+  readiness/SaaS/multi-user/audit/Azure claims found). New `download/` route
+  holds the complete Linux AMD64 alpha download structure with every version,
+  digest, checksum, signature, release-index, image, Compose, and Quadlet
+  value marked `PENDING-FINAL-CANDIDATE`; no artifact is offered. The
+  security page now states explicitly that no vulnerability-reporting route
+  exists yet. Mascot and favicon verified byte-identical to the canonical
+  brand sources. `validate_repo.py` and `check_site_quality.py` pass
+  (26 pages); browser spot-check shows no console errors or overflow.
+  No push, no deploy, no release-ledger availability change; owner review
+  and human acceptance pending. Blocked on the primary integrator for the
+  final candidate digests, checksums, signatures, and release key material.
 
 ## Completed since last update (2026-08-01)
 
