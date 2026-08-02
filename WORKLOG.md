@@ -32,6 +32,13 @@
   home, and release pages: zero console errors and no horizontal overflow at
   desktop and narrow viewports. Local only: no push, no deploy, no
   release-ledger availability change.
+- Enlarged the mascot after owner feedback that it rendered too small
+  (commit `a94844e`): header brand mark 39px → 46px, hero atlas container
+  430px → 560px (desktop) / 340px → 430px cap and 74vw → 84vw (narrow), and
+  the hero mascot 37% → 50% of the atlas. Measured with Playwright:
+  header 39→46px, hero mascot ~172px → ~293px desktop and ~178px at 390px
+  emulated width; header stays 80px/72px with no wrap and no horizontal
+  overflow; alt/aria conventions unchanged; both validators pass.
 
 ## 2026-08-01 — Application-first homepage and product pages
 

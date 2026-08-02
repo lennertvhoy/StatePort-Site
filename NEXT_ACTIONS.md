@@ -54,7 +54,9 @@ license decision, versioned artifact, checksums, and verified install path exist
   value marked `PENDING-FINAL-CANDIDATE`; no artifact is offered. The
   security page now states explicitly that no vulnerability-reporting route
   exists yet. Mascot and favicon verified byte-identical to the canonical
-  brand sources. `validate_repo.py` and `check_site_quality.py` pass
+  brand sources; after owner feedback the mascot was enlarged (header brand
+  mark 39→46px, hero mascot ~172→~293px desktop, measured with Playwright).
+  `validate_repo.py` and `check_site_quality.py` pass
   (26 pages); browser spot-check shows no console errors or overflow.
   No push, no deploy, no release-ledger availability change; owner review
   and human acceptance pending. Blocked on the primary integrator for the
