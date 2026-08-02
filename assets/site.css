@@ -139,8 +139,8 @@ select {
 }
 
 .brand img {
-  width: 52px;
-  height: 52px;
+  width: 65px;
+  height: 65px;
   object-fit: contain;
 }
 
@@ -251,8 +251,8 @@ select {
 .hero-inner {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 34rem) minmax(0, 1fr);
-  gap: clamp(2rem, 6vw, 6rem);
+  grid-template-columns: minmax(0, 30rem) minmax(0, 1fr);
+  gap: clamp(2rem, 4vw, 4rem);
   align-items: center;
   width: var(--page);
   min-height: inherit;
@@ -416,7 +416,7 @@ select {
   position: relative;
   z-index: 1;
   justify-self: center;
-  width: min(100%, 560px);
+  width: min(100%, 640px);
   aspect-ratio: 1;
   color: var(--blue);
   pointer-events: none;
@@ -471,10 +471,10 @@ select {
 
 .atlas-mark {
   position: absolute;
-  top: 15%;
-  left: 15%;
-  width: 70%;
-  height: 70%;
+  top: 6%;
+  left: 6%;
+  width: 88%;
+  height: 88%;
   filter: none;
   transform: rotate(-5deg);
 }
@@ -1007,8 +1007,8 @@ select {
 }
 
 .footer-mark img {
-  width: 44px;
-  height: 44px;
+  width: 55px;
+  height: 55px;
 }
 
 .footer-mark p,
@@ -1631,7 +1631,7 @@ select {
 
   .atlas {
     justify-self: center;
-    width: min(84vw, 430px);
+    width: min(84vw, 540px);
   }
 
   .statement,
