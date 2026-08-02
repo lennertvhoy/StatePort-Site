@@ -139,8 +139,8 @@ select {
 }
 
 .brand img {
-  width: 39px;
-  height: 39px;
+  width: 46px;
+  height: 46px;
   object-fit: contain;
 }
 
@@ -416,7 +416,7 @@ select {
   position: relative;
   z-index: 1;
   justify-self: center;
-  width: min(100%, 430px);
+  width: min(100%, 560px);
   aspect-ratio: 1;
   color: var(--blue);
   pointer-events: none;
@@ -471,10 +471,10 @@ select {
 
 .atlas-mark {
   position: absolute;
-  top: 31.5%;
-  left: 31.5%;
-  width: 37%;
-  height: 37%;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
   filter: none;
   transform: rotate(-5deg);
 }
@@ -1631,7 +1631,7 @@ select {
 
   .atlas {
     justify-self: center;
-    width: min(74vw, 340px);
+    width: min(84vw, 430px);
   }
 
   .statement,
