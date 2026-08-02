@@ -139,8 +139,8 @@ select {
 }
 
 .brand img {
-  width: 46px;
-  height: 46px;
+  width: 52px;
+  height: 52px;
   object-fit: contain;
 }
 
@@ -471,10 +471,10 @@ select {
 
 .atlas-mark {
   position: absolute;
-  top: 25%;
-  left: 25%;
-  width: 50%;
-  height: 50%;
+  top: 15%;
+  left: 15%;
+  width: 70%;
+  height: 70%;
   filter: none;
   transform: rotate(-5deg);
 }
@@ -1007,8 +1007,8 @@ select {
 }
 
 .footer-mark img {
-  width: 39px;
-  height: 39px;
+  width: 44px;
+  height: 44px;
 }
 
 .footer-mark p,
