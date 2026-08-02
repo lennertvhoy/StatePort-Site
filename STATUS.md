@@ -13,8 +13,10 @@
   audit, an explicit no-security-reporting-route statement, and a new
   `download/` route holding the complete Linux AMD64 alpha download
   structure with every artifact value marked `PENDING-FINAL-CANDIDATE`, and a
-  mascot visibility enlargement after owner feedback (header brand mark 46px,
-  hero mascot ~293px desktop, Playwright-measured, no overflow at 390px).
+  mascot visibility enlargement after owner feedback (dark-theme surfaces
+  render the light mascot variant for contrast: header brand mark 52px,
+  hero mascot ~410px desktop, footer 44px, Playwright-measured, no overflow
+  at 390px).
   No artifact is offered; the release ledger's availability is unchanged.
   Local only: no push, no Pages deploy; the final candidate digests,
   checksums, signatures, and release key material remain with the primary

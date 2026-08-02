@@ -39,6 +39,21 @@
   header 39→46px, hero mascot ~172px → ~293px desktop and ~178px at 390px
   emulated width; header stays 80px/72px with no wrap and no horizontal
   overflow; alt/aria conventions unchanged; both validators pass.
+- Corrected mascot contrast after owner feedback that the dark-mode variant
+  disappeared on the navy theme (commit `5942145`). A rendered A/B showed
+  the `-dark.svg` file's dark-navy body fill merges into the navy hero while
+  the `-light.svg` file's cream body pops. Theme wiring now matches actual
+  contrast: the dark-theme surfaces (home header, hero atlas, and the
+  always-navy footer on every page) render the light variant, and the
+  light-theme headers (docs/tutorials/releases/download/papers) keep the
+  dark variant. Sizes grew again: header brand mark 46→52px, hero mascot
+  50→70% of the atlas (~410px desktop, ~226px at 390px), footer mark
+  39→44px. `favicon-block-arch.svg` is the blue house-check (byte-identical
+  to `favicon.svg`), verified clearly visible at 16/32px on simulated light
+  and dark browser chrome — no favicon change needed, preserving byte
+  identity with the canonical brand copies. Playwright: 0 console errors on
+  home/download/study-state/releases, no horizontal overflow at 390px;
+  both validators pass.
 
 ## 2026-08-01 — Application-first homepage and product pages
 

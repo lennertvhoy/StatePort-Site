@@ -319,7 +319,7 @@ delivery:
     status: committed_locally_pending_owner_review
   public_alpha_site_quality:
     branch: agent/public-alpha-site-quality-001
-    scope: full_page_claim_and_terminology_audit_security_reporting_honesty_download_page_structure_with_pending_final_candidate_values_mascot_visibility_enlargement
+    scope: full_page_claim_and_terminology_audit_security_reporting_honesty_download_page_structure_with_pending_final_candidate_values_mascot_theme_contrast_and_visibility_enlargement
     new_routes:
       - /download/
     download_page:
