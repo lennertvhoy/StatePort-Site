@@ -56,8 +56,8 @@ license decision, versioned artifact, checksums, and verified install path exist
   exists yet. Mascot and favicon verified byte-identical to the canonical
   brand sources; after owner feedback the mascot was enlarged and
   theme-corrected for contrast (dark-theme surfaces render the light
-  variant: header 52px, hero mascot ~410px desktop, footer 44px,
-  Playwright-measured).
+  variant: header 65px, hero mascot ~610px desktop at 88% of a 640px atlas,
+  footer 55px, Playwright-measured).
   `validate_repo.py` and `check_site_quality.py` pass
   (26 pages); browser spot-check shows no console errors or overflow.
   No push, no deploy, no release-ledger availability change; owner review

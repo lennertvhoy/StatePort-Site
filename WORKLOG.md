@@ -54,6 +54,13 @@
   identity with the canonical brand copies. Playwright: 0 console errors on
   home/download/study-state/releases, no horizontal overflow at 390px;
   both validators pass.
+- Scaled every mascot render up by roughly a quarter after further owner
+  feedback (commit `a366462`): header brand mark 52→65px (header stays
+  80px/72px, nav single-row), hero mascot 70→88% of the atlas with the
+  atlas cap 560→640px and the hero grid rebalanced (30rem text column,
+  4rem max gap) so the mascot renders ~610px at 1440px and ~284px at
+  390px, and the footer mark 44→55px. Playwright-measured, 0 console
+  errors, no horizontal overflow at 390px; both validators pass.
 
 ## 2026-08-01 — Application-first homepage and product pages
 
