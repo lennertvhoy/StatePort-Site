@@ -29,6 +29,11 @@ ENTRYPOINTS = {
     Path("tutorials/index.html"): f"{BASE_URL}tutorials/",
     Path("releases/index.html"): f"{BASE_URL}releases/",
 }
+# Pages that exist in the repository but are self-marked as not yet published.
+# They stay out of sitemap.xml so crawlers are not sent to unfinished work.
+UNPUBLISHED_PAGES = {
+    Path("papers/stateware-whitepaper-candidate-v1.2.html"),
+}
 TRACKING_PATTERNS = (
     "googletagmanager.com",
     "google-analytics.com",
@@ -351,7 +356,7 @@ def validate_sitemap(documents: dict[Path, DocumentFacts]) -> None:
     expected = {
         public_url(path)
         for path in documents
-        if path != Path("404.html")
+        if path != Path("404.html") and path not in UNPUBLISHED_PAGES
     }
     missing = sorted(expected.difference(locations))
     extra = sorted(locations.difference(expected))
@@ -359,6 +364,11 @@ def validate_sitemap(documents: dict[Path, DocumentFacts]) -> None:
         raise AssertionError(f"sitemap.xml is missing: {', '.join(missing)}")
     if extra:
         raise AssertionError(f"sitemap.xml contains unknown pages: {', '.join(extra)}")
+    advertised_unpublished = sorted(locations.intersection({public_url(path) for path in UNPUBLISHED_PAGES}))
+    if advertised_unpublished:
+        raise AssertionError(
+            f"sitemap.xml advertises pages that are not yet published: {', '.join(advertised_unpublished)}"
+        )
 
 
 def validate_manifest() -> None:
