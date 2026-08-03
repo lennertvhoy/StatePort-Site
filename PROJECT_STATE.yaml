@@ -187,11 +187,11 @@ public_media_and_paper:
     status: roadmap_only_no_schema_exporter_registry_image_or_install_flow
 
 release_ledger:
-  public_release_published: false
+  public_release_published: true
   public_download_available: false
   source_license_published: false
   intended_first_distribution: docker_first_when_release_is_published
-  visitor_message: public release preparation is in progress; no download is offered
+  visitor_message: v0.1.0-alpha.2 signed alpha candidate is available; human acceptance and independent security review remain pending
 
 delivery:
   local_repository: local_working_copy_path_intentionally_not_recorded_in_public_state_files

@@ -34,14 +34,16 @@ architecture, and media voice.
 **Exit:** human review records acceptance or requested changes for the live
 package.
 
-## P1 [BL-SITE-003] Add release-specific content only with public source evidence
+## P1 [BL-SITE-003] Obtain human acceptance of the published alpha candidate
 
 **Status:** pending_external
 
-Replace release-preparation language only after a public implementation source,
-license decision, versioned artifact, checksums, and verified install path exist.
+The v0.1.0-alpha.2 candidate is published with a signed release index,
+versioned artifacts, checksums, and digest-pinned GHCR images. Human acceptance,
+independent security review, and production qualification remain outstanding.
 
-**Exit:** all download and release claims bind to an exact published release.
+**Exit:** owner records human acceptance or requested changes against the exact
+candidate index digest.
 
 ## Completed since last update (2026-08-02)
 

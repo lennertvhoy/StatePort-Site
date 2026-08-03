@@ -108,14 +108,14 @@
   sidebars, and the release ledger, and listed in the sitemap. The updates
   page is explicitly framed as design/target where the candidate does not
   yet deliver it, and deployment upgrade/rollback is stated as not yet
-  supported. The alpha-availability line now says the public download is in
-  preparation; it still does not exist. Local-only: no push, no Pages
-  deploy, no release-ledger availability change.
+   supported. The v0.1.0-alpha.2 signed candidate is now published with its
+   release index, installer, source archive, and GHCR image references. Human
+   acceptance and independent security review remain pending.
 
 ## What is not proven
 
-- Public source availability, a licensed release, downloads, or an installation
-  path for visitors.
+- Human-accepted production release status; v0.1.0-alpha.2 is an explicitly
+  qualified alpha candidate with no public transparency-log upload.
 - Human acceptance of the copy, visual design, information architecture, and
   media voice — including the deployed harness-narrative package.
 - Human acceptance of the alpha-alignment package now in local preparation.
@@ -124,8 +124,5 @@
 
 ## Next action
 
-Complete and locally validate the alpha-alignment package on
-`agent/site-alpha-release-alignment-001`, then obtain owner review. Merge,
-deploy, and any release-ledger or whitepaper publication change remain
-owner-gated. Keep release/download content tied to a public source release
-and its evidence.
+Obtain human acceptance of the published alpha candidate and keep release
+claims tied to the signed index and its recorded limitations.

@@ -1,5 +1,16 @@
 # Worklog
 
+## 2026-08-03 — Publish v0.1.0-alpha.2 candidate
+
+- Published the signed v0.1.0-alpha.2 alpha candidate after seven exact image
+  evidence runs, bounded scan dispositions, GHCR image signatures, and full
+  release-index rederivation/verification.
+- Added the versioned installer, updater, source archive, release notes,
+  limitations, public key, index signature, and export manifest under
+  `download/0.1.0-alpha.2/`.
+- Human acceptance, independent security review, and production qualification
+  remain explicitly pending.
+
 ## 2026-08-02 — Public-alpha site quality slice
 
 - Worked on the local-only branch `agent/public-alpha-site-quality-001`

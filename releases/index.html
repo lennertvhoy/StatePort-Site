@@ -68,7 +68,7 @@
             <a href="#current-status" aria-current="page">Current status</a>
             <a href="#available-now">Available now</a>
             <a href="#release-evidence">Release evidence</a>
-            <a href="../download/">Download (pending)</a>
+            <a href="../download/">Download v0.1.0-alpha.2</a>
             <a href="../docs/limitations.html">Current limitations</a>
             <a href="../docs/">Documentation</a>
             <a href="../">Home</a>
@@ -79,9 +79,8 @@
           <div class="release-summary" id="current-status">
             <div>
               <p class="release-summary-label">Current software status</p>
-              <h2>The release is still in preparation</h2>
-              <p>Public software distribution has not started. No download, public implementation source, versioned install guide, or supported release is being offered.</p>
-              <p>A private v0.1.0-alpha.1 candidate is in product-owner testing: rootless Podman on Linux (x86_64), loopback-only, a single local user, and StudyState executing through the bundled synthetic executor (model-backed execution requires a separately authenticated host), with external side effects denied by default. Its supply chain is signed: digest-pinned images, a signed release index verified against a pinned alpha release public key, SPDX SBOMs, and vulnerability-scan dispositions. The no-checkout installer, the approval-gated and health-gated updater with automatic rollback, and guided uninstall and purge are all delivered in the candidate with receipts. It is not a public release — there is no public download, no remote CI verification, no independent security review, and no production-readiness claim, and human acceptance is pending. The <a href="../docs/limitations.html">current limitations page</a> collects every boundary in one place.</p>
+              <h2>v0.1.0-alpha.2 candidate is available</h2>
+              <p>The signed candidate download is available for Ubuntu 24.04 AMD64 with rootless Podman. It is a single-user, loopback-only alpha candidate, not a production release. Human acceptance, independent security review, and public transparency-log publication remain pending. The <a href="../docs/limitations.html">current limitations page</a> collects every boundary in one place.</p>
             </div>
             <p class="release-review-date">Ledger reviewed<br><time datetime="2026-08-02">2 August 2026</time></p>
           </div>
@@ -97,11 +96,11 @@
             </div>
             <div>
               <dt>Software release</dt>
-              <dd><span class="status-chip status-chip--pending">In preparation</span><small>No public version has been published.</small></dd>
+              <dd><span class="status-chip status-chip--available">Candidate available</span><small>v0.1.0-alpha.2, signed private-candidate qualification.</small></dd>
             </div>
             <div>
               <dt>Downloads or installers</dt>
-              <dd><span class="status-chip status-chip--unavailable">Not available</span><small>No artifact is offered for installation. The <a href="../download/">download page structure</a> is prepared with every artifact value pending the final candidate.</small></dd>
+              <dd><span class="status-chip status-chip--available">Available</span><small><a href="../download/">Download v0.1.0-alpha.2</a> and verify the signed release index before installation.</small></dd>
             </div>
             <div>
               <dt>Implementation source</dt>
@@ -113,7 +112,7 @@
             </div>
             <div>
               <dt>Install guide</dt>
-              <dd><span class="status-chip status-chip--unavailable">Not available</span><small>Versioned instructions will belong to an exact release.</small></dd>
+              <dd><span class="status-chip status-chip--available">Included</span><small>Versioned instructions are included in the download artifacts.</small></dd>
             </div>
           </dl>
 
