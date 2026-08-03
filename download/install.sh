@@ -19,10 +19,21 @@ case "$(uname -m)" in x86_64|amd64) ;; *) fail 'This candidate is AMD64 only.' ;
 [ "${ID:-}" = ubuntu ] && [ "${VERSION_ID:-}" = 24.04 ] || fail 'The signed alpha.2 target is Ubuntu 24.04. Other distributions need the next capability-based signed target; this script will not bypass the release contract.'
 command -v curl >/dev/null && command -v sha256sum >/dev/null || fail 'curl and sha256sum are required.'
 
+python_ready() {
+  command -v python3 >/dev/null 2>&1 || return 1
+  python3 -c 'import sys; raise SystemExit(sys.version_info < (3,12))' >/dev/null 2>&1 || return 1
+  probe=$(mktemp -d "${TMPDIR:-/tmp}/stateport-venv-probe.XXXXXX") || return 1
+  if python3 -m venv "$probe/venv" >/dev/null 2>&1; then
+    rm -rf "$probe"
+    return 0
+  fi
+  rm -rf "$probe"
+  return 1
+}
+
 missing=0
-command -v python3 >/dev/null || missing=1
-command -v podman >/dev/null || missing=1
-python3 -c 'import sys; raise SystemExit(sys.version_info < (3,12))' 2>/dev/null || missing=1
+python_ready || missing=1
+command -v podman >/dev/null 2>&1 || missing=1
 if [ "$missing" -eq 1 ]; then
   printf 'Install required Ubuntu packages now? [y/N] ' >/dev/tty
   IFS= read -r answer </dev/tty || answer=
@@ -30,8 +41,11 @@ if [ "$missing" -eq 1 ]; then
     command -v sudo >/dev/null || fail 'sudo is required to install prerequisites.'
     sudo env DEBIAN_FRONTEND=noninteractive apt-get update
     sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y python3 python3-venv podman uidmap slirp4netns fuse-overlayfs dbus-user-session
-    ;; *) fail 'Prerequisite installation declined.' ;; esac
+    ;; *) fail 'Prerequisite installation declined.' ;;
+  esac
 fi
+python_ready || fail 'Python 3.12 with working venv support is required.'
+command -v podman >/dev/null 2>&1 || fail 'Podman is still unavailable.'
 
 umask 077
 tmp=$(mktemp -d "${TMPDIR:-/tmp}/stateport-install.XXXXXX") || fail 'Cannot create a private temporary directory.'
