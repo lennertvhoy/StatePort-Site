@@ -6,6 +6,7 @@ from __future__ import annotations
 from html.parser import HTMLParser
 from pathlib import Path
 import re
+import stat
 from urllib.parse import urlsplit
 
 from render_support import load_config, rendered_home, support_enabled
@@ -50,8 +51,6 @@ def validate_local_references() -> None:
             if not target_text:
                 continue
             if target_text.startswith("/StatePort-Site/"):
-                # Site-root-absolute reference (used by 404.html, which is
-                # served at arbitrary deep URLs on GitHub Pages).
                 target = (ROOT / target_text[len("/StatePort-Site/"):]).resolve()
             else:
                 target = (page.parent / target_text).resolve()
@@ -116,7 +115,6 @@ def validate_documentation_button_accessibility() -> None:
 
 
 def validate_action_pins() -> None:
-    """Require immutable action refs in every repository workflow."""
     action_reference = re.compile(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+@[0-9a-f]{40}")
     for workflow in sorted((ROOT / ".github" / "workflows").glob("*.y*ml")):
         for line_number, line in enumerate(workflow.read_text(encoding="utf-8").splitlines(), start=1):
@@ -134,7 +132,6 @@ def validate_action_pins() -> None:
 
 
 def validate_pull_request_workflow() -> None:
-    """Keep draft-PR validation on GitHub-hosted, non-deploying authority."""
     workflow_path = ".github/workflows/validate-site-pr.yml"
     workflow = require(workflow_path).read_text(encoding="utf-8")
     required_fragments = (
@@ -160,7 +157,6 @@ def validate_pull_request_workflow() -> None:
 
 
 def validate_paper_diagrams() -> None:
-    """Paper Mermaid blocks must ship as pre-rendered inline SVG, not raw text."""
     for page in sorted((ROOT / "papers").glob("*.html")):
         text = page.read_text(encoding="utf-8")
         if "<pre class=\"mermaid\">" in text:
@@ -175,7 +171,6 @@ def validate_paper_diagrams() -> None:
 
 
 def validate_support_configuration() -> None:
-    """Keep the static support integration synchronized and fail closed."""
     config = load_config()
     homepage = require("index.html").read_text(encoding="utf-8")
     if homepage != rendered_home(homepage, config):
@@ -200,6 +195,34 @@ def validate_support_configuration() -> None:
             raise AssertionError("Unattested support configuration must expose no public Ko-fi link")
         if "data-support-pending" in homepage or "support link is being configured" in homepage.lower():
             raise AssertionError("Fail-closed support must remain hidden instead of exposing a dead end")
+
+
+def validate_disabled_alpha2_bootstrap() -> None:
+    paths = (
+        "download/install.sh",
+        "download/0.1.0-alpha.2/install.sh",
+    )
+    contents = []
+    for path in paths:
+        candidate = require(path)
+        mode = stat.S_IMODE(candidate.stat().st_mode)
+        if mode & 0o111 == 0:
+            raise AssertionError(f"Fail-closed bootstrap must remain executable: {path}")
+        text = candidate.read_text(encoding="utf-8")
+        contents.append(text)
+        for fragment in (
+            "#!/bin/sh",
+            "installation is disabled",
+            "known packaged web-image defect",
+            "exit 2",
+        ):
+            if fragment not in text:
+                raise AssertionError(f"Expected {fragment!r} in {path}")
+        for forbidden in ("curl ", "python3 ", "podman ", "sudo "):
+            if forbidden in text:
+                raise AssertionError(f"Disabled alpha.2 bootstrap must not execute {forbidden!r}: {path}")
+    if contents[0] != contents[1]:
+        raise AssertionError("Convenience and versioned alpha.2 refusal scripts must be identical")
 
 
 def main() -> None:
@@ -228,10 +251,14 @@ def main() -> None:
         "docs/reference.html",
         "docs/prototype-walkthrough.html",
         "docs/agent-kits.html",
+        "docs/limitations.html",
         "tutorials/index.html",
         "tutorials/first-application.html",
         "tutorials/reading-a-receipt.html",
         "releases/index.html",
+        "download/index.html",
+        "download/install.sh",
+        "download/0.1.0-alpha.2/install.sh",
         "assets/site.css",
         "assets/site.js",
         "assets/stateport-mascot-block-arch-dark.svg",
@@ -268,7 +295,9 @@ def main() -> None:
     require_text("docs/agent-kits.html", "Early direction")
     require_text("docs/platform-support.html", "Capability-based qualification")
     require_text("papers/stateware-whitepaper-public-v1.1.html", "Publication note")
-    require_text("releases/index.html", "v0.1.0-alpha.2 candidate is available")
+    require_text("releases/index.html", "v0.1.0-alpha.2 is published, but installation is disabled")
+    require_text("download/index.html", "Do not install alpha.2.")
+    require_text("docs/limitations.html", "Alpha.2 is signed and published but not installable or accepted")
     require_text(".github/workflows/deploy-pages.yml", "actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e")
 
     public_copy = "\n".join(
@@ -283,6 +312,7 @@ def main() -> None:
     validate_action_pins()
     validate_pull_request_workflow()
     validate_support_configuration()
+    validate_disabled_alpha2_bootstrap()
     print("StatePort Site validation: OK")
 
 

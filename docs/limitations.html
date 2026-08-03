@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="The honest current boundaries of StatePort: a single-user local alpha candidate on Linux with rootless Podman and no independent security review.">
+    <meta name="description" content="The honest current boundaries of StatePort: alpha.2 is signed and published but known defective, installation is disabled, and no human acceptance or independent security review exists.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="Current limitations — what StatePort is not, today">
-    <meta property="og:description" content="The honest current boundaries of StatePort: a single-user local alpha candidate on Linux with rootless Podman and no independent security review.">
+    <meta property="og:description" content="Alpha.2 is signed and published but known defective; installation is disabled pending a corrected successor.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/limitations.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-demo-home.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -25,9 +25,9 @@
         "@context": "https://schema.org",
         "@type": "TechArticle",
         "headline": "Current limitations: what StatePort is not, today",
-        "description": "The honest current boundaries of StatePort: a single-user local alpha candidate on Linux with rootless Podman and no independent security review.",
+        "description": "Alpha.2 is signed and published but known defective; installation is disabled pending a corrected successor.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/docs/limitations.html",
-        "dateModified": "2026-08-02",
+        "dateModified": "2026-08-03",
         "inLanguage": "en"
       }
     </script>
@@ -84,25 +84,26 @@
         </aside>
 
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Availability boundary</strong> StatePort is a private alpha in product-owner testing. The <a href="../releases/">release ledger</a> remains the single source for what is publicly available — today, no download exists.</p>
+          <p class="notice notice--quiet"><strong>Availability boundary</strong> The v0.1.0-alpha.2 signed artifacts are public for inspection, but installation is disabled because the packaged web image is known defective. The <a href="../releases/">release ledger</a> and <a href="../download/">alpha.2 erratum</a> are the current availability authorities.</p>
 
           <h2>Availability</h2>
           <ul>
-            <li>The v0.1.0-alpha.2 candidate is downloadable for Ubuntu 24.04 AMD64; it is not a production release and has not received independent security review or human acceptance.</li>
+            <li>Alpha.2 is signed and published but not installable or accepted. Its web image omitted two runtime source trees, no successful install receipt exists, and a corrected successor has not been built or published.</li>
             <li>The implementation source is not public, and no product license decision has been published.</li>
             <li>There is no hosted service: StatePort is not offered as a managed or cloud product.</li>
           </ul>
 
           <h2>Product shape</h2>
           <ul>
-            <li>StatePort is a single-user, local product. The normal local service binds to the loopback interface only; multi-user, public-network, SSO, and managed-service operation are not qualified.</li>
+            <li>StatePort is designed as a single-user, local product. The normal local service binds to the loopback interface only; multi-user, public-network, SSO, and managed-service operation are not qualified.</li>
             <li>The user interface and documentation are English-only.</li>
           </ul>
 
           <h2>Platform and execution host</h2>
           <ul>
-            <li>The only supported evaluation shape is Linux (x86-64) with rootless Podman. macOS, Windows, ARM64, and other platforms have no acceptance claim.</li>
-            <li>In the alpha candidate, StudyState executes through the bundled synthetic executor — a deterministic, model-free execution host. Model-backed execution requires a separately authenticated execution host (for example Codex CLI or a direct API adapter) and is not part of the no-checkout install. No execution provider is claimed equivalent to another.</li>
+            <li>Alpha.2’s signed target is Ubuntu 24.04 AMD64 with rootless Podman, cgroup v2, systemd user services, and Quadlet. Because alpha.2 is defective, this is a signed target boundary—not a currently supported installation.</li>
+            <li>A Fedora 44 run used an explicit unsupported-host override and exposed the same packaged-image defect. It is diagnostic compatibility evidence, not Fedora qualification.</li>
+            <li>In the alpha design, StudyState executes through a bundled synthetic executor. Model-backed execution requires a separately authenticated execution host and has no clean-install acceptance claim.</li>
           </ul>
 
           <h2>Security and compliance</h2>
@@ -115,30 +116,30 @@
 
           <h2>Deployments and updates</h2>
           <ul>
-            <li>Container deployment is local-only and limited to projects that satisfy the documented contract (plus assisted proposals for recognizable Python, Node, and static-web repositories) — not “deploy anything”.</li>
-            <li>Deployment governance for unrelated projects is a host-CLI capability. The browser does not expose deployment plan, apply, update, or rollback for unrelated projects, and no preview gateway exists — deployments bind loopback host ports directly.</li>
-            <li>In-place update of StatePort's own services is delivered in the candidate through a signed release index and a pinned trust root, with approval-gated, health-gated apply and automatic rollback. The alpha default update policy is <code>notify</code>: you are told an update exists, and nothing is applied without your authorization.</li>
+            <li>Container deployment is local-only and limited to projects that satisfy the documented contract (plus assisted proposals for recognizable Python, Node, and static-web repositories)—not “deploy anything”.</li>
+            <li>Deployment governance for unrelated projects is a host-CLI capability. Browser and preview capabilities described in source are not evidence of a working alpha.2 installation.</li>
+            <li>The signed alpha.2 index describes an updater and pinned trust root, but alpha.2 cannot complete installation; no installed updater lifecycle is accepted from this candidate.</li>
             <li>Trust-root rotation is a manual, out-of-band operator act; a release artifact can never rotate trust by itself.</li>
-            <li>Guided uninstall (stops services, preserves all data) and purge (also removes data, and refuses unless you confirm the exact installed identity ID) are delivered. Purge does not remove the podman networks the installation created — remove them explicitly afterwards if desired.</li>
-            <li>There is no Azure or other cloud deployment yet; the Azure code is validated offline but has never been applied.</li>
-            <li>Backup and restore commands exist, but a restore cannot undo external side effects, and unknown or non-idempotent operations are never automatically retried.</li>
+            <li>Uninstall, purge, backup, restore, update, and rollback behavior require a successfully installed exact candidate and corresponding receipts. Alpha.2 has none.</li>
+            <li>There is no Azure or other cloud deployment; infrastructure code has no production-apply claim.</li>
           </ul>
 
           <h2>Applications</h2>
           <ul>
-            <li>StudyState's canonical production release remains unresolved; the alpha uses an exact local-alpha input, not a production-eligible release.</li>
-            <li>The alpha's study activity is deterministic synthetic execution for testing — not evidence of tutoring quality or of a live autonomous model.</li>
+            <li>StudyState's canonical production release remains unresolved; alpha evidence uses local or synthetic inputs, not a production-eligible application release.</li>
+            <li>Study activity shown in the alpha is deterministic synthetic execution for testing—not evidence of tutoring quality or a live autonomous model.</li>
           </ul>
 
           <h2>Evidence</h2>
           <ul>
-            <li>No human acceptance, clean-host installation proof, or independent validation of a release candidate has been recorded.</li>
+            <li>Alpha.2 has a published supply-chain record and a preserved installation failure, but no clean-host success, restart/reread proof, human acceptance, or independent validation.</li>
+            <li>The corrected source change has not yet produced a successor artifact or fresh evidence; alpha.2 evidence cannot be transferred to changed bytes.</li>
             <li>No comparative or performance claim is made; none should be inferred from walkthroughs or documentation.</li>
           </ul>
 
           <div class="inline-actions">
             <a class="button button--ink" href="../releases/">View release status</a>
-            <a class="button button--outlined" href="evidence-and-roadmap.html">How claims earn their status</a>
+            <a class="button button--outlined" href="../download/">Read the alpha.2 erratum</a>
           </div>
         </article>
       </div>

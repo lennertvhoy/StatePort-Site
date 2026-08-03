@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="The authoritative public availability ledger for StatePort documentation, prototype evidence, source access, downloads, and installation material.">
+    <meta name="description" content="The authoritative public availability ledger for StatePort documentation, prototype evidence, source access, downloads, installation status, and known release defects.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="StatePort release status">
-    <meta property="og:description" content="See exactly what is public, what is viewable, and what is not yet available.">
+    <meta property="og:description" content="Alpha.2 is signed and published but installation is disabled because of a known packaged-image defect.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/releases/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-demo-source.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -27,9 +27,9 @@
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "StatePort release status",
-        "description": "The authoritative public availability ledger for StatePort.",
+        "description": "The authoritative public availability ledger for StatePort, including the known alpha.2 installation defect.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/releases/",
-        "dateModified": "2026-08-02",
+        "dateModified": "2026-08-03",
         "inLanguage": "en"
       }
     </script>
@@ -56,8 +56,8 @@
       <section class="article-hero" aria-labelledby="releases-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Authoritative availability ledger</p>
-          <h1 id="releases-title">What is public—and what is not.</h1>
-          <p>This page is the single source for StatePort availability. It separates documentation and prototype evidence from software, source, and installation claims.</p>
+          <h1 id="releases-title">What is public—and what is usable.</h1>
+          <p>This page separates published artifacts from a working installation, acceptance, and production qualification. Publication alone is not success.</p>
         </div>
       </section>
 
@@ -68,7 +68,7 @@
             <a href="#current-status" aria-current="page">Current status</a>
             <a href="#available-now">Available now</a>
             <a href="#release-evidence">Release evidence</a>
-            <a href="../download/">Download v0.1.0-alpha.2</a>
+            <a href="../download/">Alpha.2 erratum</a>
             <a href="../docs/limitations.html">Current limitations</a>
             <a href="../docs/">Documentation</a>
             <a href="../">Home</a>
@@ -79,10 +79,10 @@
           <div class="release-summary" id="current-status">
             <div>
               <p class="release-summary-label">Current software status</p>
-              <h2>v0.1.0-alpha.2 candidate is available</h2>
-              <p>The signed candidate download is available for Ubuntu 24.04 AMD64 with rootless Podman. It is a single-user, loopback-only alpha candidate, not a production release. Human acceptance, independent security review, and public transparency-log publication remain pending. The <a href="../docs/limitations.html">current limitations page</a> collects every boundary in one place.</p>
+              <h2>v0.1.0-alpha.2 is published, but installation is disabled</h2>
+              <p>The candidate’s signed index and artifacts remain public for inspection. A clean-install investigation found that the packaged web image omitted the updater and preview-gateway source trees required by the application server. No successful install receipt exists, so alpha.2 is known defective and cannot be accepted. A corrected successor must be rebuilt and verified from scratch. See the <a href="../download/">alpha.2 erratum</a>.</p>
             </div>
-            <p class="release-review-date">Ledger reviewed<br><time datetime="2026-08-02">2 August 2026</time></p>
+            <p class="release-review-date">Ledger reviewed<br><time datetime="2026-08-03">3 August 2026</time></p>
           </div>
 
           <dl class="release-ledger release-ledger--detailed" aria-label="StatePort availability">
@@ -95,12 +95,16 @@
               <dd><span class="status-chip status-chip--available">Available to view</span><small>Captioned fixture-based evidence, not an install or release.</small></dd>
             </div>
             <div>
-              <dt>Software release</dt>
-              <dd><span class="status-chip status-chip--available">Candidate available</span><small>v0.1.0-alpha.2, signed private-candidate qualification.</small></dd>
+              <dt>Software candidate</dt>
+              <dd><span class="status-chip status-chip--unavailable">Known defective</span><small>v0.1.0-alpha.2 is signed and published but has no successful install receipt.</small></dd>
             </div>
             <div>
-              <dt>Downloads or installers</dt>
-              <dd><span class="status-chip status-chip--available">Available</span><small><a href="../download/">Download v0.1.0-alpha.2</a> and verify the signed release index before installation.</small></dd>
+              <dt>Installation</dt>
+              <dd><span class="status-chip status-chip--unavailable">Disabled</span><small>The public bootstrap refuses immediately; <a href="../download/">read the alpha.2 erratum</a>.</small></dd>
+            </div>
+            <div>
+              <dt>Signed artifacts</dt>
+              <dd><span class="status-chip status-chip--available">Inspectable</span><small>The immutable index, signatures, images, SBOMs, source archive, and evidence remain online.</small></dd>
             </div>
             <div>
               <dt>Implementation source</dt>
@@ -110,15 +114,14 @@
               <dt>License</dt>
               <dd><span class="status-chip status-chip--unavailable">Not published</span><small>No product license decision is being claimed.</small></dd>
             </div>
-            <div>
-              <dt>Install guide</dt>
-              <dd><span class="status-chip status-chip--available">Included</span><small>Versioned instructions are included in the download artifacts.</small></dd>
-            </div>
           </dl>
 
           <section id="available-now" aria-labelledby="available-now-heading">
             <h2 id="available-now-heading">What you can inspect today</h2>
             <div class="availability-actions">
+              <a href="../download/">
+                <span><strong>Alpha.2 erratum and artifacts</strong><small>Read the known defect and inspect the immutable signed material.</small></span><i aria-hidden="true">↗</i>
+              </a>
               <a href="../docs/prototype-walkthrough.html">
                 <span><strong>Product walkthrough</strong><small>Watch the current local prototype and read the evidence notes.</small></span><i aria-hidden="true">↗</i>
               </a>
@@ -132,18 +135,18 @@
           </section>
 
           <section id="release-evidence" aria-labelledby="release-evidence-heading">
-            <h2 id="release-evidence-heading">What must exist before this becomes a release</h2>
-            <p>A release earns an “available” status only when its claims bind to exact, inspectable material.</p>
+            <h2 id="release-evidence-heading">What the corrected successor must prove</h2>
+            <p>The next candidate starts from fresh evidence. Alpha.2’s publication record cannot be transferred to changed product bytes.</p>
             <ol class="release-evidence-list">
-              <li><strong>Public boundary</strong><span>A clearly identified implementation source and product license decision.</span></li>
-              <li><strong>Versioned material</strong><span>An exact version, release notes, and immutable source reference.</span></li>
-              <li><strong>Installable artifacts</strong><span>Published artifacts or installers with checksums where appropriate.</span></li>
-              <li><strong>Verified path</strong><span>An installation path tested from a clean environment for the stated platform.</span></li>
-              <li><strong>Acceptance record</strong><span>A clear account of what was validated, by whom, and what remains unaccepted.</span></li>
+              <li><strong>Exact source</strong><span>A frozen canonical source head and normal-clone-resolvable public snapshot identity.</span></li>
+              <li><strong>Complete web image</strong><span>The packaged runtime imports the updater and preview gateway and returns its health response.</span></li>
+              <li><strong>Fresh supply chain</strong><span>Rebuilt images, SBOMs, scans, provenance, signatures, and signed index.</span></li>
+              <li><strong>Verified install path</strong><span>A clean public one-command install on every claimed host baseline.</span></li>
+              <li><strong>Acceptance record</strong><span>Restart/reread evidence and an explicit owner verdict on the exact successor.</span></li>
             </ol>
           </section>
 
-          <p class="notice"><strong>Why the language is strict</strong> A polished site, a local demo, or passing static checks can support a design claim. None of them, alone, make software publicly available or accepted.</p>
+          <p class="notice"><strong>Why the language is strict</strong> Signed and published does not mean installable, accepted, reviewed, or production-ready. The known failure remains visible rather than being hidden behind a new label.</p>
         </article>
       </div>
     </main>

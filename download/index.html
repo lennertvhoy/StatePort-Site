@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Install StatePort v0.1.0-alpha.2 with one verified terminal command on the validated Ubuntu 24.04 AMD64 alpha baseline.">
+    <meta name="description" content="StatePort v0.1.0-alpha.2 remains available for cryptographic inspection, but installation is disabled because its packaged web image has a known runtime defect.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Install StatePort v0.1.0-alpha.2">
-    <meta property="og:description" content="One-command installer for the signed StatePort Linux alpha candidate.">
+    <meta property="og:title" content="StatePort v0.1.0-alpha.2 installation paused">
+    <meta property="og:description" content="The signed alpha.2 artifacts remain inspectable; installation is disabled pending a corrected successor candidate.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/download/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-demo-source.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -21,18 +21,16 @@
     <link rel="manifest" href="../site.webmanifest">
     <link rel="stylesheet" href="../assets/site.css?v=2026-08-02-3">
     <link rel="stylesheet" href="../assets/site-enhancements.css" data-site-enhancements>
-    <title>Install v0.1.0-alpha.2 — StatePort</title>
+    <title>Alpha.2 installation paused — StatePort</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "StatePort",
-        "softwareVersion": "0.1.0-alpha.2",
-        "applicationCategory": "DeveloperApplication",
-        "operatingSystem": "Ubuntu 24.04 AMD64 (validated alpha target)",
-        "downloadUrl": "https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.2/install.sh",
+        "@type": "WebPage",
+        "name": "StatePort v0.1.0-alpha.2 installation status",
+        "description": "The signed alpha.2 artifacts remain inspectable, but installation is disabled pending a corrected successor candidate.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/download/",
-        "dateModified": "2026-08-03"
+        "dateModified": "2026-08-03",
+        "inLanguage": "en"
       }
     </script>
   </head>
@@ -58,53 +56,51 @@
       <section class="article-hero" aria-labelledby="download-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Download / Linux alpha</p>
-          <h1 id="download-title">Install StatePort with one command.</h1>
-          <p>The signed v0.1.0-alpha.2 candidate is available for the validated Ubuntu 24.04 AMD64 alpha target. The bootstrap verifies exact checksums and the pinned release key before the installer changes anything.</p>
+          <h1 id="download-title">Alpha.2 installation is paused.</h1>
+          <p>The signed v0.1.0-alpha.2 artifacts remain available for inspection, but the install entrypoint is disabled because the packaged web image omits two runtime source trees required by the application server.</p>
         </div>
       </section>
 
       <div class="article-shell">
-        <aside class="doc-sidebar" aria-label="Install sections">
-          <h2>Install</h2>
+        <aside class="doc-sidebar" aria-label="Download sections">
+          <h2>Status</h2>
           <nav>
-            <a href="#quick-install" aria-current="page">One command</a>
-            <a href="#what-it-does">What it does</a>
-            <a href="#platform">Linux support</a>
-            <a href="#artifacts">Verify manually</a>
-            <a href="#status">Release status</a>
+            <a href="#quick-install" aria-current="page">Installation paused</a>
+            <a href="#what-it-does">Known defect</a>
+            <a href="#platform">Linux boundary</a>
+            <a href="#artifacts">Inspect artifacts</a>
+            <a href="#status">Evidence status</a>
           </nav>
         </aside>
 
         <article class="prose release-overview" data-no-toc>
-          <p class="notice"><strong>Alpha candidate.</strong> Human acceptance and a clean public-install receipt are still pending. This is not a production release or an independently audited system.</p>
+          <p class="notice"><strong>Do not install alpha.2.</strong> No successful install receipt exists. The candidate is published and signed, but it is known defective and cannot be accepted as-is. A corrected successor must be rebuilt, re-signed, re-published, and clean-installed with fresh evidence.</p>
 
           <section id="quick-install" aria-labelledby="quick-install-heading">
-            <h2 id="quick-install-heading">One-command install</h2>
-            <p>Run this as your normal user, not as root:</p>
-            <pre><code>curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.2/install.sh | sh</code></pre>
-            <p>The script shows the exact install boundary and asks you to type <code>install</code> before proceeding. It never sends the installer through <code>sudo</code>; sudo is used only when you explicitly approve installation of missing Ubuntu prerequisites.</p>
+            <h2 id="quick-install-heading">Installation disabled</h2>
+            <p>The former one-command URL now refuses immediately with a clear diagnostic. This prevents new users from pulling several large images for a candidate that cannot complete.</p>
+            <p>Alpha.2 is immutable. The published installer, signed release index, and image digests are not being rewritten or relabelled as repaired.</p>
           </section>
 
           <section id="what-it-does" aria-labelledby="what-it-does-heading">
-            <h2 id="what-it-does-heading">What the bootstrap verifies</h2>
-            <ol>
-              <li>Checks Linux AMD64, a non-root session, and the current signed host baseline.</li>
-              <li>Downloads the immutable alpha.2 installer and verifies its published SHA-256.</li>
-              <li>Downloads and verifies the release-index signature bundle and the exact Cosign v3.1.2 binary.</li>
-              <li>Pins the release public-key ID and DER-SPKI fingerprint.</li>
-              <li>Invokes the signed installer with exact versioned URLs. The installer then verifies the release index, every artifact, every image signature, and every digest before starting rootless Podman services.</li>
-              <li>Writes an install or refusal receipt under your StatePort state directory.</li>
-            </ol>
+            <h2 id="what-it-does-heading">Known packaged-image defect</h2>
+            <ul>
+              <li>The web application imports the installed updater control plane and the preview gateway.</li>
+              <li>The signed alpha.2 web image omitted both corresponding source trees from its final-image allowlist.</li>
+              <li>The web service therefore cannot start from the signed image, so the installer cannot obtain a complete healthy-service receipt.</li>
+              <li>A source correction exists for a successor, but no corrected image, signature, release index, or install evidence has been published yet.</li>
+            </ul>
           </section>
 
           <section id="platform" aria-labelledby="platform-heading">
-            <h2 id="platform-heading">Linux support</h2>
-            <p><strong>Current signed candidate:</strong> Ubuntu 24.04 AMD64, cgroup v2, systemd user services, rootless Podman 4.9.3 or newer, and Quadlet.</p>
-            <p>The container workloads are not inherently Ubuntu-specific. The Ubuntu check is an unnecessarily narrow release-contract boundary in alpha.2. It will be replaced in a later signed candidate by capability detection and a clean-install matrix covering multiple Linux distributions. Alpha.2 itself remains immutable: this page does not silently bypass or rewrite its signed target.</p>
+            <h2 id="platform-heading">Linux boundary</h2>
+            <p><strong>Alpha.2 signed target:</strong> Ubuntu 24.04 AMD64, cgroup v2, systemd user services, rootless Podman 4.9.3 or newer, and Quadlet.</p>
+            <p>The defect is in the packaged web image, not a Fedora-specific incompatibility. A Fedora 44 unsupported-host investigation exposed it, but that run is diagnostic evidence only and does not qualify Fedora. A future candidate must use capability detection and earn clean-install receipts for every distribution it claims.</p>
           </section>
 
           <section id="artifacts" aria-labelledby="artifacts-heading">
-            <h2 id="artifacts-heading">Artifacts and manual verification</h2>
+            <h2 id="artifacts-heading">Artifacts for inspection</h2>
+            <p>These immutable alpha.2 materials remain online for audit and provenance. They are not an invitation to install the candidate.</p>
             <dl class="release-ledger release-ledger--detailed" aria-label="Alpha 2 artifacts">
               <div>
                 <dt>Signed release index</dt>
@@ -116,7 +112,7 @@
               </div>
               <div>
                 <dt>Low-level installer</dt>
-                <dd><a href="0.1.0-alpha.2/stateport-installer"><code>stateport-installer</code></a><small>Normally invoked by the one-command bootstrap, not manually.</small></dd>
+                <dd><a href="0.1.0-alpha.2/stateport-installer"><code>stateport-installer</code></a><small>Immutable signed artifact; do not run it as an acceptance candidate.</small></dd>
               </div>
               <div>
                 <dt>Source archive</dt>
@@ -127,8 +123,8 @@
                 <dd><a href="0.1.0-alpha.2/release-notes.md"><code>release-notes.md</code></a></dd>
               </div>
               <div>
-                <dt>Known limitations</dt>
-                <dd><a href="0.1.0-alpha.2/known-limitations.md"><code>known-limitations.md</code></a></dd>
+                <dt>Original known limitations</dt>
+                <dd><a href="0.1.0-alpha.2/known-limitations.md"><code>known-limitations.md</code></a><small>Predates discovery of the packaged-image defect; this page is the current erratum.</small></dd>
               </div>
               <div>
                 <dt>Compose definition</dt>
@@ -140,9 +136,10 @@
           <section id="status" aria-labelledby="status-heading">
             <h2 id="status-heading">What is and is not proven</h2>
             <ul>
-              <li><strong>Published:</strong> signed index, versioned artifacts, seven digest-pinned GHCR images, image signatures, SBOMs, scan dispositions, and source/export evidence.</li>
-              <li><strong>Pending:</strong> clean install from the public command, restart reread, and the owner’s exact acceptance or rejection verdict.</li>
-              <li><strong>Not claimed:</strong> independent security review, production qualification, hosted or multi-user operation, ARM64, macOS, Windows, or cross-distribution acceptance.</li>
+              <li><strong>Published and verified:</strong> signed index, versioned artifacts, seven digest-pinned GHCR images, image signatures, SBOMs, scan dispositions, and source/export evidence.</li>
+              <li><strong>Known failure:</strong> alpha.2’s packaged web image is incomplete; no successful installation receipt exists.</li>
+              <li><strong>Successor pending:</strong> corrected build, fresh supply-chain evidence, new signed index, public entrypoint, clean install, restart reread, and owner verdict.</li>
+              <li><strong>Not claimed:</strong> human acceptance, independent security review, production qualification, hosted or multi-user operation, ARM64, macOS, Windows, or cross-distribution acceptance.</li>
             </ul>
             <div class="inline-actions">
               <a class="button button--ink" href="../releases/">View release status</a>

@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-03T16:30:00+02:00"
-  updated_by: repository_reconciliation
+  updated_at: "2026-08-03T17:47:00+02:00"
+  updated_by: canonical_reconciliation
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,13 +14,13 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: public_alpha_2_candidate_published
-  purpose: public documentation, release status, and versioned downloads
+  status: alpha2_published_known_defect_installation_disabled
+  purpose: public documentation_release_errata_and_versioned_artifact_inspection
 
 canonical_truth:
-  repository: https://github.com/lennertvhoy/StatePort-Site
+  repository: "https://github.com/lennertvhoy/StatePort-Site"
   branch: main
-  pages_url: https://lennertvhoy.github.io/StatePort-Site/
+  pages_url: "https://lennertvhoy.github.io/StatePort-Site/"
   exact_head: derived_from_git_not_persisted
   ignored_as_current_authority:
     - agent_branches
@@ -33,26 +33,36 @@ release:
   channel: alpha
   qualification: candidate
   published: true
-  public_download_available: true
-  download_page: https://lennertvhoy.github.io/StatePort-Site/download/
-  quick_install: https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.2/install.sh
-  convenience_install: https://lennertvhoy.github.io/StatePort-Site/download/install.sh
-  installer: https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.2/stateport-installer
-  release_index: https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.2/release-index.json
+  immutable_artifacts_available: true
+  installation_enabled: false
+  acceptance_status: blocked_known_defect
+  download_page: "https://lennertvhoy.github.io/StatePort-Site/download/"
+  versioned_bootstrap: "https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.2/install.sh"
+  convenience_bootstrap: "https://lennertvhoy.github.io/StatePort-Site/download/install.sh"
+  installer_artifact: "https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.2/stateport-installer"
+  release_index: "https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.2/release-index.json"
   release_index_sha256: 9cd33eb7d93b5c70bec9f260824ce45877323ec85993a8b2824411e9b2e43000
   signed_payload_digest: sha256:692f63cdbdfe531aa4d6379d12ad6e98cd408d7343392bf94f5c01abc46af9aa
   trust_mode: pinned-public-key
   transparency_log: not-uploaded-private-candidate
+  defect:
+    class: missing_runtime_sources_in_stateport_web_image
+    missing_sources:
+      - packages/updater/src
+      - packages/preview-gateway/src
+    successful_install_receipt: absent
+    repair_in_place_allowed: false
+    successor_required: true
   host_target:
     signed_target_id: ubuntu-24.04-linux-amd64
-    validated_baseline: Ubuntu 24.04 AMD64
+    fedora_44_result: unsupported_host_diagnostic_only
     capability_based_cross_distro_target: future_new_signed_candidate
   claims:
     publication: verified
     signed_index: verified
     image_push_and_remote_digest: verified
-    clean_public_install: pending
-    human_acceptance: pending
+    clean_public_install: blocked_known_defect
+    human_acceptance: blocked_known_defect
     independent_security_review: not_performed
     production_qualification: not_performed
 
@@ -62,30 +72,37 @@ site:
   third_party_runtime_scripts: absent
   deployment:
     provider: GitHub Pages
-    status: published
-    current_release_surface: alpha_2
+    status: erratum_source_committed_deployment_verification_pending
+    current_release_surface: alpha2_erratum
   distribution:
-    versioned_one_command_bootstrap: download/0.1.0-alpha.2/install.sh
+    versioned_bootstrap: download/0.1.0-alpha.2/install.sh
     convenience_bootstrap: download/install.sh
     bootstrap_behavior:
-      - verifies installer checksum
-      - verifies release-index bundle checksum
-      - verifies exact Cosign binary checksum
-      - pins release public-key fingerprint and key id
-      - asks for explicit confirmation
-      - invokes signed installer with exact versioned URLs
+      - refuses_before_download_or_mutation
+      - names_the_known_packaged_image_defect
+      - points_to_the_public_erratum
+    immutable_artifacts:
+      status: retained_for_inspection
+
+successor:
+  version: not_declared
+  product_fix: implemented_not_yet_published
+  signed_index: absent
+  public_bootstrap: absent
+  clean_install_receipt: absent
+  human_acceptance: not_applicable_until_candidate_exists
 
 active_work:
-  - id: BL-ALPHA2-CLEAN-INSTALL
+  - id: BL-SITE-ALPHA2-ERRATUM
     priority: P0
-    status: pending_external
-  - id: BL-LINUX-CAPABILITY-TARGET
-    priority: P1
-    status: designed_not_implemented
+    status: implemented_validation_and_live_verification_pending
+  - id: BL-SITE-SUCCESSOR-INSTALL
+    priority: P0
+    status: blocked_on_product_candidate
 
 known_limits:
-  - signed_alpha2_target_is_Ubuntu_24_04_AMD64_only
-  - clean_install_human_acceptance_pending
-  - no_independent_security_review
-  - no_production_qualification
-  - no_hosted_multi_user_ARM64_macOS_or_Windows_support
+  - alpha2_is_signed_and_published_but_known_defective
+  - alpha2_installation_is_disabled_and_no_successful_receipt_exists
+  - successor_is_not_built_signed_published_or_accepted
+  - no_independent_security_review_or_production_qualification
+  - no_hosted_multi_user_ARM64_macOS_Windows_or_cross_distro_acceptance

@@ -4,45 +4,48 @@
 **Execution Mode:** operating
 **Max Items:** 2
 
-## P0 [BL-ALPHA2-CLEAN-INSTALL] Verify the public one-command install
+## P0 [BL-SITE-ALPHA2-ERRATUM] Keep the known defect visible and fail closed
 
-**Status:** pending_external
+**Status:** implemented_validation_pending
 
-Run exactly:
+The download page and release ledger must state that alpha.2 is published but
+known defective. `download/install.sh` and
+`download/0.1.0-alpha.2/install.sh` must exit before downloads or changes and
+point to the erratum. Signed artifacts remain available for inspection.
+
+Run:
 
 ```sh
-curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.2/install.sh | sh
+python3 scripts/validate_repo.py
+python3 scripts/check_site_quality.py
+git diff --check
+git status --short --branch
 ```
 
-on a fresh Ubuntu 24.04 AMD64 host. Preserve the exact installer receipt,
-runtime URL, host facts, and first owner verdict. A refusal is evidence and
-must be fixed in a new candidate; do not edit signed alpha.2 bytes.
+**Exit:** the exact site head validates, GitHub Pages deploys it, and the live
+bootstrap refusal plus public erratum are remotely verified.
 
-**Exit:** downloaded public bootstrap and signed alpha.2 artifacts install from
-zero StatePort state, all services report healthy exact runtime identity, the
-receipt survives reread/restart, and the owner records accepted or rejected.
+## P0 [BL-SITE-SUCCESSOR-INSTALL] Publish only a freshly proven successor
 
-## P1 [BL-LINUX-CAPABILITY-TARGET] Replace distro-name gating in a later release
+**Status:** blocked_on_product_candidate
 
-**Status:** designed_not_implemented
+Wait for a corrected successor candidate with a fresh signed index, image set,
+SBOMs, scans, provenance, signatures, clean-install receipt, restart/reread
+evidence, and owner verdict. Publish it under a new immutable versioned path and
+make the unversioned bootstrap point to that version only after remote
+verification.
 
-The next candidate should target capabilities rather than the literal Ubuntu
-name: Linux AMD64, cgroup v2, systemd user services, rootless Podman with
-Quadlet, subordinate UID/GID mappings, Python bootstrap support, and required
-filesystem/socket semantics. Validate at least Ubuntu, Debian, Fedora, and one
-rolling distribution before calling the matrix supported. Keep Ubuntu 24.04 as
-the alpha.2 validated baseline; never bypass that signed contract in place.
+Do not overwrite alpha.2, remove its provenance artifacts, or imply its evidence
+applies to changed bytes.
 
-**Exit:** a new signed target and installer pass the clean-install matrix, with
-per-distribution prerequisites and typed capability refusals.
+**Exit:** the new versioned bootstrap installs the exact accepted successor and
+the public ledger names all remaining limitations.
 
 ## Completed since last update
 
-- Published `v0.1.0-alpha.2`, its signed index, digest-pinned GHCR references,
-  versioned artifacts, checksums, release key, signatures, limitations, and
-  source/export evidence.
-- Published versioned and convenience `install.sh` bootstraps, reducing the
-  public entry path to one copy-paste command while retaining checksum,
-  signature, key, exact-image, confirmation, and receipt boundaries.
-- Retired all old site branch narratives from current authority; `main` and the
-  signed index are the only current sources of truth.
+- Published alpha.2’s signed artifacts and original one-command bootstrap.
+- After the packaged-image defect was discovered, converted the alpha.2 public
+  entrypoint into a fail-closed erratum while retaining immutable artifacts for
+  inspection.
+- Replaced stale site-agent instructions with a main-only, successor-only
+  operating contract.
