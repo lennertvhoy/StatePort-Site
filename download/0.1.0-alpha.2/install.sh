@@ -1,69 +1,61 @@
 #!/bin/sh
-# StatePort v0.1.0-alpha.2 one-command bootstrap.
-# The small bootstrap downloads and verifies the immutable installer inputs,
-# asks once for confirmation, and then hands control to the signed Python installer.
 set -eu
 
-VERSION="0.1.0-alpha.2"
-SITE_ROOT="https://lennertvhoy.github.io/StatePort-Site"
-RELEASE_ROOT="$SITE_ROOT/download/$VERSION"
-COSIGN_VERSION="v3.1.2"
-COSIGN_URL="https://github.com/sigstore/cosign/releases/download/$COSIGN_VERSION/cosign-linux-amd64"
+VERSION=0.1.0-alpha.2
+ROOT=https://lennertvhoy.github.io/StatePort-Site
+RELEASE="$ROOT/download/$VERSION"
+INDEX_SHA=9cd33eb7d93b5c70bec9f260824ce45877323ec85993a8b2824411e9b2e43000
+INSTALLER_SHA=beea6a856e7459c103c1dc59afd4b6b34b67d5df2ea5110d2b8e05ebc404e1f0
+BUNDLE_SHA=31ab4e44f276c370607ab6c90c6af224d96329a9283c6fa60a616d05addf7bbb
+COSIGN_SHA=f7622ed3cf22e55e1ae6377c080979ff77a22da9981c11df222a2e444991e7cf
+KEY_ID=stateport-alpha-private-2026-08
+KEY_FP=sha256:23c965bfec8e56f3075ae3bdcf4b08ef28060522d89261a31fa7d361e05553d8
 
-INSTALLER_SHA256="beea6a856e7459c103c1dc59afd4b6b34b67d5df2ea5110d2b8e05ebc404e1f0"
-RELEASE_INDEX_SHA256="9cd33eb7d93b5c70bec9f260824ce45877323ec85993a8b2824411e9b2e43000"
-RELEASE_BUNDLE_SHA256="31ab4e44f276c370607ab6c90c6af224d96329a9283c6fa60a616d05addf7bbb"
-COSIGN_SHA256="f7622ed3cf22e55e1ae6377c080979ff77a22da9981c11df222a2e444991e7cf"
-TRUST_KEY_ID="stateport-alpha-private-2026-08"
-TRUST_KEY_FINGERPRINT="sha256:23c965bfec8e56f3075ae3bdcf4b08ef28060522d89261a31fa7d361e05553d8"
-
-say() { printf '%s\n' "$*"; }
 fail() { printf 'StatePort install: %s\n' "$*" >&2; exit 1; }
+[ "$(uname -s)" = Linux ] || fail 'Linux is required.'
+case "$(uname -m)" in x86_64|amd64) ;; *) fail 'This candidate is AMD64 only.' ;; esac
+[ "$(id -u)" -ne 0 ] || fail 'Run as your normal user, not root.'
+. /etc/os-release 2>/dev/null || fail 'Cannot read /etc/os-release.'
+[ "${ID:-}" = ubuntu ] && [ "${VERSION_ID:-}" = 24.04 ] || fail 'The signed alpha.2 target is Ubuntu 24.04. Other distributions need the next capability-based signed target; this script will not bypass the release contract.'
+command -v curl >/dev/null && command -v sha256sum >/dev/null || fail 'curl and sha256sum are required.'
 
-[ "$(uname -s 2>/dev/null || true)" = "Linux" ] || fail "Linux is required."
-case "$(uname -m 2>/dev/null || true)" in
-  x86_64|amd64) ;;
-  *) fail "v$VERSION currently ships only for Linux AMD64." ;;
-esac
-[ "$(id -u)" -ne 0 ] || fail "Run this as your normal user, not as root."
-command -v curl >/dev/null 2>&1 || fail "curl is required to start the bootstrap."
-command -v sha256sum >/dev/null 2>&1 || fail "sha256sum is required (normally provided by coreutils)."
-
-OS_ID=""
-OS_VERSION=""
-if [ -r /etc/os-release ]; then
-  # shellcheck disable=SC1091
-  . /etc/os-release
-  OS_ID=${ID:-}
-  OS_VERSION=${VERSION_ID:-}
-fi
-if [ "$OS_ID" != "ubuntu" ] || [ "$OS_VERSION" != "24.04" ]; then
-  fail "the signed v$VERSION target is Ubuntu 24.04 AMD64. The containers are Linux-portable, but Debian/Fedora/Arch/openSUSE require a new capability-based signed target; this bootstrap will not bypass the release contract."
-fi
-
-need_setup=0
-command -v python3 >/dev/null 2>&1 || need_setup=1
-command -v podman >/dev/null 2>&1 || need_setup=1
-python_ok=0
-if command -v python3 >/dev/null 2>&1; then
-  if python3 -c 'import sys; raise SystemExit(0 if sys.version_info >= (3, 12) else 1)' >/dev/null 2>&1; then
-    python_ok=1
-  else
-    need_setup=1
-  fi
+missing=0
+command -v python3 >/dev/null || missing=1
+command -v podman >/dev/null || missing=1
+python3 -c 'import sys; raise SystemExit(sys.version_info < (3,12))' 2>/dev/null || missing=1
+if [ "$missing" -eq 1 ]; then
+  printf 'Install required Ubuntu packages now? [y/N] ' >/dev/tty
+  IFS= read -r answer </dev/tty || answer=
+  case "$answer" in y|Y|yes|YES)
+    command -v sudo >/dev/null || fail 'sudo is required to install prerequisites.'
+    sudo env DEBIAN_FRONTEND=noninteractive apt-get update
+    sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y python3 python3-venv podman uidmap slirp4netns fuse-overlayfs dbus-user-session
+    ;; *) fail 'Prerequisite installation declined.' ;; esac
 fi
 
-if [ "$need_setup" -eq 1 ]; then
-  [ -r /dev/tty ] || fail "Python 3.12 and rootless Podman are required. Install python3, python3-venv, podman, uidmap, slirp4netns, and fuse-overlayfs, then retry."
-  printf '\nStatePort needs Python 3.12, venv support, and rootless Podman.\nInstall the Ubu[HXÚØYÙ\ÈÚ]ÝYÈ›ÝÏÈÞKÓ—H	È‹Ù]‹ÝBˆQ”ÏH™XY\ˆ[œÝÙ\ˆÙ]‹ÝH[œÝÙ\Hˆ‚ˆØ\ÙH‰[œÝÙ\ˆˆ[‚ˆ__Y\ßQTÊBˆÛÛ[X[™]ˆÝYÈ‹Ù]‹Û[‰ŒH˜Z[œÝYÈ\È™\]Z\™YÈ[œÝ[Z\ÜÚ[™ÈXÚØYÙ\Ëˆ‚ˆÝYÈ[ˆP’PS—Ñ”“Ó•S‘[›Ûš[\˜XÝ]™H\YÙ]\]BˆÝYÈ[ˆP’PS—Ñ”“Ó•S‘[›Ûš[\˜XÝ]™H\YÙ][œÝ[^Hˆ]ÛŒÈ]ÛŒË]™[ˆÙX[ˆZYX\Û\œ™]œÈ\ÙK[Ý™\›^YœÈ\Ë]\Ù\‹\Ù\ÜÚ[Û‚ˆÎÂˆ
-ŠH˜Z[œ™\™\]Z\Ú]H[œÝ[][ÛˆØ\ÈXÛ[™YˆˆÎÂˆ\ØXÂ™šB‚˜ÛÛ[X[™]ˆ]ÛŒÈ‹Ù]‹Û[‰ŒH˜Z[œ]ÛŒÈ\ÈÝ[[˜]˜Z[X›Kˆ‚œ]ÛŒÈXÈ	Ú[\ÜÞ\ÎÈ˜Z\ÙHÞ\Ý[Q^]
-YˆÞ\Ë™\œÚ[Û—Ú[™›ÈH
-ËLŠH[ÙHJIÈˆ˜Z[”]ÛˆËŒLˆÜˆ™]Ù\ˆ\È™\]Z\™Yˆ‚˜ÛÛ[X[™]ˆÙX[ˆ‹Ù]‹Û[‰ŒH˜Z[”ÙX[ˆ\ÈÝ[[˜]˜Z[X›Kˆ‚‚[X\ÚÈÍÂÛÜšÙ\I
-ZÝ[\Y‰ÕTTŽ‹KÝ\KÜÝ]\ÜZ[œÝ[–ŠH˜Z[˜ÛÝ[›ÝÜ™X]HHš]˜]H[\Ü˜\žH\™XÝÜžKˆ‚˜ÛX[\
+umask 077
+tmp=$(mktemp -d "${TMPDIR:-/tmp}/stateport-install.XXXXXX") || fail 'Cannot create a private temporary directory.'
+trap 'rm -rf "$tmp"' EXIT HUP INT TERM
+get() { curl -fsSL --proto '=https' --tlsv1.2 --retry 3 -o "$2" "$1"; }
+check() { printf '%s  %s\n' "$1" "$2" | sha256sum -c --status || fail "Checksum failed: $2"; }
 
-HÈ›H\™ˆ‰ÛÜšÙ\ˆŽÈB˜\ÛX[\VUTS•T“B‚™™]Ú
+printf 'Downloading and verifying StatePort %s...\n' "$VERSION"
+get "$RELEASE/stateport-installer" "$tmp/installer"; check "$INSTALLER_SHA" "$tmp/installer"
+get "$RELEASE/release-index.sigstore.json" "$tmp/release-index.sigstore.json"; check "$BUNDLE_SHA" "$tmp/release-index.sigstore.json"
+get "$ROOT/assets/stateport-alpha-release.pub" "$tmp/release.pub"
+get "https://github.com/sigstore/cosign/releases/download/v3.1.2/cosign-linux-amd64" "$tmp/cosign"; check "$COSIGN_SHA" "$tmp/cosign"
+chmod 700 "$tmp/installer" "$tmp/cosign"
 
-HÂˆ\›IBˆ\Ý[˜][ÛI‚ˆÝ\›KY˜Z[K\Ú[[K\ÚÝËY\œ›ÜˆK[ØØ][ÛˆˆK\›ÝÈ	ÏZÉÈK]ÝŒKŒˆK\™]žHÈKXÛÛ›™XÝ][Y[Ý]ŒˆK[Ý]]‰\Ý[˜][Ûˆˆ‰\›‚ŸB‚™\šYžJ
-HÂˆ^XÝYIBˆ]I‚ˆš[ˆ	É\È	\×‰È‰^XÝYˆ‰]ˆÚLMœÝ[HKXÚXÚÈK\Ý]\Èˆ˜Z[˜ÚXÚÜÝ[H™\šYšXØ][Ûˆ˜Z[Y›Üˆ	
-˜\Ù[˜[YH‰]ŠKˆ‚ŸB‚œØ^H‘ÝÛ›ØY[™ÈHÚYÛ™YÝ]TÜ	‘T”ÒSÓˆ›ÛÝÝ˜\[œ]Ë‹‹ˆ‚™™]Ú‰‘SPTÑWÔ“ÓÕÜÝ]\ÜZ[œÝ[\ˆˆ‰ÛÜšÙ\‹ÜÝ]\ÜZ[œÝ[\ˆ‚™\šYžH‰S”ÕST—ÔÒLMˆˆ‰ÛÜšÙ\‹ÜÝ]\ÜZ[œÝ[\ˆ‚‚™™]Ú‰‘SPTÑWÔ“ÓÕÜ™[X\ÙKZ[™^œÚYÜÝÜ™KšœÛÛˆˆ‰ÛÜšÙ\‹Ü™[X\ÙKZ[™^œÚYÜÝÜ™KšœÛÛˆ‚™\šYžH‰‘SPTÑWÐ•S‘WÔÒLMˆˆ‰ÛÜšÙ\‹Ü™[X\ÙKZ[™^œÚYÜÝÜ™KšœÛÛˆ‚‚™™]Ú‰ÒUWÔ“ÓÕØ\ÜÙ]ËÜÝ]\ÜX[K\™[X\ÙKœXˆˆ‰ÛÜšÙ\‹ÜÝ]\ÜX[K\™[X\ÙKœXˆ‚‚™™]Ú‰ÓÔÒQÓ—ÕT“ˆ‰ÛÜšÙ\‹ØÛÜÚYÛˆ‚™\šYžH‰ÓÔÒQÓ—ÔÒLMˆˆ‰ÛÜšÙ\‹ØÛÜÚYÛˆ‚˜Ú[ÙÌ‰ÛÜšÙ\‹ÜÝ]\ÜZ[œÝ[\ˆˆ‰ÛÜšÙ\‹ØÛÜÚYÛˆ‚‚šYˆÈ‰ÔÕUTÔ•ÒS”ÕSÖQTÎ‹LHˆOHŒHˆNÈ[‚ˆÈ\ˆÙ]‹ÝHH˜Z[˜ÛÛ™š\›X][Ûˆ™\]Z\™\ÈH\›Z[˜[È™\[ˆ[\˜XÝ]™[HÜˆÙ]ÕUTÔ•ÒS”ÕSÖQTÏLKˆ‚ˆØ]‹Ù]‹ÝHSÑŒ‚‚”Ý]TÜ	‘T”ÒSÓˆÚ[™H[œÝ[Y›ÜˆHÝ\œ™[\Ù\‹‚‹HÜÝˆX[HŒSQ‹H[[YNˆ›ÛÝ\ÜÈÙX[ˆ
-ÈÞ\Ý[Y\Ù\ˆ]XY]Â‹H™]ÛÜšÎˆÛÜ˜XÚÈÛ›HžHY˜][‹HÝ]Nˆ	Ö×ÔÕUWÒÓQN‹IÓQKË›ØØ[ÜÝ]_KÜÝ]\Ü‹HÝ]\Îˆ[HØ[™Y]NÈÛX[‹Z[œÝ[[X[ˆXØÙ\[˜ÙH\ÈÝ[[™[™Â‚•\H[œÝ[ÈÛÛ[YNˆ‘SÑŒ‚ˆQ”ÏH™XY\ˆ[œÝÙ\ˆÙ]‹ÝH[œÝÙ\Hˆ‚ˆÈ‰[œÝÙ\ˆˆHš[œÝ[ˆH˜Z[š[œÝ[][ÛˆØ\È›ÝÛÛ™š\›YYˆ‚™šB‚œØ^H•™\šYšYY›ÛÝÝ˜\[œ]ËˆÝ\[™ÈHÚYÛ™Y[œÝ[\‹‹‹ˆ‚œ]ÛŒÈ‰ÛÜšÙ\‹ÜÝ]\ÜZ[œÝ[\ˆˆˆK\™[X\ÙKZ[™^‰‘SPTÑWÔ“ÓÕÜ™[X\ÙKZ[™^šœÛÛˆˆˆK\™[X\ÙKZ[™^\ÚLMˆ‰‘SPTÑWÒS‘VÔÒLMˆˆˆKX[™K\›ÛÝ‰ÛÜšÙ\ˆˆˆK]\Ý\X›XËZÙ^H‰ÛÜšÙ\‹ÜÝ]\ÜX[K\™[X\ÙKœXˆˆˆK]\ÝZÙ^KZY‰•TÕÒÑVWÒQˆˆK]\ÝZÙ^KYš[™Ù\œš[‰•TÕÒÑVWÑ’S‘ÑT”’S•ˆˆK]\]\‹]ÚY[‰‘SPTÑWÔ“ÓÕÜÝ]\Ü]\]\ˆˆˆKXÛÛ\ÜÙH‰‘SPTÑWÔ“ÓÕØÛÛ\ÜÙKžX[[ˆˆK\ÛÝ\˜ÙKX\˜Ú]™H‰‘SPTÑWÔ“ÓÕÜÝ]\Ü\ÛÝ\˜ÙK\ˆˆˆK\™[X\ÙK[›Ý\È‰‘SPTÑWÔ“ÓÕÜ™[X\ÙK[›Ý\Ë›YˆˆKZÛ›ÝÛ‹[[Z]][ÛœÈ‰‘SPTÑWÔ“ÓÕÚÛ›ÝÛ‹[[Z]][ÛœË›YˆˆKXÚ[›™[[HˆKXÛÜÚYÛˆ‰ÛÜšÙ\‹ØÛÜÚYÛˆˆˆKZ[œÝ[\‹\]‰ÛÜšÙ\‹ÜÝ]\ÜZ[œÝ[\ˆˆˆK^Y\Â
+if [ "${STATEPORT_INSTALL_YES:-0}" != 1 ]; then
+  printf 'Install the signed alpha candidate for this user? Type install: ' >/dev/tty
+  IFS= read -r answer </dev/tty || answer=
+  [ "$answer" = install ] || fail 'Installation not confirmed.'
+fi
+
+python3 "$tmp/installer" \
+  --release-index "$RELEASE/release-index.json" --release-index-sha256 "$INDEX_SHA" \
+  --bundle-root "$tmp" --trust-public-key "$tmp/release.pub" --trust-key-id "$KEY_ID" \
+  --trust-key-fingerprint "$KEY_FP" --updater-wheel "$RELEASE/stateport-updater" \
+  --compose "$RELEASE/compose.yaml" --source-archive "$RELEASE/stateport-source.tar" \
+  --release-notes "$RELEASE/release-notes.md" --known-limitations "$RELEASE/known-limitations.md" \
+  --channel alpha --cosign "$tmp/cosign" --installer-path "$tmp/installer" --yes
