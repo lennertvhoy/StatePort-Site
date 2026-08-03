@@ -4,46 +4,70 @@ statedd_mode: operating
 repo_mode: operating
 statedd_version: statedd-template-v5
 initialized_on: 2026-07-21
-last_updated: 2026-07-21
+last_updated: 2026-08-03
 ---
 
-# StatePort Site — Agent Notes
+# StatePort Site — agent operating contract
 
-This repository is the public-facing website and documentation home for
-StatePort. It is a StateSpec-governed downstream project, separate from the
-private StatePort implementation repository.
+This repository is the public website and release-distribution surface for
+StatePort. **`main` is the only canonical branch.** Old `agent/*`, `candidate/*`,
+and `archive/*` refs are historical transport, not work queues or authority.
+Do not resume them, merge them, or infer current product state from them.
 
-## Read order
+## Mandatory read order
 
 1. `AGENTS.md`
 2. `STATUS.md`
 3. `PROJECT_STATE.yaml`
-4. `PROJECT_DNA.yaml`
-5. `NEXT_ACTIONS.md`
-6. `BACKLOG.md` and `WORKLOG.md` when planning or reviewing history
+4. `NEXT_ACTIONS.md`
+5. the exact signed release index when touching release claims
 
-## Hard rules
+## Current release truth
 
-- No fake completeness or unverified public claims.
-- StatePort is currently in a private local-alpha/release-preparation phase.
-  Do not describe the implementation repository as public, link visitors to
-  a private source repository, invent a version, or offer a download before
-  it exists.
-- Use **Stateware**, **State-Centric Engineering**, and **StateSpec** in
-  current public copy. Mention `StateDD` only as a clearly labelled legacy
-  compatibility name when continuity requires it.
-- Keep releases, availability, benchmarks, security, compliance, and
-  production-readiness language conservative and traceable to the current
-  project facts.
-- The site is static HTML, CSS, and small progressive-enhancement JavaScript.
-  Keep it usable without JavaScript and respect reduced-motion preferences.
-- Never add secrets, tracking IDs, user data collection, or third-party
-  credentials to the repository.
-- Keep the visual system spare: one blue accent, generous space, no generic
-  dashboard-card grids, and one clear action per section.
-- Preserve the copied StatePort shell mascot byte-for-byte. Its source and
-  checksum are recorded in `PROJECT_DNA.yaml`.
-- Run `python3 scripts/validate_repo.py` before finishing a slice.
-- Update `PROJECT_STATE.yaml`, `NEXT_ACTIONS.md`, and `WORKLOG.md` whenever
-  current truth changes. Update `STATUS.md` for a material delivery-state
-  change.
+- Public candidate: `v0.1.0-alpha.2`.
+- Download page: `https://lennertvhoy.github.io/StatePort-Site/download/`.
+- One-command bootstrap: `https://lennertvhoy.github.io/StatePort-Site/download/install.sh`.
+- Signed index: `download/0.1.0-alpha.2/release-index.json`.
+- The candidate is published and downloadable, but **clean-install human
+  acceptance, independent security review, and production qualification are
+  not claimed**.
+- The signed alpha.2 target is Ubuntu 24.04 AMD64. Other Linux distributions
+  must not be claimed as supported until a new capability-based signed target
+  and clean-install matrix exist. Do not modify alpha.2 artifacts in place.
+
+## Repository rules
+
+- Work from current `main`; fetch and compare local `main` with `origin/main`
+  before editing. Stop on divergence or unrelated dirty work.
+- Default branch/worktree budget is zero additional branches and zero additional
+  worktrees. Use a temporary branch only when the owner explicitly asks, and
+  delete it immediately after integration.
+- Integrate finished work promptly. Do not accumulate handoff branches, draft
+  PRs, duplicated candidates, or generated media variants.
+- Signed/versioned artifacts under `download/0.1.0-alpha.2/` are immutable.
+  Corrections require a new version, except clearly external errata that do not
+  alter signed bytes.
+- `release-index.json` is the authority for version, digests, image references,
+  trust identity, and limitations. Site prose must not contradict it.
+- Never collapse published, verified, clean-installed, human-accepted,
+  independently reviewed, production-qualified, and stable into one status.
+- No secrets, analytics, tracking, third-party runtime scripts, or mutable
+  download references.
+- Keep the site usable without JavaScript and retain accessibility, reduced
+  motion, local-reference, CSP, and contrast guarantees.
+- Run `python3 scripts/validate_repo.py` and
+  `python3 scripts/check_site_quality.py` before claiming a site change is
+  validated.
+- Update `STATUS.md`, `PROJECT_STATE.yaml`, and `NEXT_ACTIONS.md` whenever
+  release or deployment truth changes.
+
+## Active scope
+
+Only two outcomes are active:
+
+1. verify the public one-command alpha.2 install on a clean Ubuntu 24.04 AMD64
+   machine and record the exact receipt plus owner verdict;
+2. design and ship a later capability-based Linux target without weakening or
+   silently bypassing the signed alpha.2 contract.
+
+Everything else is backlog or history.

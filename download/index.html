@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Download StatePort v0.1.0-alpha.2 for Ubuntu 24.04 AMD64 with signed release metadata, checksums, images, and install artifacts.">
+    <meta name="description" content="Install StatePort v0.1.0-alpha.2 with one verified terminal command on the validated Ubuntu 24.04 AMD64 alpha baseline.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Download StatePort v0.1.0-alpha.2">
-    <meta property="og:description" content="Signed candidate download for the StatePort Linux alpha on Ubuntu 24.04 AMD64.">
+    <meta property="og:title" content="Install StatePort v0.1.0-alpha.2">
+    <meta property="og:description" content="One-command installer for the signed StatePort Linux alpha candidate.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/download/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-demo-source.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -21,16 +21,18 @@
     <link rel="manifest" href="../site.webmanifest">
     <link rel="stylesheet" href="../assets/site.css?v=2026-08-02-3">
     <link rel="stylesheet" href="../assets/site-enhancements.css" data-site-enhancements>
-      <title>Download v0.1.0-alpha.2 — StatePort</title>
+    <title>Install v0.1.0-alpha.2 — StatePort</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Download StatePort",
-        "description": "Signed candidate download for StatePort v0.1.0-alpha.2 on Ubuntu 24.04 AMD64.",
+        "@type": "SoftwareApplication",
+        "name": "StatePort",
+        "softwareVersion": "0.1.0-alpha.2",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Ubuntu 24.04 AMD64 (validated alpha target)",
+        "downloadUrl": "https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.2/install.sh",
         "url": "https://lennertvhoy.github.io/StatePort-Site/download/",
-        "dateModified": "2026-08-02",
-        "inLanguage": "en"
+        "dateModified": "2026-08-03"
       }
     </script>
   </head>
@@ -56,158 +58,95 @@
       <section class="article-hero" aria-labelledby="download-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Download / Linux alpha</p>
-          <h1 id="download-title">Download the alpha candidate.</h1>
-          <p>StatePort v0.1.0-alpha.2 is available for Ubuntu 24.04 AMD64. Verify the signed release index and pinned trust key before installing.</p>
+          <h1 id="download-title">Install StatePort with one command.</h1>
+          <p>The signed v0.1.0-alpha.2 candidate is available for the validated Ubuntu 24.04 AMD64 alpha target. The bootstrap verifies exact checksums and the pinned release key before the installer changes anything.</p>
         </div>
       </section>
 
       <div class="article-shell">
-        <aside class="doc-sidebar" aria-label="Download sections">
-          <h2>Download</h2>
+        <aside class="doc-sidebar" aria-label="Install sections">
+          <h2>Install</h2>
           <nav>
-            <a href="#status" aria-current="page">Status</a>
-            <a href="#prerequisites">Prerequisites</a>
-            <a href="#verification">Installer and verification</a>
-            <a href="#release-index">Release index and source</a>
-            <a href="#images">Images and digests</a>
-            <a href="#compose-quadlet">Compose and Quadlet</a>
-            <a href="#lifecycle">Install and update lifecycle</a>
-            <a href="#alpha-limitations">Alpha limitations</a>
-            <a href="../releases/">Release status</a>
-            <a href="../docs/limitations.html">Current limitations</a>
+            <a href="#quick-install" aria-current="page">One command</a>
+            <a href="#what-it-does">What it does</a>
+            <a href="#platform">Linux support</a>
+            <a href="#artifacts">Verify manually</a>
+            <a href="#status">Release status</a>
           </nav>
         </aside>
 
         <article class="prose release-overview" data-no-toc>
-          <p class="notice"><strong>Candidate download available.</strong> StatePort v0.1.0-alpha.2 is a signed, digest-pinned alpha candidate for Ubuntu 24.04 AMD64. It is not a production release, has no public transparency-log upload, and human acceptance remains pending. Read the <a href="../releases/">release ledger</a> before installing.</p>
+          <p class="notice"><strong>Alpha candidate.</strong> Human acceptance and a clean public-install receipt are still pending. This is not a production release or an independently audited system.</p>
 
-          <section id="status" aria-labelledby="status-heading">
-            <h2 id="status-heading">Status</h2>
-            <dl class="release-ledger release-ledger--detailed" aria-label="Download availability">
-              <div>
-                <dt>Channel</dt>
-                <dd><span class="status-chip status-chip--pending">Alpha</span><small>Single user, single machine, loopback-only, local rootless Podman.</small></dd>
-              </div>
-              <div>
-                <dt>Version</dt>
-                <dd><span class="status-chip status-chip--available">v0.1.0-alpha.2</span><small>Signed alpha candidate; single user, single machine, loopback-only, local rootless Podman.</small></dd>
-              </div>
-              <div>
-                <dt>Download</dt>
-                <dd><span class="status-chip status-chip--available">Available</span><small><a href="0.1.0-alpha.2/stateport-installer">Download the no-checkout installer</a>; human acceptance of the candidate is pending.</small></dd>
-              </div>
-            </dl>
-            <p>Nothing on this page is a release. The alpha label means: no production-readiness claim, no multi-user or hosted operation, no independent security review, and no comparative or performance claim.</p>
+          <section id="quick-install" aria-labelledby="quick-install-heading">
+            <h2 id="quick-install-heading">One-command install</h2>
+            <p>Run this as your normal user, not as root:</p>
+            <pre><code>curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.2/install.sh | sh</code></pre>
+            <p>The script shows the exact install boundary and asks you to type <code>install</code> before proceeding. It never sends the installer through <code>sudo</code>; sudo is used only when you explicitly approve installation of missing Ubuntu prerequisites.</p>
           </section>
 
-          <section id="prerequisites" aria-labelledby="prerequisites-heading">
-            <h2 id="prerequisites-heading">Prerequisites</h2>
-            <ul>
-              <li><strong>Ubuntu 24.04 LTS on x86-64 (AMD64)</strong> — the only supported evaluation shape. macOS, Windows, ARM64, and other platforms have no acceptance claim.</li>
-              <li><strong>Rootless Podman</strong> — StatePort runs its services as an unprivileged user; no root daemon is required.</li>
-              <li><strong>No source checkout</strong> — the installer is self-contained; you do not clone the implementation repository (which is not public) to install.</li>
-            </ul>
+          <section id="what-it-does" aria-labelledby="what-it-does-heading">
+            <h2 id="what-it-does-heading">What the bootstrap verifies</h2>
+            <ol>
+              <li>Checks Linux AMD64, a non-root session, and the current signed host baseline.</li>
+              <li>Downloads the immutable alpha.2 installer and verifies its published SHA-256.</li>
+              <li>Downloads and verifies the release-index signature bundle and the exact Cosign v3.1.2 binary.</li>
+              <li>Pins the release public-key ID and DER-SPKI fingerprint.</li>
+              <li>Invokes the signed installer with exact versioned URLs. The installer then verifies the release index, every artifact, every image signature, and every digest before starting rootless Podman services.</li>
+              <li>Writes an install or refusal receipt under your StatePort state directory.</li>
+            </ol>
           </section>
 
-          <section id="verification" aria-labelledby="verification-heading">
-            <h2 id="verification-heading">Installer and verification</h2>
-            <p>The install starts from one no-checkout installer. Before it changes anything, you verify it against the values published beside it:</p>
-            <dl class="release-ledger release-ledger--detailed" aria-label="Installer artifact fields">
-              <div>
-                <dt>Installer artifact</dt>
-                <dd><a href="0.1.0-alpha.2/stateport-installer"><code>stateport-installer</code></a><small>SHA-256: <code>beea6a856e7459c103c1dc59afd4b6b34b67d5df2ea5110d2b8e05ebc404e1f0</code></small></dd>
-              </div>
-              <div>
-                <dt>SHA-256 checksum</dt>
-                <dd><code>sha256:beea6a856e7459c103c1dc59afd4b6b34b67d5df2ea5110d2b8e05ebc404e1f0</code></dd>
-              </div>
-              <div>
-                <dt>Cosign signature</dt>
-                <dd><a href="0.1.0-alpha.2/release-index.sigstore.json"><code>release-index.sigstore.json</code></a><small>Pinned-public-key signature under the StatePort alpha release key.</small></dd>
-              </div>
-              <div>
-                <dt>Alpha release public key</dt>
-                <dd><a href="../assets/stateport-alpha-release.pub"><code>stateport-alpha-release.pub</code></a></dd>
-              </div>
-              <div>
-                <dt>Key fingerprint</dt>
-                <dd><code>sha256:23c965bfec8e56f3075ae3bdcf4b08ef28060522d89261a31fa7d361e05553d8</code><small>Verification uses the pinned key; the candidate signature is not uploaded to a public transparency log.</small></dd>
-              </div>
-            </dl>
-            <p>Tampering with any signed field, image digest, or artifact refuses the install. The step-by-step commands will ship with the release notes of the exact version they belong to.</p>
+          <section id="platform" aria-labelledby="platform-heading">
+            <h2 id="platform-heading">Linux support</h2>
+            <p><strong>Current signed candidate:</strong> Ubuntu 24.04 AMD64, cgroup v2, systemd user services, rootless Podman 4.9.3 or newer, and Quadlet.</p>
+            <p>The container workloads are not inherently Ubuntu-specific. The Ubuntu check is an unnecessarily narrow release-contract boundary in alpha.2. It will be replaced in a later signed candidate by capability detection and a clean-install matrix covering multiple Linux distributions. Alpha.2 itself remains immutable: this page does not silently bypass or rewrite its signed target.</p>
           </section>
 
-          <section id="release-index" aria-labelledby="release-index-heading">
-            <h2 id="release-index-heading">Release index and source archive</h2>
-            <dl class="release-ledger release-ledger--detailed" aria-label="Release index and source fields">
+          <section id="artifacts" aria-labelledby="artifacts-heading">
+            <h2 id="artifacts-heading">Artifacts and manual verification</h2>
+            <dl class="release-ledger release-ledger--detailed" aria-label="Alpha 2 artifacts">
               <div>
                 <dt>Signed release index</dt>
-                <dd><a href="0.1.0-alpha.2/release-index.json"><code>release-index.json</code></a><small>SHA-256: <code>9cd33eb7d93b5c70bec9f260824ce45877323ec85993a8b2824411e9b2e43000</code>. The <code>stateport.release-index/v1</code> index is signed and digest-bound.</small></dd>
+                <dd><a href="0.1.0-alpha.2/release-index.json"><code>release-index.json</code></a><small>File SHA-256: <code>9cd33eb7d93b5c70bec9f260824ce45877323ec85993a8b2824411e9b2e43000</code></small></dd>
+              </div>
+              <div>
+                <dt>Release public key</dt>
+                <dd><a href="../assets/stateport-alpha-release.pub"><code>stateport-alpha-release.pub</code></a><small>DER-SPKI fingerprint: <code>sha256:23c965bfec8e56f3075ae3bdcf4b08ef28060522d89261a31fa7d361e05553d8</code></small></dd>
+              </div>
+              <div>
+                <dt>Low-level installer</dt>
+                <dd><a href="0.1.0-alpha.2/stateport-installer"><code>stateport-installer</code></a><small>Normally invoked by the one-command bootstrap, not manually.</small></dd>
               </div>
               <div>
                 <dt>Source archive</dt>
-                <dd><a href="0.1.0-alpha.2/stateport-source.tar"><code>stateport-source.tar</code></a><small>Public candidate source archive with its file-level export manifest.</small></dd>
-              </div>
-            </dl>
-          </section>
-
-          <section id="images" aria-labelledby="images-heading">
-            <h2 id="images-heading">Images and digests</h2>
-            <p>The alpha runs from digest-pinned container images — what you approved is bit-for-bit what runs. Alongside the images, the candidate ships SPDX SBOMs and vulnerability-scan dispositions.</p>
-            <dl class="release-ledger release-ledger--detailed" aria-label="Image fields">
-              <div>
-                <dt>Image digests</dt>
-                <dd><code>Seven digest-pinned images</code><small>GHCR: <code>ghcr.io/lennertvhoy/stateport-*</code>.</small></dd>
+                <dd><a href="0.1.0-alpha.2/stateport-source.tar"><code>stateport-source.tar</code></a></dd>
               </div>
               <div>
-                <dt>SPDX SBOMs</dt>
-                <dd><a href="0.1.0-alpha.2/supply-chain/public-export-manifest.json"><code>SBOM and export evidence</code></a></dd>
+                <dt>Release notes</dt>
+                <dd><a href="0.1.0-alpha.2/release-notes.md"><code>release-notes.md</code></a></dd>
               </div>
               <div>
-                <dt>Vulnerability-scan dispositions</dt>
-                <dd><code>Passed</code><small>All seven image scans have zero unexplained high-or-critical findings.</small></dd>
+                <dt>Known limitations</dt>
+                <dd><a href="0.1.0-alpha.2/known-limitations.md"><code>known-limitations.md</code></a></dd>
               </div>
-            </dl>
-          </section>
-
-          <section id="compose-quadlet" aria-labelledby="compose-quadlet-heading">
-            <h2 id="compose-quadlet-heading">Compose and Quadlet</h2>
-            <p>The installer assembles the local services for rootless Podman and wires them into the user session: a Compose definition describes the service set, and Quadlet units keep the containers running under the unprivileged user. The exact Compose file and Quadlet units ship inside the installer and are recorded in the release evidence.</p>
-            <dl class="release-ledger release-ledger--detailed" aria-label="Compose and Quadlet fields">
               <div>
                 <dt>Compose definition</dt>
-                <dd><a href="0.1.0-alpha.2/compose.yaml"><code>compose.yaml</code></a><small>Exact Compose definition is recorded in the signed release index.</small></dd>
-              </div>
-              <div>
-                <dt>Quadlet units</dt>
-                <dd><code>Included in installer</code><small>Exact Quadlet units are recorded in the signed release index.</small></dd>
+                <dd><a href="0.1.0-alpha.2/compose.yaml"><code>compose.yaml</code></a></dd>
               </div>
             </dl>
           </section>
 
-          <section id="lifecycle" aria-labelledby="lifecycle-heading">
-            <h2 id="lifecycle-heading">Install and update lifecycle</h2>
+          <section id="status" aria-labelledby="status-heading">
+            <h2 id="status-heading">What is and is not proven</h2>
             <ul>
-              <li><strong>Install</strong> — the verified installer pins the release trust root out of band, pulls the digest-pinned images, and starts the services with health checks. A clean-install verification receipt remains outstanding for human acceptance.</li>
-              <li><strong>Update policy</strong> — the alpha default is <code>notify</code>: you are told an update exists and nothing is applied without your authorization. Applying an update is approval-gated and health-gated, with automatic rollback to the retained predecessor if the successor is unhealthy. Details: <a href="../docs/updates.html">how updates work in the alpha</a>.</li>
-              <li><strong>Backup</strong> — backup and restore commands exist for the durable state. A restore cannot undo external side effects, and unknown or non-idempotent operations are never automatically retried.</li>
-              <li><strong>Uninstall</strong> — guided uninstall stops the services and preserves all data; purge also removes the data and refuses unless you confirm the exact installed identity ID. Purge does not remove the Podman networks the installation created.</li>
+              <li><strong>Published:</strong> signed index, versioned artifacts, seven digest-pinned GHCR images, image signatures, SBOMs, scan dispositions, and source/export evidence.</li>
+              <li><strong>Pending:</strong> clean install from the public command, restart reread, and the owner’s exact acceptance or rejection verdict.</li>
+              <li><strong>Not claimed:</strong> independent security review, production qualification, hosted or multi-user operation, ARM64, macOS, Windows, or cross-distribution acceptance.</li>
             </ul>
-          </section>
-
-          <section id="alpha-limitations" aria-labelledby="alpha-limitations-heading">
-            <h2 id="alpha-limitations-heading">Alpha limitations</h2>
-            <ul>
-              <li>Single local user on a single machine; the services bind the loopback interface only. Multi-user, public-network, SSO, and managed-service operation are not qualified.</li>
-              <li>No hosted service: StatePort is not offered as a managed or cloud product, and no Azure or other cloud deployment exists.</li>
-              <li>No independent security review, formal audit, or penetration test has been performed.</li>
-              <li>Model-backed execution requires a separately authenticated execution host; the no-checkout install runs StudyState through the bundled deterministic synthetic executor.</li>
-              <li>Human acceptance of the candidate is pending; reviews so far are internal multi-agent reviews with independence not established.</li>
-            </ul>
-            <p>The <a href="../docs/limitations.html">current limitations page</a> collects every boundary in one place. If any page seems to promise more, the limitations page wins.</p>
             <div class="inline-actions">
               <a class="button button--ink" href="../releases/">View release status</a>
-              <a class="button button--outlined" href="../docs/limitations.html">Read the current limitations</a>
+              <a class="button button--outlined" href="../docs/limitations.html">Read all limitations</a>
             </div>
           </section>
         </article>
@@ -225,9 +164,8 @@
           <a href="../tutorials/">Tutorials</a>
           <a href="../releases/">Release status</a>
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
       </div>
     </footer>
-    <script src="../assets/site.js"></script>
+    <script src="../assets/site.js" defer></script>
   </body>
 </html>

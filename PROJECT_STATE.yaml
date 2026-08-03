@@ -1,337 +1,91 @@
 metadata:
-  updated_at: 2026-08-02T18:37:00+02:00
-  updated_by: kimi-agent
+  updated_at: "2026-08-03T16:30:00+02:00"
+  updated_by: repository_reconciliation
   format_version: statespec-site-state/v1
 
 workflow:
   repo_role: downstream_project
   statedd_mode: operating
   repo_mode: operating
-  compatibility_identifier: statedd-template-v5
+  canonical_branch: main
+  branch_policy: no_active_feature_or_candidate_authority
 
 project:
   name: StatePort Site
   product: StatePort
-  phase: launch_preparation
-  status: alpha_release_alignment_local_in_progress
-  purpose: public documentation, tutorials, release status, and future download home
+  phase: operating
+  status: public_alpha_2_candidate_published
+  purpose: public documentation, release status, and versioned downloads
 
-source_boundary:
-  implementation_repository:
-    visibility: private_as_observed_2026-07-21
-    public_link: intentionally_withheld
-    rule: no public-source, license, release, or download claim until independently published
-  permitted_public_content:
-    - durable-state concepts expressed in current public terminology
-    - early documentation and illustrative StateSpec examples
-    - honest release-preparation status
-    - author-designated public whitepaper with its publication and release-boundary note
-    - captioned local fixture capture labelled as pre-release implementation evidence
-  prohibited_public_content:
-    - private repository URLs or internal operational detail
-    - unpublished version numbers, installers, checksums, or release notes
-    - superiority, certification, compliance, or production-readiness claims
+canonical_truth:
+  repository: https://github.com/lennertvhoy/StatePort-Site
+  branch: main
+  pages_url: https://lennertvhoy.github.io/StatePort-Site/
+  exact_head: derived_from_git_not_persisted
+  ignored_as_current_authority:
+    - agent_branches
+    - candidate_branches
+    - archive_branches
+    - old_handoffs
+
+release:
+  version: 0.1.0-alpha.2
+  channel: alpha
+  qualification: candidate
+  published: true
+  public_download_available: true
+  download_page: https://lennertvhoy.github.io/StatePort-Site/download/
+  quick_install: https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.2/install.sh
+  convenience_install: https://lennertvhoy.github.io/StatePort-Site/download/install.sh
+  installer: https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.2/stateport-installer
+  release_index: https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.2/release-index.json
+  release_index_sha256: 9cd33eb7d93b5c70bec9f260824ce45877323ec85993a8b2824411e9b2e43000
+  signed_payload_digest: sha256:692f63cdbdfe531aa4d6379d12ad6e98cd408d7343392bf94f5c01abc46af9aa
+  trust_mode: pinned-public-key
+  transparency_log: not-uploaded-private-candidate
+  host_target:
+    signed_target_id: ubuntu-24.04-linux-amd64
+    validated_baseline: Ubuntu 24.04 AMD64
+    capability_based_cross_distro_target: future_new_signed_candidate
+  claims:
+    publication: verified
+    signed_index: verified
+    image_push_and_remote_digest: verified
+    clean_public_install: pending
+    human_acceptance: pending
+    independent_security_review: not_performed
+    production_qualification: not_performed
 
 site:
-  implementation: static_html_css_and_progressive_enhancement_javascript
-  primary_routes:
-    - /
-    - /docs/
-    - /docs/foundations.html
-    - /docs/model.html
-    - /docs/lifecycle.html
-    - /docs/governance.html
-    - /docs/security-and-privacy.html
-    - /docs/hosts-and-portability.html
-    - /docs/platform-support.html
-    - /docs/evidence-and-roadmap.html
-    - /docs/reference.html
-    - /docs/prototype-walkthrough.html
-    - /docs/agent-kits.html
-    - /docs/getting-started.html
-    - /docs/study-state.html
-    - /docs/deployments.html
-    - /docs/limitations.html
-    - /docs/updates.html
-    - /tutorials/
-    - /tutorials/first-application.html
-    - /tutorials/reading-a-receipt.html
-    - /papers/stateware-whitepaper-public-v1.1.html
-    - /releases/
-    - /download/
-  accessibility:
-    - semantic_landmarks_and_skip_links
-    - keyboard_safe_mobile_navigation_with_focus_restoration
-    - reduced_motion_fallback
-    - visible_focus_states
-    - captioned_user_initiated_video
-    - keyboard_operable_full_size_screenshot_gallery_with_no_javascript_image_link_fallback
-    - increased_contrast_forced_colour_and_print_accommodations
-    - labelled_documentation_filter_and_copy_status_feedback
-  metadata_and_platform:
-    - canonical_open_graph_twitter_and_jsonld_on_primary_entry_routes
-    - web_app_manifest_with_existing_svg_icon
-    - intrinsic_media_dimensions_lazy_loading_and_async_decoding
-  privacy:
-    tracking: absent
-    remote_fonts: absent
-    third_party_scripts: absent
-    client_side_data_dependency: absent
-  support:
-    provider: ko-fi
-    plan: free
-    integration: plain_external_link_without_widget_or_third_party_script
-    configuration: config/support.json
-    rendering: deterministic_static_fail_closed
-    public_url: null
-    settings_attested: false
-    required_external_setting: contributor_mode_disabled_with_one_time_tips_only
-    public_link_status: fully_hidden_pending_owner_url_and_settings_attestation
+  implementation: static_html_css_progressive_javascript
+  tracking: absent
+  third_party_runtime_scripts: absent
   deployment:
     provider: GitHub Pages
-    workflow: .github/workflows/deploy-pages.yml
-    status: deployed_2026-07-23
-    merge_commit: 92d134b
-    workflow_run: 30043401841
-  brand_asset:
-    path: assets/stateport-mascot-shell.svg
-    sha256: 85459d506c5e15f405a44b6604fecd1cdc64ff4fd6a2d42ddb68199fdfca2cf6
-    provenance: StatePort apps/web/assets/brand/stateport-mascot-shell.svg
-    mutation: false
+    status: published
+    current_release_surface: alpha_2
+  distribution:
+    versioned_one_command_bootstrap: download/0.1.0-alpha.2/install.sh
+    convenience_bootstrap: download/install.sh
+    bootstrap_behavior:
+      - verifies installer checksum
+      - verifies release-index bundle checksum
+      - verifies exact Cosign binary checksum
+      - pins release public-key fingerprint and key id
+      - asks for explicit confirmation
+      - invokes signed installer with exact versioned URLs
 
-documentation_package:
-  status: expanded_package_and_plain_language_copy_refresh_deployed_pending_human_acceptance
-  scope:
-    - concrete_product_definition_and_current_availability_boundary
-    - intent_based_documentation_reading_path_catalogue_and_filter
-    - foundations
-    - application_model_and_state_authority
-    - lifecycle_install_update_move_backup_recovery
-    - governance_capabilities_approvals_and_receipts
-    - security_and_privacy_boundaries
-    - execution_host_portability_and_degradation
-    - capability_based_platform_support_contract_and_clean_install_acceptance_story
-    - evidence_ladder_and_roadmap
-    - glossary_faq_and_receipt_tutorial
-    - generated_breadcrumbs_page_toc_and_previous_next_navigation
-    - captioned_local_prototype_walkthrough_and_fixture_screens
-    - author_designated_public_whitepaper_reader_and_source_markdown
-    - planned_agent_kits_roadmap
-    - launch_linkedin_post_draft
-  public_claim_boundary: release_ledger_is_the_single_public_source_for_availability
-  local_review:
-    prior_validator: passed_2026-07-21_before_media_package
-    deployed_package: static_validation_contrast_regression_and_desktop_mobile_visual_review_passed_2026-07-21
-    product_ux_overhaul_authored_source: javascript_syntax_python_compile_html_parse_and_synthetic_twenty_page_quality_contract_passed_2026-07-22
-    product_ux_overhaul_browser_review: passed_exact_final_head_desktop_390_keyboard_media_console_2026-07-22
-    product_ux_overhaul_assistive_technology_and_usability_acceptance: pending
+active_work:
+  - id: BL-ALPHA2-CLEAN-INSTALL
+    priority: P0
+    status: pending_external
+  - id: BL-LINUX-CAPABILITY-TARGET
+    priority: P1
+    status: designed_not_implemented
 
-public_media_and_paper:
-  status: harness_narrative_deployed_public_hash_reverified_2026-07-26
-  prototype_video:
-    path: assets/media/stateport-local-prototype-walkthrough.mp4
-    duration_seconds: 95.173
-    sha256: 057588edf3db94d9e022a1ca244edf5de9bddbb482f786e221bd0adf4d1875e1
-    vtt_sha256: cab9d1ed26a31618874ef5c895a1d9cb1da6352a254118252dd67f74855a734d
-    format: h264_aac_mp4_1280x720_public_safe_platform_fixture_capture_with_edge_neural_us_male_harness_narration_and_verbatim_webvtt_captions
-    narration_source: assets/media/stateport-local-prototype-walkthrough-narration.txt
-    markup_source: assets/media/stateport-local-prototype-walkthrough-narration.ssml
-    voice: en-US-AndrewNeural
-    voice_backend: Microsoft Edge neural TTS
-    synthesis_boundary: public_narration_text_sent_once_at_build_time_no_visitor_runtime_dependency
-    boundary: working_public_safe_fixture_capture_with_availability_routed_to_release_ledger
-    visual_treatment: clean_screens_without_baked_text_cards
-    superseded_hash_note: f8ad9dad463d14e364284488272e261bfc45b85c8fe4e22f51e9b5bf8ea31d43 was the pre-VTT-fix intermediate build in 690b5f4
-    deployment:
-      status: deployed
-      public_runtime_status: hash_reverified_2026-07-26
-      merge_commit: 92d134b
-      workflow_run: 30043401841
-      public_url: https://lennertvhoy.github.io/StatePort-Site/
-      caption_sync: six_scene_cues_verbatim_from_narration_text_timed_to_exact_audio_segments
-      local_validation: ffprobe_h264_aac_1280x720_95.173_seconds_caption_text_exact_and_frame_sampling_checked_2026-07-23
-      public_runtime_validation: live_mp4_and_vtt_sha256_match_repository_files_2026-07-26
-  screenshot_gallery:
-    route: index.html#prototype
-    status: deployed_public_runtime_verified_human_acceptance_pending
-    sources:
-      - assets/media/stateport-platform-catalog.png
-      - assets/media/stateport-platform-conversation.png
-      - assets/media/stateport-platform-result.png
-      - assets/media/stateport-platform-settings.png
-    visual_treatment: full_width_inline_screens_with_click_to_open_full_size_single_screen_gallery
-    progressive_enhancement: source_image_links_without_javascript_and_modal_carousel_with_javascript
-    accessibility: labelled_image_links_dialog_focus_transfer_restoration_escape_close_arrow_key_navigation_and_live_slide_status
-    local_validation: desktop_and_390px_browser_review_next_previous_arrow_key_escape_focus_return_and_console_checked_2026-07-22
-    deployment:
-      status: deployed
-      public_runtime_status: verified_2026-07-22
-      merge_commit: cc856c25f7a75e1f42e076e3e30372e40399463f
-      workflow_run: 29926750701
-      public_runtime_validation: live_html_and_assets_confirmed_then_390px_open_arrow_navigation_escape_close_and_clean_console_checked_2026-07-22
-  paper:
-    path: papers/stateware-whitepaper-public-v1.1.md
-    reader: papers/stateware-whitepaper-public-v1.1.html
-    sha256: fe0c3dbd7aeb5b30c479ce4ed7d65d5aea2a71a755f9b9e5c722f88ca1b32c36
-    classification: author_designated_public_whitepaper
-    boundary: public_paper_with_availability_routed_to_release_ledger
-    visual_assets:
-      - path: papers/assets/stateware-applications-home.png
-        sha256: cd08577b955691294a5c967c43cc8704b0de9b1eb1e775e3a92c23a75c1a4a5e
-      - path: papers/assets/stateware-conversation.png
-        sha256: 1fab64a39b568053e65208402b9349693b63f0097de5badf1e2182e91d200ed8
-      - path: papers/assets/stateware-approvals.png
-        sha256: cc65abed5156751be74c210ae5cf93124ac3670c6d311dcc3dd4b1a0ffdcdf93
-  agent_kits:
-    route: docs/agent-kits.html
-    status: roadmap_only_no_schema_exporter_registry_image_or_install_flow
-
-release_ledger:
-  public_release_published: true
-  public_download_available: false
-  source_license_published: false
-  intended_first_distribution: docker_first_when_release_is_published
-  visitor_message: v0.1.0-alpha.2 signed alpha candidate is available; human acceptance and independent security review remain pending
-
-delivery:
-  local_repository: local_working_copy_path_intentionally_not_recorded_in_public_state_files
-  remote_repository: https://github.com/lennertvhoy/StatePort-Site
-  default_branch: main
-  initial_commit: d4522dbee2a39d1f2c3c64766ac222b92ed17332
-  remote_contains_initial_commit: true
-  expanded_package_branch: agent/public-showcase
-  expanded_package_draft_pull_request: https://github.com/lennertvhoy/StatePort-Site/pull/1
-  expanded_package_behavior_head: 072ffdf17d1b855a06956277bcfbb548f3fb8e97
-  expanded_package_merge_commit: 8794d1bc9800fff186555fbd5546e7bf9c2d8fc2
-  draft_pr_validation:
-    status: passed_on_final_branch_head
-    scope: non_deploying_static_links_contrast_and_public_boundary_checks
-    workflow: Validate_StatePort_Site
-    run_id: 29912161044
-    behavior_head_sha: 489a13f84cb9ab34ab26c679c288a92e83b36165
-  product_ux_overhaul:
-    branch: agent/site-product-ux-overhaul-mainline
-    draft_pull_request: https://github.com/lennertvhoy/StatePort-Site/pull/5
-    based_on_main_sha: 10846eaea05ebf915006fe0f4d65a1e1e4f9a82b
-    behavior_head_sha: be8c63ffb14b34c0ec6c1cc657b8ea248b2eaa4b
-    status: merged_deployed_public_runtime_verified_not_human_accepted
-    final_head_sha: 4d890658a8723bd5c44959ea6d5a455918f1e36e
-    merge_commit_sha: 905849ebc874391eb0449d619159fd5e78f02be2
-    pages_workflow_run_id: 29915789073
-    audit: SITE_AUDIT.md
-    validation:
-      status: passed_on_behavior_bearing_head
-      workflow: Validate_StatePort_Site
-      run_id: 29914436990
-      scope: repository_shape_public_boundary_structure_accessibility_metadata_media_fragments_sitemap_privacy_and_asset_budgets
-    final_head_validation_run_id: 29914952208
-    final_state_only_head_validation_record: pull_request_conversation_after_exact_final_head_run
-    deployment:
-      provider: GitHub Pages
-      workflow: Deploy StatePort Site
-      run_id: 29915789073
-      status: passed_on_merge_commit
-  pages_url: https://lennertvhoy.github.io/StatePort-Site/
-  local_validation: passed_2026-07-22_for_product_ux_overhaul_authored_source_and_synthetic_quality_contract
-  visual_review: product_ux_overhaul_exact_final_head_desktop_390_keyboard_media_console_passed_2026-07-22
-  remote_ci:
-    status: harness_narrative_deployment_passed
-    workflow: Deploy StatePort Site
-    run_id: 30043401841
-    event: push
-    head_sha: 92d134b
-  public_runtime:
-    status: verified_for_harness_narrative_head_92d134b
-    url: https://lennertvhoy.github.io/StatePort-Site/
-    checks:
-      - HTTP_200
-      - expected_document_title
-      - expected_homepage_content
-      - documentation_and_video_routes
-      - live_walkthrough_mp4_and_vtt_sha256_match_repository_2026-07-26
-      - browser_console_no_errors
-    human_acceptance: pending
-  alpha_release_alignment:
-    branch: agent/site-alpha-release-alignment-001
-    base_sha: 92d134b
-    scope: hero_repair_product_truth_copy_ctas_alpha_note_licence_boundary_whitepaper_v1_2_candidate_walkthrough_rebuild
-    constraints: local_only_no_push_no_pages_deploy_no_release_ledger_availability_change_no_whitepaper_publication
-    status: in_progress
-  noob_friendly_copy:
-    branch: agent/noob-friendly-copy-001
-    base_branch: agent/site-alpha-release-alignment-001
-    base_sha: 1e4f1ddf5d4b04eb1cc5e7d4875aeca6c699a296
-    scope: plain_language_hero_beginner_walkthrough_narration_and_storyboard_beginner_entry_doc_orientation
-    constraints: local_only_no_push_no_pages_deploy_no_release_ledger_change_papers_untouched
-    commits:
-      copy: e990b26
-      media: 06ed537
-      docs: fb4162d
-    local_walkthrough:
-      duration_seconds: 66.254
-      sha256: 79cf3b1377e0bb3bfcbb540bdbedbf1d522016ccc8b82520f8f35ee92f9eaf42
-      vtt_sha256: c1d74a9107c5b19ba47e64a6878ccdbb2e1944605cef71f97c9d09353c3cb582
-      narration_source: assets/media/stateport-local-prototype-walkthrough-narration.txt
-      markup_source: assets/media/stateport-local-prototype-walkthrough-narration.ssml
-      voice: en-US-AndrewNeural
-      caption_sync: six_scene_cues_verbatim_from_narration_text_timed_to_exact_audio_segments
-      status: regenerated_locally_not_deployed_deployed_public_video_unchanged
-    validation: validate_repo_and_check_site_quality_passed_2026-07-27
-    status: committed_locally_pending_owner_review
-  support_link:
-    branch: agent/support-link-001
-    base_sha: 7e6f8d07884ebdcb9f9e74bf0736e01d58284b0f
-    behavior_commit: 616f01e5007f2a04e673484d9cd9d2eeb45e59ff
-    scope: homepage_about_support_section_footer_link_render_configuration_and_validation
-    constraints: local_only_no_push_no_deploy_no_account_creation_no_invented_destination
-    validation:
-      render_check: passed_2026-07-28
-      unit_tests: four_passed_2026-07-28
-      repository_validator: passed_2026-07-28
-      site_quality_contract: passed_2026-07-28
-      browser_review: desktop_1440_and_mobile_390_support_section_layout_and_console_passed_2026-07-28
-    activation_blocker: owner_must_supply_valid_https_kofi_page_and_attest_free_plan_contributor_mode_disabled_settings
-    public_link_status: omitted_fail_closed_without_pending_message
-    status: implemented_locally_pending_external_configuration_and_owner_review
-  runtime_copy_reconciliation:
-    scope: homepage_metadata_hero_walkthrough_page_narration_captions_and_local_video
-    boundary: native_local_application_and_durable_state_with_optional_declared_sandbox_or_container_jobs
-    support_boundary: no_link_and_no_pending_message_until_configuration_and_owner_attestation
-    validation: repository_validator_site_quality_support_renderer_and_unit_tests_passed_2026-07-28
-    deployment: local_only_not_pushed_not_deployed_not_human_accepted
-  application_first_rebalance:
-    branch: agent/noob-friendly-copy-001
-    scope: application_first_homepage_hero_and_pillars_studystate_deployments_limitations_updates_pages_hub_sidebar_sitemap_and_ledger_crosslinks
-    new_routes:
-      - /docs/study-state.html
-      - /docs/deployments.html
-      - /docs/limitations.html
-      - /docs/updates.html
-    honest_boundaries:
-      - deployment_upgrade_rollback_stated_as_not_yet_supported
-      - updates_page_framed_as_design_target_not_user_available
-      - release_signing_stated_as_not_established
-      - public_download_in_preparation_and_still_not_existing
-      - release_ledger_not_available_status_unchanged
-      - fail_closed_support_link_remains_hidden
-    constraints: local_only_no_push_no_pages_deploy_no_release_ledger_availability_change
-    validation: validate_repo_and_check_site_quality_passed_on_every_commit_2026-08-01
-    status: committed_locally_pending_owner_review
-  public_alpha_site_quality:
-    branch: agent/public-alpha-site-quality-001
-    scope: full_page_claim_and_terminology_audit_security_reporting_honesty_download_page_structure_with_pending_final_candidate_values_mascot_theme_contrast_and_visibility_enlargement
-    new_routes:
-      - /download/
-    download_page:
-      artifact_values: pending_final_candidate
-      fields_pending: version installer_artifact sha256_checksum cosign_signature alpha_release_public_key key_fingerprint signed_release_index source_archive image_digests sboms vulnerability_scan_dispositions compose_definition quadlet_units
-      availability: no_artifact_offered_human_acceptance_pending
-    honest_boundaries:
-      - no_security_reporting_route_stated_explicitly_on_security_page
-      - download_page_marks_every_artifact_value_pending_final_candidate
-      - release_ledger_availability_unchanged
-      - fail_closed_support_link_remains_hidden
-      - mascot_and_favicon_byte_identical_to_canonical_apps_web_brand_copies
-    constraints: local_only_no_push_no_pages_deploy_no_release_ledger_availability_change
-    validation: validate_repo_and_check_site_quality_passed_on_every_commit_2026-08-02_browser_spot_check_no_console_errors_no_horizontal_overflow
-    status: committed_locally_pending_owner_review
+known_limits:
+  - signed_alpha2_target_is_Ubuntu_24_04_AMD64_only
+  - clean_install_human_acceptance_pending
+  - no_independent_security_review
+  - no_production_qualification
+  - no_hosted_multi_user_ARM64_macOS_or_Windows_support
