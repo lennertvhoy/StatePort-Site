@@ -8,7 +8,7 @@
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Download StatePort — structure ready, artifacts pending">
+    <meta property="og:title" content="Download StatePort v0.1.0-alpha.2">
     <meta property="og:description" content="Signed candidate download for the StatePort Linux alpha on Ubuntu 24.04 AMD64.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/download/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-demo-source.png">
@@ -56,8 +56,8 @@
       <section class="article-hero" aria-labelledby="download-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Download / Linux alpha</p>
-          <h1 id="download-title">The download is not open yet.</h1>
-          <p>This page holds the complete structure the first public alpha will ship with — so you can see exactly what an install will involve before any artifact exists.</p>
+          <h1 id="download-title">Download the alpha candidate.</h1>
+          <p>StatePort v0.1.0-alpha.2 is available for Ubuntu 24.04 AMD64. Verify the signed release index and pinned trust key before installing.</p>
         </div>
       </section>
 
@@ -188,7 +188,7 @@
           <section id="lifecycle" aria-labelledby="lifecycle-heading">
             <h2 id="lifecycle-heading">Install and update lifecycle</h2>
             <ul>
-              <li><strong>Install</strong> — the verified installer pins the release trust root out of band, pulls the digest-pinned images, and starts the services with health checks. The full install will be tested from a clean environment before the version is published.</li>
+              <li><strong>Install</strong> — the verified installer pins the release trust root out of band, pulls the digest-pinned images, and starts the services with health checks. A clean-install verification receipt remains outstanding for human acceptance.</li>
               <li><strong>Update policy</strong> — the alpha default is <code>notify</code>: you are told an update exists and nothing is applied without your authorization. Applying an update is approval-gated and health-gated, with automatic rollback to the retained predecessor if the successor is unhealthy. Details: <a href="../docs/updates.html">how updates work in the alpha</a>.</li>
               <li><strong>Backup</strong> — backup and restore commands exist for the durable state. A restore cannot undo external side effects, and unknown or non-idempotent operations are never automatically retried.</li>
               <li><strong>Uninstall</strong> — guided uninstall stops the services and preserves all data; purge also removes the data and refuses unless you confirm the exact installed identity ID. Purge does not remove the Podman networks the installation created.</li>
