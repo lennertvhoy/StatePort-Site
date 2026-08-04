@@ -1,0 +1,41 @@
+{
+  "schema": "stateport.web-dependency-audit-policy/v1",
+  "browserData": {
+    "reviewedAt": "2026-08-01T00:00:00Z",
+    "reviewExpiresAt": "2026-11-01T00:00:00Z",
+    "minimumVersions": {
+      "baseline-browser-mapping": "2.11.9",
+      "caniuse-lite": "1.0.30001806"
+    }
+  },
+  "exceptions": [
+    {
+      "advisoryId": "GHSA-qwww-vcr4-c8h2",
+      "source": 1124282,
+      "package": "react-router",
+      "propagatedPackage": "react-router-dom",
+      "severity": "high",
+      "title": "React Router: RSC Mode CSRF Bypass Allows Action Execution Before 400 Response",
+      "url": "https://github.com/advisories/GHSA-qwww-vcr4-c8h2",
+      "range": ">=7.12.0 <8.3.0",
+      "expiresAt": "2026-08-12T00:00:00Z",
+      "applicability": "not_applicable_unstable_rsc_apis_absent",
+      "scanRoot": "apps/web",
+      "forbiddenMarkers": [
+        "@vitejs/plugin-rsc",
+        "@react-router/dev/vite",
+        "react-router/dom",
+        "unstable_reactRouterRSC",
+        "unstable_RSCRouteConfig",
+        "unstable_routeRSCServerRequest",
+        "unstable_RSCStaticRouter",
+        "unstable_matchRSCServerRequest",
+        "unstable_createCallServer",
+        "unstable_getRSCStream",
+        "unstable_RSCHydratedRouter",
+        "unstable_RSCPayload"
+      ],
+      "reason": "The upstream advisory explicitly applies only to unstable React Server Components APIs. StatePort is a client-side Vite application and the applicability scan fails if any RSC dependency, entry point, or unstable React Router RSC API appears."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Ignore one exact keyboard chord and generated Vite copies of scanned source."
+regexTarget = "match"
+regexes = [
+  '''defaultKeys\s*:\s*['"]mod\+shift\+enter['"]''',
+]
+paths = [
+  '''apps/web/dist/''',
+  '''apps/web/dist-demo/''',
+]

@@ -1,0 +1,46 @@
+formatVersion: stateport.release-tool-inputs/v1
+resolvedOn: "2026-08-01"
+platform: linux/amd64
+source: Homebrew Linux bottles already installed at /home/linuxbrew/.linuxbrew/bin
+
+tools:
+  syft:
+    version: 1.50.0
+    executablePath: /home/linuxbrew/.linuxbrew/bin/syft
+    resolvedExecutablePath: /home/linuxbrew/.linuxbrew/Cellar/syft/1.50.0/bin/syft
+    executableDigest: sha256:d1349ab720a34ab38fc40b74e1002a76e710aaa8bde17f803254819f38957d8d
+    bottleDigest: sha256:5894bf10bd1ab440b065274e579e1067cb6783eeba0cc90cc4f5fb031b2163aa
+    bottleUri: https://ghcr.io/v2/homebrew/core/syft/blobs/sha256:5894bf10bd1ab440b065274e579e1067cb6783eeba0cc90cc4f5fb031b2163aa
+    provenance: homebrew-core-bottle
+  grype:
+    version: 0.116.1
+    executablePath: /home/linuxbrew/.linuxbrew/bin/grype
+    resolvedExecutablePath: /home/linuxbrew/.linuxbrew/Cellar/grype/0.116.1/bin/grype
+    executableDigest: sha256:9638d6240a2ba37091380add9445a1ad8ceaba24fb38b9579b7b7a98d3121dc8
+    bottleDigest: sha256:455ab44ce1783620b645906bee2b189afeb70184062479be1bd260b4ce514c5e
+    bottleUri: https://ghcr.io/v2/homebrew/core/grype/blobs/sha256:455ab44ce1783620b645906bee2b189afeb70184062479be1bd260b4ce514c5e
+    provenance: homebrew-core-bottle
+  cosign:
+    version: 3.1.2
+    executablePath: /home/linuxbrew/.linuxbrew/bin/cosign
+    resolvedExecutablePath: /home/linuxbrew/.linuxbrew/Cellar/cosign/3.1.2/bin/cosign
+    executableDigest: sha256:b07eee94220400a519669cbe999e5a8a3563de01305b373f6498e904cadb1fe4
+    bottleDigest: sha256:51f5f3ff90cdc7b15024b9514f01a7a7327b01efa72e8291497e8f2fa28b570a
+    bottleUri: https://ghcr.io/v2/homebrew/core/cosign/blobs/sha256:51f5f3ff90cdc7b15024b9514f01a7a7327b01efa72e8291497e8f2fa28b570a
+    provenance: homebrew-core-bottle
+
+policy:
+  sbomFormats: [cyclonedx-json, spdx-json]
+  vulnerabilityFailureThreshold: high
+  allowUnfixed: false
+  exceptionsFile: config/release-scan-exceptions.v1.yaml
+  exceptionsRule: default-deny; only an exact, unexpired, image-scoped typed exception explains an unfixed finding
+  requireFreshDatabase: true
+  maxDatabaseAgeHours: 24
+  maxScanAgeHours: 24
+  signature:
+    status: pending_owner_trust_root
+    privateCandidateModes: [pinned-public-key-fingerprint, pinned-key-id]
+    publicKeylessMode: [certificate-identity, oidc-issuer, transparency-log]
+    publicTransparencyLogUpload: false
+    testKeys: ephemeral_non_release_only

@@ -1,0 +1,959 @@
+formatVersion: stateport.release-scan-exceptions/v1
+resolvedOn: "2026-08-03"
+# Typed, expiring vulnerability-scan exceptions. An exception never weakens
+# the gate for any finding it does not exactly name: the collector fails the
+# image on every unexplained Critical or High finding, on an expired record,
+# on a record whose image list does not include the scanned image, and on an
+# advisory/package mismatch. Every record carries its surface, reachability
+# analysis, evidence pointer, remediation plan, and an expiry date; a release
+# assembled after expiry refuses the finding again.
+#
+# Evidence roots for the retained evaluations:
+#   ~/.local/state/stateport/missions/public-alpha-completion-20260801/
+#     release-evidence-891ab08/<image>/ (raw grype scan + scan-evaluation JSON)
+#   operator://mission-evidence/public-alpha-completion-20260803/
+#     release-evidence/alpha-build-2026-08-03-r5/stateport-execution-host/
+# The npm-bundled-tree class in stateport-dev-workspace and the whole
+# stateport-playwright npm tree were REMEDIATED (not excepted): dev-workspace
+# overlays npm 12.0.2 + brace-expansion 5.0.9 (pinned digests in
+# config/container-build-inputs.yaml); playwright removes npm from the
+# runtime image entirely. Only the true residuals below carry exceptions.
+exceptions:
+  - id: RX-2026-001
+    advisory: CVE-2026-11822
+    package: sqlite-libs
+    packageVersion: 3.51.2-r0
+    images: [stateport-web, stateport-api, stateport-worker, stateport-runner, stateport-execution-host]
+    severity: High
+    surface: >
+      Alpine sqlite-libs FTS5 extension; crafted-database memory corruption.
+      Ships inside the runtime images because python3 links against the
+      system sqlite library.
+    reachability: >
+      Exploitation requires a victim to open an attacker-crafted database
+      through SQLite FTS5. No StatePort package or app uses SQLite FTS5
+      (verified by repository-wide grep of packages/ and apps/); all
+      StatePort SQLite databases are local, owner-controlled, and
+      digest-bound, never attacker-supplied over the network. No Alpine
+      fixed version exists (fix state unknown at scan time).
+    evidence: >
+      Raw grype scan and scan-evaluation JSON under
+      ~/.local/state/stateport/missions/public-alpha-completion-20260801/release-evidence-891ab08/
+      for each named image; FTS5 non-usage verified by grep -r FTS5 over
+      packages/ and apps/ with zero matches.
+    remediation: >
+      Track Alpine sqlite-libs updates and rebase the base image when a
+      fixed 3.51.x package is published; re-scan every release build.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-002
+    advisory: CVE-2026-11824
+    package: sqlite-libs
+    packageVersion: 3.51.2-r0
+    images: [stateport-web, stateport-api, stateport-worker, stateport-runner, stateport-execution-host]
+    severity: High
+    surface: >
+      Alpine sqlite-libs FTS5 extension; second crafted-database memory
+      corruption advisory against the same library build.
+    reachability: >
+      Same analysis as RX-2026-001: FTS5 is unused anywhere in StatePort
+      code, and StatePort SQLite databases are local and owner-controlled,
+      never attacker-crafted input. No Alpine fixed version exists at scan
+      time.
+    evidence: >
+      Raw grype scan and scan-evaluation JSON under
+      ~/.local/state/stateport/missions/public-alpha-completion-20260801/release-evidence-891ab08/;
+      FTS5 non-usage verified by grep over packages/ and apps/.
+    remediation: >
+      Track Alpine sqlite-libs updates and rebase the base image when a
+      fixed package is published; re-scan every release build.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-003
+    advisory: CVE-2026-11940
+    package: python
+    packageVersion: "3.13.14"
+    images: [stateport-web, stateport-api, stateport-worker, stateport-runner, stateport-execution-host]
+    severity: High
+    surface: >
+      CPython tarfile extraction-filter bypass. StatePort instance-backup
+      code uses tarfile, so the library surface exists in the images.
+    reachability: >
+      StatePort restores only operator-local, digest-bound backup archives
+      produced by its own backup path; tar archives are never fetched from
+      or supplied by a network attacker. The only fixed CPython is the
+      3.15 line (3.15.0b4), a beta the runtime cannot adopt; no 3.13.x fix
+      exists at scan time.
+    evidence: >
+      Raw grype scan and scan-evaluation JSON under
+      ~/.local/state/stateport/missions/public-alpha-completion-20260801/release-evidence-891ab08/;
+      restore path review in packages/instance-backup (operator-local
+      digest-bound archives only).
+    remediation: >
+      Rebase runtime images onto the fixed CPython release as soon as a
+      fixed 3.13.x (or stable 3.15.0) is published on the pinned base
+      image; re-scan every release build.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-004
+    advisory: CVE-2026-11972
+    package: python
+    packageVersion: "3.13.14"
+    images: [stateport-web, stateport-api, stateport-worker, stateport-runner, stateport-execution-host]
+    severity: High
+    surface: >
+      CPython tarfile streaming EOF denial of service in the same tarfile
+      surface as RX-2026-003.
+    reachability: >
+      Same analysis as RX-2026-003: the only tarfile consumer is
+      instance-backup restoring operator-local digest-bound archives, not
+      attacker-controlled input; no fixed 3.13.x exists at scan time.
+    evidence: >
+      Raw grype scan and scan-evaluation JSON under
+      ~/.local/state/stateport/missions/public-alpha-completion-20260801/release-evidence-891ab08/.
+    remediation: >
+      Rebase runtime images onto the fixed CPython release when published
+      for the pinned base image; re-scan every release build.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-005
+    advisory: CVE-2026-15308
+    package: python
+    packageVersion: "3.13.14"
+    images: [stateport-web, stateport-api, stateport-worker, stateport-runner, stateport-execution-host]
+    severity: High
+    surface: >
+      CPython html.parser CPU denial of service on crafted markup input.
+    reachability: >
+      StatePort services do not feed untrusted remote markup into Python
+      html.parser; frontend rendering happens in the browser, and no
+      package or app imports html.parser for network input (grep-verified).
+      No fixed 3.13.x exists at scan time (fix listed only on 3.15.0).
+    evidence: >
+      Raw grype scan and scan-evaluation JSON under
+      ~/.local/state/stateport/missions/public-alpha-completion-20260801/release-evidence-891ab08/;
+      html.parser non-usage verified by grep over packages/ and apps/.
+    remediation: >
+      Rebase runtime images onto the fixed CPython release when published
+      for the pinned base image; re-scan every release build.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-006
+    advisory: CVE-2026-32631
+    package: git
+    packageVersion: 2.52.0-r0
+    images: [stateport-web]
+    severity: High
+    surface: >
+      Advisory describes a Git for Windows NTLM credential/hash disclosure.
+    reachability: >
+      Platform mismatch: the shipped artifact is Alpine Linux git
+      (musl/Linux build), not Git for Windows; the Windows NTLM attack
+      path does not exist in this image. No Alpine fixed version exists
+      (fix state unknown) because the advisory does not affect this
+      platform.
+    evidence: >
+      Raw grype scan and scan-evaluation JSON under
+      ~/.local/state/stateport/missions/public-alpha-completion-20260801/release-evidence-891ab08/stateport-web/;
+      advisory text names Windows NTLM; image is Alpine Linux.
+    remediation: >
+      Keep Alpine git pinned and re-scan every release build; drop the
+      exception if a Linux-applicable fixed package appears.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-007
+    advisory: CVE-2007-2176
+    package: firefox
+    packageVersion: "153.0"
+    images: [stateport-playwright]
+    severity: High
+    surface: >
+      2007-era advisory (plugin/extension handling) matched against the
+      Playwright-bundled headless Firefox 153.0.
+    reachability: >
+      Scanner false positive: a 2007 plugin-era advisory cannot apply to a
+      2026 headless Firefox 153.0 build; grype matches on package name
+      without CPE-version reasoning. The browser runs only task-owned
+      local automation, never general browsing.
+    evidence: >
+      Raw grype scan and scan-evaluation JSON under
+      ~/.local/state/stateport/missions/public-alpha-completion-20260801/release-evidence-891ab08/stateport-playwright/.
+    remediation: >
+      Keep Playwright/firefox pinned to the exact tested versions and
+      re-scan every release build; exception auto-expires.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-008
+    advisory: CVE-2007-4013
+    package: firefox
+    packageVersion: "153.0"
+    images: [stateport-playwright]
+    severity: High
+    surface: >
+      2007-era advisory matched against Playwright-bundled headless
+      Firefox 153.0.
+    reachability: >
+      Scanner false positive as in RX-2026-007: plugin/extension-era
+      advisory, not applicable to a 2026 headless browser build used only
+      for task-owned local automation.
+    evidence: >
+      Raw grype scan and scan-evaluation JSON under
+      ~/.local/state/stateport/missions/public-alpha-completion-20260801/release-evidence-891ab08/stateport-playwright/.
+    remediation: >
+      Keep Playwright/firefox pinned to the exact tested versions and
+      re-scan every release build; exception auto-expires.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-009
+    advisory: CVE-2009-1597
+    package: firefox
+    packageVersion: "153.0"
+    images: [stateport-playwright]
+    severity: High
+    surface: >
+      2009-era advisory matched against Playwright-bundled headless
+      Firefox 153.0.
+    reachability: >
+      Scanner false positive as in RX-2026-007; not applicable to the
+      shipped 2026 headless build.
+    evidence: >
+      Raw grype scan and scan-evaluation JSON under
+      ~/.local/state/stateport/missions/public-alpha-completion-20260801/release-evidence-891ab08/stateport-playwright/.
+    remediation: >
+      Keep Playwright/firefox pinned to the exact tested versions and
+      re-scan every release build; exception auto-expires.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-010
+    advisory: CVE-2009-4102
+    package: firefox
+    packageVersion: "153.0"
+    images: [stateport-playwright]
+    severity: High
+    surface: >
+      2009-era advisory matched against Playwright-bundled headless
+      Firefox 153.0.
+    reachability: >
+      Scanner false positive as in RX-2026-007; not applicable to the
+      shipped 2026 headless build.
+    evidence: >
+      Raw grype scan and scan-evaluation JSON under
+      ~/.local/state/stateport/missions/public-alpha-completion-20260801/release-evidence-891ab08/stateport-playwright/.
+    remediation: >
+      Keep Playwright/firefox pinned to the exact tested versions and
+      re-scan every release build; exception auto-expires.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-011
+    advisory: CVE-2014-6492
+    package: firefox
+    packageVersion: "153.0"
+    images: [stateport-playwright]
+    severity: High
+    surface: >
+      2014-era advisory (Oracle-era product CVE matched by name) against
+      Playwright-bundled headless Firefox 153.0.
+    reachability: >
+      Scanner false positive as in RX-2026-007: the advisory predates the
+      shipped browser by more than a decade and concerns a different
+      product generation; the image runs task-owned automation only.
+    evidence: >
+      Raw grype scan and scan-evaluation JSON under
+      ~/.local/state/stateport/missions/public-alpha-completion-20260801/release-evidence-891ab08/stateport-playwright/.
+    remediation: >
+      Keep Playwright/firefox pinned to the exact tested versions and
+      re-scan every release build; exception auto-expires.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-012
+    advisory: CVE-2025-3887
+    package: gstreamer1.0-plugins-bad
+    packageVersion: 1.24.2-1ubuntu4
+    images: [stateport-playwright]
+    severity: High
+    surface: >
+      Ubuntu gstreamer bad-plugins library inside the Playwright browser
+      image; upstream disposition wont-fix with no published fix version.
+    reachability: >
+      The library is present as a browser media-codec dependency, but the
+      sidecar only loads task-owned local pages and fixtures in headless
+      automation; it never decodes attacker-supplied media streams. The
+      publisher marks the issue wont-fix, so no upgrade path exists.
+    evidence: >
+      Raw grype scan and scan-evaluation JSON under
+      ~/.local/state/stateport/missions/public-alpha-completion-20260801/release-evidence-891ab08/stateport-playwright/;
+      fixState wont-fix in the scan.
+    remediation: >
+      Track the Ubuntu gstreamer packages; rebase the Playwright image
+      base when the package set changes; re-scan every release build.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-013
+    advisory: CVE-2025-3887
+    package: libgstreamer-plugins-bad1.0-0
+    packageVersion: 1.24.2-1ubuntu4
+    images: [stateport-playwright]
+    severity: High
+    surface: >
+      Same gstreamer bad-plugins advisory, second binary package instance
+      (shared library package) in the Playwright image.
+    reachability: >
+      Same analysis as RX-2026-012: codec dependency reachable only
+      through task-owned local automation content; no attacker media
+      input; publisher disposition wont-fix.
+    evidence: >
+      Raw grype scan and scan-evaluation JSON under
+      ~/.local/state/stateport/missions/public-alpha-completion-20260801/release-evidence-891ab08/stateport-playwright/;
+      fixState wont-fix in the scan.
+    remediation: >
+      Track the Ubuntu gstreamer packages; rebase the Playwright image
+      base when the package set changes; re-scan every release build.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-014
+    advisory: CVE-2026-17950
+    package: chrome
+    packageVersion: 151.0.7922.34
+    images: [stateport-playwright]
+    severity: High
+    surface: >
+      Chromium CVE fixed in 151.0.7922.72; advisory text scopes it to Mac.
+      Ships in the Playwright browser sidecar.
+    reachability: >
+      Playwright 1.62.1 is the latest published release and bundles
+      chromium 151.0.7922.34; no fixed Playwright/chromium build exists to
+      adopt. The sidecar runs task-owned local automation only, and the
+      advisory is platform-scoped to Mac while the image is Linux. NVD
+      severity overrides Chromium's own lower rating.
+    evidence: >
+      Raw grype scan and scan-evaluation JSON under
+      ~/.local/state/stateport/missions/public-alpha-completion-20260801/release-evidence-891ab08/stateport-playwright/;
+      playwright release check confirms 1.62.1 is latest at scan time.
+    remediation: >
+      Rebase the image the day a Playwright release ships the fixed
+      chromium; re-scan every release build.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-015
+    advisory: CVE-2026-17952
+    package: chrome
+    packageVersion: 151.0.7922.34
+    images: [stateport-playwright]
+    severity: High
+    surface: >
+      Chromium CVE fixed in 151.0.7922.72; ships in the Playwright browser
+      sidecar.
+    reachability: >
+      Same analysis as RX-2026-014: latest Playwright bundles this
+      chromium; no fixed build exists; task-owned local automation only.
+    evidence: >
+      Raw grype scan and scan-evaluation JSON under
+      ~/.local/state/stateport/missions/public-alpha-completion-20260801/release-evidence-891ab08/stateport-playwright/.
+    remediation: >
+      Rebase the image when a Playwright release ships the fixed chromium;
+      re-scan every release build.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-016
+    advisory: CVE-2026-17956
+    package: chrome
+    packageVersion: 151.0.7922.34
+    images: [stateport-playwright]
+    severity: High
+    surface: >
+      Chromium CVE fixed in 151.0.7922.72; ships in the Playwright browser
+      sidecar.
+    reachability: >
+      Same analysis as RX-2026-014: no fixed build available from the
+      latest Playwright release; task-owned local automation only.
+    evidence: >
+      Raw grype scan and scan-evaluation JSON under
+      ~/.local/state/stateport/missions/public-alpha-completion-20260801/release-evidence-891ab08/stateport-playwright/.
+    remediation: >
+      Rebase the image when a Playwright release ships the fixed chromium;
+      re-scan every release build.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-017
+    advisory: CVE-2026-17969
+    package: chrome
+    packageVersion: 151.0.7922.34
+    images: [stateport-playwright]
+    severity: High
+    surface: >
+      Chromium CVE fixed in 151.0.7922.72; ships in the Playwright browser
+      sidecar.
+    reachability: >
+      Same analysis as RX-2026-014: no fixed build available from the
+      latest Playwright release; task-owned local automation only.
+    evidence: >
+      Raw grype scan and scan-evaluation JSON under
+      ~/.local/state/stateport/missions/public-alpha-completion-20260801/release-evidence-891ab08/stateport-playwright/.
+    remediation: >
+      Rebase the image when a Playwright release ships the fixed chromium;
+      re-scan every release build.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-018
+    advisory: CVE-2026-17979
+    package: chrome
+    packageVersion: 151.0.7922.34
+    images: [stateport-playwright]
+    severity: High
+    surface: >
+      Chromium CVE fixed in 151.0.7922.72; ships in the Playwright browser
+      sidecar.
+    reachability: >
+      Same analysis as RX-2026-014: no fixed build available from the
+      latest Playwright release; task-owned local automation only.
+    evidence: >
+      Raw grype scan and scan-evaluation JSON under
+      ~/.local/state/stateport/missions/public-alpha-completion-20260801/release-evidence-891ab08/stateport-playwright/.
+    remediation: >
+      Rebase the image when a Playwright release ships the fixed chromium;
+      re-scan every release build.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-019
+    advisory: CVE-2026-17989
+    package: chrome
+    packageVersion: 151.0.7922.34
+    images: [stateport-playwright]
+    severity: High
+    surface: >
+      Chromium CVE fixed in 151.0.7922.72; ships in the Playwright browser
+      sidecar.
+    reachability: >
+      Same analysis as RX-2026-014: no fixed build available from the
+      latest Playwright release; task-owned local automation only.
+    evidence: >
+      Raw grype scan and scan-evaluation JSON under
+      ~/.local/state/stateport/missions/public-alpha-completion-20260801/release-evidence-891ab08/stateport-playwright/.
+    remediation: >
+      Rebase the image when a Playwright release ships the fixed chromium;
+      re-scan every release build.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-020
+    advisory: CVE-2026-17993
+    package: chrome
+    packageVersion: 151.0.7922.34
+    images: [stateport-playwright]
+    severity: High
+    surface: >
+      Chromium CVE fixed in 151.0.7922.72; advisory text scopes it to
+      Windows. Ships in the Playwright browser sidecar.
+    reachability: >
+      Same analysis as RX-2026-014: no fixed build available; platform
+      scope is Windows while the image is Linux; task-owned local
+      automation only.
+    evidence: >
+      Raw grype scan and scan-evaluation JSON under
+      ~/.local/state/stateport/missions/public-alpha-completion-20260801/release-evidence-891ab08/stateport-playwright/.
+    remediation: >
+      Rebase the image when a Playwright release ships the fixed chromium;
+      re-scan every release build.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-021
+    advisory: CVE-2026-18012
+    package: chrome
+    packageVersion: 151.0.7922.34
+    images: [stateport-playwright]
+    severity: High
+    surface: >
+      Chromium CVE fixed in 151.0.7922.72; ships in the Playwright browser
+      sidecar.
+    reachability: >
+      Same analysis as RX-2026-014: no fixed build available from the
+      latest Playwright release; task-owned local automation only.
+    evidence: >
+      Raw grype scan and scan-evaluation JSON under
+      ~/.local/state/stateport/missions/public-alpha-completion-20260801/release-evidence-891ab08/stateport-playwright/.
+    remediation: >
+      Rebase the image when a Playwright release ships the fixed chromium;
+      re-scan every release build.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-022
+    advisory: CVE-2026-18017
+    package: chrome
+    packageVersion: 151.0.7922.34
+    images: [stateport-playwright]
+    severity: High
+    surface: >
+      Chromium CVE fixed in 151.0.7922.72; ships in the Playwright browser
+      sidecar.
+    reachability: >
+      Same analysis as RX-2026-014: no fixed build available from the
+      latest Playwright release; task-owned local automation only.
+    evidence: >
+      Raw grype scan and scan-evaluation JSON under
+      ~/.local/state/stateport/missions/public-alpha-completion-20260801/release-evidence-891ab08/stateport-playwright/.
+    remediation: >
+      Rebase the image when a Playwright release ships the fixed chromium;
+      re-scan every release build.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-023
+    advisory: GHSA-x744-4wpc-v9h2
+    package: github.com/docker/docker
+    packageVersion: v28.5.1+incompatible
+    images: [stateport-execution-host]
+    severity: High
+    surface: >
+      Vendored Go Docker client module inside Alpine edge podman-remote;
+      the image contains a client binary and no Docker daemon.
+    reachability: >
+      The daemon invokes only fixed Podman create/start/stop/kill/inspect argv
+      through the owner-controlled rootless Unix socket. It never invokes the
+      Docker client surface, accepts network traffic, or pulls images.
+    evidence: >
+      Exact r5 Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r5/stateport-execution-host/;
+      engine allowlist review is in packages/execution-host/src/execution_host/engine.py.
+    remediation: >
+      Rebuild when Alpine podman-remote carries the fixed Docker module;
+      re-scan every release and remove this exact exception then.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-024
+    advisory: GHSA-p77j-4mvh-x3m3
+    package: google.golang.org/grpc
+    packageVersion: v1.72.2
+    images: [stateport-execution-host]
+    severity: Critical
+    surface: >
+      Vendored Go gRPC module inside Alpine edge podman-remote, used by the
+      client binary rather than an exposed StatePort network listener.
+    reachability: >
+      The execution host has no HTTP or TCP listener and accepts only the
+      owner-controlled, peer-UID-confined Unix control socket. Its fixed
+      engine calls use the local rootless Podman socket and no pull/network path.
+    evidence: >
+      Exact r5 Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r5/stateport-execution-host/;
+      socket and argv confinement are covered by the execution-host package tests.
+    remediation: >
+      Rebuild when Alpine podman-remote carries gRPC >=1.79.3 or a later fixed
+      vendored release; re-scan every release and remove this exact exception.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-025
+    advisory: GHSA-vgwf-h737-ff37
+    package: golang.org/x/crypto
+    packageVersion: v0.50.0
+    images: [stateport-execution-host]
+    severity: Critical
+    surface: >
+      Vendored Go crypto module inside Alpine edge podman-remote; no
+      StatePort application directly imports or exposes this module.
+    reachability: >
+      Only fixed, typed, digest-pinned workload requests reach the client;
+      the image is loopback/Unix-socket confined, uses --pull never, and gives
+      workloads no network or host mount access.
+    evidence: >
+      Exact r5 Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r5/stateport-execution-host/;
+      the engine allowlist and daemon peer checks are repository evidence.
+    remediation: >
+      Rebuild when podman-remote vendors x/crypto >=0.52.0; re-scan every
+      release and remove this exact exception then.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-026
+    advisory: GHSA-f5wc-c3c7-36mc
+    package: golang.org/x/crypto
+    packageVersion: v0.50.0
+    images: [stateport-execution-host]
+    severity: Critical
+    surface: >
+      Second advisory against the same vendored Go crypto module in the
+      client-only Alpine edge podman-remote binary.
+    reachability: >
+      The execution host exposes no network listener and sends only fixed
+      allowlisted commands to the owner-controlled rootless Podman socket;
+      arbitrary client-controlled argv and image pulls are rejected.
+    evidence: >
+      Exact r5 Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r5/stateport-execution-host/;
+      fixed argv construction is tested in packages/execution-host.
+    remediation: >
+      Rebuild when podman-remote vendors x/crypto >=0.52.0; re-scan every
+      release and remove this exact exception then.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-027
+    advisory: GO-2026-5026
+    package: golang.org/x/net
+    packageVersion: v0.53.0
+    images: [stateport-execution-host]
+    severity: High
+    surface: >
+      Vendored Go networking module inside Alpine edge podman-remote; the
+      packaged execution client is not a network-facing service.
+    reachability: >
+      Workloads run with --network none, image pulls are disabled, and the
+      client connects only to the owner-provisioned local rootless socket.
+      No attacker-controlled network stream reaches this client surface.
+    evidence: >
+      Exact r5 Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r5/stateport-execution-host/;
+      network and socket restrictions are in the engine adapter.
+    remediation: >
+      Rebuild when podman-remote vendors x/net >=0.55.0; re-scan every release
+      and remove this exact exception then.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-028
+    advisory: GHSA-5cgq-3rg8-m6cv
+    package: golang.org/x/crypto
+    packageVersion: v0.50.0
+    images: [stateport-execution-host]
+    severity: Critical
+    surface: >
+      Third distinct advisory against the same vendored Go crypto module in
+      the client-only Alpine edge podman-remote binary.
+    reachability: >
+      The peer-confined Unix control socket accepts only the StatePort control
+      UID, while engine argv, image references, mounts, capabilities, and
+      network mode are fixed or typed and re-asserted before execution.
+    evidence: >
+      Exact r5 Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r5/stateport-execution-host/;
+      daemon and engine source provide the confinement evidence.
+    remediation: >
+      Rebuild when podman-remote vendors x/crypto >=0.52.0; re-scan every
+      release and remove this exact exception then.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-029
+    advisory: GHSA-rm3j-f69w-wqmq
+    package: golang.org/x/crypto
+    packageVersion: v0.50.0
+    images: [stateport-execution-host]
+    severity: Critical
+    surface: >
+      Vendored Go crypto module advisory in the isolated execution-host
+      podman-remote client binary.
+    reachability: >
+      No public or container-network listener exists; the local engine socket
+      belongs to the execution user and all workload parameters are typed,
+      bounded, digest-pinned, and passed through a fixed command template.
+    evidence: >
+      Exact r5 Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r5/stateport-execution-host/;
+      fixed template and resource bounds are tested repository behavior.
+    remediation: >
+      Rebuild when podman-remote vendors x/crypto >=0.52.0; re-scan every
+      release and remove this exact exception then.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-030
+    advisory: GHSA-mh2q-q3fh-2475
+    package: go.opentelemetry.io/otel
+    packageVersion: v1.36.0
+    images: [stateport-execution-host]
+    severity: High
+    surface: >
+      Vendored OpenTelemetry module inside the Alpine edge podman-remote
+      client; no StatePort telemetry endpoint is exposed by this image.
+    reachability: >
+      The image has no network listener and the execution client does not
+      accept remote telemetry payloads; only owner-controlled local engine
+      operations are issued with fixed argv.
+    evidence: >
+      Exact r5 Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r5/stateport-execution-host/;
+      the image entrypoint and engine adapter are retained source evidence.
+    remediation: >
+      Rebuild when podman-remote vendors OpenTelemetry >=1.41.0; re-scan every
+      release and remove this exact exception then.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-031
+    advisory: GHSA-4c29-8rgm-jvjj
+    package: github.com/moby/buildkit
+    packageVersion: v0.25.1
+    images: [stateport-execution-host]
+    severity: High
+    surface: >
+      Vendored BuildKit module in Alpine edge podman-remote; this image does
+      not run BuildKit or expose a build service.
+    reachability: >
+      The execution host runs only the fixed workload lifecycle commands with
+      --pull never, --network none, no mounts, and dropped capabilities; no
+      BuildKit request path is invoked by the production adapter.
+    evidence: >
+      Exact r5 Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r5/stateport-execution-host/;
+      production argv allowlisting is retained in the engine adapter.
+    remediation: >
+      Rebuild when podman-remote vendors BuildKit >=0.28.1; re-scan every
+      release and remove this exact exception then.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-032
+    advisory: GHSA-89gr-r52h-f8rx
+    package: golang.org/x/crypto
+    packageVersion: v0.50.0
+    images: [stateport-execution-host]
+    severity: Critical
+    surface: >
+      Vendored Go crypto module advisory in the client-only Alpine edge
+      podman-remote binary.
+    reachability: >
+      The daemon accepts only the provisioned local Unix socket and sends
+      bounded, fixed engine operations; it does not expose a network, pull
+      images, mount host paths, or pass arbitrary argv.
+    evidence: >
+      Exact r5 Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r5/stateport-execution-host/;
+      source-level confinement checks are retained in the repository.
+    remediation: >
+      Rebuild when podman-remote vendors x/crypto >=0.52.0; re-scan every
+      release and remove this exact exception then.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-033
+    advisory: GHSA-4vrq-3vrq-g6gg
+    package: github.com/moby/buildkit
+    packageVersion: v0.25.1
+    images: [stateport-execution-host]
+    severity: High
+    surface: >
+      Second BuildKit advisory matched against the vendored client module in
+      Alpine edge podman-remote.
+    reachability: >
+      No BuildKit daemon or build API is started; only owner-controlled local
+      rootless Podman lifecycle calls are allowed and workload networking is
+      disabled.
+    evidence: >
+      Exact r5 Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r5/stateport-execution-host/;
+      fixed engine command construction is retained in source and tests.
+    remediation: >
+      Rebuild when podman-remote vendors BuildKit >=0.28.1; re-scan every
+      release and remove this exact exception then.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-034
+    advisory: GHSA-q4h4-gmj2-qvw2
+    package: golang.org/x/crypto
+    packageVersion: v0.50.0
+    images: [stateport-execution-host]
+    severity: High
+    surface: >
+      Vendored Go crypto module advisory in the isolated podman-remote client.
+    reachability: >
+      Only typed StatePort operations from the peer-UID-confined local socket
+      reach the client, with fixed argv and no remote image pull or workload
+      network path.
+    evidence: >
+      Exact r5 Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r5/stateport-execution-host/;
+      the daemon contract and engine allowlist are repository evidence.
+    remediation: >
+      Rebuild when podman-remote vendors x/crypto >=0.52.0; re-scan every
+      release and remove this exact exception then.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-035
+    advisory: GHSA-w879-237q-wc7r
+    package: golang.org/x/crypto
+    packageVersion: v0.50.0
+    images: [stateport-execution-host]
+    severity: High
+    surface: >
+      Vendored Go crypto module advisory in the Alpine edge podman-remote
+      client binary.
+    reachability: >
+      The client has no public listener and executes only bounded operations
+      against the owner-controlled rootless socket; arbitrary request data and
+      network access are not forwarded to the client.
+    evidence: >
+      Exact r5 Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r5/stateport-execution-host/;
+      fixed command and socket boundaries are retained source evidence.
+    remediation: >
+      Rebuild when podman-remote vendors x/crypto >=0.52.0; re-scan every
+      release and remove this exact exception then.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-036
+    advisory: GO-2026-5970
+    package: golang.org/x/text
+    packageVersion: v0.36.0
+    images: [stateport-execution-host]
+    severity: High
+    surface: >
+      Vendored Go text module advisory in Alpine edge podman-remote; the
+      execution host does not parse attacker-supplied text streams remotely.
+    reachability: >
+      Control input is peer-UID-confined local NDJSON validated against the
+      daemon contract, and the client performs only fixed local rootless
+      lifecycle operations with no public network listener.
+    evidence: >
+      Exact r5 Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r5/stateport-execution-host/;
+      contract validation and peer checks are repository evidence.
+    remediation: >
+      Rebuild when podman-remote vendors x/text >=0.39.0; re-scan every
+      release and remove this exact exception then.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-037
+    advisory: GO-2026-5942
+    package: golang.org/x/net
+    packageVersion: v0.53.0
+    images: [stateport-execution-host]
+    severity: High
+    surface: >
+      Second Go networking advisory matched against Alpine edge podman-remote
+      in the isolated execution-host image.
+    reachability: >
+      The image has no network listener, workloads run with --network none,
+      image pulling is disabled, and the only engine transport is the owner's
+      local rootless Unix socket.
+    evidence: >
+      Exact r5 Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r5/stateport-execution-host/;
+      engine transport restrictions are retained in source.
+    remediation: >
+      Rebuild when podman-remote vendors x/net >=0.56.0; re-scan every release
+      and remove this exact exception then.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-038
+    advisory: GHSA-f83f-xpx7-ffpw
+    package: github.com/sigstore/fulcio
+    packageVersion: v1.7.1
+    images: [stateport-execution-host]
+    severity: High
+    surface: >
+      Vendored Sigstore Fulcio module in Alpine edge podman-remote; the
+      execution host performs no signing or certificate issuance operation.
+    reachability: >
+      The image does not invoke cosign, Fulcio, registry pulls, or network
+      services. Its fixed client commands use only the owner-controlled local
+      rootless Podman socket.
+    evidence: >
+      Exact r5 Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r5/stateport-execution-host/;
+      release signing is performed outside this runtime image.
+    remediation: >
+      Rebuild when podman-remote vendors Fulcio >=1.8.3; re-scan every release
+      and remove this exact exception then.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-039
+    advisory: GHSA-f5mr-q85p-6hh6
+    package: github.com/sigstore/fulcio
+    packageVersion: v1.7.1
+    images: [stateport-execution-host]
+    severity: High
+    surface: >
+      Second Fulcio advisory matched against the same vendored module in the
+      client-only Alpine edge podman-remote binary.
+    reachability: >
+      No signing, certificate, registry, or network operation is reachable
+      from the fixed execution-host command paths; the runtime is confined to
+      the local rootless engine socket.
+    evidence: >
+      Exact r5 Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r5/stateport-execution-host/;
+      signing toolchain separation is enforced by the release scripts.
+    remediation: >
+      Rebuild when podman-remote vendors Fulcio >=1.8.6; re-scan every release
+      and remove this exact exception then.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-040
+    advisory: GHSA-hrxh-6v49-42gf
+    package: google.golang.org/grpc
+    packageVersion: v1.72.2
+    images: [stateport-execution-host]
+    severity: High
+    surface: >
+      Second gRPC advisory matched against the vendored module in Alpine edge
+      podman-remote, not a StatePort network service.
+    reachability: >
+      The daemon has no HTTP/TCP listener and the engine client communicates
+      only through the owner-controlled rootless Unix socket using fixed,
+      bounded operations and no image pull path.
+    evidence: >
+      Exact r5 Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r5/stateport-execution-host/;
+      socket confinement and engine allowlisting are repository evidence.
+    remediation: >
+      Rebuild when podman-remote vendors gRPC >=1.82.1; re-scan every release
+      and remove this exact exception then.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-041
+    advisory: GHSA-3v94-mw7p-v465
+    package: hickory-proto
+    packageVersion: 0.25.2
+    images: [stateport-execution-host]
+    severity: High
+    surface: >
+      Vendored DNS protocol module in Alpine edge podman-remote; the runtime
+      workload engine is explicitly configured with network none.
+    reachability: >
+      The execution host does not accept network traffic, does not pull images,
+      and invokes only fixed local rootless Podman operations. No attacker DNS
+      response or workload network stream reaches this module.
+    evidence: >
+      Exact r5 Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r5/stateport-execution-host/;
+      network-none enforcement is retained in the engine adapter.
+    remediation: >
+      Rebuild when Alpine podman-remote ships a fixed hickory-proto version;
+      re-scan every release and remove this exact exception then.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-042
+    advisory: GHSA-jppx-rxg9-jmrx
+    package: golang.org/x/crypto
+    packageVersion: v0.50.0
+    images: [stateport-execution-host]
+    severity: Critical
+    surface: >
+      Vendored Go crypto module inside Alpine edge podman-remote; the image is
+      a client-only execution adapter rather than a network-facing service.
+    reachability: >
+      Only fixed, typed, digest-pinned workload requests reach the client; the
+      image is loopback/Unix-socket confined, uses --pull never, and gives
+      workloads no network or host mount access.
+    evidence: >
+      Exact r7b Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r7b/evidence-fast/stateport-execution-host/;
+      the engine allowlist and daemon peer checks are repository evidence.
+    remediation: >
+      Rebuild when podman-remote vendors x/crypto >=0.52.0; re-scan every
+      release and remove this exact exception then.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-043
+    advisory: GHSA-x527-x647-q7gg
+    package: golang.org/x/crypto
+    packageVersion: v0.50.0
+    images: [stateport-execution-host]
+    severity: Critical
+    surface: >
+      Second advisory against the same vendored Go crypto module in the
+      client-only Alpine edge podman-remote binary.
+    reachability: >
+      The execution host exposes no network listener and sends only fixed
+      allowlisted commands to the owner-controlled rootless Podman socket;
+      arbitrary client-controlled argv and image pulls are rejected.
+    evidence: >
+      Exact r7b Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r7b/evidence-fast/stateport-execution-host/;
+      fixed argv construction is tested in packages/execution-host.
+    remediation: >
+      Rebuild when podman-remote vendors x/crypto >=0.52.0; re-scan every
+      release and remove this exact exception then.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-044
+    advisory: GHSA-rg2x-37c3-w2rh
+    package: github.com/docker/docker
+    packageVersion: v28.5.1+incompatible
+    images: [stateport-execution-host]
+    severity: High
+    surface: >
+      Vendored Go Docker client module inside Alpine edge podman-remote; the
+      image contains a client binary and no Docker daemon.
+    reachability: >
+      The daemon invokes only fixed Podman create/start/stop/kill/inspect argv
+      through the owner-controlled rootless Unix socket. It never invokes the
+      Docker client surface, accepts network traffic, or pulls images.
+    evidence: >
+      Exact r7b Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r7b/evidence-fast/stateport-execution-host/;
+      engine allowlist review is in packages/execution-host.
+    remediation: >
+      Rebuild when Alpine podman-remote carries the fixed Docker module;
+      re-scan every release and remove this exact exception then.
+    expiresOn: "2026-09-15"
+  - id: RX-2026-045
+    advisory: GHSA-x86f-5xw2-fm2r
+    package: github.com/docker/docker
+    packageVersion: v28.5.1+incompatible
+    images: [stateport-execution-host]
+    severity: High
+    surface: >
+      Second advisory against the same vendored Go Docker client module in
+      Alpine edge podman-remote, not a StatePort network service.
+    reachability: >
+      The execution host has no HTTP or TCP listener and accepts only the
+      owner-controlled, peer-UID-confined Unix control socket. Its fixed
+      engine calls use the local rootless Podman socket and no pull/network
+      path.
+    evidence: >
+      Exact r7b Grype scan and evaluation are retained under
+      operator://mission-evidence/public-alpha-completion-20260803/release-evidence/alpha-build-2026-08-03-r7b/evidence-fast/stateport-execution-host/;
+      socket and argv confinement are covered by the execution-host package
+      tests.
+    remediation: >
+      Rebuild when Alpine podman-remote carries the fixed Docker module;
+      re-scan every release and remove this exact exception then.
+    expiresOn: "2026-09-15"

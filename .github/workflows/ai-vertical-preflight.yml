@@ -1,0 +1,53 @@
+name: Release Source Preflight
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-source-preflight-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  source-release-gate:
+    runs-on: [self-hosted, linux, x64, stateport]
+    timeout-minutes: 10
+    steps:
+      - name: Check out canonical main
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: main
+          fetch-depth: 0
+          show-progress: false
+          clean: true
+
+      - name: Verify exact pushed main identity
+        run: |
+          test "$(git branch --show-current)" = main
+          test "$(git rev-parse HEAD)" = "${{ github.sha }}"
+          test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"
+
+      - name: Install locked preflight dependencies outside the checkout
+        run: |
+          venv="${RUNNER_TEMP}/stateport-release-preflight-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          python3 -m venv "$venv"
+          "$venv/bin/python" -m pip install \
+            --disable-pip-version-check \
+            --require-hashes \
+            -r requirements/dev-test.txt
+          echo "STATEPORT_PREFLIGHT_PYTHON=$venv/bin/python" >> "$GITHUB_ENV"
+
+      - name: Run fail-fast release source gate
+        run: |
+          "$STATEPORT_PREFLIGHT_PYTHON" \
+            scripts/public_alpha_preflight.py \
+            --source-root .
+
+      - name: Prove the gate was non-mutating
+        run: |
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+          test "$(git rev-parse HEAD)" = "${{ github.sha }}"

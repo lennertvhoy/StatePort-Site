@@ -1,0 +1,120 @@
+#cloud-config
+# StatePort alpha host bootstrap — Ubuntu 24.04 LTS, rootless Podman.
+#
+# Rendered by Terraform templatefile() in modules/host/main.tf.
+# Contains NO secrets. custom_data is visible to anyone with VM read access,
+# so never interpolate credentials here.
+#
+# Provision-time network access is limited to apt. The StatePort no-checkout
+# installer is staged afterwards by the operator into ${installer_staging};
+# cloud-init deliberately does not download it.
+
+hostname: ${name_prefix}-host
+preserve_hostname: false
+
+# Two unprivileged service identities, distinct from the operator login
+# account (created by the Azure VM resource) and from each other:
+#   ${control_user} — StatePort control services (API, adapters)
+#   ${exec_user}    — agent execution workloads (rootless Podman)
+# Neither can log in interactively; both have homes (needed by systemd
+# --user and rootless Podman) and passwords locked.
+users:
+  - name: ${control_user}
+    shell: /usr/sbin/nologin
+    lock_passwd: true
+  - name: ${exec_user}
+    shell: /usr/sbin/nologin
+    lock_passwd: true
+
+package_update: true
+package_upgrade: false
+packages:
+  - podman          # container engine; runs rootless under ${exec_user}
+  - uidmap          # newuidmap/newgidmap for rootless user namespaces
+  - slirp4netns     # unprivileged network namespace plumbing
+  - fuse-overlayfs  # rootless storage driver (kernel overlayfs refuses some workloads)
+  - qemu-utils      # qemu-img, handy for inspecting disk images during alpha
+
+# Data disk: attached by Terraform at LUN 0. disk_setup creates a single GPT
+# partition; the filesystem and mount target that partition
+# (${data_disk_device}-part1), not the whole-disk device. Formatted once
+# (overwrite: false makes this idempotent across reboots/re-images of
+# cloud-init) and mounted at ${state_dir}, the durable StatePort state root.
+disk_setup:
+  ${data_disk_device}:
+    table_type: gpt
+    layout: true
+    overwrite: false
+fs_setup:
+  - label: stateport-data
+    device: ${data_disk_device}-part1
+    filesystem: ext4
+    overwrite: false
+mounts:
+  - ["${data_disk_device}-part1", "${state_dir}", "ext4", "defaults,nofail", "0", "2"]
+
+write_files:
+  # Readiness check the operator runs before installing StatePort.
+  # Verifies cgroup v2, lingering, rootless Podman, and the data disk mount.
+  - path: /usr/local/sbin/stateport-host-check
+    permissions: "0755"
+    content: |
+      #!/bin/bash
+      # stateport-host-check — alpha host readiness probe. Read-only.
+      set -euo pipefail
+
+      fail=0
+
+      echo "== cgroup v2 =="
+      # Rootless Podman needs the unified (v2) cgroup hierarchy.
+      if [ -f /sys/fs/cgroup/cgroup.controllers ]; then
+        echo "OK: cgroup v2 unified hierarchy present"
+      else
+        echo "FAIL: cgroup v2 not detected"
+        fail=1
+      fi
+
+      echo "== lingering =="
+      # Lingering keeps systemd --user (and rootless Podman) alive without
+      # an interactive login session.
+      for u in ${control_user} ${exec_user}; do
+        linger=$(loginctl show-user "$u" --property=Linger --value 2>/dev/null || echo "no")
+        if [ "$linger" = "yes" ]; then
+          echo "OK: linger enabled for $u"
+        else
+          echo "FAIL: linger not enabled for $u"
+          fail=1
+        fi
+      done
+
+      echo "== rootless podman (${exec_user}) =="
+      exec_uid=$(id -u ${exec_user})
+      if sudo -u ${exec_user} XDG_RUNTIME_DIR="/run/user/$exec_uid" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$exec_uid/bus" podman info --format 'rootless={{.Host.Security.Rootless}}' 2>/dev/null; then
+        echo "OK: podman responds for ${exec_user}"
+      else
+        echo "FAIL: rootless podman not usable for ${exec_user}"
+        fail=1
+      fi
+
+      echo "== data disk =="
+      if mountpoint -q ${state_dir}; then
+        echo "OK: ${state_dir} mounted"
+      else
+        echo "FAIL: ${state_dir} not mounted"
+        fail=1
+      fi
+
+      exit "$fail"
+
+runcmd:
+  # Enable lingering for both service users (systemd --user without login).
+  - [loginctl, enable-linger, ${control_user}]
+  - [loginctl, enable-linger, ${exec_user}]
+  # Per-user state directories on the data disk (mounts run before runcmd).
+  - [install, -d, -m, "0750", -o, ${control_user}, -g, ${control_user}, "${state_dir}/control"]
+  - [install, -d, -m, "0750", -o, ${exec_user}, -g, ${exec_user}, "${state_dir}/exec"]
+  # Staging area for the StatePort no-checkout installer. Left empty here;
+  # the operator copies the installer in over SSH after provisioning.
+  - [install, -d, -m, "0755", "${installer_staging}"]
+  # Record bootstrap completion for the operator (no secrets, just facts).
+  - [sh, -c, "cloud-init status --long > /var/log/stateport-bootstrap.status"]

@@ -1,0 +1,11 @@
+formatVersion: stateport.source-contract/v1
+template:
+  id: studydd
+source:
+  repository: https://github.com/lennertvhoy/StudyDD_Template.git
+  commit: 7b8a6449361578264952f985d70655233e870b4e
+  manifestPath: .statedd/manifest.yaml
+  expectedTree: 3ade73c663dcb48fb4992138a0a135e5640959ba
+  expectedManifestDigest: sha256:425008e382cc87076e05a3ae02a6915167107bcbb74dc2ffe7236650c0591671
+  class: canonical_source
+  productionEligible: true
