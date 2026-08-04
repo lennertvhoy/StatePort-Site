@@ -1,0 +1,235 @@
+name: Alpha.3 Public Snapshot Publish
+
+"on":
+  push:
+    branches: [ops/alpha3-public-snapshot-publish-20260804]
+    paths:
+      - staging/alpha3/READY
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: alpha3-public-snapshot-publish
+  cancel-in-progress: false
+
+jobs:
+  publish-orphan-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      RELEASE_VERSION: 0.1.0-alpha.3
+      PUBLIC_BRANCH: release-source/0.1.0-alpha.3
+    steps:
+      - name: Check out exact staging branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+          clean: true
+          show-progress: false
+
+      - name: Verify staged seed checksums
+        run: |
+          set -euo pipefail
+          cd staging/alpha3
+          test -f READY
+          test -f public-source.tar
+          test -f public-export-manifest.json
+          test -f seed-metadata.json
+          test -f SHA256SUMS
+          sha256sum -c SHA256SUMS
+
+      - name: Reproduce and publish exact root commit
+        id: publish
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -o pipefail
+          work="${RUNNER_TEMP}/stateport-alpha3-public-source"
+          snapshot="$work/snapshot"
+          repository="$work/repository"
+          mkdir -p "$snapshot" "$repository" "$work/logs"
+          chmod 0700 "$work"
+          echo "PUBLICATION_WORK=$work" >> "$GITHUB_ENV"
+
+          python3 - <<'PY' 2>&1 | tee "$work/logs/extract-and-verify.log"
+          from pathlib import Path, PurePosixPath
+          import hashlib
+          import json
+          import os
+          import stat
+          import tarfile
+
+          staging = Path("staging/alpha3").resolve()
+          destination = Path(os.environ["RUNNER_TEMP"]) / "stateport-alpha3-public-source" / "snapshot"
+          manifest = json.loads((staging / "public-export-manifest.json").read_text(encoding="utf-8"))
+          metadata = json.loads((staging / "seed-metadata.json").read_text(encoding="utf-8"))
+          if manifest.get("formatVersion") != "stateport.public-export-manifest/v1" or manifest.get("status") != "exported":
+              raise SystemExit("public export manifest is not an exported v1 inventory")
+          expected = {item["path"]: item for item in manifest["files"]}
+          if len(expected) != len(manifest["files"]) or len(expected) != metadata["publicFileCount"]:
+              raise SystemExit("public manifest path inventory is duplicate or incomplete")
+
+          members_by_name = {}
+          total = 0
+          with tarfile.open(staging / "public-source.tar", mode="r:") as archive:
+              members = archive.getmembers()
+              for member in members:
+                  path = PurePosixPath(member.name)
+                  if (
+                      path.is_absolute()
+                      or not path.parts
+                      or any(part in {"", ".", ".."} for part in path.parts)
+                      or not (member.isdir() or member.isfile())
+                      or member.name in members_by_name
+                  ):
+                      raise SystemExit(f"unsafe or duplicate source archive entry: {member.name!r}")
+                  members_by_name[member.name] = member
+                  if member.isfile():
+                      total += member.size
+              if total > 128 * 1024 * 1024:
+                  raise SystemExit("public source archive exceeds the bounded extraction size")
+              archive.extractall(destination, members=members, filter="data")
+
+          observed_paths = sorted(
+              path.relative_to(destination).as_posix()
+              for path in destination.rglob("*")
+              if path.is_file() and not path.is_symlink()
+          )
+          if observed_paths != sorted(expected):
+              raise SystemExit("extracted public source paths disagree with the signed seed manifest")
+          if any(path.is_symlink() for path in destination.rglob("*")):
+              raise SystemExit("public source extraction contains a symlink")
+
+          for relative, item in expected.items():
+              path = destination / PurePosixPath(relative)
+              content = path.read_bytes()
+              observed_digest = "sha256:" + hashlib.sha256(content).hexdigest()
+              observed_mode = f"{stat.S_IMODE(path.stat().st_mode):04o}"
+              if observed_digest != item["digest"] or observed_mode != item["mode"]:
+                  raise SystemExit(f"public source content or mode drifted: {relative}")
+          print(json.dumps({
+              "fileCount": len(observed_paths),
+              "seedCommit": metadata["seedCandidateCommit"],
+              "seedTree": metadata["seedCandidateTree"],
+              "sourceEpoch": metadata["sourceEpoch"],
+              "status": "verified",
+          }, sort_keys=True))
+          PY
+
+          metadata=staging/alpha3/seed-metadata.json
+          expected_commit="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["seedCandidateCommit"])' "$metadata")"
+          expected_tree="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["seedCandidateTree"])' "$metadata")"
+          epoch="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["sourceEpoch"])' "$metadata")"
+
+          cp -a "$snapshot/." "$repository/"
+          env -i \
+            PATH="$PATH" \
+            HOME="$HOME" \
+            GIT_CONFIG_GLOBAL=/dev/null \
+            GIT_CONFIG_NOSYSTEM=1 \
+            GIT_CONFIG_SYSTEM=/dev/null \
+            git -C "$repository" init --quiet --initial-branch=public-main
+          env GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_NOSYSTEM=1 GIT_CONFIG_SYSTEM=/dev/null \
+            git -C "$repository" config core.logAllRefUpdates false
+          env GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_NOSYSTEM=1 GIT_CONFIG_SYSTEM=/dev/null \
+            git -C "$repository" -c maintenance.auto=false -c gc.auto=0 add --all
+          env \
+            GIT_AUTHOR_DATE="@${epoch} +0000" \
+            GIT_AUTHOR_EMAIL="public-snapshot@stateport.invalid" \
+            GIT_AUTHOR_NAME="StatePort Public Snapshot Builder" \
+            GIT_COMMITTER_DATE="@${epoch} +0000" \
+            GIT_COMMITTER_EMAIL="public-snapshot@stateport.invalid" \
+            GIT_COMMITTER_NAME="StatePort Public Snapshot Builder" \
+            GIT_CONFIG_GLOBAL=/dev/null \
+            GIT_CONFIG_NOSYSTEM=1 \
+            GIT_CONFIG_SYSTEM=/dev/null \
+            git -C "$repository" -c maintenance.auto=false -c gc.auto=0 commit --quiet \
+              -m "StatePort sanitized public snapshot"
+
+          observed_commit="$(git -C "$repository" rev-parse HEAD)"
+          observed_tree="$(git -C "$repository" rev-parse 'HEAD^{tree}')"
+          test "$observed_commit" = "$expected_commit"
+          test "$observed_tree" = "$expected_tree"
+          test "$(git -C "$repository" rev-list --count --all)" = 1
+          test "$(git -C "$repository" rev-list --max-parents=0 --all)" = "$expected_commit"
+          test "$(git -C "$repository" rev-list --parents --max-count=1 HEAD)" = "$expected_commit"
+          test -z "$(git -C "$repository" status --porcelain=v1 --untracked-files=all)"
+          git -C "$repository" fsck --full --strict --no-reflogs --unreachable
+
+          remote="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          existing="$(git ls-remote "$remote" "refs/heads/${PUBLIC_BRANCH}" | awk '{print $1}')"
+          if [ -n "$existing" ] && [ "$existing" != "$expected_commit" ]; then
+            echo "public snapshot branch already points to a different commit" >&2
+            exit 1
+          fi
+          if [ -z "$existing" ]; then
+            git -C "$repository" remote add origin "$remote"
+            git -C "$repository" push origin "public-main:refs/heads/${PUBLIC_BRANCH}"
+          fi
+          public_observed="$(git ls-remote "$remote" "refs/heads/${PUBLIC_BRANCH}" | awk '{print $1}')"
+          test "$public_observed" = "$expected_commit"
+
+          {
+            echo "PUBLIC_SNAPSHOT_COMMIT=$expected_commit"
+            echo "PUBLIC_SNAPSHOT_TREE=$expected_tree"
+          } >> "$GITHUB_ENV"
+          printf '%s\n' "$expected_commit" > "$work/public-commit"
+          printf '%s\n' "$expected_tree" > "$work/public-tree"
+
+      - name: Publish public identity result
+        if: always()
+        env:
+          ISSUE_TOKEN: ${{ github.token }}
+          PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import urllib.request
+
+          outcome = os.environ.get("PUBLISH_OUTCOME", "not_run")
+          passed = outcome == "success"
+          root = Path(os.environ.get("PUBLICATION_WORK", "/nonexistent"))
+          log = root / "logs" / "extract-and-verify.log"
+          tail = "\n".join(log.read_text(errors="replace").splitlines()[-100:]) if log.is_file() else "(log unavailable)"
+          title = f"[release-gate] Alpha.3 public snapshot identity {'PASS' if passed else 'FAIL'} run {os.environ['GITHUB_RUN_ID']}"
+          body = f"""## Alpha.3 normal-clone-resolvable public snapshot
+
+          - Overall: **{'PASS' if passed else 'FAIL'}**
+          - Public repository: `https://github.com/{os.environ['GITHUB_REPOSITORY']}.git`
+          - Public branch: `{os.environ['PUBLIC_BRANCH']}`
+          - Commit: `{os.environ.get('PUBLIC_SNAPSHOT_COMMIT', 'unavailable')}`
+          - Tree: `{os.environ.get('PUBLIC_SNAPSHOT_TREE', 'unavailable')}`
+          - Commit shape: one root commit, no parent
+          - Reproduction: exact commit and tree from the independently audited StatePort seed
+          - Run: {os.environ['GITHUB_SERVER_URL']}/{os.environ['GITHUB_REPOSITORY']}/actions/runs/{os.environ['GITHUB_RUN_ID']}
+
+          ```text
+          {tail}
+          ```
+          """
+          request = urllib.request.Request(
+              f"https://api.github.com/repos/{os.environ['GITHUB_REPOSITORY']}/issues",
+              data=json.dumps({"title": title, "body": body}).encode(),
+              headers={
+                  "Authorization": f"Bearer {os.environ['ISSUE_TOKEN']}",
+                  "Accept": "application/vnd.github+json",
+                  "X-GitHub-Api-Version": "2022-11-28",
+                  "Content-Type": "application/json",
+                  "User-Agent": "stateport-alpha3-public-snapshot",
+              },
+              method="POST",
+          )
+          with urllib.request.urlopen(request, timeout=30) as response:
+              print(response.read().decode())
+          PY
+
+      - name: Enforce fail-closed publication result
+        if: always()
+        env:
+          PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
+        run: test "$PUBLISH_OUTCOME" = success
