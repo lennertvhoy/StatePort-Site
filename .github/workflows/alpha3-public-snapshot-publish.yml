@@ -29,16 +29,28 @@ jobs:
           clean: true
           show-progress: false
 
-      - name: Verify staged seed checksums
+      - name: Acquire and verify audited seed transport
         run: |
           set -euo pipefail
-          cd staging/alpha3
-          test -f READY
-          test -f public-source.tar
-          test -f public-export-manifest.json
-          test -f seed-metadata.json
-          test -f SHA256SUMS
-          sha256sum -c SHA256SUMS
+          test -f staging/alpha3/READY
+          test -f staging/alpha3/seed-transfer.json
+          work="${RUNNER_TEMP}/stateport-alpha3-public-source"
+          seed="$work/seed"
+          mkdir -p "$seed" "$work/logs"
+          chmod 0700 "$work"
+          echo "PUBLICATION_WORK=$work" >> "$GITHUB_ENV"
+          echo "SEED_DIR=$seed" >> "$GITHUB_ENV"
+
+          url="$(python3 -c 'import json; print(json.load(open("staging/alpha3/seed-transfer.json"))["downloadUrl"])')"
+          expected="$(python3 -c 'import json; print(json.load(open("staging/alpha3/seed-transfer.json"))["sha256"])')"
+          test "$expected" = e60442d3df959f8368c103969129604c360c5cc7ec60e56044356fae6c7a3ee4
+          curl -fsSL --proto '=https' --tlsv1.2 --retry 3 --retry-delay 2 \
+            -o "$work/seed.zip" "$url"
+          printf '%s  %s\n' "$expected" "$work/seed.zip" | sha256sum -c --status
+          unzip -q "$work/seed.zip" -d "$seed"
+          (cd "$seed" && sha256sum -c SHA256SUMS)
+          test "$(python3 -c 'import json; print(json.load(open("'"$seed"'/seed-metadata.json"))["seedCandidateCommit"])')" = f32b295db58e044ef09691cfaee5cf6b49367693
+          test "$(python3 -c 'import json; print(json.load(open("'"$seed"'/seed-metadata.json"))["seedCandidateTree"])')" = 028a1ad9926d7e5103a308075199a5a8c03046f1
 
       - name: Reproduce and publish exact root commit
         id: publish
@@ -47,12 +59,11 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -o pipefail
-          work="${RUNNER_TEMP}/stateport-alpha3-public-source"
+          work="$PUBLICATION_WORK"
+          seed="$SEED_DIR"
           snapshot="$work/snapshot"
           repository="$work/repository"
-          mkdir -p "$snapshot" "$repository" "$work/logs"
-          chmod 0700 "$work"
-          echo "PUBLICATION_WORK=$work" >> "$GITHUB_ENV"
+          mkdir -p "$snapshot" "$repository"
 
           python3 - <<'PY' 2>&1 | tee "$work/logs/extract-and-verify.log"
           from pathlib import Path, PurePosixPath
@@ -62,10 +73,10 @@ jobs:
           import stat
           import tarfile
 
-          staging = Path("staging/alpha3").resolve()
-          destination = Path(os.environ["RUNNER_TEMP"]) / "stateport-alpha3-public-source" / "snapshot"
-          manifest = json.loads((staging / "public-export-manifest.json").read_text(encoding="utf-8"))
-          metadata = json.loads((staging / "seed-metadata.json").read_text(encoding="utf-8"))
+          seed = Path(os.environ["SEED_DIR"])
+          destination = Path(os.environ["PUBLICATION_WORK"]) / "snapshot"
+          manifest = json.loads((seed / "public-export-manifest.json").read_text(encoding="utf-8"))
+          metadata = json.loads((seed / "seed-metadata.json").read_text(encoding="utf-8"))
           if manifest.get("formatVersion") != "stateport.public-export-manifest/v1" or manifest.get("status") != "exported":
               raise SystemExit("public export manifest is not an exported v1 inventory")
           expected = {item["path"]: item for item in manifest["files"]}
@@ -74,7 +85,7 @@ jobs:
 
           members_by_name = {}
           total = 0
-          with tarfile.open(staging / "public-source.tar", mode="r:") as archive:
+          with tarfile.open(seed / "public-source.tar", mode="r:") as archive:
               members = archive.getmembers()
               for member in members:
                   path = PurePosixPath(member.name)
@@ -99,14 +110,12 @@ jobs:
               if path.is_file() and not path.is_symlink()
           )
           if observed_paths != sorted(expected):
-              raise SystemExit("extracted public source paths disagree with the signed seed manifest")
+              raise SystemExit("extracted public source paths disagree with the seed manifest")
           if any(path.is_symlink() for path in destination.rglob("*")):
               raise SystemExit("public source extraction contains a symlink")
-
           for relative, item in expected.items():
               path = destination / PurePosixPath(relative)
-              content = path.read_bytes()
-              observed_digest = "sha256:" + hashlib.sha256(content).hexdigest()
+              observed_digest = "sha256:" + hashlib.sha256(path.read_bytes()).hexdigest()
               observed_mode = f"{stat.S_IMODE(path.stat().st_mode):04o}"
               if observed_digest != item["digest"] or observed_mode != item["mode"]:
                   raise SystemExit(f"public source content or mode drifted: {relative}")
@@ -119,33 +128,23 @@ jobs:
           }, sort_keys=True))
           PY
 
-          metadata=staging/alpha3/seed-metadata.json
-          expected_commit="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["seedCandidateCommit"])' "$metadata")"
-          expected_tree="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["seedCandidateTree"])' "$metadata")"
-          epoch="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["sourceEpoch"])' "$metadata")"
-
+          expected_commit="$(python3 -c 'import json,os; print(json.load(open(os.environ["SEED_DIR"]+"/seed-metadata.json"))["seedCandidateCommit"])')"
+          expected_tree="$(python3 -c 'import json,os; print(json.load(open(os.environ["SEED_DIR"]+"/seed-metadata.json"))["seedCandidateTree"])')"
+          epoch="$(python3 -c 'import json,os; print(json.load(open(os.environ["SEED_DIR"]+"/seed-metadata.json"))["sourceEpoch"])')"
           cp -a "$snapshot/." "$repository/"
-          env -i \
-            PATH="$PATH" \
-            HOME="$HOME" \
-            GIT_CONFIG_GLOBAL=/dev/null \
-            GIT_CONFIG_NOSYSTEM=1 \
-            GIT_CONFIG_SYSTEM=/dev/null \
+          env -i PATH="$PATH" HOME="$HOME" GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_NOSYSTEM=1 GIT_CONFIG_SYSTEM=/dev/null \
             git -C "$repository" init --quiet --initial-branch=public-main
           env GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_NOSYSTEM=1 GIT_CONFIG_SYSTEM=/dev/null \
             git -C "$repository" config core.logAllRefUpdates false
           env GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_NOSYSTEM=1 GIT_CONFIG_SYSTEM=/dev/null \
             git -C "$repository" -c maintenance.auto=false -c gc.auto=0 add --all
-          env \
-            GIT_AUTHOR_DATE="@${epoch} +0000" \
+          env GIT_AUTHOR_DATE="@${epoch} +0000" \
             GIT_AUTHOR_EMAIL="public-snapshot@stateport.invalid" \
             GIT_AUTHOR_NAME="StatePort Public Snapshot Builder" \
             GIT_COMMITTER_DATE="@${epoch} +0000" \
             GIT_COMMITTER_EMAIL="public-snapshot@stateport.invalid" \
             GIT_COMMITTER_NAME="StatePort Public Snapshot Builder" \
-            GIT_CONFIG_GLOBAL=/dev/null \
-            GIT_CONFIG_NOSYSTEM=1 \
-            GIT_CONFIG_SYSTEM=/dev/null \
+            GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_NOSYSTEM=1 GIT_CONFIG_SYSTEM=/dev/null \
             git -C "$repository" -c maintenance.auto=false -c gc.auto=0 commit --quiet \
               -m "StatePort sanitized public snapshot"
 
@@ -154,7 +153,6 @@ jobs:
           test "$observed_commit" = "$expected_commit"
           test "$observed_tree" = "$expected_tree"
           test "$(git -C "$repository" rev-list --count --all)" = 1
-          test "$(git -C "$repository" rev-list --max-parents=0 --all)" = "$expected_commit"
           test "$(git -C "$repository" rev-list --parents --max-count=1 HEAD)" = "$expected_commit"
           test -z "$(git -C "$repository" status --porcelain=v1 --untracked-files=all)"
           git -C "$repository" fsck --full --strict --no-reflogs --unreachable
@@ -169,15 +167,11 @@ jobs:
             git -C "$repository" remote add origin "$remote"
             git -C "$repository" push origin "public-main:refs/heads/${PUBLIC_BRANCH}"
           fi
-          public_observed="$(git ls-remote "$remote" "refs/heads/${PUBLIC_BRANCH}" | awk '{print $1}')"
-          test "$public_observed" = "$expected_commit"
-
+          test "$(git ls-remote "$remote" "refs/heads/${PUBLIC_BRANCH}" | awk '{print $1}')" = "$expected_commit"
           {
             echo "PUBLIC_SNAPSHOT_COMMIT=$expected_commit"
             echo "PUBLIC_SNAPSHOT_TREE=$expected_tree"
           } >> "$GITHUB_ENV"
-          printf '%s\n' "$expected_commit" > "$work/public-commit"
-          printf '%s\n' "$expected_tree" > "$work/public-tree"
 
       - name: Publish public identity result
         if: always()
