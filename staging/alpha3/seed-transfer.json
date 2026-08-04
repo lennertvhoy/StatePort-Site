@@ -1,0 +1,9 @@
+{
+  "formatVersion": "stateport.alpha3-seed-transfer/v1",
+  "sourceRun": 30913086211,
+  "sourceArtifactId": 8893897367,
+  "downloadUrl": "https://sdmntpreastus2.oaiusercontent.com/files/00000000-fcd4-81f6-903d-f28aec37c879/raw?se=2026-08-04T13:30:20Z&sp=r&sv=2026-02-06&sr=b&scid=429f3a22-588b-5916-abf1-17706d0d7921&skoid=ba81670d-b682-4d2d-9682-ac0ffdfb3fa1&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-08-04T05:42:20Z&ske=2026-08-05T05:42:20Z&sks=b&skv=2026-02-06&sig=X%2BCLBqcdE6BhWb%2BqKv4AKmB4tiZa0tRjy3Ia3EW%2BIZk%3D",
+  "sha256": "e60442d3df959f8368c103969129604c360c5cc7ec60e56044356fae6c7a3ee4",
+  "expectedSeedCommit": "f32b295db58e044ef09691cfaee5cf6b49367693",
+  "expectedSeedTree": "028a1ad9926d7e5103a308075199a5a8c03046f1"
+}
