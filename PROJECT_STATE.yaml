@@ -73,7 +73,9 @@ site:
   third_party_runtime_scripts: absent
   deployment:
     provider: GitHub Pages
-    status: legacy_branch_source_main_avoids_actions_quota
+    build_type: workflow
+    status: actions_deploy_on_push_to_main
+    workflow: ".github/workflows/deploy-pages.yml"
     source_branch: main
     source_path: /
   current_release_surface: alpha3_with_alpha2_superseded_erratum

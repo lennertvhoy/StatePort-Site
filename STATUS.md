@@ -24,10 +24,11 @@
   is shown on `/download/` and `/` with a copy control, and `/releases/` is a
   short plain-English status table. `install.sh` and all signed artifacts under
   `download/0.1.0-alpha.2/` and `download/0.1.0-alpha.3/` were not changed.
-- Pages now serves the canonical `main` branch directly through the legacy
-  branch source (`main:/`), avoiding Actions runner quota and deploy queue
-  failures. The former automatic deploy trigger is disabled; its workflow file
-  remains only as a validator-required, disabled manual recovery definition.
+- Pages deploys the canonical `main` branch through the GitHub Actions deploy
+  provider (`build_type: workflow`); `.github/workflows/deploy-pages.yml` runs
+  on every push to `main` (and on manual dispatch), so the public site tracks
+  canonical main. This replaced the legacy branch source after that builder's
+  queue stalled and stopped serving new commits.
 - `v0.1.0-alpha.2` remains immutable, superseded, known defective, and
   install-disabled for inspection. Its files were not rewritten.
 - Human acceptance, independent security review, and production qualification

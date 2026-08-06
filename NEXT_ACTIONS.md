@@ -6,18 +6,18 @@
 
 ## P0 [BL-SITE-ALPHA3-PUBLIC-PROOF] Verify the live Pages bootstrap
 
-**Status:** waiting_legacy_pages_build
+**Status:** pages_deployed_via_actions_owner_proof_pending
 
 Alpha.3 is published on `main` for the portable
 `linux-amd64-rootless-podman-quadlet` target. Ubuntu 24.04 has the
 `validated_baseline` receipt and Fedora 44 has the `compatible_unvalidated`
 receipt, both bound to release-index digest
 `sha256:3353fdb6477fcb5269169177c625205c7737b13c904de0c4f70801d7189f3f38`.
-After the legacy Pages source serves alpha.3 from `main`, run the public URL
-journey on the receipted Ubuntu 24.04 host, capture the receipt and seven-
-image/index verification, and record that the candidate is published but not
-owner-accepted. The prior Actions deploy runs are historical and no longer
-part of the hosting path.
+Pages now deploys `main` through the Actions deploy provider on every push,
+after the legacy branch-source builder stalled. Run the public URL journey on
+the receipted Ubuntu 24.04 host, capture the receipt and seven-image/index
+verification, and record that the candidate is published but not
+owner-accepted.
 
 **Exit:** Pages passes; the public URL install succeeds with
 `supportTier: validated_baseline`, all seven image digests and the signed index
