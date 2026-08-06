@@ -20,8 +20,8 @@
   records the support tier. It makes no all-Linux claim.
 - Pages now serves the canonical `main` branch directly through the legacy
   branch source (`main:/`), avoiding Actions runner quota and deploy queue
-  failures. The Actions deploy workflow was removed because it is no longer
-  the hosting mechanism.
+  failures. The former automatic deploy trigger is disabled; its workflow file
+  remains only as a validator-required, disabled manual recovery definition.
 - `v0.1.0-alpha.2` remains immutable, superseded, known defective, and
   install-disabled for inspection. Its files were not rewritten.
 - Human acceptance, independent security review, and production qualification
