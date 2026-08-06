@@ -77,6 +77,13 @@ site:
     source_branch: main
     source_path: /
   current_release_surface: alpha3_with_alpha2_superseded_erratum
+  public_voice: plain_english_installer_front_and_center
+  installer_command_shown: true
+  installer_command_locations:
+    - download/index.html
+    - index.html
+  signed_artifacts_changed: false
+  install_sh_changed: false
 
 active_work:
   - id: BL-SITE-ALPHA3-PUBLIC-PROOF

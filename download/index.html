@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Download StatePort v0.1.0-alpha.3 for capability-matching Linux AMD64 hosts with signed artifacts, image digests, and install evidence.">
+    <meta name="description" content="Install StatePort alpha on Linux with one command. Ubuntu 24.04 is tested; Fedora 44 works but is not fully tested. Alpha software, not security-audited.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Download StatePort v0.1.0-alpha.3">
-    <meta property="og:description" content="Signed alpha.3 candidate for the portable Linux AMD64 rootless-Podman and Quadlet contract. Human acceptance remains pending.">
+    <meta property="og:title" content="Install StatePort (v0.1.0-alpha.3)">
+    <meta property="og:description" content="One-line installer for StatePort alpha on Linux Intel/AMD. Ubuntu 24.04 tested, Fedora 44 works but is not fully tested. Alpha, not security-audited.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/download/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-demo-source.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -19,15 +19,15 @@
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
     <link rel="manifest" href="../site.webmanifest">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-08-06-1">
-    <link rel="stylesheet" href="../assets/site-enhancements.css" data-site-enhancements>
-    <title>Download v0.1.0-alpha.3 — StatePort</title>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-08-06-2">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-06-1" data-site-enhancements>
+    <title>Install StatePort — v0.1.0-alpha.3</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Download StatePort v0.1.0-alpha.3",
-        "description": "Signed alpha.3 candidate for the portable Linux AMD64 rootless-Podman and Quadlet contract.",
+        "name": "Install StatePort (v0.1.0-alpha.3)",
+        "description": "One-line installer for StatePort alpha on Linux Intel/AMD. Ubuntu 24.04 tested, Fedora 44 works but is not fully tested.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/download/",
         "dateModified": "2026-08-06",
         "inLanguage": "en"
@@ -53,11 +53,12 @@
     </header>
 
     <main id="main">
-      <section class="article-hero" aria-labelledby="download-title">
+      <section class="article-hero" id="alpha3" aria-labelledby="download-title">
         <div class="article-hero-inner">
-          <p class="document-kicker">Download / Linux alpha</p>
-          <h1 id="download-title">Download the corrected alpha candidate.</h1>
-          <p>StatePort v0.1.0-alpha.3 is published for hosts that match the portable Linux AMD64 rootless-Podman and Quadlet capability contract. Verify the signed index before installing.</p>
+          <p class="document-kicker">Install</p>
+          <h1 id="download-title">Install StatePort</h1>
+          <div class="code-panel" data-label="One-line install"><code>curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.3/install.sh | bash</code></div>
+          <p>Linux · Intel/AMD only · Alpha software — don't run it anywhere that matters yet.</p>
         </div>
       </section>
 
@@ -65,61 +66,47 @@
         <aside class="doc-sidebar" aria-label="Download sections">
           <h2>Download</h2>
           <nav>
-            <a href="#alpha3" aria-current="page">Alpha.3</a>
-            <a href="#tiers">Support tiers</a>
-            <a href="#verification">Verification</a>
-            <a href="#images">Images and evidence</a>
-            <a href="#alpha2">Alpha.2 superseded</a>
+            <a href="#alpha3" aria-current="page">The command</a>
+            <a href="#what-works">What works</a>
+            <a href="#what-it-does">What the installer does</a>
+            <a href="#verification">Verification details</a>
+            <a href="#alpha2">Alpha.2</a>
             <a href="../releases/">Release status</a>
           </nav>
         </aside>
 
         <article class="prose release-overview" data-no-toc>
-          <p class="notice"><strong>Published, not owner-accepted.</strong> Alpha.3 has fresh signed artifacts and successful compatible-host install receipts. Human acceptance, independent security review, and production qualification remain pending.</p>
+          <p>StatePort runs on Linux on Intel/AMD with rootless Podman. The installer checks your system, downloads signed images, checks every signature, and asks before it installs.</p>
 
-          <section id="alpha3" aria-labelledby="alpha3-heading">
-            <h2 id="alpha3-heading">v0.1.0-alpha.3</h2>
-            <dl class="release-ledger release-ledger--detailed" aria-label="Alpha 3 availability">
-              <div>
-                <dt>Channel</dt>
-                <dd><span class="status-chip status-chip--pending">Alpha candidate</span><small>Single user, single host, loopback-only service exposure by default.</small></dd>
-              </div>
-              <div>
-                <dt>Install</dt>
-                <dd><span class="status-chip status-chip--available">Available</span><small><a href="0.1.0-alpha.3/install.sh">Run the capability-gated bootstrap</a>; it refuses non-capable hosts.</small></dd>
-              </div>
-              <div>
-                <dt>Target</dt>
-                <dd><code>linux-amd64-rootless-podman-quadlet</code><small>Linux kernel, AMD64, cgroup v2, rootless Podman, Quadlet, systemd user services, and subordinate UID/GID mappings.</small></dd>
-              </div>
-              <div>
-                <dt>Source</dt>
-                <dd><code>fa4ea4b7f08e78669e194c204b59206ab109a02f</code><small>Tree <code>aec60303045e7a9c8255b941c761d904af85ec10</code>.</small></dd>
-              </div>
-            </dl>
+          <section id="what-works" aria-labelledby="what-works-heading">
+            <h2 id="what-works-heading">What works</h2>
+            <ul>
+              <li><strong>Ubuntu 24.04</strong> — tested, works.</li>
+              <li><strong>Fedora 44</strong> — works, not fully tested.</li>
+              <li><strong>Debian, Arch, and other distros</strong> — not yet.</li>
+            </ul>
+            <p>The installer decides by checking what your machine can actually do, not by its distro name. A matching machine we haven't run a clean install on is marked "works, not fully tested".</p>
           </section>
 
-          <section id="tiers" aria-labelledby="tiers-heading">
-            <h2 id="tiers-heading">Support tiers and evidence</h2>
-            <p>The installer evaluates capabilities, not distribution branding. A matching host without a clean-install receipt is recorded explicitly as compatible_unvalidated.</p>
-            <table>
-              <caption>Alpha.3 host evidence</caption>
-              <thead><tr><th scope="col">Host</th><th scope="col">Tier</th><th scope="col">Evidence</th></tr></thead>
-              <tbody>
-                <tr><th scope="row">Ubuntu 24.04 AMD64</th><td><code>validated_baseline</code></td><td>Successful clean-install receipt <code>63bba55c</code></td></tr>
-                <tr><th scope="row">Fedora 44 AMD64</th><td><code>compatible_unvalidated</code></td><td>Successful compatible-host receipt <code>ae0d70ed</code></td></tr>
-                <tr><th scope="row">Debian and rolling distributions</th><td>Not claimed</td><td>No clean-install receipt published</td></tr>
-              </tbody>
-            </table>
-            <p><strong>Evidence language:</strong> always distinguish proposed, implemented, locally validated, remotely verified, published, clean-installed, human validated, human accepted, independently reviewed, and production qualified.</p>
+          <section id="what-it-does" aria-labelledby="what-it-does-heading">
+            <h2 id="what-it-does-heading">What the installer does</h2>
+            <ol>
+              <li>Checks your system is compatible.</li>
+              <li>Downloads the signed images and verifies every signature.</li>
+              <li>Asks you to type <code>install</code> before it changes anything.</li>
+            </ol>
+            <p>If your system is not compatible, it stops and changes nothing. <a href="0.1.0-alpha.3/install.sh">Read the installer script</a> before you run it if you like.</p>
           </section>
+
+          <p class="notice"><strong>Honest disclaimer.</strong> This is alpha software. It has not been security-audited or tested for production. Don't run it anywhere that matters yet.</p>
 
           <section id="verification" aria-labelledby="verification-heading">
-            <h2 id="verification-heading">Installer and signed index</h2>
+            <h2 id="verification-heading">Verification details</h2>
+            <p>If you want to check the install by hand, these are the exact files and their SHA-256 sums. The signed index is the source of truth for version, images, and trust identity.</p>
             <dl class="release-ledger release-ledger--detailed" aria-label="Alpha 3 verification values">
               <div>
-                <dt>Bootstrap</dt>
-                <dd><a href="0.1.0-alpha.3/install.sh"><code>install.sh</code></a><small>SHA-256: <code>not separately signed; it pins the installer below</code></small></dd>
+                <dt>Installer script</dt>
+                <dd><a href="0.1.0-alpha.3/install.sh"><code>install.sh</code></a><small>The one-line command above downloads and runs this. It pins the installer below.</small></dd>
               </div>
               <div>
                 <dt>Installer</dt>
@@ -137,13 +124,12 @@
                 <dt>Trust key</dt>
                 <dd><a href="0.1.0-alpha.3/stateport-alpha-2026-08-cosign.pub"><code>alpha-2026-08-cosign.pub</code></a><small>DER-SPKI fingerprint: <code>sha256:3dca6219e41310c6a95a8189669aacad3198e6c84489946406b8f986e1f4211a</code>.</small></dd>
               </div>
+              <div>
+                <dt>Source</dt>
+                <dd><code>fa4ea4b7f08e78669e194c204b59206ab109a02f</code><small>Tree <code>aec60303045e7a9c8255b941c761d904af85ec10</code>. The implementation source itself is not public.</small></dd>
+              </div>
             </dl>
-            <p>Use the exact versioned URL for reproducible installs. The signed installer re-verifies the index, artifacts, signatures, image digests, and portable capability target before changing the host.</p>
-          </section>
-
-          <section id="images" aria-labelledby="images-heading">
-            <h2 id="images-heading">Images and supply-chain evidence</h2>
-            <p>Seven Linux AMD64 image references are pinned in the signed index. The public receipt image set digest is <code>sha256:ff783dddd731ff8217d8cf573403b114bba5759dc9f0922ada98bf7d22a1beb7</code>.</p>
+            <p>Seven Linux AMD64 images are pinned in the signed index. The public receipt image set digest is <code>sha256:ff783dddd731ff8217d8cf573403b114bba5759dc9f0922ada98bf7d22a1beb7</code>:</p>
             <ul>
               <li><code>stateport-api</code> <code>sha256:7d06c67c01bdebd12c917fadd4c8ba6aa552ebd652ca285060af6769df117ac4</code></li>
               <li><code>stateport-dev-workspace</code> <code>sha256:bc5a36444fb3adbeb7d6a266ae105b78fecd53e7154c1c4b9a8704171b1d399c</code></li>
@@ -153,13 +139,13 @@
               <li><code>stateport-web</code> <code>sha256:9117ee4ec4329a1b0a229e430248de8269bf7c4e5a8c8c08da0afe8b6cadbd92</code></li>
               <li><code>stateport-worker</code> <code>sha256:c12f58d354fb066db0bb2747b8867cfc76db151fb449cdd1fba94c4939f4e1b3</code></li>
             </ul>
-            <p><a href="0.1.0-alpha.3/supply-chain/public-export-manifest.json">Export manifest</a>, <a href="0.1.0-alpha.3/compose.yaml">Compose definition</a>, <a href="0.1.0-alpha.3/release-notes.md">signed release notes</a>, and <a href="0.1.0-alpha.3/known-limitations.md">known limitations</a> are shipped with the candidate.</p>
+            <p>Also shipped with the candidate: the <a href="0.1.0-alpha.3/supply-chain/public-export-manifest.json">export manifest</a>, <a href="0.1.0-alpha.3/compose.yaml">Compose definition</a>, <a href="0.1.0-alpha.3/release-notes.md">release notes</a>, and <a href="0.1.0-alpha.3/known-limitations.md">known limitations</a>.</p>
           </section>
 
           <section id="alpha2" aria-labelledby="alpha2-heading">
-            <h2 id="alpha2-heading">Alpha.2 is superseded</h2>
-            <p><strong>v0.1.0-alpha.2 is superseded — use alpha.3.</strong> Its immutable signed artifacts remain online for cryptographic inspection, but its bootstrap remains disabled because the packaged web image omitted required runtime source trees. Do not install alpha.2.</p>
-            <p><a href="0.1.0-alpha.2/release-index.json">Inspect the alpha.2 signed index</a> or read the <a href="../releases/">release ledger</a>. Alpha.2 files are not rewritten or relabelled.</p>
+            <h2 id="alpha2-heading">Alpha.2</h2>
+            <p><strong>v0.1.0-alpha.2 is superseded and disabled. Use alpha.3. Do not install alpha.2.</strong> Its signed files stay online for inspection — they are not changed or relabelled — but its installer stays disabled because the packaged web image was missing required source trees.</p>
+            <p><a href="0.1.0-alpha.2/release-index.json">Inspect the alpha.2 signed index</a> or read the <a href="../releases/">release status</a> page.</p>
           </section>
         </article>
       </div>

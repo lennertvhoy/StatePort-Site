@@ -26,6 +26,11 @@ are recorded in both evidence worklogs.
 
 ## Completed
 
+- Rewrote the public download, release-status, and home pages in plain voice
+  with the one-line installer front and center (`/download/`, `/`, and a short
+  table on `/releases/`). `install.sh` and all signed artifacts under
+  `download/0.1.0-alpha.2/` and `download/0.1.0-alpha.3/` were not changed;
+  validators and the install-script syntax check pass.
 - Published the immutable alpha.3 artifact tree and capability-gated bootstrap.
 - Preserved the alpha.2 signed files and fail-closed bootstrap unchanged.
 - Updated public release, download, limitation, update, and security copy to

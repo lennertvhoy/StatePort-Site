@@ -18,6 +18,12 @@
   `compatible_unvalidated`. Debian and rolling distributions are not claimed.
 - The alpha.3 installer evaluates capabilities, refuses non-capable hosts, and
   records the support tier. It makes no all-Linux claim.
+- The public download, release-status, and home pages now lead with the
+  one-line installer in plain voice. The command
+  `curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.3/install.sh | bash`
+  is shown on `/download/` and `/` with a copy control, and `/releases/` is a
+  short plain-English status table. `install.sh` and all signed artifacts under
+  `download/0.1.0-alpha.2/` and `download/0.1.0-alpha.3/` were not changed.
 - Pages now serves the canonical `main` branch directly through the legacy
   branch source (`main:/`), avoiding Actions runner quota and deploy queue
   failures. The former automatic deploy trigger is disabled; its workflow file

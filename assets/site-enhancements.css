@@ -1578,3 +1578,26 @@ video {
     break-inside: avoid;
   }
 }
+
+/* Install command surfaced in the download hero and the home get-started strip. */
+.article-hero .code-panel {
+  margin: 2rem 0 0;
+  max-width: 50rem;
+  border: 1px solid rgba(217, 228, 247, 0.18);
+  background: rgba(8, 14, 28, 0.55);
+}
+
+.get-started-strip {
+  border-top: 1px solid var(--line);
+}
+
+.get-started-strip .code-panel {
+  max-width: 50rem;
+}
+
+.get-started-note {
+  max-width: 42rem;
+  margin: 1.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}

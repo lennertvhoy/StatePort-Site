@@ -26,8 +26,8 @@
     <link rel="alternate icon" href="assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="stylesheet" href="assets/site.css?v=2026-08-02-3">
-    <link rel="stylesheet" href="assets/site-enhancements.css" data-site-enhancements>
+    <link rel="stylesheet" href="assets/site.css?v=2026-08-06-2">
+    <link rel="stylesheet" href="assets/site-enhancements.css?v=2026-08-06-1" data-site-enhancements>
     <title>StatePort — Durable AI applications that keep their state</title>
     <script type="application/ld+json">
       {
@@ -76,7 +76,7 @@
               <a class="button" href="#prototype">See the application at work</a>
               <a class="button button--quiet" href="docs/study-state.html">Meet StudyState</a>
             </div>
-            <p class="availability"><strong>Alpha candidate:</strong><span>v0.1.0-alpha.3 is published for capability-matching Linux AMD64 hosts. Ubuntu 24.04 is the validated baseline; Fedora 44 is compatible_unvalidated. Human acceptance and independent security review remain pending.</span><a href="releases/">Release ledger</a><a href="download/">Download page</a><a href="docs/limitations.html">Limitations</a></p>
+            <p class="availability"><strong>Alpha candidate:</strong><span>v0.1.0-alpha.3 runs on Linux on Intel/AMD. Ubuntu 24.04 is tested; Fedora 44 works but isn't fully tested. Alpha — still being reviewed, not security-audited.</span><a href="releases/">Release status</a><a href="download/">Install</a><a href="docs/limitations.html">Limitations</a></p>
           </div>
 
           <div class="atlas" aria-hidden="true">
@@ -90,6 +90,20 @@
             </svg>
             <img class="atlas-mark" src="assets/stateport-mascot-block-arch-light.svg" alt="" width="288" height="288">
           </div>
+        </div>
+      </section>
+
+      <section class="home-section get-started-strip" aria-labelledby="get-started-heading">
+        <div class="reveal">
+          <p class="section-kicker">Get it</p>
+          <h2 class="section-heading" id="get-started-heading">Install StatePort on Linux.</h2>
+          <p>Alpha. One line. The installer checks your system first, then asks before it changes anything.</p>
+          <div class="code-panel" data-label="One-line install"><code>curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.3/install.sh | bash</code></div>
+          <div class="hero-actions">
+            <a class="button" href="download/">Download&nbsp;<span aria-hidden="true">→</span></a>
+            <a class="button button--outlined" href="releases/">Release status</a>
+          </div>
+          <p class="get-started-note">Linux · Intel/AMD only · Alpha software — don't run it anywhere that matters yet.</p>
         </div>
       </section>
 
@@ -138,7 +152,7 @@
               <track kind="captions" srclang="en" label="English" src="assets/media/stateport-local-prototype-walkthrough.vtt" default>
               Your browser does not support HTML video. Read the linked walkthrough for the same information.
             </video>
-            <p id="prototype-caption">Local preview; plain-language narration and captions rebuilt 27 July 2026. Availability lives in the release ledger.</p>
+            <p id="prototype-caption">Local preview; plain-language narration and captions rebuilt 27 July 2026. Availability lives on the release status page.</p>
           </div>
 
           <p class="prototype-gallery-intro reveal">Click any screen to inspect it at full size.</p>
@@ -190,12 +204,12 @@
           <article class="principle reveal">
             <p class="principle-index">02</p>
             <h3>Important change stays explicit</h3>
-            <p>A proposal, permission decision, applied result, validation, and human acceptance remain separate facts.</p>
+            <p>A proposal, permission decision, applied result, validation, and your final sign-off stay separate facts.</p>
           </article>
           <article class="principle reveal">
             <p class="principle-index">03</p>
             <h3>Providers are profiled</h3>
-            <p>The harness runs Codex CLI in the current alpha; Pi is a reference direction and OpenCode is unqualified. StatePort preserves canonical application state across execution-provider integrations — capabilities and behavior differ and are explicitly profiled.</p>
+            <p>StatePort runs Codex CLI in the current alpha; Pi is a reference direction and OpenCode is unqualified. Capabilities and behavior differ between providers and are spelled out explicitly.</p>
           </article>
         </div>
       </section>
@@ -213,12 +227,12 @@
             <article class="route-step reveal">
               <p class="route-number">02 / TEMPLATE</p>
               <h3>Give the work a home</h3>
-              <p>Each application is a Stateware template: durable state files plus the cockpit scripts the agent is allowed to run.</p>
+              <p>Each application is a template of durable state files plus the scripts the agent is allowed to run.</p>
             </article>
             <article class="route-step reveal">
               <p class="route-number">03 / RUN</p>
               <h3>Let it run, governed</h3>
-              <p>The harness plans, runs the agent, asks approval when consequences justify it, and records what changed. You can watch, pause, redirect, or roll back; the agent never owns the truth.</p>
+              <p>StatePort plans the work, runs the agent, asks approval when it matters, and records what changed. You can watch, pause, redirect, or roll back; the agent never owns the truth.</p>
             </article>
             <article class="route-step reveal">
               <p class="route-number">04 / KEEP</p>
@@ -227,8 +241,8 @@
             </article>
           </div>
           <figure class="diagram-figure reveal">
-            <img src="assets/diagrams/stateport-diagram-template.png" alt="Diagram: a Stateware template of state files and cockpit scripts flows through the StatePort harness, which runs a headless agent in a managed environment, writing results into a durable instance.">
-            <figcaption>From a Stateware template to a durable instance — the agent does the work, the harness governs it, the instance keeps it.</figcaption>
+            <img src="assets/diagrams/stateport-diagram-template.png" alt="Diagram: an application template of state files and scripts flows through StatePort, which runs a headless agent in a managed environment and writes results into a durable instance.">
+            <figcaption>From an application template to a durable instance — the agent does the work, StatePort governs it, the instance keeps it.</figcaption>
           </figure>
         </div>
       </section>
@@ -249,7 +263,7 @@
           <article class="audience-path reveal">
             <p class="audience-label">For builders and operators</p>
             <h3>How is the boundary designed?</h3>
-            <p>Read the Stateware model, StateSpec structure, governance rules, portability contract, and evidence ladder.</p>
+            <p>Read the design model, governance rules, portability notes, and exactly what we've tested.</p>
             <a href="docs/">Open the documentation path <span aria-hidden="true">↗</span></a>
           </article>
         </div>
@@ -260,7 +274,7 @@
         <p class="section-kicker reveal">About</p>
         <div class="support-copy reveal">
           <h2 class="section-heading" id="about-heading">Built independently.</h2>
-          <p>StatePort is independently built, tested and documented. Its release ledger remains the source of truth for what visitors can use today.</p>
+          <p>StatePort is independently built, tested and documented. The release status page remains the source of truth for what visitors can use today.</p>
 <!-- support-section-link:start -->
 
 <!-- support-section-link:end -->
@@ -270,10 +284,10 @@
       <section class="release-band" aria-labelledby="release-heading">
         <div class="release-band-inner release-band-inner--expanded">
           <div class="reveal">
-            <p class="release-label">Release ledger</p>
-            <h2 id="release-heading">Evidence before availability.</h2>
-            <p class="release-updated">Status reviewed <time datetime="2026-07-26">26 July 2026</time>.</p>
-            <a class="release-ledger-link" href="releases/">View the full release ledger <span aria-hidden="true">↗</span></a>
+            <p class="release-label">Release status</p>
+            <h2 id="release-heading">What's available today.</h2>
+            <p class="release-updated">Status reviewed <time datetime="2026-08-06">6 August 2026</time>.</p>
+            <a class="release-ledger-link" href="releases/">See the full release status <span aria-hidden="true">↗</span></a>
           </div>
           <dl class="release-status-list reveal">
             <div>
@@ -286,7 +300,7 @@
             </div>
             <div>
               <dt>Software download</dt>
-              <dd>v0.1.0-alpha.3 candidate</dd>
+              <dd>v0.1.0-alpha.3 (alpha)</dd>
             </div>
             <div>
               <dt>Implementation source</dt>
