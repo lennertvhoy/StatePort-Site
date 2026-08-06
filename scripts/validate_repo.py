@@ -376,8 +376,11 @@ def main() -> None:
     public_copy = "\n".join(
         page.read_text(encoding="utf-8") for page in ROOT.rglob("*.html")
     )
-    if "github.com/lennertvhoy/StatePort" in public_copy:
-        raise AssertionError("Public pages must not link to the private implementation repository")
+    if re.search(r"github\.com/lennertvhoy/StatePort(?!-Site)", public_copy):
+        raise AssertionError(
+            "Public pages must not link to the private implementation repository "
+            "(lennertvhoy/StatePort); the public site repository (StatePort-Site) is allowed"
+        )
 
     validate_local_references()
     validate_documentation_button_accessibility()
