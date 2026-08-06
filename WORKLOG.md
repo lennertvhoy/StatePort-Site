@@ -1,5 +1,21 @@
 # Worklog
 
+## 2026-08-06 — Alpha.3 publication gate blocked by Pages outage
+
+- Publication commit `52b42dd47a11510220f33690075f1b6773f6a889` was pushed to
+  `main` with the signed alpha.3 artifact tree, capability-gated bootstrap,
+  support-tier table, and preserved alpha.2 erratum.
+- Local `validate_repo.py`, `check_site_quality.py`, and `git diff --check`
+  passed. Pages run `31125217806` remains queued with no steps started while
+  GitHub reports the critical `Incident with Actions` outage.
+- The live Pages URL still serves the predecessor alpha.2 erratum, so the
+  public-URL clean-install receipt was not captured. The existing private-ops
+  Ubuntu receipt (`install_receipt_63bba55c...`) is not relabelled as public
+  proof.
+- Alpha.3 is published but not owner-accepted. Human acceptance, independent
+  security review, and production qualification remain pending.
+- Detailed evidence is recorded in the private operator evidence ledger.
+
 ## 2026-08-06 — Publish v0.1.0-alpha.3 candidate
 
 - Published the resigned v0.1.0-alpha.3 candidate from source commit

@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha3_published_public_proof_pending_human_acceptance_pending
+  status: alpha3_published_pages_blocked_github_actions_incident_public_proof_pending
   purpose: public documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -47,8 +47,8 @@ release:
     fedora_44: compatible_unvalidated
     debian_and_rolling: not_claimed
   evidence:
-    ubuntu_receipt: not_yet_recorded_public_url_receipt
-    fedora_receipt: "_stateport_ops/fedora44-alpha3-evidence-2026-08-06-r4i/install_receipt_ae0d70edfe42aeff2674dad67b78236b.json"
+    ubuntu_receipt: private_ops_evidence_not_yet_public_url_receipt
+    fedora_receipt: private_ops_evidence_install_receipt_ae0d70edfe42aeff2674dad67b78236b
     shared_release_index_digest: sha256:3353fdb6477fcb5269169177c625205c7737b13c904de0c4f70801d7189f3f38
     image_set_digest: sha256:ff783dddd731ff8217d8cf573403b114bba5759dc9f0922ada98bf7d22a1beb7
 
@@ -73,13 +73,13 @@ site:
   third_party_runtime_scripts: absent
   deployment:
     provider: GitHub Pages
-    status: publication_commit_pending_pages_run
+    status: publication_commit_52b42dd_pages_run_31125217806_queued_github_actions_incident
   current_release_surface: alpha3_with_alpha2_superseded_erratum
 
 active_work:
   - id: BL-SITE-ALPHA3-PUBLIC-PROOF
     priority: P0
-    status: pending_live_pages_clean_install_receipt
+    status: blocked_live_pages_github_actions_incident
   - id: BL-SITE-ALPHA2-IMMUTABILITY
     priority: P0
     status: preserved_fail_closed
