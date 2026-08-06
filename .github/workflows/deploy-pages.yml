@@ -1,11 +1,10 @@
 name: Deploy StatePort Site
 
-# Deploys the static site to GitHub Pages via the Actions deploy provider.
-# Runs on every push to main so the public site tracks canonical main, with a
-# manual dispatch fallback. Pages must be configured with build_type=workflow.
+# GitHub Pages serves main directly (legacy branch source). This workflow is a
+# MANUAL-ONLY recovery path: it is disabled in GitHub settings and must NOT run
+# on push, or it will burn Actions minutes on every commit. Do not re-add a
+# `push` trigger. Legacy branch source is the deploy provider.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -14,7 +13,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages-deploy
+  group: pages-manual-recovery
   cancel-in-progress: true
 
 jobs:
