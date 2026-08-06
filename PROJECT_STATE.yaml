@@ -73,7 +73,7 @@ site:
   third_party_runtime_scripts: absent
   deployment:
     provider: GitHub Pages
-    status: publication_commit_52b42dd_pages_run_31125217806_queued_github_actions_incident
+    status: publication_commit_52b42dd_pages_run_31125217806_cancelled_github_actions_incident
   current_release_surface: alpha3_with_alpha2_superseded_erratum
 
 active_work:

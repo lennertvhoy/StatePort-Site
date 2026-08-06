@@ -6,7 +6,7 @@
 
 ## P0 [BL-SITE-ALPHA3-PUBLIC-PROOF] Verify the live Pages bootstrap
 
-**Status:** blocked_live_pages_github_actions_incident
+**Status:** blocked_live_pages_github_actions_incident_run_cancelled
 
 Alpha.3 is published on `main` for the portable
 `linux-amd64-rootless-podman-quadlet` target. Ubuntu 24.04 has the
@@ -16,7 +16,7 @@ receipt, both bound to release-index digest
 After Pages recovers and serves publication commit `52b42dd`, run the public
 URL journey on the receipted Ubuntu 24.04 host, capture the receipt and
 seven-image/index verification, and record that the candidate is published but
-not owner-accepted. Pages run `31125217806` is currently queued during GitHub's
+not owner-accepted. Pages run `31125217806` was canceled during GitHub's
 critical `Incident with Actions` outage.
 
 **Exit:** Pages passes; the public URL install succeeds with

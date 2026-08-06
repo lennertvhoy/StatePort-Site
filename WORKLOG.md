@@ -6,7 +6,7 @@
   `main` with the signed alpha.3 artifact tree, capability-gated bootstrap,
   support-tier table, and preserved alpha.2 erratum.
 - Local `validate_repo.py`, `check_site_quality.py`, and `git diff --check`
-  passed. Pages run `31125217806` remains queued with no steps started while
+  passed. Pages run `31125217806` was canceled with no steps started while
   GitHub reports the critical `Incident with Actions` outage.
 - The live Pages URL still serves the predecessor alpha.2 erratum, so the
   public-URL clean-install receipt was not captured. The existing private-ops
