@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="The authoritative public availability ledger for StatePort documentation, prototype evidence, source access, downloads, installation status, and known release defects.">
+    <meta name="description" content="The public availability ledger for StatePort signed alpha.3 artifacts, capability-gated installation, evidence tiers, and release limits.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="StatePort release status">
-    <meta property="og:description" content="Alpha.2 is signed and published but installation is disabled because of a known packaged-image defect.">
+    <meta property="og:description" content="Alpha.3 is published for capability-matching Linux AMD64 hosts; human acceptance remains pending. Alpha.2 is superseded and install-disabled.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/releases/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-demo-source.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -27,9 +27,9 @@
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "StatePort release status",
-        "description": "The authoritative public availability ledger for StatePort, including the known alpha.2 installation defect.",
+        "description": "The authoritative public availability ledger for StatePort, including alpha.3 evidence tiers and the alpha.2 installation defect.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/releases/",
-        "dateModified": "2026-08-03",
+        "dateModified": "2026-08-06",
         "inLanguage": "en"
       }
     </script>
@@ -68,7 +68,8 @@
             <a href="#current-status" aria-current="page">Current status</a>
             <a href="#available-now">Available now</a>
             <a href="#release-evidence">Release evidence</a>
-            <a href="../download/">Alpha.2 erratum</a>
+            <a href="../download/#alpha3">Alpha.3 download</a>
+            <a href="../download/#alpha2">Alpha.2 superseded</a>
             <a href="../docs/limitations.html">Current limitations</a>
             <a href="../docs/">Documentation</a>
             <a href="../">Home</a>
@@ -79,10 +80,10 @@
           <div class="release-summary" id="current-status">
             <div>
               <p class="release-summary-label">Current software status</p>
-              <h2>v0.1.0-alpha.2 is published, but installation is disabled</h2>
-              <p>The candidate’s signed index and artifacts remain public for inspection. A clean-install investigation found that the packaged web image omitted the updater and preview-gateway source trees required by the application server. No successful install receipt exists, so alpha.2 is known defective and cannot be accepted. A corrected successor must be rebuilt and verified from scratch. See the <a href="../download/">alpha.2 erratum</a>.</p>
+              <h2>v0.1.0-alpha.3 is published, but not owner-accepted</h2>
+              <p>Alpha.3 is a fresh signed candidate for the portable <code>linux-amd64-rootless-podman-quadlet</code> contract. Ubuntu 24.04 is <code>validated_baseline</code>; Fedora 44 is <code>compatible_unvalidated</code>. Both have successful install receipts bound to release-index digest <code>sha256:3353fdb6477fcb5269169177c625205c7737b13c904de0c4f70801d7189f3f38</code>. Human acceptance, independent security review, and production qualification remain pending. Alpha.2 is superseded and remains install-disabled for inspection.</p>
             </div>
-            <p class="release-review-date">Ledger reviewed<br><time datetime="2026-08-03">3 August 2026</time></p>
+            <p class="release-review-date">Ledger reviewed<br><time datetime="2026-08-06">6 August 2026</time></p>
           </div>
 
           <dl class="release-ledger release-ledger--detailed" aria-label="StatePort availability">
@@ -96,11 +97,11 @@
             </div>
             <div>
               <dt>Software candidate</dt>
-              <dd><span class="status-chip status-chip--unavailable">Known defective</span><small>v0.1.0-alpha.2 is signed and published but has no successful install receipt.</small></dd>
+              <dd><span class="status-chip status-chip--available">Published candidate</span><small>v0.1.0-alpha.3 has successful Ubuntu 24.04 and Fedora 44 install receipts; human acceptance remains pending.</small></dd>
             </div>
             <div>
               <dt>Installation</dt>
-              <dd><span class="status-chip status-chip--unavailable">Disabled</span><small>The public bootstrap refuses immediately; <a href="../download/">read the alpha.2 erratum</a>.</small></dd>
+              <dd><span class="status-chip status-chip--available">Capability-gated</span><small>Alpha.3 evaluates the portable host contract and refuses non-capable hosts. <a href="../download/#alpha3">Use alpha.3</a>.</small></dd>
             </div>
             <div>
               <dt>Signed artifacts</dt>
@@ -119,8 +120,11 @@
           <section id="available-now" aria-labelledby="available-now-heading">
             <h2 id="available-now-heading">What you can inspect today</h2>
             <div class="availability-actions">
-              <a href="../download/">
-                <span><strong>Alpha.2 erratum and artifacts</strong><small>Read the known defect and inspect the immutable signed material.</small></span><i aria-hidden="true">↗</i>
+              <a href="../download/#alpha3">
+                <span><strong>Alpha.3 download</strong><small>Run the capability-gated bootstrap and inspect the fresh signed candidate.</small></span><i aria-hidden="true">↗</i>
+              </a>
+              <a href="../download/#alpha2">
+                <span><strong>Alpha.2 superseded artifacts</strong><small>Inspect the immutable signed material and its preserved install-disabled erratum.</small></span><i aria-hidden="true">↗</i>
               </a>
               <a href="../docs/prototype-walkthrough.html">
                 <span><strong>Product walkthrough</strong><small>Watch the current local prototype and read the evidence notes.</small></span><i aria-hidden="true">↗</i>
@@ -135,18 +139,18 @@
           </section>
 
           <section id="release-evidence" aria-labelledby="release-evidence-heading">
-            <h2 id="release-evidence-heading">What the corrected successor must prove</h2>
-            <p>The next candidate starts from fresh evidence. Alpha.2’s publication record cannot be transferred to changed product bytes.</p>
+              <h2 id="release-evidence-heading">What alpha.3 proves, and what remains open</h2>
+              <p>Alpha.3 carries fresh evidence bound to its exact source, signed index, portable target, artifacts, and image set. Alpha.2’s publication record was not transferred to changed product bytes.</p>
             <ol class="release-evidence-list">
-              <li><strong>Exact source</strong><span>A frozen canonical source head and normal-clone-resolvable public snapshot identity.</span></li>
-              <li><strong>Complete web image</strong><span>The packaged runtime imports the updater and preview gateway and returns its health response.</span></li>
-              <li><strong>Fresh supply chain</strong><span>Rebuilt images, SBOMs, scans, provenance, signatures, and signed index.</span></li>
-              <li><strong>Verified install path</strong><span>A clean public one-command install on every claimed host baseline.</span></li>
-              <li><strong>Acceptance record</strong><span>Restart/reread evidence and an explicit owner verdict on the exact successor.</span></li>
+                <li><strong>Exact source</strong><span>Frozen source commit <code>fa4ea4b</code> and tree-bound signed artifacts.</span></li>
+                <li><strong>Fresh supply chain</strong><span>Seven digest-pinned images, SBOMs, scans, provenance, signatures, and signed index.</span></li>
+                <li><strong>Capability target</strong><span>Portable Linux AMD64 rootless Podman and Quadlet contract, with no all-Linux claim.</span></li>
+                <li><strong>Clean-installed</strong><span>Ubuntu 24.04 validated_baseline and Fedora 44 compatible_unvalidated receipts share the exact release-index digest.</span></li>
+                <li><strong>Acceptance record</strong><span>Human acceptance, independent review, and production qualification remain pending.</span></li>
             </ol>
           </section>
 
-          <p class="notice"><strong>Why the language is strict</strong> Signed and published does not mean installable, accepted, reviewed, or production-ready. The known failure remains visible rather than being hidden behind a new label.</p>
+          <p class="notice"><strong>Why the language is strict</strong> Published and clean-installed do not mean human accepted, independently reviewed, or production qualified. Alpha.2 remains visible as superseded rather than being hidden behind a new label.</p>
         </article>
       </div>
     </main>

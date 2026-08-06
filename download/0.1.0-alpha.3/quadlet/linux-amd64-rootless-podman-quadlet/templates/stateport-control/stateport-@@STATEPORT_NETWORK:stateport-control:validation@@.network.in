@@ -1,0 +1,7 @@
+[Network]
+NetworkName=stateport-@@STATEPORT_NETWORK:stateport-control:validation@@
+Label=io.stateport.managed=true
+Label=io.stateport.release.id=stateport-alpha-0.1.0-alpha.3
+Label=io.stateport.target.id=linux-amd64-rootless-podman-quadlet
+Label=io.stateport.profile=validation
+Internal=true

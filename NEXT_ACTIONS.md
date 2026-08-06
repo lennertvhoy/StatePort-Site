@@ -1,51 +1,31 @@
 # NEXT_ACTIONS — active execution queue
 
-**Updated At:** 2026-08-03
+**Updated At:** 2026-08-06
 **Execution Mode:** operating
-**Max Items:** 2
+**Max Items:** 1
 
-## P0 [BL-SITE-ALPHA2-ERRATUM] Keep the known defect visible and fail closed
+## P0 [BL-SITE-ALPHA3-PUBLIC-PROOF] Verify the live Pages bootstrap
 
-**Status:** implemented_validation_pending
+**Status:** pending_live_pages_clean_install_receipt
 
-The download page and release ledger must state that alpha.2 is published but
-known defective. `download/install.sh` and
-`download/0.1.0-alpha.2/install.sh` must exit before downloads or changes and
-point to the erratum. Signed artifacts remain available for inspection.
+Alpha.3 is published on `main` for the portable
+`linux-amd64-rootless-podman-quadlet` target. Ubuntu 24.04 has the
+`validated_baseline` receipt and Fedora 44 has the `compatible_unvalidated`
+receipt, both bound to release-index digest
+`sha256:3353fdb6477fcb5269169177c625205c7737b13c904de0c4f70801d7189f3f38`.
+Run the public URL journey on the receipted Ubuntu 24.04 host, capture the
+receipt and seven-image/index verification, and record that the candidate is
+published but not owner-accepted.
 
-Run:
+**Exit:** Pages passes; the public URL install succeeds with
+`supportTier: validated_baseline`, all seven image digests and the signed index
+verify under the pinned key fingerprint, and the receipt path plus site commit
+are recorded in both evidence worklogs.
 
-```sh
-python3 scripts/validate_repo.py
-python3 scripts/check_site_quality.py
-git diff --check
-git status --short --branch
-```
+## Completed
 
-**Exit:** the exact site head validates, GitHub Pages deploys it, and the live
-bootstrap refusal plus public erratum are remotely verified.
-
-## P0 [BL-SITE-SUCCESSOR-INSTALL] Publish only a freshly proven successor
-
-**Status:** blocked_on_product_candidate
-
-Wait for a corrected successor candidate with a fresh signed index, image set,
-SBOMs, scans, provenance, signatures, clean-install receipt, restart/reread
-evidence, and owner verdict. Publish it under a new immutable versioned path and
-make the unversioned bootstrap point to that version only after remote
-verification.
-
-Do not overwrite alpha.2, remove its provenance artifacts, or imply its evidence
-applies to changed bytes.
-
-**Exit:** the new versioned bootstrap installs the exact accepted successor and
-the public ledger names all remaining limitations.
-
-## Completed since last update
-
-- Published alpha.2’s signed artifacts and original one-command bootstrap.
-- After the packaged-image defect was discovered, converted the alpha.2 public
-  entrypoint into a fail-closed erratum while retaining immutable artifacts for
-  inspection.
-- Replaced stale site-agent instructions with a main-only, successor-only
-  operating contract.
+- Published the immutable alpha.3 artifact tree and capability-gated bootstrap.
+- Preserved the alpha.2 signed files and fail-closed bootstrap unchanged.
+- Updated public release, download, limitation, update, and security copy to
+  distinguish published, clean-installed, human-accepted, independently
+  reviewed, and production-qualified states.

@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-03T17:47:00+02:00"
-  updated_by: canonical_reconciliation
+  updated_at: "2026-08-06T00:00:00Z"
+  updated_by: alpha3_publication_operator
   format_version: statespec-site-state/v1
 
 workflow:
@@ -8,63 +8,64 @@ workflow:
   statedd_mode: operating
   repo_mode: operating
   canonical_branch: main
-  branch_policy: no_active_feature_or_candidate_authority
+  branch_policy: main_only_public_authority
 
 project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha2_published_known_defect_installation_disabled
-  purpose: public documentation_release_errata_and_versioned_artifact_inspection
+  status: alpha3_published_public_proof_pending_human_acceptance_pending
+  purpose: public documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
   repository: "https://github.com/lennertvhoy/StatePort-Site"
   branch: main
   pages_url: "https://lennertvhoy.github.io/StatePort-Site/"
   exact_head: derived_from_git_not_persisted
-  ignored_as_current_authority:
-    - agent_branches
-    - candidate_branches
-    - archive_branches
-    - old_handoffs
 
 release:
-  version: 0.1.0-alpha.2
+  version: 0.1.0-alpha.3
   channel: alpha
   qualification: candidate
   published: true
-  immutable_artifacts_available: true
+  owner_accepted: false
+  installation_enabled: true
+  public_download: "download/0.1.0-alpha.3/install.sh"
+  release_index: "download/0.1.0-alpha.3/release-index.json"
+  release_index_sha256: d02709a250369b96c7bf5c39659d9080ff53d0cf0e20d391222fe5c1b0d4ae93
+  release_index_digest: sha256:3353fdb6477fcb5269169177c625205c7737b13c904de0c4f70801d7189f3f38
+  signed_payload_digest: sha256:2639e29d6ca0a5bd83d07013edb49f22692efaf53a6049234fe6b70810c89166
+  index_signature_bundle_digest: sha256:e4fb2c0f274ed88e34a5904c2d85feb3dcc231a7a5d794072fff158a29178208
+  trust_key_id: stateport-alpha-private-2026-08
+  trust_key_fingerprint: sha256:3dca6219e41310c6a95a8189669aacad3198e6c84489946406b8f986e1f4211a
+  source_commit: fa4ea4b7f08e78669e194c204b59206ab109a02f
+  source_tree: aec60303045e7a9c8255b941c761d904af85ec10
+  target_id: linux-amd64-rootless-podman-quadlet
+  image_count: 7
+  support_tiers:
+    ubuntu_24_04: validated_baseline
+    fedora_44: compatible_unvalidated
+    debian_and_rolling: not_claimed
+  evidence:
+    ubuntu_receipt: not_yet_recorded_public_url_receipt
+    fedora_receipt: "_stateport_ops/fedora44-alpha3-evidence-2026-08-06-r4i/install_receipt_ae0d70edfe42aeff2674dad67b78236b.json"
+    shared_release_index_digest: sha256:3353fdb6477fcb5269169177c625205c7737b13c904de0c4f70801d7189f3f38
+    image_set_digest: sha256:ff783dddd731ff8217d8cf573403b114bba5759dc9f0922ada98bf7d22a1beb7
+
+predecessor:
+  version: 0.1.0-alpha.2
+  published: true
+  superseded: true
   installation_enabled: false
-  acceptance_status: blocked_known_defect
-  download_page: "https://lennertvhoy.github.io/StatePort-Site/download/"
-  versioned_bootstrap: "https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.2/install.sh"
-  convenience_bootstrap: "https://lennertvhoy.github.io/StatePort-Site/download/install.sh"
-  installer_artifact: "https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.2/stateport-installer"
-  release_index: "https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.2/release-index.json"
-  release_index_sha256: 9cd33eb7d93b5c70bec9f260824ce45877323ec85993a8b2824411e9b2e43000
-  signed_payload_digest: sha256:692f63cdbdfe531aa4d6379d12ad6e98cd408d7343392bf94f5c01abc46af9aa
-  trust_mode: pinned-public-key
-  transparency_log: not-uploaded-private-candidate
-  defect:
-    class: missing_runtime_sources_in_stateport_web_image
-    missing_sources:
-      - packages/updater/src
-      - packages/preview-gateway/src
-    successful_install_receipt: absent
-    repair_in_place_allowed: false
-    successor_required: true
-  host_target:
-    signed_target_id: ubuntu-24.04-linux-amd64
-    fedora_44_result: unsupported_host_diagnostic_only
-    capability_based_cross_distro_target: future_new_signed_candidate
-  claims:
-    publication: verified
-    signed_index: verified
-    image_push_and_remote_digest: verified
-    clean_public_install: blocked_known_defect
-    human_acceptance: blocked_known_defect
-    independent_security_review: not_performed
-    production_qualification: not_performed
+  known_defective: true
+  immutable_artifacts_retained: true
+
+acceptance:
+  publication: published
+  clean_install: locally_validated_receipts_exist_public_url_pending
+  human_acceptance: not_granted
+  independent_security_review: not_performed
+  production_qualification: not_performed
 
 site:
   implementation: static_html_css_progressive_javascript
@@ -72,37 +73,13 @@ site:
   third_party_runtime_scripts: absent
   deployment:
     provider: GitHub Pages
-    status: erratum_source_committed_deployment_verification_pending
-    current_release_surface: alpha2_erratum
-  distribution:
-    versioned_bootstrap: download/0.1.0-alpha.2/install.sh
-    convenience_bootstrap: download/install.sh
-    bootstrap_behavior:
-      - refuses_before_download_or_mutation
-      - names_the_known_packaged_image_defect
-      - points_to_the_public_erratum
-    immutable_artifacts:
-      status: retained_for_inspection
-
-successor:
-  version: not_declared
-  product_fix: implemented_not_yet_published
-  signed_index: absent
-  public_bootstrap: absent
-  clean_install_receipt: absent
-  human_acceptance: not_applicable_until_candidate_exists
+    status: publication_commit_pending_pages_run
+  current_release_surface: alpha3_with_alpha2_superseded_erratum
 
 active_work:
-  - id: BL-SITE-ALPHA2-ERRATUM
+  - id: BL-SITE-ALPHA3-PUBLIC-PROOF
     priority: P0
-    status: implemented_validation_and_live_verification_pending
-  - id: BL-SITE-SUCCESSOR-INSTALL
+    status: pending_live_pages_clean_install_receipt
+  - id: BL-SITE-ALPHA2-IMMUTABILITY
     priority: P0
-    status: blocked_on_product_candidate
-
-known_limits:
-  - alpha2_is_signed_and_published_but_known_defective
-  - alpha2_installation_is_disabled_and_no_successful_receipt_exists
-  - successor_is_not_built_signed_published_or_accepted
-  - no_independent_security_review_or_production_qualification
-  - no_hosted_multi_user_ARM64_macOS_Windows_or_cross_distro_acceptance
+    status: preserved_fail_closed

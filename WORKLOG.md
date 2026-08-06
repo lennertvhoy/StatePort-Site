@@ -1,5 +1,24 @@
 # Worklog
 
+## 2026-08-06 — Publish v0.1.0-alpha.3 candidate
+
+- Published the resigned v0.1.0-alpha.3 candidate from source commit
+  `fa4ea4b7f08e78669e194c204b59206ab109a02f` with portable target
+  `linux-amd64-rootless-podman-quadlet`.
+- Added the exact signed release index, index bundle, trust key, installer,
+  updater, source archive, current compose definition, quadlet bundle, seven
+  image signature bundles, and supply-chain evidence. Signed artifact hashes
+  remain byte-identical to the operator evidence.
+- Published support tiers: Ubuntu 24.04 `validated_baseline`; Fedora 44
+  `compatible_unvalidated`; Debian and rolling distributions not claimed. The
+  installer delegates host qualification to `evaluate_linux_host` and refuses
+  non-capable hosts without making an all-Linux claim.
+- Alpha.2 remains immutable, superseded, known defective, and install-disabled.
+- This is published but not owner-accepted. Human acceptance, independent
+  security review, and production qualification remain pending. Public-URL
+  clean-install proof is the next gated step; its receipt and Pages run are not
+  yet recorded in this entry.
+
 ## 2026-08-03 — Publish v0.1.0-alpha.2 candidate
 
 - Published the signed v0.1.0-alpha.2 alpha candidate after seven exact image

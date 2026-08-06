@@ -40,23 +40,26 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
 
 ## Current release truth
 
-- Public candidate: `v0.1.0-alpha.2`.
+- Public candidate: `v0.1.0-alpha.3`.
 - Signed payload:
-  `sha256:692f63cdbdfe531aa4d6379d12ad6e98cd408d7343392bf94f5c01abc46af9aa`.
-- The signed index and immutable artifacts remain publicly inspectable.
-- Alpha.2 is **known defective and unaccepted**. Its packaged web image omitted
-  the updater and preview-gateway source trees required by the AppServer.
-- No successful install receipt exists. The public bootstrap must refuse rather
-  than start an installation.
-- A source fix exists in the implementation repository, but no corrected image,
-  signature, release index, successor download, clean-install receipt, or owner
-  acceptance has been published.
-- The signed alpha.2 target remains Ubuntu 24.04 AMD64. Fedora 44 was an
-  unsupported-host diagnostic investigation, not a support or acceptance claim.
+  `sha256:2639e29d6ca0a5bd83d07013edb49f22692efaf53a6049234fe6b70810c89166`.
+- Alpha.3 is **published but not owner-accepted**. Its capability-gated
+  installer and signed artifacts are public; clean-install evidence exists for
+  Ubuntu 24.04 (`validated_baseline`) and Fedora 44 (`compatible_unvalidated`).
+- The portable target is `linux-amd64-rootless-podman-quadlet`; distribution
+  branding is observation, not eligibility. Debian and rolling distributions
+  are not claimed.
+- The public one-command bootstrap is published. Public-URL clean-install
+  proof on the receipted Ubuntu VM remains a separate verification step.
+- Alpha.2 is **known defective, superseded, and unaccepted**. Its packaged web
+  image omitted the updater and preview-gateway source trees required by the
+  AppServer. Its signed bytes remain immutable and its bootstrap remains
+  fail-closed.
+- Independent security review and production qualification remain absent.
 
-Never call alpha.2 usable, repaired, installable, accepted, stable, audited, or
-production-ready. Never silently replace its signed bytes or transfer its
-supply-chain evidence to a successor.
+Never call alpha.3 accepted, stable, audited, or production-ready. Never
+silently replace alpha.2 signed bytes or transfer its supply-chain evidence to
+alpha.3.
 
 ## Repository rules
 
@@ -64,7 +67,8 @@ supply-chain evidence to a successor.
   temporary branch. Default branch and worktree budgets are zero.
 - Integrate finished work promptly. Do not create handoff, candidate-number,
   preservation, or generated-media branches.
-- Signed/versioned artifacts under `download/0.1.0-alpha.2/` are immutable.
+- Signed/versioned artifacts under `download/0.1.0-alpha.2/` and
+  `download/0.1.0-alpha.3/` are immutable.
   External errata and a fail-closed bootstrap may prevent use without changing
   the signed candidate.
 - `release-index.json` remains authority for version, digests, image references,
@@ -83,9 +87,8 @@ supply-chain evidence to a successor.
 
 ## Active scope
 
-1. Keep the public alpha.2 entrypoint fail-closed and the known defect visible.
-2. Publish a new one-command path only after a corrected successor has a fresh
-   signed index, clean-install receipt, restart/reread evidence, and owner
-   verdict.
+1. Preserve alpha.2's fail-closed erratum and alpha.3's exact signed artifacts.
+2. Complete the public-URL clean-install proof and record it as published
+   evidence; human acceptance remains a separate owner decision.
 
 Everything else is backlog or history.

@@ -4,6 +4,8 @@
 from __future__ import annotations
 
 from html.parser import HTMLParser
+import hashlib
+import json
 from pathlib import Path
 import re
 import stat
@@ -198,31 +200,101 @@ def validate_support_configuration() -> None:
 
 
 def validate_disabled_alpha2_bootstrap() -> None:
-    paths = (
-        "download/install.sh",
-        "download/0.1.0-alpha.2/install.sh",
-    )
+    path = "download/0.1.0-alpha.2/install.sh"
+    candidate = require(path)
+    mode = stat.S_IMODE(candidate.stat().st_mode)
+    if mode & 0o111 == 0:
+        raise AssertionError(f"Fail-closed bootstrap must remain executable: {path}")
+    text = candidate.read_text(encoding="utf-8")
+    for fragment in (
+        "#!/bin/sh",
+        "installation is disabled",
+        "known packaged web-image defect",
+        "exit 2",
+    ):
+        if fragment not in text:
+            raise AssertionError(f"Expected {fragment!r} in {path}")
+    for forbidden in ("curl ", "python3 ", "podman ", "sudo "):
+        if forbidden in text:
+            raise AssertionError(f"Disabled alpha.2 bootstrap must not execute {forbidden!r}: {path}")
+
+
+def validate_alpha3_release() -> None:
+    release_root = "download/0.1.0-alpha.3"
+    expected_files = {
+        "release-index.json": "d02709a250369b96c7bf5c39659d9080ff53d0cf0e20d391222fe5c1b0d4ae93",
+        "release-index.sigstore.json": "e4fb2c0f274ed88e34a5904c2d85feb3dcc231a7a5d794072fff158a29178208",
+        "release-notes.md": "588f0489cc91f09a31686b8949afc2b080fdd2024586c1987d9c504899696260",
+        "known-limitations.md": "3fb1d7db8dcf486e1b742dc421791b05af0e8a365119af6910efa6e0dbe1351b",
+        "compose.yaml": "27914d57e10c13e34aaddbaf2a66057a15a69d3afa3490faf62c9cb44f54f594",
+        "stateport-installer": "33874d373c8949209f81895b4481747fb97f2ab570ddd26e76258c4a2c02e6ab",
+        "stateport-updater": "00b1a75a40f37c10505fcec04271ea5231f7cfc8c21fa9c29567277b708f657b",
+        "stateport-source.tar": "17f5680c30841b1e831b37df02dca8f03c2c03d265a42633dd525f99bd613398",
+    }
+    for name, expected in expected_files.items():
+        path = require(f"{release_root}/{name}")
+        observed = hashlib.sha256(path.read_bytes()).hexdigest()
+        if observed != expected:
+            raise AssertionError(f"{path.relative_to(ROOT)} digest {observed} != signed {expected}")
+
+    index = json.loads(require(f"{release_root}/release-index.json").read_text(encoding="utf-8"))
+    signed = index.get("signed", {})
+    if signed.get("release", {}).get("version") != "0.1.0-alpha.3":
+        raise AssertionError("alpha.3 release index has the wrong version")
+    if signed.get("source", {}).get("commit") != "fa4ea4b7f08e78669e194c204b59206ab109a02f":
+        raise AssertionError("alpha.3 release index has the wrong source commit")
+    targets = signed.get("targets", [])
+    if not any(target.get("targetId") == "linux-amd64-rootless-podman-quadlet" for target in targets):
+        raise AssertionError("alpha.3 release index lacks the portable capability target")
+    if len(signed.get("images", [])) != 7:
+        raise AssertionError("alpha.3 release index must contain seven images")
+
+    signature_digests = {
+        "stateport-api.sigstore.json": "4e4937cbfd4c54d67e5973d7dfbbfd255a0d664b0c85a772b20909aed2854360",
+        "stateport-dev-workspace.sigstore.json": "18365379a0611f10b0dc13a136308c19acff5c5b4932673fd1f113429dddaf0c",
+        "stateport-execution-host.sigstore.json": "5b24f342d8cfe44d714715dc0961df7bb6744a8039bd6fbdd174e6181c953e7e",
+        "stateport-playwright.sigstore.json": "e6ce5bfd8f3d512562a25fb536946178125149494bb7cbb93eecbeb227c09dde",
+        "stateport-runner.sigstore.json": "b7afe8b12cc72c0b650d5f73dd32fba0bb6a69dec0ac56621222ce41057baa63",
+        "stateport-web.sigstore.json": "f8dd5a29a33d445e4f99552a3faf7529f42494e54145197cf6c7e3a968866966",
+        "stateport-worker.sigstore.json": "df5277ebfaf90b34e9a55fc7345813c307231d33c460f1f13f954d7503786d21",
+    }
+    for name, expected in signature_digests.items():
+        path = require(f"{release_root}/signatures/{name}")
+        observed = hashlib.sha256(path.read_bytes()).hexdigest()
+        if observed != expected:
+            raise AssertionError(f"{path.relative_to(ROOT)} is not the indexed signature bundle")
+
+    for name in (
+        "public-export-manifest.json",
+        "double-build-comparison.json",
+        "syft.tool-provenance.json",
+        "grype.tool-provenance.json",
+        "cosign.tool-provenance.json",
+    ):
+        require(f"{release_root}/supply-chain/{name}")
+    quadlet_files = list((ROOT / release_root / "quadlet").rglob("materialization.template.json"))
+    if len(quadlet_files) != 1:
+        raise AssertionError("alpha.3 quadlet bundle must contain one materialization template")
+
+    bootstraps = [require("download/install.sh"), require(f"{release_root}/install.sh")]
     contents = []
-    for path in paths:
-        candidate = require(path)
-        mode = stat.S_IMODE(candidate.stat().st_mode)
-        if mode & 0o111 == 0:
-            raise AssertionError(f"Fail-closed bootstrap must remain executable: {path}")
-        text = candidate.read_text(encoding="utf-8")
+    for path in bootstraps:
+        if stat.S_IMODE(path.stat().st_mode) & 0o111 == 0:
+            raise AssertionError(f"Alpha.3 bootstrap must remain executable: {path}")
+        text = path.read_text(encoding="utf-8")
         contents.append(text)
         for fragment in (
-            "#!/bin/sh",
-            "installation is disabled",
-            "known packaged web-image defect",
-            "exit 2",
+            "linux-amd64-rootless-podman-quadlet",
+            "evaluate_linux_host",
+            "RELEASE_INDEX_SHA256=\"d02709a250369b96c7bf5c39659d9080ff53d0cf0e20d391222fe5c1b0d4ae93\"",
+            "TRUST_KEY_FINGERPRINT=\"sha256:3dca6219e41310c6a95a8189669aacad3198e6c84489946406b8f986e1f4211a\"",
         ):
             if fragment not in text:
                 raise AssertionError(f"Expected {fragment!r} in {path}")
-        for forbidden in ("curl ", "python3 ", "podman ", "sudo "):
-            if forbidden in text:
-                raise AssertionError(f"Disabled alpha.2 bootstrap must not execute {forbidden!r}: {path}")
+        if "all Linux" in text:
+            raise AssertionError(f"Bootstrap must not claim all Linux support: {path}")
     if contents[0] != contents[1]:
-        raise AssertionError("Convenience and versioned alpha.2 refusal scripts must be identical")
+        raise AssertionError("Convenience and versioned alpha.3 bootstraps must be identical")
 
 
 def main() -> None:
@@ -259,6 +331,7 @@ def main() -> None:
         "download/index.html",
         "download/install.sh",
         "download/0.1.0-alpha.2/install.sh",
+        "download/0.1.0-alpha.3/install.sh",
         "assets/site.css",
         "assets/site.js",
         "assets/stateport-mascot-block-arch-dark.svg",
@@ -295,9 +368,9 @@ def main() -> None:
     require_text("docs/agent-kits.html", "Early direction")
     require_text("docs/platform-support.html", "Capability-based qualification")
     require_text("papers/stateware-whitepaper-public-v1.1.html", "Publication note")
-    require_text("releases/index.html", "v0.1.0-alpha.2 is published, but installation is disabled")
+    require_text("releases/index.html", "v0.1.0-alpha.3 is published, but not owner-accepted")
     require_text("download/index.html", "Do not install alpha.2.")
-    require_text("docs/limitations.html", "Alpha.2 is signed and published but not installable or accepted")
+    require_text("docs/limitations.html", "Alpha.3 is published and clean-installed on Ubuntu 24.04 and Fedora 44")
     require_text(".github/workflows/deploy-pages.yml", "actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e")
 
     public_copy = "\n".join(
@@ -313,6 +386,7 @@ def main() -> None:
     validate_pull_request_workflow()
     validate_support_configuration()
     validate_disabled_alpha2_bootstrap()
+    validate_alpha3_release()
     print("StatePort Site validation: OK")
 
 
