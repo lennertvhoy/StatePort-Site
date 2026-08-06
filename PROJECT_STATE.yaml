@@ -73,13 +73,15 @@ site:
   third_party_runtime_scripts: absent
   deployment:
     provider: GitHub Pages
-    status: publication_commit_52b42dd_pages_run_31125217806_cancelled_github_actions_incident
+    status: legacy_branch_source_main_avoids_actions_quota
+    source_branch: main
+    source_path: /
   current_release_surface: alpha3_with_alpha2_superseded_erratum
 
 active_work:
   - id: BL-SITE-ALPHA3-PUBLIC-PROOF
     priority: P0
-    status: blocked_live_pages_github_actions_incident
+    status: waiting_legacy_pages_build
   - id: BL-SITE-ALPHA2-IMMUTABILITY
     priority: P0
     status: preserved_fail_closed

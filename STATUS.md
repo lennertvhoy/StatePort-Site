@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-08-06
 **Execution Mode:** operating
-**Project State:** alpha3_published_pages_canceled_by_github_actions_incident_public_proof_pending
+**Project State:** alpha3_published_legacy_pages_public_proof_pending
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -18,9 +18,10 @@
   `compatible_unvalidated`. Debian and rolling distributions are not claimed.
 - The alpha.3 installer evaluates capabilities, refuses non-capable hosts, and
   records the support tier. It makes no all-Linux claim.
-- Publication commit is `52b42dd47a11510220f33690075f1b6773f6a889`. Pages run
-  `31125217806` was canceled with no steps started during GitHub's critical
-  `Incident with Actions`; the live URL still serves the predecessor page.
+- Pages now serves the canonical `main` branch directly through the legacy
+  branch source (`main:/`), avoiding Actions runner quota and deploy queue
+  failures. The Actions deploy workflow was removed because it is no longer
+  the hosting mechanism.
 - `v0.1.0-alpha.2` remains immutable, superseded, known defective, and
   install-disabled for inspection. Its files were not rewritten.
 - Human acceptance, independent security review, and production qualification
@@ -28,7 +29,7 @@
 
 ## Exact next action
 
-After GitHub Actions recovers and Pages serves commit `52b42dd`, complete the
-public-URL clean-install proof from the live bootstrap on the receipted Ubuntu
-24.04 host, capture the receipt and seven-image/index verification summary,
-then record the outcome without changing product code or alpha.2 artifacts.
+After the legacy Pages build serves alpha.3, complete the public-URL
+clean-install proof from the live bootstrap on the receipted Ubuntu 24.04
+host, capture the receipt and seven-image/index verification summary, then
+record the outcome without changing product code or alpha.2 artifacts.

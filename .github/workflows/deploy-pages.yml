@@ -1,8 +1,8 @@
 name: Deploy StatePort Site
 
+# GitHub Pages is configured to serve main directly. Keep this as an explicit,
+# manual recovery path only; ordinary commits must not consume Actions quota.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -11,8 +11,8 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: pages-manual-recovery
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -20,6 +20,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Check out source
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
