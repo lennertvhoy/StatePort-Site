@@ -1,38 +1,23 @@
 # NEXT_ACTIONS — active execution queue
 
-**Updated At:** 2026-08-06
+**Updated At:** 2026-08-09
 **Execution Mode:** operating
 **Max Items:** 1
 
-## P0 [BL-SITE-ALPHA3-PUBLIC-PROOF] Verify the live Pages bootstrap
+## P0 [BL-SITE-SUCCESSOR] Keep containment until a corrected successor exists
 
-**Status:** pages_deployed_via_actions_owner_proof_pending
+**Status:** contained_live_waiting_for_separately_authorized_successor
 
-Alpha.3 is published on `main` for the portable
-`linux-amd64-rootless-podman-quadlet` target. Ubuntu 24.04 has the
-`validated_baseline` receipt and Fedora 44 has the `compatible_unvalidated`
-receipt, both bound to release-index digest
-`sha256:3353fdb6477fcb5269169177c625205c7737b13c904de0c4f70801d7189f3f38`.
-Pages now deploys `main` through the Actions deploy provider on every push,
-after the legacy branch-source builder stalled. Run the public URL journey on
-the receipted Ubuntu 24.04 host, capture the receipt and seven-image/index
-verification, and record that the candidate is published but not
-owner-accepted.
+Alpha.3 remains published, signed, and install-disabled. Containment content
+commit `c1384061a093f8f4fc7e68f8ca7126558e1e97a5` is live through Pages run
+`31315882234` and deployment `5819133762`: mutable pages promote no install
+command, the erratum is public, and `download/install.sh` fails closed. Public
+verification matched all 48 immutable release files to their anchored hashes.
 
-**Exit:** Pages passes; the public URL install succeeds with
-`supportTier: validated_baseline`, all seven image digests and the signed index
-verify under the pinned key fingerprint, and the receipt path plus site commit
-are recorded in both evidence worklogs.
+No site mutation is authorized merely because a successor is being developed.
+Keep the disabled state until a corrected candidate has fresh evidence, a
+resolvable source identity, a signed index, and a separate publication verdict.
 
-## Completed
-
-- Rewrote the public download, release-status, and home pages in plain voice
-  with the one-line installer front and center (`/download/`, `/`, and a short
-  table on `/releases/`). `install.sh` and all signed artifacts under
-  `download/0.1.0-alpha.2/` and `download/0.1.0-alpha.3/` were not changed;
-  validators and the install-script syntax check pass.
-- Published the immutable alpha.3 artifact tree and capability-gated bootstrap.
-- Preserved the alpha.2 signed files and fail-closed bootstrap unchanged.
-- Updated public release, download, limitation, update, and security copy to
-  distinguish published, clean-installed, human-accepted, independently
-  reviewed, and production-qualified states.
+**Exit:** a separately authorized successor is published and verified, then the
+mutable site is updated without altering retained alpha.2/alpha.3 bytes. Human
+acceptance, independent review, and production qualification remain separate.

@@ -4,7 +4,7 @@ statedd_mode: operating
 repo_mode: operating
 statedd_version: statedd-template-v5
 initialized_on: 2026-07-21
-last_updated: 2026-08-03
+last_updated: 2026-08-09
 ---
 
 # StatePort Site — canonical agent operating contract
@@ -15,7 +15,11 @@ and `archive/*` refs are historical transport, not work queues or authority.
 
 ## Mandatory entry gate
 
-Before editing:
+Choose the applicable mode before review or editing.
+
+### Clean implementation mode
+
+For a new slice with no declared owner-gated WIP:
 
 ```sh
 cd /home/ff/Documents/Projects/StatePort-Site
@@ -25,8 +29,17 @@ test -z "$(git status --porcelain)"
 test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"
 ```
 
-Stop on divergence or dirty work and preserve it. Do not switch to an old site
-branch because its prose looks newer.
+Stop on divergence or unexplained dirty work and preserve it. Do not switch to
+an old site branch because its prose looks newer.
+
+### Closed containment integration
+
+OD-2026-08-08-KIMI-LONG-RUN authorized one dirty candidate based on
+`a894b5b4aacac368e00f345c9ec1fc6f7c1f16f5`. It was committed as
+`c1384061a093f8f4fc7e68f8ca7126558e1e97a5`, deployed, and publicly verified.
+That verdict is consumed; it is historical evidence, not authority for another
+dirty candidate or deployment. New work uses the clean implementation gate and
+requires a new verdict for external actions.
 
 ## Mandatory read order
 
@@ -40,26 +53,44 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
 
 ## Current release truth
 
-- Public candidate: `v0.1.0-alpha.3`.
+- Public candidate: `v0.1.0-alpha.3` — published, signed, byte-intact,
+  **install-disabled**, and not owner-accepted.
 - Signed payload:
   `sha256:2639e29d6ca0a5bd83d07013edb49f22692efaf53a6049234fe6b70810c89166`.
-- Alpha.3 is **published but not owner-accepted**. Its capability-gated
-  installer and signed artifacts are public; clean-install evidence exists for
-  Ubuntu 24.04 (`validated_baseline`) and Fedora 44 (`compatible_unvalidated`).
+- Installation is disabled because every signed image carries 2026-08-06
+  scan/database evidence under a 24-hour maximum (current verification
+  refuses: Grype database stale) and the released bytes carry known
+  installer/runtime defects (no execution-host provisioning or protocol
+  health check; synthetic goal execution).
+- Earlier local install receipts for Ubuntu 24.04 (`validated_baseline`) and
+  Fedora 44 (`compatible_unvalidated`) are historical evidence recorded while
+  the freshness window was open. They are not current install proof.
 - The portable target is `linux-amd64-rootless-podman-quadlet`; distribution
   branding is observation, not eligibility. Debian and rolling distributions
   are not claimed.
-- The public one-command bootstrap is published. Public-URL clean-install
-  proof on the receipted Ubuntu VM remains a separate verification step.
-- Alpha.2 is **known defective, superseded, and unaccepted**. Its packaged web
-  image omitted the updater and preview-gateway source trees required by the
-  AppServer. Its signed bytes remain immutable and its bootstrap remains
+- The mutable convenience bootstrap (`download/install.sh`) is a fail-closed
+  stub; the immutable versioned bootstraps under the release trees are
+  unchanged signed evidence. Mutable surfaces promote no install command and
+  link `download/erratum-alpha3.html`.
+- Canonical development Git is private. The curated alpha.3 source archive is
+  publicly distributed and AGPL-classified; the signed public Git snapshot
+  identity (`43d6b4491b962c963a0ecafc060e0dfc7e334dc0`) is not remotely
+  resolvable — a successor-release blocker.
+- Alpha.2 is **known defective, superseded, install-disabled, and
+  unaccepted**. Its signed bytes remain immutable and its bootstrap remains
   fail-closed.
 - Independent security review and production qualification remain absent.
+- Mutable containment content commit
+  `c1384061a093f8f4fc7e68f8ca7126558e1e97a5` is live and verified through
+  Pages run `31315882234` and deployment `5819133762`. All 48 immutable remote
+  release files match their publication-anchored manifest.
+- Pages deploys from `main` through GitHub's managed legacy Pages build. The
+  repository's custom deploy workflow is manual-only and is not the provider.
+  Nothing is "live" until it is actually deployed and publicly verified.
 
-Never call alpha.3 accepted, stable, audited, or production-ready. Never
-silently replace alpha.2 signed bytes or transfer its supply-chain evidence to
-alpha.3.
+Never call alpha.3 installable, accepted, stable, audited, or
+production-ready. Never silently replace alpha.2 signed bytes or transfer its
+supply-chain evidence to alpha.3.
 
 ## Repository rules
 
@@ -87,8 +118,11 @@ alpha.3.
 
 ## Active scope
 
-1. Preserve alpha.2's fail-closed erratum and alpha.3's exact signed artifacts.
-2. Complete the public-URL clean-install proof and record it as published
-   evidence; human acceptance remains a separate owner decision.
+1. Preserve alpha.2's fail-closed erratum and alpha.3's exact signed artifacts;
+   keep the immutable release trees byte-identical against their anchored
+   publication manifests.
+2. Keep mutable surfaces honestly contained (no promoted install command,
+   erratum linked, fail-closed convenience bootstrap) until a corrected,
+   separately authorized successor candidate exists.
 
 Everything else is backlog or history.

@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-06T00:00:00Z"
-  updated_by: alpha3_publication_operator
+  updated_at: "2026-08-09T13:31:00Z"
+  updated_by: cto_owner_containment_deployment_closure
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha3_published_pages_blocked_github_actions_incident_public_proof_pending
+  status: alpha3_published_install_disabled_containment_deployed_verified
   purpose: public documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -28,8 +28,9 @@ release:
   channel: alpha
   qualification: candidate
   published: true
+  known_defective: true
   owner_accepted: false
-  installation_enabled: true
+  installation_enabled: false
   public_download: "download/0.1.0-alpha.3/install.sh"
   release_index: "download/0.1.0-alpha.3/release-index.json"
   release_index_sha256: d02709a250369b96c7bf5c39659d9080ff53d0cf0e20d391222fe5c1b0d4ae93
@@ -47,10 +48,14 @@ release:
     fedora_44: compatible_unvalidated
     debian_and_rolling: not_claimed
   evidence:
-    ubuntu_receipt: private_ops_evidence_not_yet_public_url_receipt
-    fedora_receipt: private_ops_evidence_install_receipt_ae0d70edfe42aeff2674dad67b78236b
+    ubuntu_receipt: historical_private_ops_evidence_not_current_public_installability
+    fedora_receipt: historical_private_ops_evidence_install_receipt_ae0d70edfe42aeff2674dad67b78236b
     shared_release_index_digest: sha256:3353fdb6477fcb5269169177c625205c7737b13c904de0c4f70801d7189f3f38
     image_set_digest: sha256:ff783dddd731ff8217d8cf573403b114bba5759dc9f0922ada98bf7d22a1beb7
+    currentVerification: refused_grype_database_stale_at_verification_time
+    scannedAt: "2026-08-06T08:15:17Z"
+    databaseBuiltAt: "2026-08-06T07:04:15Z"
+    maximumAgeHours: 24
 
 predecessor:
   version: 0.1.0-alpha.2
@@ -62,7 +67,7 @@ predecessor:
 
 acceptance:
   publication: published
-  clean_install: locally_validated_receipts_exist_public_url_pending
+  clean_install: historical_local_receipts_only_current_public_install_impossible
   human_acceptance: not_granted
   independent_security_review: not_performed
   production_qualification: not_performed
@@ -73,24 +78,75 @@ site:
   third_party_runtime_scripts: absent
   deployment:
     provider: GitHub Pages
-    build_type: workflow
-    status: actions_deploy_on_push_to_main
+    build_type: legacy
+    status: built_from_main_root
     workflow: ".github/workflows/deploy-pages.yml"
+    custom_workflow_status: disabled_manual_only_not_live_provider
     source_branch: main
     source_path: /
-  current_release_surface: alpha3_with_alpha2_superseded_erratum
-  public_voice: plain_english_installer_front_and_center
-  installer_command_shown: true
-  installer_command_locations:
-    - download/index.html
-    - index.html
+    deployment_head: derived_from_git_not_persisted
+    live_content_commit: c1384061a093f8f4fc7e68f8ca7126558e1e97a5
+    pages_build: 1141200639
+    pages_run: 31315882234
+    pages_deployment: 5819133762
+    deployed_at: "2026-08-09T13:28:39Z"
+  current_release_surface: alpha3_install_disabled_erratum_contained_live_verified
+  public_voice: installation_disabled_plain_language_erratum_linked_no_command_promotion
+  installer_command_shown: false
+  installer_command_locations: []
+  erratum_page: download/erratum-alpha3.html
+  immutable_tree_manifest: config/immutable-release-trees.json
+  live_site_state: serves_containment_content_no_install_promotion
   signed_artifacts_changed: false
-  install_sh_changed: false
+  mutable_install_sh_changed: true
+  remote_verification:
+    home_download_releases_erratum: passed
+    mobile_390_no_horizontal_overflow: passed
+    console_errors: 0
+    immutable_files_checked: 48
+    immutable_mismatches: 0
+    mutable_install_sha256: 6f69d31ae819539138dcfaaa83aeec2a3635f5b610ba37a2b78bb4c192d34e02
+    mutable_install_exit: 2
 
 active_work:
-  - id: BL-SITE-ALPHA3-PUBLIC-PROOF
+  - id: BL-SITE-ALPHA3-CONTAINMENT
     priority: P0
-    status: waiting_legacy_pages_build
+    status: deployed_live_verified
   - id: BL-SITE-ALPHA2-IMMUTABILITY
     priority: P0
     status: preserved_fail_closed
+  - id: BL-SITE-PUBLICATION-BOUNDARY
+    priority: P1
+    status: immutable_manifest_deployed_root_publication_hardened
+
+owner_directive:
+  id: OD-2026-08-08-KIMI-LONG-RUN
+  status: owner_verdict_executed_containment_deployed_verified
+  externalActionsRequireCurrentOwnerVerdict:
+    - commit
+    - push
+    - merge
+    - tag
+    - publication
+    - deployment
+    - release_acceptance
+    - human_acceptance_claim
+  currentVerdict:
+    baseHead: a894b5b4aacac368e00f345c9ec1fc6f7c1f16f5
+    dirtyReviewAllowed: false
+    review: authorized
+    validation: authorized
+    commitSequence: executed
+    pushMain: executed
+    containmentDeployment: executed
+    humanAcceptance: not_granted
+
+workspace_inventory:
+  observed_at: "2026-08-09T00:00:00Z"
+  local_branches: 30
+  remote_refs: 37
+  worktree_registrations: 1
+  prunable_missing_worktrees: 0
+  live_secondary_worktrees: 0
+  live_secondary_worktrees_clean: true
+  cleanup_rule: primary_worktree_only_branch_refs_preserved
