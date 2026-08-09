@@ -6,15 +6,58 @@ from __future__ import annotations
 from html.parser import HTMLParser
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import stat
+import subprocess
 from urllib.parse import urlsplit
 
 from render_support import load_config, rendered_home, support_enabled
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+# These publication anchors are intentionally duplicated here instead of being
+# imported from build_immutable_manifest.py. The validator is an independent
+# policy check over both the generator and its output.
+VALIDATOR_PUBLICATION_ANCHORS = {
+    "download/0.1.0-alpha.2": "4043534a9a1d56c51c3d47d0906e0520963af79c",
+    "download/0.1.0-alpha.3": "52b42dd47a11510220f33690075f1b6773f6a889",
+}
+
+CANONICAL_SOURCE_IDENTITY = {
+    "commit": "fa4ea4b7f08e78669e194c204b59206ab109a02f",
+    "tree": "aec60303045e7a9c8255b941c761d904af85ec10",
+}
+PUBLIC_SNAPSHOT_IDENTITY = {
+    "commit": "43d6b4491b962c963a0ecafc060e0dfc7e334dc0",
+    "tree": "3bbe46db14a7c929e6f0a17ca153ec686192aa51",
+}
+CURATED_SOURCE_ARCHIVE = {
+    "bytes": 20_305_920,
+    "sha256": "17f5680c30841b1e831b37df02dca8f03c2c03d265a42633dd525f99bd613398",
+}
+
+MUTABLE_DISABLED_BOOTSTRAP = """#!/bin/sh
+printf '%s\\n' \\
+  'StatePort v0.1.0-alpha.3 installation is disabled.' \\
+  '' \\
+  'The signed candidate is byte-intact, but its freshness evidence has expired' \\
+  'and known installer and runtime defects require a successor release.' \\
+  'No installation command is executed by this disabled bootstrap.' \\
+  '' \\
+  'Wait for a corrected, rebuilt, and re-signed successor candidate.' \\
+  'Erratum: https://lennertvhoy.github.io/StatePort-Site/download/erratum-alpha3.html' >&2
+exit 2
+"""
+MUTABLE_DISABLED_BOOTSTRAP_STRUCTURE = re.compile(
+    r"\A#!/bin/sh\n"
+    r"printf '%s\\n' \\\n"
+    r"(?:  '[^'\r\n]*' \\\n)*"
+    r"  '[^'\r\n]*' >&2\n"
+    r"exit 2\n\Z"
+)
 
 
 class AssetReferenceParser(HTMLParser):
@@ -39,6 +82,187 @@ def require_text(path: str, fragment: str) -> None:
     text = require(path).read_text(encoding="utf-8")
     if fragment not in text:
         raise AssertionError(f"Expected {fragment!r} in {path}")
+
+
+def _git_environment() -> dict[str, str]:
+    """Return an environment that cannot redirect or replace Git objects."""
+
+    environment = {
+        key: value for key, value in os.environ.items() if not key.startswith("GIT_")
+    }
+    environment.update(
+        {
+            "GIT_CONFIG_GLOBAL": os.devnull,
+            "GIT_CONFIG_NOSYSTEM": "1",
+            "GIT_CONFIG_SYSTEM": os.devnull,
+            "GIT_NO_REPLACE_OBJECTS": "1",
+            "GIT_TERMINAL_PROMPT": "0",
+            "LC_ALL": "C",
+        }
+    )
+    return environment
+
+
+def _git(*args: str, root: Path = ROOT) -> bytes:
+    repository = root.resolve(strict=True)
+    git_dir = repository / ".git"
+    if git_dir.is_symlink() or not git_dir.is_dir():
+        raise AssertionError(f"Expected a fixed Git directory at {git_dir}")
+    completed = subprocess.run(
+        [
+            "git",
+            "--no-replace-objects",
+            f"--git-dir={git_dir}",
+            f"--work-tree={repository}",
+            *args,
+        ],
+        check=False,
+        capture_output=True,
+        env=_git_environment(),
+        timeout=60,
+    )
+    if completed.returncode:
+        detail = completed.stderr.decode("utf-8", errors="replace").strip()
+        raise AssertionError(f"sanitized git {' '.join(args)} failed: {detail}")
+    return completed.stdout
+
+
+def _anchored_files(tree: str, commit: str, *, root: Path = ROOT) -> dict[str, dict]:
+    listing = _git("ls-tree", "-rz", "--full-tree", commit, "--", tree, root=root)
+    records = [record for record in listing.split(b"\0") if record]
+    if not records:
+        raise AssertionError(f"Anchor commit {commit} has no files under {tree}")
+    files: dict[str, dict] = {}
+    for record in records:
+        metadata, separator, raw_path = record.partition(b"\t")
+        fields = metadata.split()
+        if not separator or len(fields) != 3:
+            raise AssertionError(f"Malformed git ls-tree record at {commit}: {record!r}")
+        git_mode, git_type, object_id = (
+            field.decode("ascii", errors="strict") for field in fields
+        )
+        repo_path = raw_path.decode("utf-8", errors="strict")
+        relative = Path(repo_path).relative_to(Path(tree)).as_posix()
+        if git_type != "blob" or git_mode not in {"100644", "100755"}:
+            raise AssertionError(
+                f"Unsupported Git node at {commit}:{repo_path}: {git_mode} {git_type}"
+            )
+        blob = _git("cat-file", "blob", object_id, root=root)
+        files[relative] = {
+            "bytes": len(blob),
+            "gitMode": git_mode,
+            "gitType": git_type,
+            "sha256": hashlib.sha256(blob).hexdigest(),
+        }
+    return files
+
+
+def _current_files(tree: str, *, root: Path = ROOT) -> dict[str, dict]:
+    tree_root = root / tree
+    try:
+        tree_mode = tree_root.lstat().st_mode
+    except FileNotFoundError as exc:
+        raise AssertionError(f"Missing immutable release tree: {tree}") from exc
+    if not stat.S_ISDIR(tree_mode):
+        raise AssertionError(f"Immutable release tree root is not a directory: {tree}")
+
+    files: dict[str, dict] = {}
+
+    def visit(directory: Path) -> None:
+        with os.scandir(directory) as iterator:
+            entries = sorted(iterator, key=lambda entry: entry.name)
+        for entry in entries:
+            path = Path(entry.path)
+            metadata = entry.stat(follow_symlinks=False)
+            relative = path.relative_to(tree_root).as_posix()
+            if stat.S_ISDIR(metadata.st_mode):
+                visit(path)
+                continue
+            if not stat.S_ISREG(metadata.st_mode):
+                raise AssertionError(
+                    f"Immutable release tree {tree} contains a symlink or special file: "
+                    f"{relative} ({metadata.st_mode:06o})"
+                )
+            data = path.read_bytes()
+            files[relative] = {
+                "bytes": len(data),
+                "lstatMode": f"{metadata.st_mode:06o}",
+                "sha256": hashlib.sha256(data).hexdigest(),
+            }
+
+    visit(tree_root)
+    if not files:
+        raise AssertionError(f"Immutable release tree is empty: {tree}")
+    return files
+
+
+def _validate_tree_records(
+    tree: str,
+    recorded: dict,
+    anchored: dict[str, dict],
+    observed: dict[str, dict],
+) -> None:
+    recorded_set, anchored_set, observed_set = set(recorded), set(anchored), set(observed)
+    if missing := sorted(recorded_set - observed_set):
+        raise AssertionError(f"Deleted from immutable tree {tree}: {missing}")
+    if added := sorted(observed_set - recorded_set):
+        raise AssertionError(f"Added to immutable tree {tree}: {added}")
+    if only_anchor := sorted(anchored_set - recorded_set):
+        raise AssertionError(f"Missing anchor paths from immutable manifest {tree}: {only_anchor}")
+    if only_manifest := sorted(recorded_set - anchored_set):
+        raise AssertionError(f"Unanchored paths in immutable manifest {tree}: {only_manifest}")
+
+    expected_fields = {"bytes", "gitMode", "gitType", "lstatMode", "sha256"}
+    for relative in sorted(recorded):
+        entry = recorded[relative]
+        if not isinstance(entry, dict) or set(entry) != expected_fields:
+            raise AssertionError(
+                f"Manifest record {tree}/{relative} must contain exactly "
+                f"{sorted(expected_fields)}"
+            )
+        if isinstance(entry["bytes"], bool) or not isinstance(entry["bytes"], int):
+            raise AssertionError(f"Manifest byte count is not an integer: {tree}/{relative}")
+        if entry["bytes"] < 0:
+            raise AssertionError(f"Manifest byte count is negative: {tree}/{relative}")
+        if not isinstance(entry["sha256"], str) or not re.fullmatch(
+            r"[0-9a-f]{64}", entry["sha256"]
+        ):
+            raise AssertionError(f"Manifest SHA-256 is invalid: {tree}/{relative}")
+        if entry["gitMode"] not in {"100644", "100755"} or entry["gitType"] != "blob":
+            raise AssertionError(f"Manifest Git node is not a regular blob: {tree}/{relative}")
+        if not isinstance(entry["lstatMode"], str) or not re.fullmatch(
+            r"100[0-7]{3}", entry["lstatMode"]
+        ):
+            raise AssertionError(f"Manifest lstat mode is not a regular file: {tree}/{relative}")
+
+        current = observed[relative]
+        if entry["sha256"] != current["sha256"]:
+            raise AssertionError(f"Byte change in immutable tree {tree}: {relative}")
+        if entry["bytes"] != current["bytes"]:
+            raise AssertionError(f"Byte-count change in immutable tree {tree}: {relative}")
+        if entry["lstatMode"] != current["lstatMode"]:
+            raise AssertionError(f"lstat mode change in immutable tree {tree}: {relative}")
+
+        publication = anchored[relative]
+        for field in ("sha256", "bytes", "gitMode", "gitType"):
+            if entry[field] != publication[field]:
+                raise AssertionError(
+                    f"Manifest {field} for {tree}/{relative} does not match publication anchor"
+                )
+
+
+def validate_disabled_bootstrap_program(data: bytes) -> None:
+    expected = MUTABLE_DISABLED_BOOTSTRAP.encode("utf-8")
+    try:
+        text = data.decode("utf-8", errors="strict")
+    except UnicodeDecodeError as exc:
+        raise AssertionError("Disabled bootstrap must be exact UTF-8 text") from exc
+    if not MUTABLE_DISABLED_BOOTSTRAP_STRUCTURE.fullmatch(text):
+        raise AssertionError(
+            "Disabled bootstrap may contain only one builtin printf followed by builtin exit 2"
+        )
+    if data != expected:
+        raise AssertionError("Disabled bootstrap differs from the exact pinned fail-closed program")
 
 
 def validate_local_references() -> None:
@@ -241,8 +465,19 @@ def validate_alpha3_release() -> None:
     signed = index.get("signed", {})
     if signed.get("release", {}).get("version") != "0.1.0-alpha.3":
         raise AssertionError("alpha.3 release index has the wrong version")
-    if signed.get("source", {}).get("commit") != "fa4ea4b7f08e78669e194c204b59206ab109a02f":
-        raise AssertionError("alpha.3 release index has the wrong source commit")
+    source = signed.get("source", {})
+    for field, expected in CANONICAL_SOURCE_IDENTITY.items():
+        if source.get(field) != expected:
+            raise AssertionError(f"alpha.3 release index has the wrong canonical source {field}")
+    public_snapshot = source.get("publicSnapshot", {})
+    for field, expected in PUBLIC_SNAPSHOT_IDENTITY.items():
+        if public_snapshot.get(field) != expected:
+            raise AssertionError(f"alpha.3 release index has the wrong publicSnapshot {field}")
+    source_archive = signed.get("artifacts", {}).get("sourceArchive", {})
+    if source_archive.get("digest") != f"sha256:{CURATED_SOURCE_ARCHIVE['sha256']}":
+        raise AssertionError("alpha.3 release index has the wrong curated source archive digest")
+    if source_archive.get("size") != CURATED_SOURCE_ARCHIVE["bytes"]:
+        raise AssertionError("alpha.3 release index has the wrong curated source archive byte count")
     targets = signed.get("targets", [])
     if not any(target.get("targetId") == "linux-amd64-rootless-podman-quadlet" for target in targets):
         raise AssertionError("alpha.3 release index lacks the portable capability target")
@@ -272,29 +507,365 @@ def validate_alpha3_release() -> None:
         "cosign.tool-provenance.json",
     ):
         require(f"{release_root}/supply-chain/{name}")
+    export_manifest = json.loads(
+        require(f"{release_root}/supply-chain/public-export-manifest.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    classified_files = export_manifest.get("files", [])
+    if not any(entry.get("classification") == "public-source" for entry in classified_files):
+        raise AssertionError("alpha.3 export manifest lacks AGPL-classified public source")
+    if not any(
+        entry.get("classification") == "public-documentation" for entry in classified_files
+    ):
+        raise AssertionError("alpha.3 export manifest lacks CC-BY-classified documentation")
+    for entry in classified_files:
+        expected_license = {
+            "public-source": "AGPL-3.0-or-later",
+            "public-documentation": "CC-BY-4.0",
+        }.get(entry.get("classification"))
+        if expected_license and entry.get("license") != expected_license:
+            raise AssertionError(
+                f"alpha.3 export license mismatch for {entry.get('path')}: "
+                f"expected {expected_license}"
+            )
     quadlet_files = list((ROOT / release_root / "quadlet").rglob("materialization.template.json"))
     if len(quadlet_files) != 1:
         raise AssertionError("alpha.3 quadlet bundle must contain one materialization template")
 
-    bootstraps = [require("download/install.sh"), require(f"{release_root}/install.sh")]
-    contents = []
-    for path in bootstraps:
-        if stat.S_IMODE(path.stat().st_mode) & 0o111 == 0:
-            raise AssertionError(f"Alpha.3 bootstrap must remain executable: {path}")
-        text = path.read_text(encoding="utf-8")
-        contents.append(text)
-        for fragment in (
-            "linux-amd64-rootless-podman-quadlet",
-            "evaluate_linux_host",
-            "RELEASE_INDEX_SHA256=\"d02709a250369b96c7bf5c39659d9080ff53d0cf0e20d391222fe5c1b0d4ae93\"",
-            "TRUST_KEY_FINGERPRINT=\"sha256:3dca6219e41310c6a95a8189669aacad3198e6c84489946406b8f986e1f4211a\"",
+    # The immutable versioned bootstrap retains the original signed-install
+    # logic (its bytes are release evidence and must never change).
+    versioned = require(f"{release_root}/install.sh")
+    if stat.S_IMODE(versioned.stat().st_mode) & 0o111 == 0:
+        raise AssertionError(f"Alpha.3 versioned bootstrap must remain executable: {versioned}")
+    versioned_text = versioned.read_text(encoding="utf-8")
+    for fragment in (
+        "linux-amd64-rootless-podman-quadlet",
+        "evaluate_linux_host",
+        "RELEASE_INDEX_SHA256=\"d02709a250369b96c7bf5c39659d9080ff53d0cf0e20d391222fe5c1b0d4ae93\"",
+        "TRUST_KEY_FINGERPRINT=\"sha256:3dca6219e41310c6a95a8189669aacad3198e6c84489946406b8f986e1f4211a\"",
+    ):
+        if fragment not in versioned_text:
+            raise AssertionError(f"Expected {fragment!r} in {versioned}")
+    if "all Linux" in versioned_text:
+        raise AssertionError(f"Bootstrap must not claim all Linux support: {versioned}")
+
+    # The mutable convenience entry point is an exact fail-closed program. Its
+    # only commands are shell builtins: one printf to stderr and exit 2.
+    mutable_path = "download/install.sh"
+    mutable = require(mutable_path)
+    mutable_mode = mutable.lstat().st_mode
+    if not stat.S_ISREG(mutable_mode):
+        raise AssertionError(f"Fail-closed bootstrap must be a regular file: {mutable_path}")
+    if stat.S_IMODE(mutable_mode) != 0o755:
+        raise AssertionError(f"Fail-closed bootstrap mode must remain exactly 0755: {mutable_path}")
+    validate_disabled_bootstrap_program(mutable.read_bytes())
+
+
+def validate_immutable_release_trees() -> None:
+    """Reject node, mode, byte-count, and content drift in signed trees.
+
+    Two independent bindings must both hold: current working-tree bytes match
+    the manifest, and the manifest matches the recorded publication-commit
+    anchor for each tree. A manifest regenerated from modified bytes fails
+    the anchor check even if it matches the modified working tree.
+    """
+    manifest_path = "config/immutable-release-trees.json"
+    manifest = json.loads(require(manifest_path).read_text(encoding="utf-8"))
+    if manifest.get("schema") != "stateport-site.immutable-release-trees/v2":
+        raise AssertionError(f"{manifest_path} has an unknown schema")
+    trees = manifest.get("trees", {})
+    expected_roots = set(VALIDATOR_PUBLICATION_ANCHORS)
+    if set(trees) != expected_roots:
+        raise AssertionError(f"{manifest_path} must cover exactly {sorted(expected_roots)}")
+    for tree, payload in trees.items():
+        anchor = payload.get("anchor", {}).get("commit")
+        if not isinstance(anchor, str) or not re.fullmatch(r"[0-9a-f]{40}", anchor):
+            raise AssertionError(f"{manifest_path} tree {tree} lacks an exact anchor commit")
+        if anchor != VALIDATOR_PUBLICATION_ANCHORS[tree]:
+            raise AssertionError(
+                f"{manifest_path} tree {tree} anchor {anchor} is not the verified "
+                f"publication commit {VALIDATOR_PUBLICATION_ANCHORS[tree]}"
+            )
+        recorded = payload.get("files", {})
+        if not isinstance(recorded, dict):
+            raise AssertionError(f"{manifest_path} tree {tree} files must be an object")
+        for relative in recorded:
+            if (
+                not isinstance(relative, str)
+                or not relative
+                or relative.startswith("/")
+                or ".." in Path(relative).parts
+            ):
+                raise AssertionError(f"{manifest_path} records an escaping path: {relative}")
+        anchored = _anchored_files(tree, anchor)
+        observed = _current_files(tree)
+        _validate_tree_records(tree, recorded, anchored, observed)
+
+
+def release_state_block() -> str:
+    text = require("PROJECT_STATE.yaml").read_text(encoding="utf-8")
+    match = re.search(r"^release:\n(?P<body>(?: {2,}.*\n?)*)", text, re.MULTILINE)
+    if not match:
+        raise AssertionError("PROJECT_STATE.yaml lacks a release: block")
+    return match.group("body")
+
+
+def mutable_public_pages() -> list[Path]:
+    immutable_parts = {Path("download/0.1.0-alpha.2"), Path("download/0.1.0-alpha.3")}
+    pages = []
+    for page in sorted(ROOT.rglob("*.html")):
+        relative = page.relative_to(ROOT)
+        if any(relative == root or root in relative.parents for root in immutable_parts):
+            continue
+        pages.append(page)
+    return pages
+
+
+def _release_identity_tokens(release_root: str) -> set[str]:
+    """Digest and commit tokens that uniquely identify a signed release."""
+    index_path = require(f"{release_root}/release-index.json")
+    index_bytes = index_path.read_bytes()
+    index = json.loads(index_bytes)
+    tokens = {hashlib.sha256(index_bytes).hexdigest()}
+    signed = index.get("signed", {})
+    source = signed.get("source", {})
+    for key in ("commit", "tree"):
+        if source.get(key):
+            tokens.add(source[key])
+    tokens.update(re.findall(r"sha256:[0-9a-f]{64}", json.dumps(index)))
+    return tokens
+
+
+def validate_source_disclosures(texts: dict[Path, str]) -> None:
+    """Keep private Git, publicSnapshot, and archive identities distinct."""
+
+    disclosure_surfaces = (
+        "index.html",
+        "download/index.html",
+        "download/erratum-alpha3.html",
+        "releases/index.html",
+        "docs/evidence-and-roadmap.html",
+        "docs/limitations.html",
+    )
+    common_terms = (
+        "canonical development git",
+        "private",
+        "publicsnapshot",
+        "not remotely resolvable",
+        "curated alpha.3 source archive",
+        "agpl-3.0-or-later",
+        "cc-by-4.0",
+    )
+    for surface in disclosure_surfaces:
+        text = texts[ROOT / surface].lower()
+        for term in common_terms:
+            if term not in text:
+                raise AssertionError(f"{surface} must distinguish source status with {term!r}")
+        semantic_patterns = (
+            r"curated alpha\.3 source archive.{0,120}\bpublic\b",
+            r"canonical development git.{0,240}\bprivate\b",
+            r"publicsnapshot.{0,800}not remotely resolvable",
+            r"code and statespec artifacts.{0,160}agpl-3\.0-or-later",
+            r"documentation.{0,120}cc-by-4\.0",
+        )
+        for pattern in semantic_patterns:
+            if not re.search(pattern, text, re.DOTALL):
+                raise AssertionError(
+                    f"{surface} conflates or omits a source/license relationship: {pattern}"
+                )
+
+    identity_tokens = (
+        *CANONICAL_SOURCE_IDENTITY.values(),
+        *PUBLIC_SNAPSHOT_IDENTITY.values(),
+        CURATED_SOURCE_ARCHIVE["sha256"],
+    )
+    for surface in ("download/index.html", "download/erratum-alpha3.html"):
+        text = texts[ROOT / surface]
+        for token in identity_tokens:
+            if token not in text:
+                raise AssertionError(f"{surface} must bind the exact source identity {token!r}")
+
+    download_text = texts[ROOT / "download/index.html"]
+    download_labels = {
+        "<dt>Canonical development Git</dt>": tuple(CANONICAL_SOURCE_IDENTITY.values()),
+        "<dt>Signed <code>publicSnapshot</code> Git identity</dt>": tuple(
+            PUBLIC_SNAPSHOT_IDENTITY.values()
+        ),
+        "<dt>Public curated source archive</dt>": (CURATED_SOURCE_ARCHIVE["sha256"],),
+    }
+    all_identity_tokens = set(identity_tokens)
+    for label, expected_tokens in download_labels.items():
+        match = re.search(
+            rf"{re.escape(label)}\s*<dd>(?P<body>.*?)</dd>",
+            download_text,
+            re.DOTALL,
+        )
+        if not match:
+            raise AssertionError(f"download/index.html must keep a separate {label}")
+        block = match.group("body")
+        for token in expected_tokens:
+            if token not in block:
+                raise AssertionError(f"{label} is not bound to {token}")
+        forbidden_tokens = all_identity_tokens - set(expected_tokens)
+        if conflated := sorted(token for token in forbidden_tokens if token in block):
+            raise AssertionError(f"{label} conflates separate source identities: {conflated}")
+
+    erratum_text = texts[ROOT / "download/erratum-alpha3.html"]
+    erratum_blocks = (
+        (
+            r"<li>The <strong>canonical development Git repository is private</strong>.*?</li>",
+            tuple(CANONICAL_SOURCE_IDENTITY.values()),
+        ),
+        (
+            r"<li>The release index separately records a <strong>signed "
+            r"<code>publicSnapshot</code> Git identity</strong>.*?</li>",
+            tuple(PUBLIC_SNAPSHOT_IDENTITY.values()),
+        ),
+        (
+            r"<li>What <em>is</em> publicly distributed: the curated alpha\.3 "
+            r"source archive.*?</li>",
+            (CURATED_SOURCE_ARCHIVE["sha256"],),
+        ),
+    )
+    for pattern, expected_tokens in erratum_blocks:
+        match = re.search(pattern, erratum_text, re.DOTALL)
+        if not match:
+            raise AssertionError("erratum-alpha3.html must keep three separate source disclosures")
+        block = match.group(0)
+        for token in expected_tokens:
+            if token not in block:
+                raise AssertionError(f"erratum source disclosure is not bound to {token}")
+        forbidden_tokens = all_identity_tokens - set(expected_tokens)
+        if conflated := sorted(token for token in forbidden_tokens if token in block):
+            raise AssertionError(
+                f"erratum source disclosure conflates separate identities: {conflated}"
+            )
+
+    stale_source_claims = (
+        re.compile(r">\s*not public\s*<", re.IGNORECASE),
+        re.compile(r"implementation source(?: itself)? is not public", re.IGNORECASE),
+        re.compile(
+            r"\b(?:source code|source archive|artifacts?)\s+"
+            r"(?:itself\s+)?(?:is|are|remain|remains)\s+"
+            r"(?:not public|absent|unavailable)\b",
+            re.IGNORECASE,
+        ),
+        re.compile(r"\bno public (?:source|source archive|artifacts?)\b", re.IGNORECASE),
+        re.compile(r"product license (?:is )?not decided", re.IGNORECASE),
+        re.compile(
+            r"\blicens(?:e|ing)\s+(?:is\s+)?(?:not decided|undecided)\b",
+            re.IGNORECASE,
+        ),
+        re.compile(r"public source release,\s*licensing decision,\s*artifacts", re.IGNORECASE),
+        re.compile(
+            r"\b(?:source|artifacts?|licens(?:e|ing))\s+"
+            r"(?:remain|remains|are|is)\s+(?:absent|unavailable|undecided)\b",
+            re.IGNORECASE,
+        ),
+    )
+    for surface in disclosure_surfaces:
+        text = texts[ROOT / surface]
+        for pattern in stale_source_claims:
+            if pattern.search(text):
+                raise AssertionError(
+                    f"Stale pre-publication source or license copy in {surface}: "
+                    f"{pattern.pattern}"
+                )
+
+
+def validate_release_semantics() -> None:
+    """Reject mutable-surface claims that contradict canonical release truth."""
+    release_block = release_state_block()
+    install_disabled = re.search(r"^  installation_enabled: false\s*$", release_block, re.MULTILINE)
+    known_defective = re.search(r"^  known_defective: true\s*$", release_block, re.MULTILINE)
+    if not install_disabled or not known_defective:
+        raise AssertionError(
+            "PROJECT_STATE.yaml release block must record installation_enabled: false "
+            "and known_defective: true for the current candidate"
+        )
+
+    pages = mutable_public_pages()
+    texts = {page: page.read_text(encoding="utf-8") for page in pages}
+    command_pattern = re.compile(r"curl\s[^<\n]*install\.sh")
+    installable_claim = re.compile(r"you can (?:download and )?install", re.IGNORECASE)
+    for page, text in texts.items():
+        relative = page.relative_to(ROOT)
+        if command_pattern.search(text):
+            raise AssertionError(
+                f"install-disabled release still promoted with a curl install command in {relative}"
+            )
+        if installable_claim.search(text):
+            raise AssertionError(
+                f"known-defective release described as currently installable in {relative}"
+            )
+        for promotion in (
+            'data-label="One-line install"',
+            "Install StatePort on Linux",
+            "with one command",
         ):
-            if fragment not in text:
-                raise AssertionError(f"Expected {fragment!r} in {path}")
-        if "all Linux" in text:
-            raise AssertionError(f"Bootstrap must not claim all Linux support: {path}")
-    if contents[0] != contents[1]:
-        raise AssertionError("Convenience and versioned alpha.3 bootstraps must be identical")
+            if promotion in text:
+                raise AssertionError(
+                    f"retired one-line install framing still promoted in {relative}: {promotion!r}"
+                )
+
+    disabled_marker = "installation is currently disabled"
+    for surface in ("index.html", "download/index.html", "releases/index.html", "docs/limitations.html"):
+        if disabled_marker not in texts[ROOT / surface].lower():
+            raise AssertionError(f"{surface} must plainly state {disabled_marker!r}")
+    erratum = ROOT / "download/erratum-alpha3.html"
+    if "download/erratum-alpha3.html" not in texts[ROOT / "index.html"]:
+        raise AssertionError("index.html must link the alpha.3 erratum")
+    if "erratum-alpha3.html" not in texts[ROOT / "download/index.html"]:
+        raise AssertionError("download/index.html must link the alpha.3 erratum")
+
+    validate_source_disclosures(texts)
+
+    state_files = ["STATUS.md", "PROJECT_STATE.yaml", "NEXT_ACTIONS.md"]
+    stale_pages_claims = (
+        re.compile(r"github actions deploys? (?:the|this|our)?\s*site", re.IGNORECASE),
+        re.compile(r"deploy(?:s|ed|ment)? (?:automatically )?on every push", re.IGNORECASE),
+        re.compile(r"every push (?:to main )?(?:triggers|deploys|publishes)", re.IGNORECASE),
+    )
+    for name in state_files:
+        text = require(name).read_text(encoding="utf-8")
+        for pattern in stale_pages_claims:
+            if pattern.search(text):
+                raise AssertionError(f"Stale Pages provider claim in {name}: {pattern.pattern}")
+    for page, text in texts.items():
+        for pattern in stale_pages_claims:
+            if pattern.search(text):
+                raise AssertionError(
+                    f"Stale Pages provider claim in {page.relative_to(ROOT)}: {pattern.pattern}"
+                )
+    state_text = require("PROJECT_STATE.yaml").read_text(encoding="utf-8")
+    if "build_type: legacy" not in state_text:
+        raise AssertionError("PROJECT_STATE.yaml must record the legacy Pages build_type")
+
+    alpha2_tokens = _release_identity_tokens("download/0.1.0-alpha.2")
+    alpha3_tokens = _release_identity_tokens("download/0.1.0-alpha.3")
+    alpha2_only = alpha2_tokens - alpha3_tokens
+    alpha3_only = alpha3_tokens - alpha2_tokens
+    alpha2_label = re.compile(r"\balpha[ .-]?2\b|\b0\.1\.0-alpha\.2\b", re.IGNORECASE)
+    alpha3_label = re.compile(r"\balpha[ .-]?3\b|\b0\.1\.0-alpha\.3\b", re.IGNORECASE)
+    for page, text in texts.items():
+        relative = page.relative_to(ROOT)
+        for line in text.splitlines():
+            has_alpha2_token = any(token in line for token in alpha2_only)
+            has_alpha3_token = any(token in line for token in alpha3_only)
+            if has_alpha2_token and (has_alpha3_token or alpha3_label.search(line)):
+                raise AssertionError(f"alpha.2 identity attributed to alpha.3 in {relative}: {line.strip()[:120]}")
+            if has_alpha3_token and (has_alpha2_token or alpha2_label.search(line)):
+                raise AssertionError(f"alpha.3 identity attributed to alpha.2 in {relative}: {line.strip()[:120]}")
+
+
+def validate_stylesheet_cache_keys() -> None:
+    """All pages must share one site.css cache key after any stylesheet change."""
+    keys: set[str] = set()
+    for page in sorted(ROOT.rglob("*.html")):
+        keys.update(re.findall(r"site\.css\?v=([0-9-]+)", page.read_text(encoding="utf-8")))
+    if len(keys) != 1:
+        raise AssertionError(f"site.css cache keys diverge across pages: {sorted(keys)}")
 
 
 def main() -> None:
@@ -329,6 +900,7 @@ def main() -> None:
         "tutorials/reading-a-receipt.html",
         "releases/index.html",
         "download/index.html",
+        "download/erratum-alpha3.html",
         "download/install.sh",
         "download/0.1.0-alpha.2/install.sh",
         "download/0.1.0-alpha.3/install.sh",
@@ -351,10 +923,13 @@ def main() -> None:
         ".github/workflows/deploy-pages.yml",
         ".github/workflows/validate-site-pr.yml",
         "scripts/check_site_quality.py",
+        "scripts/build_immutable_manifest.py",
         "scripts/render_paper_diagrams.py",
         "scripts/render_support.py",
         "scripts/test_render_support.py",
+        "scripts/test_containment.py",
         "config/mermaid-theme.json",
+        "config/immutable-release-trees.json",
     )
     for path in required:
         require(path)
@@ -370,7 +945,7 @@ def main() -> None:
     require_text("papers/stateware-whitepaper-public-v1.1.html", "Publication note")
     require_text("releases/index.html", "still being reviewed")
     require_text("download/index.html", "Do not install alpha.2.")
-    require_text("docs/limitations.html", "Alpha.3 is published and clean-installed on Ubuntu 24.04 and Fedora 44")
+    require_text("docs/limitations.html", "Earlier local clean-install receipts for Ubuntu 24.04 and Fedora 44 are historical")
     require_text(".github/workflows/deploy-pages.yml", "actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e")
 
     public_copy = "\n".join(
@@ -390,6 +965,9 @@ def main() -> None:
     validate_support_configuration()
     validate_disabled_alpha2_bootstrap()
     validate_alpha3_release()
+    validate_immutable_release_trees()
+    validate_release_semantics()
+    validate_stylesheet_cache_keys()
     print("StatePort Site validation: OK")
 
 

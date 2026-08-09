@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="StatePort runs durable AI applications on your own computer: state that survives sessions, changes you review and can undo, and deployments you approve first.">
+    <meta name="description" content="StatePort runs durable AI applications on your own computer: state you can review and undo. The alpha.3 candidate is published, but installation is currently disabled.">
     <meta name="theme-color" content="#0B132B">
     <meta name="color-scheme" content="light">
     <meta property="og:type" content="website">
@@ -26,7 +26,7 @@
     <link rel="alternate icon" href="assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="stylesheet" href="assets/site.css?v=2026-08-06-2">
+    <link rel="stylesheet" href="assets/site.css?v=2026-08-08-1">
     <link rel="stylesheet" href="assets/site-enhancements.css?v=2026-08-06-1" data-site-enhancements>
     <title>StatePort — Durable AI applications that keep their state</title>
     <script type="application/ld+json">
@@ -76,7 +76,7 @@
               <a class="button" href="#prototype">See the application at work</a>
               <a class="button button--quiet" href="docs/study-state.html">Meet StudyState</a>
             </div>
-            <p class="availability"><strong>Alpha candidate:</strong><span>v0.1.0-alpha.3 runs on Linux on Intel/AMD. Ubuntu 24.04 is tested; Fedora 44 works but isn't fully tested. Alpha — still being reviewed, not security-audited.</span><a href="releases/">Release status</a><a href="download/">Install</a><a href="docs/limitations.html">Limitations</a></p>
+            <p class="availability"><strong>Alpha candidate:</strong><span>v0.1.0-alpha.3 is published and signed, but installation is currently disabled: its signed freshness evidence has expired and known defects require a successor release. Not owner-accepted, not security-audited.</span><a href="download/erratum-alpha3.html">Why installation is disabled</a><a href="releases/">Release status</a><a href="docs/limitations.html">Limitations</a></p>
           </div>
 
           <div class="atlas" aria-hidden="true">
@@ -96,14 +96,13 @@
       <section class="home-section get-started-strip" aria-labelledby="get-started-heading">
         <div class="reveal">
           <p class="section-kicker">Get it</p>
-          <h2 class="section-heading" id="get-started-heading">Install StatePort on Linux.</h2>
-          <p>Alpha. One line. The installer checks your system first, then asks before it changes anything.</p>
-          <div class="code-panel" data-label="One-line install"><code>curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.3/install.sh | bash</code></div>
+          <h2 class="section-heading" id="get-started-heading">Installation is currently disabled.</h2>
+          <p>The published v0.1.0-alpha.3 release stays online and cryptographically intact, but you cannot install it right now: its signed freshness evidence has expired, and known installer and runtime defects require a successor release. Do not run the old one-line install command.</p>
           <div class="hero-actions">
-            <a class="button" href="download/">Download&nbsp;<span aria-hidden="true">→</span></a>
+            <a class="button" href="download/erratum-alpha3.html">Read the alpha.3 erratum&nbsp;<span aria-hidden="true">→</span></a>
             <a class="button button--outlined" href="releases/">Release status</a>
           </div>
-          <p class="get-started-note">Linux · Intel/AMD only · Alpha software — don't run it anywhere that matters yet.</p>
+          <p class="get-started-note">The signed alpha.3 files remain available for inspection on the <a href="download/">download page</a>. Owner acceptance, independent security review, and production qualification do not exist.</p>
           <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue</a>.</p>
         </div>
       </section>
@@ -121,7 +120,7 @@
         <div class="audience-intro reveal">
           <p class="section-kicker">The product today</p>
           <h2 class="section-heading" id="pillars-heading">One platform, two pillars.</h2>
-          <p>Both pillars run locally in the private alpha, and both follow the same rule: nothing consequential happens without an explicit approval and a receipt.</p>
+          <p>Both pillars run locally in the published alpha candidate, and both follow the same rule: nothing consequential happens without an explicit approval and a receipt.</p>
         </div>
         <div class="audience-paths">
           <article class="audience-path reveal">
@@ -287,7 +286,7 @@
           <div class="reveal">
             <p class="release-label">Release status</p>
             <h2 id="release-heading">What's available today.</h2>
-            <p class="release-updated">Status reviewed <time datetime="2026-08-06">6 August 2026</time>.</p>
+            <p class="release-updated">Status reviewed <time datetime="2026-08-08">8 August 2026</time>.</p>
             <a class="release-ledger-link" href="releases/">See the full release status <span aria-hidden="true">↗</span></a>
           </div>
           <dl class="release-status-list reveal">
@@ -301,11 +300,11 @@
             </div>
             <div>
               <dt>Software download</dt>
-              <dd>v0.1.0-alpha.3 (alpha)</dd>
+              <dd>v0.1.0-alpha.3 published — installation disabled</dd>
             </div>
             <div>
               <dt>Implementation source</dt>
-              <dd>Not public</dd>
+              <dd>The curated alpha.3 source archive is public. Canonical development Git is private, and the signed <code>publicSnapshot</code> Git identity is not remotely resolvable. Code and StateSpec artifacts are AGPL-3.0-or-later; documentation is CC-BY-4.0.</dd>
             </div>
           </dl>
         </div>

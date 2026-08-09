@@ -10,7 +10,7 @@
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-08-02-3">
+    <link rel="stylesheet" href="../assets/site.css?v=2026-08-08-1">
     <title>Hosts and portability — StatePort</title>
   </head>
   <body class="article-page">
@@ -74,7 +74,7 @@
           <p>Instead of assuming that a named host is interchangeable with another, a host should state its capabilities: structured events, cancellation, sandbox support, tool boundaries, output reporting, token telemetry, and the authentication route class. Missing support should produce an honest degradation, not an invented equivalence.</p>
 
           <h2>Where the provider work stands</h2>
-          <p>StatePort is a managed harness around coding agents: it orchestrates them headlessly and lets each provider declare what it can actually do. In the current private alpha, Codex CLI is the only qualified provider — operator-authenticated, supervised, with external side effects denied by default. OpenCode is unqualified, there is no direct-API provider, and Pi remains a reference direction rather than a delivered adapter. StatePort preserves canonical application state across execution-provider integrations; the durable Stateware instance does not depend on any one of them.</p>
+          <p>StatePort is a managed harness around coding agents: it orchestrates them headlessly and lets each provider declare what it can actually do. In the current published alpha candidate, Codex CLI is the only qualified provider — operator-authenticated, supervised, with external side effects denied by default. OpenCode is unqualified, there is no direct-API provider, and Pi remains a reference direction rather than a delivered adapter. StatePort preserves canonical application state across execution-provider integrations; the durable Stateware instance does not depend on any one of them.</p>
           <p>The <a href="platform-support.html">platform-support contract</a> separates browser/storage qualification from host-integrated proof. The release ledger will carry supported installation and host coverage as they are verified.</p>
 
           <h2>What stronger evidence would look like</h2>

@@ -1398,6 +1398,11 @@ select {
   font-size: 0.94rem;
 }
 
+.article-hero .notice,
+.article-hero .notice a {
+  color: #2f405f;
+}
+
 .notice strong {
   display: block;
   margin-bottom: 0.22rem;

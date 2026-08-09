@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+    <meta name="description" content="Alpha.3 erratum: the signed StatePort release is intact, but installation is disabled — freshness evidence expired and known defects require a successor release.">
+    <meta name="theme-color" content="#0B132B">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="StatePort">
+    <meta property="og:title" content="Alpha.3 erratum — installation disabled">
+    <meta property="og:description" content="The signed alpha.3 release is byte-intact, but installation is disabled: signed freshness evidence expired and known installer and runtime defects require a successor release.">
+    <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/download/erratum-alpha3.html">
+    <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-demo-source.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/download/erratum-alpha3.html">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+    <link rel="manifest" href="../site.webmanifest">
+    <link rel="stylesheet" href="../assets/site.css?v=2026-08-08-1">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-06-1" data-site-enhancements>
+    <title>Alpha.3 erratum — installation disabled — StatePort</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Alpha.3 erratum: installation is currently disabled",
+        "description": "The signed alpha.3 release is byte-intact, but installation is disabled: signed freshness evidence expired and known installer and runtime defects require a successor release.",
+        "url": "https://lennertvhoy.github.io/StatePort-Site/download/erratum-alpha3.html",
+        "dateModified": "2026-08-08",
+        "inLanguage": "en"
+      }
+    </script>
+  </head>
+  <body class="article-page release-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-block-arch-dark.svg" alt="" width="84" height="84">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Open navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="../docs/">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-release" href="../releases/">Release status</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="erratum-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Erratum — v0.1.0-alpha.3</p>
+          <h1 id="erratum-title">Installation is currently disabled.</h1>
+          <p>This erratum explains, in plain language, why the published alpha.3 release cannot be installed right now and what to do instead. It was added on 8 August 2026 without changing any signed release file.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+        <aside class="doc-sidebar" aria-label="Erratum sections">
+          <h2>Erratum</h2>
+          <nav>
+            <a href="#what-happened" aria-current="page">What happened</a>
+            <a href="#not-corrupted">Is the release corrupted?</a>
+            <a href="#cannot-install">Can I install it now?</a>
+            <a href="#next">What should I do next?</a>
+            <a href="#evidence">Evidence that remains</a>
+            <a href="#source-licensing">Source and licensing</a>
+            <a href="./">Download page</a>
+            <a href="../releases/">Release status</a>
+          </nav>
+        </aside>
+
+        <article class="prose release-overview" data-no-toc>
+          <section id="what-happened" aria-labelledby="what-happened-heading">
+            <h2 id="what-happened-heading">What happened?</h2>
+            <p>Two independent problems make v0.1.0-alpha.3 non-installable today:</p>
+            <ul>
+              <li><strong>The signed freshness evidence has expired.</strong> Every signed image in the release records a vulnerability scan from 6 August 2026 with a maximum accepted age of 24 hours. Current-time verification now refuses all seven images — the release fails its own freshness gate before anything is installed. Signed freshness evidence cannot be renewed without issuing a new candidate.</li>
+              <li><strong>The release ships known installer and runtime defects.</strong> The committed installer does not provision or protocol-health-check the declared execution host, and goal execution in this candidate is synthetic. These are defects in the released bytes themselves, so they can only be fixed by a successor release, never by re-downloading this one.</li>
+            </ul>
+          </section>
+
+          <section id="not-corrupted" aria-labelledby="not-corrupted-heading">
+            <h2 id="not-corrupted-heading">Is the signed release corrupted?</h2>
+            <p><strong>No.</strong> The published bytes are intact: every file under the versioned release directory is unchanged since publication, the release index and its signature bundle still match their recorded SHA-256 digests, and the image set matches the signed payload. The installation failure is a time-based freshness refusal plus known defects — not tampering, corruption, or a silent replacement.</p>
+          </section>
+
+          <section id="cannot-install" aria-labelledby="cannot-install-heading">
+            <h2 id="cannot-install-heading">Can I install it now?</h2>
+            <p><strong>No.</strong> Do not run the old one-line install command. The installer refuses at verification time because the freshness window has closed, and even a forced install would run into the known execution-host and synthetic-execution defects.</p>
+            <p>Earlier install receipts for Ubuntu 24.04 (<code>validated_baseline</code>) and Fedora 44 (<code>compatible_unvalidated</code>) were recorded while the freshness evidence was still valid. They are historical evidence, not proof that the release is installable now. Owner acceptance, independent security review, and production qualification do not exist for this release.</p>
+          </section>
+
+          <section id="next" aria-labelledby="next-heading">
+            <h2 id="next-heading">What should I do next?</h2>
+            <ul>
+              <li>Wait for a successor release that carries fresh signed scan evidence and fixes the installer and runtime defects.</li>
+              <li>Watch the <a href="../releases/">release status</a> page — it is the first place a successor is announced.</li>
+              <li>If you already experimented with alpha.3, treat it as an inspection build, not an accepted product.</li>
+              <li>Questions or findings: <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">open an issue</a>.</li>
+            </ul>
+          </section>
+
+          <section id="evidence" aria-labelledby="evidence-heading">
+            <h2 id="evidence-heading">What evidence remains available?</h2>
+            <p>The complete signed evidence set stays online for inspection on the <a href="./#verification">download page</a>:</p>
+            <ul>
+              <li>The signed release index (<code>release-index.json</code>, SHA-256 <code>d02709a250369b96c7bf5c39659d9080ff53d0cf0e20d391222fe5c1b0d4ae93</code>) and its Sigstore signature bundle, signed payload digest <code>sha256:2639e29d6ca0a5bd83d07013edb49f22692efaf53a6049234fe6b70810c89166</code>.</li>
+              <li>The pinned trust key fingerprint <code>sha256:3dca6219e41310c6a95a8189669aacad3198e6c84489946406b8f986e1f4211a</code> and the seven pinned Linux AMD64 image digests.</li>
+              <li>Supply-chain records: SBOM tool provenance, vulnerability-scan provenance, export manifest, and build-comparison records.</li>
+              <li>The <a href="0.1.0-alpha.3/release-notes.md">release notes</a> and <a href="0.1.0-alpha.3/known-limitations.md">known limitations</a> shipped with the candidate.</li>
+              <li>The historical local install receipts for Ubuntu 24.04 and Fedora 44, bound to release-index digest <code>sha256:3353fdb6477fcb5269169177c625205c7737b13c904de0c4f70801d7189f3f38</code> — useful history, not current installability.</li>
+            </ul>
+          </section>
+
+          <section id="source-licensing" aria-labelledby="source-licensing-heading">
+            <h2 id="source-licensing-heading">Source and licensing</h2>
+            <ul>
+              <li>The <strong>canonical development Git repository is private</strong>. The canonical source identity recorded in the release index (commit <code>fa4ea4b7f08e78669e194c204b59206ab109a02f</code>, tree <code>aec60303045e7a9c8255b941c761d904af85ec10</code>) names that private repository; you cannot fetch it, and that is expected.</li>
+              <li>The release index separately records a <strong>signed <code>publicSnapshot</code> Git identity</strong> (commit <code>43d6b4491b962c963a0ecafc060e0dfc7e334dc0</code>, tree <code>3bbe46db14a7c929e6f0a17ca153ec686192aa51</code>). That identity is <strong>not remotely resolvable</strong> — no public Git repository serves that exact snapshot or its history. This is a known successor-release blocker, recorded openly rather than hidden.</li>
+              <li>What <em>is</em> publicly distributed: the curated alpha.3 source archive (<code>stateport-source.tar</code>, SHA-256 <code>17f5680c30841b1e831b37df02dca8f03c2c03d265a42633dd525f99bd613398</code>) shipped alongside the signed artifacts. The curated alpha.3 source archive is public and classifies code and StateSpec artifacts as AGPL-3.0-or-later and documentation as CC-BY-4.0. Archive availability does not make the canonical development Git history public; that repository remains private.</li>
+            </ul>
+          </section>
+
+          <p class="notice"><strong>Bottom line.</strong> Alpha.3 remains published and cryptographically intact; installation is disabled; a successor release is required. Nothing on this page changes the signed bytes.</p>
+
+          <div class="inline-actions">
+            <a class="button button--ink" href="../releases/">View release status</a>
+            <a class="button button--outlined" href="./">Back to the download page</a>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-block-arch-light.svg" alt="" width="68" height="68">
+          <p><strong>StatePort</strong>Durable AI-assisted work, kept in view.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="../docs/">Docs</a>
+          <a href="../tutorials/">Tutorials</a>
+          <a href="../releases/">Release status</a>
+        </nav>
+        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+      </div>
+    </footer>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>

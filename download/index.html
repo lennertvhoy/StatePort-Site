@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Install StatePort alpha on Linux with one command. Ubuntu 24.04 is tested; Fedora 44 works but is not fully tested. Alpha software, not security-audited.">
+    <meta name="description" content="StatePort v0.1.0-alpha.3 is published, signed, and byte-intact, but installation is currently disabled: its signed freshness evidence has expired and known defects require a successor release.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Install StatePort (v0.1.0-alpha.3)">
-    <meta property="og:description" content="One-line installer for StatePort alpha on Linux Intel/AMD. Ubuntu 24.04 tested, Fedora 44 works but is not fully tested. Alpha, not security-audited.">
+    <meta property="og:title" content="Download StatePort — installation disabled (v0.1.0-alpha.3)">
+    <meta property="og:description" content="Alpha.3 remains published and cryptographically intact, but installation is disabled: signed freshness evidence expired and known defects require a successor release.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/download/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-demo-source.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -19,17 +19,17 @@
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
     <link rel="manifest" href="../site.webmanifest">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-08-06-2">
+    <link rel="stylesheet" href="../assets/site.css?v=2026-08-08-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-06-1" data-site-enhancements>
-    <title>Install StatePort — v0.1.0-alpha.3</title>
+    <title>Download StatePort — installation disabled (v0.1.0-alpha.3)</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Install StatePort (v0.1.0-alpha.3)",
-        "description": "One-line installer for StatePort alpha on Linux Intel/AMD. Ubuntu 24.04 tested, Fedora 44 works but is not fully tested.",
+        "name": "Download StatePort — installation disabled (v0.1.0-alpha.3)",
+        "description": "Alpha.3 remains published and cryptographically intact, but installation is disabled: signed freshness evidence expired and known defects require a successor release.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/download/",
-        "dateModified": "2026-08-06",
+        "dateModified": "2026-08-08",
         "inLanguage": "en"
       }
     </script>
@@ -55,10 +55,9 @@
     <main id="main">
       <section class="article-hero" id="alpha3" aria-labelledby="download-title">
         <div class="article-hero-inner">
-          <p class="document-kicker">Install</p>
-          <h1 id="download-title">Install StatePort</h1>
-          <div class="code-panel" data-label="One-line install"><code>curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.3/install.sh | bash</code></div>
-          <p>Linux · Intel/AMD only · Alpha software — don't run it anywhere that matters yet.</p>
+          <p class="document-kicker">Download</p>
+          <h1 id="download-title">Installation is currently disabled</h1>
+          <p class="notice"><strong>Do not run the old one-line install command.</strong> The v0.1.0-alpha.3 signed release remains published and cryptographically intact, but its signed freshness evidence has expired and known installer and runtime defects require a successor release. <a href="erratum-alpha3.html">Read the alpha.3 erratum</a> for what happened and what to do next.</p>
           <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue</a>.</p>
         </div>
       </section>
@@ -67,47 +66,38 @@
         <aside class="doc-sidebar" aria-label="Download sections">
           <h2>Download</h2>
           <nav>
-            <a href="#alpha3" aria-current="page">The command</a>
-            <a href="#what-works">What works</a>
-            <a href="#what-it-does">What the installer does</a>
+            <a href="#alpha3" aria-current="page">Current status</a>
+            <a href="#why-disabled">Why disabled</a>
             <a href="#verification">Verification details</a>
+            <a href="erratum-alpha3.html">Erratum</a>
             <a href="#alpha2">Alpha.2</a>
             <a href="../releases/">Release status</a>
           </nav>
         </aside>
 
         <article class="prose release-overview" data-no-toc>
-          <p>StatePort runs on Linux on Intel/AMD with rootless Podman. The installer checks your system, downloads signed images, checks every signature, and asks before it installs.</p>
+          <p>Alpha.3 targets Linux on Intel/AMD with rootless Podman. The signed release and its verification material stay online below for inspection, but there is no working install path today.</p>
 
-          <section id="what-works" aria-labelledby="what-works-heading">
-            <h2 id="what-works-heading">What works</h2>
+          <section id="why-disabled" aria-labelledby="why-disabled-heading">
+            <h2 id="why-disabled-heading">Why installation is disabled</h2>
             <ul>
-              <li><strong>Ubuntu 24.04</strong> — tested, works.</li>
-              <li><strong>Fedora 44</strong> — works, not fully tested.</li>
-              <li><strong>Debian, Arch, and other distros</strong> — not yet.</li>
+              <li><strong>Signed freshness evidence has expired.</strong> All seven signed image scans and vulnerability databases are older than the 24-hour maximum age the installer enforces, so current-time verification refuses every image before anything is installed.</li>
+              <li><strong>Known installer and runtime defects.</strong> The committed installer does not provision or protocol-health-check the declared execution host, and goal execution in this candidate is synthetic. These defects require a successor release; they cannot be fixed by re-running this one.</li>
+              <li><strong>Earlier receipts are not current proof.</strong> Historical local install receipts for Ubuntu 24.04 and Fedora 44 were recorded while the freshness evidence was valid. They do not establish that the release is installable now.</li>
+              <li><strong>No acceptance exists.</strong> Owner acceptance, independent security review, and production qualification have not happened.</li>
             </ul>
-            <p>The installer decides by checking what your machine can actually do, not by its distro name. A matching machine we haven't run a clean install on is marked "works, not fully tested".</p>
+            <p><strong>What to do next:</strong> wait for a successor release. The <a href="../releases/">release status</a> page and the <a href="erratum-alpha3.html">alpha.3 erratum</a> carry the current truth when one is published.</p>
           </section>
 
-          <section id="what-it-does" aria-labelledby="what-it-does-heading">
-            <h2 id="what-it-does-heading">What the installer does</h2>
-            <ol>
-              <li>Checks your system is compatible.</li>
-              <li>Downloads the signed images and verifies every signature.</li>
-              <li>Asks you to type <code>install</code> before it changes anything.</li>
-            </ol>
-            <p>If your system is not compatible, it stops and changes nothing. <a href="0.1.0-alpha.3/install.sh">Read the installer script</a> before you run it if you like.</p>
-          </section>
-
-          <p class="notice"><strong>Honest disclaimer.</strong> This is alpha software. It has not been security-audited or tested for production. Don't run it anywhere that matters yet.</p>
+          <p class="notice"><strong>Honest disclaimer.</strong> This is alpha software. It has not been security-audited or tested for production, and it currently cannot be installed at all. Don't run it anywhere that matters.</p>
 
           <section id="verification" aria-labelledby="verification-heading">
             <h2 id="verification-heading">Verification details</h2>
-            <p>If you want to check the install by hand, these are the exact files and their SHA-256 sums. The signed index is the source of truth for version, images, and trust identity.</p>
+            <p>The signed files and their SHA-256 sums remain available for inspection — the bytes are intact and unchanged since publication. The signed index is the source of truth for version, images, and trust identity.</p>
             <dl class="release-ledger release-ledger--detailed" aria-label="Alpha 3 verification values">
               <div>
                 <dt>Installer script</dt>
-                <dd><a href="0.1.0-alpha.3/install.sh"><code>install.sh</code></a><small>The one-line command above downloads and runs this. It pins the installer below.</small></dd>
+                <dd><a href="0.1.0-alpha.3/install.sh"><code>install.sh</code></a><small>The retired one-line command downloaded and ran this script, which pins the installer below. Do not run it: installation is disabled.</small></dd>
               </div>
               <div>
                 <dt>Installer</dt>
@@ -126,8 +116,16 @@
                 <dd><a href="0.1.0-alpha.3/stateport-alpha-2026-08-cosign.pub"><code>alpha-2026-08-cosign.pub</code></a><small>DER-SPKI fingerprint: <code>sha256:3dca6219e41310c6a95a8189669aacad3198e6c84489946406b8f986e1f4211a</code>.</small></dd>
               </div>
               <div>
-                <dt>Source</dt>
-                <dd><code>fa4ea4b7f08e78669e194c204b59206ab109a02f</code><small>Tree <code>aec60303045e7a9c8255b941c761d904af85ec10</code>. The implementation source itself is not public.</small></dd>
+                <dt>Canonical development Git</dt>
+                <dd><code>fa4ea4b7f08e78669e194c204b59206ab109a02f</code><small>Tree <code>aec60303045e7a9c8255b941c761d904af85ec10</code>. This canonical development Git repository and its history are private.</small></dd>
+              </div>
+              <div>
+                <dt>Signed <code>publicSnapshot</code> Git identity</dt>
+                <dd><code>43d6b4491b962c963a0ecafc060e0dfc7e334dc0</code><small>Tree <code>3bbe46db14a7c929e6f0a17ca153ec686192aa51</code>. This separately signed identity is not remotely resolvable: no public Git repository serves that exact snapshot or its history.</small></dd>
+              </div>
+              <div>
+                <dt>Public curated source archive</dt>
+                <dd><a href="0.1.0-alpha.3/stateport-source.tar"><code>stateport-source.tar</code></a><small>The curated alpha.3 source archive is public: SHA-256 <code>17f5680c30841b1e831b37df02dca8f03c2c03d265a42633dd525f99bd613398</code>, 20,305,920 bytes. Code and StateSpec artifacts are classified AGPL-3.0-or-later; documentation is classified CC-BY-4.0. Archive availability does not make the canonical Git history public.</small></dd>
               </div>
             </dl>
             <p>Seven Linux AMD64 images are pinned in the signed index. The public receipt image set digest is <code>sha256:ff783dddd731ff8217d8cf573403b114bba5759dc9f0922ada98bf7d22a1beb7</code>:</p>
@@ -145,7 +143,7 @@
 
           <section id="alpha2" aria-labelledby="alpha2-heading">
             <h2 id="alpha2-heading">Alpha.2</h2>
-            <p><strong>v0.1.0-alpha.2 is superseded and disabled. Use alpha.3. Do not install alpha.2.</strong> Its signed files stay online for inspection — they are not changed or relabelled — but its installer stays disabled because the packaged web image was missing required source trees.</p>
+            <p><strong>v0.1.0-alpha.2 is superseded and disabled. Do not install alpha.2.</strong> Its signed files stay online for inspection — they are not changed or relabelled — but its installer stays disabled because the packaged web image was missing required source trees. Alpha.3 is likewise published for inspection only while installation is disabled.</p>
             <p><a href="0.1.0-alpha.2/release-index.json">Inspect the alpha.2 signed index</a> or read the <a href="../releases/">release status</a> page.</p>
           </section>
         </article>
