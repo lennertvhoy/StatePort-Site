@@ -85,15 +85,15 @@ site:
     source_branch: main
     source_path: /
     deployment_head: derived_from_git_not_persisted
-    live_content_commit: c1384061a093f8f4fc7e68f8ca7126558e1e97a5
+    live_content_commit: b9d2edf0692c0c8672de8984d511a17c3303e02b
     pages_build: 1141200639
-    pages_run: 31315882234
-    pages_deployment: 5819133762
+    pages_run: 31392022484
+    pages_deployment: 5832690455
     deployed_at: "2026-08-09T13:28:39Z"
   current_release_surface: alpha3_install_disabled_erratum_contained_live_verified
   candidate:
     head: d56d67bf48f2edbde03ec2fd050e9ea794211eaa
-    status: committed_locally_rendered_validated_not_pushed_not_deployed
+    status: committed_locally_rendered_validated_deployed_remotely_verified
     governed_render: locally_rendered_validated
   public_voice: installation_disabled_plain_language_erratum_linked_no_command_promotion
   installer_command_shown: false
@@ -125,7 +125,7 @@ active_work:
 
 owner_directive:
   id: OD-2026-08-10-UNIFIED-UX-CLOSURE
-  status: owner_verdict_executed_site_commit_local_push_pending_not_deployed
+  status: owner_verdict_executed_site_deployed_remotely_verified
   externalActionsRequireCurrentOwnerVerdict:
     - commit
     - push
@@ -141,8 +141,8 @@ owner_directive:
     review: authorized
     validation: authorized
     commitSequence: executed_local_candidate
-    pushMain: not_executed
-    containmentDeployment: historical_executed
+    pushMain: executed
+    containmentDeployment: executed_remotely_verified
     humanAcceptance: not_granted
 
 workspace_inventory:

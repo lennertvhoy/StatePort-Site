@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-08-10
 **Execution Mode:** operating
-**Project State:** alpha3_published_install_disabled_containment_deployed_candidate_locally_rendered_validated
+**Project State:** alpha3_published_install_disabled_containment_deployed_site_candidate_remotely_verified
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -65,10 +65,12 @@
   public Git snapshot identity is not remotely resolvable.
 - `v0.1.0-alpha.2` remains immutable, superseded, known defective, and
   install-disabled for inspection. Its files were not rewritten.
-- The unified UX/media candidate commit is
-  `d56d67bf48f2edbde03ec2fd050e9ea794211eaa`. It is locally rendered and
-  validated; push and managed Pages deployment verification remain pending.
-  The candidate is not deployment or release evidence.
+- The unified UX/media product commit is
+  `d56d67bf48f2edbde03ec2fd050e9ea794211eaa`. It is deployed as Site commit
+  `b9d2edf0692c0c8672de8984d511a17c3303e02b`, remotely verified through Pages
+  run `31392022484` and deployment `5832690455`. This does not change alpha.3
+  release truth: it remains install-disabled, immutable, unaccepted, and not
+  independently reviewed, stable, or production-qualified.
 
 ## Exact next action
 
