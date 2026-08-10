@@ -92,8 +92,8 @@ site:
     deployed_at: "2026-08-09T13:28:39Z"
   current_release_surface: alpha3_install_disabled_erratum_contained_live_verified
   candidate:
-    head: f41be0ede1ba7027bbc05879438097f634277bcd
-    status: uncommitted_locally_rendered_validated_not_deployed
+    head: d56d67bf48f2edbde03ec2fd050e9ea794211eaa
+    status: committed_locally_rendered_validated_not_pushed_not_deployed
     governed_render: locally_rendered_validated
   public_voice: installation_disabled_plain_language_erratum_linked_no_command_promotion
   installer_command_shown: false
@@ -125,7 +125,7 @@ active_work:
 
 owner_directive:
   id: OD-2026-08-10-UNIFIED-UX-CLOSURE
-  status: owner_verdict_executed_site_locally_rendered_validated_not_consumed_for_deployment
+  status: owner_verdict_executed_site_commit_local_push_pending_not_deployed
   externalActionsRequireCurrentOwnerVerdict:
     - commit
     - push
@@ -140,7 +140,7 @@ owner_directive:
     dirtyReviewAllowed: true
     review: authorized
     validation: authorized
-    commitSequence: not_executed_site_locally_rendered_validated
+    commitSequence: executed_local_candidate
     pushMain: not_executed
     containmentDeployment: historical_executed
     humanAcceptance: not_granted

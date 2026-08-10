@@ -39,9 +39,9 @@ OD-2026-08-08-KIMI-LONG-RUN authorized the historical containment based on
 `c1384061a093f8f4fc7e68f8ca7126558e1e97a5`, deployed, and publicly verified.
 That verdict is consumed. Current dirty-candidate review, validation, commit,
 push, and managed deployment authority is OD-2026-08-10-UNIFIED-UX-CLOSURE.
-Its Site candidate is locally rendered and validated, but remains uncommitted
-and not deployed until the authorized commit/push sequence and managed Pages
-verification; no deployment or release claim follows.
+Its Site candidate commit is `d56d67bf48f2edbde03ec2fd050e9ea794211eaa`.
+It is locally rendered and validated, but push and managed Pages deployment
+verification are pending; no deployment or release claim follows.
 
 ## Mandatory read order
 

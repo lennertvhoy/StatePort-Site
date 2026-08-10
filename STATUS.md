@@ -65,11 +65,10 @@
   public Git snapshot identity is not remotely resolvable.
 - `v0.1.0-alpha.2` remains immutable, superseded, known defective, and
   install-disabled for inspection. Its files were not rewritten.
-- The unified UX/media candidate is locally rendered and validated but remains
-  uncommitted and not deployed. HyperFrames strict checks, contrast, midpoint
-  snapshots, and the local media output are validated; the authorized
-  commit/push sequence and managed Pages verification remain pending. The
-  candidate is not deployment or release evidence.
+- The unified UX/media candidate commit is
+  `d56d67bf48f2edbde03ec2fd050e9ea794211eaa`. It is locally rendered and
+  validated; push and managed Pages deployment verification remain pending.
+  The candidate is not deployment or release evidence.
 
 ## Exact next action
 

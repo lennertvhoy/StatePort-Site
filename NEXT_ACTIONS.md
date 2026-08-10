@@ -6,7 +6,7 @@
 
 ## P0 [BL-SITE-SUCCESSOR] Keep containment until a corrected successor exists
 
-**Status:** contained_live; unified UX candidate locally rendered/validated and uncommitted
+**Status:** contained_live; unified UX candidate `d56d67b` locally rendered/validated; push and managed Pages verification pending
 
 Alpha.3 remains published, signed, and install-disabled. Containment content
 commit `c1384061a093f8f4fc7e68f8ca7126558e1e97a5` is live through Pages run
@@ -17,9 +17,9 @@ verification matched all 48 immutable release files to their anchored hashes.
 No site mutation is authorized merely because a successor is being developed.
 Keep the disabled state until a corrected candidate has fresh evidence, a
 resolvable source identity, a signed index, and a separate publication verdict.
-The current unified candidate is locally rendered and validated, but is not
-deployed: the authorized commit/push sequence and managed Pages verification
-remain pending. Preserve the candidate and its render logs.
+The current unified candidate is committed locally as `d56d67b`, rendered and
+validated, but is not pushed or deployed: managed Pages verification remains
+pending. Preserve the candidate and its render logs.
 
 **Exit:** a separately authorized successor is published and verified, then the
 mutable site is updated without altering retained alpha.2/alpha.3 bytes. Human
