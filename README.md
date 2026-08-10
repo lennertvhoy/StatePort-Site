@@ -7,7 +7,8 @@ Live site: <https://lennertvhoy.github.io/StatePort-Site/>
 
 This repository keeps the public website separate from the current private
 implementation repository. The release ledger is the source for availability
-until a public source release exists.
+and release evidence; the curated alpha.3 source archive is public while the
+canonical development Git remains private.
 
 ## Architecture
 
@@ -47,9 +48,11 @@ the sitemap and manifest, tracking absence, and static asset budgets.
 
 ## Publishing
 
-Pushes to `main` invoke `.github/workflows/deploy-pages.yml`. The workflow uses
-the GitHub Pages custom-workflow flow; Pages must be enabled for the repository.
-Pull requests run the non-deploying validation workflow.
+GitHub Pages serves the site from the `main` branch through GitHub's managed
+legacy Pages build: a push to `main` is picked up and served directly.
+`.github/workflows/deploy-pages.yml` is a manual-only custom workflow and is
+not the deployment provider. Pull requests run the non-deploying validation
+workflow.
 
 ## License
 

@@ -5,8 +5,10 @@ import unittest
 from scripts.render_support import (
     FOOTER_END,
     FOOTER_START,
+    HOME_PATH,
     SECTION_END,
     SECTION_START,
+    load_config,
     rendered_home,
     support_enabled,
     validate_kofi_url,
@@ -17,6 +19,10 @@ SHELL = f"{SECTION_START}\nold section\n{SECTION_END}\n{FOOTER_START}\nold foote
 
 
 class SupportRenderTests(unittest.TestCase):
+    def test_real_home_contains_renderable_support_sentinels(self) -> None:
+        homepage = HOME_PATH.read_text(encoding="utf-8")
+        self.assertEqual(homepage, rendered_home(homepage, load_config()))
+
     def test_disabled_configuration_exposes_no_link(self) -> None:
         config = {
             "provider": "ko-fi",

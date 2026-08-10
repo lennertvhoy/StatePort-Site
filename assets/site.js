@@ -63,17 +63,6 @@
     return decodeURIComponent(pathname.slice(rootPath.length)).replace(/^\/+/, "");
   }
 
-  function ensureEnhancementStyles() {
-    if (document.querySelector("link[data-site-enhancements]")) {
-      return;
-    }
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = new URL("assets/site-enhancements.css", siteRoot).href;
-    link.dataset.siteEnhancements = "";
-    document.head.append(link);
-  }
-
   function setNavigationFocusability(nav, links, focusable) {
     if ("inert" in nav) {
       nav.inert = !focusable;
@@ -150,7 +139,7 @@
         !nav.contains(event.target) &&
         !navToggle.contains(event.target)
       ) {
-        setMenu(false);
+        setMenu(false, { restoreFocus: true });
       }
     });
 
@@ -183,47 +172,13 @@
     );
 
     elements.forEach((element) => observer.observe(element));
-  }
-
-  function initAtlasParallax() {
-    const hero = document.querySelector(".hero");
-    const atlas = document.querySelector(".atlas");
-    if (!hero || !atlas || reducedMotion.matches || !window.matchMedia("(pointer: fine)").matches) {
-      return;
-    }
-
-    let pendingFrame = 0;
-    let nextX = 0;
-    let nextY = 0;
-
-    const render = () => {
-      atlas.style.setProperty("--atlas-x", `${nextX * -18}px`);
-      atlas.style.setProperty("--atlas-y", `${nextY * -14}px`);
-      pendingFrame = 0;
-    };
-
-    hero.addEventListener("pointermove", (event) => {
-      const bounds = hero.getBoundingClientRect();
-      nextX = (event.clientX - bounds.left) / bounds.width - 0.5;
-      nextY = (event.clientY - bounds.top) / bounds.height - 0.5;
-      if (!pendingFrame) {
-        pendingFrame = window.requestAnimationFrame(render);
-      }
-    });
-
-    hero.addEventListener("pointerleave", () => {
-      nextX = 0;
-      nextY = 0;
-      if (!pendingFrame) {
-        pendingFrame = window.requestAnimationFrame(render);
-      }
-    });
+    root.classList.add("reveal-ready");
   }
 
   function initPrototypeGallery() {
     const gallery = document.getElementById("prototype-gallery");
     const items = [...document.querySelectorAll("[data-prototype-gallery-item]")];
-    if (!gallery || !items.length || typeof gallery.showModal !== "function") {
+    if (!gallery || items.length !== 3 || typeof gallery.showModal !== "function") {
       return;
     }
 
@@ -241,6 +196,31 @@
 
     let currentIndex = 0;
     let returnFocus = null;
+    const focusableSelector = [
+      "a[href]",
+      "area[href]",
+      "button:not(:disabled)",
+      "input:not(:disabled):not([type=hidden])",
+      "select:not(:disabled)",
+      "textarea:not(:disabled)",
+      "iframe",
+      "object",
+      "embed",
+      "[contenteditable=true]",
+      "[tabindex]",
+    ].join(",");
+    const getFocusableControls = () =>
+      [...gallery.querySelectorAll(focusableSelector)].filter((control) => {
+        if (
+          control.matches(":disabled") ||
+          control.tabIndex < 0 ||
+          control.closest("[hidden], [inert], [aria-hidden=true]")
+        ) {
+          return false;
+        }
+        const style = window.getComputedStyle(control);
+        return style.display !== "none" && style.visibility !== "hidden";
+      });
 
     const setSlide = (index) => {
       currentIndex = (index + items.length) % items.length;
@@ -289,7 +269,22 @@
       }
     });
     gallery.addEventListener("keydown", (event) => {
-      if (event.key === "ArrowLeft") {
+      if (event.key === "Tab") {
+        if (!gallery.open || event.defaultPrevented) {
+          return;
+        }
+        const controls = getFocusableControls();
+        if (!controls.length) {
+          return;
+        }
+        const currentControl = controls.indexOf(document.activeElement);
+        const atStart = currentControl <= 0;
+        const atEnd = currentControl === controls.length - 1;
+        if ((event.shiftKey && atStart) || (!event.shiftKey && atEnd) || currentControl < 0) {
+          event.preventDefault();
+          controls[event.shiftKey ? controls.length - 1 : 0].focus();
+        }
+      } else if (event.key === "ArrowLeft") {
         event.preventDefault();
         move(-1);
       } else if (event.key === "ArrowRight") {
@@ -553,10 +548,9 @@
       return;
     }
     const textarea = document.createElement("textarea");
+    textarea.className = "sr-only";
     textarea.value = text;
     textarea.setAttribute("readonly", "");
-    textarea.style.position = "fixed";
-    textarea.style.opacity = "0";
     document.body.append(textarea);
     textarea.select();
     const copied = document.execCommand("copy");
@@ -654,28 +648,6 @@
     });
   }
 
-  function initFooterNavigation() {
-    const footer = document.querySelector(".footer-inner");
-    if (!footer || footer.querySelector(".footer-nav")) {
-      return;
-    }
-    const nav = document.createElement("nav");
-    nav.className = "footer-nav";
-    nav.setAttribute("aria-label", "Footer navigation");
-    [
-      ["docs/", "Docs"],
-      ["tutorials/", "Tutorials"],
-      ["releases/", "Release status"],
-    ].forEach(([route, label]) => {
-      const link = document.createElement("a");
-      link.href = new URL(route, siteRoot).href;
-      link.textContent = label;
-      nav.append(link);
-    });
-    const meta = footer.querySelector(".footer-meta");
-    footer.insertBefore(nav, meta || null);
-  }
-
   function setCurrentYear() {
     document.querySelectorAll("[data-current-year]").forEach((element) => {
       element.textContent = String(new Date().getFullYear());
@@ -683,10 +655,8 @@
   }
 
   try {
-    ensureEnhancementStyles();
     initPrimaryNavigation();
     initReveals();
-    initAtlasParallax();
     initPrototypeGallery();
     initBreadcrumbs();
     initDocumentationNavigation();
@@ -694,7 +664,6 @@
     initPagination();
     initCodeCopy();
     initDocumentationFilter();
-    initFooterNavigation();
     setCurrentYear();
   } catch (error) {
     document.querySelectorAll(".reveal").forEach((element) => element.classList.add("is-visible"));

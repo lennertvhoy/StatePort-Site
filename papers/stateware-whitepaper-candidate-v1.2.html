@@ -8,11 +8,23 @@
 Application
 Boundary — a candidate Stateware whitepaper, not yet published.">
     <meta name="theme-color" content="#0B132B">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="StatePort">
+    <meta property="og:title" content="Stateware: State as the Application Boundary (candidate 1.2) — StatePort">
+    <meta property="og:description" content="Stateware: State as the Application Boundary — a candidate Stateware whitepaper, not yet published.">
+    <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/papers/stateware-whitepaper-candidate-v1.2.html">
+    <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current alpha.3 availability status.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-08-08-1">
+    <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
     <title>Stateware: State as the Application
 Boundary (candidate 1.2) — StatePort</title>
   </head>
@@ -20,7 +32,7 @@ Boundary (candidate 1.2) — StatePort</title>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header site-header--light">
       <a class="brand" href="../" aria-label="StatePort home">
-        <img src="../assets/stateport-mascot-block-arch-dark.svg" alt="">
+        <img src="../assets/stateport-mascot-block-arch-light.svg" alt="">
         <span>StatePort</span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
@@ -98,23 +110,26 @@ principles; the screenshots in this paper show it. The paper makes no
 comparative claims. It argues a single idea: <strong>state is the
 application boundary</strong> — and that moving the boundary there
 changes what an assistant can be.</p>
-<p><strong>Status of the reference implementation.</strong>
-Representative workflows — installation, governed conversation,
-approvals, receipts, updates — have been exercised against StatePort’s
-real local service. It is not presented as a hosted service, a
-production-qualified product, or a completed third-party application
-ecosystem.</p>
+<p><strong>Status of the reference implementation.</strong> The public
+walkthrough is a mock-backed, public-safe fixture and local development
+preview. It is not evidence of a live alpha.3 backend, a hosted service, a
+cross-device service, or a production-qualified product. The signed alpha.3
+release remains published for inspection while installation is disabled.</p>
 <p><strong>Current delivery versus future architecture.</strong> The
 current delivery of the reference implementation is StatePort
-v0.1.0-alpha.1, a <strong>private product-owner candidate</strong>:
-rootless Podman on Linux (x86_64), loopback-only, a single local user,
+v0.1.0-alpha.3, a <strong>publicly published and signed alpha candidate
+available for inspection</strong>; installation is currently disabled.
+The curated alpha.3 source archive is public, while the canonical
+development Git remains private and its signed <code>publicSnapshot</code>
+identity is not remotely resolvable. It is not owner-accepted,
+independently security-audited, stable, or production-ready. The delivery
+is rootless Podman on Linux (x86_64), loopback-only, a single local user,
 and Codex CLI 0.145.0 as the only qualified execution provider —
 operator-authenticated, running in supervised direct mode with external
 side effects denied by default, no bounded or unattended autonomy, and
-no transactional mode. There is no public download, no remote CI
-verification, and no independent security review. The wider architecture
-this paper describes — catalogues of community applications, multiple
-qualified providers, team deployments — is a direction, not a
+no transactional mode. There is no remote CI verification. The wider
+architecture this paper describes — catalogues of community applications,
+multiple qualified providers, team deployments — is a direction, not a
 description of what the alpha delivers. Where the two differ, this paper
 now says so explicitly.</p>
 <h3 id="scope-and-standing-of-this-paper">Scope and standing of this
@@ -1022,11 +1037,16 @@ owner.</p>
       <div class="footer-inner">
         <div class="footer-mark">
           <img src="../assets/stateport-mascot-block-arch-light.svg" alt="">
-          <p><strong>StatePort</strong>Durable applications, built from state outward.</p>
+          <p><strong>StatePort</strong>Durable AI-assisted work, kept in view.</p>
         </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="../docs/">Docs</a>
+          <a href="../tutorials/">Tutorials</a>
+          <a href="../releases/">Release status</a>
+        </nav>
         <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
       </div>
     </footer>
-    <script src="../assets/site.js"></script>
+    <script src="../assets/site.js?v=2026-08-10-1"></script>
   </body>
 </html>

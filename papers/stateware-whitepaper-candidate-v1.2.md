@@ -49,23 +49,28 @@ comparative claims. It argues a single idea: **state is the application
 boundary** — and that moving the boundary there changes what an assistant can
 be.
 
-**Status of the reference implementation.** Representative workflows —
-installation, governed conversation, approvals, receipts, updates — have been
-exercised against StatePort's real local service. It is not presented as a
-hosted service, a production-qualified product, or a completed third-party
-application ecosystem.
+**Status of the reference implementation.** The public walkthrough is a
+mock-backed, public-safe fixture and local development preview. It is not
+evidence of a live alpha.3 backend, a hosted service, a cross-device service,
+or a production-qualified product. The signed alpha.3 release remains
+published for inspection while installation is currently disabled.
 
 **Current delivery versus future architecture.** The current delivery of the
-reference implementation is StatePort v0.1.0-alpha.1, a **private
-product-owner candidate**: rootless Podman on Linux (x86_64), loopback-only,
-a single local user, and Codex CLI 0.145.0 as the only qualified execution
-provider — operator-authenticated, running in supervised direct mode with
-external side effects denied by default, no bounded or unattended autonomy,
-and no transactional mode. There is no public download, no remote CI
-verification, and no independent security review. The wider architecture this
-paper describes — catalogues of community applications, multiple qualified
-providers, team deployments — is a direction, not a description of what the
-alpha delivers. Where the two differ, this paper now says so explicitly.
+reference implementation is StatePort v0.1.0-alpha.3, a **publicly published
+and signed alpha candidate available for inspection**; installation is
+currently disabled. The curated alpha.3 source archive is public, while the
+canonical development Git remains private and its signed `publicSnapshot`
+identity is not remotely resolvable. It is not owner-accepted,
+independently security-audited, stable, or production-ready. The delivery is
+rootless Podman on Linux (x86_64), loopback-only, a single local user, and
+Codex CLI 0.145.0 as the only qualified execution provider —
+operator-authenticated, running in supervised direct mode with external side
+effects denied by default, no bounded or unattended autonomy, and no
+transactional mode. There is no remote CI verification. The wider
+architecture this paper describes — catalogues of community applications,
+multiple qualified providers, team deployments — is a direction, not a
+description of what the alpha delivers. Where the two differ, this paper now
+says so explicitly.
 
 ## Scope and standing of this paper
 

@@ -59,6 +59,89 @@ MUTABLE_DISABLED_BOOTSTRAP_STRUCTURE = re.compile(
     r"exit 2\n\Z"
 )
 
+# Local, untracked build source for the public overview media. It is not a
+# visitor page, so page-level scans must exclude this source tree while
+# remaining strict for every deployed HTML page.
+LOCAL_BUILD_SOURCE_ROOTS = {
+    Path("media-src/stateport-overview"),
+    Path("output/ux-mission/source/stateport-overview"),
+}
+LOCAL_BUILD_SOURCE_MANIFEST = Path("media-src/stateport-overview/source-manifest.json")
+BRAND_ASSET_SHA256 = {
+    "assets/stateport-mascot-block-arch-light.svg": "32af9b36db5a7dafba0b85f3598806dc13b2d9a31e3fab5415ff65dd80462240",
+    "assets/stateport-mascot-block-arch-dark.svg": "62d1a8ee6a68aa025e7246f689cd4ed7e885d7f3d97fb78fe84c0d5f75cdf013",
+}
+OVERVIEW_MP4_SHA256 = "98c1630159999fd9ba95014d7779c6413a2b1c4d8fdad5473ce3893db99c6a6b"
+
+
+def is_local_build_source(path: Path) -> bool:
+    return any(path == root or root in path.parents for root in LOCAL_BUILD_SOURCE_ROOTS)
+
+
+def validate_brand_asset_bytes() -> None:
+    """Keep both canonical mascot files byte-bound, including inactive dark art."""
+
+    for relative, expected in BRAND_ASSET_SHA256.items():
+        path = ROOT / relative
+        if not path.is_file():
+            raise AssertionError(f"Missing canonical brand asset: {relative}")
+        observed = hashlib.sha256(path.read_bytes()).hexdigest()
+        if observed != expected:
+            raise AssertionError(f"Canonical brand asset drifted: {relative}")
+
+
+def validate_local_media_source_manifest() -> None:
+    """Validate local media provenance when the untracked source is present."""
+
+    manifest_path = ROOT / LOCAL_BUILD_SOURCE_MANIFEST
+    if not manifest_path.is_file():
+        return
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    disposition = manifest.get("sourceDisposition", {})
+    if disposition.get("trackedForPages") is not False:
+        raise AssertionError("local media source must remain outside the Pages tree")
+    if disposition.get("publishedExecutableSource") is not False:
+        raise AssertionError("local HyperFrames source must not be published executable source")
+    observed_mp4 = (ROOT / "assets/media/stateport-overview.mp4").is_file()
+    if disposition.get("mp4Present") is not observed_mp4:
+        raise AssertionError("source manifest MP4 disposition does not match the local candidate")
+    if observed_mp4:
+        observed_mp4_sha256 = hashlib.sha256(
+            (ROOT / "assets/media/stateport-overview.mp4").read_bytes()
+        ).hexdigest()
+        if observed_mp4_sha256 != OVERVIEW_MP4_SHA256:
+            raise AssertionError("local overview MP4 digest does not match the accepted candidate output")
+
+    expected_mascots = {
+        "assets/stateport-mascot-block-arch-light.svg": BRAND_ASSET_SHA256[
+            "assets/stateport-mascot-block-arch-light.svg"
+        ],
+    }
+    recorded_mascots = {
+        details.get("asset"): details.get("sha256")
+        for details in manifest.get("brandProvenance", {}).values()
+    }
+    if recorded_mascots != expected_mascots:
+        raise AssertionError("local media source mascot provenance is stale")
+    retained = manifest.get("retainedImmutableBrandAssets", {})
+    dark_asset = "assets/stateport-mascot-block-arch-dark.svg"
+    if retained.get(dark_asset, {}).get("sha256") != BRAND_ASSET_SHA256[dark_asset]:
+        raise AssertionError("local media source must retain the inactive dark mascot hash")
+    if retained.get(dark_asset, {}).get("activeUse") is not False:
+        raise AssertionError("inactive dark mascot must not be marked as active use")
+
+    for capture in manifest.get("finalCaptures", []):
+        public_path = capture.get("publicPath")
+        source_path = capture.get("sourcePath")
+        public_file = ROOT / public_path if isinstance(public_path, str) else None
+        source_file = manifest_path.parent / source_path if isinstance(source_path, str) else None
+        if not public_file or not public_file.is_file() or not source_file or not source_file.is_file():
+            raise AssertionError(f"local media source capture is missing: {public_path}")
+        if capture.get("mascotAsset") != "assets/stateport-mascot-block-arch-light.svg":
+            raise AssertionError(f"local media source capture is not light-mascot bound: {public_path}")
+        if hashlib.sha256(public_file.read_bytes()).hexdigest() != capture.get("sha256"):
+            raise AssertionError(f"local media source capture hash is stale: {public_path}")
+
 
 class AssetReferenceParser(HTMLParser):
     def __init__(self) -> None:
@@ -267,6 +350,8 @@ def validate_disabled_bootstrap_program(data: bytes) -> None:
 
 def validate_local_references() -> None:
     for page in sorted(ROOT.rglob("*.html")):
+        if is_local_build_source(page.relative_to(ROOT)):
+            continue
         parser = AssetReferenceParser()
         parser.feed(page.read_text(encoding="utf-8"))
         for reference in parser.references:
@@ -366,6 +451,7 @@ def validate_pull_request_workflow() -> None:
         "runs-on: ubuntu-latest",
         "python3 scripts/validate_repo.py",
         "python3 scripts/check_site_quality.py",
+        "PYTHONDONTWRITEBYTECODE=1 python3 -B -m unittest discover -s scripts -p 'test_*.py'",
     )
     for fragment in required_fragments:
         if fragment not in workflow:
@@ -618,8 +704,30 @@ def mutable_public_pages() -> list[Path]:
         relative = page.relative_to(ROOT)
         if any(relative == root or root in relative.parents for root in immutable_parts):
             continue
+        if is_local_build_source(relative):
+            continue
         pages.append(page)
     return pages
+
+
+def linked_public_markdown_pages() -> set[Path]:
+    """Return visitor-linked Markdown files, not private build-source prose."""
+
+    linked: set[Path] = set()
+    for page in mutable_public_pages():
+        parser = AssetReferenceParser()
+        parser.feed(page.read_text(encoding="utf-8"))
+        for reference in parser.references:
+            parsed = urlsplit(reference)
+            if parsed.scheme or parsed.netloc or not parsed.path.endswith(".md"):
+                continue
+            if parsed.path.startswith("/StatePort-Site/"):
+                target = (ROOT / parsed.path[len("/StatePort-Site/"):]).resolve()
+            else:
+                target = (page.parent / parsed.path).resolve()
+            if ROOT in target.parents and target.is_file():
+                linked.add(target)
+    return linked
 
 
 def _release_identity_tokens(release_root: str) -> set[str]:
@@ -859,16 +967,82 @@ def validate_release_semantics() -> None:
                 raise AssertionError(f"alpha.3 identity attributed to alpha.2 in {relative}: {line.strip()[:120]}")
 
 
-def validate_stylesheet_cache_keys() -> None:
-    """All pages must share one site.css cache key after any stylesheet change."""
-    keys: set[str] = set()
-    for page in sorted(ROOT.rglob("*.html")):
-        keys.update(re.findall(r"site\.css\?v=([0-9-]+)", page.read_text(encoding="utf-8")))
-    if len(keys) != 1:
-        raise AssertionError(f"site.css cache keys diverge across pages: {sorted(keys)}")
+def validate_asset_cache_keys() -> None:
+    """Shared cache-busted assets carry one identical ?v= key on every page.
+
+    The frozen brief requires site.css, site-enhancements.css, and the site.js
+    script tag to move in lockstep under a single cache version, so a deploy
+    can never serve a mixed-generation page.
+    """
+    assets = ("site.css", "site-enhancements.css", "site.js")
+    keys_by_asset: dict[str, set[str]] = {asset: set() for asset in assets}
+    for page in mutable_public_pages():
+        text = page.read_text(encoding="utf-8")
+        for asset in assets:
+            keys_by_asset[asset].update(
+                re.findall(rf"{re.escape(asset)}\?v=([0-9A-Za-z-]+)", text)
+            )
+    shared: set[str] = set()
+    for asset, keys in keys_by_asset.items():
+        if len(keys) > 1:
+            raise AssertionError(f"{asset} cache keys diverge across pages: {sorted(keys)}")
+        shared |= keys
+    if len(shared) != 1:
+        raise AssertionError(
+            "site.css, site-enhancements.css, and site.js must share one cache key: "
+            f"{sorted(shared)}"
+        )
+    shared_key = next(iter(shared))
+    for page in mutable_public_pages():
+        text = page.read_text(encoding="utf-8")
+        for asset in assets:
+            references = re.findall(
+                rf'(?:href|src)="([^"]*{re.escape(asset)}\?v=([0-9A-Za-z-]+))"',
+                text,
+            )
+            if len(references) != 1:
+                raise AssertionError(
+                    f"{page.relative_to(ROOT)}: expected exactly one keyed {asset} reference"
+                )
+            if references[0][1] != shared_key:
+                raise AssertionError(
+                    f"{page.relative_to(ROOT)}: {asset} does not use the shared cache key"
+                )
+
+
+def validate_pages_provider_truth() -> None:
+    """Legacy Pages build is the provider; the custom workflow is manual-only."""
+    readme = require("README.md").read_text(encoding="utf-8")
+    stale_readme_claims = (
+        re.compile(r"pushes?\s+to\s+[`'\"]?main[`'\"]?\s+invoke", re.IGNORECASE),
+        re.compile(r"invoke[^.\n]*deploy-pages\.yml", re.IGNORECASE),
+        re.compile(r"deploy-pages\.yml[^.\n]*(?:on every push|on push|automatically)", re.IGNORECASE),
+    )
+    for pattern in stale_readme_claims:
+        if pattern.search(readme):
+            raise AssertionError(
+                "README.md must not claim pushes invoke the custom Pages workflow: "
+                f"{pattern.pattern}"
+            )
+    for truth in ("legacy", "manual-only"):
+        if not re.search(rf"\b{re.escape(truth)}\b", readme, re.IGNORECASE):
+            raise AssertionError(
+                f"README.md must record the Pages provider truth containing {truth!r}"
+            )
+
+    workflow_path = ".github/workflows/deploy-pages.yml"
+    workflow = require(workflow_path).read_text(encoding="utf-8")
+    if "workflow_dispatch" not in workflow:
+        raise AssertionError(f"{workflow_path} must remain manually dispatched")
+    uncommented = "\n".join(line.split("#", 1)[0] for line in workflow.splitlines())
+    if re.search(r"(?m)^\s*push\s*:", uncommented) or re.search(
+        r"(?m)^on:\s*\[[^\]]*\bpush\b", uncommented
+    ):
+        raise AssertionError(f"{workflow_path} must not run on push; it is manual-only")
 
 
 def main() -> None:
+    validate_brand_asset_bytes()
     required = (
         "AGENTS.md",
         "STATUS.md",
@@ -909,12 +1083,14 @@ def main() -> None:
         "assets/stateport-mascot-block-arch-dark.svg",
         "assets/stateport-mascot-block-arch-light.svg",
         "assets/favicon-block-arch.svg",
-        "assets/media/stateport-local-prototype-walkthrough.mp4",
-        "assets/media/stateport-local-prototype-walkthrough.vtt",
-        "assets/media/stateport-demo-home.png",
-        "assets/media/stateport-demo-conversation.png",
-        "assets/media/stateport-demo-source.png",
-        "assets/media/stateport-demo-mobile.png",
+        "assets/media/stateport-overview.mp4",
+        "assets/media/stateport-overview.vtt",
+        "assets/media/stateport-overview-poster.png",
+        "assets/media/stateport-social-card.png",
+        "assets/media/stateport-hero-preview.png",
+        "assets/media/frame-conversation.png",
+        "assets/media/frame-result.png",
+        "assets/media/frame-mobile.png",
         "papers/stateware-whitepaper-public-v1.1.md",
         "papers/stateware-whitepaper-public-v1.1.html",
         "papers/assets/stateware-applications-home.png",
@@ -938,8 +1114,8 @@ def main() -> None:
     require_text("STATUS.md", "**Execution Mode:** operating")
     require_text("PROJECT_STATE.yaml", "statedd_mode: operating")
     require_text("index.html", "StatePort")
-    require_text("index.html", "See the application at work")
-    require_text("docs/prototype-walkthrough.html", "Working fixture")
+    require_text("index.html", "See StatePort in 60 seconds")
+    require_text("docs/prototype-walkthrough.html", "Working preview")
     require_text("docs/agent-kits.html", "Early direction")
     require_text("docs/platform-support.html", "Capability-based qualification")
     require_text("papers/stateware-whitepaper-public-v1.1.html", "Publication note")
@@ -967,7 +1143,8 @@ def main() -> None:
     validate_alpha3_release()
     validate_immutable_release_trees()
     validate_release_semantics()
-    validate_stylesheet_cache_keys()
+    validate_asset_cache_keys()
+    validate_pages_provider_truth()
     print("StatePort Site validation: OK")
 
 

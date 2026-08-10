@@ -32,14 +32,16 @@ test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"
 Stop on divergence or unexplained dirty work and preserve it. Do not switch to
 an old site branch because its prose looks newer.
 
-### Closed containment integration
+### Unified UX closure integration
 
-OD-2026-08-08-KIMI-LONG-RUN authorized one dirty candidate based on
-`a894b5b4aacac368e00f345c9ec1fc6f7c1f16f5`. It was committed as
+OD-2026-08-08-KIMI-LONG-RUN authorized the historical containment based on
+`a894b5b4aacac368e00f345c9ec1fc6f7c1f16f5`; it was committed as
 `c1384061a093f8f4fc7e68f8ca7126558e1e97a5`, deployed, and publicly verified.
-That verdict is consumed; it is historical evidence, not authority for another
-dirty candidate or deployment. New work uses the clean implementation gate and
-requires a new verdict for external actions.
+That verdict is consumed. Current dirty-candidate review, validation, commit,
+push, and managed deployment authority is OD-2026-08-10-UNIFIED-UX-CLOSURE.
+Its Site candidate is locally rendered and validated, but remains uncommitted
+and not deployed until the authorized commit/push sequence and managed Pages
+verification; no deployment or release claim follows.
 
 ## Mandatory read order
 

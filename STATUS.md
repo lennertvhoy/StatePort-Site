@@ -1,8 +1,8 @@
 # StatePort Site status
 
-**Updated At:** 2026-08-09
+**Updated At:** 2026-08-10
 **Execution Mode:** operating
-**Project State:** alpha3_published_install_disabled_containment_deployed_verified
+**Project State:** alpha3_published_install_disabled_containment_deployed_candidate_locally_rendered_validated
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -65,6 +65,11 @@
   public Git snapshot identity is not remotely resolvable.
 - `v0.1.0-alpha.2` remains immutable, superseded, known defective, and
   install-disabled for inspection. Its files were not rewritten.
+- The unified UX/media candidate is locally rendered and validated but remains
+  uncommitted and not deployed. HyperFrames strict checks, contrast, midpoint
+  snapshots, and the local media output are validated; the authorized
+  commit/push sequence and managed Pages verification remain pending. The
+  candidate is not deployment or release evidence.
 
 ## Exact next action
 

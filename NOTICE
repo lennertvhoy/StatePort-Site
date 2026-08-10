@@ -11,7 +11,8 @@ assets in this repository, as required by the licensing boundary in
 
 | Asset | Provenance | Notes |
 | --- | --- | --- |
-| `assets/stateport-mascot-shell.svg` | Copied byte-for-byte from the StatePort implementation repository (`apps/web/assets/brand/stateport-mascot-shell.svg`) with the author's permission | SHA-256 `85459d506c5e15f405a44b6604fecd1cdc64ff4fd6a2d42ddb68199fdfca2cf6` recorded in `PROJECT_DNA.yaml`; do not redraw, filter, or substitute |
+| `assets/stateport-mascot-block-arch-light.svg` | Copied byte-for-byte from the StatePort implementation repository (`apps/web/assets/brand/stateport-mascot-light-block-arch.svg`) with the author's permission | SHA-256 `32af9b36db5a7dafba0b85f3598806dc13b2d9a31e3fab5415ff65dd80462240`; paper/light surfaces only; do not redraw, filter, or substitute |
+| `assets/stateport-mascot-block-arch-dark.svg` | Copied byte-for-byte from the StatePort implementation repository (`apps/web/assets/brand/stateport-mascot-dark-block-arch.svg`) with the author's permission | SHA-256 `62d1a8ee6a68aa025e7246f689cd4ed7e885d7f3d97fb78fe84c0d5f75cdf013`; retained for immutable byte validation and not used by active Site surfaces |
 | `assets/favicon.svg` | Derived from the shell mascot by the project author | Same brand-asset restrictions |
 
 ## Original works of the project author (CC BY 4.0 unless code)
@@ -19,27 +20,25 @@ assets in this repository, as required by the licensing boundary in
 | Asset group | Contents | Rights review |
 | --- | --- | --- |
 | Site source (MIT) | `index.html`, `404.html`, `docs/`, `tutorials/`, `releases/`, `papers/*.html`, `assets/site.css`, `assets/site-enhancements.css`, `assets/site.js`, `scripts/`, `.github/workflows/`, `assets/diagrams/src/*.mmd` | Authored for this project; coding agents assisted implementation under the author's direction, as disclosed in the whitepaper's authorship note |
-| Written content (CC BY 4.0) | Documentation, tutorials, release ledger, `papers/stateware-whitepaper-public-v1.1.md`, `papers/stateware-whitepaper-candidate-v1.2.md`, walkthrough narration scripts (`assets/media/*-narration.txt`, `*.ssml`) | Original text; no third-party excerpts beyond attributed references |
-| Screenshots (CC BY 4.0) | `assets/media/stateport-demo-*.png`, `assets/media/stateport-platform-*.png`, `papers/assets/stateware-*.png` | Captured from the author's own public-safe fixture data; no personal data, credentials, or third-party content visible |
-| Walkthrough video (CC BY 4.0) | `assets/media/stateport-local-prototype-walkthrough.mp4`, `*.vtt` | Assembled from the author's fixture captures and narration; see the synthesis note below |
+| Written content (CC BY 4.0) | Documentation, tutorials, release ledger, `papers/stateware-whitepaper-public-v1.1.md`, `papers/stateware-whitepaper-candidate-v1.2.md`, and `media-src/stateport-overview/SCRIPT.md` | Original text; no third-party excerpts beyond attributed references |
+| Screenshots (CC BY 4.0) | `assets/media/frame-*.png`, `assets/media/stateport-hero-preview.png`, `assets/media/stateport-overview-poster.png`, `assets/media/stateport-social-card.png`, `papers/assets/stateware-*.png` | Captured from the author's own public-safe fixture data; no personal data, credentials, or third-party content visible |
+| Overview video and captions (CC BY 4.0) | `assets/media/stateport-overview.mp4`, `assets/media/stateport-overview.vtt` | Locally rendered candidate output; MP4 SHA-256 `98c1630159999fd9ba95014d7779c6413a2b1c4d8fdad5473ce3893db99c6a6b`. This is not publication or acceptance evidence; the local, untracked HyperFrames source under `media-src/stateport-overview/` is not executable or published in the Pages tree and is preserved under ignored `output/ux-mission/source/stateport-overview/` |
 | Diagrams (CC BY 4.0) | `assets/diagrams/stateport-diagram-*.png` | Rendered from in-repo Mermaid sources with `@mermaid-js/mermaid-cli` (Apache-2.0 tool); generated images are the author's own work |
 
 ## Third-party services used at build time (not redistributed)
 
-- **Microsoft Edge neural TTS** (`en-US-AndrewNeural` voice, via the
-  `edge-tts` client): used once at build time to synthesize the walkthrough
-  narration audio from the repository's own public narration text. No
-  credentials are used and no visitor-runtime dependency exists; the
-  synthesized audio is baked into the MP4. Use of the synthesized voice
-  remains subject to Microsoft's service terms; flag for re-review before
-  any commercial redistribution of the audio.
+- **Offline TTS** (Kokoro `am_michael`, with the corrected Frame 6 line
+  synthesized by `espeak-ng`): used locally at build time from the
+  repository's own public script. No credentials are used and no
+  visitor-runtime dependency exists; the synthesized audio is baked into the
+  MP4.
 - **Mermaid / @mermaid-js/mermaid-cli** (Apache-2.0): build-time diagram
   rendering only; no Mermaid code is shipped to visitors.
 
 ## Fonts, scripts, and media from third parties
 
 None. The site uses system font stacks only, ships no third-party
-JavaScript, references no remote fonts, and redistributes no stock
+visitor-runtime JavaScript, references no remote fonts, and redistributes no stock
 photography, icon sets, or media.
 
 ## Privacy-related assets
@@ -47,3 +46,10 @@ photography, icon sets, or media.
 The site sets no cookies, runs no analytics, and collects no visitor data;
 the quality gate in `scripts/check_site_quality.py` enforces the absence of
 known tracking patterns.
+
+## Local media source disposition
+
+`media-src/stateport-overview/` is local untracked build source, not an
+executable or published Pages asset. Its source manifest records the final
+capture inputs, mascot provenance, `mp4Present: true`, and the local MP4
+digest without making a publication or acceptance claim.

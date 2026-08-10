@@ -11,14 +11,19 @@
     <meta property="og:title" content="StudyState — a study coach that remembers">
     <meta property="og:description" content="The first StatePort application: a study coach whose learning state survives sessions and whose changes you review, apply, and can undo.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/study-state.html">
-    <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-platform-conversation.png">
+    <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current alpha.3 availability status.">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/study-state.html">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-08-08-1">
+    <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
     <title>StudyState — StatePort</title>
     <script type="application/ld+json">
       {
@@ -36,7 +41,7 @@
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header site-header--light">
       <a class="brand" href="../" aria-label="StatePort home">
-        <img src="../assets/stateport-mascot-block-arch-dark.svg" alt="">
+        <img src="../assets/stateport-mascot-block-arch-light.svg" alt="">
         <span>StatePort</span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
@@ -84,7 +89,7 @@
         </aside>
 
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Availability boundary</strong> StudyState runs inside the private local alpha. This page describes the product as implemented there; <a href="../releases/">availability lives in the release ledger</a>.</p>
+          <p class="notice notice--quiet"><strong>Availability boundary</strong> This page describes the current StudyState design and documentation candidate, not a claim that these capabilities are implemented in signed alpha.3. Alpha.3 remains published for inspection, install-disabled, known-defective, and not owner-accepted; <a href="../releases/">availability lives in the release ledger</a>.</p>
 
           <h2>What StudyState is</h2>
           <p>StudyState is a study coach: an installed application with durable goals, learning activities, evidence, and review. It is not a chat window with a memory problem. The application is the product — the conversation belongs to the application, and everything the coach knows about your learning lives in state files you can open and read.</p>
@@ -125,11 +130,16 @@
       <div class="footer-inner">
         <div class="footer-mark">
           <img src="../assets/stateport-mascot-block-arch-light.svg" alt="">
-          <p><strong>StatePort</strong>AI work that stays yours.</p>
+          <p><strong>StatePort</strong>Durable AI-assisted work, kept in view.</p>
         </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="./">Docs</a>
+          <a href="../tutorials/">Tutorials</a>
+          <a href="../releases/">Release status</a>
+        </nav>
         <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
       </div>
     </footer>
-    <script src="../assets/site.js"></script>
+    <script src="../assets/site.js?v=2026-08-10-1"></script>
   </body>
 </html>

@@ -18,6 +18,8 @@ import xml.etree.ElementTree as ET
 
 from validate_repo import (
     ROOT,
+    is_local_build_source,
+    linked_public_markdown_pages,
     mutable_public_pages,
     release_state_block,
     validate_documentation_button_accessibility,
@@ -25,6 +27,9 @@ from validate_repo import (
 )
 
 BASE_URL = "https://lennertvhoy.github.io/StatePort-Site/"
+SOCIAL_CARD_URL = f"{BASE_URL}assets/media/stateport-social-card.png"
+SOCIAL_CARD_FILE = Path("assets/media/stateport-social-card.png")
+MEDIA_ROOT = Path("assets/media")
 ENTRYPOINTS = {
     Path("index.html"): BASE_URL,
     Path("docs/index.html"): f"{BASE_URL}docs/",
@@ -73,12 +78,20 @@ class DocumentFacts:
     skip_links: list[str] = field(default_factory=list)
     labels_for: set[str] = field(default_factory=set)
     controls: list[dict[str, str]] = field(default_factory=list)
-    video_count: int = 0
-    caption_track_count: int = 0
+    videos: list[dict[str, str]] = field(default_factory=list)
+    tracks: list[dict[str, str]] = field(default_factory=list)
+    sources: list[dict[str, str]] = field(default_factory=list)
+    id_text: dict[str, int] = field(default_factory=dict)
 
     @property
     def title(self) -> str:
         return "".join(self.title_parts).strip()
+
+
+VOID_TAGS = {
+    "area", "base", "br", "col", "embed", "hr", "img", "input", "link",
+    "meta", "param", "source", "track", "wbr",
+}
 
 
 class QualityParser(HTMLParser):
@@ -87,6 +100,7 @@ class QualityParser(HTMLParser):
         self.facts = DocumentFacts(path=path)
         self._in_title = False
         self._json_ld_parts: list[str] | None = None
+        self._id_stack: list[str] = []
 
     @staticmethod
     def attrs_dict(attrs: list[tuple[str, str | None]]) -> dict[str, str]:
@@ -152,9 +166,19 @@ class QualityParser(HTMLParser):
             if values.get("type", "").lower() != "hidden":
                 self.facts.controls.append(values)
         elif tag == "video":
-            self.facts.video_count += 1
-        elif tag == "track" and values.get("kind", "").lower() == "captions":
-            self.facts.caption_track_count += 1
+            self.facts.videos.append(values)
+        elif tag == "track":
+            self.facts.tracks.append(values)
+        elif tag == "source":
+            self.facts.sources.append(values)
+
+        if tag not in VOID_TAGS:
+            self._id_stack.append(element_id or "")
+
+    def handle_startendtag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        self.handle_starttag(tag, attrs)
+        if self._id_stack:
+            self._id_stack.pop()
 
     def handle_endtag(self, tag: str) -> None:
         if tag == "title":
@@ -162,18 +186,26 @@ class QualityParser(HTMLParser):
         elif tag == "script" and self._json_ld_parts is not None:
             self.facts.json_ld.append("".join(self._json_ld_parts).strip())
             self._json_ld_parts = None
+        if tag not in VOID_TAGS and self._id_stack:
+            self._id_stack.pop()
 
     def handle_data(self, data: str) -> None:
         if self._in_title:
             self.facts.title_parts.append(data)
         if self._json_ld_parts is not None:
             self._json_ld_parts.append(data)
+        for element_id in self._id_stack:
+            if element_id:
+                self.facts.id_text[element_id] = self.facts.id_text.get(element_id, 0) + len(data.strip())
 
 
 def parse_documents() -> dict[Path, DocumentFacts]:
     documents: dict[Path, DocumentFacts] = {}
     for path in sorted(ROOT.rglob("*.html")):
         relative = path.relative_to(ROOT)
+        if is_local_build_source(relative):
+            # Checked-in media build source, not a visitor-facing HTML page.
+            continue
         parser = QualityParser(relative)
         parser.feed(path.read_text(encoding="utf-8"))
         parser.close()
@@ -235,10 +267,13 @@ def validate_document_basics(documents: dict[Path, DocumentFacts]) -> None:
             if not control_id or control_id not in facts.labels_for:
                 raise AssertionError(f"{path}: form control requires a matching <label for>: {control}")
 
-        if facts.video_count and facts.caption_track_count < facts.video_count:
+        caption_tracks = [
+            track for track in facts.tracks if track.get("kind", "").lower() == "captions"
+        ]
+        if facts.videos and len(caption_tracks) < len(facts.videos):
             raise AssertionError(
                 f"{path}: each video requires a captions track "
-                f"({facts.video_count} videos, {facts.caption_track_count} caption tracks)"
+                f"({len(facts.videos)} videos, {len(caption_tracks)} caption tracks)"
             )
 
         for source in facts.script_sources:
@@ -289,6 +324,7 @@ def validate_entrypoint_metadata(documents: dict[Path, DocumentFacts]) -> None:
 
 def validate_home_media_hints(documents: dict[Path, DocumentFacts]) -> None:
     home = documents[Path("index.html")]
+    eager: list[str] = []
     for image in home.images:
         source = image.get("src", "")
         if not source.startswith("assets/media/"):
@@ -297,8 +333,44 @@ def validate_home_media_hints(documents: dict[Path, DocumentFacts]) -> None:
             raise AssertionError(f"index.html: media image requires intrinsic dimensions: {source}")
         if image.get("decoding") != "async":
             raise AssertionError(f"index.html: media image should decode asynchronously: {source}")
-        if image.get("loading") != "lazy":
-            raise AssertionError(f"index.html: below-the-fold media image should lazy-load: {source}")
+        loading = image.get("loading")
+        if loading == "eager":
+            # Exactly one above-the-fold hero proof visual may load eagerly.
+            eager.append(source)
+        elif loading != "lazy":
+            raise AssertionError(
+                f"index.html: below-the-fold media image should lazy-load: {source}"
+            )
+    if len(eager) > 1:
+        raise AssertionError(
+            f"index.html: at most one hero media image may load eagerly: {eager}"
+        )
+
+
+def validate_mascot_surface_references(documents: dict[Path, DocumentFacts]) -> None:
+    """Require the light mascot on every active public surface."""
+
+    for path in documents:
+        html = (ROOT / path).read_text(encoding="utf-8")
+        dark_asset = "stateport-mascot-block-arch-dark.svg"
+        light_asset = "stateport-mascot-block-arch-light.svg"
+        if dark_asset in html:
+            raise AssertionError(f"{path}: active public HTML must not reference {dark_asset}")
+
+        for surface in ("site-header--on-dark", "site-header--light"):
+            headers = re.findall(
+                rf'<header\b[^>]*class="[^"]*\b{re.escape(surface)}\b[^"]*"[^>]*>.*?</header>',
+                html,
+                re.DOTALL,
+            )
+            for header in headers:
+                if light_asset not in header:
+                    raise AssertionError(f"{path}: {surface} must use {light_asset}")
+
+        footers = re.findall(r"<footer\b[^>]*class=\"[^\"]*\bsite-footer\b[^\"]*\"[^>]*>.*?</footer>", html, re.DOTALL)
+        for footer in footers:
+            if light_asset not in footer:
+                raise AssertionError(f"{path}: site footer must use {light_asset}")
 
 
 def resolve_local_page(source_page: Path, href_path: str) -> Path:
@@ -385,6 +457,12 @@ def validate_manifest() -> None:
         raise AssertionError(f"site.webmanifest is missing keys: {', '.join(missing)}")
     if not isinstance(manifest["icons"], list) or not manifest["icons"]:
         raise AssertionError("site.webmanifest requires at least one icon")
+    for icon in manifest["icons"]:
+        source = icon.get("src", "")
+        if urlsplit(source).scheme or not (ROOT / source).is_file():
+            raise AssertionError(f"site.webmanifest icon must be an existing local file: {source}")
+    if manifest["start_url"] != manifest["scope"]:
+        raise AssertionError("site.webmanifest start_url and scope must stay consistent")
 
 
 def validate_privacy_and_asset_discipline() -> None:
@@ -411,6 +489,55 @@ def validate_privacy_and_asset_discipline() -> None:
     javascript = site_js.read_text(encoding="utf-8")
     if ".innerHTML" in javascript or "insertAdjacentHTML" in javascript:
         raise AssertionError("Progressive enhancement JavaScript must not inject untrusted HTML strings")
+    if "data-site-enhancements" in javascript or "createElement(\"link\")" in javascript:
+        raise AssertionError(
+            "Shared enhancement styles must be statically linked, not injected by JavaScript"
+        )
+
+
+def validate_public_media_boundaries(documents: dict[Path, DocumentFacts]) -> None:
+    """Visitor pages must not publish build source or retired media names."""
+
+    retired = (
+        "media-src/",
+        "stateport-local-prototype-walkthrough",
+        "stateport-demo-",
+        "build_walkthrough",
+    )
+    for page in documents:
+        text = (ROOT / page).read_text(encoding="utf-8")
+        for marker in retired:
+            if marker in text:
+                raise AssertionError(f"{page}: retired or private media reference: {marker}")
+
+
+def validate_linked_markdown_language() -> None:
+    """Visitor-linked Markdown must carry the same current release boundary."""
+
+    whitepaper_terms = (
+        "v0.1.0-alpha.3",
+        "installation is currently disabled",
+        "curated alpha.3 source archive",
+        "publicsnapshot",
+        "not remotely resolvable",
+    )
+    stale = (
+        re.compile(r"\bv0\.1\.0-alpha\.1\b", re.IGNORECASE),
+        re.compile(r"\bprivate product-owner candidate\b", re.IGNORECASE),
+        re.compile(r"\bno public download\b", re.IGNORECASE),
+    )
+    for path in sorted(linked_public_markdown_pages()):
+        text = path.read_text(encoding="utf-8")
+        lowered = text.lower()
+        if path.name == "stateware-whitepaper-candidate-v1.2.md":
+            for term in whitepaper_terms:
+                if term not in lowered:
+                    raise AssertionError(f"{path.relative_to(ROOT)}: linked Markdown lacks {term!r}")
+        for pattern in stale:
+            if pattern.search(text):
+                raise AssertionError(
+                    f"{path.relative_to(ROOT)}: stale linked Markdown language: {pattern.pattern}"
+                )
 
 
 def validate_release_surface_quality(documents: dict[Path, DocumentFacts]) -> None:
@@ -506,6 +633,309 @@ def validate_source_disclosure_quality(documents: dict[Path, DocumentFacts]) -> 
                 )
 
 
+def validate_social_card_metadata(documents: dict[Path, DocumentFacts]) -> None:
+    """Every page carries OG + Twitter image tags for the frozen social card."""
+    for path, facts in documents.items():
+        for key in ("og:image", "twitter:image"):
+            if facts.social.get(key) != SOCIAL_CARD_URL:
+                raise AssertionError(
+                    f"{path}: {key} must be the frozen social card {SOCIAL_CARD_URL}, "
+                    f"found {facts.social.get(key)!r}"
+                )
+        if facts.social.get("og:image:width") != "1200" or facts.social.get("og:image:height") != "630":
+            raise AssertionError(f"{path}: og:image dimensions must be 1200x630")
+        if not facts.social.get("og:image:alt"):
+            raise AssertionError(f"{path}: og:image requires an alt description")
+    card = ROOT / SOCIAL_CARD_FILE
+    if not card.is_file():
+        raise AssertionError(
+            f"Missing frozen social card asset: {SOCIAL_CARD_FILE} "
+            "(produced by the media worker)"
+        )
+    if _png_dimensions(card) != (1200, 630):
+        raise AssertionError(f"{SOCIAL_CARD_FILE} must be exactly 1200x630")
+
+
+STALE_RELEASE_PATTERNS = (
+    re.compile(r"\bprivate alpha\b", re.IGNORECASE),
+    re.compile(r"\bcan(?:'|’)t be downloaded\b", re.IGNORECASE),
+    re.compile(r"\bcannot be downloaded\b", re.IGNORECASE),
+    re.compile(
+        r"(?:\bcoming soon\b[^.\n]{0,60}\b(?:install|download|available)\b"
+        r"|\b(?:install|download|available)\b[^.\n]{0,60}\bcoming soon\b)",
+        re.IGNORECASE,
+    ),
+    re.compile(r"curl\s[^<\n]*\|\s*(?:sudo\s+)?(?:ba|z)?sh\b", re.IGNORECASE),
+)
+
+
+def validate_stale_release_language(documents: dict[Path, DocumentFacts]) -> None:
+    """Reject pre-publication framing on every mutable page and caption file."""
+    surfaces: list[tuple[str, str]] = [
+        (str(path), (ROOT / path).read_text(encoding="utf-8")) for path in documents
+    ]
+    surfaces.extend(
+        (str(vtt.relative_to(ROOT)), vtt.read_text(encoding="utf-8"))
+        for vtt in sorted((ROOT / MEDIA_ROOT).glob("*.vtt"))
+    )
+    surfaces.extend(
+        (str(path.relative_to(ROOT)), path.read_text(encoding="utf-8"))
+        for path in sorted(linked_public_markdown_pages())
+    )
+    markdown_stale_patterns = (
+        re.compile(r"\bv0\.1\.0-alpha\.1\b", re.IGNORECASE),
+        re.compile(r"\bprivate product-owner candidate\b", re.IGNORECASE),
+        re.compile(r"\bno public download\b", re.IGNORECASE),
+    )
+    for name, text in surfaces:
+        patterns = STALE_RELEASE_PATTERNS + (markdown_stale_patterns if name.endswith(".md") else ())
+        for pattern in patterns:
+            if pattern.search(text):
+                raise AssertionError(
+                    f"Stale release language in {name}: {pattern.pattern}"
+                )
+
+
+def validate_video_embeds(documents: dict[Path, DocumentFacts]) -> None:
+    """Frozen embed contract: controllable, lazy, captioned, transcribed video."""
+    for path, facts in documents.items():
+        if not facts.videos:
+            continue
+        for video in facts.videos:
+            if "controls" not in video:
+                raise AssertionError(f"{path}: video must expose controls")
+            if video.get("preload") != "metadata":
+                raise AssertionError(
+                    f"{path}: video must declare preload=\"metadata\" (no eager loading)"
+                )
+            if "playsinline" not in video:
+                raise AssertionError(f"{path}: video must play inline")
+            if "autoplay" in video:
+                raise AssertionError(f"{path}: video must never autoplay")
+            if not video.get("width") or not video.get("height"):
+                raise AssertionError(f"{path}: video requires intrinsic width/height")
+            if not video.get("poster"):
+                raise AssertionError(f"{path}: video requires a poster frame")
+            describedby = video.get("aria-describedby", "")
+            if not describedby or describedby not in facts.ids:
+                raise AssertionError(
+                    f"{path}: video aria-describedby must reference an on-page caption"
+                )
+        caption_tracks = [
+            track
+            for track in facts.tracks
+            if track.get("kind", "").lower() == "captions" and track.get("src", "").endswith(".vtt")
+        ]
+        if len(caption_tracks) != len(facts.videos):
+            raise AssertionError(f"{path}: each video must have exactly one .vtt captions track")
+        if len(caption_tracks) != 1 or "default" not in caption_tracks[0]:
+            raise AssertionError(f"{path}: one captions track must be the default")
+        html = (ROOT / path).read_text(encoding="utf-8")
+        for marker in ('data-composition-id="captions"', 'class="caption-layer"', 'class="caption-stage"'):
+            if marker in html:
+                raise AssertionError(f"{path}: burned/open caption layer duplicates the VTT track")
+        transcripts = [
+            element_id for element_id in facts.ids if "transcript" in element_id.lower()
+        ]
+        if not transcripts:
+            raise AssertionError(
+                f"{path}: embedded video requires a visible transcript "
+                "(an element whose id contains \"transcript\")"
+            )
+        if max(facts.id_text.get(element_id, 0) for element_id in transcripts) < 200:
+            raise AssertionError(
+                f"{path}: transcript must contain the real narration text, not a summary"
+            )
+
+
+def _vtt_timestamp(value: str) -> float:
+    match = re.fullmatch(r"(?:(\d+):)?(\d{1,2}):(\d{2})\.(\d{3})", value.strip())
+    if not match:
+        raise AssertionError(f"Malformed WebVTT timestamp: {value!r}")
+    hours = int(match.group(1) or 0)
+    return hours * 3600 + int(match.group(2)) * 60 + int(match.group(3)) + int(match.group(4)) / 1000
+
+
+def parse_vtt_cues(text: str) -> list[tuple[float, float, str]]:
+    cues: list[tuple[float, float, str]] = []
+    blocks = re.split(r"\n\s*\n", text.replace("\r\n", "\n"))
+    for block in blocks:
+        lines = [line for line in block.strip().splitlines() if line.strip()]
+        timing_index = next((i for i, line in enumerate(lines) if "-->" in line), None)
+        if timing_index is None:
+            continue
+        start_raw, _, end_raw = lines[timing_index].partition("-->")
+        end_raw = end_raw.strip().split()[0]
+        cues.append(
+            (
+                _vtt_timestamp(start_raw),
+                _vtt_timestamp(end_raw),
+                " ".join(" ".join(lines[timing_index + 1 :]).split()),
+            )
+        )
+    return cues
+
+
+def validate_caption_files(documents: dict[Path, DocumentFacts]) -> None:
+    """Caption cues stay readable: <= 7s each, no truncation-duplication."""
+    referenced: set[Path] = set()
+    for path, facts in documents.items():
+        for track in facts.tracks:
+            source = track.get("src", "")
+            if source.endswith(".vtt"):
+                referenced.add(resolve_local_page(path, urlsplit(source).path))
+    candidates = {vtt.relative_to(ROOT) for vtt in (ROOT / MEDIA_ROOT).glob("*.vtt")}
+    for relative in sorted(referenced | candidates):
+        vtt = ROOT / relative
+        if not vtt.is_file():
+            raise AssertionError(f"Captions track references a missing file: {relative}")
+        cues = parse_vtt_cues(vtt.read_text(encoding="utf-8"))
+        if not cues:
+            raise AssertionError(f"{relative}: caption file has no cues")
+        previous_end = -1.0
+        for index, (start, end, text) in enumerate(cues):
+            if end <= start:
+                raise AssertionError(
+                    f"{relative}: cue {index + 1} must end after it starts"
+                )
+            if start < previous_end:
+                raise AssertionError(
+                    f"{relative}: cue {index + 1} is out of chronological order"
+                )
+            if end - start > 7.0:
+                raise AssertionError(
+                    f"{relative}: cue {index + 1} runs {end - start:.2f}s, over the 7s maximum"
+                )
+            previous_end = end
+            if index + 1 < len(cues):
+                following = cues[index + 1][2]
+                if text and following.startswith(text):
+                    raise AssertionError(
+                        f"{relative}: cue {index + 1} text is duplicated or truncated in cue {index + 2}"
+                    )
+
+
+def _media_references(documents: dict[Path, DocumentFacts]) -> dict[Path, list[tuple[Path, dict[str, str]]]]:
+    """Map assets/media files to the pages and tags referencing them."""
+    references: dict[Path, list[tuple[Path, dict[str, str]]]] = {}
+
+    def record(page: Path, tag: dict[str, str], raw: str) -> None:
+        parsed = urlsplit(raw.strip())
+        if parsed.scheme or parsed.netloc:
+            absolute = f"{parsed.scheme}://{parsed.netloc}{parsed.path}"
+            if not absolute.startswith(BASE_URL):
+                return
+            target = Path(unquote(parsed.path[len(urlsplit(BASE_URL).path):]))
+        else:
+            if not parsed.path:
+                return
+            target = resolve_local_page(page, unquote(parsed.path))
+        if MEDIA_ROOT == target or MEDIA_ROOT in target.parents:
+            references.setdefault(target, []).append((page, tag))
+
+    for path, facts in documents.items():
+        for image in facts.images:
+            record(path, image, image.get("src", ""))
+        for video in facts.videos:
+            record(path, video, video.get("poster", ""))
+        for track in facts.tracks:
+            record(path, track, track.get("src", ""))
+        for source in facts.sources:
+            record(path, source, source.get("src", ""))
+        for key in ("og:image", "twitter:image"):
+            if facts.social.get(key):
+                record(path, {"property": key}, facts.social[key])
+    return references
+
+
+def _png_dimensions(path: Path) -> tuple[int, int]:
+    data = path.read_bytes()
+    if data[:8] != b"\x89PNG\r\n\x1a\n" or data[12:16] != b"IHDR":
+        raise AssertionError(f"Not a PNG file: {path.relative_to(ROOT)}")
+    width = int.from_bytes(data[16:20], "big")
+    height = int.from_bytes(data[20:24], "big")
+    return width, height
+
+
+def validate_media_asset_integrity(documents: dict[Path, DocumentFacts]) -> None:
+    """Referenced media exist with true dimensions; nothing in media/ is orphaned."""
+    references = _media_references(documents)
+    for target, tags in sorted(references.items()):
+        file_path = ROOT / target
+        if not file_path.is_file():
+            raise AssertionError(f"Referenced media file does not exist: {target}")
+        if target.suffix != ".png":
+            continue
+        real_width, real_height = _png_dimensions(file_path)
+        for page, tag in tags:
+            if "property" in tag:
+                continue  # social meta dims are covered by validate_social_card_metadata
+            width, height = tag.get("width"), tag.get("height")
+            if not width or not height:
+                raise AssertionError(
+                    f"{page}: media reference requires width/height attributes: {target}"
+                )
+            if (int(width), int(height)) != (real_width, real_height):
+                raise AssertionError(
+                    f"{page}: width/height {width}x{height} do not match "
+                    f"{target} ({real_width}x{real_height})"
+                )
+
+    on_disk = {
+        path.relative_to(ROOT)
+        for path in (ROOT / MEDIA_ROOT).rglob("*")
+        if path.is_file()
+    }
+    unreferenced = sorted(on_disk - set(references))
+    if unreferenced:
+        raise AssertionError(
+            "Unreferenced files in assets/media/ (retire or reference them): "
+            + ", ".join(str(path) for path in unreferenced)
+        )
+
+
+def validate_homepage_sequence(documents: dict[Path, DocumentFacts]) -> None:
+    """Frozen homepage: seven sections in order, hero CTAs in the first viewport."""
+    home = documents.get(Path("index.html"))
+    if home is None:
+        raise AssertionError("Missing homepage")
+    html = (ROOT / "index.html").read_text(encoding="utf-8")
+    sections = ("overview", "journey", "benefits", "how-it-works", "status", "routes")
+    positions: list[int] = []
+    for section in sections:
+        marker = f'id="{section}"'
+        position = html.find(marker)
+        if position < 0:
+            raise AssertionError(f"index.html: missing homepage section #{section}")
+        positions.append(position)
+    if positions != sorted(positions):
+        raise AssertionError(
+            f"index.html: homepage sections out of order: {sections}"
+        )
+    if not re.search(r'<a[^>]*href="#overview"[^>]*>\s*See StatePort in 60 seconds', html):
+        raise AssertionError(
+            "index.html: primary CTA \"See StatePort in 60 seconds\" must link #overview"
+        )
+    if not re.search(
+        r'<a[^>]*href="docs/study-state\.html"[^>]*>\s*Explore StudyState', html
+    ):
+        raise AssertionError(
+            "index.html: secondary CTA \"Explore StudyState\" must link docs/study-state.html"
+        )
+
+
+def validate_shared_structure(documents: dict[Path, DocumentFacts]) -> None:
+    """Walkthrough page joins the shared enhancement-stylesheet structure."""
+    path = Path("docs/prototype-walkthrough.html")
+    if path not in documents:
+        raise AssertionError("Missing docs/prototype-walkthrough.html")
+    html = (ROOT / path).read_text(encoding="utf-8")
+    if not re.search(r"\.\./assets/site-enhancements\.css\?v=[0-9A-Za-z-]+", html):
+        raise AssertionError(
+            f"{path}: must load assets/site-enhancements.css with the shared ?v= cache key"
+        )
+
+
 def main() -> None:
     require_file("assets/site-enhancements.css")
     documents = parse_documents()
@@ -514,10 +944,20 @@ def main() -> None:
     validate_document_basics(documents)
     validate_entrypoint_metadata(documents)
     validate_home_media_hints(documents)
+    validate_mascot_surface_references(documents)
+    validate_homepage_sequence(documents)
+    validate_shared_structure(documents)
+    validate_social_card_metadata(documents)
+    validate_video_embeds(documents)
+    validate_caption_files(documents)
+    validate_media_asset_integrity(documents)
+    validate_stale_release_language(documents)
     validate_fragments(documents)
     validate_sitemap(documents)
     validate_manifest()
     validate_privacy_and_asset_discipline()
+    validate_public_media_boundaries(documents)
+    validate_linked_markdown_language()
     validate_release_surface_quality(documents)
     validate_source_disclosure_quality(documents)
     print(

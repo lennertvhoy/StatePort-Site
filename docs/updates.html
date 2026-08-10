@@ -4,30 +4,35 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="How StatePort updates work in the upcoming alpha: a signed release index verified against a pinned trust root, approval-gated and health-gated apply with automatic rollback, and receipts — while nothing is publicly downloadable yet.">
+    <meta name="description" content="How StatePort updates work in the published alpha.3: a signed release index verified against a pinned trust root, approval-gated and health-gated apply with automatic rollback, and receipts. Alpha.3 is downloadable for inspection, but installation is currently disabled.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="How updates work in the alpha — a change you approve, like any other">
-    <meta property="og:description" content="How StatePort updates work in the upcoming alpha: a signed release index verified against a pinned trust root, approval-gated and health-gated apply with automatic rollback, and receipts — while nothing is publicly downloadable yet.">
+    <meta property="og:description" content="How StatePort updates work in the published alpha.3: a signed release index verified against a pinned trust root, approval-gated and health-gated apply with automatic rollback, and receipts. Alpha.3 is downloadable for inspection, but installation is currently disabled.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/updates.html">
-    <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-platform-settings.png">
+    <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current alpha.3 availability status.">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/updates.html">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-08-08-1">
+    <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
     <title>How updates work in the alpha — StatePort</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "TechArticle",
         "headline": "How updates work in the alpha: an update is a change you approve, like any other",
-        "description": "How StatePort updates work in the upcoming alpha: a signed release index verified against a pinned trust root, approval-gated and health-gated apply with automatic rollback, and receipts — while nothing is publicly downloadable yet.",
+        "description": "How StatePort updates work in the published alpha.3: a signed release index verified against a pinned trust root, approval-gated and health-gated apply with automatic rollback, and receipts. Alpha.3 is downloadable for inspection, but installation is currently disabled.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/docs/updates.html",
-        "dateModified": "2026-08-02",
+        "dateModified": "2026-08-10",
         "inLanguage": "en"
       }
     </script>
@@ -36,7 +41,7 @@
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header site-header--light">
       <a class="brand" href="../" aria-label="StatePort home">
-        <img src="../assets/stateport-mascot-block-arch-dark.svg" alt="">
+        <img src="../assets/stateport-mascot-block-arch-light.svg" alt="">
         <span>StatePort</span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
@@ -84,7 +89,7 @@
         </aside>
 
         <article class="prose">
-          <p class="notice"><strong>Published, not owner-accepted</strong> The update line below is included in v0.1.0-alpha.3. Human acceptance and independent security review remain pending.</p>
+          <p class="notice"><strong>Published for inspection, installation disabled</strong> v0.1.0-alpha.3 is publicly downloadable for inspection, but installation is currently disabled. See the <a href="../download/erratum-alpha3.html">alpha.3 erratum</a> and <a href="../releases/">release ledger</a> for current availability. Human acceptance and independent security review remain pending.</p>
 
           <h2>Exact releases, pinned by digest and signed</h2>
           <p>An update starts from an exact, versioned release — never a moving “latest”. The candidate's images are bound to immutable digests, so what you approved is bit-for-bit what runs. The release index (<code>stateport.release-index/v1</code>) and the image set carry pinned-public-key Cosign signatures under the StatePort alpha release key, with SPDX SBOMs and vulnerability-scan dispositions alongside. Tampering with any signed field, image digest, or artifact refuses the install or update. For this private candidate the signatures are <strong>not</strong> uploaded to a public transparency log; verification relies on the pinned public key and its recorded fingerprint.</p>
@@ -122,11 +127,16 @@
       <div class="footer-inner">
         <div class="footer-mark">
           <img src="../assets/stateport-mascot-block-arch-light.svg" alt="">
-          <p><strong>StatePort</strong>AI work that stays yours.</p>
+          <p><strong>StatePort</strong>Durable AI-assisted work, kept in view.</p>
         </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="./">Docs</a>
+          <a href="../tutorials/">Tutorials</a>
+          <a href="../releases/">Release status</a>
+        </nav>
         <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
       </div>
     </footer>
-    <script src="../assets/site.js"></script>
+    <script src="../assets/site.js?v=2026-08-10-1"></script>
   </body>
 </html>
