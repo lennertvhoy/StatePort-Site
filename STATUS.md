@@ -1,8 +1,8 @@
 # StatePort Site status
 
-**Updated At:** 2026-08-10
+**Updated At:** 2026-08-11
 **Execution Mode:** operating
-**Project State:** alpha3_published_install_disabled_containment_deployed_site_candidate_remotely_verified
+**Project State:** alpha3_published_install_disabled_containment_deployed_media_revoice_candidate_locally_validated
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -71,11 +71,17 @@
   run `31392022484` and deployment `5832690455`. This does not change alpha.3
   release truth: it remains install-disabled, immutable, unaccepted, and not
   independently reviewed, stable, or production-qualified.
+- The overview transition revoice candidate is committed at
+  `2141697e8c9658adbb50d7178e8a4b2f75bdd253`. It preserves all 1,336 video
+  frames and replaces only the `29.999`-to-`31.872` second narration window.
+  The candidate MP4 is H.264/AAC 1920x1080, 44.544 seconds, and SHA-256
+  `81e16caf22fa6a7d59b7443939dd0bd6f5c66be583567a939c413131440acfe2`; it is
+  locally validated but not yet deployed. The existing VTT is unchanged.
 
 ## Exact next action
 
-Keep the deployed containment in place until a corrected successor is built,
-freshly evidenced, signed, and separately authorized for publication. Do not
-restore an install command or change immutable alpha.2/alpha.3 bytes. Successor
-signing, human acceptance, independent review, and production qualification
-remain separate and ungranted.
+Keep the deployed containment in place while the locally validated media
+candidate is pushed and verified through managed Pages. Do not restore an
+install command or change immutable alpha.2/alpha.3 bytes. Successor signing,
+human acceptance, independent review, and production qualification remain
+separate and ungranted.
