@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-08-11
 **Execution Mode:** operating
-**Project State:** alpha3_published_install_disabled_containment_deployed_media_revoice_candidate_locally_validated
+**Project State:** alpha3_published_install_disabled_containment_deployed_media_revoice_deployed_remotely_verified
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -76,12 +76,13 @@
   frames and replaces only the `29.999`-to-`31.872` second narration window.
   The candidate MP4 is H.264/AAC 1920x1080, 44.544 seconds, and SHA-256
   `81e16caf22fa6a7d59b7443939dd0bd6f5c66be583567a939c413131440acfe2`; it is
-  locally validated but not yet deployed. The existing VTT is unchanged.
+  deployed through Pages build `1145044708`, workflow run `31489384247`, and
+  deployment `5850023681`; public MP4 and unchanged VTT hashes match.
 
 ## Exact next action
 
-Keep the deployed containment in place while the locally validated media
-candidate is pushed and verified through managed Pages. Do not restore an
-install command or change immutable alpha.2/alpha.3 bytes. Successor signing,
-human acceptance, independent review, and production qualification remain
-separate and ungranted.
+Keep the deployed containment in place. The media correction is remotely
+verified, but it does not make alpha.3 installable or create a successor release.
+Do not restore an install command or change immutable alpha.2/alpha.3 bytes.
+Successor signing, human acceptance, independent review, and production
+qualification remain separate and ungranted.

@@ -6,6 +6,12 @@
 - Product commit `2141697e8c9658adbb50d7178e8a4b2f75bdd253` is locally committed. Site validation, quality validation, full decode, and 24 unit tests pass. The unchanged VTT SHA-256 is `f0c5cb3e357ffbd665a92fb088408b95f3040cb1dc57575c8a82462582c7666f`.
 - Push and managed Pages deployment remain pending; alpha.2/alpha.3 bytes and release truth are unchanged.
 
+## 2026-08-11 - Overview transition revoice deployed
+
+- Pushed the media candidate and postdeployment state through Site head `f6f0e27b6a66fa2de46126796e2eef268ca0ea73`.
+- Managed Pages build `1145044708`, workflow run `31489384247`, and deployment `5850023681` completed successfully. Public home and walkthrough reference the overview MP4 and VTT; fetched MP4 SHA-256 `81e16caf22fa6a7d59b7443939dd0bd6f5c66be583567a939c413131440acfe2` and VTT SHA-256 `f0c5cb3e357ffbd665a92fb088408b95f3040cb1dc57575c8a82462582c7666f` match local evidence.
+- Alpha.3 release bytes and install-disabled, unaccepted, unqualified truth are unchanged.
+
 ## 2026-08-06 — Alpha.3 publication gate blocked by Pages outage
 
 - Publication commit `52b42dd47a11510220f33690075f1b6773f6a889` was pushed to
