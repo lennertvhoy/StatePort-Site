@@ -71,7 +71,7 @@ BRAND_ASSET_SHA256 = {
     "assets/stateport-mascot-block-arch-light.svg": "32af9b36db5a7dafba0b85f3598806dc13b2d9a31e3fab5415ff65dd80462240",
     "assets/stateport-mascot-block-arch-dark.svg": "62d1a8ee6a68aa025e7246f689cd4ed7e885d7f3d97fb78fe84c0d5f75cdf013",
 }
-OVERVIEW_MP4_SHA256 = "98c1630159999fd9ba95014d7779c6413a2b1c4d8fdad5473ce3893db99c6a6b"
+OVERVIEW_MP4_SHA256 = "81e16caf22fa6a7d59b7443939dd0bd6f5c66be583567a939c413131440acfe2"
 
 
 def is_local_build_source(path: Path) -> bool:
