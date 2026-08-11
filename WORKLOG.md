@@ -17,6 +17,11 @@
 - The postdeployment full unit suite exposed stale predecessor digest bindings in `scripts/validate_repo.py` and `NOTICE`; no public media byte mismatch was observed.
 - Updated both bindings to MP4 SHA-256 `81e16caf22fa6a7d59b7443939dd0bd6f5c66be583567a939c413131440acfe2`. The candidate remains limited to the `29.999-31.872` narration window; immutable release trees are unchanged.
 
+## 2026-08-11 - Overview revoice provenance correction deployed
+
+- Corrective commit `75ce76008a8f8560f094c87687d8eeb666b67d2b` was pushed after the full unit suite, repository validator, quality contract, and diff check passed.
+- Managed Pages workflow `31489845427` succeeded; deployment `5850105929` reached `https://lennertvhoy.github.io/StatePort-Site/` successfully. Public MP4/VTT hashes remain `81e16caf22fa6a7d59b7443939dd0bd6f5c66be583567a939c413131440acfe2` and `f0c5cb3e357ffbd665a92fb088408b95f3040cb1dc57575c8a82462582c7666f`.
+
 ## 2026-08-06 — Alpha.3 publication gate blocked by Pages outage
 
 - Publication commit `52b42dd47a11510220f33690075f1b6773f6a889` was pushed to

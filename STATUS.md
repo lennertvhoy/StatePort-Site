@@ -78,6 +78,9 @@
   `81e16caf22fa6a7d59b7443939dd0bd6f5c66be583567a939c413131440acfe2`; it is
   deployed through Pages build `1145044708`, workflow run `31489384247`, and
   deployment `5850023681`; public MP4 and unchanged VTT hashes match.
+- The final provenance correction is `75ce76008a8f8560f094c87687d8eeb666b67d2b`;
+  its managed Pages workflow `31489845427` and deployment `5850105929` both
+  succeeded. The public media bytes remain unchanged by this correction.
 
 ## Exact next action
 

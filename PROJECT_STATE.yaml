@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-11T12:03:27Z"
-  updated_by: cto_site_overview_revoice_postdeployment_closure
+  updated_at: "2026-08-11T12:09:22Z"
+  updated_by: cto_site_overview_revoice_provenance_postdeployment_closure
   format_version: statespec-site-state/v1
 
 workflow:
@@ -85,11 +85,11 @@ site:
     source_branch: main
     source_path: /
     deployment_head: derived_from_git_not_persisted
-    live_content_commit: b9d2edf0692c0c8672de8984d511a17c3303e02b
-    pages_build: 1145044708
-    pages_run: 31489384247
-    pages_deployment: 5850023681
-    deployed_at: "2026-08-11T12:03:27Z"
+    live_content_commit: 75ce76008a8f8560f094c87687d8eeb666b67d2b
+    pages_build: 1145053911
+    pages_run: 31489845427
+    pages_deployment: 5850105929
+    deployed_at: "2026-08-11T12:09:22Z"
   current_release_surface: alpha3_install_disabled_erratum_contained_live_verified
   candidate:
     head: 2141697e8c9658adbb50d7178e8a4b2f75bdd253

@@ -6,8 +6,8 @@
 
 ## P0 [BL-SITE-SUCCESSOR] Keep containment until a corrected successor exists
 
-**Status:** contained_live; overview revoice `2141697e` is deployed and
-remotely verified as Site head `f6f0e27b`.
+**Status:** contained_live; overview revoice `2141697e` and its provenance
+correction are deployed and remotely verified as Site head `75ce7600`.
 
 Alpha.3 remains published, signed, and install-disabled. Containment content
 commit `c1384061a093f8f4fc7e68f8ca7126558e1e97a5` is live through Pages run
@@ -27,7 +27,8 @@ install-disabled, immutable, unaccepted release truth or add security,
 stability, or production qualification.
 
 Public MP4 and VTT hashes match the local candidate, both embeds reference the
-assets, and live MP4 decode passes. Keep containment until a separately
+assets, and live MP4 decode passes. The final source-binding correction is
+included in Site head `75ce7600`. Keep containment until a separately
 authorized corrected software successor is freshly evidenced and published.
 
 **Exit:** a separately authorized successor is published and verified, then the
