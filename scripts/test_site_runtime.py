@@ -79,6 +79,7 @@ class SiteRuntimeContractTests(unittest.TestCase):
         documents = check_site_quality.parse_documents()
         check_site_quality.validate_mascot_surface_references(documents)
         validate_repo.validate_brand_asset_bytes()
+        validate_repo.validate_mascot_size_contract()
         validate_repo.validate_local_media_source_manifest()
 
     def test_linked_whitepaper_markdown_matches_current_release_boundary(self) -> None:

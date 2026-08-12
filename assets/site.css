@@ -15,6 +15,8 @@
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   --page: min(1180px, calc(100% - 48px));
   --reading: min(720px, calc(100% - 48px));
+  --mascot-header-size: clamp(55px, 5.625vw, 105px);
+  --mascot-footer-size: clamp(55px, 5vw, 85px);
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -147,8 +149,8 @@ select {
 }
 
 .brand img {
-  width: clamp(44px, 4.5vw, 84px);
-  height: clamp(44px, 4.5vw, 84px);
+  width: var(--mascot-header-size);
+  height: var(--mascot-header-size);
   object-fit: contain;
 }
 
@@ -882,8 +884,8 @@ select {
 }
 
 .footer-mark img {
-  width: clamp(44px, 4vw, 68px);
-  height: clamp(44px, 4vw, 68px);
+  width: var(--mascot-footer-size);
+  height: var(--mascot-footer-size);
 }
 
 .footer-mark p,

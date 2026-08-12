@@ -71,6 +71,7 @@ BRAND_ASSET_SHA256 = {
     "assets/stateport-mascot-block-arch-light.svg": "32af9b36db5a7dafba0b85f3598806dc13b2d9a31e3fab5415ff65dd80462240",
     "assets/stateport-mascot-block-arch-dark.svg": "62d1a8ee6a68aa025e7246f689cd4ed7e885d7f3d97fb78fe84c0d5f75cdf013",
 }
+MASCOT_SIZE_CONTRACT = {"header": (105, 105), "footer": (85, 85)}
 OVERVIEW_MP4_SHA256 = "81e16caf22fa6a7d59b7443939dd0bd6f5c66be583567a939c413131440acfe2"
 
 
@@ -88,6 +89,30 @@ def validate_brand_asset_bytes() -> None:
         observed = hashlib.sha256(path.read_bytes()).hexdigest()
         if observed != expected:
             raise AssertionError(f"Canonical brand asset drifted: {relative}")
+
+
+def validate_mascot_size_contract() -> None:
+    """Keep active header/footer mascot artwork at the 125% visual contract."""
+
+    css = require("assets/site.css").read_text(encoding="utf-8")
+    if "--mascot-header-size: clamp(55px, 5.625vw, 105px)" not in css:
+        raise AssertionError("header mascot token is stale")
+    if "--mascot-footer-size: clamp(55px, 5vw, 85px)" not in css:
+        raise AssertionError("footer mascot token is stale")
+    favicon = require("assets/favicon-block-arch.svg").read_text(encoding="utf-8")
+    if 'viewBox="24 21 464 464"' not in favicon:
+        raise AssertionError("fixed mascot canvas artwork is not at the 125% contract")
+    for path in ROOT.rglob("*.html"):
+        if is_local_build_source(path):
+            continue
+        text = path.read_text(encoding="utf-8")
+        for role, (width, height) in MASCOT_SIZE_CONTRACT.items():
+            if role == "header" and 'class="brand"' in text and 'class="brand"' in text:
+                if f'width="84" height="84"' in text:
+                    raise AssertionError(f"header mascot intrinsic size is stale: {path}")
+            if role == "footer" and 'class="footer-mark"' in text:
+                if f'width="68" height="68"' in text:
+                    raise AssertionError(f"footer mascot intrinsic size is stale: {path}")
 
 
 def validate_local_media_source_manifest() -> None:
@@ -1043,6 +1068,7 @@ def validate_pages_provider_truth() -> None:
 
 def main() -> None:
     validate_brand_asset_bytes()
+    validate_mascot_size_contract()
     required = (
         "AGENTS.md",
         "STATUS.md",
