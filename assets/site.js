@@ -178,7 +178,7 @@
   function initPrototypeGallery() {
     const gallery = document.getElementById("prototype-gallery");
     const items = [...document.querySelectorAll("[data-prototype-gallery-item]")];
-    if (!gallery || items.length !== 3 || typeof gallery.showModal !== "function") {
+    if (!gallery || items.length !== 4 || typeof gallery.showModal !== "function") {
       return;
     }
 
@@ -227,8 +227,8 @@
       const item = items[currentIndex];
       const source = item.querySelector("img");
       const figure = item.closest("figure");
-      const title = figure?.querySelector("figcaption strong")?.textContent?.trim() || source?.alt || "Prototype screen";
-      const description = figure?.querySelector("figcaption p")?.textContent?.trim() || "";
+      const title = item.dataset.galleryLabel || figure?.querySelector("figcaption strong")?.textContent?.trim() || source?.alt || "Prototype screen";
+      const description = item.dataset.gallerySummary || figure?.querySelector("figcaption p")?.textContent?.trim() || "";
       if (!source) {
         return;
       }

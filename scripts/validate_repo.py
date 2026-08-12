@@ -179,6 +179,100 @@ class AssetReferenceParser(HTMLParser):
                 self.references.append(value)
 
 
+class FaviconReferenceParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.references: list[tuple[str, str]] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag != "link":
+            return
+        values = {name: value or "" for name, value in attrs}
+        rel = {token.lower() for token in values.get("rel", "").split()}
+        if rel.intersection({"icon", "manifest", "apple-touch-icon"}) and values.get("href"):
+            self.references.append((" ".join(sorted(rel)), values["href"]))
+
+
+ACTIVE_FAVICON_FILES = {
+    "assets/favicon.svg": None,
+    "assets/favicon-16.png": (16, 16),
+    "assets/favicon-32.png": (32, 32),
+    "assets/favicon-192.png": (192, 192),
+    "assets/favicon-512.png": (512, 512),
+    "assets/favicon.ico": None,
+    "assets/apple-touch-icon.png": (180, 180),
+}
+FAVICON_VIEWBOX = 'viewBox="24 21 464 464"'
+
+
+def _resolve_site_reference(page: Path, reference: str) -> Path | None:
+    parsed = urlsplit(reference)
+    if parsed.scheme or parsed.netloc or reference.startswith("#") or not parsed.path:
+        return None
+    if parsed.path.startswith("/StatePort-Site/"):
+        target = (ROOT / parsed.path[len("/StatePort-Site/") :]).resolve()
+    else:
+        target = (page.parent / parsed.path).resolve()
+    if ROOT not in target.parents and target != ROOT:
+        return None
+    return target
+
+
+def _png_dimensions(path: Path) -> tuple[int, int]:
+    data = path.read_bytes()
+    if data[:8] != b"\x89PNG\r\n\x1a\n" or data[12:16] != b"IHDR":
+        raise AssertionError(f"Not a PNG file: {path.relative_to(ROOT)}")
+    return int.from_bytes(data[16:20], "big"), int.from_bytes(data[20:24], "big")
+
+
+def validate_active_favicons() -> None:
+    """Validate every served favicon link and the exact active artwork bounds."""
+
+    source = require("assets/favicon-block-arch.svg").read_text(encoding="utf-8")
+    active_svg = require("assets/favicon.svg").read_text(encoding="utf-8")
+    if FAVICON_VIEWBOX not in source or FAVICON_VIEWBOX not in active_svg:
+        raise AssertionError("active favicon SVG must use the 24 21 464 464 visual-bound contract")
+    if active_svg != source:
+        raise AssertionError("assets/favicon.svg must be byte-identical to favicon-block-arch.svg")
+
+    referenced: set[Path] = set()
+    for page in sorted(ROOT.rglob("*.html")):
+        if is_local_build_source(page.relative_to(ROOT)):
+            continue
+        parser = FaviconReferenceParser()
+        parser.feed(page.read_text(encoding="utf-8"))
+        for rel, reference in parser.references:
+            target = _resolve_site_reference(page, reference)
+            if target is None:
+                raise AssertionError(f"{page.relative_to(ROOT)}: favicon reference must be local: {reference}")
+            if rel == "manifest":
+                if target.name != "site.webmanifest":
+                    raise AssertionError(f"{page.relative_to(ROOT)}: unexpected manifest reference: {reference}")
+                try:
+                    manifest = json.loads(target.read_text(encoding="utf-8"))
+                except json.JSONDecodeError as exc:
+                    raise AssertionError(f"Invalid manifest referenced by {page}: {exc}") from exc
+                for icon in manifest.get("icons", []):
+                    icon_target = _resolve_site_reference(target, icon.get("src", ""))
+                    if icon_target is None:
+                        raise AssertionError(f"{target.relative_to(ROOT)}: manifest icon must be local")
+                    referenced.add(icon_target)
+            else:
+                referenced.add(target)
+
+    missing = sorted(path.relative_to(ROOT) for path in referenced if not path.is_file())
+    if missing:
+        raise AssertionError(f"Active favicon reference is missing: {missing}")
+    expected_paths = {Path(relative) for relative in ACTIVE_FAVICON_FILES}
+    unexpected = sorted(str(path.relative_to(ROOT)) for path in referenced if path.relative_to(ROOT) not in expected_paths)
+    if unexpected:
+        raise AssertionError(f"Active favicon references contain unexpected files: {unexpected}")
+    for relative, dimensions in ACTIVE_FAVICON_FILES.items():
+        path = require(relative)
+        if dimensions and path.suffix == ".png" and _png_dimensions(path) != dimensions:
+            raise AssertionError(f"{relative} must retain fixed canvas dimensions {dimensions[0]}x{dimensions[1]}")
+
+
 def require(path: str) -> Path:
     candidate = ROOT / path
     if not candidate.is_file():
@@ -1140,7 +1234,7 @@ def main() -> None:
     require_text("STATUS.md", "**Execution Mode:** operating")
     require_text("PROJECT_STATE.yaml", "statedd_mode: operating")
     require_text("index.html", "StatePort")
-    require_text("index.html", "See StatePort in 60 seconds")
+    require_text("index.html", "See StatePort in 33 seconds")
     require_text("docs/prototype-walkthrough.html", "Working preview")
     require_text("docs/agent-kits.html", "Early direction")
     require_text("docs/platform-support.html", "Capability-based qualification")
@@ -1160,6 +1254,7 @@ def main() -> None:
         )
 
     validate_local_references()
+    validate_active_favicons()
     validate_documentation_button_accessibility()
     validate_paper_diagrams()
     validate_action_pins()
@@ -1171,6 +1266,7 @@ def main() -> None:
     validate_release_semantics()
     validate_asset_cache_keys()
     validate_pages_provider_truth()
+    validate_local_media_source_manifest()
     print("StatePort Site validation: OK")
 
 

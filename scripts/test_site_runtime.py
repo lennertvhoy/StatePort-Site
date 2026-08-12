@@ -75,11 +75,24 @@ class SiteRuntimeContractTests(unittest.TestCase):
         check_site_quality.validate_video_embeds(documents)
         check_site_quality.validate_caption_files(documents)
 
+    def test_current_media_caption_mismatch_remains_an_explicit_blocker(self) -> None:
+        documents = check_site_quality.parse_documents()
+        with self.assertRaisesRegex(AssertionError, "does not match VTT end"):
+            check_site_quality.validate_video_caption_duration_consistency(documents)
+
+    def test_home_gallery_has_four_items_with_the_hero_first(self) -> None:
+        homepage = (ROOT / "index.html").read_text(encoding="utf-8")
+        self.assertEqual(homepage.count('data-prototype-gallery-item'), 4)
+        self.assertIn('data-gallery-label="StatePort application overview"', homepage)
+        self.assertIn('data-prototype-gallery-counter>01 / 04', homepage)
+        self.assertIn('if (!gallery || items.length !== 4', (ROOT / "assets/site.js").read_text(encoding="utf-8"))
+
     def test_active_surfaces_use_light_mascot_and_local_source_manifest_is_bound(self) -> None:
         documents = check_site_quality.parse_documents()
         check_site_quality.validate_mascot_surface_references(documents)
         validate_repo.validate_brand_asset_bytes()
         validate_repo.validate_mascot_size_contract()
+        validate_repo.validate_active_favicons()
         validate_repo.validate_local_media_source_manifest()
 
     def test_linked_whitepaper_markdown_matches_current_release_boundary(self) -> None:

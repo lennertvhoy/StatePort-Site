@@ -1073,10 +1073,27 @@ html:not(.js) .site-nav .nav-release {
  margin: 0;
 }
 .home-page .hero-visual img {
- width: 100%;
- border: 1px solid rgba(220, 229, 246, 0.68);
- background: #101b37;
- box-shadow: 0 1.5rem 3rem rgba(2, 7, 22, 0.34);
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  border: 1px solid rgba(220, 229, 246, 0.68);
+  background: #101b37;
+  box-shadow: 0 1.5rem 3rem rgba(2, 7, 22, 0.34);
+  object-fit: contain;
+  object-position: center;
+}
+.home-page .hero-gallery-link {
+  position: relative;
+  display: block;
+  color: var(--white);
+  text-decoration: none;
+}
+.home-page .hero-gallery-link:hover {
+  color: var(--white);
+}
+.home-page .hero-gallery-link .prototype-frame-zoom {
+  opacity: 1;
+  transform: translateY(0);
 }
 .home-page .hero-visual figcaption {
  margin-top: 0.7rem;
@@ -1327,11 +1344,6 @@ html:not(.js) .reveal,
  .home-page .hero-visual {
    max-width: none;
  }
- .home-page .hero-visual img {
-   max-height: 25svh;
-   object-fit: cover;
-   object-position: center top;
- }
  .home-page .hero-deck {
    font-size: 1.06rem;
    line-height: 1.5;
@@ -1350,9 +1362,6 @@ html:not(.js) .reveal,
  }
  .home-page .hero-actions {
    gap: 0.65rem;
- }
- .home-page .hero-visual img {
-   max-height: 22svh;
  }
  .home-page .prototype-inner,
  .home-page .home-section,

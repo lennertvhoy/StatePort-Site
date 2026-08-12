@@ -13,6 +13,7 @@ from html.parser import HTMLParser
 import json
 from pathlib import Path
 import re
+import subprocess
 from urllib.parse import unquote, urlsplit
 import xml.etree.ElementTree as ET
 
@@ -815,6 +816,40 @@ def validate_caption_files(documents: dict[Path, DocumentFacts]) -> None:
                     )
 
 
+def validate_video_caption_duration_consistency(documents: dict[Path, DocumentFacts]) -> None:
+    """Reject a caption candidate whose end time does not match the served MP4."""
+
+    referenced_videos = {
+        resolve_local_page(page, urlsplit(source.get("src", "")).path)
+        for page, facts in documents.items()
+        for source in facts.sources
+        if source.get("src", "").endswith(".mp4")
+    }
+    for video in sorted(referenced_videos):
+        media_path = ROOT / video
+        if not media_path.is_file():
+            continue
+        caption_path = video.with_suffix(".vtt")
+        if not (ROOT / caption_path).is_file():
+            continue
+        result = subprocess.run(
+            ["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "default=noprint_wrappers=1:nokey=1", str(media_path)],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        if result.returncode != 0:
+            raise AssertionError(f"{video}: unable to inspect MP4 duration: {result.stderr.strip()}")
+        media_duration = float(result.stdout.strip())
+        cues = parse_vtt_cues((ROOT / caption_path).read_text(encoding="utf-8"))
+        caption_duration = cues[-1][1] if cues else 0.0
+        if abs(media_duration - caption_duration) > 0.25:
+            raise AssertionError(
+                f"{video}: served MP4 duration {media_duration:.3f}s does not match "
+                f"VTT end {caption_duration:.3f}s; render matching media before release"
+            )
+
+
 def _media_references(documents: dict[Path, DocumentFacts]) -> dict[Path, list[tuple[Path, dict[str, str]]]]:
     """Map assets/media files to the pages and tags referencing them."""
     references: dict[Path, list[tuple[Path, dict[str, str]]]] = {}
@@ -912,9 +947,9 @@ def validate_homepage_sequence(documents: dict[Path, DocumentFacts]) -> None:
         raise AssertionError(
             f"index.html: homepage sections out of order: {sections}"
         )
-    if not re.search(r'<a[^>]*href="#overview"[^>]*>\s*See StatePort in 60 seconds', html):
+    if not re.search(r'<a[^>]*href="#overview"[^>]*>\s*See StatePort in 33 seconds', html):
         raise AssertionError(
-            "index.html: primary CTA \"See StatePort in 60 seconds\" must link #overview"
+            "index.html: primary CTA \"See StatePort in 33 seconds\" must link #overview"
         )
     if not re.search(
         r'<a[^>]*href="docs/study-state\.html"[^>]*>\s*Explore StudyState', html
@@ -950,6 +985,7 @@ def main() -> None:
     validate_social_card_metadata(documents)
     validate_video_embeds(documents)
     validate_caption_files(documents)
+    validate_video_caption_duration_consistency(documents)
     validate_media_asset_integrity(documents)
     validate_stale_release_language(documents)
     validate_fragments(documents)
