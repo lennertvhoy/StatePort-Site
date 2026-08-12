@@ -1,5 +1,14 @@
 # Worklog
 
+## 2026-08-12 - Overview replacement render deployed
+
+- Replaced the rejected 44.544-second overview with the governed five-scene
+  HyperFrames render: 33.067 seconds, 993 frames, H.264 High/AAC 1920x1080,
+  MP4 SHA-256 `0a9fe50bea513053af21d3e49e9523776defcdb4392a66557219d00e4bce1d21`.
+- Site validation, quality validation, full decode, representative frame review,
+  and 26 unit tests passed. Commit `15e9f777` deployed through Pages run
+  `31626192641` and deployment `94213107101`; anonymous MP4/VTT hashes match.
+
 ## 2026-08-11 - Overview transition revoice candidate
 
 - Revoiced only `29.999-31.872` seconds of the overview narration using the established `en-US-AndrewNeural` voice. Video frames remain byte-identical; the candidate is H.264/AAC 1920x1080, 44.544 seconds, 1,336 frames, with MP4 SHA-256 `81e16caf22fa6a7d59b7443939dd0bd6f5c66be583567a939c413131440acfe2`.

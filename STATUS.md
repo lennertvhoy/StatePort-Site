@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-08-12
 **Execution Mode:** operating
-**Project State:** alpha3_published_install_disabled_containment_deployed_media_replacement_rendered_locally
+**Project State:** alpha3_published_install_disabled_containment_deployed_media_replacement_deployed_verified
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -74,11 +74,13 @@
 - The replacement overview render is locally validated at 33.067 seconds,
   993 frames, H.264 High/AAC 1920x1080, with MP4 SHA-256
   `0a9fe50bea513053af21d3e49e9523776defcdb4392a66557219d00e4bce1d21` and
-  matching VTT end time. Site deployment and public verification remain open.
+  matching VTT end time. Site commit `15e9f777`, Pages run
+  `31626192641`, and deployment `94213107101` are complete; anonymous MP4/VTT
+  fetches match the local digests.
 
 ## Exact next action
 
-Commit and push the locally validated replacement media, wait for Pages, and
-verify public MP4/VTT hashes and duration. Alpha.3 remains install-disabled and
-immutable; successor signing, human acceptance, independent review, and
-production qualification remain separate and ungranted.
+Rebuild the exact Alpha.4 image set from StatePort source `4187b411`, then
+fresh-scan, privately sign, and qualify it on a clean Ubuntu guest. Alpha.3
+remains install-disabled and immutable; successor publication, human
+acceptance, independent review, and production qualification remain separate.

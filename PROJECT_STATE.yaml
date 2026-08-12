@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-12T20:00:00Z"
-  updated_by: alpha4_site_overview_render_closure
+  updated_at: "2026-08-12T20:30:00Z"
+  updated_by: alpha4_site_overview_deployment_verified
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha3_published_install_disabled_containment_deployed_media_replacement_rendered_locally
+  status: alpha3_published_install_disabled_containment_deployed_media_replacement_deployed_verified
   purpose: public documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -85,15 +85,15 @@ site:
     source_branch: main
     source_path: /
     deployment_head: derived_from_git_not_persisted
-    live_content_commit: pending
-    pages_build: pending
-    pages_run: pending
-    pages_deployment: pending
-    deployed_at: "2026-08-11T12:09:22Z"
+    live_content_commit: 15e9f777f7d3b15d09ddb4ad0af83cc831f99eaa
+    pages_build: 31626192641
+    pages_run: 31626192641
+    pages_deployment: 94213107101
+    deployed_at: "2026-08-12T18:09:00Z"
   current_release_surface: alpha3_install_disabled_erratum_contained_live_verified
     candidate:
-     head: pending_local_media_replacement
-     status: locally_rendered_validated_not_deployed
+     head: 15e9f777f7d3b15d09ddb4ad0af83cc831f99eaa
+     status: committed_pushed_deployed_publicly_verified
      governed_render: exact_33s_five_scene_hyperframes_render_validated
      media_sha256: 0a9fe50bea513053af21d3e49e9523776defcdb4392a66557219d00e4bce1d21
      media_duration_seconds: "33.067"
