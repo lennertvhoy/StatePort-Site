@@ -1,8 +1,8 @@
 # StatePort Site status
 
-**Updated At:** 2026-08-11
+**Updated At:** 2026-08-12
 **Execution Mode:** operating
-**Project State:** alpha3_published_install_disabled_containment_deployed_media_revoice_deployed_remotely_verified
+**Project State:** alpha3_published_install_disabled_containment_deployed_media_replacement_rendered_locally
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -71,21 +71,14 @@
   run `31392022484` and deployment `5832690455`. This does not change alpha.3
   release truth: it remains install-disabled, immutable, unaccepted, and not
   independently reviewed, stable, or production-qualified.
-- The overview transition revoice candidate is committed at
-  `2141697e8c9658adbb50d7178e8a4b2f75bdd253`. It preserves all 1,336 video
-  frames and replaces only the `29.999`-to-`31.872` second narration window.
-  The candidate MP4 is H.264/AAC 1920x1080, 44.544 seconds, and SHA-256
-  `81e16caf22fa6a7d59b7443939dd0bd6f5c66be583567a939c413131440acfe2`; it is
-  deployed through Pages build `1145044708`, workflow run `31489384247`, and
-  deployment `5850023681`; public MP4 and unchanged VTT hashes match.
-- The final provenance correction is `75ce76008a8f8560f094c87687d8eeb666b67d2b`;
-  its managed Pages workflow `31489845427` and deployment `5850105929` both
-  succeeded. The public media bytes remain unchanged by this correction.
+- The replacement overview render is locally validated at 33.067 seconds,
+  993 frames, H.264 High/AAC 1920x1080, with MP4 SHA-256
+  `0a9fe50bea513053af21d3e49e9523776defcdb4392a66557219d00e4bce1d21` and
+  matching VTT end time. Site deployment and public verification remain open.
 
 ## Exact next action
 
-Keep the deployed containment in place. The media correction is remotely
-verified, but it does not make alpha.3 installable or create a successor release.
-Do not restore an install command or change immutable alpha.2/alpha.3 bytes.
-Successor signing, human acceptance, independent review, and production
-qualification remain separate and ungranted.
+Commit and push the locally validated replacement media, wait for Pages, and
+verify public MP4/VTT hashes and duration. Alpha.3 remains install-disabled and
+immutable; successor signing, human acceptance, independent review, and
+production qualification remain separate and ungranted.

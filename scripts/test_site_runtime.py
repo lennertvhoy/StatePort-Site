@@ -75,10 +75,9 @@ class SiteRuntimeContractTests(unittest.TestCase):
         check_site_quality.validate_video_embeds(documents)
         check_site_quality.validate_caption_files(documents)
 
-    def test_current_media_caption_mismatch_remains_an_explicit_blocker(self) -> None:
+    def test_current_media_caption_duration_is_consistent(self) -> None:
         documents = check_site_quality.parse_documents()
-        with self.assertRaisesRegex(AssertionError, "does not match VTT end"):
-            check_site_quality.validate_video_caption_duration_consistency(documents)
+        check_site_quality.validate_video_caption_duration_consistency(documents)
 
     def test_home_gallery_has_four_items_with_the_hero_first(self) -> None:
         homepage = (ROOT / "index.html").read_text(encoding="utf-8")

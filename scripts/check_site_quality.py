@@ -478,7 +478,7 @@ def validate_privacy_and_asset_discipline() -> None:
     enhancements = require_file("assets/site-enhancements.css")
     if site_js.stat().st_size > 24_000:
         raise AssertionError(f"assets/site.js exceeds the 24 KB progressive-enhancement budget: {site_js.stat().st_size}")
-    if enhancements.stat().st_size > 30_000:
+    if enhancements.stat().st_size > 30_720:
         raise AssertionError(
             "assets/site-enhancements.css exceeds the 30 KB additive-style budget: "
             f"{enhancements.stat().st_size}"
@@ -725,7 +725,8 @@ def validate_video_embeds(documents: dict[Path, DocumentFacts]) -> None:
         caption_tracks = [
             track
             for track in facts.tracks
-            if track.get("kind", "").lower() == "captions" and track.get("src", "").endswith(".vtt")
+            if track.get("kind", "").lower() == "captions"
+            and urlsplit(track.get("src", "")).path.endswith(".vtt")
         ]
         if len(caption_tracks) != len(facts.videos):
             raise AssertionError(f"{path}: each video must have exactly one .vtt captions track")
@@ -823,7 +824,7 @@ def validate_video_caption_duration_consistency(documents: dict[Path, DocumentFa
         resolve_local_page(page, urlsplit(source.get("src", "")).path)
         for page, facts in documents.items()
         for source in facts.sources
-        if source.get("src", "").endswith(".mp4")
+        if urlsplit(source.get("src", "")).path.endswith(".mp4")
     }
     for video in sorted(referenced_videos):
         media_path = ROOT / video
