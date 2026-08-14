@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-08-14
 **Execution Mode:** operating
-**Project State:** alpha5_install_containment_locally_validated_deployment_pending
+**Project State:** alpha5_install_containment_deployed_remote_verified_transport_probe_pending
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -35,14 +35,15 @@
 - Alpha.3 remains signed, byte-intact, install-disabled, and historical. Its
   erratum remains public. Alpha.2 remains superseded and install-disabled.
   Neither retained release tree changed.
-- Alpha.5 content commit `6cf95ca855e94f7648afb93fa870390a8c8bc8a7`
-  is deployed through Pages build `1151371842`, run `31820163492`, and
-  deployment `5909824336`. All 33 immutable Alpha.5 files, the mutable
-  bootstrap, and six current release surfaces match local bytes remotely.
+- Alpha.5 containment content commit
+  `636e795230e286fb39470fe695d935266b4ee876` is deployed through Pages build
+  `1151605137`, run `31832575567`, and deployment `5912021497`. All 33
+  immutable Alpha.5 files and nine mutable containment surfaces match local
+  bytes remotely.
 
 ## Exact next action
 
-Deploy and remotely verify containment without changing immutable release
-bytes. Installation remains disabled until the owner-run non-executing
-exact-target transport probe passes review. Alpha.5 remains
-`compatible_unvalidated`, unaccepted, and not production-qualified.
+The owner runs the non-executing exact-target transport probe in the existing
+WSL2 distribution and returns its output for review. Installation remains
+disabled. Alpha.5 remains `compatible_unvalidated`, unaccepted, and not
+production-qualified.

@@ -1,5 +1,19 @@
 # Worklog
 
+## 2026-08-14 - Alpha.5 public install containment remotely verified
+
+- Pushed exact containment content commit
+  `636e795230e286fb39470fe695d935266b4ee876`. Managed Pages build
+  `1151605137`, run `31832575567`, and deployment `5912021497` completed
+  successfully for that head.
+- Anonymous public fetches matched all 33 immutable Alpha.5 files and nine
+  mutable containment surfaces, including seven HTML pages, the held-back
+  transport generator, and the unchanged mutable bootstrap. Installation
+  remains disabled and no browser acceptance is claimed.
+- Alpha.5 remains published, signed, byte-intact, `compatible_unvalidated`, and
+  unaccepted. The owner-run non-executing exact-target transport probe is the
+  sole active outcome; re-enablement remains a separate decision.
+
 ## 2026-08-14 - Alpha.5 public install containment candidate
 
 - The owner reports that the first Windows 11 + WSL2 + Ubuntu 24.04 AMD64

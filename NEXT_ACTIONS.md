@@ -4,20 +4,18 @@
 **Execution Mode:** operating
 **Max Items:** 1
 
-## P0 [BL-SITE-ALPHA5-CONTAINMENT] Deploy fail-closed Alpha.5 install containment
+## P0 [BL-SITE-ALPHA5-TRANSPORT-PROBE] Review the exact-target transport probe
 
-**Status:** Alpha.5 remains published, signed, byte-intact, and
-`compatible_unvalidated`, but installation is disabled after the owner-reported
-first exact-host command failed partway through its streamed bootstrap. No
-Python installer ran and no receipt exists. Completed reviews bind the failure
-to a 4,096-byte truncated pipe-to-shell transfer, not signed release bytes.
+**Status:** Alpha.5 containment content `636e7952` is deployed through Pages
+build `1151605137`, run `31832575567`, and deployment `5912021497`. All 33
+immutable Alpha.5 files and nine mutable containment surfaces match local bytes
+remotely. Installation remains disabled; signed release bytes remain intact.
 
-**Decision:** deploy fail-closed public guidance and retain the repaired
-complete-download, pinned-size, pinned-digest, `/bin/sh -n` transport behind the
-disabled state. Do not promote or execute it before the owner's non-executing
-exact-WSL2 transport probe passes review.
+**Decision:** the owner runs only the non-executing complete-download transport
+probe in the existing exact-target WSL2 distribution and returns its output for
+review. Do not promote, execute, or re-enable the installer.
 
-**Exit:** containment is deployed and remotely verified, all immutable Alpha.5
-and retained Alpha.2/3 bytes still match their anchors, and the exact-target
-transport probe is the sole pending outcome. Re-enablement, human acceptance,
-independent review, stability, and production qualification remain separate.
+**Exit:** the probe proves complete 8,971-byte download, pinned SHA-256, and
+`/bin/sh -n` on the exact target without executing the installer. Re-enablement,
+human acceptance, independent review, stability, and production qualification
+remain separate owner decisions.

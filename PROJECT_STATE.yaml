@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-14T19:16:31Z"
-  updated_by: alpha5_public_install_containment_locally_validated
+  updated_at: "2026-08-14T19:19:20Z"
+  updated_by: alpha5_public_install_containment_remote_verification
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha5_published_signed_byte_intact_install_disabled_containment_locally_validated_deployment_pending
+  status: alpha5_install_containment_deployed_remote_verified_transport_probe_pending
   purpose: public_documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -81,18 +81,18 @@ site:
   deployment:
     provider: GitHub Pages
     build_type: legacy
-    status: built_from_main_root_remotely_verified
+    status: containment_built_from_main_root_remotely_verified
     workflow: ".github/workflows/deploy-pages.yml"
     custom_workflow_status: disabled_manual_only_not_live_provider
     source_branch: main
     source_path: /
     deployment_head: derived_from_git_not_persisted
-    live_content_commit: 6cf95ca855e94f7648afb93fa870390a8c8bc8a7
-    pages_build: 1151371842
-    pages_run: 31820163492
-    pages_deployment: 5909824336
-    deployed_at: "2026-08-14T16:37:22Z"
-  current_release_surface: alpha5_install_temporarily_disabled_containment_candidate
+    live_content_commit: 636e795230e286fb39470fe695d935266b4ee876
+    pages_build: 1151605137
+    pages_run: 31832575567
+    pages_deployment: 5912021497
+    deployed_at: "2026-08-14T19:17:54Z"
+  current_release_surface: alpha5_install_temporarily_disabled_containment_deployed
   installer_command_shown: false
   installer_command_locations: []
   replacement_install_command: generated_and_tested_not_promoted
@@ -107,13 +107,15 @@ site:
     alpha5_immutable_mismatches: 0
     mutable_install_sha256: 104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a
     mutable_install_matches_versioned: true
-    current_html_surfaces_checked: 6
-    current_html_mismatches: 0
+    containment_html_surfaces_checked: 7
+    mutable_containment_files_checked: 9
+    mutable_containment_mismatches: 0
+    transport_generator_sha256: 54ed5d04b8a70a977fa364178294c42f3c36f573a51d15a22a211a11486f0408
     browser_automation: unavailable_not_claimed
 
 owner_directive:
   id: OD-2026-08-14-ALPHA5-PUBLIC-CONTAINMENT
-  status: containment_locally_validated_deployment_pending
+  status: containment_deployed_remote_verified_transport_probe_pending
   source_repository: /home/ff/Documents/Projects/StatePort
   source_commit: 320ecb31
   objective: disable_promoted_alpha5_install_and_deploy_verified_non_streaming_transport_containment_without_changing_release_bytes
@@ -123,9 +125,9 @@ owner_directive:
   human_acceptance: not_granted
 
 active_work:
-  - id: BL-SITE-ALPHA5-CONTAINMENT
+  - id: BL-SITE-ALPHA5-TRANSPORT-PROBE
     priority: P0
-    status: containment_locally_validated_deployment_pending
+    status: containment_deployed_owner_nonexecuting_exact_target_probe_pending
 
 prior_work:
   - id: alpha5_streamed_bootstrap_truncation
@@ -135,7 +137,7 @@ prior_work:
     missing: complete_raw_owner_transcript_and_clean_install_receipt
 
 workspace_inventory:
-  expected_content_head: pending_containment_commit
-  expected_origin_head: f863eb5463ae42c0869e09ef22f24e8f4c4a9955
-  expected_dirty_path: containment_candidate
+  expected_content_head: 636e795230e286fb39470fe695d935266b4ee876
+  expected_origin_head: 636e795230e286fb39470fe695d935266b4ee876
+  expected_dirty_path: state_only_remote_verification_closure
   immutable_release_bytes_changed_after_anchor: false

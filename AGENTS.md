@@ -46,11 +46,12 @@ the exact-target probe, human acceptance, independent review, stability,
 production qualification, or changes to retained Alpha.2, Alpha.3, or Alpha.5
 bytes.
 
-The pre-containment Alpha.5 content closure is Site commit
-`6cf95ca855e94f7648afb93fa870390a8c8bc8a7`, remotely verified through Pages
-build `1151371842`, run `31820163492`, and deployment `5909824336`. All 33
-immutable Alpha.5 files, the mutable bootstrap, and six current release surfaces
-matched local bytes before the owner-reported failed partial first-host attempt.
+The Alpha.5 containment content closure is Site commit
+`636e795230e286fb39470fe695d935266b4ee876`, remotely verified through Pages
+build `1151605137`, run `31832575567`, and deployment `5912021497`. All 33
+immutable Alpha.5 files and nine mutable containment surfaces matched local
+bytes. Installation remains disabled; the sole remaining outcome is the
+owner-run non-executing exact-target transport probe.
 
 ## Mandatory read order
 
