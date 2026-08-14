@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="StatePort Alpha.5 is a signed WSL2 public-test candidate with a repaired install command; no clean-install receipt, acceptance, or qualification exists.">
+    <meta name="description" content="StatePort Alpha public-test installation is temporarily unavailable; no clean-install receipt exists.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="StatePort release status">
-    <meta property="og:description" content="StatePort Alpha.5 has a repaired public-test command after one owner-reported transport probe; clean-install evidence remains absent.">
+    <meta property="og:description" content="StatePort Alpha installation is temporarily unavailable.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/releases/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -31,7 +31,7 @@
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "StatePort release status",
-        "description": "Plain-English release status for StatePort Alpha.5: signed and published, with a repaired public-test command but no clean-install receipt.",
+        "description": "Plain-English release status for StatePort Alpha.5: published, with installation temporarily unavailable.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/releases/",
         "dateModified": "2026-08-14",
         "inLanguage": "en"
@@ -70,7 +70,7 @@
           <h2>Status</h2>
           <nav>
             <a href="#current-status" aria-current="page">Current status</a>
-            <a href="../download/#alpha5">Install guide</a>
+            <a href="../download/#alpha5">Download status</a>
             <a href="../download/erratum-alpha3.html">Alpha.3 erratum</a>
             <a href="../download/#older-releases">Older releases</a>
             <a href="../docs/limitations.html">Current limitations</a>
@@ -82,9 +82,9 @@
           <div class="release-summary" id="current-status">
             <div>
               <p class="release-summary-label">Current software status</p>
-              <h2>v0.1.0-alpha.5 — repaired WSL2 public-test install enabled</h2>
-              <p>The signed Alpha.5 candidate and its seven digest-pinned images remain online and byte-intact. The repaired command was enabled after one owner-reported exact-target non-executing transport probe passed. Support remains <code>compatible_unvalidated</code>; no clean-install receipt, owner acceptance, independent security review, stability, or production qualification exists.</p>
-              <p><a class="button button--ink" href="../download/">Open the repaired WSL2 install guide <span aria-hidden="true">↗</span></a></p>
+              <h2>Alpha test temporarily unavailable</h2>
+              <p>Alpha.5 remains published and <code>compatible_unvalidated</code>. Installation is paused.</p>
+              <p><a class="button button--ink" href="../download/">View download status <span aria-hidden="true">↗</span></a></p>
             </div>
             <p class="release-review-date">Status reviewed<br><time datetime="2026-08-14">14 August 2026</time></p>
           </div>
@@ -98,8 +98,8 @@
                 <tbody>
                   <tr><th scope="row">Website</th><td>Live</td></tr>
                   <tr><th scope="row">Download</th><td>v0.1.0-alpha.5 published — exact WSL2 public-test target only</td></tr>
-                  <tr><th scope="row">Installation path</th><td>Repaired complete-download public-test command enabled for the exact target</td></tr>
-                  <tr><th scope="row">Clean-install proof</th><td>No; the first owner-reported attempt was a failed partial bootstrap and produced no receipt</td></tr>
+                  <tr><th scope="row">Installation path</th><td>Temporarily unavailable</td></tr>
+                  <tr><th scope="row">Clean-install proof</th><td>No</td></tr>
                   <tr><th scope="row">Source identities</th><td>The curated alpha.5 source archive is public; canonical development Git is private; the signed <code>publicSnapshot</code> Git identity is remotely resolvable from the public <a href="https://github.com/lennertvhoy/StatePort-Source" target="_blank" rel="noopener">StatePort-Source repository</a>. Public snapshot availability does not expose canonical development history.</td></tr>
                   <tr><th scope="row">Archive licensing</th><td>Code and StateSpec artifacts are AGPL-3.0-or-later; documentation is CC-BY-4.0.</td></tr>
                   <tr><th scope="row">Security review</th><td>Not done</td></tr>
@@ -112,11 +112,11 @@
 
           <section id="release-evidence" aria-labelledby="release-evidence-heading">
             <h2 id="release-evidence-heading">What this means</h2>
-            <p>Published means the signed files are online and byte-intact. An enabled repaired public-test path does not establish a clean install, review, acceptance, stability, or production qualification. These are different things:</p>
+            <p>Published and installable are separate states:</p>
             <ul>
               <li><strong>Signed and online</strong> — yes. The Alpha.5 artifacts are immutable and the public image references resolve anonymously.</li>
-              <li><strong>Installation path enabled</strong> — yes, only through the repaired complete-download command for the exact WSL2 target.</li>
-              <li><strong>Clean install verified</strong> — no. The owner-reported first attempt was a failed partial bootstrap with prerequisite side effects and no receipt.</li>
+              <li><strong>Installation path enabled</strong> — no.</li>
+              <li><strong>Clean install verified</strong> — no.</li>
               <li><strong>Human accepted</strong> — not yet. Alpha, still being reviewed.</li>
               <li><strong>Security review</strong> — not done.</li>
               <li><strong>Production-ready</strong> — no.</li>

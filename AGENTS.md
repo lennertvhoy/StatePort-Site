@@ -68,6 +68,13 @@ Alpha.5 files matched anonymous live bytes. The legacy build endpoint reported
 the prior state SHA, but the run, deployment, and bytes bind the live content to
 `c8cd2080`.
 
+The owner subsequently reports that the complete bootstrap executed and refused
+all five private image signatures because exact local manifest bytes were
+unavailable. No install receipt exists; the reported refusal JSON remains only
+on the owner host. Installation is disabled again while the signature data path
+is repaired. Public pages use minimal neutral copy; incident detail stays here
+and in canonical evidence.
+
 ## Mandatory read order
 
 1. `AGENTS.md`
@@ -86,9 +93,9 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
   `4613fcad48ea1a2e7dd4350d61baa333efbc734b1fcba1a1c9ca62994d562b71`;
   signed payload:
   `sha256:e45d5c8ce6843bd0c3155ecd26940ff3dc11c5069a2de796a079708066faf98c`.
-- The repaired complete-download install path is authorized for re-enablement
-  after the owner-reported exact-target non-executing probe passed. WSL2 remains
-  `compatible_unvalidated`; no clean-install receipt exists.
+- Installation is disabled after an owner-reported fail-closed image-signature
+  refusal. WSL2 remains `compatible_unvalidated`; no clean-install receipt
+  exists.
 - Completed reviews bind the failure to a 4,096-byte truncated pipe-to-shell
   transfer. The complete 8,971-byte bootstrap and signed release payload remain
   intact; the replacement completes download, verifies pinned size and digest,
@@ -139,8 +146,8 @@ or production-ready. Never alter Alpha.2, Alpha.3, or anchored Alpha.5 bytes.
 
 1. Preserve Alpha.2 and Alpha.3 exactly and keep the Alpha.3 erratum historical.
 2. Preserve the anchored Alpha.5 tree and byte-identical mutable bootstrap while
-   promoting only the repaired non-streaming command.
-3. Require a genuinely fresh Windows 11 + WSL2 + Ubuntu 24.04 clean install
-   with receipts; the mutated prior distro is ineligible evidence.
+   mutable guidance remains fail-closed.
+3. Keep public copy minimal while StatePort determines whether signature repair
+   requires successor immutable bytes.
 
 Everything else is backlog or history.

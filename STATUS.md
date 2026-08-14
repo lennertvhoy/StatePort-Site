@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-08-14
 **Execution Mode:** operating
-**Project State:** alpha5_repaired_install_enabled_remote_verified_fresh_clean_install_pending
+**Project State:** alpha5_install_disabled_signature_refusal_under_repair
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -29,6 +29,9 @@
   pinned SHA-256, and passed target `/bin/sh -n` without executing the installer.
   Only that repaired command is authorized for re-enablement. This is not a
   clean-install receipt or independently captured raw evidence.
+- The owner reports the complete bootstrap then refused all five private image
+  signatures because exact local manifest bytes were unavailable. No install
+  receipt exists; the refusal JSON has not been copied from the owner host.
 - Canonical source commit `256d8761` / tree `e7fb80c5` remains in private
   development Git. Signed public snapshot `6911b7c1` / tree `05ca882f` is
   anonymously resolvable from `lennertvhoy/StatePort-Source`. The curated
@@ -49,7 +52,7 @@
 
 ## Exact next action
 
-The owner performs one genuinely fresh Windows 11 + WSL2 + Ubuntu 24.04 AMD64
-clean install using the repaired command and retains all install and
-execution-host receipts. Never reuse the mutated prior distro as evidence.
-Alpha.5 remains `compatible_unvalidated`, unaccepted, and not production-qualified.
+Installation remains disabled while StatePort repairs the signature data path
+and determines whether successor signed bytes are required. Do not rerun the
+owner-host installer. Alpha.5 remains `compatible_unvalidated`, unaccepted, and
+not production-qualified.

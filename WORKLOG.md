@@ -1,5 +1,19 @@
 # Worklog
 
+## 2026-08-14 - Alpha.5 signature-refusal containment candidate
+
+- The owner reports that the complete immutable bootstrap passed transport and
+  shell checks, executed, and refused all five private image signatures because
+  exact local manifest bytes were unavailable. No install receipt exists. The
+  reported refusal JSON remains on the owner host and is not local evidence.
+- Removed the public install command and replaced user-facing incident copy with
+  the neutral message `Alpha test temporarily unavailable.` Immutable Alpha.2,
+  Alpha.3, and Alpha.5 paths remain untouched.
+- Eleven focused containment tests and both Site validators pass. Repository
+  validation first failed on one stale detailed-copy marker and passed after
+  that exact validator expectation was corrected. Deployment remains pending;
+  the owner-host installer must not be rerun.
+
 ## 2026-08-14 - Alpha.5 repaired install re-enabled and remotely verified
 
 - Pushed re-enablement content `c8cd20804bc2307c5c49f1fbed75ea8c59f921ae`.

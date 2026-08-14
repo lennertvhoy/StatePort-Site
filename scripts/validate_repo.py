@@ -1120,11 +1120,11 @@ def validate_source_disclosures(texts: dict[Path, str]) -> None:
 def validate_release_semantics() -> None:
     """Reject mutable-surface claims that contradict canonical release truth."""
     release_block = release_state_block()
-    install_enabled = re.search(r"^  installation_enabled: true\s*$", release_block, re.MULTILINE)
+    install_disabled = re.search(r"^  installation_enabled: false\s*$", release_block, re.MULTILINE)
     known_defective = re.search(r"^  known_defective: false\s*$", release_block, re.MULTILINE)
-    if not install_enabled or not known_defective:
+    if not install_disabled or not known_defective:
         raise AssertionError(
-            "PROJECT_STATE.yaml must enable only the repaired path without labelling signed Alpha.5 bytes defective"
+            "PROJECT_STATE.yaml must disable installation without labelling signed Alpha.5 bytes defective"
         )
 
     pages = mutable_public_pages()
@@ -1137,21 +1137,16 @@ def validate_release_semantics() -> None:
         relative = page.relative_to(ROOT)
         if pipe_to_shell.search(text):
             raise AssertionError(f"pipe-to-shell promotion is forbidden on {relative}")
-        commands = install_command.findall(text)
-        if relative == Path("download/index.html"):
-            if text.count(escape(held_back)) != 1 or len(commands) != 1:
-                raise AssertionError("download/index.html must show exactly the repaired Alpha.5 command")
-        elif commands:
-            raise AssertionError(f"install command may appear only on download/index.html, found {relative}")
+        if install_command.search(text) or escape(held_back) in text:
+            raise AssertionError(f"installation is disabled but a bootstrap command appears on {relative}")
 
     download = texts[ROOT / "download/index.html"]
     for marker in (
-        "Owner-reported exact-target transport probe passed",
-        "failed partial bootstrap attempt",
+        "Alpha test temporarily unavailable.",
         BOOTSTRAP_SHA256,
     ):
         if marker not in download:
-            raise AssertionError(f"download/index.html lacks Alpha.5 repaired-path marker {marker!r}")
+            raise AssertionError(f"download/index.html lacks Alpha.5 containment marker {marker!r}")
 
     if pipe_to_shell.search(held_back) or pipe_to_shell.search(probe):
         raise AssertionError("Alpha.5 transport generator must never use pipe-to-shell")
@@ -1374,9 +1369,9 @@ def main() -> None:
     require_text("docs/agent-kits.html", "Early direction")
     require_text("docs/platform-support.html", "Capability-based qualification")
     require_text("papers/stateware-whitepaper-public-v1.1.html", "Publication note")
-    require_text("releases/index.html", "repaired WSL2 public-test install enabled")
+    require_text("releases/index.html", "Alpha test temporarily unavailable")
     require_text("download/index.html", "Do not install Alpha.2")
-    require_text("docs/limitations.html", "failed partial bootstrap attempt")
+    require_text("docs/limitations.html", "Alpha test temporarily unavailable")
     require_text(".github/workflows/deploy-pages.yml", "actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e")
 
     public_copy = "\n".join(

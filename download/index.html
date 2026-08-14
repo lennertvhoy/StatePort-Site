@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="StatePort Alpha.5 has a repaired WSL2 public-test install command after an owner-reported transport probe; no clean-install receipt or acceptance exists.">
+    <meta name="description" content="StatePort Alpha public-test installation is temporarily unavailable; no clean-install receipt exists.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Install StatePort Alpha.5 on Windows 11 + WSL2">
-    <meta property="og:description" content="The repaired command verifies complete download, pinned size and digest, and shell syntax before execution; clean-install evidence remains absent.">
+    <meta property="og:title" content="StatePort Alpha test temporarily unavailable">
+    <meta property="og:description" content="Alpha installation is paused while a release issue is corrected.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/download/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -25,13 +25,13 @@
     <link rel="manifest" href="../site.webmanifest">
     <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
-    <title>Install StatePort Alpha.5 on Windows 11 + WSL2</title>
+    <title>Alpha test temporarily unavailable — StatePort</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Install StatePort Alpha.5 on Windows 11 + WSL2",
-        "description": "The repaired command verifies complete download, pinned size and digest, and shell syntax before execution; clean-install evidence remains absent.",
+        "name": "StatePort Alpha test temporarily unavailable",
+        "description": "Alpha installation is paused while a release issue is corrected.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/download/",
         "dateModified": "2026-08-14",
         "inLanguage": "en"
@@ -60,8 +60,8 @@
       <section class="article-hero" id="alpha5" aria-labelledby="download-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Download</p>
-          <h1 id="download-title">Install Alpha.5 on Windows 11 + WSL2</h1>
-          <p class="notice"><strong>The repaired public-test path is enabled.</strong> One owner-reported exact-target probe verified complete transport, pinned SHA-256, and target shell syntax without executing the installer. Alpha.5 remains <code>compatible_unvalidated</code>; no clean-install receipt or acceptance exists.</p>
+          <h1 id="download-title">Alpha test temporarily unavailable</h1>
+          <p class="notice"><strong>Alpha test temporarily unavailable.</strong></p>
           <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue</a>.</p>
         </div>
       </section>
@@ -72,8 +72,7 @@
           <nav>
             <a href="#alpha5" aria-current="page">Current status</a>
             <a href="#requirements">Requirements</a>
-            <a href="#prepare-wsl">Prior failure and fresh-host rule</a>
-            <a href="#install">Install</a>
+            <a href="#install">Installation status</a>
             <a href="#verification">Verification details</a>
             <a href="#older-releases">Older releases</a>
             <a href="../releases/">Release status</a>
@@ -93,19 +92,9 @@
             </ul>
           </section>
 
-          <section id="prepare-wsl" aria-labelledby="prepare-wsl-heading">
-            <h2 id="prepare-wsl-heading">1. Use a genuinely fresh target</h2>
-            <p>The owner reports that the first Windows 11 + WSL2 + Ubuntu 24.04 AMD64 command completed its prerequisite package step, then Dash exited with an unterminated quoted string before the Python StatePort installer ran. No install receipt was produced. This is a failed partial bootstrap attempt with prerequisite side effects, so that distribution is not clean-install evidence.</p>
-            <p>Review of the reported failure found that the streamed shell received only 4,096 bytes of the valid 8,971-byte bootstrap. The complete immutable bootstrap and signed release payload remain intact; the defect is the promoted pipe-to-shell transport, not evidence that the signed payload is defective.</p>
-            <p><strong>Do not retry installation in that mutated distribution.</strong> A clean-install test requires a genuinely fresh Windows 11 + WSL2 + Ubuntu 24.04 AMD64 target with no StatePort or prerequisite side effects from the failed attempt.</p>
-          </section>
-
           <section id="install" aria-labelledby="install-heading">
-            <h2 id="install-heading">2. Run the repaired public-test installer</h2>
-            <p class="notice"><strong>Owner-reported exact-target transport probe passed.</strong> In a genuinely fresh Ubuntu 24.04 WSL2 shell, as the normal non-root user, run this exact command:</p>
-            <div class="code-panel" data-label="Alpha.5 repaired install"><code>(umask 077; tmp=&quot;$(mktemp)&quot; &amp;&amp; trap &#x27;rm -f &quot;$tmp&quot;&#x27; EXIT HUP INT TERM &amp;&amp; curl --fail --location --silent --show-error --proto &#x27;=https&#x27; --tlsv1.2 --output &quot;$tmp&quot; https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.5/install.sh &amp;&amp; test &quot;$(wc -c &lt; &quot;$tmp&quot;)&quot; -eq 8971 &amp;&amp; printf &#x27;%s  %s\n&#x27; &#x27;104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a&#x27; &quot;$tmp&quot; | sha256sum --check --status - &amp;&amp; /bin/sh -n &quot;$tmp&quot; &amp;&amp; /bin/sh &quot;$tmp&quot;)</code></div>
-            <p>The command creates a private temporary file, requires the complete transfer, checks the exact 8,971-byte size and pinned SHA-256, and runs <code>/bin/sh -n</code> before execution. Any failed check prevents installer execution, and the temporary file is removed on success or failure. There is no pipe-to-shell stage.</p>
-            <p>Retain the install and execution-host receipts under <code>~/.local/state/stateport-install/</code> and <code>/var/lib/stateport-provisioning/receipts/</code>. Only a successful fresh-target run with those receipts can provide clean-install evidence.</p>
+            <h2 id="install-heading">Installation status</h2>
+            <p>Installation is paused while a release issue is corrected. No install command is currently published.</p>
           </section>
 
           <p class="notice"><strong>Honest disclaimer.</strong> Alpha.5 is intended for a controlled first-host test. It is <code>compatible_unvalidated</code>, not clean-installed, owner-accepted, independently security-reviewed, stable, or production-ready. Do not use it for important data or expose its local services to a network.</p>
