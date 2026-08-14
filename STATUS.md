@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-08-14
 **Execution Mode:** operating
-**Project State:** alpha5_install_disabled_signature_refusal_under_repair
+**Project State:** alpha5_install_disabled_mutable_manifest_publication_candidate
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -14,8 +14,8 @@
   and signed payload is
   `sha256:e45d5c8ce6843bd0c3155ecd26940ff3dc11c5069a2de796a079708066faf98c`.
 - The immutable 33-file Alpha.5 tree is anchored by Site commit
-  `eaa1ca6a67844259860917442a95c891d097939f`. The mutable bootstrap is
-  byte-identical at SHA-256
+  `eaa1ca6a67844259860917442a95c891d097939f`; its bootstrap remains 8,971
+  bytes at SHA-256
   `104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a`.
 - The owner reports that the first exact
   Windows 11 + WSL2 + Ubuntu 24.04 AMD64 command installed prerequisites, then
@@ -56,12 +56,13 @@
   matched anonymous live bytes.
 - StatePort commit `df2cbb85` locally supplies all seven exact digest-pinned
   manifests through the immutable installer's existing archive seam. No signed
-  or versioned Alpha.5 bytes change. The mutable repair is not published or
-  owner-probed.
+  or versioned Alpha.5 bytes change. Additive commit `b75357d1` supplies the
+  non-installing probe mode. The local mutable candidate is 13,702 bytes at
+  SHA-256 `3f1be353c095b6ef08ea78beca8430b0baea13a890abce8aaf74c49d40808f78`;
+  publication is pending and no probe result exists.
 
 ## Exact next action
 
-Installation remains disabled until the owner authorizes publication and a
-non-executing exact-target probe of the mutable manifest repair. A successor is
-not technically required. Do not rerun the owner-host installer. Alpha.5 remains
-`compatible_unvalidated`, unaccepted, and not production-qualified.
+Deploy and remotely verify only the mutable bootstrap and seven exact manifest
+support blobs. Keep installation disabled and return the pinned non-installing
+probe command; no owner probe result exists yet.

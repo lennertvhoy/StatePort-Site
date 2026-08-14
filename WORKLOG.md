@@ -1,5 +1,17 @@
 # Worklog
 
+## 2026-08-14 - Alpha.5 mutable manifest publication candidate
+
+- The owner authorized publishing only the unversioned mutable repair while
+  keeping public installation disabled. StatePort commit `b75357d1` adds an
+  exact-target `--transport-probe` branch before confirmation, sudo, package
+  mutation, archive materialization, or installer invocation.
+- Mutable `download/install.sh` is 13,702 bytes at SHA-256
+  `3f1be353c095b6ef08ea78beca8430b0baea13a890abce8aaf74c49d40808f78`.
+  Seven `download/alpha5-manifests/*.json` blobs match the signed image subject
+  digests. Eleven focused tests and both Site validators pass; all versioned
+  release files remain unchanged. Deployment and owner probe are pending.
+
 ## 2026-08-14 - Alpha.5 signature-refusal containment remotely verified
 
 - The owner reports that the complete immutable bootstrap passed transport and

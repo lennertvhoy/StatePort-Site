@@ -83,7 +83,10 @@ mutable files and all 33 immutable Alpha.5 files matched anonymous live bytes.
 StatePort commit `df2cbb851f9527550c1c40f28fe1bfd9424b982c` locally repairs
 the omission for all seven signed private-manifest paths through the immutable
 installer's existing archive seam. No signed bytes change; the repair is not
-published or owner-probed, and public installation remains disabled.
+owner-probed, and public installation remains disabled. The owner now authorizes
+publishing only the unversioned mutable repair and entering a non-installing
+probe stage. StatePort commit `b75357d12ef5224a866e975bd1f9b2fb3c8ccf21`
+adds that exact probe mode before any privileged or installer action.
 
 ## Mandatory read order
 
@@ -157,7 +160,7 @@ or production-ready. Never alter Alpha.2, Alpha.3, or anchored Alpha.5 bytes.
 1. Preserve Alpha.2 and Alpha.3 exactly and keep the Alpha.3 erratum historical.
 2. Preserve the anchored Alpha.5 tree and byte-identical mutable bootstrap while
    mutable guidance remains fail-closed.
-3. Keep public copy minimal until the owner authorizes publication and a
-   non-executing exact-target probe of the mutable manifest transport repair.
+3. Publish and remotely verify only the probeable mutable repair while keeping
+   public copy minimal and every executable install command disabled.
 
 Everything else is backlog or history.

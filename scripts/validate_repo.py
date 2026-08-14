@@ -18,6 +18,11 @@ from install_transport import (
     BOOTSTRAP_SHA256,
     BOOTSTRAP_SIZE,
     BOOTSTRAP_URL,
+    MANIFEST_DIGESTS,
+    PROBE_SUCCESS,
+    VERSIONED_BOOTSTRAP_SHA256,
+    VERSIONED_BOOTSTRAP_SIZE,
+    VERSIONED_BOOTSTRAP_URL,
     render_install_command,
 )
 from render_support import load_config, rendered_home, support_enabled
@@ -860,14 +865,24 @@ def validate_alpha5_release() -> None:
     for path in (versioned, mutable):
         if stat.S_IMODE(path.stat().st_mode) != 0o755:
             raise AssertionError(f"Alpha.5 bootstrap mode must be exactly 0755: {path}")
-    if mutable.read_bytes() != versioned.read_bytes():
-        raise AssertionError("Mutable bootstrap must be byte-identical to published Alpha.5 install.sh")
-    if versioned.stat().st_size != BOOTSTRAP_SIZE:
-        raise AssertionError("Alpha.5 bootstrap size is not bound to the transport generator")
-    if fixed_files["install.sh"] != BOOTSTRAP_SHA256:
-        raise AssertionError("Alpha.5 bootstrap digest is not bound to the transport generator")
-    if BOOTSTRAP_URL != f"https://lennertvhoy.github.io/StatePort-Site/{release_root}/install.sh":
-        raise AssertionError("Alpha.5 transport generator points at the wrong immutable bootstrap")
+    if mutable.read_bytes() == versioned.read_bytes():
+        raise AssertionError("Mutable probe bootstrap does not contain the manifest repair")
+    if versioned.stat().st_size != VERSIONED_BOOTSTRAP_SIZE:
+        raise AssertionError("Immutable Alpha.5 bootstrap size changed")
+    if fixed_files["install.sh"] != VERSIONED_BOOTSTRAP_SHA256:
+        raise AssertionError("Immutable Alpha.5 bootstrap digest changed")
+    if VERSIONED_BOOTSTRAP_URL != f"https://lennertvhoy.github.io/StatePort-Site/{release_root}/install.sh":
+        raise AssertionError("Immutable Alpha.5 bootstrap URL is stale")
+    if mutable.stat().st_size != BOOTSTRAP_SIZE:
+        raise AssertionError("Mutable Alpha.5 probe bootstrap size is stale")
+    if hashlib.sha256(mutable.read_bytes()).hexdigest() != BOOTSTRAP_SHA256:
+        raise AssertionError("Mutable Alpha.5 probe bootstrap digest is stale")
+    if BOOTSTRAP_URL != "https://lennertvhoy.github.io/StatePort-Site/download/install.sh":
+        raise AssertionError("Alpha.5 transport generator points at the wrong mutable bootstrap")
+    for image_id, expected in MANIFEST_DIGESTS.items():
+        manifest = require(f"download/alpha5-manifests/{image_id}.json")
+        if hashlib.sha256(manifest.read_bytes()).hexdigest() != expected:
+            raise AssertionError(f"Mutable Alpha.5 manifest is stale: {image_id}")
     bootstrap = versioned.read_text(encoding="utf-8")
     for fragment in (
         CURRENT_TARGET_ID,
@@ -1143,7 +1158,7 @@ def validate_release_semantics() -> None:
     download = texts[ROOT / "download/index.html"]
     for marker in (
         "Alpha test temporarily unavailable.",
-        BOOTSTRAP_SHA256,
+        VERSIONED_BOOTSTRAP_SHA256,
     ):
         if marker not in download:
             raise AssertionError(f"download/index.html lacks Alpha.5 containment marker {marker!r}")
@@ -1154,8 +1169,12 @@ def validate_release_semantics() -> None:
         for marker in (BOOTSTRAP_URL, BOOTSTRAP_SHA256, str(BOOTSTRAP_SIZE), '/bin/sh -n "$tmp"'):
             if marker not in command:
                 raise AssertionError(f"Alpha.5 transport generator lacks {marker!r}")
-    if '/bin/sh "$tmp"' not in held_back or '/bin/sh "$tmp"' in probe:
-        raise AssertionError("Alpha.5 public command must execute only after checks; probe must not execute")
+    if '/bin/sh "$tmp"' not in held_back:
+        raise AssertionError("Alpha.5 held-back command must execute only after checks")
+    if '/bin/sh "$tmp" --transport-probe' not in probe or PROBE_SUCCESS not in require(
+        "download/install.sh"
+    ).read_text(encoding="utf-8"):
+        raise AssertionError("Alpha.5 probe must enter the exact non-installing bootstrap mode")
 
     for surface in ("index.html", "download/index.html", "releases/index.html", "docs/limitations.html"):
         text = texts[ROOT / surface].lower()

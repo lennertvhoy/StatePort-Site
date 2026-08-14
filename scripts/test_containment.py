@@ -224,10 +224,23 @@ class ImmutableManifestTests(unittest.TestCase):
 
 
 class CurrentBootstrapTests(unittest.TestCase):
-    def test_mutable_bootstrap_matches_the_immutable_alpha5_release(self) -> None:
+    def test_mutable_probe_bootstrap_is_bound_separately_from_immutable_alpha5(self) -> None:
         installer = ROOT / "download/install.sh"
         versioned = ROOT / "download/0.1.0-alpha.5/install.sh"
-        self.assertEqual(installer.read_bytes(), versioned.read_bytes())
+        self.assertNotEqual(installer.read_bytes(), versioned.read_bytes())
+        self.assertEqual(
+            hashlib.sha256(installer.read_bytes()).hexdigest(),
+            install_transport.BOOTSTRAP_SHA256,
+        )
+        self.assertEqual(len(installer.read_bytes()), install_transport.BOOTSTRAP_SIZE)
+        self.assertEqual(
+            hashlib.sha256(versioned.read_bytes()).hexdigest(),
+            install_transport.VERSIONED_BOOTSTRAP_SHA256,
+        )
+        self.assertEqual(len(versioned.read_bytes()), install_transport.VERSIONED_BOOTSTRAP_SIZE)
+        for image_id, digest in install_transport.MANIFEST_DIGESTS.items():
+            manifest = ROOT / "download/alpha5-manifests" / f"{image_id}.json"
+            self.assertEqual(hashlib.sha256(manifest.read_bytes()).hexdigest(), digest)
 
     def test_program_has_valid_shell_syntax(self) -> None:
         installer = ROOT / "download/install.sh"
@@ -264,6 +277,10 @@ class CurrentBootstrapTests(unittest.TestCase):
         shell.write_text(
             "#!/bin/sh\n"
             "printf '%s\\n' \"$*\" >> \"$SHELL_LOG\"\n"
+            "if [ \"${2-}\" = --transport-probe ]; then\n"
+            f"  printf '%s\\n' '{install_transport.PROBE_SUCCESS}'\n"
+            "  exit 0\n"
+            "fi\n"
             "exec /bin/sh \"$@\"\n",
             encoding="utf-8",
         )
@@ -298,21 +315,22 @@ class CurrentBootstrapTests(unittest.TestCase):
         self.assertIn("Alpha test temporarily unavailable.", download)
 
     def test_4096_byte_response_fails_before_shell_or_execution(self) -> None:
-        bootstrap = (ROOT / "download/0.1.0-alpha.5/install.sh").read_bytes()
+        bootstrap = (ROOT / "download/install.sh").read_bytes()
         completed, shell_log = self._run_transport(bootstrap[:4096], execute=True)
         self.assertNotEqual(completed.returncode, 0)
         self.assertFalse(shell_log.exists(), "truncated response reached the shell")
 
     def test_complete_exact_bytes_pass_dash_syntax_without_execution(self) -> None:
-        bootstrap = (ROOT / "download/0.1.0-alpha.5/install.sh").read_bytes()
+        bootstrap = (ROOT / "download/install.sh").read_bytes()
         self.assertEqual(len(bootstrap), install_transport.BOOTSTRAP_SIZE)
         self.assertEqual(hashlib.sha256(bootstrap).hexdigest(), install_transport.BOOTSTRAP_SHA256)
         completed, shell_log = self._run_transport(bootstrap, execute=False)
         self.assertEqual(completed.returncode, 0, completed.stderr)
-        self.assertIn("installer was not executed", completed.stdout)
+        self.assertIn(install_transport.PROBE_SUCCESS, completed.stdout)
         calls = shell_log.read_text(encoding="utf-8").splitlines()
-        self.assertEqual(len(calls), 1)
+        self.assertEqual(len(calls), 2)
         self.assertTrue(calls[0].startswith("-n "), calls)
+        self.assertTrue(calls[1].endswith(" --transport-probe"), calls)
 
 
 class SourceDisclosureTests(unittest.TestCase):

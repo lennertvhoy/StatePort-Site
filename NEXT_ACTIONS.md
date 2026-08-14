@@ -4,16 +4,15 @@
 **Execution Mode:** operating
 **Max Items:** 1
 
-## P0 [BL-SITE-ALPHA5-SIGNATURE-MANIFEST] Hold mutable repair for owner decision
+## P0 [BL-SITE-ALPHA5-SIGNATURE-MANIFEST] Publish mutable repair for probe
 
-**Status:** Containment `8cae82e5` is remotely verified. StatePort commit
-`df2cbb85` locally repairs all seven signed private-manifest transport paths
-without changing signed or versioned Alpha.5 bytes. The repair is not public.
+**Status:** The owner authorized publication. The 13,702-byte mutable bootstrap,
+seven exact manifest blobs, focused tests, and immutable-tree checks pass
+locally. No executable install command is shown.
 
-**Decision:** keep minimal fail-closed copy until the owner explicitly authorizes
-publication and a non-executing exact-target probe of the mutable bootstrap. Do
-not rerun the installer or change any immutable release tree.
+**Decision:** commit, deploy, and remotely verify only those mutable bytes and
+all 33 immutable Alpha.5 files. Keep installation disabled and do not run the
+installer.
 
-**Exit:** an authorized probe proves all seven exact manifest paths reach the
-frozen installer, or Alpha.5 remains disabled. No successor is technically
-required for this repair.
+**Exit:** mutable publication is remotely byte-verified and the exact
+non-installing owner probe command is ready. Probe result remains pending.

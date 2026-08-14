@@ -7,12 +7,28 @@ import argparse
 import shlex
 
 
-BOOTSTRAP_URL = (
+VERSIONED_BOOTSTRAP_URL = (
     "https://lennertvhoy.github.io/StatePort-Site/"
     "download/0.1.0-alpha.5/install.sh"
 )
-BOOTSTRAP_SHA256 = "104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a"
-BOOTSTRAP_SIZE = 8_971
+VERSIONED_BOOTSTRAP_SHA256 = "104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a"
+VERSIONED_BOOTSTRAP_SIZE = 8_971
+BOOTSTRAP_URL = "https://lennertvhoy.github.io/StatePort-Site/download/install.sh"
+BOOTSTRAP_SHA256 = "3f1be353c095b6ef08ea78beca8430b0baea13a890abce8aaf74c49d40808f78"
+BOOTSTRAP_SIZE = 13_702
+PROBE_SUCCESS = (
+    "StatePort Alpha.5 transport probe passed: bootstrap syntax and 7 exact image "
+    "manifests verified; installer was not executed."
+)
+MANIFEST_DIGESTS = {
+    "stateport-api": "a5c639880195ba6dc57fa9c13378fdf0cdb0361f08cbddea7b7e90f476906af8",
+    "stateport-dev-workspace": "1a9eecc2a087620e7139570e09c08b4ce6c17a8369d2b428551809dff3fda886",
+    "stateport-execution-host": "02d3ce6d6dfdacc164b947c1c88ebf6c64e0a103b05fbd420454083db589efb2",
+    "stateport-playwright": "a5e8bc89bd193bd149dcad3de03366796bcc8f903f019e9e599f928dfaed9096",
+    "stateport-runner": "45b5aaf0cd18699a66371ed800683ad5740b491d1442d9c1edd90d87089786ae",
+    "stateport-web": "57f625f36c590c1440d70f07a3aa1bee6b31c2a9c942285c897c7934635fccf1",
+    "stateport-worker": "ac835bf5449d1f7843734a8cbb9f4a332e9b01e6066f06599798a6964539e551",
+}
 
 
 def render_install_command(*, execute: bool = False, shell: str = "/bin/sh") -> str:
@@ -22,7 +38,7 @@ def render_install_command(*, execute: bool = False, shell: str = "/bin/sh") -> 
     action = (
         f'{quoted_shell} "$tmp"'
         if execute
-        else "printf '%s\\n' 'Alpha.5 bootstrap transport verified; installer was not executed.'"
+        else f'{quoted_shell} "$tmp" --transport-probe'
     )
     return (
         '(umask 077; tmp="$(mktemp)" && '

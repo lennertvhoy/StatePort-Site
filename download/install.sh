@@ -3,11 +3,15 @@
 set -eu
 VERSION="0.1.0-alpha.5"
 RELEASE_ROOT="https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.5"
+PROBE_ROOT="https://lennertvhoy.github.io/StatePort-Site/download/alpha5-manifests"
 TARGET="wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet"
 STATE_ROOT="${STATEPORT_STATE_ROOT:-$HOME/.local/state/stateport-install}"
 RECEIPT="/var/lib/stateport-provisioning/receipts/execution-host-provisioning-receipt.json"
 COSIGN_URL="https://github.com/sigstore/cosign/releases/download/v3.1.2/cosign-linux-amd64"
 fail() { printf "StatePort install: %s\n" "$*" >&2; exit 1; }
+mode=install
+case "${1-}" in --transport-probe) mode=probe; shift ;; "") ;; *) fail "Usage: $0 [--transport-probe]" ;; esac
+[ "$#" -eq 0 ] || fail "Usage: $0 [--transport-probe]"
 [ "$(id -u)" -ne 0 ] || fail "Run this as your normal WSL user, not root."
 release=$(uname -r 2>/dev/null || true)
 case "$(printf "%s" "$release" | tr "[:upper:]" "[:lower:]")" in *microsoft*wsl2*) ;; *) fail "WSL2 is required; WSL1 and native Linux are not this release target." ;; esac
@@ -19,22 +23,64 @@ command -v powershell.exe >/dev/null 2>&1 || fail "Windows interoperability is r
 win_build=$(powershell.exe -NoProfile -NonInteractive -Command "[int](Get-CimInstance Win32_OperatingSystem).BuildNumber" 2>/dev/null | tr -d "\r\n ")
 case "$win_build" in *[!0-9]*|"") fail "Cannot verify the Windows build." ;; esac
 [ "$win_build" -ge 22000 ] || fail "Windows 11 build 22000 or newer is required."
+if [ "$mode" = probe ]; then
+  command -v curl >/dev/null 2>&1 || fail "curl is required for the transport probe."
+  command -v sha256sum >/dev/null 2>&1 || fail "sha256sum is required for the transport probe."
+  umask 077
+  tmp=$(mktemp -d "${TMPDIR:-/tmp}/stateport-alpha5-probe.XXXXXX") || fail "Cannot create a private probe directory."
+  trap 'rm -rf "$tmp"' EXIT HUP INT TERM
+  get() { curl -fsSL --proto "=https" --tlsv1.2 --retry 3 -o "$2" "$1"; }
+  check() { printf "%s  %s\n" "$1" "$2" | sha256sum -c --status || fail "Checksum failed: $2"; }
+  get "$PROBE_ROOT/stateport-api.json" "$tmp/stateport-api.manifest.json"
+  check "a5c639880195ba6dc57fa9c13378fdf0cdb0361f08cbddea7b7e90f476906af8" "$tmp/stateport-api.manifest.json"
+  get "$PROBE_ROOT/stateport-dev-workspace.json" "$tmp/stateport-dev-workspace.manifest.json"
+  check "1a9eecc2a087620e7139570e09c08b4ce6c17a8369d2b428551809dff3fda886" "$tmp/stateport-dev-workspace.manifest.json"
+  get "$PROBE_ROOT/stateport-execution-host.json" "$tmp/stateport-execution-host.manifest.json"
+  check "02d3ce6d6dfdacc164b947c1c88ebf6c64e0a103b05fbd420454083db589efb2" "$tmp/stateport-execution-host.manifest.json"
+  get "$PROBE_ROOT/stateport-playwright.json" "$tmp/stateport-playwright.manifest.json"
+  check "a5e8bc89bd193bd149dcad3de03366796bcc8f903f019e9e599f928dfaed9096" "$tmp/stateport-playwright.manifest.json"
+  get "$PROBE_ROOT/stateport-runner.json" "$tmp/stateport-runner.manifest.json"
+  check "45b5aaf0cd18699a66371ed800683ad5740b491d1442d9c1edd90d87089786ae" "$tmp/stateport-runner.manifest.json"
+  get "$PROBE_ROOT/stateport-web.json" "$tmp/stateport-web.manifest.json"
+  check "57f625f36c590c1440d70f07a3aa1bee6b31c2a9c942285c897c7934635fccf1" "$tmp/stateport-web.manifest.json"
+  get "$PROBE_ROOT/stateport-worker.json" "$tmp/stateport-worker.manifest.json"
+  check "ac835bf5449d1f7843734a8cbb9f4a332e9b01e6066f06599798a6964539e551" "$tmp/stateport-worker.manifest.json"
+  printf "StatePort Alpha.5 transport probe passed: bootstrap syntax and 7 exact image manifests verified; installer was not executed.\n"
+  exit 0
+fi
 command -v sudo >/dev/null 2>&1 || fail "sudo is required."
 printf "StatePort %s will install the WSL2 runtime and signed alpha. Type install: " "$VERSION" >/dev/tty
 IFS= read -r answer </dev/tty || answer=
 [ "$answer" = install ] || fail "Installation not confirmed."
 sudo -v
 sudo apt-get update
-sudo apt-get install -y ca-certificates curl python3 python3-venv podman uidmap slirp4netns fuse-overlayfs dbus-user-session
+sudo apt-get install -y ca-certificates curl python3 python3-venv podman skopeo uidmap slirp4netns fuse-overlayfs dbus-user-session
 sudo loginctl enable-linger "$USER"
 command -v curl >/dev/null 2>&1 || fail "curl installation failed."
+command -v skopeo >/dev/null 2>&1 || fail "skopeo installation failed."
+command -v tar >/dev/null 2>&1 || fail "tar is required."
 command -v sha256sum >/dev/null 2>&1 || fail "sha256sum is required."
 umask 077
 tmp=$(mktemp -d "${TMPDIR:-/tmp}/stateport-wsl2-install.XXXXXX") || fail "Cannot create a private temporary directory."
 trap 'rm -rf "$tmp"' EXIT HUP INT TERM
-mkdir -m 700 "$tmp/image-bundles"
+mkdir -m 700 "$tmp/image-bundles" "$tmp/image-manifests" "$tmp/image-archives" "$tmp/image-carriers"
 get() { curl -fsSL --proto "=https" --tlsv1.2 --retry 3 -o "$2" "$1"; }
 check() { printf "%s  %s\n" "$1" "$2" | sha256sum -c --status || fail "Checksum failed: $2"; }
+manifest_carrier() {
+  image_id=$1
+  reference=$2
+  digest=$3
+  digest_hex=${digest#sha256:}
+  manifest="$tmp/image-manifests/$image_id"
+  carrier="$tmp/image-carriers/$image_id"
+  skopeo inspect --raw "docker://$reference" > "$manifest" || fail "Manifest download failed: $image_id"
+  check "$digest_hex" "$manifest"
+  mkdir -m 700 "$carrier"
+  mkdir -p -m 700 "$carrier/blobs/sha256"
+  cp "$manifest" "$carrier/blobs/sha256/$digest_hex"
+  printf '{"schemaVersion":2,"manifests":[{"digest":"%s"}]}\n' "$digest" > "$carrier/index.json"
+  tar -cf "$tmp/image-archives/$image_id.oci.tar" -C "$carrier" index.json "blobs/sha256/$digest_hex"
+}
 get "$RELEASE_ROOT/stateport-installer" "$tmp/installer"
 check "c1eea13b239c03dde7c405821d7ace5c215581dbe6a98257d68c7be74a6d0dcf" "$tmp/installer"
 get "$RELEASE_ROOT/stateport-execution-host-provision" "$tmp/provisioner"
@@ -67,6 +113,13 @@ get "$RELEASE_ROOT/signatures/stateport-web.sigstore.json" "$tmp/image-bundles/s
 check "3a6a9bb097f1a2e74ff275881d1b5fe95d6e7ea2230cc6ff447c056522476d2b" "$tmp/image-bundles/stateport-web.sigstore.json"
 get "$RELEASE_ROOT/signatures/stateport-worker.sigstore.json" "$tmp/image-bundles/stateport-worker.sigstore.json"
 check "5a475197d0c389cdaf6b58346572346313b790bd2ca9f94ead99ead69222d1b1" "$tmp/image-bundles/stateport-worker.sigstore.json"
+manifest_carrier stateport-api ghcr.io/lennertvhoy/stateport-api@sha256:a5c639880195ba6dc57fa9c13378fdf0cdb0361f08cbddea7b7e90f476906af8 sha256:a5c639880195ba6dc57fa9c13378fdf0cdb0361f08cbddea7b7e90f476906af8
+manifest_carrier stateport-dev-workspace ghcr.io/lennertvhoy/stateport-dev-workspace@sha256:1a9eecc2a087620e7139570e09c08b4ce6c17a8369d2b428551809dff3fda886 sha256:1a9eecc2a087620e7139570e09c08b4ce6c17a8369d2b428551809dff3fda886
+manifest_carrier stateport-execution-host ghcr.io/lennertvhoy/stateport-execution-host@sha256:02d3ce6d6dfdacc164b947c1c88ebf6c64e0a103b05fbd420454083db589efb2 sha256:02d3ce6d6dfdacc164b947c1c88ebf6c64e0a103b05fbd420454083db589efb2
+manifest_carrier stateport-playwright ghcr.io/lennertvhoy/stateport-playwright@sha256:a5e8bc89bd193bd149dcad3de03366796bcc8f903f019e9e599f928dfaed9096 sha256:a5e8bc89bd193bd149dcad3de03366796bcc8f903f019e9e599f928dfaed9096
+manifest_carrier stateport-runner ghcr.io/lennertvhoy/stateport-runner@sha256:45b5aaf0cd18699a66371ed800683ad5740b491d1442d9c1edd90d87089786ae sha256:45b5aaf0cd18699a66371ed800683ad5740b491d1442d9c1edd90d87089786ae
+manifest_carrier stateport-web ghcr.io/lennertvhoy/stateport-web@sha256:57f625f36c590c1440d70f07a3aa1bee6b31c2a9c942285c897c7934635fccf1 sha256:57f625f36c590c1440d70f07a3aa1bee6b31c2a9c942285c897c7934635fccf1
+manifest_carrier stateport-worker ghcr.io/lennertvhoy/stateport-worker@sha256:ac835bf5449d1f7843734a8cbb9f4a332e9b01e6066f06599798a6964539e551 sha256:ac835bf5449d1f7843734a8cbb9f4a332e9b01e6066f06599798a6964539e551
 python3 "$tmp/installer" \
   --release-index "$tmp/release-index.json" \
   --bundle-root "$tmp" \
