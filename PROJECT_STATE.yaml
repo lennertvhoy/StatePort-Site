@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-14T19:34:59Z"
-  updated_by: alpha5_repaired_install_reenable_locally_validated
+  updated_at: "2026-08-14T19:37:54Z"
+  updated_by: alpha5_repaired_install_reenable_remote_verification
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha5_repaired_install_reenable_locally_validated_deployment_pending
+  status: alpha5_repaired_install_enabled_remote_verified_fresh_clean_install_pending
   purpose: public_documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -82,21 +82,23 @@ site:
   deployment:
     provider: GitHub Pages
     build_type: legacy
-    status: containment_built_from_main_root_remotely_verified
+    status: repaired_install_built_from_main_root_remotely_verified
     workflow: ".github/workflows/deploy-pages.yml"
     custom_workflow_status: disabled_manual_only_not_live_provider
     source_branch: main
     source_path: /
     deployment_head: derived_from_git_not_persisted
-    live_content_commit: 636e795230e286fb39470fe695d935266b4ee876
-    pages_build: 1151605137
-    pages_run: 31832575567
-    pages_deployment: 5912021497
-    deployed_at: "2026-08-14T19:17:54Z"
-  current_release_surface: alpha5_repaired_public_test_install_reenable_candidate
+    live_content_commit: c8cd20804bc2307c5c49f1fbed75ea8c59f921ae
+    pages_build: 1151631061
+    pages_build_commit_field: 2100b8108d6b5d856fbcdee6315bfa838a454787
+    pages_run: 31834012760
+    pages_deployment: 5912274973
+    deployment_sha: c8cd20804bc2307c5c49f1fbed75ea8c59f921ae
+    deployed_at: "2026-08-14T19:36:48Z"
+  current_release_surface: alpha5_repaired_public_test_install_enabled
   installer_command_shown: true
   installer_command_locations: [download/index.html]
-  replacement_install_command: owner_probe_passed_promoted_in_candidate
+  replacement_install_command: owner_probe_passed_promoted_and_remote_verified
   nonexecuting_transport_probe: owner_reported_passed_not_independent_raw_receipt
   immutable_tree_manifest: config/immutable-release-trees.json
   immutable_anchors:
@@ -108,15 +110,14 @@ site:
     alpha5_immutable_mismatches: 0
     mutable_install_sha256: 104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a
     mutable_install_matches_versioned: true
-    containment_html_surfaces_checked: 7
-    mutable_containment_files_checked: 9
-    mutable_containment_mismatches: 0
-    transport_generator_sha256: 54ed5d04b8a70a977fa364178294c42f3c36f573a51d15a22a211a11486f0408
+    repaired_install_changed_files_checked: 16
+    repaired_install_changed_file_mismatches: 0
+    transport_generator_sha256: d5882b368d2260f20ef56fea6f114c9e5eb5f8e38f07ba0c6945112caf1319c9
     browser_automation: unavailable_not_claimed
 
 owner_directive:
   id: OD-2026-08-14-ALPHA5-PUBLIC-CONTAINMENT
-  status: owner_reported_transport_probe_passed_reenable_authorized
+  status: repaired_install_reenabled_remote_verified
   source_repository: /home/ff/Documents/Projects/StatePort
   source_commit: f45d9c80b17d5dcb3866ffc35fdb7a0fe501b720
   objective: disable_promoted_alpha5_install_and_deploy_verified_non_streaming_transport_containment_without_changing_release_bytes
@@ -126,9 +127,9 @@ owner_directive:
   human_acceptance: not_granted
 
 active_work:
-  - id: BL-SITE-ALPHA5-SAFE-REENABLE
+  - id: BL-SITE-ALPHA5-FRESH-CLEAN-INSTALL
     priority: P0
-    status: repaired_command_locally_validated_deployment_pending
+    status: repaired_command_live_genuinely_fresh_exact_target_receipts_pending
 
 prior_work:
   - id: alpha5_streamed_bootstrap_truncation
@@ -138,7 +139,7 @@ prior_work:
     missing: independently_captured_raw_probe_receipt_and_clean_install_receipt
 
 workspace_inventory:
-  expected_content_head: pending_repaired_install_reenable_commit
-  expected_origin_head: 2100b8108d6b5d856fbcdee6315bfa838a454787
-  expected_dirty_path: repaired_install_reenable_candidate
+  expected_content_head: c8cd20804bc2307c5c49f1fbed75ea8c59f921ae
+  expected_origin_head: c8cd20804bc2307c5c49f1fbed75ea8c59f921ae
+  expected_dirty_path: state_only_remote_verification_closure
   immutable_release_bytes_changed_after_anchor: false

@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-08-14
 **Execution Mode:** operating
-**Project State:** alpha5_repaired_install_reenable_locally_validated_deployment_pending
+**Project State:** alpha5_repaired_install_enabled_remote_verified_fresh_clean_install_pending
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -41,10 +41,15 @@
   `1151605137`, run `31832575567`, and deployment `5912021497`. All 33
   immutable Alpha.5 files and nine mutable containment surfaces match local
   bytes remotely.
+- Re-enablement content `c8cd20804bc2307c5c49f1fbed75ea8c59f921ae`
+  deployed through build `1151631061`, exact run `31834012760`, and deployment
+  `5912274973`. All 16 changed mutable files and all 33 immutable Alpha.5 files
+  matched anonymous live bytes. The legacy build endpoint reported the prior
+  state SHA; exact run, deployment, and bytes bind the live content.
 
 ## Exact next action
 
-Validate, deploy, and remotely verify only the repaired install command. The
-next owner action is a genuinely fresh exact-target clean install with receipts;
-the mutated prior WSL distro cannot provide that evidence. Alpha.5 remains
-`compatible_unvalidated`, unaccepted, and not production-qualified.
+The owner performs one genuinely fresh Windows 11 + WSL2 + Ubuntu 24.04 AMD64
+clean install using the repaired command and retains all install and
+execution-host receipts. Never reuse the mutated prior distro as evidence.
+Alpha.5 remains `compatible_unvalidated`, unaccepted, and not production-qualified.

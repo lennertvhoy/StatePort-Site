@@ -4,17 +4,17 @@
 **Execution Mode:** operating
 **Max Items:** 1
 
-## P0 [BL-SITE-ALPHA5-SAFE-REENABLE] Deploy the repaired install command
+## P0 [BL-SITE-ALPHA5-FRESH-CLEAN-INSTALL] Capture a fresh clean-install receipt
 
-**Status:** The owner reports the exact-target non-executing probe downloaded all
-8,971 bytes, matched the pinned SHA-256, and passed `/bin/sh -n` without running
-the installer. This satisfies the directive's re-enablement condition but is not
-a clean install or independently captured raw receipt.
+**Status:** Repaired install content `c8cd2080` is live through Pages build
+`1151631061`, exact run `31834012760`, and deployment `5912274973`. All 16
+changed mutable files and all 33 immutable Alpha.5 files matched anonymous live
+bytes. Installation is enabled only through the repaired command.
 
-**Decision:** deploy and remotely verify only the repaired complete-download,
-pinned-size, pinned-digest, syntax-checked install command. Preserve the failed
-partial first attempt and keep support `compatible_unvalidated`.
+**Decision:** perform one genuinely fresh Windows 11 + WSL2 + Ubuntu 24.04 AMD64
+clean install using the repaired command. Retain the install and execution-host
+receipts. Do not use the mutated prior distro.
 
-**Exit:** the repaired command is live and all immutable release bytes remain
-unchanged. The next action is a genuinely fresh exact-target clean install with
-receipts retained; never reuse the mutated prior distro as evidence.
+**Exit:** exact host identity, successful install receipt, execution-host
+receipt, and observed limits pass review. Until then support remains
+`compatible_unvalidated`, unaccepted, and not production-qualified.

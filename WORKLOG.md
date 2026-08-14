@@ -1,5 +1,20 @@
 # Worklog
 
+## 2026-08-14 - Alpha.5 repaired install re-enabled and remotely verified
+
+- Pushed re-enablement content `c8cd20804bc2307c5c49f1fbed75ea8c59f921ae`.
+  Managed Pages build `1151631061`, exact run `31834012760`, and exact
+  deployment `5912274973` completed successfully.
+- The legacy Pages build endpoint reported prior state SHA `2100b810`, while the
+  dynamic run and deployment bind to `c8cd2080`. Anonymous fetches resolved the
+  discrepancy: all 16 changed mutable files and all 33 immutable Alpha.5 files
+  matched local bytes.
+- The repaired public-test command is enabled. The owner-reported transport
+  probe is not a clean install or independent raw receipt; Alpha.5 remains
+  `compatible_unvalidated`, unaccepted, and not production-qualified. The sole
+  next action is a genuinely fresh exact-target install with receipts, never the
+  mutated prior distro.
+
 ## 2026-08-14 - Alpha.5 repaired install re-enablement candidate
 
 - The owner reports that the exact Windows 11 + WSL2 + Ubuntu 24.04 target

@@ -61,6 +61,13 @@ installer. This satisfies the directive condition for re-enabling only the
 repaired command. It is not an independently captured raw receipt, clean
 install, acceptance, or qualification.
 
+Re-enablement content commit `c8cd20804bc2307c5c49f1fbed75ea8c59f921ae`
+deployed through Pages build `1151631061`, exact run `31834012760`, and exact
+deployment `5912274973`. All 16 changed mutable files and all 33 immutable
+Alpha.5 files matched anonymous live bytes. The legacy build endpoint reported
+the prior state SHA, but the run, deployment, and bytes bind the live content to
+`c8cd2080`.
+
 ## Mandatory read order
 
 1. `AGENTS.md`
@@ -133,7 +140,7 @@ or production-ready. Never alter Alpha.2, Alpha.3, or anchored Alpha.5 bytes.
 1. Preserve Alpha.2 and Alpha.3 exactly and keep the Alpha.3 erratum historical.
 2. Preserve the anchored Alpha.5 tree and byte-identical mutable bootstrap while
    promoting only the repaired non-streaming command.
-3. Deploy and remotely verify re-enablement, then require a genuinely fresh
-   Windows 11 + WSL2 + Ubuntu 24.04 clean install with receipts.
+3. Require a genuinely fresh Windows 11 + WSL2 + Ubuntu 24.04 clean install
+   with receipts; the mutated prior distro is ineligible evidence.
 
 Everything else is backlog or history.
