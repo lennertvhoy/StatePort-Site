@@ -89,11 +89,11 @@
         </aside>
 
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Availability boundary</strong> v0.1.0-alpha.5 is published as a signed WSL2 public-test candidate. Installation is enabled only for Windows 11 + WSL2 + Ubuntu 24.04 AMD64, and that path is <code>compatible_unvalidated</code> until the first real-host clean-install receipt exists. Human acceptance remains pending. The <a href="../releases/">release ledger</a> and <a href="../download/">download page</a> are the current authorities; the <a href="../download/erratum-alpha3.html">Alpha.3 erratum</a> remains historical.</p>
+          <p class="notice notice--quiet"><strong>Availability boundary</strong> v0.1.0-alpha.5 remains published, signed, and byte-intact, but installation is temporarily disabled after the owner-reported first exact-host attempt failed partway through its streamed bootstrap. It remains <code>compatible_unvalidated</code>, with no clean-install receipt or human acceptance. The <a href="../releases/">release ledger</a> and <a href="../download/">containment notice</a> are the current authorities; the <a href="../download/erratum-alpha3.html">Alpha.3 erratum</a> remains historical.</p>
 
           <h2>Availability</h2>
           <ul>
-            <li>Alpha.5 is published and cryptographically intact with an enabled public-test bootstrap, but it is not clean-installed, human accepted, independently reviewed, stable, or production qualified. The first WSL2 clean-install receipt is pending.</li>
+            <li>Alpha.5 is published and cryptographically intact, but installation is disabled. The first owner-reported WSL2 run was a failed partial bootstrap attempt with prerequisite side effects; no Python installer ran and no clean-install receipt exists.</li>
             <li>Alpha.2 is signed and published but superseded and not installable or accepted. Its web image omitted two runtime source trees and its bootstrap remains disabled.</li>
             <li>The curated alpha.5 source archive is public; code and StateSpec artifacts are AGPL-3.0-or-later, and documentation is CC-BY-4.0. Canonical development Git and its history are private. The separately signed <code>publicSnapshot</code> Git identity is remotely resolvable from the public <a href="https://github.com/lennertvhoy/StatePort-Source" target="_blank" rel="noopener">StatePort-Source repository</a>; that public projection is not the private canonical development history.</li>
             <li>There is no hosted service: StatePort is not offered as a managed or cloud product.</li>
@@ -109,7 +109,7 @@
           <ul>
             <li>Alpha.5 has one signed target: <code>wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet</code>. It requires Windows 11 build 22000 or newer, WSL2 AMD64, Ubuntu 24.04, cgroup v2, rootless Podman, Quadlet, systemd user services, and subordinate UID/GID mappings.</li>
             <li>WSL1 is refused before host mutation. Native Linux, other distributions, Docker Desktop, macOS, and ARM64 do not inherit this release's target or public-test status.</li>
-            <li>Capability checks and focused local validation exist, but no Windows 11 + WSL2 + Ubuntu 24.04 clean-install acceptance run exists yet.</li>
+            <li>Capability checks and focused local validation exist, but no successful Windows 11 + WSL2 + Ubuntu 24.04 clean-install acceptance run exists.</li>
           </ul>
 
           <h2>Security and compliance</h2>
@@ -138,7 +138,7 @@
 
           <h2>Evidence</h2>
           <ul>
-            <li>Alpha.5 has a published signed index, fresh-at-signing seven-image supply-chain evidence, independently re-derived candidate evidence, and a remotely resolvable public source snapshot. None substitutes for the pending real-host clean-install receipt.</li>
+            <li>Alpha.5 has a published signed index, fresh-at-signing seven-image supply-chain evidence, independently re-derived candidate evidence, and a remotely resolvable public source snapshot. None substitutes for a successful real-host clean-install receipt.</li>
             <li>Human acceptance, independent security review, stability, and production qualification remain open; Alpha.2 or Alpha.3 evidence was not transferred to Alpha.5 bytes.</li>
             <li>No comparative or performance claim is made; none should be inferred from walkthroughs or documentation.</li>
           </ul>

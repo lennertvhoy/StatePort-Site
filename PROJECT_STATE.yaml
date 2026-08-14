@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-14T16:39:00Z"
-  updated_by: alpha5_site_publication_remote_verification
+  updated_at: "2026-08-14T19:16:31Z"
+  updated_by: alpha5_public_install_containment_locally_validated
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha5_published_deployed_and_remotely_verified_owner_test_pending
+  status: alpha5_published_signed_byte_intact_install_disabled_containment_locally_validated_deployment_pending
   purpose: public_documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -29,8 +29,9 @@ release:
   qualification: candidate
   published: true
   known_defective: false
+  public_install_transport_defective: true
   owner_accepted: false
-  installation_enabled: true
+  installation_enabled: false
   support_tier: compatible_unvalidated
   public_download: "download/0.1.0-alpha.5/install.sh"
   release_index: "download/0.1.0-alpha.5/release-index.json"
@@ -66,7 +67,8 @@ predecessors:
 
 acceptance:
   publication: published_deployed_remotely_verified
-  clean_install: pending_first_owner_windows11_wsl2_ubuntu2404_run
+  clean_install: owner_reported_failed_partial_bootstrap_no_receipt
+  first_host_attempt: owner_reported_prerequisites_installed_then_dash_unterminated_quote_no_python_installer
   human_acceptance: not_granted
   independent_security_review: not_performed
   stability: not_established
@@ -90,9 +92,11 @@ site:
     pages_run: 31820163492
     pages_deployment: 5909824336
     deployed_at: "2026-08-14T16:37:22Z"
-  current_release_surface: alpha5_unqualified_wsl2_public_test_candidate
-  installer_command_shown: true
-  installer_command_locations: [download/index.html]
+  current_release_surface: alpha5_install_temporarily_disabled_containment_candidate
+  installer_command_shown: false
+  installer_command_locations: []
+  replacement_install_command: generated_and_tested_not_promoted
+  nonexecuting_transport_probe: pending_owner_exact_target
   immutable_tree_manifest: config/immutable-release-trees.json
   immutable_anchors:
     alpha2: 4043534a9a1d56c51c3d47d0906e0520963af79c
@@ -108,23 +112,30 @@ site:
     browser_automation: unavailable_not_claimed
 
 owner_directive:
-  id: OD-2026-08-14-WSL2-ALPHA5-PRIORITY-RESET
-  status: publication_executed_owner_test_pending
+  id: OD-2026-08-14-ALPHA5-PUBLIC-CONTAINMENT
+  status: containment_locally_validated_deployment_pending
   source_repository: /home/ff/Documents/Projects/StatePort
-  objective: publish_exact_alpha5_wsl2_candidate_and_instructions_for_owner_testing_without_claiming_clean_install_qualification
-  publication: authorized
-  site_commit_push_and_deployment: authorized
-  owner_first_host_test: deferred_until_publication
-  excluded_hosts: [lionheart, sharestation, ff-win]
+  source_commit: 320ecb31
+  objective: disable_promoted_alpha5_install_and_deploy_verified_non_streaming_transport_containment_without_changing_release_bytes
+  containment_commit_push_and_deployment: authorized
+  reenable_before_exact_target_probe: not_authorized
+  signing_or_successor_release: not_authorized
   human_acceptance: not_granted
 
 active_work:
-  - id: BL-SITE-ALPHA5-PUBLICATION
+  - id: BL-SITE-ALPHA5-CONTAINMENT
     priority: P0
-    status: publication_remotely_verified_owner_real_host_test_pending
+    status: containment_locally_validated_deployment_pending
+
+prior_work:
+  - id: alpha5_streamed_bootstrap_truncation
+    verdict: owner_reported_first_host_attempt_failed_partially_and_completed_reviews_bind_it_to_a_4096_byte_truncated_pipe_to_shell_transfer_not_signed_release_bytes
+    evidence: [owner_reported_dash_line_56_error, sha256:a5df385de801088888cdd79a9ece4318e641f0b6e432e07d83c667ccbd4c6750, sha256:104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a]
+    validity: exact_alpha5_bootstrap_and_pre_containment_public_command
+    missing: complete_raw_owner_transcript_and_clean_install_receipt
 
 workspace_inventory:
-  expected_content_head: 6cf95ca855e94f7648afb93fa870390a8c8bc8a7
-  expected_origin_head: 6cf95ca855e94f7648afb93fa870390a8c8bc8a7
-  expected_dirty_path: state_only_remote_verification_closure
+  expected_content_head: pending_containment_commit
+  expected_origin_head: f863eb5463ae42c0869e09ef22f24e8f4c4a9955
+  expected_dirty_path: containment_candidate
   immutable_release_bytes_changed_after_anchor: false

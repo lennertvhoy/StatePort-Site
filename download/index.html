@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="StatePort Alpha.5 is a signed WSL2 public-test candidate with installation enabled; its first Windows 11 clean-install receipt and owner acceptance remain pending.">
+    <meta name="description" content="StatePort Alpha.5 remains a signed WSL2 public-test candidate, but installation is temporarily disabled after a failed partial first-host bootstrap; no clean-install receipt exists.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Install StatePort Alpha.5 on Windows 11 + WSL2">
-    <meta property="og:description" content="Run the signed Alpha.5 WSL2 public-test candidate with complete Ubuntu 24.04 setup steps. Clean-install proof and owner acceptance remain pending.">
+    <meta property="og:title" content="StatePort Alpha.5 installation temporarily disabled">
+    <meta property="og:description" content="Alpha.5 remains signed and byte-intact, but its public install path is fail-closed after a failed partial first-host bootstrap.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/download/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -25,13 +25,13 @@
     <link rel="manifest" href="../site.webmanifest">
     <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
-    <title>Install StatePort Alpha.5 on Windows 11 + WSL2</title>
+    <title>Alpha.5 installation temporarily disabled — StatePort</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Install StatePort Alpha.5 on Windows 11 + WSL2",
-        "description": "Run the signed Alpha.5 WSL2 public-test candidate with complete Ubuntu 24.04 setup steps. Clean-install proof and owner acceptance remain pending.",
+        "name": "StatePort Alpha.5 installation temporarily disabled",
+        "description": "Alpha.5 remains signed and byte-intact, but its public install path is fail-closed after a failed partial first-host bootstrap.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/download/",
         "dateModified": "2026-08-14",
         "inLanguage": "en"
@@ -60,8 +60,8 @@
       <section class="article-hero" id="alpha5" aria-labelledby="download-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Download</p>
-          <h1 id="download-title">Install Alpha.5 on Windows 11 + WSL2</h1>
-          <p class="notice"><strong>This is an unqualified public-test candidate.</strong> v0.1.0-alpha.5 is signed and installation is enabled only for Windows 11, WSL2, AMD64, and Ubuntu 24.04. No real-host clean-install receipt exists yet; the first run is owner testing, not acceptance or production qualification.</p>
+          <h1 id="download-title">Alpha.5 installation temporarily disabled</h1>
+          <p class="notice"><strong>Do not run the Alpha.5 installer.</strong> The signed candidate remains published and byte-intact, but its public install path is fail-closed after the owner-reported first exact-host test failed partway through the streamed bootstrap. No clean-install receipt exists.</p>
           <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue</a>.</p>
         </div>
       </section>
@@ -72,8 +72,8 @@
           <nav>
             <a href="#alpha5" aria-current="page">Current status</a>
             <a href="#requirements">Requirements</a>
-            <a href="#prepare-wsl">Prepare WSL2</a>
-            <a href="#install">Install</a>
+            <a href="#prepare-wsl">Failure status</a>
+            <a href="#install">Containment</a>
             <a href="#verification">Verification details</a>
             <a href="#older-releases">Older releases</a>
             <a href="../releases/">Release status</a>
@@ -94,31 +94,15 @@
           </section>
 
           <section id="prepare-wsl" aria-labelledby="prepare-wsl-heading">
-            <h2 id="prepare-wsl-heading">1. Prepare Windows and WSL2</h2>
-            <p>Open <strong>PowerShell as Administrator</strong> and run:</p>
-            <div class="code-panel" data-label="Administrator PowerShell"><code>wsl --update
-wsl --install -d Ubuntu-24.04
-wsl --list --verbose</code></div>
-            <p>If the <code>VERSION</code> column shows <code>1</code> for Ubuntu 24.04, convert it and check again:</p>
-            <div class="code-panel" data-label="Administrator PowerShell"><code>wsl --set-version Ubuntu-24.04 2
-wsl --list --verbose</code></div>
-            <p>Open Ubuntu 24.04 from the Start menu or run <code>wsl -d Ubuntu-24.04</code>. Finish Ubuntu's first-user setup, then enable systemd inside Ubuntu:</p>
-            <div class="code-panel" data-label="Ubuntu 24.04"><code>printf '[boot]\nsystemd=true\n' | sudo tee /etc/wsl.conf</code></div>
-            <p>Return to PowerShell, restart WSL, and reopen the distribution:</p>
-            <div class="code-panel" data-label="PowerShell"><code>wsl --shutdown
-wsl -d Ubuntu-24.04</code></div>
-            <p>Back in Ubuntu, confirm systemd is PID 1 and install <code>curl</code> if needed:</p>
-            <div class="code-panel" data-label="Ubuntu 24.04"><code>ps -p 1 -o comm=
-sudo apt-get update &amp;&amp; sudo apt-get install -y curl</code></div>
-            <p>The first command must print <code>systemd</code>. If it does not, stop and fix the WSL systemd setup before continuing.</p>
+            <h2 id="prepare-wsl-heading">1. What failed</h2>
+            <p>The owner reports that the first Windows 11 + WSL2 + Ubuntu 24.04 AMD64 command completed its prerequisite package step, then Dash exited with an unterminated quoted string before the Python StatePort installer ran. No install receipt was produced. This is a failed partial bootstrap attempt with prerequisite side effects, so that distribution is not clean-install evidence.</p>
+            <p>Review of the reported failure found that the streamed shell received only 4,096 bytes of the valid 8,971-byte bootstrap. The complete immutable bootstrap and signed release payload remain intact; the defect is the promoted pipe-to-shell transport, not evidence that the signed payload is defective.</p>
           </section>
 
           <section id="install" aria-labelledby="install-heading">
-            <h2 id="install-heading">2. Run the signed public-test installer</h2>
-            <p>In the fresh Ubuntu 24.04 shell, as your normal user, run this exact command:</p>
-            <div class="code-panel" data-label="Alpha.5 install"><code>curl -fsSL --proto '=https' --tlsv1.2 https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.5/install.sh | sh</code></div>
-            <p>The bootstrap checks Windows 11, WSL2, AMD64, Ubuntu 24.04, systemd, Windows interoperability, and <code>sudo</code> before it asks for permission. Review the prompt and type exactly <code>install</code> at <code>Type install:</code> to continue. It then requests sudo authentication, installs host prerequisites, verifies the release index, trust key, predecessor signature, installer, provisioner, updater, and seven image signatures, and provisions the rootless execution host.</p>
-            <p>A completed bootstrap ends with <code>StatePort 0.1.0-alpha.5 installed successfully</code>. Retain the receipts under <code>~/.local/state/stateport-install/</code> and <code>/var/lib/stateport-provisioning/receipts/</code>; they are the evidence needed to decide whether this first real-host run qualifies.</p>
+            <h2 id="install-heading">2. Containment and repair status</h2>
+            <p class="notice"><strong>Installation temporarily disabled.</strong> No executable Alpha.5 install command is published on this page while containment is active.</p>
+            <p>The replacement transport first downloads the complete immutable bootstrap to a private temporary file, requires a successful transfer, checks its exact 8,971-byte size and pinned SHA-256, and runs <code>/bin/sh -n</code>. Its installer-executing form remains held back until an owner-run, non-executing exact-WSL2 transport probe passes review. Temporary files are removed on success or failure.</p>
           </section>
 
           <p class="notice"><strong>Honest disclaimer.</strong> Alpha.5 is intended for a controlled first-host test. It is <code>compatible_unvalidated</code>, not clean-installed, owner-accepted, independently security-reviewed, stable, or production-ready. Do not use it for important data or expose its local services to a network.</p>

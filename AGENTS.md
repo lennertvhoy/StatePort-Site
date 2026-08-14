@@ -32,22 +32,25 @@ test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"
 Stop on divergence or unexplained dirty work and preserve it. Do not switch to
 an old site branch because its prose looks newer.
 
-### Alpha.5 publication closure
+### Alpha.5 public-install containment closure
 
-StatePort directive `OD-2026-08-14-WSL2-ALPHA5-PRIORITY-RESET` authorizes the
-exact Alpha.5 signing, publication, Site deployment, and remote verification
-needed for the owner's first WSL2 test. Immutable release bytes are anchored by
-Site commit `eaa1ca6a67844259860917442a95c891d097939f`. The working candidate may
-be reviewed, validated, committed, pushed, and deployed under that directive.
-It does not grant human acceptance, independent review, stability, production
-qualification, unsupported-platform claims, or changes to retained Alpha.2 or
-Alpha.3 bytes.
+StatePort directive `OD-2026-08-14-ALPHA5-PUBLIC-CONTAINMENT`, admitted by
+StatePort commit `320ecb31`, authorizes the exact Site commits, push, Pages
+deployment, and remote verification needed to disable the promoted Alpha.5
+install path and prepare its non-streaming replacement transport. Immutable
+release bytes are anchored by Site commit
+`eaa1ca6a67844259860917442a95c891d097939f`. The working candidate may be
+reviewed, validated, committed, pushed, and deployed under that directive. It
+does not authorize re-signing, a successor release, install re-enablement before
+the exact-target probe, human acceptance, independent review, stability,
+production qualification, or changes to retained Alpha.2, Alpha.3, or Alpha.5
+bytes.
 
-The Alpha.5 content closure is Site commit
+The pre-containment Alpha.5 content closure is Site commit
 `6cf95ca855e94f7648afb93fa870390a8c8bc8a7`, remotely verified through Pages
 build `1151371842`, run `31820163492`, and deployment `5909824336`. All 33
 immutable Alpha.5 files, the mutable bootstrap, and six current release surfaces
-match local bytes. The remaining outcome is the owner's first real-host test.
+matched local bytes before the owner-reported failed partial first-host attempt.
 
 ## Mandatory read order
 
@@ -67,9 +70,13 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
   `4613fcad48ea1a2e7dd4350d61baa333efbc734b1fcba1a1c9ca62994d562b71`;
   signed payload:
   `sha256:e45d5c8ce6843bd0c3155ecd26940ff3dc11c5069a2de796a079708066faf98c`.
-- Installation is enabled only as an explicitly unqualified public test.
-  WSL2 reports `compatible_unvalidated` until a real Windows 11 + WSL2 +
-  Ubuntu 24.04 clean-install receipt exists.
+- Installation is temporarily disabled after the owner-reported first exact-host
+  attempt failed partway through the streamed bootstrap. WSL2 remains
+  `compatible_unvalidated`; no clean-install receipt exists.
+- Completed reviews bind the failure to a 4,096-byte truncated pipe-to-shell
+  transfer. The complete 8,971-byte bootstrap and signed release payload remain
+  intact; the replacement must complete download, verify pinned size and digest,
+  pass `/bin/sh -n`, and remain held back pending the exact-target probe.
 - WSL1, native Linux, other distributions, ARM64, macOS, and Docker Desktop do
   not inherit this release target or its evidence.
 - Canonical development Git remains private. The signed public snapshot
@@ -115,9 +122,9 @@ or production-ready. Never alter Alpha.2, Alpha.3, or anchored Alpha.5 bytes.
 ## Active scope
 
 1. Preserve Alpha.2 and Alpha.3 exactly and keep the Alpha.3 erratum historical.
-2. Publish the anchored Alpha.5 tree, byte-identical mutable bootstrap, complete
-   WSL2 setup instructions, and exact unqualified claim boundary.
-3. Preserve the verified publication while the owner performs the first
-   Windows 11 + WSL2 + Ubuntu 24.04 clean-install test.
+2. Preserve the anchored Alpha.5 tree and byte-identical mutable bootstrap while
+   mutable guidance remains fail-closed.
+3. Deploy and remotely verify containment, then await the owner's non-executing
+   Windows 11 + WSL2 + Ubuntu 24.04 transport probe before any re-enablement.
 
 Everything else is backlog or history.

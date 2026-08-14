@@ -545,11 +545,11 @@ def validate_linked_markdown_language() -> None:
 def validate_release_surface_quality(documents: dict[Path, DocumentFacts]) -> None:
     """Keep the public voice consistent with the unqualified public-test truth."""
     release_block = release_state_block()
-    install_enabled = re.search(r"^  installation_enabled: true\s*$", release_block, re.MULTILINE)
-    if not install_enabled:
-        raise AssertionError("Release surface quality checks assume installation_enabled: true")
+    install_disabled = re.search(r"^  installation_enabled: false\s*$", release_block, re.MULTILINE)
+    if not install_disabled:
+        raise AssertionError("Release surface quality checks require fail-closed installation state")
 
-    command_pattern = re.compile(r"curl\s[^<\n]*install\.sh")
+    command_pattern = re.compile(r"(?:curl|wget)\s[^<\n]*install\.sh")
     for page in mutable_public_pages():
         facts = documents.get(page.relative_to(ROOT))
         if facts is None:

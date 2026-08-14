@@ -13,6 +13,12 @@ import stat
 import subprocess
 from urllib.parse import urlsplit
 
+from install_transport import (
+    BOOTSTRAP_SHA256,
+    BOOTSTRAP_SIZE,
+    BOOTSTRAP_URL,
+    render_install_command,
+)
 from render_support import load_config, rendered_home, support_enabled
 
 
@@ -855,6 +861,12 @@ def validate_alpha5_release() -> None:
             raise AssertionError(f"Alpha.5 bootstrap mode must be exactly 0755: {path}")
     if mutable.read_bytes() != versioned.read_bytes():
         raise AssertionError("Mutable bootstrap must be byte-identical to published Alpha.5 install.sh")
+    if versioned.stat().st_size != BOOTSTRAP_SIZE:
+        raise AssertionError("Alpha.5 bootstrap size is not bound to the transport generator")
+    if fixed_files["install.sh"] != BOOTSTRAP_SHA256:
+        raise AssertionError("Alpha.5 bootstrap digest is not bound to the transport generator")
+    if BOOTSTRAP_URL != f"https://lennertvhoy.github.io/StatePort-Site/{release_root}/install.sh":
+        raise AssertionError("Alpha.5 transport generator points at the wrong immutable bootstrap")
     bootstrap = versioned.read_text(encoding="utf-8")
     for fragment in (
         CURRENT_TARGET_ID,
@@ -1107,29 +1119,43 @@ def validate_source_disclosures(texts: dict[Path, str]) -> None:
 def validate_release_semantics() -> None:
     """Reject mutable-surface claims that contradict canonical release truth."""
     release_block = release_state_block()
-    install_enabled = re.search(r"^  installation_enabled: true\s*$", release_block, re.MULTILINE)
+    install_disabled = re.search(r"^  installation_enabled: false\s*$", release_block, re.MULTILINE)
     known_defective = re.search(r"^  known_defective: false\s*$", release_block, re.MULTILINE)
-    if not install_enabled or not known_defective:
+    if not install_disabled or not known_defective:
         raise AssertionError(
-            "PROJECT_STATE.yaml release block must record installation_enabled: true "
-            "and known_defective: false for the current candidate"
+            "PROJECT_STATE.yaml must disable installation without labelling signed Alpha.5 bytes defective"
         )
 
     pages = mutable_public_pages()
     texts = {page: page.read_text(encoding="utf-8") for page in pages}
-    command_pattern = re.compile(r"curl\s[^<\n]*install\.sh")
-    expected_command = (
-        "curl -fsSL --proto '=https' --tlsv1.2 "
-        "https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.5/install.sh | sh"
-    )
+    pipe_to_shell = re.compile(r"(?:curl|wget)\s[^<\n]*\|\s*(?:/bin/)?sh\b")
+    install_command = re.compile(r"curl\s[^<\n]*install\.sh")
     for page, text in texts.items():
         relative = page.relative_to(ROOT)
-        commands = command_pattern.findall(text)
-        if relative == Path("download/index.html"):
-            if text.count(expected_command) != 1 or len(commands) != 1:
-                raise AssertionError("download/index.html must show exactly one exact Alpha.5 install command")
-        elif commands:
-            raise AssertionError(f"install command may appear only on download/index.html, found {relative}")
+        if pipe_to_shell.search(text):
+            raise AssertionError(f"pipe-to-shell promotion is forbidden on {relative}")
+        if install_command.search(text):
+            raise AssertionError(f"installation is disabled but a bootstrap command appears on {relative}")
+
+    download = texts[ROOT / "download/index.html"]
+    for marker in (
+        "Installation temporarily disabled",
+        "failed partial bootstrap attempt",
+        BOOTSTRAP_SHA256,
+    ):
+        if marker not in download:
+            raise AssertionError(f"download/index.html lacks Alpha.5 containment marker {marker!r}")
+
+    held_back = render_install_command(execute=True)
+    probe = render_install_command()
+    if pipe_to_shell.search(held_back) or pipe_to_shell.search(probe):
+        raise AssertionError("Alpha.5 transport generator must never use pipe-to-shell")
+    for command in (held_back, probe):
+        for marker in (BOOTSTRAP_URL, BOOTSTRAP_SHA256, str(BOOTSTRAP_SIZE), '/bin/sh -n "$tmp"'):
+            if marker not in command:
+                raise AssertionError(f"Alpha.5 transport generator lacks {marker!r}")
+    if '/bin/sh "$tmp"' not in held_back or '/bin/sh "$tmp"' in probe:
+        raise AssertionError("Alpha.5 executable transport must remain held back from the probe")
 
     for surface in ("index.html", "download/index.html", "releases/index.html", "docs/limitations.html"):
         text = texts[ROOT / surface].lower()
@@ -1322,6 +1348,7 @@ def main() -> None:
         ".github/workflows/deploy-pages.yml",
         ".github/workflows/validate-site-pr.yml",
         "scripts/check_site_quality.py",
+        "scripts/install_transport.py",
         "scripts/build_immutable_manifest.py",
         "scripts/render_paper_diagrams.py",
         "scripts/render_support.py",
@@ -1342,9 +1369,9 @@ def main() -> None:
     require_text("docs/agent-kits.html", "Early direction")
     require_text("docs/platform-support.html", "Capability-based qualification")
     require_text("papers/stateware-whitepaper-public-v1.1.html", "Publication note")
-    require_text("releases/index.html", "still being reviewed")
+    require_text("releases/index.html", "installation temporarily disabled")
     require_text("download/index.html", "Do not install Alpha.2")
-    require_text("docs/limitations.html", "The first WSL2 clean-install receipt is pending")
+    require_text("docs/limitations.html", "failed partial bootstrap attempt")
     require_text(".github/workflows/deploy-pages.yml", "actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e")
 
     public_copy = "\n".join(

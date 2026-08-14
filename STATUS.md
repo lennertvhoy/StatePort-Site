@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-08-14
 **Execution Mode:** operating
-**Project State:** alpha5_published_deployed_and_remotely_verified_owner_test_pending
+**Project State:** alpha5_install_containment_locally_validated_deployment_pending
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -17,10 +17,17 @@
   `eaa1ca6a67844259860917442a95c891d097939f`. The mutable bootstrap is
   byte-identical at SHA-256
   `104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a`.
-- Installation is enabled only for a controlled Windows 11 + WSL2 + Ubuntu
-  24.04 AMD64 public test. WSL2 reports `compatible_unvalidated`; no real-host
-  clean-install receipt exists yet. Owner acceptance, independent security
-  review, stability, and production qualification are absent.
+- Installation is temporarily disabled. The owner reports that the first exact
+  Windows 11 + WSL2 + Ubuntu 24.04 AMD64 command installed prerequisites, then
+  Dash failed on an unterminated quote before the Python installer ran. No
+  receipt exists; this is a failed partial attempt with side effects.
+- Completed reviews found a 4,096-byte truncated pipe-to-shell transfer. The
+  complete 8,971-byte bootstrap remains valid at SHA-256
+  `104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a`;
+  the signed payload is not implicated.
+- Mutable guidance is fail-closed. A complete-download, pinned-digest,
+  `/bin/sh -n` replacement is held back pending the owner-run non-executing
+  exact-target transport probe.
 - Canonical source commit `256d8761` / tree `e7fb80c5` remains in private
   development Git. Signed public snapshot `6911b7c1` / tree `05ca882f` is
   anonymously resolvable from `lennertvhoy/StatePort-Source`. The curated
@@ -35,6 +42,7 @@
 
 ## Exact next action
 
-The owner runs the published instructions on a fresh Windows 11 + WSL2 +
-Ubuntu 24.04 host and returns the exact receipts. Until then Alpha.5 remains
+Deploy and remotely verify containment without changing immutable release
+bytes. Installation remains disabled until the owner-run non-executing
+exact-target transport probe passes review. Alpha.5 remains
 `compatible_unvalidated`, unaccepted, and not production-qualified.

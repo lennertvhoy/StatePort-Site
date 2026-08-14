@@ -4,20 +4,20 @@
 **Execution Mode:** operating
 **Max Items:** 1
 
-## P0 [BL-SITE-ALPHA5-OWNER-TEST] Capture the first real-host Alpha.5 receipt
+## P0 [BL-SITE-ALPHA5-CONTAINMENT] Deploy fail-closed Alpha.5 install containment
 
-**Status:** Alpha.5 content commit `6cf95ca855e94f7648afb93fa870390a8c8bc8a7`
-is deployed through Pages build `1151371842`, run `31820163492`, and deployment
-`5909824336`. All 33 immutable Alpha.5 files, the mutable bootstrap, and six
-current HTML surfaces match local bytes remotely. Alpha.2 and Alpha.3 remain
-unchanged.
+**Status:** Alpha.5 remains published, signed, byte-intact, and
+`compatible_unvalidated`, but installation is disabled after the owner-reported
+first exact-host command failed partway through its streamed bootstrap. No
+Python installer ran and no receipt exists. Completed reviews bind the failure
+to a 4,096-byte truncated pipe-to-shell transfer, not signed release bytes.
 
-**Decision:** The owner performs the first test from the published install guide
-on a fresh Windows 11 + WSL2 + Ubuntu 24.04 AMD64 host. Do not connect to
-`lionheart` or `sharestation`; `ff-win` no longer exists. Preserve the install
-and execution-host receipts without relabelling a failed or partial run.
+**Decision:** deploy fail-closed public guidance and retain the repaired
+complete-download, pinned-size, pinned-digest, `/bin/sh -n` transport behind the
+disabled state. Do not promote or execute it before the owner's non-executing
+exact-WSL2 transport probe passes review.
 
-**Exit:** The exact Alpha.5 source, host identity, install receipt, execution-host
-receipt, checks, and observed limits are reviewed. Only a passing exact-host run
-may change `compatible_unvalidated`; human acceptance, independent review,
-stability, and production qualification remain separate decisions.
+**Exit:** containment is deployed and remotely verified, all immutable Alpha.5
+and retained Alpha.2/3 bytes still match their anchors, and the exact-target
+transport probe is the sole pending outcome. Re-enablement, human acceptance,
+independent review, stability, and production qualification remain separate.

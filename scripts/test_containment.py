@@ -17,6 +17,7 @@ ROOT = SCRIPTS.parent
 sys.path.insert(0, str(SCRIPTS))
 
 import build_immutable_manifest as manifest_builder
+import install_transport
 import validate_repo
 
 
@@ -236,6 +237,78 @@ class CurrentBootstrapTests(unittest.TestCase):
             env={"LC_ALL": "C", "PATH": os.environ.get("PATH", "")},
         )
         self.assertEqual(syntax.returncode, 0, syntax.stderr.decode("utf-8"))
+
+    def _run_transport(self, response: bytes, *, execute: bool) -> tuple[subprocess.CompletedProcess[str], Path]:
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        root = Path(temporary.name)
+        response_path = root / "response"
+        response_path.write_bytes(response)
+        shell_log = root / "shell.log"
+
+        curl = root / "curl"
+        curl.write_text(
+            "#!/bin/sh\n"
+            "while [ \"$#\" -gt 0 ]; do\n"
+            "  case \"$1\" in\n"
+            "    --output) output=$2; shift 2 ;;\n"
+            "    *) shift ;;\n"
+            "  esac\n"
+            "done\n"
+            "cp \"$BOOTSTRAP_RESPONSE\" \"$output\"\n",
+            encoding="utf-8",
+        )
+        curl.chmod(0o755)
+        shell = root / "checked-sh"
+        shell.write_text(
+            "#!/bin/sh\n"
+            "printf '%s\\n' \"$*\" >> \"$SHELL_LOG\"\n"
+            "exec /bin/sh \"$@\"\n",
+            encoding="utf-8",
+        )
+        shell.chmod(0o755)
+
+        command = install_transport.render_install_command(execute=execute, shell=str(shell))
+        completed = subprocess.run(
+            ["/bin/sh", "-c", command],
+            check=False,
+            capture_output=True,
+            text=True,
+            env={
+                "BOOTSTRAP_RESPONSE": str(response_path),
+                "LC_ALL": "C",
+                "PATH": f"{root}:{os.environ.get('PATH', '')}",
+                "SHELL_LOG": str(shell_log),
+            },
+        )
+        return completed, shell_log
+
+    def test_replacement_binds_exact_bootstrap_without_pipe_to_shell(self) -> None:
+        command = install_transport.render_install_command(execute=True)
+        self.assertNotRegex(command, r"install\.sh[^\n]*\|\s*(?:/bin/)?sh\b")
+        self.assertIn(install_transport.BOOTSTRAP_URL, command)
+        self.assertIn(install_transport.BOOTSTRAP_SHA256, command)
+        self.assertIn(str(install_transport.BOOTSTRAP_SIZE), command)
+        self.assertLess(command.index("curl "), command.index("sha256sum"))
+        self.assertLess(command.index("sha256sum"), command.index('/bin/sh -n "$tmp"'))
+        self.assertLess(command.index('/bin/sh -n "$tmp"'), command.rindex('/bin/sh "$tmp"'))
+
+    def test_4096_byte_response_fails_before_shell_or_execution(self) -> None:
+        bootstrap = (ROOT / "download/0.1.0-alpha.5/install.sh").read_bytes()
+        completed, shell_log = self._run_transport(bootstrap[:4096], execute=True)
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertFalse(shell_log.exists(), "truncated response reached the shell")
+
+    def test_complete_exact_bytes_pass_dash_syntax_without_execution(self) -> None:
+        bootstrap = (ROOT / "download/0.1.0-alpha.5/install.sh").read_bytes()
+        self.assertEqual(len(bootstrap), install_transport.BOOTSTRAP_SIZE)
+        self.assertEqual(hashlib.sha256(bootstrap).hexdigest(), install_transport.BOOTSTRAP_SHA256)
+        completed, shell_log = self._run_transport(bootstrap, execute=False)
+        self.assertEqual(completed.returncode, 0, completed.stderr)
+        self.assertIn("installer was not executed", completed.stdout)
+        calls = shell_log.read_text(encoding="utf-8").splitlines()
+        self.assertEqual(len(calls), 1)
+        self.assertTrue(calls[0].startswith("-n "), calls)
 
 
 class SourceDisclosureTests(unittest.TestCase):

@@ -1,5 +1,25 @@
 # Worklog
 
+## 2026-08-14 - Alpha.5 public install containment candidate
+
+- The owner reports that the first Windows 11 + WSL2 + Ubuntu 24.04 AMD64
+  attempt installed prerequisites, then Dash failed on an unterminated quote
+  before the Python installer ran. No receipt exists; this remains a reported
+  failed partial attempt with side effects, not independently observed evidence.
+- Reused completed reviews that bind the failure to a 4,096-byte truncated
+  pipe-to-shell transfer. Removed executable install promotion from mutable
+  pages and added a held-back complete-download transport with pinned 8,971-byte
+  size, SHA-256, `/bin/sh -n`, private temporary file, and cleanup checks.
+- The 11 focused containment tests and all 29 Site unit tests pass. Repository
+  validation, shell syntax, and the Site quality contract pass; the quality gate
+  first failed on missing and then overlong homepage clean-install metadata, and
+  passed after those exact metadata defects were corrected.
+- The immutable Alpha.2, Alpha.3, and 33-file Alpha.5 trees match their
+  publication anchors. Versioned, mutable, and frozen Alpha.5 bootstraps remain
+  8,971 bytes, mode 0755, and SHA-256
+  `104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a`.
+  Deployment and remote verification remain pending.
+
 ## 2026-08-14 - Alpha.5 Site publication remotely verified
 
 - Pushed Alpha.5 release anchor `eaa1ca6a` and content/control closure
