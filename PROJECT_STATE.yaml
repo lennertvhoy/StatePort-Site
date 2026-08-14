@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-14T19:51:02Z"
-  updated_by: alpha5_signature_refusal_containment_candidate
+  updated_at: "2026-08-14T20:12:32Z"
+  updated_by: alpha5_signature_refusal_containment_closure
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha5_install_disabled_signature_refusal_containment_candidate
+  status: alpha5_install_disabled_signature_refusal_contained_local_repair_not_published
   purpose: public_documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -83,20 +83,19 @@ site:
   deployment:
     provider: GitHub Pages
     build_type: legacy
-    status: repaired_install_built_from_main_root_remotely_verified
+    status: signature_refusal_containment_built_from_main_root_remotely_verified
     workflow: ".github/workflows/deploy-pages.yml"
     custom_workflow_status: disabled_manual_only_not_live_provider
     source_branch: main
     source_path: /
     deployment_head: derived_from_git_not_persisted
-    live_content_commit: c8cd20804bc2307c5c49f1fbed75ea8c59f921ae
-    pages_build: 1151631061
-    pages_build_commit_field: 2100b8108d6b5d856fbcdee6315bfa838a454787
-    pages_run: 31834012760
-    pages_deployment: 5912274973
-    deployment_sha: c8cd20804bc2307c5c49f1fbed75ea8c59f921ae
-    deployed_at: "2026-08-14T19:36:48Z"
-  current_release_surface: alpha5_test_temporarily_unavailable_candidate
+    live_content_commit: 8cae82e5b98b8d4884a18e50660852d2005c4842
+    pages_build: 1151656087
+    pages_build_commit_field: 2470f6c3d202f874875bfe29fd3754bea985874c
+    pages_run: 31835252274
+    pages_deployment: 5912489564
+    deployment_sha: 8cae82e5b98b8d4884a18e50660852d2005c4842
+  current_release_surface: alpha5_test_temporarily_unavailable_remote_verified
   installer_command_shown: false
   installer_command_locations: []
   replacement_install_command: disabled_after_owner_reported_signature_refusal
@@ -113,12 +112,14 @@ site:
     mutable_install_matches_versioned: true
     repaired_install_changed_files_checked: 16
     repaired_install_changed_file_mismatches: 0
+    signature_containment_changed_files_checked: 15
+    signature_containment_changed_file_mismatches: 0
     transport_generator_sha256: d5882b368d2260f20ef56fea6f114c9e5eb5f8e38f07ba0c6945112caf1319c9
     browser_automation: unavailable_not_claimed
 
 owner_directive:
   id: OD-2026-08-14-ALPHA5-PUBLIC-CONTAINMENT
-  status: signature_refusal_containment_candidate
+  status: signature_refusal_containment_remote_verified_local_repair_publication_owner_gated
   source_repository: /home/ff/Documents/Projects/StatePort
   source_commit: f45d9c80b17d5dcb3866ffc35fdb7a0fe501b720
   objective: disable_promoted_alpha5_install_and_deploy_verified_non_streaming_transport_containment_without_changing_release_bytes
@@ -126,11 +127,13 @@ owner_directive:
   repaired_install_reenable: authorized_after_owner_reported_exact_target_probe
   signing_or_successor_release: not_authorized
   human_acceptance: not_granted
+  stateport_repair_commit: df2cbb851f9527550c1c40f28fe1bfd9424b982c
+  mutable_repair_publication: not_authorized
 
 active_work:
   - id: BL-SITE-ALPHA5-SIGNATURE-MANIFEST
     priority: P0
-    status: fail_closed_containment_deployment_pending
+    status: fail_closed_containment_complete_mutable_repair_publication_owner_gated
 
 prior_work:
   - id: alpha5_streamed_bootstrap_truncation
@@ -139,13 +142,13 @@ prior_work:
     validity: exact_alpha5_bootstrap_and_repaired_non_streaming_command
     missing: independently_captured_raw_probe_receipt_and_clean_install_receipt
   - id: alpha5_private_signature_manifest_refusal
-    verdict: owner_reported_complete_bootstrap_refused_all_five_private_image_signatures_when_exact_local_manifest_bytes_were_unavailable
-    evidence: [owner_reported_signature_verification_failed_transcript, owner_host_refusal_path_2026-08-14T194441Z_signature_verification_failed_4939183a_json]
+    verdict: owner_transcript_exposed_five_refusals_signed_inventory_has_seven_affected_paths_and_stateport_df2cbb85_locally_repairs_mutable_transport_without_signed_byte_changes
+    evidence: [owner_reported_signature_verification_failed_transcript, owner_host_refusal_path_2026-08-14T194441Z_signature_verification_failed_4939183a_json, df2cbb851f9527550c1c40f28fe1bfd9424b982c, pages_build_1151656087, pages_run_31835252274, pages_deployment_5912489564]
     validity: exact_published_alpha5_private_signature_path
-    missing: owner_host_refusal_json_not_copied_locally
+    missing: owner_host_refusal_json_and_owner_authorized_public_repair_probe
 
 workspace_inventory:
-  expected_content_head: pending_signature_refusal_containment_commit
-  expected_origin_head: 2470f6c3d202f874875bfe29fd3754bea985874c
-  expected_dirty_path: signature_refusal_containment_candidate
+  expected_content_head: 8cae82e5b98b8d4884a18e50660852d2005c4842
+  expected_origin_head: derived_from_git_not_persisted
+  expected_dirty_path: none
   immutable_release_bytes_changed_after_anchor: false

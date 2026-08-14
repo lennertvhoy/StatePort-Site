@@ -1,18 +1,26 @@
 # Worklog
 
-## 2026-08-14 - Alpha.5 signature-refusal containment candidate
+## 2026-08-14 - Alpha.5 signature-refusal containment remotely verified
 
 - The owner reports that the complete immutable bootstrap passed transport and
-  shell checks, executed, and refused all five private image signatures because
-  exact local manifest bytes were unavailable. No install receipt exists. The
-  reported refusal JSON remains on the owner host and is not local evidence.
+  shell checks, executed, and refused the five private image signatures visible
+  in the transcript because exact local manifest bytes were unavailable. The
+  signed inventory contains seven affected paths. No install receipt exists.
 - Removed the public install command and replaced user-facing incident copy with
   the neutral message `Alpha test temporarily unavailable.` Immutable Alpha.2,
   Alpha.3, and Alpha.5 paths remain untouched.
 - Eleven focused containment tests and both Site validators pass. Repository
   validation first failed on one stale detailed-copy marker and passed after
-  that exact validator expectation was corrected. Deployment remains pending;
-  the owner-host installer must not be rerun.
+  that exact validator expectation was corrected. Content `8cae82e5` deployed
+  through build `1151656087`, run `31835252274`, and deployment `5912489564`;
+  15 changed mutable files and all 33 immutable Alpha.5 files matched remotely.
+- StatePort commit `df2cbb85` locally repairs all seven paths through the frozen
+  installer's existing archive seam. No signed bytes change and no successor is
+  technically required, but publication and probing remain owner-gated. The
+  owner-host installer must not be rerun.
+- Closure validation first failed when `known_defective` conflated the mutable
+  transport omission with the signed Alpha.5 bytes; restoring that boundary to
+  `false` made the repository validator pass.
 
 ## 2026-08-14 - Alpha.5 repaired install re-enabled and remotely verified
 

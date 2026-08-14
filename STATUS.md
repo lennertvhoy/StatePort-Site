@@ -29,9 +29,10 @@
   pinned SHA-256, and passed target `/bin/sh -n` without executing the installer.
   Only that repaired command is authorized for re-enablement. This is not a
   clean-install receipt or independently captured raw evidence.
-- The owner reports the complete bootstrap then refused all five private image
-  signatures because exact local manifest bytes were unavailable. No install
-  receipt exists; the refusal JSON has not been copied from the owner host.
+- The owner reports the complete bootstrap then refused the five private image
+  signatures visible in the transcript because exact local manifest bytes were
+  unavailable. The signed inventory contains seven affected private-manifest
+  paths. No install receipt exists; the refusal JSON is not copied locally.
 - Canonical source commit `256d8761` / tree `e7fb80c5` remains in private
   development Git. Signed public snapshot `6911b7c1` / tree `05ca882f` is
   anonymously resolvable from `lennertvhoy/StatePort-Source`. The curated
@@ -49,10 +50,18 @@
   `5912274973`. All 16 changed mutable files and all 33 immutable Alpha.5 files
   matched anonymous live bytes. The legacy build endpoint reported the prior
   state SHA; exact run, deployment, and bytes bind the live content.
+- Signature-refusal containment `8cae82e5b98b8d4884a18e50660852d2005c4842`
+  deployed through build `1151656087`, run `31835252274`, and deployment
+  `5912489564`. All 15 changed mutable files and all 33 immutable Alpha.5 files
+  matched anonymous live bytes.
+- StatePort commit `df2cbb85` locally supplies all seven exact digest-pinned
+  manifests through the immutable installer's existing archive seam. No signed
+  or versioned Alpha.5 bytes change. The mutable repair is not published or
+  owner-probed.
 
 ## Exact next action
 
-Installation remains disabled while StatePort repairs the signature data path
-and determines whether successor signed bytes are required. Do not rerun the
-owner-host installer. Alpha.5 remains `compatible_unvalidated`, unaccepted, and
-not production-qualified.
+Installation remains disabled until the owner authorizes publication and a
+non-executing exact-target probe of the mutable manifest repair. A successor is
+not technically required. Do not rerun the owner-host installer. Alpha.5 remains
+`compatible_unvalidated`, unaccepted, and not production-qualified.

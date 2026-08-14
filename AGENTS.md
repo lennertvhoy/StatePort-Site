@@ -69,11 +69,21 @@ the prior state SHA, but the run, deployment, and bytes bind the live content to
 `c8cd2080`.
 
 The owner subsequently reports that the complete bootstrap executed and refused
-all five private image signatures because exact local manifest bytes were
-unavailable. No install receipt exists; the reported refusal JSON remains only
-on the owner host. Installation is disabled again while the signature data path
-is repaired. Public pages use minimal neutral copy; incident detail stays here
-and in canonical evidence.
+the five private image signatures visible in the transcript because exact local
+manifest bytes were unavailable. The signed inventory contains seven affected
+paths. No install receipt exists; the reported refusal JSON remains only on the
+owner host. Installation is disabled again while the signature data path is
+repaired. Public pages use minimal neutral copy; incident detail stays here and
+in canonical evidence.
+
+Signature-refusal containment commit
+`8cae82e5b98b8d4884a18e50660852d2005c4842` deployed through Pages build
+`1151656087`, run `31835252274`, and deployment `5912489564`. All 15 changed
+mutable files and all 33 immutable Alpha.5 files matched anonymous live bytes.
+StatePort commit `df2cbb851f9527550c1c40f28fe1bfd9424b982c` locally repairs
+the omission for all seven signed private-manifest paths through the immutable
+installer's existing archive seam. No signed bytes change; the repair is not
+published or owner-probed, and public installation remains disabled.
 
 ## Mandatory read order
 
@@ -147,7 +157,7 @@ or production-ready. Never alter Alpha.2, Alpha.3, or anchored Alpha.5 bytes.
 1. Preserve Alpha.2 and Alpha.3 exactly and keep the Alpha.3 erratum historical.
 2. Preserve the anchored Alpha.5 tree and byte-identical mutable bootstrap while
    mutable guidance remains fail-closed.
-3. Keep public copy minimal while StatePort determines whether signature repair
-   requires successor immutable bytes.
+3. Keep public copy minimal until the owner authorizes publication and a
+   non-executing exact-target probe of the mutable manifest transport repair.
 
 Everything else is backlog or history.

@@ -4,15 +4,16 @@
 **Execution Mode:** operating
 **Max Items:** 1
 
-## P0 [BL-SITE-ALPHA5-SIGNATURE-MANIFEST] Keep Alpha.5 installation fail-closed
+## P0 [BL-SITE-ALPHA5-SIGNATURE-MANIFEST] Hold mutable repair for owner decision
 
-**Status:** The owner reports the complete immutable bootstrap refused all five
-private image signatures because exact local manifest bytes were unavailable.
-No install receipt exists and the refusal JSON remains only on the owner host.
+**Status:** Containment `8cae82e5` is remotely verified. StatePort commit
+`df2cbb85` locally repairs all seven signed private-manifest transport paths
+without changing signed or versioned Alpha.5 bytes. The repair is not public.
 
-**Decision:** publish minimal neutral fail-closed copy and keep all immutable
-release bytes unchanged while StatePort repairs the signature data path. Do not
-rerun the installer.
+**Decision:** keep minimal fail-closed copy until the owner explicitly authorizes
+publication and a non-executing exact-target probe of the mutable bootstrap. Do
+not rerun the installer or change any immutable release tree.
 
-**Exit:** containment is remotely verified and StatePort records whether repair
-can remain mutable or requires an explicitly authorized successor release.
+**Exit:** an authorized probe proves all seven exact manifest paths reach the
+frozen installer, or Alpha.5 remains disabled. No successor is technically
+required for this repair.
