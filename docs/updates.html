@@ -89,7 +89,7 @@
         </aside>
 
         <article class="prose">
-          <p class="notice"><strong>Alpha.5 installation temporarily disabled</strong> v0.1.0-alpha.5 remains signed, published, and byte-intact, but its public install path is fail-closed after the owner-reported failed partial first-host bootstrap. No clean-install receipt, human acceptance, or independent security review exists; see the <a href="../releases/">release ledger</a>.</p>
+          <p class="notice"><strong>Alpha.5 repaired public-test install enabled</strong> v0.1.0-alpha.5 remains signed, published, and byte-intact. One owner-reported exact-target non-executing transport probe passed, but no clean-install receipt, human acceptance, or independent security review exists; see the <a href="../releases/">release ledger</a>.</p>
 
           <h2>Exact releases, pinned by digest and signed</h2>
           <p>An update starts from an exact, versioned release — never a moving “latest”. The candidate's images are bound to immutable digests, so what you approved is bit-for-bit what runs. The release index (<code>stateport.release-index/v1</code>) and the image set carry pinned-public-key Cosign signatures under the StatePort alpha release key, with SPDX SBOMs and vulnerability-scan dispositions alongside. Tampering with any signed field, image digest, or artifact refuses the install or update. For this private candidate the signatures are <strong>not</strong> uploaded to a public transparency log; verification relies on the pinned public key and its recorded fingerprint.</p>

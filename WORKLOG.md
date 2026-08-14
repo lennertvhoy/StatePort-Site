@@ -1,5 +1,21 @@
 # Worklog
 
+## 2026-08-14 - Alpha.5 repaired install re-enablement candidate
+
+- The owner reports that the exact Windows 11 + WSL2 + Ubuntu 24.04 target
+  downloaded all 8,971 bootstrap bytes, matched SHA-256
+  `104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a`,
+  and passed `/bin/sh -n` without executing the installer. This is reported
+  terminal evidence, not an independently captured raw receipt or clean install.
+- Re-enabled only the generator-bound command that downloads to a private
+  temporary file, requires transfer success, verifies size and digest, checks
+  shell syntax, and executes afterward. The failed partial streamed attempt and
+  mutated prior distro remain explicitly excluded from clean-install evidence.
+- The 11 focused containment tests and all 29 Site tests pass. Repository and
+  quality validators, mutable and versioned bootstrap shell syntax, and diff
+  checks pass. All immutable release paths remain untouched; deployment and
+  remote verification are pending.
+
 ## 2026-08-14 - Alpha.5 public install containment remotely verified
 
 - Pushed exact containment content commit

@@ -4,18 +4,17 @@
 **Execution Mode:** operating
 **Max Items:** 1
 
-## P0 [BL-SITE-ALPHA5-TRANSPORT-PROBE] Review the exact-target transport probe
+## P0 [BL-SITE-ALPHA5-SAFE-REENABLE] Deploy the repaired install command
 
-**Status:** Alpha.5 containment content `636e7952` is deployed through Pages
-build `1151605137`, run `31832575567`, and deployment `5912021497`. All 33
-immutable Alpha.5 files and nine mutable containment surfaces match local bytes
-remotely. Installation remains disabled; signed release bytes remain intact.
+**Status:** The owner reports the exact-target non-executing probe downloaded all
+8,971 bytes, matched the pinned SHA-256, and passed `/bin/sh -n` without running
+the installer. This satisfies the directive's re-enablement condition but is not
+a clean install or independently captured raw receipt.
 
-**Decision:** the owner runs only the non-executing complete-download transport
-probe in the existing exact-target WSL2 distribution and returns its output for
-review. Do not promote, execute, or re-enable the installer.
+**Decision:** deploy and remotely verify only the repaired complete-download,
+pinned-size, pinned-digest, syntax-checked install command. Preserve the failed
+partial first attempt and keep support `compatible_unvalidated`.
 
-**Exit:** the probe proves complete 8,971-byte download, pinned SHA-256, and
-`/bin/sh -n` on the exact target without executing the installer. Re-enablement,
-human acceptance, independent review, stability, and production qualification
-remain separate owner decisions.
+**Exit:** the repaired command is live and all immutable release bytes remain
+unchanged. The next action is a genuinely fresh exact-target clean install with
+receipts retained; never reuse the mutated prior distro as evidence.

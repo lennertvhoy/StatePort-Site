@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-08-14
 **Execution Mode:** operating
-**Project State:** alpha5_install_containment_deployed_remote_verified_transport_probe_pending
+**Project State:** alpha5_repaired_install_reenable_locally_validated_deployment_pending
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -17,7 +17,7 @@
   `eaa1ca6a67844259860917442a95c891d097939f`. The mutable bootstrap is
   byte-identical at SHA-256
   `104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a`.
-- Installation is temporarily disabled. The owner reports that the first exact
+- The owner reports that the first exact
   Windows 11 + WSL2 + Ubuntu 24.04 AMD64 command installed prerequisites, then
   Dash failed on an unterminated quote before the Python installer ran. No
   receipt exists; this is a failed partial attempt with side effects.
@@ -25,9 +25,10 @@
   complete 8,971-byte bootstrap remains valid at SHA-256
   `104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a`;
   the signed payload is not implicated.
-- Mutable guidance is fail-closed. A complete-download, pinned-digest,
-  `/bin/sh -n` replacement is held back pending the owner-run non-executing
-  exact-target transport probe.
+- The owner reports the replacement then downloaded all 8,971 bytes, matched the
+  pinned SHA-256, and passed target `/bin/sh -n` without executing the installer.
+  Only that repaired command is authorized for re-enablement. This is not a
+  clean-install receipt or independently captured raw evidence.
 - Canonical source commit `256d8761` / tree `e7fb80c5` remains in private
   development Git. Signed public snapshot `6911b7c1` / tree `05ca882f` is
   anonymously resolvable from `lennertvhoy/StatePort-Source`. The curated
@@ -43,7 +44,7 @@
 
 ## Exact next action
 
-The owner runs the non-executing exact-target transport probe in the existing
-WSL2 distribution and returns its output for review. Installation remains
-disabled. Alpha.5 remains `compatible_unvalidated`, unaccepted, and not
-production-qualified.
+Validate, deploy, and remotely verify only the repaired install command. The
+next owner action is a genuinely fresh exact-target clean install with receipts;
+the mutated prior WSL distro cannot provide that evidence. Alpha.5 remains
+`compatible_unvalidated`, unaccepted, and not production-qualified.

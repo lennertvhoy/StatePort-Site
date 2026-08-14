@@ -41,7 +41,7 @@ def main() -> None:
     parser.add_argument(
         "--execute",
         action="store_true",
-        help="render the held-back install form instead of the non-executing probe",
+        help="render the installer-executing form instead of the non-executing probe",
     )
     args = parser.parse_args()
     print(render_install_command(execute=args.execute))

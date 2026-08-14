@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-14T19:19:20Z"
-  updated_by: alpha5_public_install_containment_remote_verification
+  updated_at: "2026-08-14T19:34:59Z"
+  updated_by: alpha5_repaired_install_reenable_locally_validated
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha5_install_containment_deployed_remote_verified_transport_probe_pending
+  status: alpha5_repaired_install_reenable_locally_validated_deployment_pending
   purpose: public_documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -29,9 +29,9 @@ release:
   qualification: candidate
   published: true
   known_defective: false
-  public_install_transport_defective: true
+  original_streamed_install_transport_defective: true
   owner_accepted: false
-  installation_enabled: false
+  installation_enabled: true
   support_tier: compatible_unvalidated
   public_download: "download/0.1.0-alpha.5/install.sh"
   release_index: "download/0.1.0-alpha.5/release-index.json"
@@ -69,6 +69,7 @@ acceptance:
   publication: published_deployed_remotely_verified
   clean_install: owner_reported_failed_partial_bootstrap_no_receipt
   first_host_attempt: owner_reported_prerequisites_installed_then_dash_unterminated_quote_no_python_installer
+  transport_probe: owner_reported_exact_target_complete_size_digest_and_dash_syntax_passed_without_execution
   human_acceptance: not_granted
   independent_security_review: not_performed
   stability: not_established
@@ -92,11 +93,11 @@ site:
     pages_run: 31832575567
     pages_deployment: 5912021497
     deployed_at: "2026-08-14T19:17:54Z"
-  current_release_surface: alpha5_install_temporarily_disabled_containment_deployed
-  installer_command_shown: false
-  installer_command_locations: []
-  replacement_install_command: generated_and_tested_not_promoted
-  nonexecuting_transport_probe: pending_owner_exact_target
+  current_release_surface: alpha5_repaired_public_test_install_reenable_candidate
+  installer_command_shown: true
+  installer_command_locations: [download/index.html]
+  replacement_install_command: owner_probe_passed_promoted_in_candidate
+  nonexecuting_transport_probe: owner_reported_passed_not_independent_raw_receipt
   immutable_tree_manifest: config/immutable-release-trees.json
   immutable_anchors:
     alpha2: 4043534a9a1d56c51c3d47d0906e0520963af79c
@@ -115,29 +116,29 @@ site:
 
 owner_directive:
   id: OD-2026-08-14-ALPHA5-PUBLIC-CONTAINMENT
-  status: containment_deployed_remote_verified_transport_probe_pending
+  status: owner_reported_transport_probe_passed_reenable_authorized
   source_repository: /home/ff/Documents/Projects/StatePort
-  source_commit: 320ecb31
+  source_commit: f45d9c80b17d5dcb3866ffc35fdb7a0fe501b720
   objective: disable_promoted_alpha5_install_and_deploy_verified_non_streaming_transport_containment_without_changing_release_bytes
   containment_commit_push_and_deployment: authorized
-  reenable_before_exact_target_probe: not_authorized
+  repaired_install_reenable: authorized_after_owner_reported_exact_target_probe
   signing_or_successor_release: not_authorized
   human_acceptance: not_granted
 
 active_work:
-  - id: BL-SITE-ALPHA5-TRANSPORT-PROBE
+  - id: BL-SITE-ALPHA5-SAFE-REENABLE
     priority: P0
-    status: containment_deployed_owner_nonexecuting_exact_target_probe_pending
+    status: repaired_command_locally_validated_deployment_pending
 
 prior_work:
   - id: alpha5_streamed_bootstrap_truncation
-    verdict: owner_reported_first_host_attempt_failed_partially_and_completed_reviews_bind_it_to_a_4096_byte_truncated_pipe_to_shell_transfer_not_signed_release_bytes
-    evidence: [owner_reported_dash_line_56_error, sha256:a5df385de801088888cdd79a9ece4318e641f0b6e432e07d83c667ccbd4c6750, sha256:104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a]
-    validity: exact_alpha5_bootstrap_and_pre_containment_public_command
-    missing: complete_raw_owner_transcript_and_clean_install_receipt
+    verdict: first_owner_run_failed_partially_on_truncated_stream_and_later_owner_reported_exact_target_nonexecuting_repaired_transport_probe_passed_without_clean_install_claim
+    evidence: [owner_reported_dash_line_56_error, owner_reported_exact_target_transport_verified_installer_not_executed, sha256:a5df385de801088888cdd79a9ece4318e641f0b6e432e07d83c667ccbd4c6750, sha256:104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a]
+    validity: exact_alpha5_bootstrap_and_repaired_non_streaming_command
+    missing: independently_captured_raw_probe_receipt_and_clean_install_receipt
 
 workspace_inventory:
-  expected_content_head: 636e795230e286fb39470fe695d935266b4ee876
-  expected_origin_head: 636e795230e286fb39470fe695d935266b4ee876
-  expected_dirty_path: state_only_remote_verification_closure
+  expected_content_head: pending_repaired_install_reenable_commit
+  expected_origin_head: 2100b8108d6b5d856fbcdee6315bfa838a454787
+  expected_dirty_path: repaired_install_reenable_candidate
   immutable_release_bytes_changed_after_anchor: false
