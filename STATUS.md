@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-08-14
 **Execution Mode:** operating
-**Project State:** alpha5_site_candidate_locally_validated_awaiting_commit_push_and_deployment
+**Project State:** alpha5_published_deployed_and_remotely_verified_owner_test_pending
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -28,12 +28,13 @@
 - Alpha.3 remains signed, byte-intact, install-disabled, and historical. Its
   erratum remains public. Alpha.2 remains superseded and install-disabled.
   Neither retained release tree changed.
-- The last remotely verified Pages deployment still predates Alpha.5. The
-  local publication candidate is not public until it is pushed, deployed by
-  the managed legacy Pages provider, and remotely digest-checked.
+- Alpha.5 content commit `6cf95ca855e94f7648afb93fa870390a8c8bc8a7`
+  is deployed through Pages build `1151371842`, run `31820163492`, and
+  deployment `5909824336`. All 33 immutable Alpha.5 files, the mutable
+  bootstrap, and six current release surfaces match local bytes remotely.
 
 ## Exact next action
 
-Commit and push the locally validated Alpha.5 publication closure, then verify
-the managed Pages deployment and every public Alpha.5 file without claiming
-the deferred real-host result.
+The owner runs the published instructions on a fresh Windows 11 + WSL2 +
+Ubuntu 24.04 host and returns the exact receipts. Until then Alpha.5 remains
+`compatible_unvalidated`, unaccepted, and not production-qualified.

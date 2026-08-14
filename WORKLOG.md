@@ -1,5 +1,17 @@
 # Worklog
 
+## 2026-08-14 - Alpha.5 Site publication remotely verified
+
+- Pushed Alpha.5 release anchor `eaa1ca6a` and content/control closure
+  `6cf95ca855e94f7648afb93fa870390a8c8bc8a7` to canonical `main`.
+- Managed Pages build `1151371842`, workflow run `31820163492`, and deployment
+  `5909824336` completed successfully for exact content head `6cf95ca8`.
+- Anonymous public fetches matched all 33 immutable Alpha.5 files, mutable
+  `download/install.sh` SHA-256
+  `104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a`,
+  and six current release surfaces. Browser automation remained unavailable,
+  so no browser acceptance is claimed. The owner real-host test remains pending.
+
 ## 2026-08-14 - Alpha.5 Site publication candidate
 
 - Anchored the corrected 33-file Alpha.5 WSL2 release tree at Site commit

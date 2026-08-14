@@ -43,6 +43,12 @@ It does not grant human acceptance, independent review, stability, production
 qualification, unsupported-platform claims, or changes to retained Alpha.2 or
 Alpha.3 bytes.
 
+The Alpha.5 content closure is Site commit
+`6cf95ca855e94f7648afb93fa870390a8c8bc8a7`, remotely verified through Pages
+build `1151371842`, run `31820163492`, and deployment `5909824336`. All 33
+immutable Alpha.5 files, the mutable bootstrap, and six current release surfaces
+match local bytes. The remaining outcome is the owner's first real-host test.
+
 ## Mandatory read order
 
 1. `AGENTS.md`
@@ -111,7 +117,7 @@ or production-ready. Never alter Alpha.2, Alpha.3, or anchored Alpha.5 bytes.
 1. Preserve Alpha.2 and Alpha.3 exactly and keep the Alpha.3 erratum historical.
 2. Publish the anchored Alpha.5 tree, byte-identical mutable bootstrap, complete
    WSL2 setup instructions, and exact unqualified claim boundary.
-3. Validate, push, observe the managed Pages deployment, and remotely digest-
-   check every Alpha.5 file before reporting publication.
+3. Preserve the verified publication while the owner performs the first
+   Windows 11 + WSL2 + Ubuntu 24.04 clean-install test.
 
 Everything else is backlog or history.

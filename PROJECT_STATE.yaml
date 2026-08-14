@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-14T16:35:00Z"
-  updated_by: alpha5_site_publication_candidate
+  updated_at: "2026-08-14T16:39:00Z"
+  updated_by: alpha5_site_publication_remote_verification
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha5_site_candidate_locally_validated_awaiting_commit_push_and_remote_verification
+  status: alpha5_published_deployed_and_remotely_verified_owner_test_pending
   purpose: public_documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -27,7 +27,7 @@ release:
   version: 0.1.0-alpha.5
   channel: alpha
   qualification: candidate
-  published: false
+  published: true
   known_defective: false
   owner_accepted: false
   installation_enabled: true
@@ -65,7 +65,7 @@ predecessors:
     immutable_artifacts_retained: true
 
 acceptance:
-  publication: authorized_candidate_not_yet_deployed
+  publication: published_deployed_remotely_verified
   clean_install: pending_first_owner_windows11_wsl2_ubuntu2404_run
   human_acceptance: not_granted
   independent_security_review: not_performed
@@ -79,12 +79,17 @@ site:
   deployment:
     provider: GitHub Pages
     build_type: legacy
-    status: alpha5_candidate_not_yet_pushed_or_deployed
+    status: built_from_main_root_remotely_verified
     workflow: ".github/workflows/deploy-pages.yml"
     custom_workflow_status: disabled_manual_only_not_live_provider
     source_branch: main
     source_path: /
     deployment_head: derived_from_git_not_persisted
+    live_content_commit: 6cf95ca855e94f7648afb93fa870390a8c8bc8a7
+    pages_build: 1151371842
+    pages_run: 31820163492
+    pages_deployment: 5909824336
+    deployed_at: "2026-08-14T16:37:22Z"
   current_release_surface: alpha5_unqualified_wsl2_public_test_candidate
   installer_command_shown: true
   installer_command_locations: [download/index.html]
@@ -93,10 +98,18 @@ site:
     alpha2: 4043534a9a1d56c51c3d47d0906e0520963af79c
     alpha3: 52b42dd47a11510220f33690075f1b6773f6a889
     alpha5: eaa1ca6a67844259860917442a95c891d097939f
+  remote_verification:
+    alpha5_immutable_files_checked: 33
+    alpha5_immutable_mismatches: 0
+    mutable_install_sha256: 104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a
+    mutable_install_matches_versioned: true
+    current_html_surfaces_checked: 6
+    current_html_mismatches: 0
+    browser_automation: unavailable_not_claimed
 
 owner_directive:
   id: OD-2026-08-14-WSL2-ALPHA5-PRIORITY-RESET
-  status: active_bounded_publication
+  status: publication_executed_owner_test_pending
   source_repository: /home/ff/Documents/Projects/StatePort
   objective: publish_exact_alpha5_wsl2_candidate_and_instructions_for_owner_testing_without_claiming_clean_install_qualification
   publication: authorized
@@ -108,10 +121,10 @@ owner_directive:
 active_work:
   - id: BL-SITE-ALPHA5-PUBLICATION
     priority: P0
-    status: local_validation_green_awaiting_commit_push_and_remote_verification
+    status: publication_remotely_verified_owner_real_host_test_pending
 
 workspace_inventory:
-  expected_head: eaa1ca6a67844259860917442a95c891d097939f
-  expected_origin_head: d09173ed56122e494317b6b0e6569c7f4fbbb2e7
-  expected_dirty_path: download/install.sh
+  expected_content_head: 6cf95ca855e94f7648afb93fa870390a8c8bc8a7
+  expected_origin_head: 6cf95ca855e94f7648afb93fa870390a8c8bc8a7
+  expected_dirty_path: state_only_remote_verification_closure
   immutable_release_bytes_changed_after_anchor: false
