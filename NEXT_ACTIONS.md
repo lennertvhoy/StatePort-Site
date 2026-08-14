@@ -1,36 +1,24 @@
-# NEXT_ACTIONS — active execution queue
+# NEXT_ACTIONS - active execution queue
 
-**Updated At:** 2026-08-11
+**Updated At:** 2026-08-14
 **Execution Mode:** operating
 **Max Items:** 1
 
-## P0 [BL-SITE-SUCCESSOR] Keep containment until a corrected successor exists
+## P0 [BL-SITE-ALPHA5-PUBLICATION] Publish and verify Alpha.5 for owner testing
 
-**Status:** contained_live; overview revoice `2141697e` and its provenance
-correction are deployed and remotely verified as Site head `75ce7600`.
+**Status:** The corrected 33-file Alpha.5 release tree is committed and frozen
+at `eaa1ca6a67844259860917442a95c891d097939f`. Its mutable bootstrap and public
+instructions pass independent immutable-tree, release-identity,
+source-disclosure, unqualified-claim, quality, shell, and unit-test checks.
+Alpha.2 and Alpha.3 remain unchanged.
 
-Alpha.3 remains published, signed, and install-disabled. Containment content
-commit `c1384061a093f8f4fc7e68f8ca7126558e1e97a5` is live through Pages run
-`31315882234` and deployment `5819133762`: mutable pages promote no install
-command, the erratum is public, and `download/install.sh` fails closed. Public
-verification matched all 48 immutable release files to their anchored hashes.
+**Decision:** Validate the exact Site candidate, commit and push the authorized
+closure to `main`, observe the managed legacy Pages deployment, and remotely
+digest-check every Alpha.5 file plus the mutable bootstrap. The owner performs
+the first Windows 11 + WSL2 + Ubuntu 24.04 run afterwards.
 
-No site mutation is authorized merely because a successor is being developed.
-Keep the disabled state until a corrected candidate has fresh evidence, a
-resolvable source identity, a signed index, and a separate publication verdict.
-The prior unified candidate product commit is `d56d67b`; deployed Site commit
-`b9d2edf` was remotely verified through Pages run `31392022484` and deployment
-`5832690455`. The new candidate `2141697e` changes only the overview narration
-window `29.999-31.872` and is live through Pages build `1145044708`, workflow
-run `31489384247`, and deployment `5850023681`. It does not alter alpha.3's published,
-install-disabled, immutable, unaccepted release truth or add security,
-stability, or production qualification.
-
-Public MP4 and VTT hashes match the local candidate, both embeds reference the
-assets, and live MP4 decode passes. The final source-binding correction is
-included in Site head `75ce7600`. Keep containment until a separately
-authorized corrected software successor is freshly evidenced and published.
-
-**Exit:** a separately authorized successor is published and verified, then the
-mutable site is updated without altering retained alpha.2/alpha.3 bytes. Human
-acceptance, independent review, and production qualification remain separate.
+**Exit:** Alpha.5 and complete setup instructions are public and exact remote
+bytes match the anchored manifest. The site labels WSL2
+`compatible_unvalidated` and the real-host clean-install receipt as pending.
+Human acceptance, independent review, stability, and production qualification
+remain separate.

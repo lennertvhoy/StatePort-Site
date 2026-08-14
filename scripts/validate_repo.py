@@ -24,40 +24,35 @@ ROOT = Path(__file__).resolve().parents[1]
 VALIDATOR_PUBLICATION_ANCHORS = {
     "download/0.1.0-alpha.2": "4043534a9a1d56c51c3d47d0906e0520963af79c",
     "download/0.1.0-alpha.3": "52b42dd47a11510220f33690075f1b6773f6a889",
+    "download/0.1.0-alpha.5": "eaa1ca6a67844259860917442a95c891d097939f",
 }
 
-CANONICAL_SOURCE_IDENTITY = {
+ALPHA3_CANONICAL_SOURCE_IDENTITY = {
     "commit": "fa4ea4b7f08e78669e194c204b59206ab109a02f",
     "tree": "aec60303045e7a9c8255b941c761d904af85ec10",
 }
-PUBLIC_SNAPSHOT_IDENTITY = {
+ALPHA3_PUBLIC_SNAPSHOT_IDENTITY = {
     "commit": "43d6b4491b962c963a0ecafc060e0dfc7e334dc0",
     "tree": "3bbe46db14a7c929e6f0a17ca153ec686192aa51",
 }
-CURATED_SOURCE_ARCHIVE = {
+ALPHA3_CURATED_SOURCE_ARCHIVE = {
     "bytes": 20_305_920,
     "sha256": "17f5680c30841b1e831b37df02dca8f03c2c03d265a42633dd525f99bd613398",
 }
-
-MUTABLE_DISABLED_BOOTSTRAP = """#!/bin/sh
-printf '%s\\n' \\
-  'StatePort v0.1.0-alpha.3 installation is disabled.' \\
-  '' \\
-  'The signed candidate is byte-intact, but its freshness evidence has expired' \\
-  'and known installer and runtime defects require a successor release.' \\
-  'No installation command is executed by this disabled bootstrap.' \\
-  '' \\
-  'Wait for a corrected, rebuilt, and re-signed successor candidate.' \\
-  'Erratum: https://lennertvhoy.github.io/StatePort-Site/download/erratum-alpha3.html' >&2
-exit 2
-"""
-MUTABLE_DISABLED_BOOTSTRAP_STRUCTURE = re.compile(
-    r"\A#!/bin/sh\n"
-    r"printf '%s\\n' \\\n"
-    r"(?:  '[^'\r\n]*' \\\n)*"
-    r"  '[^'\r\n]*' >&2\n"
-    r"exit 2\n\Z"
-)
+CURRENT_CANONICAL_SOURCE_IDENTITY = {
+    "commit": "256d876156fbbde8547ecc04c1ac87d31df70bad",
+    "tree": "e7fb80c5ac2c8bbe6d48dd21e559a02328a70d0c",
+}
+CURRENT_PUBLIC_SNAPSHOT_IDENTITY = {
+    "commit": "6911b7c1e73e0408af4a2a900aec585d15168a28",
+    "tree": "05ca882f4e41b98f4ffa6f9257e068d72472e765",
+}
+CURRENT_CURATED_SOURCE_ARCHIVE = {
+    "bytes": 22_415_360,
+    "sha256": "00be84da7739a450b030432dece7caba93b79b59d575fefc89d2ba17bb31446b",
+}
+CURRENT_PUBLIC_SOURCE_URL = "https://github.com/lennertvhoy/StatePort-Source.git"
+CURRENT_TARGET_ID = "wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet"
 
 # Local, untracked build source for the public overview media. It is not a
 # visitor page, so page-level scans must exclude this source tree while
@@ -453,20 +448,6 @@ def _validate_tree_records(
                 )
 
 
-def validate_disabled_bootstrap_program(data: bytes) -> None:
-    expected = MUTABLE_DISABLED_BOOTSTRAP.encode("utf-8")
-    try:
-        text = data.decode("utf-8", errors="strict")
-    except UnicodeDecodeError as exc:
-        raise AssertionError("Disabled bootstrap must be exact UTF-8 text") from exc
-    if not MUTABLE_DISABLED_BOOTSTRAP_STRUCTURE.fullmatch(text):
-        raise AssertionError(
-            "Disabled bootstrap may contain only one builtin printf followed by builtin exit 2"
-        )
-    if data != expected:
-        raise AssertionError("Disabled bootstrap differs from the exact pinned fail-closed program")
-
-
 def validate_local_references() -> None:
     for page in sorted(ROOT.rglob("*.html")):
         if is_local_build_source(page.relative_to(ROOT)):
@@ -671,17 +652,17 @@ def validate_alpha3_release() -> None:
     if signed.get("release", {}).get("version") != "0.1.0-alpha.3":
         raise AssertionError("alpha.3 release index has the wrong version")
     source = signed.get("source", {})
-    for field, expected in CANONICAL_SOURCE_IDENTITY.items():
+    for field, expected in ALPHA3_CANONICAL_SOURCE_IDENTITY.items():
         if source.get(field) != expected:
             raise AssertionError(f"alpha.3 release index has the wrong canonical source {field}")
     public_snapshot = source.get("publicSnapshot", {})
-    for field, expected in PUBLIC_SNAPSHOT_IDENTITY.items():
+    for field, expected in ALPHA3_PUBLIC_SNAPSHOT_IDENTITY.items():
         if public_snapshot.get(field) != expected:
             raise AssertionError(f"alpha.3 release index has the wrong publicSnapshot {field}")
     source_archive = signed.get("artifacts", {}).get("sourceArchive", {})
-    if source_archive.get("digest") != f"sha256:{CURATED_SOURCE_ARCHIVE['sha256']}":
+    if source_archive.get("digest") != f"sha256:{ALPHA3_CURATED_SOURCE_ARCHIVE['sha256']}":
         raise AssertionError("alpha.3 release index has the wrong curated source archive digest")
-    if source_archive.get("size") != CURATED_SOURCE_ARCHIVE["bytes"]:
+    if source_archive.get("size") != ALPHA3_CURATED_SOURCE_ARCHIVE["bytes"]:
         raise AssertionError("alpha.3 release index has the wrong curated source archive byte count")
     targets = signed.get("targets", [])
     if not any(target.get("targetId") == "linux-amd64-rootless-podman-quadlet" for target in targets):
@@ -755,16 +736,135 @@ def validate_alpha3_release() -> None:
     if "all Linux" in versioned_text:
         raise AssertionError(f"Bootstrap must not claim all Linux support: {versioned}")
 
-    # The mutable convenience entry point is an exact fail-closed program. Its
-    # only commands are shell builtins: one printf to stderr and exit 2.
-    mutable_path = "download/install.sh"
-    mutable = require(mutable_path)
-    mutable_mode = mutable.lstat().st_mode
-    if not stat.S_ISREG(mutable_mode):
-        raise AssertionError(f"Fail-closed bootstrap must be a regular file: {mutable_path}")
-    if stat.S_IMODE(mutable_mode) != 0o755:
-        raise AssertionError(f"Fail-closed bootstrap mode must remain exactly 0755: {mutable_path}")
-    validate_disabled_bootstrap_program(mutable.read_bytes())
+
+
+def validate_alpha5_release() -> None:
+    """Bind the current public-test release to exact signed and bootstrap bytes."""
+
+    release_root = "download/0.1.0-alpha.5"
+    fixed_files = {
+        "release-index.json": "4613fcad48ea1a2e7dd4350d61baa333efbc734b1fcba1a1c9ca62994d562b71",
+        "release-index.sigstore.json": "838c3106177b335e1a6a48a681cd173697c39a7bf6ac4908b6a05a5f5369eb82",
+        "install.sh": "104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a",
+        "predecessor-bundle/release-index.sigstore.json": "e4fb2c0f274ed88e34a5904c2d85feb3dcc231a7a5d794072fff158a29178208",
+    }
+    for name, expected in fixed_files.items():
+        path = require(f"{release_root}/{name}")
+        observed = hashlib.sha256(path.read_bytes()).hexdigest()
+        if observed != expected:
+            raise AssertionError(f"{path.relative_to(ROOT)} digest {observed} != {expected}")
+
+    index_path = require(f"{release_root}/release-index.json")
+    index = json.loads(index_path.read_text(encoding="utf-8"))
+    signed = index.get("signed", {})
+    release = signed.get("release", {})
+    if release.get("version") != "0.1.0-alpha.5" or release.get("qualification") != "candidate":
+        raise AssertionError("alpha.5 must remain an explicitly unqualified candidate")
+
+    signatures = index.get("signatures", [])
+    if len(signatures) != 1:
+        raise AssertionError("alpha.5 release index must carry exactly one index signature")
+    signature = signatures[0]
+    if signature.get("subjectDigest") != "sha256:e45d5c8ce6843bd0c3155ecd26940ff3dc11c5069a2de796a079708066faf98c":
+        raise AssertionError("alpha.5 signed payload digest is not the published candidate")
+    if signature.get("bundle", {}).get("digest") != "sha256:838c3106177b335e1a6a48a681cd173697c39a7bf6ac4908b6a05a5f5369eb82":
+        raise AssertionError("alpha.5 release-index signature descriptor is stale")
+    if signature.get("publicKeyFingerprint") != "sha256:3dca6219e41310c6a95a8189669aacad3198e6c84489946406b8f986e1f4211a":
+        raise AssertionError("alpha.5 trust-key fingerprint is stale")
+
+    source = signed.get("source", {})
+    for field, expected in CURRENT_CANONICAL_SOURCE_IDENTITY.items():
+        if source.get(field) != expected:
+            raise AssertionError(f"alpha.5 release index has the wrong canonical source {field}")
+    public_snapshot = source.get("publicSnapshot", {})
+    for field, expected in CURRENT_PUBLIC_SNAPSHOT_IDENTITY.items():
+        if public_snapshot.get(field) != expected:
+            raise AssertionError(f"alpha.5 release index has the wrong publicSnapshot {field}")
+    for field in ("authorityUrl", "repository"):
+        if public_snapshot.get(field) != CURRENT_PUBLIC_SOURCE_URL:
+            raise AssertionError(f"alpha.5 publicSnapshot {field} is not remotely resolvable")
+
+    targets = signed.get("targets", [])
+    if len(targets) != 1 or targets[0].get("targetId") != CURRENT_TARGET_ID:
+        raise AssertionError("alpha.5 must name only the exact WSL2 Ubuntu 24.04 target")
+
+    artifact_paths = {
+        "compose": "compose.yaml",
+        "executionHostProvisioner": "stateport-execution-host-provision",
+        "installer": "stateport-installer",
+        "knownLimitations": "known-limitations.md",
+        "releaseNotes": "release-notes.md",
+        "sourceArchive": "stateport-source.tar",
+        "updater": "stateport-updater",
+    }
+    artifacts = signed.get("artifacts", {})
+    for artifact_id, name in artifact_paths.items():
+        descriptor = artifacts.get(artifact_id, {})
+        path = require(f"{release_root}/{name}")
+        observed = hashlib.sha256(path.read_bytes()).hexdigest()
+        if descriptor.get("digest") != f"sha256:{observed}" or descriptor.get("size") != path.stat().st_size:
+            raise AssertionError(f"alpha.5 artifact descriptor mismatch: {artifact_id}")
+    source_archive = artifacts.get("sourceArchive", {})
+    if source_archive.get("digest") != f"sha256:{CURRENT_CURATED_SOURCE_ARCHIVE['sha256']}" or source_archive.get("size") != CURRENT_CURATED_SOURCE_ARCHIVE["bytes"]:
+        raise AssertionError("alpha.5 curated source archive identity is stale")
+
+    expected_images = {
+        "stateport-api": "sha256:a5c639880195ba6dc57fa9c13378fdf0cdb0361f08cbddea7b7e90f476906af8",
+        "stateport-dev-workspace": "sha256:1a9eecc2a087620e7139570e09c08b4ce6c17a8369d2b428551809dff3fda886",
+        "stateport-execution-host": "sha256:02d3ce6d6dfdacc164b947c1c88ebf6c64e0a103b05fbd420454083db589efb2",
+        "stateport-playwright": "sha256:a5e8bc89bd193bd149dcad3de03366796bcc8f903f019e9e599f928dfaed9096",
+        "stateport-runner": "sha256:45b5aaf0cd18699a66371ed800683ad5740b491d1442d9c1edd90d87089786ae",
+        "stateport-web": "sha256:57f625f36c590c1440d70f07a3aa1bee6b31c2a9c942285c897c7934635fccf1",
+        "stateport-worker": "sha256:ac835bf5449d1f7843734a8cbb9f4a332e9b01e6066f06599798a6964539e551",
+    }
+    images = signed.get("images", [])
+    if {image.get("imageId"): image.get("digest") for image in images} != expected_images:
+        raise AssertionError("alpha.5 image set is not the published seven-image set")
+    for image in images:
+        image_id = image["imageId"]
+        digest = expected_images[image_id]
+        if image.get("reference") != f"ghcr.io/lennertvhoy/{image_id}@{digest}":
+            raise AssertionError(f"alpha.5 image reference is not public and digest-pinned: {image_id}")
+        bundle = image.get("signature", {}).get("bundle", {})
+        bundle_path = require(f"{release_root}/signatures/{image_id}.sigstore.json")
+        observed = hashlib.sha256(bundle_path.read_bytes()).hexdigest()
+        if bundle.get("digest") != f"sha256:{observed}" or bundle.get("size") != bundle_path.stat().st_size:
+            raise AssertionError(f"alpha.5 image signature descriptor mismatch: {image_id}")
+
+    supply_chain_paths = {
+        "doubleBuildComparison": "double-build-comparison.json",
+        "publicExportManifest": "public-export-manifest.json",
+    }
+    supply_chain = signed.get("supplyChain", {})
+    for evidence_id, name in supply_chain_paths.items():
+        descriptor = supply_chain.get(evidence_id, {})
+        path = require(f"{release_root}/supply-chain/{name}")
+        observed = hashlib.sha256(path.read_bytes()).hexdigest()
+        if descriptor.get("digest") != f"sha256:{observed}" or descriptor.get("size") != path.stat().st_size:
+            raise AssertionError(f"alpha.5 supply-chain descriptor mismatch: {evidence_id}")
+
+    predecessor = require(f"{release_root}/predecessor-bundle/release-index.sigstore.json")
+    alpha3_signature = require("download/0.1.0-alpha.3/release-index.sigstore.json")
+    if predecessor.read_bytes() != alpha3_signature.read_bytes():
+        raise AssertionError("alpha.5 predecessor bundle is not the retained alpha.3 signature")
+
+    versioned = require(f"{release_root}/install.sh")
+    mutable = require("download/install.sh")
+    for path in (versioned, mutable):
+        if stat.S_IMODE(path.stat().st_mode) != 0o755:
+            raise AssertionError(f"Alpha.5 bootstrap mode must be exactly 0755: {path}")
+    if mutable.read_bytes() != versioned.read_bytes():
+        raise AssertionError("Mutable bootstrap must be byte-identical to published Alpha.5 install.sh")
+    bootstrap = versioned.read_text(encoding="utf-8")
+    for fragment in (
+        CURRENT_TARGET_ID,
+        "Type install:",
+        "predecessor-bundle/release-index.sigstore.json",
+        "Windows 11 build 22000 or newer is required.",
+        "Ubuntu 24.04 for WSL is required.",
+    ):
+        if fragment not in bootstrap:
+            raise AssertionError(f"Alpha.5 bootstrap lacks required contract: {fragment}")
 
 
 def validate_immutable_release_trees() -> None:
@@ -817,7 +917,7 @@ def release_state_block() -> str:
 
 
 def mutable_public_pages() -> list[Path]:
-    immutable_parts = {Path("download/0.1.0-alpha.2"), Path("download/0.1.0-alpha.3")}
+    immutable_parts = {Path(root) for root in VALIDATOR_PUBLICATION_ANCHORS}
     pages = []
     for page in sorted(ROOT.rglob("*.html")):
         relative = page.relative_to(ROOT)
@@ -865,12 +965,11 @@ def _release_identity_tokens(release_root: str) -> set[str]:
 
 
 def validate_source_disclosures(texts: dict[Path, str]) -> None:
-    """Keep private Git, publicSnapshot, and archive identities distinct."""
+    """Keep canonical Git, publicSnapshot, and archive identities distinct."""
 
-    disclosure_surfaces = (
+    current_disclosure_surfaces = (
         "index.html",
         "download/index.html",
-        "download/erratum-alpha3.html",
         "releases/index.html",
         "docs/evidence-and-roadmap.html",
         "docs/limitations.html",
@@ -879,20 +978,20 @@ def validate_source_disclosures(texts: dict[Path, str]) -> None:
         "canonical development git",
         "private",
         "publicsnapshot",
-        "not remotely resolvable",
-        "curated alpha.3 source archive",
+        "is remotely resolvable",
+        "curated alpha.5 source archive",
         "agpl-3.0-or-later",
         "cc-by-4.0",
     )
-    for surface in disclosure_surfaces:
+    for surface in current_disclosure_surfaces:
         text = texts[ROOT / surface].lower()
         for term in common_terms:
             if term not in text:
                 raise AssertionError(f"{surface} must distinguish source status with {term!r}")
         semantic_patterns = (
-            r"curated alpha\.3 source archive.{0,120}\bpublic\b",
+            r"curated alpha\.5 source archive.{0,120}\bpublic\b",
             r"canonical development git.{0,240}\bprivate\b",
-            r"publicsnapshot.{0,800}not remotely resolvable",
+            r"publicsnapshot.{0,800}\bis remotely resolvable\b",
             r"code and statespec artifacts.{0,160}agpl-3\.0-or-later",
             r"documentation.{0,120}cc-by-4\.0",
         )
@@ -903,23 +1002,22 @@ def validate_source_disclosures(texts: dict[Path, str]) -> None:
                 )
 
     identity_tokens = (
-        *CANONICAL_SOURCE_IDENTITY.values(),
-        *PUBLIC_SNAPSHOT_IDENTITY.values(),
-        CURATED_SOURCE_ARCHIVE["sha256"],
+        *CURRENT_CANONICAL_SOURCE_IDENTITY.values(),
+        *CURRENT_PUBLIC_SNAPSHOT_IDENTITY.values(),
+        CURRENT_CURATED_SOURCE_ARCHIVE["sha256"],
     )
-    for surface in ("download/index.html", "download/erratum-alpha3.html"):
-        text = texts[ROOT / surface]
-        for token in identity_tokens:
-            if token not in text:
-                raise AssertionError(f"{surface} must bind the exact source identity {token!r}")
+    download_identity = texts[ROOT / "download/index.html"]
+    for token in identity_tokens:
+        if token not in download_identity:
+            raise AssertionError(f"download/index.html must bind the exact source identity {token!r}")
 
     download_text = texts[ROOT / "download/index.html"]
     download_labels = {
-        "<dt>Canonical development Git</dt>": tuple(CANONICAL_SOURCE_IDENTITY.values()),
+        "<dt>Canonical development Git</dt>": tuple(CURRENT_CANONICAL_SOURCE_IDENTITY.values()),
         "<dt>Signed <code>publicSnapshot</code> Git identity</dt>": tuple(
-            PUBLIC_SNAPSHOT_IDENTITY.values()
+            CURRENT_PUBLIC_SNAPSHOT_IDENTITY.values()
         ),
-        "<dt>Public curated source archive</dt>": (CURATED_SOURCE_ARCHIVE["sha256"],),
+        "<dt>Public curated source archive</dt>": (CURRENT_CURATED_SOURCE_ARCHIVE["sha256"],),
     }
     all_identity_tokens = set(identity_tokens)
     for label, expected_tokens in download_labels.items():
@@ -939,20 +1037,25 @@ def validate_source_disclosures(texts: dict[Path, str]) -> None:
             raise AssertionError(f"{label} conflates separate source identities: {conflated}")
 
     erratum_text = texts[ROOT / "download/erratum-alpha3.html"]
+    alpha3_identity_tokens = (
+        *ALPHA3_CANONICAL_SOURCE_IDENTITY.values(),
+        *ALPHA3_PUBLIC_SNAPSHOT_IDENTITY.values(),
+        ALPHA3_CURATED_SOURCE_ARCHIVE["sha256"],
+    )
     erratum_blocks = (
         (
             r"<li>The <strong>canonical development Git repository is private</strong>.*?</li>",
-            tuple(CANONICAL_SOURCE_IDENTITY.values()),
+            tuple(ALPHA3_CANONICAL_SOURCE_IDENTITY.values()),
         ),
         (
             r"<li>The release index separately records a <strong>signed "
             r"<code>publicSnapshot</code> Git identity</strong>.*?</li>",
-            tuple(PUBLIC_SNAPSHOT_IDENTITY.values()),
+            tuple(ALPHA3_PUBLIC_SNAPSHOT_IDENTITY.values()),
         ),
         (
             r"<li>What <em>is</em> publicly distributed: the curated alpha\.3 "
             r"source archive.*?</li>",
-            (CURATED_SOURCE_ARCHIVE["sha256"],),
+            (ALPHA3_CURATED_SOURCE_ARCHIVE["sha256"],),
         ),
     )
     for pattern, expected_tokens in erratum_blocks:
@@ -963,7 +1066,7 @@ def validate_source_disclosures(texts: dict[Path, str]) -> None:
         for token in expected_tokens:
             if token not in block:
                 raise AssertionError(f"erratum source disclosure is not bound to {token}")
-        forbidden_tokens = all_identity_tokens - set(expected_tokens)
+        forbidden_tokens = set(alpha3_identity_tokens) - set(expected_tokens)
         if conflated := sorted(token for token in forbidden_tokens if token in block):
             raise AssertionError(
                 f"erratum source disclosure conflates separate identities: {conflated}"
@@ -991,7 +1094,7 @@ def validate_source_disclosures(texts: dict[Path, str]) -> None:
             re.IGNORECASE,
         ),
     )
-    for surface in disclosure_surfaces:
+    for surface in (*current_disclosure_surfaces, "download/erratum-alpha3.html"):
         text = texts[ROOT / surface]
         for pattern in stale_source_claims:
             if pattern.search(text):
@@ -1004,47 +1107,37 @@ def validate_source_disclosures(texts: dict[Path, str]) -> None:
 def validate_release_semantics() -> None:
     """Reject mutable-surface claims that contradict canonical release truth."""
     release_block = release_state_block()
-    install_disabled = re.search(r"^  installation_enabled: false\s*$", release_block, re.MULTILINE)
-    known_defective = re.search(r"^  known_defective: true\s*$", release_block, re.MULTILINE)
-    if not install_disabled or not known_defective:
+    install_enabled = re.search(r"^  installation_enabled: true\s*$", release_block, re.MULTILINE)
+    known_defective = re.search(r"^  known_defective: false\s*$", release_block, re.MULTILINE)
+    if not install_enabled or not known_defective:
         raise AssertionError(
-            "PROJECT_STATE.yaml release block must record installation_enabled: false "
-            "and known_defective: true for the current candidate"
+            "PROJECT_STATE.yaml release block must record installation_enabled: true "
+            "and known_defective: false for the current candidate"
         )
 
     pages = mutable_public_pages()
     texts = {page: page.read_text(encoding="utf-8") for page in pages}
     command_pattern = re.compile(r"curl\s[^<\n]*install\.sh")
-    installable_claim = re.compile(r"you can (?:download and )?install", re.IGNORECASE)
+    expected_command = (
+        "curl -fsSL --proto '=https' --tlsv1.2 "
+        "https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.5/install.sh | sh"
+    )
     for page, text in texts.items():
         relative = page.relative_to(ROOT)
-        if command_pattern.search(text):
-            raise AssertionError(
-                f"install-disabled release still promoted with a curl install command in {relative}"
-            )
-        if installable_claim.search(text):
-            raise AssertionError(
-                f"known-defective release described as currently installable in {relative}"
-            )
-        for promotion in (
-            'data-label="One-line install"',
-            "Install StatePort on Linux",
-            "with one command",
-        ):
-            if promotion in text:
-                raise AssertionError(
-                    f"retired one-line install framing still promoted in {relative}: {promotion!r}"
-                )
+        commands = command_pattern.findall(text)
+        if relative == Path("download/index.html"):
+            if text.count(expected_command) != 1 or len(commands) != 1:
+                raise AssertionError("download/index.html must show exactly one exact Alpha.5 install command")
+        elif commands:
+            raise AssertionError(f"install command may appear only on download/index.html, found {relative}")
 
-    disabled_marker = "installation is currently disabled"
     for surface in ("index.html", "download/index.html", "releases/index.html", "docs/limitations.html"):
-        if disabled_marker not in texts[ROOT / surface].lower():
-            raise AssertionError(f"{surface} must plainly state {disabled_marker!r}")
-    erratum = ROOT / "download/erratum-alpha3.html"
-    if "download/erratum-alpha3.html" not in texts[ROOT / "index.html"]:
-        raise AssertionError("index.html must link the alpha.3 erratum")
+        text = texts[ROOT / surface].lower()
+        for marker in ("alpha.5", "public-test", "clean-install receipt"):
+            if marker not in text:
+                raise AssertionError(f"{surface} must disclose current Alpha.5 boundary {marker!r}")
     if "erratum-alpha3.html" not in texts[ROOT / "download/index.html"]:
-        raise AssertionError("download/index.html must link the alpha.3 erratum")
+        raise AssertionError("download/index.html must retain the historical alpha.3 erratum")
 
     validate_source_disclosures(texts)
 
@@ -1071,19 +1164,28 @@ def validate_release_semantics() -> None:
 
     alpha2_tokens = _release_identity_tokens("download/0.1.0-alpha.2")
     alpha3_tokens = _release_identity_tokens("download/0.1.0-alpha.3")
-    alpha2_only = alpha2_tokens - alpha3_tokens
-    alpha3_only = alpha3_tokens - alpha2_tokens
-    alpha2_label = re.compile(r"\balpha[ .-]?2\b|\b0\.1\.0-alpha\.2\b", re.IGNORECASE)
-    alpha3_label = re.compile(r"\balpha[ .-]?3\b|\b0\.1\.0-alpha\.3\b", re.IGNORECASE)
+    alpha5_tokens = _release_identity_tokens("download/0.1.0-alpha.5")
+    release_tokens = {"2": alpha2_tokens, "3": alpha3_tokens, "5": alpha5_tokens}
+    unique_tokens = {
+        version: tokens - set().union(*(other for key, other in release_tokens.items() if key != version))
+        for version, tokens in release_tokens.items()
+    }
+    labels = {
+        version: re.compile(rf"\balpha[ .-]?{version}\b|\b0\.1\.0-alpha\.{version}\b", re.IGNORECASE)
+        for version in release_tokens
+    }
     for page, text in texts.items():
         relative = page.relative_to(ROOT)
         for line in text.splitlines():
-            has_alpha2_token = any(token in line for token in alpha2_only)
-            has_alpha3_token = any(token in line for token in alpha3_only)
-            if has_alpha2_token and (has_alpha3_token or alpha3_label.search(line)):
-                raise AssertionError(f"alpha.2 identity attributed to alpha.3 in {relative}: {line.strip()[:120]}")
-            if has_alpha3_token and (has_alpha2_token or alpha2_label.search(line)):
-                raise AssertionError(f"alpha.3 identity attributed to alpha.2 in {relative}: {line.strip()[:120]}")
+            for version, tokens in unique_tokens.items():
+                if not any(token in line for token in tokens):
+                    continue
+                for other_version, label in labels.items():
+                    if other_version != version and label.search(line):
+                        raise AssertionError(
+                            f"alpha.{version} identity attributed to alpha.{other_version} "
+                            f"in {relative}: {line.strip()[:120]}"
+                        )
 
 
 def validate_asset_cache_keys() -> None:
@@ -1198,6 +1300,7 @@ def main() -> None:
         "download/install.sh",
         "download/0.1.0-alpha.2/install.sh",
         "download/0.1.0-alpha.3/install.sh",
+        "download/0.1.0-alpha.5/install.sh",
         "assets/site.css",
         "assets/site.js",
         "assets/stateport-mascot-block-arch-dark.svg",
@@ -1240,14 +1343,14 @@ def main() -> None:
     require_text("docs/platform-support.html", "Capability-based qualification")
     require_text("papers/stateware-whitepaper-public-v1.1.html", "Publication note")
     require_text("releases/index.html", "still being reviewed")
-    require_text("download/index.html", "Do not install alpha.2.")
-    require_text("docs/limitations.html", "Earlier local clean-install receipts for Ubuntu 24.04 and Fedora 44 are historical")
+    require_text("download/index.html", "Do not install Alpha.2")
+    require_text("docs/limitations.html", "The first WSL2 clean-install receipt is pending")
     require_text(".github/workflows/deploy-pages.yml", "actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e")
 
     public_copy = "\n".join(
         page.read_text(encoding="utf-8") for page in ROOT.rglob("*.html")
     )
-    if re.search(r"github\.com/lennertvhoy/StatePort(?!-Site)", public_copy):
+    if re.search(r"github\.com/lennertvhoy/StatePort(?:\.git)?(?:[/?#\"'<]|$)", public_copy):
         raise AssertionError(
             "Public pages must not link to the private implementation repository "
             "(lennertvhoy/StatePort); the public site repository (StatePort-Site) is allowed"
@@ -1262,6 +1365,7 @@ def main() -> None:
     validate_support_configuration()
     validate_disabled_alpha2_bootstrap()
     validate_alpha3_release()
+    validate_alpha5_release()
     validate_immutable_release_trees()
     validate_release_semantics()
     validate_asset_cache_keys()

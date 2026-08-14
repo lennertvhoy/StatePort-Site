@@ -14,7 +14,7 @@
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current alpha.3 availability status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -77,7 +77,7 @@
         </aside>
 
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Release-preparation contract</strong> This is a qualification map, not a current installation offer. <a href="../releases/">Availability lives in the release ledger.</a></p>
+          <p class="notice notice--quiet"><strong>Current public-test boundary</strong> Alpha.5 offers one exact Windows 11 + WSL2 + Ubuntu 24.04 AMD64 path as <code>compatible_unvalidated</code>. It is not a general Windows, WSL, Linux, or production support claim. <a href="../releases/">Availability lives in the release ledger.</a></p>
 
           <h2>Capability-based qualification</h2>
           <p>StatePort separates the browser and durable-storage path from host-integrated execution. An environment is not supported just because a container starts: each capability needs an explicit demonstration, and the release position records how far that demonstration has gone.</p>
@@ -95,28 +95,28 @@
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">Linux</th>
-                  <td>Primary qualification target.</td>
-                  <td>Codex CLI and Linux isolation can be qualified.</td>
-                  <td>First supported release.</td>
+                  <th scope="row">Windows 11 + WSL2 + Ubuntu 24.04 AMD64</th>
+                  <td>Exact Alpha.5 public-test target.</td>
+                  <td>Rootless Podman, Quadlet, systemd user services, and the stable execution host are capability-gated.</td>
+                  <td><code>compatible_unvalidated</code>; first clean-install receipt pending.</td>
                 </tr>
                 <tr>
-                  <th scope="row">Docker Desktop for Linux</th>
-                  <td>Clean-install acceptance target.</td>
-                  <td>Requires explicit provider-authentication and sandbox qualification.</td>
-                  <td>Must pass before release.</td>
+                  <th scope="row">WSL1</th>
+                  <td>Not eligible.</td>
+                  <td>Refused before provisioning-plan, install-state, receipt, or host mutation.</td>
+                  <td>Unsupported by Alpha.5.</td>
                 </tr>
                 <tr>
-                  <th scope="row">macOS + Docker Desktop</th>
-                  <td>Expected UI and durable-storage path.</td>
-                  <td>Bubblewrap is Linux-specific; host adapters require separate proof.</td>
-                  <td>Preview only after testing.</td>
+                  <th scope="row">Native Linux</th>
+                  <td>Separate capability contract and release target.</td>
+                  <td>Does not inherit the WSL2 candidate's evidence or bootstrap.</td>
+                  <td>Not an Alpha.5 installation target.</td>
                 </tr>
                 <tr>
-                  <th scope="row">Windows + Docker Desktop / WSL 2</th>
-                  <td>Expected UI and durable-storage path.</td>
-                  <td>Filesystem, terminal, provider, and WSL behaviour require separate proof.</td>
-                  <td>Preview only after testing.</td>
+                  <th scope="row">macOS, Docker Desktop, ARM64, other Linux distributions</th>
+                  <td>Separate platform work.</td>
+                  <td>Host adapters, storage, terminal, provider, and recovery need independent proof.</td>
+                  <td>Not claimed.</td>
                 </tr>
               </tbody>
             </table>
@@ -125,10 +125,10 @@
           <p>The matrix names a release contract, not a promise that every row is currently available. The <a href="hosts-and-portability.html">host-portability page</a> explains why provider identity alone cannot substitute for capability and degradation evidence.</p>
 
           <h2>The first clean-install user story</h2>
-          <p>This is the first end-to-end scenario a later signed release must demonstrate. It is not an installation guide yet: the exact commands, image digests, and release identity belong with that release.</p>
+          <p>The signed Alpha.5 bytes and exact commands now exist, but the scenario remains incomplete until the owner runs them on a real Windows 11 host and retains the resulting receipts. The <a href="../download/">install guide</a> carries the executable steps.</p>
           <ol>
-            <li>Install the supported Docker and Compose environment.</li>
-            <li>Start an exact signed StatePort release from an empty data directory.</li>
+            <li>Prepare Windows 11, WSL2, Ubuntu 24.04, and systemd from a clean distribution.</li>
+            <li>Run the exact signed Alpha.5 bootstrap from an empty StatePort state directory.</li>
             <li>Complete first-run diagnostics.</li>
             <li>Import existing StateSpec repositories through an explicit, reviewed path.</li>
             <li>Instantiate a new application from an accepted canonical template.</li>

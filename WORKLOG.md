@@ -1,5 +1,18 @@
 # Worklog
 
+## 2026-08-14 - Alpha.5 Site publication candidate
+
+- Anchored the corrected 33-file Alpha.5 WSL2 release tree at Site commit
+  `eaa1ca6a67844259860917442a95c891d097939f` alongside unchanged Alpha.2 and
+  Alpha.3 trees, then regenerated the independent immutable manifest.
+- Replaced current Alpha.3 containment copy with complete Windows 11 + WSL2 +
+  Ubuntu 24.04 setup instructions, the exact signed Alpha.5 bootstrap, and an
+  explicit `compatible_unvalidated` boundary. The historical Alpha.3 erratum
+  and dated video availability line remain labelled as historical evidence.
+- Repository validation, the Site quality contract, shell syntax, and all 26
+  unit tests pass. Local browser automation was unavailable; deployment and
+  public-byte verification remain pending and no browser acceptance is claimed.
+
 ## 2026-08-12 - Overview replacement render deployed
 
 - Replaced the rejected 44.544-second overview with the governed five-scene

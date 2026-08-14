@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="StatePort v0.1.0-alpha.3 is published, signed, and byte-intact, but installation is currently disabled: its signed freshness evidence has expired and known defects require a successor release.">
+    <meta name="description" content="StatePort Alpha.5 is a signed WSL2 public-test candidate with installation enabled; its first Windows 11 clean-install receipt and owner acceptance remain pending.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Download StatePort — installation disabled (v0.1.0-alpha.3)">
-    <meta property="og:description" content="Alpha.3 remains published and cryptographically intact, but installation is disabled: signed freshness evidence expired and known defects require a successor release.">
+    <meta property="og:title" content="Install StatePort Alpha.5 on Windows 11 + WSL2">
+    <meta property="og:description" content="Run the signed Alpha.5 WSL2 public-test candidate with complete Ubuntu 24.04 setup steps. Clean-install proof and owner acceptance remain pending.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/download/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current alpha.3 availability status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/download/">
@@ -25,15 +25,15 @@
     <link rel="manifest" href="../site.webmanifest">
     <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
-    <title>Download StatePort — installation disabled (v0.1.0-alpha.3)</title>
+    <title>Install StatePort Alpha.5 on Windows 11 + WSL2</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Download StatePort — installation disabled (v0.1.0-alpha.3)",
-        "description": "Alpha.3 remains published and cryptographically intact, but installation is disabled: signed freshness evidence expired and known defects require a successor release.",
+        "name": "Install StatePort Alpha.5 on Windows 11 + WSL2",
+        "description": "Run the signed Alpha.5 WSL2 public-test candidate with complete Ubuntu 24.04 setup steps. Clean-install proof and owner acceptance remain pending.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/download/",
-        "dateModified": "2026-08-08",
+        "dateModified": "2026-08-14",
         "inLanguage": "en"
       }
     </script>
@@ -57,11 +57,11 @@
     </header>
 
     <main id="main">
-      <section class="article-hero" id="alpha3" aria-labelledby="download-title">
+      <section class="article-hero" id="alpha5" aria-labelledby="download-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Download</p>
-          <h1 id="download-title">Installation is currently disabled</h1>
-          <p class="notice"><strong>Do not run the old one-line install command.</strong> The v0.1.0-alpha.3 signed release remains published and cryptographically intact, but its signed freshness evidence has expired and known installer and runtime defects require a successor release. <a href="erratum-alpha3.html">Read the alpha.3 erratum</a> for what happened and what to do next.</p>
+          <h1 id="download-title">Install Alpha.5 on Windows 11 + WSL2</h1>
+          <p class="notice"><strong>This is an unqualified public-test candidate.</strong> v0.1.0-alpha.5 is signed and installation is enabled only for Windows 11, WSL2, AMD64, and Ubuntu 24.04. No real-host clean-install receipt exists yet; the first run is owner testing, not acceptance or production qualification.</p>
           <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue</a>.</p>
         </div>
       </section>
@@ -70,85 +70,113 @@
         <aside class="doc-sidebar" aria-label="Download sections">
           <h2>Download</h2>
           <nav>
-            <a href="#alpha3" aria-current="page">Current status</a>
-            <a href="#why-disabled">Why disabled</a>
+            <a href="#alpha5" aria-current="page">Current status</a>
+            <a href="#requirements">Requirements</a>
+            <a href="#prepare-wsl">Prepare WSL2</a>
+            <a href="#install">Install</a>
             <a href="#verification">Verification details</a>
-            <a href="erratum-alpha3.html">Erratum</a>
-            <a href="#alpha2">Alpha.2</a>
+            <a href="#older-releases">Older releases</a>
             <a href="../releases/">Release status</a>
           </nav>
         </aside>
 
         <article class="prose release-overview" data-no-toc>
-          <p>Alpha.3 targets Linux on Intel/AMD with rootless Podman. The signed release and its verification material stay online below for inspection, but there is no working install path today.</p>
+          <p>Alpha.5 has one exact target: <code>wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet</code>. It refuses WSL1, native Linux, other distributions, ARM64, missing systemd, and older Windows builds before release installation begins.</p>
 
-          <section id="why-disabled" aria-labelledby="why-disabled-heading">
-            <h2 id="why-disabled-heading">Why installation is disabled</h2>
+          <section id="requirements" aria-labelledby="requirements-heading">
+            <h2 id="requirements-heading">Before you start</h2>
             <ul>
-              <li><strong>Signed freshness evidence has expired.</strong> All seven signed image scans and vulnerability databases are older than the 24-hour maximum age the installer enforces, so current-time verification refuses every image before anything is installed.</li>
-              <li><strong>Known installer and runtime defects.</strong> The committed installer does not provision or protocol-health-check the declared execution host, and goal execution in this candidate is synthetic. These defects require a successor release; they cannot be fixed by re-running this one.</li>
-              <li><strong>Earlier receipts are not current proof.</strong> Historical local install receipts for Ubuntu 24.04 and Fedora 44 were recorded while the freshness evidence was valid. They do not establish that the release is installable now.</li>
-              <li><strong>No acceptance exists.</strong> Owner acceptance, independent security review, and production qualification have not happened.</li>
+              <li>Windows 11 build 22000 or newer on an Intel or AMD 64-bit computer.</li>
+              <li>Administrator access in PowerShell to install or update WSL.</li>
+              <li>A normal, non-root Ubuntu 24.04 user with working Windows interoperability and <code>sudo</code>.</li>
+              <li>Internet access to GitHub Pages, GitHub releases, Ubuntu package repositories, and the public <code>ghcr.io/lennertvhoy</code> image packages.</li>
             </ul>
-            <p><strong>What to do next:</strong> wait for a successor release. The <a href="../releases/">release status</a> page and the <a href="erratum-alpha3.html">alpha.3 erratum</a> carry the current truth when one is published.</p>
           </section>
 
-          <p class="notice"><strong>Honest disclaimer.</strong> This is alpha software. It has not been security-audited or tested for production, and it currently cannot be installed at all. Don't run it anywhere that matters.</p>
+          <section id="prepare-wsl" aria-labelledby="prepare-wsl-heading">
+            <h2 id="prepare-wsl-heading">1. Prepare Windows and WSL2</h2>
+            <p>Open <strong>PowerShell as Administrator</strong> and run:</p>
+            <div class="code-panel" data-label="Administrator PowerShell"><code>wsl --update
+wsl --install -d Ubuntu-24.04
+wsl --list --verbose</code></div>
+            <p>If the <code>VERSION</code> column shows <code>1</code> for Ubuntu 24.04, convert it and check again:</p>
+            <div class="code-panel" data-label="Administrator PowerShell"><code>wsl --set-version Ubuntu-24.04 2
+wsl --list --verbose</code></div>
+            <p>Open Ubuntu 24.04 from the Start menu or run <code>wsl -d Ubuntu-24.04</code>. Finish Ubuntu's first-user setup, then enable systemd inside Ubuntu:</p>
+            <div class="code-panel" data-label="Ubuntu 24.04"><code>printf '[boot]\nsystemd=true\n' | sudo tee /etc/wsl.conf</code></div>
+            <p>Return to PowerShell, restart WSL, and reopen the distribution:</p>
+            <div class="code-panel" data-label="PowerShell"><code>wsl --shutdown
+wsl -d Ubuntu-24.04</code></div>
+            <p>Back in Ubuntu, confirm systemd is PID 1 and install <code>curl</code> if needed:</p>
+            <div class="code-panel" data-label="Ubuntu 24.04"><code>ps -p 1 -o comm=
+sudo apt-get update &amp;&amp; sudo apt-get install -y curl</code></div>
+            <p>The first command must print <code>systemd</code>. If it does not, stop and fix the WSL systemd setup before continuing.</p>
+          </section>
+
+          <section id="install" aria-labelledby="install-heading">
+            <h2 id="install-heading">2. Run the signed public-test installer</h2>
+            <p>In the fresh Ubuntu 24.04 shell, as your normal user, run this exact command:</p>
+            <div class="code-panel" data-label="Alpha.5 install"><code>curl -fsSL --proto '=https' --tlsv1.2 https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.5/install.sh | sh</code></div>
+            <p>The bootstrap checks Windows 11, WSL2, AMD64, Ubuntu 24.04, systemd, Windows interoperability, and <code>sudo</code> before it asks for permission. Review the prompt and type exactly <code>install</code> at <code>Type install:</code> to continue. It then requests sudo authentication, installs host prerequisites, verifies the release index, trust key, predecessor signature, installer, provisioner, updater, and seven image signatures, and provisions the rootless execution host.</p>
+            <p>A completed bootstrap ends with <code>StatePort 0.1.0-alpha.5 installed successfully</code>. Retain the receipts under <code>~/.local/state/stateport-install/</code> and <code>/var/lib/stateport-provisioning/receipts/</code>; they are the evidence needed to decide whether this first real-host run qualifies.</p>
+          </section>
+
+          <p class="notice"><strong>Honest disclaimer.</strong> Alpha.5 is intended for a controlled first-host test. It is <code>compatible_unvalidated</code>, not clean-installed, owner-accepted, independently security-reviewed, stable, or production-ready. Do not use it for important data or expose its local services to a network.</p>
 
           <section id="verification" aria-labelledby="verification-heading">
             <h2 id="verification-heading">Verification details</h2>
-            <p>The signed files and their SHA-256 sums remain available for inspection — the bytes are intact and unchanged since publication. The signed index is the source of truth for version, images, and trust identity.</p>
-            <dl class="release-ledger release-ledger--detailed" aria-label="Alpha 3 verification values">
+            <p>The immutable files and their SHA-256 sums are available for inspection. The signed index is the source of truth for version, target, images, artifacts, and trust identity.</p>
+            <dl class="release-ledger release-ledger--detailed" aria-label="Alpha 5 verification values">
               <div>
                 <dt>Installer script</dt>
-                <dd><a href="0.1.0-alpha.3/install.sh"><code>install.sh</code></a><small>The retired one-line command downloaded and ran this script, which pins the installer below. Do not run it: installation is disabled.</small></dd>
+                <dd><a href="0.1.0-alpha.5/install.sh"><code>install.sh</code></a><small>SHA-256: <code>104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a</code>.</small></dd>
               </div>
               <div>
                 <dt>Installer</dt>
-                <dd><a href="0.1.0-alpha.3/stateport-installer"><code>stateport-installer</code></a><small>SHA-256: <code>33874d373c8949209f81895b4481747fb97f2ab570ddd26e76258c4a2c02e6ab</code></small></dd>
+                <dd><a href="0.1.0-alpha.5/stateport-installer"><code>stateport-installer</code></a><small>SHA-256: <code>c1eea13b239c03dde7c405821d7ace5c215581dbe6a98257d68c7be74a6d0dcf</code>.</small></dd>
               </div>
               <div>
                 <dt>Signed release index</dt>
-                <dd><a href="0.1.0-alpha.3/release-index.json"><code>release-index.json</code></a><small>SHA-256: <code>d02709a250369b96c7bf5c39659d9080ff53d0cf0e20d391222fe5c1b0d4ae93</code>; signed payload <code>sha256:2639e29d6ca0a5bd83d07013edb49f22692efaf53a6049234fe6b70810c89166</code>.</small></dd>
+                <dd><a href="0.1.0-alpha.5/release-index.json"><code>release-index.json</code></a><small>SHA-256: <code>4613fcad48ea1a2e7dd4350d61baa333efbc734b1fcba1a1c9ca62994d562b71</code>; signed payload <code>sha256:e45d5c8ce6843bd0c3155ecd26940ff3dc11c5069a2de796a079708066faf98c</code>.</small></dd>
               </div>
               <div>
                 <dt>Index signature</dt>
-                <dd><a href="0.1.0-alpha.3/release-index.sigstore.json"><code>release-index.sigstore.json</code></a><small>SHA-256: <code>e4fb2c0f274ed88e34a5904c2d85feb3dcc231a7a5d794072fff158a29178208</code>.</small></dd>
+                <dd><a href="0.1.0-alpha.5/release-index.sigstore.json"><code>release-index.sigstore.json</code></a><small>SHA-256: <code>838c3106177b335e1a6a48a681cd173697c39a7bf6ac4908b6a05a5f5369eb82</code>.</small></dd>
               </div>
               <div>
                 <dt>Trust key</dt>
-                <dd><a href="0.1.0-alpha.3/stateport-alpha-2026-08-cosign.pub"><code>alpha-2026-08-cosign.pub</code></a><small>DER-SPKI fingerprint: <code>sha256:3dca6219e41310c6a95a8189669aacad3198e6c84489946406b8f986e1f4211a</code>.</small></dd>
+                <dd><a href="0.1.0-alpha.5/stateport-alpha-2026-08-cosign.pub"><code>alpha-2026-08-cosign.pub</code></a><small>DER-SPKI fingerprint: <code>sha256:3dca6219e41310c6a95a8189669aacad3198e6c84489946406b8f986e1f4211a</code>.</small></dd>
               </div>
               <div>
                 <dt>Canonical development Git</dt>
-                <dd><code>fa4ea4b7f08e78669e194c204b59206ab109a02f</code><small>Tree <code>aec60303045e7a9c8255b941c761d904af85ec10</code>. This canonical development Git repository and its history are private.</small></dd>
+                <dd><code>256d876156fbbde8547ecc04c1ac87d31df70bad</code><small>Tree <code>e7fb80c5ac2c8bbe6d48dd21e559a02328a70d0c</code>. This canonical development Git repository and its history are private.</small></dd>
               </div>
               <div>
                 <dt>Signed <code>publicSnapshot</code> Git identity</dt>
-                <dd><code>43d6b4491b962c963a0ecafc060e0dfc7e334dc0</code><small>Tree <code>3bbe46db14a7c929e6f0a17ca153ec686192aa51</code>. This separately signed identity is not remotely resolvable: no public Git repository serves that exact snapshot or its history.</small></dd>
+                <dd><code>6911b7c1e73e0408af4a2a900aec585d15168a28</code><small>Tree <code>05ca882f4e41b98f4ffa6f9257e068d72472e765</code>. This signed <code>publicSnapshot</code> is remotely resolvable by an anonymous normal clone from <a href="https://github.com/lennertvhoy/StatePort-Source" target="_blank" rel="noopener">the public Git repository</a>.</small></dd>
               </div>
               <div>
                 <dt>Public curated source archive</dt>
-                <dd><a href="0.1.0-alpha.3/stateport-source.tar"><code>stateport-source.tar</code></a><small>The curated alpha.3 source archive is public: SHA-256 <code>17f5680c30841b1e831b37df02dca8f03c2c03d265a42633dd525f99bd613398</code>, 20,305,920 bytes. Code and StateSpec artifacts are classified AGPL-3.0-or-later; documentation is classified CC-BY-4.0. Archive availability does not make the canonical Git history public.</small></dd>
+                <dd><a href="0.1.0-alpha.5/stateport-source.tar"><code>stateport-source.tar</code></a><small>The curated alpha.5 source archive is public: SHA-256 <code>00be84da7739a450b030432dece7caba93b79b59d575fefc89d2ba17bb31446b</code>, 22,415,360 bytes. Code and StateSpec artifacts are classified AGPL-3.0-or-later; documentation is classified CC-BY-4.0. The public snapshot is separate from the private canonical development Git history.</small></dd>
               </div>
             </dl>
-            <p>Seven Linux AMD64 images are pinned in the signed index. The public receipt image set digest is <code>sha256:ff783dddd731ff8217d8cf573403b114bba5759dc9f0922ada98bf7d22a1beb7</code>:</p>
+            <p>Seven WSL2 Linux AMD64 images are pinned by public GHCR reference and digest in the signed index:</p>
             <ul>
-              <li><code>stateport-api</code> <code>sha256:7d06c67c01bdebd12c917fadd4c8ba6aa552ebd652ca285060af6769df117ac4</code></li>
-              <li><code>stateport-dev-workspace</code> <code>sha256:bc5a36444fb3adbeb7d6a266ae105b78fecd53e7154c1c4b9a8704171b1d399c</code></li>
-              <li><code>stateport-execution-host</code> <code>sha256:8e20cde0086a0b58e6929476332a1a64b93406eea62c18eb977444424ecb57ee</code></li>
-              <li><code>stateport-playwright</code> <code>sha256:3dc4fdcc43ae5d9c0d678dbdffd9f4ec541d64efa5c384557bc4b82578bb3bbf</code></li>
-              <li><code>stateport-runner</code> <code>sha256:58a388cce3fe15091585befb757c02b65b1e47f26b4473c24dffb66fdde30e03</code></li>
-              <li><code>stateport-web</code> <code>sha256:9117ee4ec4329a1b0a229e430248de8269bf7c4e5a8c8c08da0afe8b6cadbd92</code></li>
-              <li><code>stateport-worker</code> <code>sha256:c12f58d354fb066db0bb2747b8867cfc76db151fb449cdd1fba94c4939f4e1b3</code></li>
+              <li><code>stateport-api</code> <code>sha256:a5c639880195ba6dc57fa9c13378fdf0cdb0361f08cbddea7b7e90f476906af8</code></li>
+              <li><code>stateport-dev-workspace</code> <code>sha256:1a9eecc2a087620e7139570e09c08b4ce6c17a8369d2b428551809dff3fda886</code></li>
+              <li><code>stateport-execution-host</code> <code>sha256:02d3ce6d6dfdacc164b947c1c88ebf6c64e0a103b05fbd420454083db589efb2</code></li>
+              <li><code>stateport-playwright</code> <code>sha256:a5e8bc89bd193bd149dcad3de03366796bcc8f903f019e9e599f928dfaed9096</code></li>
+              <li><code>stateport-runner</code> <code>sha256:45b5aaf0cd18699a66371ed800683ad5740b491d1442d9c1edd90d87089786ae</code></li>
+              <li><code>stateport-web</code> <code>sha256:57f625f36c590c1440d70f07a3aa1bee6b31c2a9c942285c897c7934635fccf1</code></li>
+              <li><code>stateport-worker</code> <code>sha256:ac835bf5449d1f7843734a8cbb9f4a332e9b01e6066f06599798a6964539e551</code></li>
             </ul>
-            <p>Also shipped with the candidate: the <a href="0.1.0-alpha.3/supply-chain/public-export-manifest.json">export manifest</a>, <a href="0.1.0-alpha.3/compose.yaml">Compose definition</a>, <a href="0.1.0-alpha.3/release-notes.md">release notes</a>, and <a href="0.1.0-alpha.3/known-limitations.md">known limitations</a>.</p>
+            <p>Also shipped with the candidate: the <a href="0.1.0-alpha.5/supply-chain/public-export-manifest.json">export manifest</a>, <a href="0.1.0-alpha.5/compose.yaml">Compose definition</a>, <a href="0.1.0-alpha.5/release-notes.md">release notes</a>, <a href="0.1.0-alpha.5/known-limitations.md">known limitations</a>, and the authenticated <a href="0.1.0-alpha.5/predecessor-bundle/release-index.sigstore.json">Alpha.3 predecessor signature bundle</a>.</p>
           </section>
 
-          <section id="alpha2" aria-labelledby="alpha2-heading">
-            <h2 id="alpha2-heading">Alpha.2</h2>
-            <p><strong>v0.1.0-alpha.2 is superseded and disabled. Do not install alpha.2.</strong> Its signed files stay online for inspection — they are not changed or relabelled — but its installer stays disabled because the packaged web image was missing required source trees. Alpha.3 is likewise published for inspection only while installation is disabled.</p>
-            <p><a href="0.1.0-alpha.2/release-index.json">Inspect the alpha.2 signed index</a> or read the <a href="../releases/">release status</a> page.</p>
+          <section id="older-releases" aria-labelledby="older-releases-heading">
+            <h2 id="older-releases-heading">Older releases</h2>
+            <p><strong>Do not install Alpha.2 or Alpha.3.</strong> v0.1.0-alpha.2 is superseded and disabled because its packaged web image omitted required source trees. v0.1.0-alpha.3 remains signed and byte-intact but install-disabled because its evidence expired and its released installer/runtime defects require a successor. Their immutable files remain online for inspection.</p>
+            <p><a href="erratum-alpha3.html">Read the historical Alpha.3 erratum</a>, <a href="0.1.0-alpha.3/release-index.json">inspect its signed index</a>, or <a href="0.1.0-alpha.2/release-index.json">inspect the Alpha.2 signed index</a>.</p>
           </section>
         </article>
       </div>

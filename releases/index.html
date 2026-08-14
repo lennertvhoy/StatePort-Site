@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="StatePort release status in plain English: alpha.3 is published and signed but installation is currently disabled; nothing owner-accepted, audited, or production-ready.">
+    <meta name="description" content="StatePort Alpha.5 is a signed WSL2 public-test candidate; its first Windows 11 clean-install receipt, owner acceptance, and security review remain pending.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="StatePort release status">
-    <meta property="og:description" content="StatePort alpha.3 is published and signed for Linux on Intel/AMD, but installation is currently disabled. Not owner-accepted, still being reviewed.">
+    <meta property="og:description" content="StatePort Alpha.5 is published for an unqualified Windows 11 + WSL2 public test. No clean-install receipt or owner acceptance exists yet.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/releases/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current alpha.3 availability status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/releases/">
@@ -31,9 +31,9 @@
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "StatePort release status",
-        "description": "Plain-English release status for StatePort: alpha.3 is published and signed but installation is currently disabled; nothing is accepted, audited, or production-ready.",
+        "description": "Plain-English release status for StatePort Alpha.5: a signed WSL2 public test without a clean-install receipt, owner acceptance, or security review.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/releases/",
-        "dateModified": "2026-08-08",
+        "dateModified": "2026-08-14",
         "inLanguage": "en"
       }
     </script>
@@ -70,9 +70,9 @@
           <h2>Status</h2>
           <nav>
             <a href="#current-status" aria-current="page">Current status</a>
-            <a href="../download/#alpha3">Download (disabled)</a>
+            <a href="../download/#alpha5">Install guide</a>
             <a href="../download/erratum-alpha3.html">Alpha.3 erratum</a>
-            <a href="../download/#alpha2">Alpha.2</a>
+            <a href="../download/#older-releases">Older releases</a>
             <a href="../docs/limitations.html">Current limitations</a>
             <a href="../">Home</a>
           </nav>
@@ -82,11 +82,11 @@
           <div class="release-summary" id="current-status">
             <div>
               <p class="release-summary-label">Current software status</p>
-              <h2>v0.1.0-alpha.3 — published, installation disabled, still being reviewed</h2>
-              <p>The signed alpha.3 release is online and cryptographically intact, but installation is currently disabled: its signed freshness evidence has expired and known installer and runtime defects require a successor release. It is not owner-accepted, not security-audited, and not production-ready.</p>
-              <p><a class="button button--ink" href="../download/erratum-alpha3.html">Read the alpha.3 erratum <span aria-hidden="true">↗</span></a></p>
+              <h2>v0.1.0-alpha.5 — published WSL2 public test, still being reviewed</h2>
+              <p>The signed Alpha.5 candidate and its seven digest-pinned images are online. Installation is enabled only for Windows 11 + WSL2 + Ubuntu 24.04, where support reports <code>compatible_unvalidated</code>. The first real-host clean-install receipt, owner acceptance, independent security review, stability, and production qualification are still pending.</p>
+              <p><a class="button button--ink" href="../download/">Open the WSL2 install guide <span aria-hidden="true">↗</span></a></p>
             </div>
-            <p class="release-review-date">Status reviewed<br><time datetime="2026-08-08">8 August 2026</time></p>
+            <p class="release-review-date">Status reviewed<br><time datetime="2026-08-14">14 August 2026</time></p>
           </div>
 
           <section id="available-now" aria-labelledby="available-now-heading">
@@ -97,13 +97,13 @@
                 <thead><tr><th scope="col">What</th><th scope="col">Status</th></tr></thead>
                 <tbody>
                   <tr><th scope="row">Website</th><td>Live</td></tr>
-                  <tr><th scope="row">Download</th><td>v0.1.0-alpha.3 published — installation currently disabled</td></tr>
-                  <tr><th scope="row">Clean-install proof</th><td>Historical local receipts only (Ubuntu 24.04, Fedora 44) — not current installability</td></tr>
-                  <tr><th scope="row">Source identities</th><td>The curated alpha.3 source archive is public; canonical development Git is private; the signed <code>publicSnapshot</code> Git identity is not remotely resolvable. Public archive availability does not provide canonical Git history.</td></tr>
+                  <tr><th scope="row">Download</th><td>v0.1.0-alpha.5 published — exact WSL2 public-test target only</td></tr>
+                  <tr><th scope="row">Clean-install proof</th><td>Pending the owner's first Windows 11 + WSL2 + Ubuntu 24.04 run</td></tr>
+                  <tr><th scope="row">Source identities</th><td>The curated alpha.5 source archive is public; canonical development Git is private; the signed <code>publicSnapshot</code> Git identity is remotely resolvable from the public <a href="https://github.com/lennertvhoy/StatePort-Source" target="_blank" rel="noopener">StatePort-Source repository</a>. Public snapshot availability does not expose canonical development history.</td></tr>
                   <tr><th scope="row">Archive licensing</th><td>Code and StateSpec artifacts are AGPL-3.0-or-later; documentation is CC-BY-4.0.</td></tr>
                   <tr><th scope="row">Security review</th><td>Not done</td></tr>
                   <tr><th scope="row">Production use</th><td>No</td></tr>
-                  <tr><th scope="row">Older alpha (0.1.0-alpha.2)</th><td>Superseded and disabled</td></tr>
+                  <tr><th scope="row">Older alphas</th><td>Alpha.2 superseded and disabled; Alpha.3 signed, retained, and install-disabled</td></tr>
                 </tbody>
               </table>
             </div>
@@ -111,18 +111,18 @@
 
           <section id="release-evidence" aria-labelledby="release-evidence-heading">
             <h2 id="release-evidence-heading">What this means</h2>
-            <p>Published means the signed files are online and byte-intact. It does not mean installable, reviewed, accepted, or production-ready. These are different things, and we keep them separate:</p>
+            <p>Published means the signed files are online and byte-intact. An enabled public-test path does not establish a successful clean install, review, acceptance, stability, or production readiness. These are different things:</p>
             <ul>
-              <li><strong>Signed and online</strong> — yes. The signed artifacts are unchanged since publication.</li>
-              <li><strong>Currently installable</strong> — no. Signed freshness evidence has expired and known installer and runtime defects require a successor release. Do not run the old one-line install command.</li>
-              <li><strong>Clean install verified</strong> — historical local receipts for Ubuntu 24.04 and Fedora 44 only; they are not current install proof.</li>
+              <li><strong>Signed and online</strong> — yes. The Alpha.5 artifacts are immutable and the public image references resolve anonymously.</li>
+              <li><strong>Installation path enabled</strong> — yes, only for the exact WSL2 Ubuntu 24.04 AMD64 target and only as a public test.</li>
+              <li><strong>Clean install verified</strong> — no. The first real-host run and its clean-install receipt are pending.</li>
               <li><strong>Human accepted</strong> — not yet. Alpha, still being reviewed.</li>
               <li><strong>Security review</strong> — not done.</li>
               <li><strong>Production-ready</strong> — no.</li>
             </ul>
           </section>
 
-          <p class="notice"><strong>About alpha.2.</strong> v0.1.0-alpha.2 is superseded and disabled. Its signed files stay online for inspection and were not changed.</p>
+          <p class="notice"><strong>Historical releases remain unchanged.</strong> v0.1.0-alpha.2 is superseded and disabled. v0.1.0-alpha.3 is signed and byte-intact but install-disabled; its <a href="../download/erratum-alpha3.html">erratum</a> remains the historical authority. Neither tree was changed to publish Alpha.5.</p>
         </article>
       </div>
     </main>

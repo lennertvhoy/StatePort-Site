@@ -25,6 +25,7 @@ from validate_repo import (
     release_state_block,
     validate_documentation_button_accessibility,
     validate_local_references,
+    validate_source_disclosures,
 )
 
 BASE_URL = "https://lennertvhoy.github.io/StatePort-Site/"
@@ -516,11 +517,11 @@ def validate_linked_markdown_language() -> None:
     """Visitor-linked Markdown must carry the same current release boundary."""
 
     whitepaper_terms = (
-        "v0.1.0-alpha.3",
-        "installation is currently disabled",
-        "curated alpha.3 source archive",
+        "v0.1.0-alpha.5",
+        "compatible_unvalidated",
+        "curated alpha.5 source archive",
         "publicsnapshot",
-        "not remotely resolvable",
+        "remotely resolvable",
     )
     stale = (
         re.compile(r"\bv0\.1\.0-alpha\.1\b", re.IGNORECASE),
@@ -542,11 +543,11 @@ def validate_linked_markdown_language() -> None:
 
 
 def validate_release_surface_quality(documents: dict[Path, DocumentFacts]) -> None:
-    """Keep the public voice consistent with the install-disabled release truth."""
+    """Keep the public voice consistent with the unqualified public-test truth."""
     release_block = release_state_block()
-    install_disabled = re.search(r"^  installation_enabled: false\s*$", release_block, re.MULTILINE)
-    if not install_disabled:
-        raise AssertionError("Release surface quality checks assume installation_enabled: false")
+    install_enabled = re.search(r"^  installation_enabled: true\s*$", release_block, re.MULTILINE)
+    if not install_enabled:
+        raise AssertionError("Release surface quality checks assume installation_enabled: true")
 
     command_pattern = re.compile(r"curl\s[^<\n]*install\.sh")
     for page in mutable_public_pages():
@@ -558,80 +559,23 @@ def validate_release_surface_quality(documents: dict[Path, DocumentFacts]) -> No
         )
         if command_pattern.search(metadata):
             raise AssertionError(
-                f"{facts.path}: metadata still promotes the retired install command"
-            )
-        if re.search(r"one[- ]line install|one command", metadata, re.IGNORECASE):
-            raise AssertionError(
-                f"{facts.path}: metadata still frames the release as a one-command install"
+                f"{facts.path}: metadata must not contain an executable install command"
             )
 
     for entrypoint in (Path("index.html"), Path("releases/index.html")):
         facts = documents[entrypoint]
-        if "disabled" not in (facts.description or "").lower():
+        description = (facts.description or "").lower()
+        if "public-test" not in description or "clean-install" not in description:
             raise AssertionError(
-                f"{entrypoint}: meta description must disclose that installation is disabled"
+                f"{entrypoint}: meta description must disclose public-test and clean-install status"
             )
 
 
 def validate_source_disclosure_quality(documents: dict[Path, DocumentFacts]) -> None:
-    """Reject pre-publication copy and ambiguous source/license summaries."""
+    """Reuse the repository's exact identity and source/license boundary."""
 
-    surfaces = (
-        Path("index.html"),
-        Path("download/index.html"),
-        Path("download/erratum-alpha3.html"),
-        Path("releases/index.html"),
-        Path("docs/evidence-and-roadmap.html"),
-        Path("docs/limitations.html"),
-    )
-    required_terms = (
-        "canonical development git",
-        "private",
-        "publicsnapshot",
-        "not remotely resolvable",
-        "curated alpha.3 source archive",
-        "agpl-3.0-or-later",
-        "cc-by-4.0",
-    )
-    stale_patterns = (
-        re.compile(r">\s*not public\s*<", re.IGNORECASE),
-        re.compile(r"implementation source(?: itself)? is not public", re.IGNORECASE),
-        re.compile(
-            r"\b(?:source code|source archive|artifacts?)\s+"
-            r"(?:itself\s+)?(?:is|are|remain|remains)\s+"
-            r"(?:not public|absent|unavailable)\b",
-            re.IGNORECASE,
-        ),
-        re.compile(r"\bno public (?:source|source archive|artifacts?)\b", re.IGNORECASE),
-        re.compile(r"product license (?:is )?not decided", re.IGNORECASE),
-        re.compile(
-            r"\blicens(?:e|ing)\s+(?:is\s+)?(?:not decided|undecided)\b",
-            re.IGNORECASE,
-        ),
-        re.compile(r"public source release,\s*licensing decision,\s*artifacts", re.IGNORECASE),
-    )
-    for path in surfaces:
-        if path not in documents:
-            raise AssertionError(f"Missing source-disclosure surface: {path}")
-        html = (ROOT / path).read_text(encoding="utf-8")
-        lowered = html.lower()
-        for term in required_terms:
-            if term not in lowered:
-                raise AssertionError(f"{path}: source disclosure must include {term!r}")
-        for pattern in (
-            r"curated alpha\.3 source archive.{0,120}\bpublic\b",
-            r"canonical development git.{0,240}\bprivate\b",
-            r"publicsnapshot.{0,800}not remotely resolvable",
-            r"code and statespec artifacts.{0,160}agpl-3\.0-or-later",
-            r"documentation.{0,120}cc-by-4\.0",
-        ):
-            if not re.search(pattern, lowered, re.DOTALL):
-                raise AssertionError(f"{path}: conflated source/license relationship: {pattern}")
-        for pattern in stale_patterns:
-            if pattern.search(html):
-                raise AssertionError(
-                    f"{path}: stale pre-publication source or license copy: {pattern.pattern}"
-                )
+    texts = {ROOT / path: (ROOT / path).read_text(encoding="utf-8") for path in documents}
+    validate_source_disclosures(texts)
 
 
 def validate_social_card_metadata(documents: dict[Path, DocumentFacts]) -> None:
@@ -666,7 +610,6 @@ STALE_RELEASE_PATTERNS = (
         r"|\b(?:install|download|available)\b[^.\n]{0,60}\bcoming soon\b)",
         re.IGNORECASE,
     ),
-    re.compile(r"curl\s[^<\n]*\|\s*(?:sudo\s+)?(?:ba|z)?sh\b", re.IGNORECASE),
 )
 
 

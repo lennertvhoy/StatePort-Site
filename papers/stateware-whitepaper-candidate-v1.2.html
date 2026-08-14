@@ -16,7 +16,7 @@ Boundary — a candidate Stateware whitepaper, not yet published.">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current alpha.3 availability status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -112,22 +112,21 @@ application boundary</strong> — and that moving the boundary there
 changes what an assistant can be.</p>
 <p><strong>Status of the reference implementation.</strong> The public
 walkthrough is a mock-backed, public-safe fixture and local development
-preview. It is not evidence of a live alpha.3 backend, a hosted service, a
-cross-device service, or a production-qualified product. The signed alpha.3
-release remains published for inspection while installation is disabled.</p>
+preview. It is not evidence of a live Alpha.5 backend, a hosted service, a
+cross-device service, or a production-qualified product. The signed Alpha.5
+release is a <code>compatible_unvalidated</code> WSL2 public-test candidate
+without a clean-install receipt.</p>
 <p><strong>Current delivery versus future architecture.</strong> The
 current delivery of the reference implementation is StatePort
-v0.1.0-alpha.3, a <strong>publicly published and signed alpha candidate
-available for inspection</strong>; installation is currently disabled.
-The curated alpha.3 source archive is public, while the canonical
-development Git remains private and its signed <code>publicSnapshot</code>
-identity is not remotely resolvable. It is not owner-accepted,
-independently security-audited, stable, or production-ready. The delivery
-is rootless Podman on Linux (x86_64), loopback-only, a single local user,
-and Codex CLI 0.145.0 as the only qualified execution provider —
-operator-authenticated, running in supervised direct mode with external
-side effects denied by default, no bounded or unattended autonomy, and
-no transactional mode. There is no remote CI verification. The wider
+v0.1.0-alpha.5, a <strong>publicly published and signed WSL2 public-test
+candidate</strong>. Its exact Windows 11 + WSL2 + Ubuntu 24.04 AMD64 path is
+<code>compatible_unvalidated</code> until a real-host clean-install receipt
+exists. The curated Alpha.5 source archive is public, while canonical
+development Git remains private; its signed <code>publicSnapshot</code> is
+remotely resolvable from the public StatePort-Source repository. It is not
+owner-accepted, independently security-audited, stable, or production-ready.
+The delivery is rootless Podman and Quadlet under WSL2, loopback-only, and
+single-user. The wider
 architecture this paper describes — catalogues of community applications,
 multiple qualified providers, team deployments — is a direction, not a
 description of what the alpha delivers. Where the two differ, this paper

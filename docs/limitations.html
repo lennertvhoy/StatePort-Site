@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="The honest current boundaries of StatePort: alpha.3 is published and signed but installation is disabled, human acceptance is pending, and alpha.2 remains superseded.">
+    <meta name="description" content="StatePort Alpha.5 is an unqualified WSL2 public-test candidate: its clean-install receipt, owner acceptance, security review, and production qualification remain pending.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="Current limitations — what StatePort is not, today">
-    <meta property="og:description" content="Alpha.3 is published and byte-intact but installation is currently disabled; human acceptance and independent security review remain pending.">
+    <meta property="og:description" content="Alpha.5 is published for a controlled WSL2 public test; clean-install proof, human acceptance, and independent security review remain pending.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/limitations.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current alpha.3 availability status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/limitations.html">
@@ -30,9 +30,9 @@
         "@context": "https://schema.org",
         "@type": "TechArticle",
         "headline": "Current limitations: what StatePort is not, today",
-        "description": "Alpha.3 is published for a portable Linux AMD64 capability contract; human acceptance and independent security review remain pending.",
+        "description": "Alpha.5 is published for an exact WSL2 Ubuntu 24.04 public test; clean-install proof, human acceptance, and independent security review remain pending.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/docs/limitations.html",
-        "dateModified": "2026-08-06",
+        "dateModified": "2026-08-14",
         "inLanguage": "en"
       }
     </script>
@@ -89,13 +89,13 @@
         </aside>
 
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Availability boundary</strong> The v0.1.0-alpha.3 signed artifacts are published and byte-intact, but installation is currently disabled: signed freshness evidence has expired and known installer and runtime defects require a successor release. Historical local receipts exist for Ubuntu 24.04 (<code>validated_baseline</code>) and Fedora 44 (<code>compatible_unvalidated</code>); they are not current install proof. Human acceptance remains pending. Alpha.2 is superseded and installation-disabled. The <a href="../releases/">release ledger</a>, <a href="../download/">download page</a>, and <a href="../download/erratum-alpha3.html">alpha.3 erratum</a> are the current availability authorities.</p>
+          <p class="notice notice--quiet"><strong>Availability boundary</strong> v0.1.0-alpha.5 is published as a signed WSL2 public-test candidate. Installation is enabled only for Windows 11 + WSL2 + Ubuntu 24.04 AMD64, and that path is <code>compatible_unvalidated</code> until the first real-host clean-install receipt exists. Human acceptance remains pending. The <a href="../releases/">release ledger</a> and <a href="../download/">download page</a> are the current authorities; the <a href="../download/erratum-alpha3.html">Alpha.3 erratum</a> remains historical.</p>
 
           <h2>Availability</h2>
           <ul>
-            <li>Alpha.3 is published and cryptographically intact, but installation is currently disabled and it is not human accepted, independently reviewed, or production qualified. Earlier local clean-install receipts for Ubuntu 24.04 and Fedora 44 are historical, not current install proof.</li>
+            <li>Alpha.5 is published and cryptographically intact with an enabled public-test bootstrap, but it is not clean-installed, human accepted, independently reviewed, stable, or production qualified. The first WSL2 clean-install receipt is pending.</li>
             <li>Alpha.2 is signed and published but superseded and not installable or accepted. Its web image omitted two runtime source trees and its bootstrap remains disabled.</li>
-            <li>The curated alpha.3 source archive is public; code and StateSpec artifacts are AGPL-3.0-or-later, and documentation is CC-BY-4.0. Canonical development Git and its history are private. The separately signed <code>publicSnapshot</code> Git identity is not remotely resolvable, so the archive must not be described as public Git history.</li>
+            <li>The curated alpha.5 source archive is public; code and StateSpec artifacts are AGPL-3.0-or-later, and documentation is CC-BY-4.0. Canonical development Git and its history are private. The separately signed <code>publicSnapshot</code> Git identity is remotely resolvable from the public <a href="https://github.com/lennertvhoy/StatePort-Source" target="_blank" rel="noopener">StatePort-Source repository</a>; that public projection is not the private canonical development history.</li>
             <li>There is no hosted service: StatePort is not offered as a managed or cloud product.</li>
           </ul>
 
@@ -107,15 +107,15 @@
 
           <h2>Platform and execution host</h2>
           <ul>
-            <li>Alpha.3 evaluates the portable target <code>linux-amd64-rootless-podman-quadlet</code>: Linux kernel, AMD64, cgroup v2, rootless Podman, Quadlet, systemd user services, and subordinate UID/GID mappings.</li>
-            <li>Ubuntu 24.04 is the <code>validated_baseline</code>; Fedora 44 is <code>compatible_unvalidated</code>. Debian and rolling distributions are not claimed.</li>
-            <li>In the alpha design, StudyState executes through a bundled synthetic executor. Model-backed execution requires a separately authenticated execution host and has no clean-install acceptance claim.</li>
+            <li>Alpha.5 has one signed target: <code>wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet</code>. It requires Windows 11 build 22000 or newer, WSL2 AMD64, Ubuntu 24.04, cgroup v2, rootless Podman, Quadlet, systemd user services, and subordinate UID/GID mappings.</li>
+            <li>WSL1 is refused before host mutation. Native Linux, other distributions, Docker Desktop, macOS, and ARM64 do not inherit this release's target or public-test status.</li>
+            <li>Capability checks and focused local validation exist, but no Windows 11 + WSL2 + Ubuntu 24.04 clean-install acceptance run exists yet.</li>
           </ul>
 
           <h2>Security and compliance</h2>
           <ul>
             <li>No independent security review, formal audit, or penetration test has been performed.</li>
-            <li>Release signatures for this private candidate are not uploaded to a public transparency log; verification relies on the pinned alpha release public key and its recorded fingerprint.</li>
+            <li>Release signatures are not uploaded to a public transparency log; verification relies on the pinned alpha release public key and its recorded fingerprint.</li>
             <li>StatePort makes no GDPR, NIS2, or other legal or compliance certification claim.</li>
             <li>There is no active public support or vulnerability-reporting route yet.</li>
           </ul>
@@ -124,7 +124,7 @@
           <ul>
             <li>Container deployment is local-only and limited to projects that satisfy the documented contract (plus assisted proposals for recognizable Python, Node, and static-web repositories)—not “deploy anything”.</li>
             <li>Deployment governance for unrelated projects is a host-CLI capability. Browser and preview capabilities described in source are not evidence of a production-qualified installation.</li>
-            <li>The signed alpha.3 index describes an updater and pinned trust root; installed updater behavior remains bounded by the alpha candidate and its receipts.</li>
+            <li>The signed Alpha.5 index describes an updater and pinned trust root; installed updater behavior remains bounded by the exact candidate and its receipts.</li>
             <li>Trust-root rotation is a manual, out-of-band operator act; a release artifact can never rotate trust by itself.</li>
             <li>Uninstall, purge, backup, restore, update, and rollback behavior require a successfully installed exact candidate and corresponding receipts. Alpha.2 has none.</li>
             <li>There is no Azure or other cloud deployment; infrastructure code has no production-apply claim.</li>
@@ -138,8 +138,8 @@
 
           <h2>Evidence</h2>
           <ul>
-            <li>Alpha.3 has a published supply-chain record and historical local install receipts for Ubuntu 24.04 and Fedora 44 bound to release-index digest <code>sha256:3353fdb6477fcb5269169177c625205c7737b13c904de0c4f70801d7189f3f38</code>. Those receipts predate the expiry of the signed freshness evidence and do not prove current installability.</li>
-            <li>Human acceptance, independent security review, and production qualification remain open; alpha.2 evidence was not transferred to alpha.3 bytes.</li>
+            <li>Alpha.5 has a published signed index, fresh-at-signing seven-image supply-chain evidence, independently re-derived candidate evidence, and a remotely resolvable public source snapshot. None substitutes for the pending real-host clean-install receipt.</li>
+            <li>Human acceptance, independent security review, stability, and production qualification remain open; Alpha.2 or Alpha.3 evidence was not transferred to Alpha.5 bytes.</li>
             <li>No comparative or performance claim is made; none should be inferred from walkthroughs or documentation.</li>
           </ul>
 

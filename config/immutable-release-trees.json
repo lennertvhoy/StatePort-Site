@@ -351,6 +351,244 @@
           "sha256": "4c2bed857062268dc7dd3c93e881dea481fb7a647f136215148b3419b0b57294"
         }
       }
+    },
+    "download/0.1.0-alpha.5": {
+      "anchor": {
+        "commit": "eaa1ca6a67844259860917442a95c891d097939f"
+      },
+      "files": {
+        "compose.yaml": {
+          "bytes": 2318,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "76d5bde78d86a3f685a492a622bcfe72d601881d09459c39f4f1ea7f88641dd9"
+        },
+        "install.sh": {
+          "bytes": 8971,
+          "gitMode": "100755",
+          "gitType": "blob",
+          "lstatMode": "100755",
+          "sha256": "104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a"
+        },
+        "known-limitations.md": {
+          "bytes": 649,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "16bfda769732d607cc71ffeadbf8d99fafe18dd98a9bc73f24069c7553d433f1"
+        },
+        "predecessor-bundle/release-index.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "e4fb2c0f274ed88e34a5904c2d85feb3dcc231a7a5d794072fff158a29178208"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/materialization.template.json": {
+          "bytes": 4706,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "013ca416168d919ea5a9f5c464989e7ebebb703071b57b0215d960da60c7e251"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-@@STATEPORT_NETWORK:stateport-control:accepted@@.network.in": {
+          "bytes": 304,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "a3f405bc713b2b0dc85edea4d8d244f04cb46b9ebc24a69f55020dbe39174a54"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-@@STATEPORT_NETWORK:stateport-control:validation@@.network.in": {
+          "bytes": 308,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "ecc62bb103446b34ad66e105928fd7aedb6dffec9736f9bbf2e880a41ca670fd"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-ae4a67f11969-accepted-@@STATEPORT_REVISION:stateport-web:accepted@@.container.in": {
+          "bytes": 2234,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "4a40ce7e06ed909ea10ccfb35b3fd83c29e7b5a01519eacf97f788d90b0684a9"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-ae4a67f11969-validation-@@STATEPORT_REVISION:stateport-web:validation@@.container.in": {
+          "bytes": 2253,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "19a8abe931c34852df55954baf298d814a8823d75d161960f865d13062dbe3f1"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-d864bc7ef3bf-accepted-@@STATEPORT_REVISION:stateport-worker:accepted@@.container.in": {
+          "bytes": 2009,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "c96ed231459b5bf7ec65fb2086de57728b680a44c93f610dff1be0568ca7a957"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-d864bc7ef3bf-validation-@@STATEPORT_REVISION:stateport-worker:validation@@.container.in": {
+          "bytes": 2028,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "86857886a5eed921d8974a69c580dc578d26f7a170389630bf321af17363e108"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-f544857680bc-accepted-@@STATEPORT_REVISION:stateport-api:accepted@@.container.in": {
+          "bytes": 1982,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "ce9aff0a142f9d7afb48557e837152783fc4780c22a9a6bd98d856dc3d5d8c00"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-f544857680bc-validation-@@STATEPORT_REVISION:stateport-api:validation@@.container.in": {
+          "bytes": 2001,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "c7f6598537b358a2c1b84f984dd3b28dbabf12d1b6ba7186111984f6bb74bce5"
+        },
+        "release-index.json": {
+          "bytes": 77608,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "4613fcad48ea1a2e7dd4350d61baa333efbc734b1fcba1a1c9ca62994d562b71"
+        },
+        "release-index.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "838c3106177b335e1a6a48a681cd173697c39a7bf6ac4908b6a05a5f5369eb82"
+        },
+        "release-notes.md": {
+          "bytes": 203,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "380bc305e75947bcc2103b09f7299b9ce6b2b2122b4b9c4aceb0de6988a9b647"
+        },
+        "signatures/stateport-api.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "9a715230a1fafad9df8b616aa426ccbf502e633416e45119d49315216763f0c2"
+        },
+        "signatures/stateport-dev-workspace.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "90986669e3203d694b3938f40b1b569c8c57119f47479f11cc16a9270d371be7"
+        },
+        "signatures/stateport-execution-host.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "d845859f56fed10eceeaa942d161d6fec76e44f52b818eb304aa0b01ae2e59aa"
+        },
+        "signatures/stateport-playwright.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "176c2472074c61326349424d0aafc0092fc75720f7c9282228811c5e779979a0"
+        },
+        "signatures/stateport-runner.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "0754ca07855b686c338f0d6e60f94373709d9d7f2cb36ae135c8a3041ab8c153"
+        },
+        "signatures/stateport-web.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "3a6a9bb097f1a2e74ff275881d1b5fe95d6e7ea2230cc6ff447c056522476d2b"
+        },
+        "signatures/stateport-worker.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "5a475197d0c389cdaf6b58346572346313b790bd2ca9f94ead99ead69222d1b1"
+        },
+        "stateport-alpha-2026-08-cosign.pub": {
+          "bytes": 178,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "f473c7447f329d84d6bf2219e8674edbf250a1fffbd393677e08ca16a9d6a99b"
+        },
+        "stateport-execution-host-provision": {
+          "bytes": 32475,
+          "gitMode": "100755",
+          "gitType": "blob",
+          "lstatMode": "100755",
+          "sha256": "7d4d3d8c24a916d76d40391d3ec3b2c80cd2b11bea4952e3036ab7884f7a0163"
+        },
+        "stateport-installer": {
+          "bytes": 156314,
+          "gitMode": "100755",
+          "gitType": "blob",
+          "lstatMode": "100755",
+          "sha256": "c1eea13b239c03dde7c405821d7ace5c215581dbe6a98257d68c7be74a6d0dcf"
+        },
+        "stateport-source.tar": {
+          "bytes": 22415360,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "00be84da7739a450b030432dece7caba93b79b59d575fefc89d2ba17bb31446b"
+        },
+        "stateport-updater": {
+          "bytes": 334863,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "dd1302c4330c4c80515ce9bdcfdfb5e5a3bab5fc25a6a569be830936dde90a61"
+        },
+        "supply-chain/cosign.tool-provenance.json": {
+          "bytes": 441,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "968c12feecf4ffab03bce89130060ae859a9490c7c05b57cf29d1889b3d5f2a5"
+        },
+        "supply-chain/double-build-comparison.json": {
+          "bytes": 5436,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "91f6cdd5c3f7c4721e3a3245077f1296e895a1410f37ca4cd9eeaaac3a370800"
+        },
+        "supply-chain/grype.tool-provenance.json": {
+          "bytes": 441,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "e90b7a2995bc832fd852b3824295579ace1f1782aef27ec723404acd6255d412"
+        },
+        "supply-chain/public-export-manifest.json": {
+          "bytes": 521396,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "4ed1f30d36f354062feb16533af7be0fabf202000af60f7432c5c4b3818df5e3"
+        },
+        "supply-chain/syft.tool-provenance.json": {
+          "bytes": 438,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "4c2bed857062268dc7dd3c93e881dea481fb7a647f136215148b3419b0b57294"
+        }
+      }
     }
   }
 }

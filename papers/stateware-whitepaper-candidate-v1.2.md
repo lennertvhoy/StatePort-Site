@@ -51,22 +51,21 @@ be.
 
 **Status of the reference implementation.** The public walkthrough is a
 mock-backed, public-safe fixture and local development preview. It is not
-evidence of a live alpha.3 backend, a hosted service, a cross-device service,
-or a production-qualified product. The signed alpha.3 release remains
-published for inspection while installation is currently disabled.
+evidence of a live Alpha.5 backend, a hosted service, a cross-device service,
+or a production-qualified product. The signed Alpha.5 release is a
+`compatible_unvalidated` WSL2 public-test candidate without a clean-install
+receipt.
 
 **Current delivery versus future architecture.** The current delivery of the
-reference implementation is StatePort v0.1.0-alpha.3, a **publicly published
-and signed alpha candidate available for inspection**; installation is
-currently disabled. The curated alpha.3 source archive is public, while the
-canonical development Git remains private and its signed `publicSnapshot`
-identity is not remotely resolvable. It is not owner-accepted,
-independently security-audited, stable, or production-ready. The delivery is
-rootless Podman on Linux (x86_64), loopback-only, a single local user, and
-Codex CLI 0.145.0 as the only qualified execution provider —
-operator-authenticated, running in supervised direct mode with external side
-effects denied by default, no bounded or unattended autonomy, and no
-transactional mode. There is no remote CI verification. The wider
+reference implementation is StatePort v0.1.0-alpha.5, a **publicly published
+and signed WSL2 public-test candidate**. Its exact Windows 11 + WSL2 + Ubuntu
+24.04 AMD64 path is `compatible_unvalidated` until a real-host clean-install
+receipt exists. The curated Alpha.5 source archive is public, while canonical
+development Git remains private; its signed `publicSnapshot` is remotely resolvable
+from the public StatePort-Source repository. It is not
+owner-accepted, independently security-audited, stable, or production-ready.
+The delivery is rootless Podman and Quadlet under WSL2, loopback-only, and
+single-user. The wider
 architecture this paper describes — catalogues of community applications,
 multiple qualified providers, team deployments — is a direction, not a
 description of what the alpha delivers. Where the two differ, this paper now

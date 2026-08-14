@@ -7,8 +7,9 @@ Live site: <https://lennertvhoy.github.io/StatePort-Site/>
 
 This repository keeps the public website separate from the current private
 implementation repository. The release ledger is the source for availability
-and release evidence; the curated alpha.3 source archive is public while the
-canonical development Git remains private.
+and release evidence. The curated Alpha.5 source archive and its signed,
+remotely resolvable public snapshot are public while canonical development Git
+and its history remain private.
 
 ## Architecture
 

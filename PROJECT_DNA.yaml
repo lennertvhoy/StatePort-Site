@@ -37,7 +37,7 @@ audiences:
   - future self-hosters looking for trustworthy release and download status
   - builders learning the Stateware and StateSpec model
   - operators evaluating governance, security, lifecycle, and portability boundaries
-  - contributors once a public source release is available
+  - contributors using the remotely resolvable public source projection
 
 content_architecture:
   first_screen: concrete product definition plus the current prototype and software-availability boundary
@@ -46,7 +46,7 @@ content_architecture:
   documentation_path: product first, then model, operation, evidence, and reference by visitor intent
   tutorials: conceptual exercises with time, outcomes, and proof limits
   release_status: one authoritative ledger separating public artifacts from software, source, license, downloads, and installation material
-  roadmap: labelled and subordinate to the unreleased core product
+  roadmap: labelled and subordinate to the unqualified alpha product
 
 visual_direction:
   visual_thesis: "A midnight state atlas: quiet archival depth, bright blue signals, and a single living mascot navigating durable routes."
@@ -105,8 +105,8 @@ quality_contract:
     - exact behavior-bearing commit identity and workflow run must be recorded
 
 truth_boundaries:
-  stateport_source: private until an independently published release
-  downloads: absent until a versioned public release exists
+  stateport_source: canonical development Git remains private; signed public projections and curated archives are separate exact identities
+  downloads: only exact versioned signed releases with an explicit platform and qualification boundary
   docs: public field notes; versioned installation material belongs with a release
   examples: illustrative unless explicitly labelled installable and released
   prototype: local pre-release fixture capture; never a public install or acceptance claim

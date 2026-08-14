@@ -4,7 +4,7 @@ statedd_mode: operating
 repo_mode: operating
 statedd_version: statedd-template-v5
 initialized_on: 2026-07-21
-last_updated: 2026-08-09
+last_updated: 2026-08-14
 ---
 
 # StatePort Site — canonical agent operating contract
@@ -32,18 +32,16 @@ test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"
 Stop on divergence or unexplained dirty work and preserve it. Do not switch to
 an old site branch because its prose looks newer.
 
-### Unified UX closure integration
+### Alpha.5 publication closure
 
-OD-2026-08-08-KIMI-LONG-RUN authorized the historical containment based on
-`a894b5b4aacac368e00f345c9ec1fc6f7c1f16f5`; it was committed as
-`c1384061a093f8f4fc7e68f8ca7126558e1e97a5`, deployed, and publicly verified.
-That verdict is consumed. Current dirty-candidate review, validation, commit,
-push, and managed deployment authority is OD-2026-08-10-UNIFIED-UX-CLOSURE.
-Its product commit is `d56d67bf48f2edbde03ec2fd050e9ea794211eaa`; the current
-deployed Site binding is `b9d2edf0692c0c8672de8984d511a17c3303e02b`, remotely
-verified through Pages run `31392022484` and deployment `5832690455`. This
-deployment does not change alpha.3 release truth or create an acceptance,
-security, stability, or production claim.
+StatePort directive `OD-2026-08-14-WSL2-ALPHA5-PRIORITY-RESET` authorizes the
+exact Alpha.5 signing, publication, Site deployment, and remote verification
+needed for the owner's first WSL2 test. Immutable release bytes are anchored by
+Site commit `eaa1ca6a67844259860917442a95c891d097939f`. The working candidate may
+be reviewed, validated, committed, pushed, and deployed under that directive.
+It does not grant human acceptance, independent review, stability, production
+qualification, unsupported-platform claims, or changes to retained Alpha.2 or
+Alpha.3 bytes.
 
 ## Mandatory read order
 
@@ -57,44 +55,32 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
 
 ## Current release truth
 
-- Public candidate: `v0.1.0-alpha.3` — published, signed, byte-intact,
-  **install-disabled**, and not owner-accepted.
-- Signed payload:
-  `sha256:2639e29d6ca0a5bd83d07013edb49f22692efaf53a6049234fe6b70810c89166`.
-- Installation is disabled because every signed image carries 2026-08-06
-  scan/database evidence under a 24-hour maximum (current verification
-  refuses: Grype database stale) and the released bytes carry known
-  installer/runtime defects (no execution-host provisioning or protocol
-  health check; synthetic goal execution).
-- Earlier local install receipts for Ubuntu 24.04 (`validated_baseline`) and
-  Fedora 44 (`compatible_unvalidated`) are historical evidence recorded while
-  the freshness window was open. They are not current install proof.
-- The portable target is `linux-amd64-rootless-podman-quadlet`; distribution
-  branding is observation, not eligibility. Debian and rolling distributions
-  are not claimed.
-- The mutable convenience bootstrap (`download/install.sh`) is a fail-closed
-  stub; the immutable versioned bootstraps under the release trees are
-  unchanged signed evidence. Mutable surfaces promote no install command and
-  link `download/erratum-alpha3.html`.
-- Canonical development Git is private. The curated alpha.3 source archive is
-  publicly distributed and AGPL-classified; the signed public Git snapshot
-  identity (`43d6b4491b962c963a0ecafc060e0dfc7e334dc0`) is not remotely
-  resolvable — a successor-release blocker.
-- Alpha.2 is **known defective, superseded, install-disabled, and
-  unaccepted**. Its signed bytes remain immutable and its bootstrap remains
-  fail-closed.
-- Independent security review and production qualification remain absent.
-- Mutable containment content commit
-  `c1384061a093f8f4fc7e68f8ca7126558e1e97a5` is live and verified through
-  Pages run `31315882234` and deployment `5819133762`. All 48 immutable remote
-  release files match their publication-anchored manifest.
+- Current candidate: `v0.1.0-alpha.5`, signed for exact target
+  `wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet`.
+- Signed index SHA-256:
+  `4613fcad48ea1a2e7dd4350d61baa333efbc734b1fcba1a1c9ca62994d562b71`;
+  signed payload:
+  `sha256:e45d5c8ce6843bd0c3155ecd26940ff3dc11c5069a2de796a079708066faf98c`.
+- Installation is enabled only as an explicitly unqualified public test.
+  WSL2 reports `compatible_unvalidated` until a real Windows 11 + WSL2 +
+  Ubuntu 24.04 clean-install receipt exists.
+- WSL1, native Linux, other distributions, ARM64, macOS, and Docker Desktop do
+  not inherit this release target or its evidence.
+- Canonical development Git remains private. The signed public snapshot
+  `6911b7c1e73e0408af4a2a900aec585d15168a28` / tree
+  `05ca882f4e41b98f4ffa6f9257e068d72472e765` is anonymously resolvable from
+  `lennertvhoy/StatePort-Source`; the curated source archive is public and
+  digest-bound.
+- Alpha.3 remains signed, byte-intact, install-disabled, and governed by its
+  historical erratum. Alpha.2 remains superseded and install-disabled. Their
+  versioned trees are immutable.
+- Human acceptance, independent security review, stability, clean-install
+  qualification, and production qualification remain absent.
 - Pages deploys from `main` through GitHub's managed legacy Pages build. The
-  repository's custom deploy workflow is manual-only and is not the provider.
-  Nothing is "live" until it is actually deployed and publicly verified.
+  custom workflow is manual-only. Nothing is live until remotely verified.
 
-Never call alpha.3 installable, accepted, stable, audited, or
-production-ready. Never silently replace alpha.2 signed bytes or transfer its
-supply-chain evidence to alpha.3.
+Never call Alpha.5 clean-installed, qualified, owner-accepted, stable, audited,
+or production-ready. Never alter Alpha.2, Alpha.3, or anchored Alpha.5 bytes.
 
 ## Repository rules
 
@@ -102,8 +88,8 @@ supply-chain evidence to alpha.3.
   temporary branch. Default branch and worktree budgets are zero.
 - Integrate finished work promptly. Do not create handoff, candidate-number,
   preservation, or generated-media branches.
-- Signed/versioned artifacts under `download/0.1.0-alpha.2/` and
-  `download/0.1.0-alpha.3/` are immutable.
+- Signed/versioned artifacts under `download/0.1.0-alpha.2/`,
+  `download/0.1.0-alpha.3/`, and `download/0.1.0-alpha.5/` are immutable.
   External errata and a fail-closed bootstrap may prevent use without changing
   the signed candidate.
 - `release-index.json` remains authority for version, digests, image references,
@@ -122,11 +108,10 @@ supply-chain evidence to alpha.3.
 
 ## Active scope
 
-1. Preserve alpha.2's fail-closed erratum and alpha.3's exact signed artifacts;
-   keep the immutable release trees byte-identical against their anchored
-   publication manifests.
-2. Keep mutable surfaces honestly contained (no promoted install command,
-   erratum linked, fail-closed convenience bootstrap) until a corrected,
-   separately authorized successor candidate exists.
+1. Preserve Alpha.2 and Alpha.3 exactly and keep the Alpha.3 erratum historical.
+2. Publish the anchored Alpha.5 tree, byte-identical mutable bootstrap, complete
+   WSL2 setup instructions, and exact unqualified claim boundary.
+3. Validate, push, observe the managed Pages deployment, and remotely digest-
+   check every Alpha.5 file before reporting publication.
 
 Everything else is backlog or history.
