@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-14T20:29:38Z"
-  updated_by: alpha5_mutable_manifest_publication_candidate
+  updated_at: "2026-08-14T20:33:53Z"
+  updated_by: alpha5_mutable_manifest_publication_closure
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha5_install_disabled_mutable_manifest_publication_candidate
+  status: alpha5_install_disabled_mutable_manifest_published_probe_pending
   purpose: public_documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -86,23 +86,23 @@ site:
   deployment:
     provider: GitHub Pages
     build_type: legacy
-    status: signature_refusal_containment_built_from_main_root_remotely_verified
+    status: mutable_manifest_probe_transport_built_from_main_root_remotely_verified
     workflow: ".github/workflows/deploy-pages.yml"
     custom_workflow_status: disabled_manual_only_not_live_provider
     source_branch: main
     source_path: /
     deployment_head: derived_from_git_not_persisted
-    live_content_commit: 8cae82e5b98b8d4884a18e50660852d2005c4842
-    pages_build: 1151656087
-    pages_build_commit_field: 2470f6c3d202f874875bfe29fd3754bea985874c
-    pages_run: 31835252274
-    pages_deployment: 5912489564
-    deployment_sha: 8cae82e5b98b8d4884a18e50660852d2005c4842
-  current_release_surface: alpha5_test_temporarily_unavailable_remote_verified
+    live_content_commit: 562c9cfdeff85b3449df37b0011d228ab3857e75
+    pages_build: 1151713417
+    pages_build_commit_field: 562c9cfdeff85b3449df37b0011d228ab3857e75
+    pages_run: 31838288831
+    pages_deployment: 5913017331
+    deployment_sha: 562c9cfdeff85b3449df37b0011d228ab3857e75
+  current_release_surface: alpha5_mutable_manifest_probe_published_install_disabled
   installer_command_shown: false
   installer_command_locations: []
   replacement_install_command: disabled_after_owner_reported_signature_refusal
-  nonexecuting_transport_probe: repaired_seven_manifest_probe_publication_pending
+  nonexecuting_transport_probe: published_pending_owner_result
   immutable_tree_manifest: config/immutable-release-trees.json
   immutable_anchors:
     alpha2: 4043534a9a1d56c51c3d47d0906e0520963af79c
@@ -111,21 +111,23 @@ site:
   remote_verification:
     alpha5_immutable_files_checked: 33
     alpha5_immutable_mismatches: 0
-    mutable_install_sha256: 104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a
-    mutable_install_matches_versioned: true
+    mutable_install_sha256: 3f1be353c095b6ef08ea78beca8430b0baea13a890abce8aaf74c49d40808f78
+    mutable_install_matches_versioned: false
     repaired_install_changed_files_checked: 16
     repaired_install_changed_file_mismatches: 0
     signature_containment_changed_files_checked: 15
     signature_containment_changed_file_mismatches: 0
-    mutable_probe_candidate_sha256: 3f1be353c095b6ef08ea78beca8430b0baea13a890abce8aaf74c49d40808f78
-    mutable_probe_candidate_bytes: 13702
-    mutable_manifest_candidate_count: 7
+    mutable_probe_sha256: 3f1be353c095b6ef08ea78beca8430b0baea13a890abce8aaf74c49d40808f78
+    mutable_probe_bytes: 13702
+    mutable_manifest_files_checked: 7
+    mutable_publication_changed_files_checked: 16
+    mutable_publication_mismatches: 0
     transport_generator_sha256: d5882b368d2260f20ef56fea6f114c9e5eb5f8e38f07ba0c6945112caf1319c9
     browser_automation: unavailable_not_claimed
 
 owner_directive:
   id: OD-2026-08-14-ALPHA5-PUBLIC-CONTAINMENT
-  status: mutable_manifest_repair_publication_authorized_in_progress
+  status: mutable_manifest_repair_published_remote_verified_probe_pending
   source_repository: /home/ff/Documents/Projects/StatePort
   source_commit: f45d9c80b17d5dcb3866ffc35fdb7a0fe501b720
   objective: disable_promoted_alpha5_install_and_deploy_verified_non_streaming_transport_containment_without_changing_release_bytes
@@ -135,12 +137,12 @@ owner_directive:
   human_acceptance: not_granted
   stateport_repair_commit: df2cbb851f9527550c1c40f28fe1bfd9424b982c
   probe_mode_commit: b75357d12ef5224a866e975bd1f9b2fb3c8ccf21
-  mutable_repair_publication: authorized_in_progress
+  mutable_repair_publication: published_remote_verified
 
 active_work:
   - id: BL-SITE-ALPHA5-SIGNATURE-MANIFEST
     priority: P0
-    status: mutable_repair_publication_candidate
+    status: mutable_repair_published_probe_pending
 
 prior_work:
   - id: alpha5_streamed_bootstrap_truncation
@@ -150,12 +152,12 @@ prior_work:
     missing: independently_captured_raw_probe_receipt_and_clean_install_receipt
   - id: alpha5_private_signature_manifest_refusal
     verdict: all_seven_paths_are_locally_repaired_and_b75357d1_adds_a_target_gated_noninstalling_probe_before_any_privileged_or_installer_action
-    evidence: [owner_reported_signature_verification_failed_transcript, df2cbb851f9527550c1c40f28fe1bfd9424b982c, b75357d12ef5224a866e975bd1f9b2fb3c8ccf21, sha256:3f1be353c095b6ef08ea78beca8430b0baea13a890abce8aaf74c49d40808f78]
+    evidence: [owner_reported_signature_verification_failed_transcript, df2cbb851f9527550c1c40f28fe1bfd9424b982c, b75357d12ef5224a866e975bd1f9b2fb3c8ccf21, sha256:3f1be353c095b6ef08ea78beca8430b0baea13a890abce8aaf74c49d40808f78, 562c9cfdeff85b3449df37b0011d228ab3857e75, pages_build_1151713417, pages_run_31838288831, pages_deployment_5913017331]
     validity: exact_published_alpha5_private_signature_path
     missing: owner_host_refusal_json_and_owner_probe_result
 
 workspace_inventory:
-  expected_content_head: pending_mutable_manifest_publication_commit
+  expected_content_head: 562c9cfdeff85b3449df37b0011d228ab3857e75
   expected_origin_head: derived_from_git_not_persisted
-  expected_dirty_path: mutable_manifest_publication_candidate
+  expected_dirty_path: mutable_manifest_publication_state_closure
   immutable_release_bytes_changed_after_anchor: false

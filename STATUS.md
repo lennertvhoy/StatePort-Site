@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-08-14
 **Execution Mode:** operating
-**Project State:** alpha5_install_disabled_mutable_manifest_publication_candidate
+**Project State:** alpha5_install_disabled_mutable_manifest_published_probe_pending
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -57,12 +57,15 @@
 - StatePort commit `df2cbb85` locally supplies all seven exact digest-pinned
   manifests through the immutable installer's existing archive seam. No signed
   or versioned Alpha.5 bytes change. Additive commit `b75357d1` supplies the
-  non-installing probe mode. The local mutable candidate is 13,702 bytes at
+  non-installing probe mode. The mutable bootstrap is 13,702 bytes at
   SHA-256 `3f1be353c095b6ef08ea78beca8430b0baea13a890abce8aaf74c49d40808f78`;
-  publication is pending and no probe result exists.
+  publication is remotely verified and no probe result exists.
+- Mutable publication `562c9cfdeff85b3449df37b0011d228ab3857e75`
+  deployed through build `1151713417`, run `31838288831`, and deployment
+  `5913017331`. All 16 changed mutable files, both unchanged minimal public
+  pages, and all 33 immutable Alpha.5 files matched anonymous bytes.
 
 ## Exact next action
 
-Deploy and remotely verify only the mutable bootstrap and seven exact manifest
-support blobs. Keep installation disabled and return the pinned non-installing
-probe command; no owner probe result exists yet.
+Run only the pinned non-installing exact-target probe. Keep installation disabled;
+no install, qualification, acceptance, or owner probe result is claimed yet.

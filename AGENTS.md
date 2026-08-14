@@ -88,6 +88,12 @@ publishing only the unversioned mutable repair and entering a non-installing
 probe stage. StatePort commit `b75357d12ef5224a866e975bd1f9b2fb3c8ccf21`
 adds that exact probe mode before any privileged or installer action.
 
+Mutable publication commit `562c9cfdeff85b3449df37b0011d228ab3857e75`
+deployed through Pages build `1151713417`, run `31838288831`, and deployment
+`5913017331`. All 16 changed mutable files and all 33 immutable Alpha.5 files
+matched anonymous bytes. The repair is published for a non-installing owner
+probe only; no probe result exists and installation remains disabled.
+
 ## Mandatory read order
 
 1. `AGENTS.md`
@@ -160,7 +166,7 @@ or production-ready. Never alter Alpha.2, Alpha.3, or anchored Alpha.5 bytes.
 1. Preserve Alpha.2 and Alpha.3 exactly and keep the Alpha.3 erratum historical.
 2. Preserve the anchored Alpha.5 tree and byte-identical mutable bootstrap while
    mutable guidance remains fail-closed.
-3. Publish and remotely verify only the probeable mutable repair while keeping
-   public copy minimal and every executable install command disabled.
+3. Keep public copy and installation fail-closed while awaiting the exact-target
+   owner result from the published non-installing manifest transport probe.
 
 Everything else is backlog or history.

@@ -1,6 +1,6 @@
 # Worklog
 
-## 2026-08-14 - Alpha.5 mutable manifest publication candidate
+## 2026-08-14 - Alpha.5 mutable manifest publication remotely verified
 
 - The owner authorized publishing only the unversioned mutable repair while
   keeping public installation disabled. StatePort commit `b75357d1` adds an
@@ -10,7 +10,11 @@
   `3f1be353c095b6ef08ea78beca8430b0baea13a890abce8aaf74c49d40808f78`.
   Seven `download/alpha5-manifests/*.json` blobs match the signed image subject
   digests. Eleven focused tests and both Site validators pass; all versioned
-  release files remain unchanged. Deployment and owner probe are pending.
+  release files remain unchanged.
+- Content `562c9cf` deployed through build `1151713417`, run `31838288831`, and
+  deployment `5913017331`. All 16 changed mutable files, both unchanged minimal
+  public pages, and all 33 immutable Alpha.5 files matched anonymous bytes.
+  Publication is verified; the exact-target owner probe remains pending.
 
 ## 2026-08-14 - Alpha.5 signature-refusal containment remotely verified
 

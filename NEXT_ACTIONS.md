@@ -4,15 +4,14 @@
 **Execution Mode:** operating
 **Max Items:** 1
 
-## P0 [BL-SITE-ALPHA5-SIGNATURE-MANIFEST] Publish mutable repair for probe
+## P0 [BL-SITE-ALPHA5-SIGNATURE-MANIFEST] Await non-installing owner probe
 
-**Status:** The owner authorized publication. The 13,702-byte mutable bootstrap,
-seven exact manifest blobs, focused tests, and immutable-tree checks pass
-locally. No executable install command is shown.
+**Status:** Mutable publication `562c9cf` is remotely verified through build
+`1151713417`, run `31838288831`, and deployment `5913017331`. All seven manifest
+blobs and all 33 immutable Alpha.5 files match; no install command is shown.
 
-**Decision:** commit, deploy, and remotely verify only those mutable bytes and
-all 33 immutable Alpha.5 files. Keep installation disabled and do not run the
-installer.
+**Decision:** provide only the pinned `--transport-probe` command and await the
+owner result. Keep installation disabled and do not run the installer.
 
-**Exit:** mutable publication is remotely byte-verified and the exact
-non-installing owner probe command is ready. Probe result remains pending.
+**Exit:** the owner returns the exact probe output. Installation, qualification,
+and acceptance remain separate actions.
