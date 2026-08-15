@@ -1,5 +1,23 @@
 # Worklog
 
+## 2026-08-15 - Public website copy corrected and remotely verified
+
+- Rewrote Home, Docs, Tutorials, Download, release status, limitations,
+  platform support, Alpha.3 details, shared navigation, footers, and metadata in
+  concise visitor language. The release journey now states one early-alpha
+  warning and one short installer-unavailable message.
+- Moved signed indexes, signatures, source archives, and older release records
+  behind `download/technical-release-files.html`. No versioned Alpha.2,
+  Alpha.3, or Alpha.5 file changed, and no install command is public.
+- Added a primary-page copy guard for internal target IDs, incident chronology,
+  evidence taxonomy, raw identities, and defensive claim stacks. Repository and
+  quality validators passed; focused containment, runtime-contract, and contrast
+  tests passed 24/24.
+- Content/control head `d334f739de21ad2f581115995cae7b57152e5048`
+  deployed through run `31874362376` and deployment `5918682005`. Anonymous byte
+  comparison matched all 28 changed HTML pages plus both linked paper sources,
+  the web manifest, and sitemap.
+
 ## 2026-08-15 - Alpha.5 Lionheart diagnostic contained
 
 - The owner reports the continued diagnostic saw `curl: (22) ... 503`, later

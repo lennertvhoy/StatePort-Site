@@ -1,6 +1,6 @@
 # NEXT_ACTIONS - active execution queue
 
-**Updated At:** 2026-08-14
+**Updated At:** 2026-08-15
 **Execution Mode:** operating
 **Max Items:** 1
 
@@ -14,3 +14,10 @@ preflight. Keep installation disabled.
 
 **Exit:** the exact preflight passes on the owner host. Installation and fresh
 clean-install evidence remain separate actions.
+
+## Completed since last update
+
+- Public copy correction head `d334f739` deployed through run `31874362376` and
+  deployment `5918682005`. All 28 changed HTML pages and four linked
+  Markdown/metadata files matched anonymous live bytes. Installation remains
+  disabled and versioned release files remain unchanged.

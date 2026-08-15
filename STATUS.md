@@ -1,6 +1,6 @@
 # StatePort Site status
 
-**Updated At:** 2026-08-14
+**Updated At:** 2026-08-15
 **Execution Mode:** operating
 **Project State:** alpha5_install_disabled_materialization_preflight_pending
 **Canonical:** `main`; exact head derives from Git
@@ -79,6 +79,16 @@
 - Mutable publication `c561db2` deployed through build `1152559503`, run
   `31872664883`, and deployment `5918407409`; all ten changed paths and all 33
   immutable Alpha.5 files matched anonymous bytes.
+- Owner-directed public copy correction content/control head `d334f739` deployed
+  through run `31874362376` and deployment `5918682005`. Anonymous comparisons
+  matched all 28 changed HTML pages plus both linked paper sources, the web
+  manifest, and sitemap.
+- Home, Docs, Tutorials, Download, release status, limitations, platform support,
+  and Alpha.3 details now use short public language. Detailed release material
+  is available through one `Technical release files` page, and a focused static
+  guard rejects internal release vocabulary on primary pages.
+- No versioned Alpha.2, Alpha.3, or Alpha.5 file changed. Alpha.5 installation
+  remains disabled pending the materialization preflight.
 
 ## Exact next action
 

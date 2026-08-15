@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-15T07:44:13Z"
-  updated_by: alpha5_materialization_preflight_publication_closure
+  updated_at: "2026-08-15T08:25:38Z"
+  updated_by: public_copy_correction_deployment_closure
   format_version: statespec-site-state/v1
 
 workflow:
@@ -87,19 +87,19 @@ site:
   deployment:
     provider: GitHub Pages
     build_type: legacy
-    status: materialization_preflight_built_from_main_root_remotely_verified
+    status: public_copy_correction_built_from_main_root_remotely_verified
     workflow: ".github/workflows/deploy-pages.yml"
     custom_workflow_status: disabled_manual_only_not_live_provider
     source_branch: main
     source_path: /
     deployment_head: derived_from_git_not_persisted
-    live_content_commit: c561db2afd156eb09e61ce4e2da3158ea596a587
-    pages_build: 1152559503
-    pages_build_commit_field: c561db2afd156eb09e61ce4e2da3158ea596a587
-    pages_run: 31872664883
-    pages_deployment: 5918407409
-    deployment_sha: c561db2afd156eb09e61ce4e2da3158ea596a587
-  current_release_surface: alpha5_materialization_preflight_remote_verified
+    live_content_commit: d334f739de21ad2f581115995cae7b57152e5048
+    pages_build: unavailable_from_legacy_endpoint
+    pages_build_commit_field: d334f739de21ad2f581115995cae7b57152e5048
+    pages_run: 31874362376
+    pages_deployment: 5918682005
+    deployment_sha: d334f739de21ad2f581115995cae7b57152e5048
+  current_release_surface: plain_language_public_copy_install_disabled
   installer_command_shown: false
   installer_command_locations: []
   replacement_install_command: disabled_pending_materialization_preflight_result
@@ -128,23 +128,26 @@ site:
     repaired_reenable_changed_file_mismatches: 0
     materialization_publication_changed_files_checked: 10
     materialization_publication_mismatches: 0
+    public_copy_html_pages_checked: 28
+    public_copy_html_mismatches: 0
+    public_copy_markdown_and_metadata_files_checked: 4
+    public_copy_markdown_and_metadata_mismatches: 0
     transport_generator_sha256: d5882b368d2260f20ef56fea6f114c9e5eb5f8e38f07ba0c6945112caf1319c9
     browser_automation: unavailable_not_claimed
 
 owner_directive:
-  id: OD-2026-08-14-ALPHA5-PUBLIC-CONTAINMENT
-  status: materialization_preflight_published_owner_result_pending
+  id: OD-2026-08-15-PUBLIC-COPY-CORRECTION
+  status: public_copy_deployed_remote_verified
   source_repository: /home/ff/Documents/Projects/StatePort
-  source_commit: 793cd5ec24066deadde8b19492c3258004d9498a
-  objective: publish_mutable_materialization_repair_keep_install_disabled_and_stage_noninstalling_preflight
-  containment_commit_push_and_deployment: authorized
+  source_base: c1804c5b534fb33e4fd3adcabe9064e7c70c855b
+  site_base: e095cebf868700d93ff507d13d2a8b33dbeab4cb
+  objective: rewrite_public_site_in_plain_product_language_and_preserve_install_disabled_state
+  site_commit_push_and_pages_deployment: authorized_and_completed
+  public_copy_guard: implemented
+  versioned_release_file_changes: prohibited_and_absent
   repaired_install_reenable: prohibited_until_materialization_preflight_result
   signing_or_successor_release: not_authorized
   human_acceptance: not_granted
-  stateport_repair_commit: df2cbb851f9527550c1c40f28fe1bfd9424b982c
-  probe_mode_commit: b75357d12ef5224a866e975bd1f9b2fb3c8ccf21
-  materialization_repair_commit: c441ca7a4fb279107b18e62b1c5bb110e289d332
-  mutable_repair_publication: published_remote_verified
 
 active_work:
   - id: BL-SITE-ALPHA5-MATERIALIZATION
@@ -152,6 +155,11 @@ active_work:
     status: owner_materialization_preflight_pending
 
 prior_work:
+  - id: public_copy_correction
+    verdict: primary_visitor_pages_rewritten_technical_files_separated_and_all_changed_pages_anonymously_byte_matched
+    evidence: [1f19a4d, 72e2b80, d334f739de21ad2f581115995cae7b57152e5048, pages_run_31874362376, pages_deployment_5918682005, download/technical-release-files.html, scripts/check_site_quality.py]
+    validity: current_until_primary_public_copy_or_release_availability_changes
+    missing: browser_and_human_usability_review_not_run_or_claimed
   - id: alpha5_streamed_bootstrap_truncation
     verdict: first_owner_run_failed_partially_on_truncated_stream_and_later_owner_reported_exact_target_nonexecuting_repaired_transport_probe_passed_without_clean_install_claim
     evidence: [owner_reported_dash_line_56_error, owner_reported_exact_target_transport_verified_installer_not_executed, sha256:a5df385de801088888cdd79a9ece4318e641f0b6e432e07d83c667ccbd4c6750, sha256:104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a]
@@ -169,7 +177,7 @@ prior_work:
     missing: exact_target_noninstalling_materialization_preflight_result
 
 workspace_inventory:
-  expected_content_head: c561db2afd156eb09e61ce4e2da3158ea596a587
+  expected_content_head: d334f739de21ad2f581115995cae7b57152e5048
   expected_origin_head: derived_from_git_not_persisted
-  expected_dirty_path: materialization_preflight_publication_state_closure
+  expected_dirty_path: public_copy_correction_state_closure
   immutable_release_bytes_changed_after_anchor: false
