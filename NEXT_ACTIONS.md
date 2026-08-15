@@ -4,14 +4,14 @@
 **Execution Mode:** operating
 **Max Items:** 1
 
-## P0 [BL-SITE-ALPHA5-SIGNATURE-MANIFEST] Await non-installing owner probe
+## P0 [BL-SITE-ALPHA5-SIGNATURE-MANIFEST] Re-enable repaired safe command
 
-**Status:** Mutable publication `562c9cf` is remotely verified through build
-`1151713417`, run `31838288831`, and deployment `5913017331`. All seven manifest
-blobs and all 33 immutable Alpha.5 files match; no install command is shown.
+**Status:** The owner reports the exact-target seven-manifest probe passed without
+installer execution. The repaired mutable command is published once on the
+download page; deployment verification is pending.
 
-**Decision:** provide only the pinned `--transport-probe` command and await the
-owner result. Keep installation disabled and do not run the installer.
+**Decision:** deploy only the complete-download, 13,702-byte, pinned-SHA-256,
+`/bin/sh -n` command. Never restore pipe-to-shell.
 
-**Exit:** the owner returns the exact probe output. Installation, qualification,
-and acceptance remain separate actions.
+**Exit:** changed mutable surfaces and all immutable files match remotely. A
+fresh distro remains required for clean-install evidence.

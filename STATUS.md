@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-08-14
 **Execution Mode:** operating
-**Project State:** alpha5_install_disabled_mutable_manifest_published_probe_pending
+**Project State:** alpha5_repaired_install_reenable_candidate
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -64,8 +64,11 @@
   deployed through build `1151713417`, run `31838288831`, and deployment
   `5913017331`. All 16 changed mutable files, both unchanged minimal public
   pages, and all 33 immutable Alpha.5 files matched anonymous bytes.
+- The owner reports the exact Windows 11 + WSL2 + Ubuntu 24.04 probe passed the
+  13,702-byte bootstrap, pinned SHA-256, shell syntax, and all seven manifests
+  without installer execution. This authorizes the repaired command only.
 
 ## Exact next action
 
-Run only the pinned non-installing exact-target probe. Keep installation disabled;
-no install, qualification, acceptance, or owner probe result is claimed yet.
+Deploy and remotely verify only the complete-download pinned command. Any run on
+Lionheart is diagnostic; clean-install evidence requires a genuinely fresh distro.

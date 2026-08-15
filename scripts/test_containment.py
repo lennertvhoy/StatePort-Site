@@ -311,8 +311,8 @@ class CurrentBootstrapTests(unittest.TestCase):
         self.assertLess(command.index("sha256sum"), command.index('/bin/sh -n "$tmp"'))
         self.assertLess(command.index('/bin/sh -n "$tmp"'), command.rindex('/bin/sh "$tmp"'))
         download = (ROOT / "download/index.html").read_text(encoding="utf-8")
-        self.assertNotIn(escape(command), download)
-        self.assertIn("Alpha test temporarily unavailable.", download)
+        self.assertEqual(download.count(escape(command)), 1)
+        self.assertIn("Repaired public-test path enabled.", download)
 
     def test_4096_byte_response_fails_before_shell_or_execution(self) -> None:
         bootstrap = (ROOT / "download/install.sh").read_bytes()

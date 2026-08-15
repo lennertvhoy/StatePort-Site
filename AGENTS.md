@@ -92,7 +92,10 @@ Mutable publication commit `562c9cfdeff85b3449df37b0011d228ab3857e75`
 deployed through Pages build `1151713417`, run `31838288831`, and deployment
 `5913017331`. All 16 changed mutable files and all 33 immutable Alpha.5 files
 matched anonymous bytes. The repair is published for a non-installing owner
-probe only; no probe result exists and installation remains disabled.
+probe only. The owner now reports the exact Windows 11 + WSL2 + Ubuntu 24.04
+probe passed all seven manifests without installer execution. The repaired
+complete-download command is authorized for re-enablement; no clean-install
+receipt or acceptance follows.
 
 ## Mandatory read order
 
@@ -112,9 +115,9 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
   `4613fcad48ea1a2e7dd4350d61baa333efbc734b1fcba1a1c9ca62994d562b71`;
   signed payload:
   `sha256:e45d5c8ce6843bd0c3155ecd26940ff3dc11c5069a2de796a079708066faf98c`.
-- Installation is disabled after an owner-reported fail-closed image-signature
-  refusal. WSL2 remains `compatible_unvalidated`; no clean-install receipt
-  exists.
+- Installation is enabled only through the repaired mutable complete-download,
+  pinned-size/digest, and shell-syntax-checked command. WSL2 remains
+  `compatible_unvalidated`; no clean-install receipt exists.
 - Completed reviews bind the failure to a 4,096-byte truncated pipe-to-shell
   transfer. The complete 8,971-byte bootstrap and signed release payload remain
   intact; the replacement completes download, verifies pinned size and digest,
@@ -164,9 +167,8 @@ or production-ready. Never alter Alpha.2, Alpha.3, or anchored Alpha.5 bytes.
 ## Active scope
 
 1. Preserve Alpha.2 and Alpha.3 exactly and keep the Alpha.3 erratum historical.
-2. Preserve the anchored Alpha.5 tree and byte-identical mutable bootstrap while
-   mutable guidance remains fail-closed.
-3. Keep public copy and installation fail-closed while awaiting the exact-target
-   owner result from the published non-installing manifest transport probe.
+2. Preserve the anchored Alpha.5 tree and exact repaired mutable bootstrap.
+3. Publish only the repaired complete-download command and classify any run on
+   the mutated Lionheart distro as diagnostic rather than clean-install evidence.
 
 Everything else is backlog or history.

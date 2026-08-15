@@ -1,5 +1,15 @@
 # Worklog
 
+## 2026-08-15 - Alpha.5 repaired command re-enable candidate
+
+- The owner reports the exact Windows 11 + WSL2 + Ubuntu 24.04 probe passed the
+  13,702-byte bootstrap, pinned SHA-256, `/bin/sh -n`, and all seven manifest
+  digests without executing the installer or creating a receipt.
+- Re-enabled exactly one escaped command on the download page: complete download
+  of mutable `/download/install.sh`, exact size and digest checks, shell syntax,
+  then execution. Pipe-to-shell remains forbidden. A Lionheart retry is
+  diagnostic only; clean-install evidence requires a genuinely fresh distro.
+
 ## 2026-08-14 - Alpha.5 mutable manifest publication remotely verified
 
 - The owner authorized publishing only the unversioned mutable repair while
