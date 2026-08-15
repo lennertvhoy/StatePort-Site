@@ -93,11 +93,8 @@
           </section>
 
           <section id="install" aria-labelledby="install-heading">
-            <h2 id="install-heading">Run the repaired public-test installer</h2>
-            <p>In an Ubuntu 24.04 WSL2 shell, as the normal non-root user, run this exact command:</p>
-            <div class="code-panel" data-label="Alpha.5 repaired install"><code>(umask 077; tmp=&quot;$(mktemp)&quot; &amp;&amp; trap &#x27;rm -f &quot;$tmp&quot;&#x27; EXIT HUP INT TERM &amp;&amp; curl --fail --location --silent --show-error --proto &#x27;=https&#x27; --tlsv1.2 --output &quot;$tmp&quot; https://lennertvhoy.github.io/StatePort-Site/download/install.sh &amp;&amp; test &quot;$(wc -c &lt; &quot;$tmp&quot;)&quot; -eq 13702 &amp;&amp; printf &#x27;%s  %s\n&#x27; &#x27;3f1be353c095b6ef08ea78beca8430b0baea13a890abce8aaf74c49d40808f78&#x27; &quot;$tmp&quot; | sha256sum --check --status - &amp;&amp; /bin/sh -n &quot;$tmp&quot; &amp;&amp; /bin/sh &quot;$tmp&quot;)</code></div>
-            <p>The command downloads to a private temporary file, verifies all 13,702 bytes and the pinned SHA-256, then runs <code>/bin/sh -n</code> before execution. There is no pipe-to-shell stage.</p>
-            <p>A retry on the existing Lionheart distribution is diagnostic only because earlier attempts changed it. Clean-install evidence still requires a genuinely fresh Windows 11 + WSL2 + Ubuntu 24.04 distribution and complete receipts.</p>
+            <h2 id="install-heading">Alpha test temporarily unavailable</h2>
+            <p>The public-test command is disabled while a diagnostic installer failure is repaired and verified. Signed Alpha.5 files remain available for inspection.</p>
           </section>
 
           <p class="notice"><strong>Honest disclaimer.</strong> Alpha.5 is intended for a controlled first-host test. It is <code>compatible_unvalidated</code>, not clean-installed, owner-accepted, independently security-reviewed, stable, or production-ready. Do not use it for important data or expose its local services to a network.</p>
@@ -111,8 +108,8 @@
                 <dd><a href="0.1.0-alpha.5/install.sh"><code>install.sh</code></a><small>SHA-256: <code>104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a</code>.</small></dd>
               </div>
               <div>
-                <dt>Repaired mutable bootstrap</dt>
-                <dd><a href="install.sh"><code>install.sh</code></a><small>13,702 bytes; SHA-256: <code>3f1be353c095b6ef08ea78beca8430b0baea13a890abce8aaf74c49d40808f78</code>.</small></dd>
+                <dt>Mutable bootstrap</dt>
+                <dd><a href="install.sh"><code>install.sh</code></a><small>Published for verification; installation is disabled.</small></dd>
               </div>
               <div>
                 <dt>Installer</dt>

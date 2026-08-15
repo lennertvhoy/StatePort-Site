@@ -1,6 +1,6 @@
 metadata:
   updated_at: "2026-08-15T07:16:22Z"
-  updated_by: alpha5_repaired_install_reenable_closure
+  updated_by: alpha5_materialization_failure_containment_candidate
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha5_repaired_install_enabled_diagnostic_run_pending
+  status: alpha5_install_disabled_materialization_repair_pending
   purpose: public_documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -31,7 +31,7 @@ release:
   known_defective: false
   original_streamed_install_transport_defective: true
   owner_accepted: false
-  installation_enabled: true
+  installation_enabled: false
   support_tier: compatible_unvalidated
   public_download: "download/0.1.0-alpha.5/install.sh"
   release_index: "download/0.1.0-alpha.5/release-index.json"
@@ -69,7 +69,7 @@ predecessors:
 
 acceptance:
   publication: published_deployed_remotely_verified
-  clean_install: owner_reported_signature_verification_refusal_no_receipt
+  clean_install: owner_reported_materialization_failure_no_receipt
   first_host_attempt: owner_reported_prerequisites_installed_then_dash_unterminated_quote_no_python_installer
   transport_probe: owner_reported_exact_target_complete_size_digest_and_dash_syntax_passed_without_execution
   installer_attempt: owner_reported_fail_closed_private_image_signature_refusal
@@ -98,10 +98,10 @@ site:
     pages_run: 31871418918
     pages_deployment: 5918210420
     deployment_sha: d5491f32cabda022630b0292e4db440d64760c7d
-  current_release_surface: alpha5_repaired_install_enabled_remote_verified
-  installer_command_shown: true
-  installer_command_locations: [download/index.html]
-  replacement_install_command: complete_download_size_digest_syntax_checked_live
+  current_release_surface: alpha5_materialization_failure_containment_candidate
+  installer_command_shown: false
+  installer_command_locations: []
+  replacement_install_command: disabled_pending_materialization_preflight
   nonexecuting_transport_probe: owner_reported_exact_target_passed
   immutable_tree_manifest: config/immutable-release-trees.json
   immutable_anchors:
@@ -129,7 +129,7 @@ site:
 
 owner_directive:
   id: OD-2026-08-14-ALPHA5-PUBLIC-CONTAINMENT
-  status: repaired_command_live_lionheart_diagnostic_run_pending
+  status: lionheart_materialization_failure_containment_active
   source_repository: /home/ff/Documents/Projects/StatePort
   source_commit: f45d9c80b17d5dcb3866ffc35fdb7a0fe501b720
   objective: disable_promoted_alpha5_install_and_deploy_verified_non_streaming_transport_containment_without_changing_release_bytes
@@ -144,7 +144,7 @@ owner_directive:
 active_work:
   - id: BL-SITE-ALPHA5-SIGNATURE-MANIFEST
     priority: P0
-    status: lionheart_diagnostic_install_pending
+    status: materialization_repair_and_noninstalling_preflight_pending
 
 prior_work:
   - id: alpha5_streamed_bootstrap_truncation
@@ -157,9 +157,14 @@ prior_work:
     evidence: [owner_reported_exact_success_output, owner_reported_windows11_wsl2_ubuntu2404_runtime, df2cbb851f9527550c1c40f28fe1bfd9424b982c, b75357d12ef5224a866e975bd1f9b2fb3c8ccf21, sha256:3f1be353c095b6ef08ea78beca8430b0baea13a890abce8aaf74c49d40808f78]
     validity: exact_published_alpha5_private_signature_path
     missing: clean_install_receipt_from_genuinely_fresh_exact_target_distro
+  - id: alpha5_lionheart_materialization_failure
+    verdict: owner_reported_http_503_then_signed_plan_preparation_then_missing_usr_local_libexec_parent_failure_no_receipts
+    evidence: [owner_reported_lionheart_diagnostic_continuation, /home/ff/.local/state/stateport-install/execution-host-provisioning-plan.json]
+    validity: exact_mutated_lionheart_diagnostic_run
+    missing: independently_captured_raw_output_and_noninstalling_materialization_preflight
 
 workspace_inventory:
-  expected_content_head: d5491f32cabda022630b0292e4db440d64760c7d
+  expected_content_head: pending_materialization_failure_containment_commit
   expected_origin_head: derived_from_git_not_persisted
-  expected_dirty_path: repaired_install_reenable_state_closure
+  expected_dirty_path: materialization_failure_containment_candidate
   immutable_release_bytes_changed_after_anchor: false

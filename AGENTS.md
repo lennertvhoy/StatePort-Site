@@ -103,6 +103,12 @@ deployed through Pages build `1152517815`, run `31871418918`, and deployment
 anonymous live bytes. The repaired command is public; a Lionheart run remains
 diagnostic only and cannot supply fresh-distro evidence.
 
+The continued Lionheart diagnostic run encountered an HTTP 503, later prepared
+the signed execution-host plan, and then failed because
+`/usr/local/libexec/stateport-execution-host-provision` had no parent directory.
+No install or execution-host receipt exists. Public installation is disabled
+while both premises are isolated and a non-installing preflight is prepared.
+
 ## Mandatory read order
 
 1. `AGENTS.md`
@@ -121,8 +127,8 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
   `4613fcad48ea1a2e7dd4350d61baa333efbc734b1fcba1a1c9ca62994d562b71`;
   signed payload:
   `sha256:e45d5c8ce6843bd0c3155ecd26940ff3dc11c5069a2de796a079708066faf98c`.
-- Installation is enabled only through the repaired mutable complete-download,
-  pinned-size/digest, and shell-syntax-checked command. WSL2 remains
+- Installation is disabled after the continued Lionheart diagnostic failed
+  before root-helper materialization. WSL2 remains
   `compatible_unvalidated`; no clean-install receipt exists.
 - Completed reviews bind the failure to a 4,096-byte truncated pipe-to-shell
   transfer. The complete 8,971-byte bootstrap and signed release payload remain
@@ -174,7 +180,7 @@ or production-ready. Never alter Alpha.2, Alpha.3, or anchored Alpha.5 bytes.
 
 1. Preserve Alpha.2 and Alpha.3 exactly and keep the Alpha.3 erratum historical.
 2. Preserve the anchored Alpha.5 tree and exact repaired mutable bootstrap.
-3. Publish only the repaired complete-download command and classify any run on
-   the mutated Lionheart distro as diagnostic rather than clean-install evidence.
+3. Keep public installation disabled pending a non-installing exact-target
+   preflight of the repaired root-helper materialization plan.
 
 Everything else is backlog or history.

@@ -4,14 +4,13 @@
 **Execution Mode:** operating
 **Max Items:** 1
 
-## P0 [BL-SITE-ALPHA5-SIGNATURE-MANIFEST] Await diagnostic Lionheart run
+## P0 [BL-SITE-ALPHA5-MATERIALIZATION] Repair and publish safe preflight
 
-**Status:** The repaired command is live from `d5491f3`; all 15 changed paths and
-all 33 immutable Alpha.5 files matched anonymous bytes after deployment
-`5918210420`.
+**Status:** The Lionheart diagnostic failed before root-helper materialization
+because `/usr/local/libexec` was absent. Public installation is disabled.
 
-**Decision:** await the owner result from that command on the already-mutated
-Lionheart distro. Classify it only as diagnostic/functional, never clean install.
+**Decision:** isolate the HTTP 503 semantics and missing-parent assumption, then
+publish only a non-installing exact-target materialization preflight.
 
-**Exit:** the owner supplies the Lionheart result. A genuinely fresh distro
-remains a separate requirement for clean-install evidence.
+**Exit:** the exact preflight passes on the owner host. Installation and fresh
+clean-install evidence remain separate actions.

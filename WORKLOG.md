@@ -1,5 +1,14 @@
 # Worklog
 
+## 2026-08-15 - Alpha.5 Lionheart diagnostic contained
+
+- The owner reports the continued diagnostic saw `curl: (22) ... 503`, later
+  printed that signed execution-host plan preparation completed, and then failed
+  because `/usr/local/libexec` did not exist for root-helper materialization.
+- No successful install or execution-host receipt exists. Removed the public
+  command pending source isolation, mutable repair, and a non-installing
+  exact-target materialization preflight.
+
 ## 2026-08-15 - Alpha.5 repaired command re-enable candidate
 
 - The owner reports the exact Windows 11 + WSL2 + Ubuntu 24.04 probe passed the

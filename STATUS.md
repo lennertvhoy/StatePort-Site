@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-08-14
 **Execution Mode:** operating
-**Project State:** alpha5_repaired_install_enabled_diagnostic_run_pending
+**Project State:** alpha5_install_disabled_materialization_repair_pending
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -70,8 +70,11 @@
 - Re-enablement `d5491f32cabda022630b0292e4db440d64760c7d` deployed through
   build `1152517815`, run `31871418918`, and deployment `5918210420`; all 15
   changed paths and all 33 immutable Alpha.5 files matched anonymous bytes.
+- The continued Lionheart diagnostic encountered an HTTP 503, prepared the
+  signed execution-host plan, then failed because `/usr/local/libexec` was
+  absent. No install or execution-host receipt exists; installation is disabled.
 
 ## Exact next action
 
-Await the owner result from the repaired command on Lionheart and classify it
-only as diagnostic. Clean-install evidence requires a genuinely fresh distro.
+Contain the public command, repair the two exact premises through mutable
+delivery, and publish only a non-installing exact-target preflight.
