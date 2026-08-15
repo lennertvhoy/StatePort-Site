@@ -109,6 +109,12 @@ the signed execution-host plan, and then failed because
 No install or execution-host receipt exists. Public installation is disabled
 while both premises are isolated and a non-installing preflight is prepared.
 
+StatePort `c441ca7a` makes static downloads explicitly bounded, atomic, and
+labeled; creates and verifies the root-owned helper parent before installation;
+and adds a non-installing fake-root materialization preflight. Only its mutable
+17,561-byte render may be published. Installation remains disabled pending the
+exact-target preflight result.
+
 ## Mandatory read order
 
 1. `AGENTS.md`

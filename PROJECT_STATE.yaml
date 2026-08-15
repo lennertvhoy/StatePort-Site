@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-15T07:16:22Z"
-  updated_by: alpha5_materialization_failure_containment_candidate
+  updated_at: "2026-08-15T07:41:26Z"
+  updated_by: alpha5_materialization_preflight_publication_candidate
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha5_install_disabled_materialization_repair_pending
+  status: alpha5_install_disabled_materialization_preflight_publication_candidate
   purpose: public_documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -50,8 +50,8 @@ release:
   target_id: wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet
   image_count: 7
   bootstrap_sha256: 104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a
-  mutable_probe_bootstrap_sha256: 3f1be353c095b6ef08ea78beca8430b0baea13a890abce8aaf74c49d40808f78
-  mutable_probe_bootstrap_bytes: 13702
+  mutable_preflight_bootstrap_sha256: 1c9e12c45a1c4cb79c9b6d0dd32860eb1a2c8b3c2427889aac98154f86f05b5c
+  mutable_preflight_bootstrap_bytes: 17561
 
 predecessors:
   alpha3:
@@ -74,6 +74,7 @@ acceptance:
   transport_probe: owner_reported_exact_target_complete_size_digest_and_dash_syntax_passed_without_execution
   installer_attempt: owner_reported_fail_closed_private_image_signature_refusal
   manifest_transport_probe: owner_reported_exact_target_passed
+  materialization_preflight: published_candidate_pending_owner_result
   human_acceptance: not_granted
   independent_security_review: not_performed
   stability: not_established
@@ -86,23 +87,24 @@ site:
   deployment:
     provider: GitHub Pages
     build_type: legacy
-    status: repaired_install_built_from_main_root_remotely_verified
+    status: materialization_failure_containment_remote_verified
     workflow: ".github/workflows/deploy-pages.yml"
     custom_workflow_status: disabled_manual_only_not_live_provider
     source_branch: main
     source_path: /
     deployment_head: derived_from_git_not_persisted
-    live_content_commit: d5491f32cabda022630b0292e4db440d64760c7d
-    pages_build: 1152517815
-    pages_build_commit_field: d5491f32cabda022630b0292e4db440d64760c7d
-    pages_run: 31871418918
-    pages_deployment: 5918210420
-    deployment_sha: d5491f32cabda022630b0292e4db440d64760c7d
-  current_release_surface: alpha5_materialization_failure_containment_candidate
+    live_content_commit: 91b4e5588eb2e08fe167874f698bbdfa57c2ec07
+    pages_build: 1152538307
+    pages_build_commit_field: 91b4e5588eb2e08fe167874f698bbdfa57c2ec07
+    pages_run: 31872025558
+    pages_deployment: 5918308893
+    deployment_sha: 91b4e5588eb2e08fe167874f698bbdfa57c2ec07
+  current_release_surface: alpha5_materialization_preflight_publication_candidate
   installer_command_shown: false
   installer_command_locations: []
-  replacement_install_command: disabled_pending_materialization_preflight
+  replacement_install_command: disabled_pending_materialization_preflight_result
   nonexecuting_transport_probe: owner_reported_exact_target_passed
+  nonexecuting_materialization_preflight: publication_candidate
   immutable_tree_manifest: config/immutable-release-trees.json
   immutable_anchors:
     alpha2: 4043534a9a1d56c51c3d47d0906e0520963af79c
@@ -111,7 +113,7 @@ site:
   remote_verification:
     alpha5_immutable_files_checked: 33
     alpha5_immutable_mismatches: 0
-    mutable_install_sha256: 3f1be353c095b6ef08ea78beca8430b0baea13a890abce8aaf74c49d40808f78
+    mutable_install_sha256: 1c9e12c45a1c4cb79c9b6d0dd32860eb1a2c8b3c2427889aac98154f86f05b5c
     mutable_install_matches_versioned: false
     repaired_install_changed_files_checked: 16
     repaired_install_changed_file_mismatches: 0
@@ -129,22 +131,23 @@ site:
 
 owner_directive:
   id: OD-2026-08-14-ALPHA5-PUBLIC-CONTAINMENT
-  status: lionheart_materialization_failure_containment_active
+  status: mutable_materialization_preflight_publication_active
   source_repository: /home/ff/Documents/Projects/StatePort
-  source_commit: f45d9c80b17d5dcb3866ffc35fdb7a0fe501b720
-  objective: disable_promoted_alpha5_install_and_deploy_verified_non_streaming_transport_containment_without_changing_release_bytes
+  source_commit: 793cd5ec24066deadde8b19492c3258004d9498a
+  objective: publish_mutable_materialization_repair_keep_install_disabled_and_stage_noninstalling_preflight
   containment_commit_push_and_deployment: authorized
-  repaired_install_reenable: authorized_active
+  repaired_install_reenable: prohibited_until_materialization_preflight_result
   signing_or_successor_release: not_authorized
   human_acceptance: not_granted
   stateport_repair_commit: df2cbb851f9527550c1c40f28fe1bfd9424b982c
   probe_mode_commit: b75357d12ef5224a866e975bd1f9b2fb3c8ccf21
+  materialization_repair_commit: c441ca7a4fb279107b18e62b1c5bb110e289d332
   mutable_repair_publication: published_remote_verified
 
 active_work:
-  - id: BL-SITE-ALPHA5-SIGNATURE-MANIFEST
+  - id: BL-SITE-ALPHA5-MATERIALIZATION
     priority: P0
-    status: materialization_repair_and_noninstalling_preflight_pending
+    status: mutable_preflight_publication_candidate
 
 prior_work:
   - id: alpha5_streamed_bootstrap_truncation
@@ -158,13 +161,13 @@ prior_work:
     validity: exact_published_alpha5_private_signature_path
     missing: clean_install_receipt_from_genuinely_fresh_exact_target_distro
   - id: alpha5_lionheart_materialization_failure
-    verdict: owner_reported_http_503_then_signed_plan_preparation_then_missing_usr_local_libexec_parent_failure_no_receipts
-    evidence: [owner_reported_lionheart_diagnostic_continuation, /home/ff/.local/state/stateport-install/execution-host-provisioning-plan.json]
-    validity: exact_mutated_lionheart_diagnostic_run
-    missing: independently_captured_raw_output_and_noninstalling_materialization_preflight
+    verdict: static_curl_retry_was_nonfatal_and_exact_digest_checked_not_a_manifest_fallback_exact_url_unobservable_root_helper_parent_was_not_created_before_install
+    evidence: [owner_reported_lionheart_diagnostic_continuation, c441ca7a4fb279107b18e62b1c5bb110e289d332, sha256:1c9e12c45a1c4cb79c9b6d0dd32860eb1a2c8b3c2427889aac98154f86f05b5c]
+    validity: exact_alpha5_mutable_bootstrap_and_mutated_lionheart_diagnostic
+    missing: exact_target_noninstalling_materialization_preflight_result
 
 workspace_inventory:
-  expected_content_head: pending_materialization_failure_containment_commit
+  expected_content_head: pending_materialization_preflight_publication_commit
   expected_origin_head: derived_from_git_not_persisted
-  expected_dirty_path: materialization_failure_containment_candidate
+  expected_dirty_path: materialization_preflight_publication_candidate
   immutable_release_bytes_changed_after_anchor: false

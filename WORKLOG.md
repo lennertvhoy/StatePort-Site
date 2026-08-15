@@ -8,6 +8,11 @@
 - No successful install or execution-host receipt exists. Removed the public
   command pending source isolation, mutable repair, and a non-installing
   exact-target materialization preflight.
+- StatePort `c441ca7a` proves the 503 was a retried static-artifact GET rather
+  than a manifest fallback, makes retries bounded/atomic/labeled, safely creates
+  the root-owned helper parent, and adds a no-root-write fake-root preflight.
+- Staged only the generated 17,561-byte mutable bootstrap at SHA-256
+  `1c9e12c45a1c4cb79c9b6d0dd32860eb1a2c8b3c2427889aac98154f86f05b5c`.
 
 ## 2026-08-15 - Alpha.5 repaired command re-enable candidate
 

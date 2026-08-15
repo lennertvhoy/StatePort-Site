@@ -14,11 +14,12 @@ VERSIONED_BOOTSTRAP_URL = (
 VERSIONED_BOOTSTRAP_SHA256 = "104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a"
 VERSIONED_BOOTSTRAP_SIZE = 8_971
 BOOTSTRAP_URL = "https://lennertvhoy.github.io/StatePort-Site/download/install.sh"
-BOOTSTRAP_SHA256 = "3f1be353c095b6ef08ea78beca8430b0baea13a890abce8aaf74c49d40808f78"
-BOOTSTRAP_SIZE = 13_702
-PROBE_SUCCESS = (
-    "StatePort Alpha.5 transport probe passed: bootstrap syntax and 7 exact image "
-    "manifests verified; installer was not executed."
+BOOTSTRAP_SHA256 = "1c9e12c45a1c4cb79c9b6d0dd32860eb1a2c8b3c2427889aac98154f86f05b5c"
+BOOTSTRAP_SIZE = 17_561
+PREFLIGHT_SUCCESS = (
+    "StatePort Alpha.5 materialization preflight passed: target, pinned helper transport, "
+    "and absent-parent creation order verified; packages, root files, images, and installer "
+    "were not changed or executed."
 )
 MANIFEST_DIGESTS = {
     "stateport-api": "a5c639880195ba6dc57fa9c13378fdf0cdb0361f08cbddea7b7e90f476906af8",
@@ -38,7 +39,7 @@ def render_install_command(*, execute: bool = False, shell: str = "/bin/sh") -> 
     action = (
         f'{quoted_shell} "$tmp"'
         if execute
-        else f'{quoted_shell} "$tmp" --transport-probe'
+        else f'{quoted_shell} "$tmp" --materialization-preflight'
     )
     return (
         '(umask 077; tmp="$(mktemp)" && '
@@ -57,7 +58,7 @@ def main() -> None:
     parser.add_argument(
         "--execute",
         action="store_true",
-        help="render the installer-executing form instead of the non-executing probe",
+        help="render the installer-executing form instead of the non-executing preflight",
     )
     args = parser.parse_args()
     print(render_install_command(execute=args.execute))

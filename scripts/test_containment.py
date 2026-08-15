@@ -277,8 +277,8 @@ class CurrentBootstrapTests(unittest.TestCase):
         shell.write_text(
             "#!/bin/sh\n"
             "printf '%s\\n' \"$*\" >> \"$SHELL_LOG\"\n"
-            "if [ \"${2-}\" = --transport-probe ]; then\n"
-            f"  printf '%s\\n' '{install_transport.PROBE_SUCCESS}'\n"
+            "if [ \"${2-}\" = --materialization-preflight ]; then\n"
+            f"  printf '%s\\n' '{install_transport.PREFLIGHT_SUCCESS}'\n"
             "  exit 0\n"
             "fi\n"
             "exec /bin/sh \"$@\"\n",
@@ -326,11 +326,11 @@ class CurrentBootstrapTests(unittest.TestCase):
         self.assertEqual(hashlib.sha256(bootstrap).hexdigest(), install_transport.BOOTSTRAP_SHA256)
         completed, shell_log = self._run_transport(bootstrap, execute=False)
         self.assertEqual(completed.returncode, 0, completed.stderr)
-        self.assertIn(install_transport.PROBE_SUCCESS, completed.stdout)
+        self.assertIn(install_transport.PREFLIGHT_SUCCESS, completed.stdout)
         calls = shell_log.read_text(encoding="utf-8").splitlines()
         self.assertEqual(len(calls), 2)
         self.assertTrue(calls[0].startswith("-n "), calls)
-        self.assertTrue(calls[1].endswith(" --transport-probe"), calls)
+        self.assertTrue(calls[1].endswith(" --materialization-preflight"), calls)
 
 
 class SourceDisclosureTests(unittest.TestCase):

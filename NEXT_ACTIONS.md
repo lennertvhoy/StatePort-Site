@@ -6,11 +6,11 @@
 
 ## P0 [BL-SITE-ALPHA5-MATERIALIZATION] Repair and publish safe preflight
 
-**Status:** The Lionheart diagnostic failed before root-helper materialization
-because `/usr/local/libexec` was absent. Public installation is disabled.
+**Status:** StatePort `c441ca7a` repairs bounded downloads and helper-parent
+creation. Its 17,561-byte mutable render is staged; installation is disabled.
 
-**Decision:** isolate the HTTP 503 semantics and missing-parent assumption, then
-publish only a non-installing exact-target materialization preflight.
+**Decision:** publish only that mutable bootstrap, verify exact live bytes, and
+provide its non-installing exact-target materialization preflight.
 
 **Exit:** the exact preflight passes on the owner host. Installation and fresh
 clean-install evidence remain separate actions.

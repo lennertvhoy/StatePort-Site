@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-08-14
 **Execution Mode:** operating
-**Project State:** alpha5_install_disabled_materialization_repair_pending
+**Project State:** alpha5_install_disabled_materialization_preflight_publication_candidate
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -73,8 +73,11 @@
 - The continued Lionheart diagnostic encountered an HTTP 503, prepared the
   signed execution-host plan, then failed because `/usr/local/libexec` was
   absent. No install or execution-host receipt exists; installation is disabled.
+- StatePort `c441ca7a` supplies explicit bounded atomic downloads, safe helper
+  parent creation, and a no-root-write materialization preflight. Its mutable
+  17,561-byte render is staged for publication; installation remains disabled.
 
 ## Exact next action
 
-Contain the public command, repair the two exact premises through mutable
-delivery, and publish only a non-installing exact-target preflight.
+Publish and remotely verify only the corrected mutable bootstrap, then await its
+non-installing exact-target materialization preflight result.

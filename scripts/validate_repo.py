@@ -19,7 +19,7 @@ from install_transport import (
     BOOTSTRAP_SIZE,
     BOOTSTRAP_URL,
     MANIFEST_DIGESTS,
-    PROBE_SUCCESS,
+    PREFLIGHT_SUCCESS,
     VERSIONED_BOOTSTRAP_SHA256,
     VERSIONED_BOOTSTRAP_SIZE,
     VERSIONED_BOOTSTRAP_URL,
@@ -1147,7 +1147,7 @@ def validate_release_semantics() -> None:
     pipe_to_shell = re.compile(r"(?:curl|wget)\s[^<\n]*\|\s*(?:/bin/)?sh\b")
     install_command = re.compile(r"curl\s[^<\n]*install\.sh")
     held_back = render_install_command(execute=True)
-    probe = render_install_command()
+    preflight = render_install_command()
     for page, text in texts.items():
         relative = page.relative_to(ROOT)
         if pipe_to_shell.search(text):
@@ -1162,18 +1162,18 @@ def validate_release_semantics() -> None:
         if marker not in download:
             raise AssertionError(f"download/index.html lacks Alpha.5 containment marker {marker!r}")
 
-    if pipe_to_shell.search(held_back) or pipe_to_shell.search(probe):
+    if pipe_to_shell.search(held_back) or pipe_to_shell.search(preflight):
         raise AssertionError("Alpha.5 transport generator must never use pipe-to-shell")
-    for command in (held_back, probe):
+    for command in (held_back, preflight):
         for marker in (BOOTSTRAP_URL, BOOTSTRAP_SHA256, str(BOOTSTRAP_SIZE), '/bin/sh -n "$tmp"'):
             if marker not in command:
                 raise AssertionError(f"Alpha.5 transport generator lacks {marker!r}")
     if '/bin/sh "$tmp"' not in held_back:
         raise AssertionError("Alpha.5 held-back command must execute only after checks")
-    if '/bin/sh "$tmp" --transport-probe' not in probe or PROBE_SUCCESS not in require(
+    if '/bin/sh "$tmp" --materialization-preflight' not in preflight or PREFLIGHT_SUCCESS not in require(
         "download/install.sh"
     ).read_text(encoding="utf-8"):
-        raise AssertionError("Alpha.5 probe must enter the exact non-installing bootstrap mode")
+        raise AssertionError("Alpha.5 preflight must enter the exact non-installing bootstrap mode")
 
     for surface in ("index.html", "download/index.html", "releases/index.html", "docs/limitations.html"):
         text = texts[ROOT / surface].lower()
