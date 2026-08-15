@@ -4,14 +4,14 @@
 **Execution Mode:** operating
 **Max Items:** 1
 
-## P0 [BL-SITE-ALPHA5-SIGNATURE-MANIFEST] Re-enable repaired safe command
+## P0 [BL-SITE-ALPHA5-SIGNATURE-MANIFEST] Await diagnostic Lionheart run
 
-**Status:** The owner reports the exact-target seven-manifest probe passed without
-installer execution. The repaired mutable command is published once on the
-download page; deployment verification is pending.
+**Status:** The repaired command is live from `d5491f3`; all 15 changed paths and
+all 33 immutable Alpha.5 files matched anonymous bytes after deployment
+`5918210420`.
 
-**Decision:** deploy only the complete-download, 13,702-byte, pinned-SHA-256,
-`/bin/sh -n` command. Never restore pipe-to-shell.
+**Decision:** await the owner result from that command on the already-mutated
+Lionheart distro. Classify it only as diagnostic/functional, never clean install.
 
-**Exit:** changed mutable surfaces and all immutable files match remotely. A
-fresh distro remains required for clean-install evidence.
+**Exit:** the owner supplies the Lionheart result. A genuinely fresh distro
+remains a separate requirement for clean-install evidence.

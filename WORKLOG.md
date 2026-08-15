@@ -9,6 +9,10 @@
   of mutable `/download/install.sh`, exact size and digest checks, shell syntax,
   then execution. Pipe-to-shell remains forbidden. A Lionheart retry is
   diagnostic only; clean-install evidence requires a genuinely fresh distro.
+- Content `d5491f32cabda022630b0292e4db440d64760c7d` deployed through Pages
+  build `1152517815`, run `31871418918`, and deployment `5918210420`.
+- Anonymous byte comparison passed for all 15 changed paths and all 33 immutable
+  Alpha.5 files. The next Lionheart install result is diagnostic only.
 
 ## 2026-08-14 - Alpha.5 mutable manifest publication remotely verified
 

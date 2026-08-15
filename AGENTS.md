@@ -97,6 +97,12 @@ probe passed all seven manifests without installer execution. The repaired
 complete-download command is authorized for re-enablement; no clean-install
 receipt or acceptance follows.
 
+Re-enablement content `d5491f32cabda022630b0292e4db440d64760c7d`
+deployed through Pages build `1152517815`, run `31871418918`, and deployment
+`5918210420`. All 15 changed paths and all 33 immutable Alpha.5 files matched
+anonymous live bytes. The repaired command is public; a Lionheart run remains
+diagnostic only and cannot supply fresh-distro evidence.
+
 ## Mandatory read order
 
 1. `AGENTS.md`

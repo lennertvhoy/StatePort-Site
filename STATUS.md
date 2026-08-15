@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-08-14
 **Execution Mode:** operating
-**Project State:** alpha5_repaired_install_reenable_candidate
+**Project State:** alpha5_repaired_install_enabled_diagnostic_run_pending
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -67,8 +67,11 @@
 - The owner reports the exact Windows 11 + WSL2 + Ubuntu 24.04 probe passed the
   13,702-byte bootstrap, pinned SHA-256, shell syntax, and all seven manifests
   without installer execution. This authorizes the repaired command only.
+- Re-enablement `d5491f32cabda022630b0292e4db440d64760c7d` deployed through
+  build `1152517815`, run `31871418918`, and deployment `5918210420`; all 15
+  changed paths and all 33 immutable Alpha.5 files matched anonymous bytes.
 
 ## Exact next action
 
-Deploy and remotely verify only the complete-download pinned command. Any run on
-Lionheart is diagnostic; clean-install evidence requires a genuinely fresh distro.
+Await the owner result from the repaired command on Lionheart and classify it
+only as diagnostic. Clean-install evidence requires a genuinely fresh distro.

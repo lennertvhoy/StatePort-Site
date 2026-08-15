@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-15T07:11:16Z"
-  updated_by: alpha5_repaired_install_reenable_candidate
+  updated_at: "2026-08-15T07:16:22Z"
+  updated_by: alpha5_repaired_install_reenable_closure
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha5_repaired_install_reenable_candidate
+  status: alpha5_repaired_install_enabled_diagnostic_run_pending
   purpose: public_documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -86,22 +86,22 @@ site:
   deployment:
     provider: GitHub Pages
     build_type: legacy
-    status: mutable_manifest_probe_transport_built_from_main_root_remotely_verified
+    status: repaired_install_built_from_main_root_remotely_verified
     workflow: ".github/workflows/deploy-pages.yml"
     custom_workflow_status: disabled_manual_only_not_live_provider
     source_branch: main
     source_path: /
     deployment_head: derived_from_git_not_persisted
-    live_content_commit: 562c9cfdeff85b3449df37b0011d228ab3857e75
-    pages_build: 1151713417
-    pages_build_commit_field: 562c9cfdeff85b3449df37b0011d228ab3857e75
-    pages_run: 31838288831
-    pages_deployment: 5913017331
-    deployment_sha: 562c9cfdeff85b3449df37b0011d228ab3857e75
-  current_release_surface: alpha5_repaired_install_reenable_candidate
+    live_content_commit: d5491f32cabda022630b0292e4db440d64760c7d
+    pages_build: 1152517815
+    pages_build_commit_field: d5491f32cabda022630b0292e4db440d64760c7d
+    pages_run: 31871418918
+    pages_deployment: 5918210420
+    deployment_sha: d5491f32cabda022630b0292e4db440d64760c7d
+  current_release_surface: alpha5_repaired_install_enabled_remote_verified
   installer_command_shown: true
   installer_command_locations: [download/index.html]
-  replacement_install_command: complete_download_size_digest_syntax_checked_candidate
+  replacement_install_command: complete_download_size_digest_syntax_checked_live
   nonexecuting_transport_probe: owner_reported_exact_target_passed
   immutable_tree_manifest: config/immutable-release-trees.json
   immutable_anchors:
@@ -122,12 +122,14 @@ site:
     mutable_manifest_files_checked: 7
     mutable_publication_changed_files_checked: 16
     mutable_publication_mismatches: 0
+    repaired_reenable_changed_files_checked: 15
+    repaired_reenable_changed_file_mismatches: 0
     transport_generator_sha256: d5882b368d2260f20ef56fea6f114c9e5eb5f8e38f07ba0c6945112caf1319c9
     browser_automation: unavailable_not_claimed
 
 owner_directive:
   id: OD-2026-08-14-ALPHA5-PUBLIC-CONTAINMENT
-  status: owner_probe_passed_repaired_install_reenable_candidate
+  status: repaired_command_live_lionheart_diagnostic_run_pending
   source_repository: /home/ff/Documents/Projects/StatePort
   source_commit: f45d9c80b17d5dcb3866ffc35fdb7a0fe501b720
   objective: disable_promoted_alpha5_install_and_deploy_verified_non_streaming_transport_containment_without_changing_release_bytes
@@ -142,7 +144,7 @@ owner_directive:
 active_work:
   - id: BL-SITE-ALPHA5-SIGNATURE-MANIFEST
     priority: P0
-    status: repaired_install_reenable_candidate
+    status: lionheart_diagnostic_install_pending
 
 prior_work:
   - id: alpha5_streamed_bootstrap_truncation
@@ -157,7 +159,7 @@ prior_work:
     missing: clean_install_receipt_from_genuinely_fresh_exact_target_distro
 
 workspace_inventory:
-  expected_content_head: pending_repaired_install_reenable_commit
+  expected_content_head: d5491f32cabda022630b0292e4db440d64760c7d
   expected_origin_head: derived_from_git_not_persisted
-  expected_dirty_path: repaired_install_reenable_candidate
+  expected_dirty_path: repaired_install_reenable_state_closure
   immutable_release_bytes_changed_after_anchor: false
