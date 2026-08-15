@@ -57,16 +57,23 @@ class SiteRuntimeContractTests(unittest.TestCase):
             7.0,
         )
 
-    def test_honest_preview_copy_retires_unsupported_phrasing(self) -> None:
+    def test_plain_preview_copy_retires_unsupported_phrasing(self) -> None:
         homepage = (ROOT / "index.html").read_text(encoding="utf-8")
         walkthrough = (ROOT / "docs/prototype-walkthrough.html").read_text(encoding="utf-8")
         self.assertIn("Product walkthrough", homepage)
-        self.assertIn("Working preview", walkthrough)
+        self.assertIn("Development preview", walkthrough)
         self.assertIn("Ask a question", homepage)
-        self.assertIn("The same interface at phone size", homepage)
-        self.assertIn("shown step by step", homepage)
+        self.assertIn("Use the same clear view", homepage)
+        self.assertIn("See an application remember", homepage)
         for text in (homepage, walkthrough):
-            for retired in ("Product proof", "Ask a real question", "Pick up anywhere", "not a staged mockup"):
+            for retired in (
+                "Product proof",
+                "Ask a real question",
+                "Pick up anywhere",
+                "not a staged mockup",
+                "compatible_unvalidated",
+                "clean-install receipt",
+            ):
                 self.assertNotIn(retired, text)
 
     def test_public_media_and_caption_contracts_exclude_source_and_retired_references(self) -> None:
