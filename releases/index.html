@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="StatePort Alpha.5 is a signed WSL2 public-test with installation temporarily disabled; no clean-install receipt or acceptance exists.">
+    <meta name="description" content="See what is available in StatePort Alpha.5, why the installer is temporarily unavailable, and where to find release files.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="StatePort release status">
-    <meta property="og:description" content="StatePort Alpha.5 installation is temporarily disabled; clean-install proof remains absent.">
+    <meta property="og:description" content="StatePort Alpha.5 release files are available, but the installer is temporarily unavailable.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/releases/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/releases/">
@@ -31,7 +31,7 @@
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "StatePort release status",
-        "description": "Plain-English release status for StatePort Alpha.5: published with installation temporarily disabled and no clean-install receipt.",
+        "description": "Plain-English availability for StatePort Alpha.5, including installer status and release files.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/releases/",
         "dateModified": "2026-08-15",
         "inLanguage": "en"
@@ -61,7 +61,7 @@
         <div class="article-hero-inner">
           <p class="document-kicker">Release status</p>
           <h1 id="releases-title">What's available today</h1>
-          <p>Exactly what works right now, in plain English. We only claim what we've actually tested.</p>
+          <p>A plain-English view of what you can use, view, and download today.</p>
         </div>
       </section>
 
@@ -82,9 +82,9 @@
           <div class="release-summary" id="current-status">
             <div>
               <p class="release-summary-label">Current software status</p>
-              <h2>Alpha.5 installation temporarily unavailable</h2>
-              <p>The public-test command is disabled while a diagnostic installer failure is repaired and verified. Alpha.5 remains <code>compatible_unvalidated</code>.</p>
-              <p><a class="button button--ink" href="../download/">Open release details <span aria-hidden="true">↗</span></a></p>
+              <h2>Alpha.5 installer temporarily unavailable</h2>
+              <p>The alpha installer is temporarily unavailable while we fix a problem found during testing.</p>
+              <p><a class="button button--ink" href="../download/">Open download page <span aria-hidden="true">↗</span></a></p>
             </div>
             <p class="release-review-date">Status reviewed<br><time datetime="2026-08-15">15 August 2026</time></p>
           </div>
@@ -97,33 +97,24 @@
                 <thead><tr><th scope="col">What</th><th scope="col">Status</th></tr></thead>
                 <tbody>
                   <tr><th scope="row">Website</th><td>Live</td></tr>
-                  <tr><th scope="row">Download</th><td>v0.1.0-alpha.5 published — exact WSL2 public-test target only</td></tr>
-                  <tr><th scope="row">Installation path</th><td>Temporarily disabled</td></tr>
-                  <tr><th scope="row">Clean-install proof</th><td>No</td></tr>
-                  <tr><th scope="row">Source identities</th><td>The curated alpha.5 source archive is public; canonical development Git is private; the signed <code>publicSnapshot</code> Git identity is remotely resolvable from the public <a href="https://github.com/lennertvhoy/StatePort-Source" target="_blank" rel="noopener">StatePort-Source repository</a>. Public snapshot availability does not expose canonical development history.</td></tr>
-                  <tr><th scope="row">Archive licensing</th><td>Code and StateSpec artifacts are AGPL-3.0-or-later; documentation is CC-BY-4.0.</td></tr>
-                  <tr><th scope="row">Security review</th><td>Not done</td></tr>
-                  <tr><th scope="row">Production use</th><td>No</td></tr>
-                  <tr><th scope="row">Older alphas</th><td>Alpha.2 superseded and disabled; Alpha.3 signed, retained, and install-disabled</td></tr>
+                  <tr><th scope="row">Product preview</th><td>Available</td></tr>
+                  <tr><th scope="row">Documentation</th><td>Available</td></tr>
+                  <tr><th scope="row">Alpha.5 release files</th><td>Available</td></tr>
+                  <tr><th scope="row">Alpha.5 installer</th><td>Temporarily unavailable</td></tr>
+                  <tr><th scope="row">Older alphas</th><td>Do not install Alpha 2 or Alpha 3</td></tr>
                 </tbody>
               </table>
             </div>
           </section>
 
           <section id="release-evidence" aria-labelledby="release-evidence-heading">
-            <h2 id="release-evidence-heading">What this means</h2>
-            <p>Published and installable are separate states:</p>
-            <ul>
-              <li><strong>Signed and online</strong> — yes. The Alpha.5 artifacts are immutable and the public image references resolve anonymously.</li>
-              <li><strong>Installation path enabled</strong> — no, temporarily disabled.</li>
-              <li><strong>Clean install verified</strong> — no.</li>
-              <li><strong>Human accepted</strong> — not yet. Alpha, still being reviewed.</li>
-              <li><strong>Security review</strong> — not done.</li>
-              <li><strong>Production-ready</strong> — no.</li>
-            </ul>
+            <h2 id="release-evidence-heading">Before you use StatePort</h2>
+            <p>StatePort is in early alpha. Do not use it for important data.</p>
+            <p>Alpha.5 was prepared for Windows 11 with WSL2 and Ubuntu 24.04 on x86-64. The installer is not available while we finish testing a fix.</p>
+            <p><a href="../download/technical-release-files.html">Technical release files</a> remain available for developers and reviewers.</p>
           </section>
 
-          <p class="notice"><strong>Historical releases remain unchanged.</strong> v0.1.0-alpha.2 is superseded and disabled. v0.1.0-alpha.3 is signed and byte-intact but install-disabled; its <a href="../download/erratum-alpha3.html">erratum</a> remains the historical authority. Neither tree was changed to publish Alpha.5.</p>
+          <p class="notice"><strong>Do not install Alpha 2 or Alpha 3. They contain known bugs.</strong> <a href="../download/erratum-alpha3.html">Read the Alpha.3 technical details</a>.</p>
         </article>
       </div>
     </main>
@@ -139,7 +130,7 @@
           <a href="../tutorials/">Tutorials</a>
           <a href="./" aria-current="page">Release status</a>
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
     <script src="../assets/site.js?v=2026-08-10-1"></script>

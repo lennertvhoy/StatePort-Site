@@ -49,23 +49,15 @@ comparative claims. It argues a single idea: **state is the application
 boundary** — and that moving the boundary there changes what an assistant can
 be.
 
-**Status of the reference implementation.** The public walkthrough is a
-mock-backed, public-safe fixture and local development preview. It is not
-evidence of a live Alpha.5 backend, a hosted service, a cross-device service,
-or a production-qualified product. The signed Alpha.5 release is a
-`compatible_unvalidated` WSL2 public-test candidate without a clean-install
-receipt.
+**Status of the reference implementation.** The public walkthrough is a local
+development preview with sample data. Alpha.5 release files are public, but the
+installer is temporarily unavailable while a problem found during testing is
+fixed.
 
-**Current delivery versus future architecture.** The current delivery of the
-reference implementation is StatePort v0.1.0-alpha.5, a **publicly published
-and signed WSL2 public-test candidate**. Its exact Windows 11 + WSL2 + Ubuntu
-24.04 AMD64 path is `compatible_unvalidated` until a real-host clean-install
-receipt exists. The curated Alpha.5 source archive is public, while canonical
-development Git remains private; its signed `publicSnapshot` is remotely resolvable
-from the public StatePort-Source repository. It is not
-owner-accepted, independently security-audited, stable, or production-ready.
-The delivery is rootless Podman and Quadlet under WSL2, loopback-only, and
-single-user. The wider
+**Current delivery versus future architecture.** The current reference
+implementation is StatePort v0.1.0-alpha.5. StatePort is in early alpha. Do not
+use it for important data. Alpha.5 was prepared for Windows 11, WSL2, and Ubuntu
+24.04 on x86-64, with local single-user operation. The wider
 architecture this paper describes — catalogues of community applications,
 multiple qualified providers, team deployments — is a direction, not a
 description of what the alpha delivers. Where the two differ, this paper now

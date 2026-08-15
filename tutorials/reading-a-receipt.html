@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="A conceptual tutorial for reading a governed change receipt.">
+    <meta name="description" content="Learn how to read a StatePort change record and check what was requested, approved, changed, and checked.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Read a governed receipt — StatePort tutorial">
-    <meta property="og:description" content="A conceptual tutorial for reading a governed change receipt.">
+    <meta property="og:title" content="Read a change record - StatePort tutorial">
+    <meta property="og:description" content="Check what an application requested, what you approved, what changed, and whether the checks passed.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/tutorials/reading-a-receipt.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -23,7 +23,7 @@
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
     <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
-    <title>Read a receipt — StatePort</title>
+    <title>Read a change record - StatePort</title>
   </head>
   <body class="article-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -47,8 +47,8 @@
       <section class="article-hero" aria-labelledby="tutorial-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Tutorial / 02</p>
-          <h1 id="tutorial-title">Read a receipt without mistaking it for a verdict.</h1>
-          <p>A short conceptual exercise for distinguishing what was proposed, authorized, applied, validated, and still awaiting a person’s judgement.</p>
+          <h1 id="tutorial-title">Read a change record</h1>
+          <p>Check what the application requested, what you approved, what changed, and whether the checks passed.</p>
         </div>
       </section>
 
@@ -59,42 +59,39 @@
             <a href="./">Overview</a>
             <a href="first-application.html">First application</a>
             <a href="reading-a-receipt.html" aria-current="page">Read a receipt</a>
-            <a href="../docs/governance.html">Governance</a>
+            <a href="../docs/governance.html">Review and control</a>
             <a href="../releases/">Release status</a>
           </nav>
         </aside>
 
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Design exercise</strong> The receipt below is a learning aid. Its example format is deliberately small and illustrative.</p>
+          <p class="notice notice--quiet"><strong>Design exercise.</strong> The example below is small on purpose. You will not install anything.</p>
 
           <h2>The situation</h2>
-          <p>Imagine that an application proposes to move one study session from Wednesday to Thursday. A useful record should help the owner answer more than “did the assistant say it was done?”</p>
+          <p>Imagine that an application wants to move one study session from Wednesday to Thursday. A useful record should answer more than "did the assistant say it was done?"</p>
 
           <h2>Read the stages in order</h2>
-          <div class="code-panel" data-label="Illustrative receipt summary"><code>proposal:          move session / Wed → Thu
-proposal identity:  sha256:… exact reviewable content
-authority:         owner decision bound to that identity
-execution:         one bounded local transition attempted
-apply result:      applied
-validation:        schedule rules passed
-receipt state:     recorded
-human acceptance:  not implied</code></div>
-          <p>The proposal identity matters because an approval for one plan should not drift into approval for a changed plan. The execution and apply result matter because a proposal can be authorized without running, and a run can fail before publication.</p>
+          <div class="code-panel" data-label="Illustrative change record"><code>request:   move session / Wed → Thu
+approval:  approved by the user
+change:    applied
+checks:    schedule rules passed
+record:    saved</code></div>
+          <p>The record should describe the same request you reviewed. If the request changes, the application should ask again. It should also show when approved work failed before making a change.</p>
 
           <h2>Ask five questions</h2>
           <ol>
-            <li>Which exact application instance and source identity does this concern?</li>
-            <li>What content was prepared for review?</li>
-            <li>What authority covered the act, and did it match the prepared content?</li>
-            <li>What was actually applied and what validation was recorded?</li>
-            <li>Which part still needs external acknowledgement or human acceptance?</li>
+            <li>Which application does this concern?</li>
+            <li>What did it ask to change?</li>
+            <li>Who approved the request?</li>
+            <li>What changed, and did the checks pass?</li>
+            <li>What still needs attention?</li>
           </ol>
 
-          <h2>Notice what a receipt cannot say</h2>
-          <p>A receipt cannot prove that a learner’s schedule is wise, that a person understood the proposal, or that an external calendar update can be undone. Those questions need explicit policy, human judgement, and—when applicable—separate evidence from the external system.</p>
+          <h2>Know what the record cannot tell you</h2>
+          <p>A change record cannot tell you whether moving the session was a good idea or whether the learner understood the choice. It also cannot promise that another service can undo a change. Those questions still need your judgement.</p>
 
           <div class="inline-actions">
-            <a class="button button--ink" href="../docs/governance.html">Return to governance</a>
+            <a class="button button--ink" href="../docs/governance.html">Review and control</a>
             <a class="button button--outlined" href="first-application.html">Design an application</a>
           </div>
         </article>
@@ -112,7 +109,7 @@ human acceptance:  not implied</code></div>
           <a href="./">Tutorials</a>
           <a href="../releases/">Release status</a>
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
     <script src="../assets/site.js?v=2026-08-10-1"></script>

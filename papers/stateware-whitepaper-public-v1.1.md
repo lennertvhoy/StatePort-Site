@@ -38,11 +38,9 @@ comparative claims. It argues a single idea: **state is the application
 boundary** — and that moving the boundary there changes what an assistant can
 be.
 
-**Status of the reference implementation.** Representative workflows —
-installation, governed conversation, approvals, receipts, updates — have been
-exercised against StatePort's real local service. It is not presented as a
-hosted service, a production-qualified product, or a completed third-party
-application ecosystem.
+**Status of the reference implementation.** The website shows a local
+development preview with sample data. StatePort is in early alpha. Do not use it
+for important data. The Alpha.5 installer is temporarily unavailable.
 
 ## Scope and standing of this paper
 

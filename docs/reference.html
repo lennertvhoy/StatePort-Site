@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Reference and FAQ — StatePort public documentation preview.">
+    <meta name="description" content="Find short definitions of Stateware, StateSpec, application state, instances, and change records, plus common StatePort questions.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="Reference and FAQ — StatePort">
-    <meta property="og:description" content="Reference and FAQ — StatePort public documentation preview.">
+    <meta property="og:description" content="Short StatePort definitions and answers to common questions.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/reference.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -47,8 +47,8 @@
       <section class="article-hero" aria-labelledby="page-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / 08</p>
-          <h1 id="page-title">A short vocabulary for asking better questions.</h1>
-          <p>These definitions are deliberately practical. They help distinguish application truth, operational context, authority, and evidence.</p>
+          <h1 id="page-title">Reference and common questions</h1>
+          <p>Short definitions for the terms used across the StatePort website.</p>
         </div>
       </section>
 
@@ -61,11 +61,11 @@
             <a href="foundations.html">Foundations</a>
             <a href="model.html">Model</a>
             <a href="lifecycle.html">Lifecycle</a>
-            <a href="governance.html">Governance</a>
+            <a href="governance.html">Review and control</a>
             <a href="security-and-privacy.html">Security &amp; privacy</a>
             <a href="hosts-and-portability.html">Hosts &amp; portability</a>
             <a href="platform-support.html">Platform support</a>
-            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="reference.html" aria-current="page">Reference &amp; FAQ</a>
             <a href="getting-started.html">Getting started</a>
             <a href="study-state.html">StudyState</a>
@@ -77,29 +77,29 @@
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Reading guide</strong> This page explores the model. <a href="../releases/">Availability lives in the release ledger.</a></p>
+          <p class="notice notice--quiet"><strong>Looking for availability?</strong> Check the <a href="../releases/">release status</a>.</p>
 
           <h2>Glossary</h2>
           <h3>Stateware</h3>
-          <p>Software whose durable, inspectable state and governed lifecycle contracts form the application boundary, independent of any single agent or model provider.</p>
+          <p>Software that keeps its important state in a durable, inspectable form instead of depending on one AI session or provider.</p>
           <h3>StateSpec</h3>
-          <p>The portable, repository-native specification for durable facts, ownership, requested capabilities, lifecycle rules, and validation expectations. StateDD is a legacy compatibility name, not the current public term.</p>
+          <p>The file format and rules StatePort uses for durable facts, ownership, requested access, lifecycle steps, and checks.</p>
           <h3>Canonical state</h3>
-          <p>The declared source of truth for a specific concern. It is not a synonym for every file, message, cache, or external system record.</p>
+          <p>The place an application treats as the current version of a specific fact.</p>
           <h3>Instance</h3>
-          <p>A particular durable application copy with its own identity, private state, grants, and lifecycle history.</p>
-          <h3>Receipt</h3>
-          <p>A structured claim about a transition and its evidence. It can be reviewed and verified; it does not replace judgement or make an external system reversible.</p>
+          <p>Your particular copy of an application, with its own private state, permissions, and history.</p>
+          <h3>Change record</h3>
+          <p>A record of what was requested, approved, changed, and checked.</p>
 
           <h2>Frequently asked questions</h2>
           <h3>Where can I check availability?</h3>
-          <p>The <a href="../releases/">release ledger</a> is the source for public availability.</p>
+          <p>Use the <a href="../releases/">release status</a> page.</p>
           <h3>Is a conversation the application’s truth?</h3>
-          <p>No. A conversation can be a durable operational record, but a domain fact needs an explicit owner and source of truth.</p>
+          <p>No. A conversation can help with work, but important facts need a clear place to live.</p>
           <h3>Does portability mean identical behavior everywhere?</h3>
-          <p>No. It means an application can preserve its declared boundary while hosts report their actual capabilities and limitations.</p>
-          <h3>Does a receipt prove a decision was good?</h3>
-          <p>No. It makes the decision and its outcome easier to attribute and inspect. Human judgement remains necessary.</p>
+          <p>No. It means your application data and history can survive while each tool reports what it can and cannot do.</p>
+          <h3>Does a change record prove a decision was good?</h3>
+          <p>No. It makes the decision and result easier to inspect. You still need to judge whether the choice was right.</p>
           <h3>Where should I begin?</h3>
           <p>Read the foundations page, then the model and lifecycle. The first-application tutorial turns those concepts into a small design exercise.</p>
 
@@ -122,7 +122,7 @@
           <a href="../tutorials/">Tutorials</a>
           <a href="../releases/">Release status</a>
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
     <script src="../assets/site.js?v=2026-08-10-1"></script>

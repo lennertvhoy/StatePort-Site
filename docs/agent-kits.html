@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Agent Kits roadmap — StatePort public documentation preview.">
+    <meta name="description" content="Explore the early Agent Kits idea: focused StatePort applications that package a reusable workflow without taking ownership of your data.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="Agent Kits roadmap — StatePort">
-    <meta property="og:description" content="Agent Kits roadmap — StatePort public documentation preview.">
+    <meta property="og:description" content="An early idea for focused StatePort applications you can install and keep under your control.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/agent-kits.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -48,7 +48,7 @@
         <div class="article-hero-inner">
           <p class="document-kicker">Roadmap / Agent Kits</p>
           <h1 id="page-title">A useful workflow, ready to travel.</h1>
-          <p>A planned, modular way to pair a focused template with the runtime and ownership it needs.</p>
+          <p>An early idea for packaging a focused workflow without packaging your personal data.</p>
         </div>
       </section>
 
@@ -60,7 +60,7 @@
             <a href="foundations.html">Foundations</a>
             <a href="model.html">Model</a>
             <a href="lifecycle.html">Lifecycle</a>
-            <a href="governance.html">Governance</a>
+            <a href="governance.html">Review and control</a>
             <a href="hosts-and-portability.html">Hosts &amp; portability</a>
             <a href="platform-support.html">Platform support</a>
             <a href="study-state.html">StudyState</a>
@@ -70,52 +70,49 @@
             <a href="prototype-walkthrough.html">Prototype walkthrough</a>
             <a href="agent-kits.html" aria-current="page">Agent Kits roadmap</a>
             <a href="../papers/stateware-whitepaper-public-v1.1.html">Stateware paper</a>
-            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="../releases/">Release status</a>
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Early direction</strong> Agent Kits are a design proposal. <a href="../releases/">Availability lives in the release ledger.</a></p>
+          <p class="notice notice--quiet"><strong>Early direction.</strong> Agent Kits are not available yet. Check the <a href="../releases/">release status</a> for current software.</p>
 
           <h2>A useful shape for a focused tool</h2>
-          <p>A study review guide, project kick-off assistant, or checklist steward should arrive with its shape intact: what it does, what it needs, and who owns the resulting work. The proposal is a template-first Agent Kit with a public template, runtime profile, policy request, and integrity metadata.</p>
+          <p>A study guide, project starter, or checklist helper should clearly say what it does, what access it needs, and where your work will live. An Agent Kit would package that reusable starting point.</p>
 
           <div class="kit-flow" aria-label="Proposed Agent Kit lifecycle">
             <section>
               <span>01</span>
               <h3>Public template</h3>
-              <p>The workflow and declared views begin with an immutable, public source.</p>
+              <p>The workflow starts from a public, versioned source.</p>
             </section>
             <section>
               <span>02</span>
               <h3>Declared runtime</h3>
-              <p>A host adapter names its capabilities, sandbox, and limits.</p>
+              <p>The kit lists the computer features and AI tools it needs.</p>
             </section>
             <section>
               <span>03</span>
               <h3>Explicit authority</h3>
-              <p>Effective capability remains the intersection of template request, instance grant, and operator policy.</p>
+              <p>You decide which requested permissions to grant.</p>
             </section>
             <section>
               <span>04</span>
               <h3>Owned instance</h3>
-              <p>A user starts fresh or deliberately imports a separately governed backup.</p>
+              <p>Your personal copy keeps its own data and history.</p>
             </section>
           </div>
 
           <h2>Docker-first, later</h2>
-          <p>The first distribution profile under consideration is Docker/OCI. An image is a replaceable execution artifact; durable StateSpec data and credentials stay outside it. A kit should remain inspectable, mount an owned instance deliberately, and use the same lease, validation, transaction, and receipt contracts as agent-native use.</p>
-
-          <h2>Separate from StateBench</h2>
-          <p>A kit earns its value by solving a real use case. StateBench may later evaluate an exact configuration under controlled conditions; release trust and permissions remain separate concerns.</p>
+          <p>The first packaging option under consideration is Docker. Application data and credentials would stay outside the container so an update cannot replace them.</p>
 
           <h2>Before it ships</h2>
           <ul>
-            <li>Publish an exact release source and its acceptance criteria.</li>
-            <li>Design a versioned schema, threat model, and public/private fixture policy.</li>
-            <li>Define ownership-aware install, update, export, import, rollback, and revocation behavior.</li>
-            <li>Bind Docker/OCI provenance and a release identity while keeping data and credentials outside image layers.</li>
-            <li>Validate one exact release candidate through CLI, application, degraded-host, and human-acceptance journeys.</li>
+            <li>Publish a versioned source.</li>
+            <li>Document permissions and security risks.</li>
+            <li>Define setup, updates, export, import, rollback, and removal.</li>
+            <li>Keep data and credentials outside container images.</li>
+            <li>Test one complete application journey with real users.</li>
           </ul>
 
           <div class="inline-actions">
@@ -137,7 +134,7 @@
           <a href="../tutorials/">Tutorials</a>
           <a href="../releases/">Release status</a>
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
     <script src="../assets/site.js?v=2026-08-10-1"></script>

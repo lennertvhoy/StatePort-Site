@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Practice the StatePort design model with short tutorials on durable application boundaries and governed receipts.">
+    <meta name="description" content="Try short StatePort tutorials about choosing what an AI-assisted application should remember and checking a record of change.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="StatePort tutorials — Practice the model">
-    <meta property="og:description" content="Short, conceptual exercises for durable state, authority, lifecycle, and evidence.">
+    <meta property="og:title" content="StatePort tutorials">
+    <meta property="og:description" content="Short exercises about durable application memory and clear change records.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/tutorials/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/tutorials/">
@@ -31,7 +31,7 @@
         "@context": "https://schema.org",
         "@type": "CollectionPage",
         "name": "StatePort tutorials",
-        "description": "Conceptual tutorials for the StatePort design model.",
+        "description": "Short exercises about choosing what an application should remember and checking what changed.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/tutorials/",
         "dateModified": "2026-07-22",
         "inLanguage": "en"
@@ -60,8 +60,8 @@
       <section class="article-hero" aria-labelledby="tutorials-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Tutorials</p>
-          <h1 id="tutorials-title">Practice the model with small, honest examples.</h1>
-          <p>Use short exercises to decide what a workflow should remember, who may change it, and what evidence should remain afterwards.</p>
+          <h1 id="tutorials-title">Learn with small examples.</h1>
+          <p>Decide what an application should remember, who may change it, and how to check what happened.</p>
         </div>
       </section>
 
@@ -78,7 +78,7 @@
         </aside>
 
         <article class="prose tutorial-overview" data-no-toc>
-          <p class="notice notice--quiet"><strong>Current scope</strong> These are conceptual design exercises, not versioned installation instructions. Alpha.5 has a separate, explicitly unqualified WSL2 public-test path; the <a href="../releases/">release ledger</a> carries its current evidence boundary.</p>
+          <p class="notice notice--quiet"><strong>No setup required.</strong> These are design exercises. For software availability, check the <a href="../releases/">release status</a>.</p>
 
           <h2>Start in this order</h2>
           <div class="tutorial-list">
@@ -90,8 +90,8 @@
               </div>
               <div>
                 <h3><a href="first-application.html">Design your first durable application</a></h3>
-                <p>Map the facts, authority, lifecycle, and evidence a small workflow should keep close at hand.</p>
-                <p class="tutorial-outcome"><strong>You will leave with:</strong> a boundary sketch that separates current state from chat context.</p>
+                <p>Choose the goals, decisions, and progress a small application should save.</p>
+                <p class="tutorial-outcome"><strong>You will leave with:</strong> a simple sketch of what belongs in the application instead of the chat.</p>
               </div>
             </article>
             <article class="tutorial-row">
@@ -101,25 +101,16 @@
                 <span>8–10 min</span>
               </div>
               <div>
-                <h3><a href="reading-a-receipt.html">Read a governed receipt</a></h3>
-                <p>Use one scenario to separate a proposal, authority decision, applied result, validation, and human acceptance.</p>
-                <p class="tutorial-outcome"><strong>You will leave with:</strong> a practical way to read claims about what changed.</p>
+                <h3><a href="reading-a-receipt.html">Read a change record</a></h3>
+                <p>Use one scenario to check what was requested, approved, changed, and checked.</p>
+                <p class="tutorial-outcome"><strong>You will leave with:</strong> a practical way to review an application's work.</p>
               </div>
             </article>
           </div>
 
           <section class="tutorial-boundary" aria-labelledby="tutorial-boundary-heading">
-            <h2 id="tutorial-boundary-heading">What these tutorials do—and do not—prove</h2>
-            <dl class="boundary-list">
-              <div>
-                <dt>They do</dt>
-                <dd>Teach the reasoning model with inspectable examples and explicit distinctions.</dd>
-              </div>
-              <div>
-                <dt>They do not</dt>
-                <dd>Prove a public release, supported platform, installation path, or production deployment.</dd>
-              </div>
-            </dl>
+            <h2 id="tutorial-boundary-heading">What you need</h2>
+            <p>A few minutes and a workflow you know well. You can follow both tutorials without installing anything.</p>
           </section>
 
           <div class="inline-actions">
@@ -141,7 +132,7 @@
           <a href="./" aria-current="page">Tutorials</a>
           <a href="../releases/">Release status</a>
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
     <script src="../assets/site.js?v=2026-08-10-1"></script>

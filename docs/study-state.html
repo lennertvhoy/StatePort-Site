@@ -14,7 +14,7 @@
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/study-state.html">
@@ -60,7 +60,7 @@
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / Applications</p>
           <h1 id="study-state-title">StudyState: a study coach that remembers.</h1>
-          <p>The first StatePort application shows what a durable, user-owned AI application feels like: it keeps your learning state, proposes changes you can check, and never makes you start over.</p>
+          <p>The first StatePort application shows the idea in practice: keep your learning goals and progress, then review changes before saving them.</p>
         </div>
       </section>
 
@@ -72,11 +72,11 @@
             <a href="foundations.html">Foundations</a>
             <a href="model.html">Model</a>
             <a href="lifecycle.html">Lifecycle</a>
-            <a href="governance.html">Governance</a>
+            <a href="governance.html">Review and control</a>
             <a href="security-and-privacy.html">Security &amp; privacy</a>
             <a href="hosts-and-portability.html">Hosts &amp; portability</a>
             <a href="platform-support.html">Platform support</a>
-            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="reference.html">Reference &amp; FAQ</a>
             <a href="getting-started.html">Getting started</a>
             <a href="study-state.html" aria-current="page">StudyState</a>
@@ -89,33 +89,33 @@
         </aside>
 
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Availability boundary</strong> This page describes the current StudyState design, not a claim that every capability is accepted in signed Alpha.5. Alpha.5 is an unqualified WSL2 public-test candidate without a clean-install receipt or owner acceptance; <a href="../releases/">availability lives in the release ledger</a>.</p>
+          <p class="notice notice--quiet"><strong>Product preview.</strong> StudyState is not available to install yet. Check the <a href="../releases/">release status</a> for updates.</p>
 
           <h2>What StudyState is</h2>
-          <p>StudyState is a study coach: an installed application with durable goals, learning activities, evidence, and review. It is not a chat window with a memory problem. The application is the product — the conversation belongs to the application, and everything the coach knows about your learning lives in state files you can open and read.</p>
-          <p>Advanced controls — learning state, activity history, context, governed runs, and receipts — stay out of the way until you ask for them. The everyday surface is the application itself.</p>
+          <p>StudyState is a study coach built around your goals, activities, progress, and reflections. The conversation belongs to the application, and the useful facts live in files you can open.</p>
+          <p>Most of the time, you see the coach and your next task. History and change records are available when you need them.</p>
 
           <h2>The Focus default: what to do next, and why</h2>
           <p>The default view answers one question: what should I do next, and why? StudyState plans the next learning activity from your durable learning state, so the suggestion is grounded in your goals and history rather than in whatever happened to be said last in a chat.</p>
 
           <h2>Lifecycle you control</h2>
-          <p>A learning activity is not a runaway process. You can start it, pause it, pick it back up later, or redirect — pausing the current activity and starting an exact other one. The coach proposes; the state changes only through those deliberate transitions.</p>
+          <p>The design lets you start, pause, resume, or change an activity. The coach suggests the next step. You stay in control of the plan.</p>
 
           <h2>Reflection becomes a change you review</h2>
-          <p>When you reflect on what you learned, StudyState turns that reflection into an exact proposed change to your learning state — nothing is rewritten in the background. You review the proposal and explicitly apply it, or you do not. Planning a change, applying it, and checking it remain separate moments.</p>
+          <p>When you reflect on what you learned, StudyState can turn that reflection into a proposed update. You review it before it changes your saved progress.</p>
 
-          <h2>Undo that persists, with receipts</h2>
-          <p>Every applied change can be undone: StudyState restores the exact prior state recorded by the last applied update. Undo is not a best-effort approximation, and it does not disappear when the session ends. Applied changes and their undo steps carry linked receipts, so you can always trace what happened, when, and on whose approval.</p>
+          <h2>Undo and change history</h2>
+          <p>The preview shows the planned ability to undo an applied change and review its history. This work is still part of the product roadmap.</p>
 
           <h2>State that survives restarts</h2>
-          <p>Your goals, activities, and evidence live in durable files on your own machine. Close the application, restart the computer, or come back next week — the learning state is still there, unchanged, and still yours. Changing the AI provider or model later does not strand the work.</p>
+          <p>Your goals, activities, and progress are designed to live in durable files on your machine, so a new session does not start from nothing.</p>
 
           <h2>What StudyState deliberately does not do</h2>
           <ul>
-            <li>It does not judge the quality of its own coaching. The current alpha runs deterministic, synthetic test activity — not a live tutor model making autonomous teaching decisions.</li>
+            <li>The current preview uses sample activity. It is not a live tutoring service.</li>
             <li>It does not change your learning state silently. Mutations are proposed, reviewed, and explicitly applied.</li>
-            <li>It does not adopt an existing private learning history in place; importing one is a separate, reviewable transaction.</li>
-            <li>It is not yet a released product. The canonical StudyState production release remains unresolved; the alpha uses an exact local-alpha input, not a production-eligible release.</li>
+            <li>Importing an existing learning history is not available yet.</li>
+            <li>StudyState is not a released product yet.</li>
           </ul>
 
           <div class="inline-actions">
@@ -137,7 +137,7 @@
           <a href="../tutorials/">Tutorials</a>
           <a href="../releases/">Release status</a>
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
     <script src="../assets/site.js?v=2026-08-10-1"></script>

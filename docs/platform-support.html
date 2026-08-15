@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Platform support and qualification — StatePort public documentation preview.">
+    <meta name="description" content="See which computers StatePort Alpha.5 is being prepared for and which platforms are not supported by this release.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Platform support &amp; qualification — StatePort">
-    <meta property="og:description" content="Platform support and qualification — StatePort public documentation preview.">
+    <meta property="og:title" content="Platform support - StatePort">
+    <meta property="og:description" content="Computer requirements and platform limits for StatePort Alpha.5.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/platform-support.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -23,7 +23,7 @@
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
     <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
-    <title>Platform support &amp; qualification — StatePort</title>
+    <title>Platform support - StatePort</title>
   </head>
   <body class="article-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -47,8 +47,8 @@
       <section class="article-hero" aria-labelledby="page-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / Platform support</p>
-          <h1 id="page-title">Support is a capability claim, not a startup event.</h1>
-          <p>A container starting can be useful evidence. It does not, by itself, prove durable storage, host execution, recovery, or a safe path from an existing installation.</p>
+          <h1 id="page-title">Where Alpha.5 is meant to run</h1>
+          <p>Alpha.5 is being prepared for one Windows and WSL setup. Other platforms will need separate work.</p>
         </div>
       </section>
 
@@ -60,11 +60,11 @@
             <a href="foundations.html">Foundations</a>
             <a href="model.html">Model</a>
             <a href="lifecycle.html">Lifecycle</a>
-            <a href="governance.html">Governance</a>
+            <a href="governance.html">Review and control</a>
             <a href="security-and-privacy.html">Security &amp; privacy</a>
             <a href="hosts-and-portability.html">Hosts &amp; portability</a>
             <a href="platform-support.html" aria-current="page">Platform support</a>
-            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="reference.html">Reference &amp; FAQ</a>
             <a href="getting-started.html">Getting started</a>
             <a href="study-state.html">StudyState</a>
@@ -77,10 +77,15 @@
         </aside>
 
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Current public-test boundary</strong> Alpha.5 offers one exact Windows 11 + WSL2 + Ubuntu 24.04 AMD64 path as <code>compatible_unvalidated</code>. It is not a general Windows, WSL, Linux, or production support claim. <a href="../releases/">Availability lives in the release ledger.</a></p>
+          <p class="notice notice--quiet"><strong>The alpha installer is temporarily unavailable while we fix a problem found during testing.</strong></p>
 
-          <h2>Capability-based qualification</h2>
-          <p>StatePort separates the browser and durable-storage path from host-integrated execution. An environment is not supported just because a container starts: each capability needs an explicit demonstration, and the release position records how far that demonstration has gone.</p>
+          <h2>Alpha.5 requirements</h2>
+          <ul>
+            <li>Windows 11 on an x86-64 computer.</li>
+            <li>WSL2 with Ubuntu 24.04.</li>
+            <li>A normal Ubuntu user with <code>sudo</code> access.</li>
+            <li>Internet access.</li>
+          </ul>
 
           <div class="table-scroll" tabindex="0" role="region" aria-label="Platform qualification matrix">
             <table>
@@ -88,60 +93,40 @@
               <thead>
                 <tr>
                   <th scope="col">Environment</th>
-                  <th scope="col">Browser and durable storage</th>
-                  <th scope="col">Host-integrated execution</th>
-                  <th scope="col">Release position</th>
+                  <th scope="col">Alpha.5 status</th>
+                  <th scope="col">What to know</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th scope="row">Windows 11 + WSL2 + Ubuntu 24.04 AMD64</th>
-                  <td>Exact Alpha.5 public-test target.</td>
-                  <td>Rootless Podman, Quadlet, systemd user services, and the stable execution host are capability-gated.</td>
-                  <td><code>compatible_unvalidated</code>; public-test installation temporarily disabled.</td>
+                  <td>Planned test platform</td>
+                  <td>The installer is temporarily unavailable.</td>
                 </tr>
                 <tr>
                   <th scope="row">WSL1</th>
-                  <td>Not eligible.</td>
-                  <td>Refused before provisioning-plan, install-state, receipt, or host mutation.</td>
-                  <td>Unsupported by Alpha.5.</td>
+                  <td>Not supported</td>
+                  <td>Alpha.5 requires WSL2.</td>
                 </tr>
                 <tr>
                   <th scope="row">Native Linux</th>
-                  <td>Separate capability contract and release target.</td>
-                  <td>Does not inherit the WSL2 candidate's evidence or bootstrap.</td>
-                  <td>Not an Alpha.5 installation target.</td>
+                  <td>Not supported by Alpha.5</td>
+                  <td>Native Linux needs a separate release path.</td>
                 </tr>
                 <tr>
                   <th scope="row">macOS, Docker Desktop, ARM64, other Linux distributions</th>
-                  <td>Separate platform work.</td>
-                  <td>Host adapters, storage, terminal, provider, and recovery need independent proof.</td>
-                  <td>Not claimed.</td>
+                  <td>Not supported by Alpha.5</td>
+                  <td>These platforms need separate testing and packaging.</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <p>The matrix names a release contract, not a promise that every row is currently available. The <a href="hosts-and-portability.html">host-portability page</a> explains why provider identity alone cannot substitute for capability and degradation evidence.</p>
+          <h2>Why support is narrow</h2>
+          <p>StatePort uses local storage, Linux services, containers, and an AI command-line tool. A setup is only useful when all of those parts work together and your data survives a restart. We will add platforms only after testing the full journey.</p>
 
-          <h2>The clean-install user story</h2>
-          <p>The exact-target path is temporarily disabled while a diagnostic failure is repaired. The <a href="../download/">download page</a> carries current release status.</p>
-          <ol>
-            <li>Prepare Windows 11, WSL2, Ubuntu 24.04, and systemd from a clean distribution.</li>
-            <li>Run the exact signed Alpha.5 bootstrap from an empty StatePort state directory.</li>
-            <li>Complete first-run diagnostics.</li>
-            <li>Import existing StateSpec repositories through an explicit, reviewed path.</li>
-            <li>Instantiate a new application from an accepted canonical template.</li>
-            <li>Configure the qualified execution provider without copying credentials into StatePort.</li>
-            <li>Prove conversation, terminal, backup, restore, and governed-change workflows.</li>
-            <li>Stop the old service only after data and recovery acceptance pass.</li>
-          </ol>
-
-          <h2>What does not qualify a platform</h2>
-          <p>A successful image build, a container that answers one health endpoint, or a browser that reaches a landing screen is insufficient. Qualification needs the actual browser path, persistent state, provider route, host boundaries, governed change, backup, isolated restore, and failure behaviour to remain legible together.</p>
-
-          <h2>Evidence before a support claim</h2>
-          <p>Before this page can describe a platform as supported, the exact release and environment need a recorded acceptance run. The record should identify the source, images, host and adapter, authentication route class, storage location, checks performed, observed limits, and recovery outcome. A later release guide can then bind those facts to real artefacts rather than a moving branch.</p>
+          <h2>Check before you start</h2>
+          <p>Use the <a href="../releases/">release status</a> for current availability. Do not use older install instructions or try to adapt the Alpha.5 files to another platform.</p>
 
           <div class="inline-actions">
             <a class="button button--ink" href="hosts-and-portability.html">Read host boundaries</a>
@@ -162,7 +147,7 @@
           <a href="../tutorials/">Tutorials</a>
           <a href="../releases/">Release status</a>
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
     <script src="../assets/site.js?v=2026-08-10-1"></script>

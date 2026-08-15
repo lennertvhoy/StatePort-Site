@@ -14,7 +14,7 @@
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -60,11 +60,11 @@
             <a href="foundations.html">Foundations</a>
             <a href="model.html">Model</a>
             <a href="lifecycle.html">Lifecycle</a>
-            <a href="governance.html">Governance</a>
+            <a href="governance.html">Review and control</a>
             <a href="security-and-privacy.html">Security &amp; privacy</a>
             <a href="hosts-and-portability.html">Hosts &amp; portability</a>
             <a href="platform-support.html">Platform support</a>
-            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="reference.html">Reference &amp; FAQ</a>
             <a href="getting-started.html" aria-current="page">Getting started</a>
             <a href="study-state.html">StudyState</a>
@@ -77,37 +77,34 @@
         </aside>
 
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Design exercise</strong> This small repository shape is a way to think through an application. <a href="../releases/">Availability lives in the release ledger.</a></p>
+          <p class="notice notice--quiet"><strong>No setup required.</strong> This page explains the idea. Check the <a href="../releases/">release status</a> before looking for an installer.</p>
 
-          <p><strong>New here? No technical background needed.</strong> This page answers one plain-English question: when an AI helps with your work, what should still make sense tomorrow — and who gets to decide? The five short steps below are the whole answer; the rest of the documentation goes deeper only if you want it to.</p>
+          <p><strong>No technical background needed.</strong> Start with one question: when AI helps with your work, what should still make sense tomorrow?</p>
 
           <h2>1. Decide what must not be lost</h2>
           <p>Write down the things people will need later: goals, decisions, rules, who owns the work, what is happening now, and how you know it is right.</p>
-          <p>Keep the question narrow. A small set of clear facts is more useful than a grand file whose meaning depends on a particular agent’s prompt.</p>
+          <p>Keep the list short. Clear facts are more useful than a long chat that only one AI tool understands.</p>
 
           <h2>2. Make ownership clear</h2>
-          <p>Separate the starting instructions, the project’s own files, generated work, and deliberate edits. Then it is clear what a tool may change and what it must leave alone.</p>
-          <div class="code-panel" data-label="Illustrative repository shape"><code>example-application/
-├── AGENTS.md              # operating constraints for people and agents
-├── PROJECT_STATE.yaml     # current, structured truth
-├── PROJECT_DNA.yaml       # durable product decisions
-├── NEXT_ACTIONS.md        # deliberately short active queue
-├── BACKLOG.md             # deferred work
-├── WORKLOG.md             # history, not current truth
-└── app/                   # application-specific material</code></div>
-          <p>Files like these make the important facts easy to find without relying on a chat transcript.</p>
+          <p>Separate the reusable application, your personal data, and files that can be rebuilt. Then an update can change the application without overwriting your work.</p>
+          <div class="code-panel" data-label="Illustrative application shape"><code>example-application/
+├── application/   # reusable workflow
+├── my-state/      # goals, progress, and decisions
+├── history/       # records of change
+└── generated/     # views that can be rebuilt</code></div>
+          <p>The names may differ. The important part is knowing what belongs to you.</p>
 
           <h2>3. Ask for access; do not hand out unlimited access</h2>
           <p>A tool can say what it needs to do. People and the project decide what it may actually do. “The workflow asked for it” should never be the whole permission check.</p>
 
           <h2>4. Keep the steps separate</h2>
-          <p>Planning a change, approving it, doing it, checking it, and accepting it are different moments. Keeping them separate makes it easier to see what really happened.</p>
+          <p>Planning, approving, changing, and checking are different steps. Keeping them separate makes it easier to see what happened.</p>
 
           <h2>5. Do not tie the work to one tool</h2>
-          <p>The project should remain understandable if a model, app, or computer changes. Tools should say what they can do, and be honest about what they cannot.</p>
+          <p>The application should remain understandable if a model, AI tool, or computer changes. A new tool should say what it can and cannot do.</p>
 
           <h2>Where to go next</h2>
-          <p>Use the first tutorial to turn these principles into a small hypothetical application design. The published Alpha.5 candidate has a separate, explicitly unqualified WSL2 public-test path; the <a href="../releases/">release ledger</a> carries its current evidence boundary.</p>
+          <p>Use the first tutorial to turn these ideas into a small application design. You will not need to install anything.</p>
           <div class="inline-actions">
             <a class="button button--ink" href="../tutorials/first-application.html">Start the tutorial</a>
             <a class="button button--outlined" href="../releases/">Check availability</a>
@@ -127,7 +124,7 @@
           <a href="../tutorials/">Tutorials</a>
           <a href="../releases/">Release status</a>
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
     <script src="../assets/site.js?v=2026-08-10-1"></script>

@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="StatePort Alpha.5 is an unqualified WSL2 public-test candidate: its clean-install receipt, owner acceptance, security review, and production qualification remain pending.">
+    <meta name="description" content="Read the current limits of StatePort Alpha.5, including installer availability, supported computers, local use, security, and applications.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Current limitations — what StatePort is not, today">
-    <meta property="og:description" content="Alpha.5 is published for a controlled WSL2 public test; clean-install proof, human acceptance, and independent security review remain pending.">
+    <meta property="og:title" content="Current limitations - StatePort">
+    <meta property="og:description" content="The main limits of StatePort Alpha.5, in plain language.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/limitations.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/limitations.html">
@@ -29,8 +29,8 @@
       {
         "@context": "https://schema.org",
         "@type": "TechArticle",
-        "headline": "Current limitations: what StatePort is not, today",
-        "description": "Alpha.5 is published for an exact WSL2 Ubuntu 24.04 public test; clean-install proof, human acceptance, and independent security review remain pending.",
+        "headline": "Current limitations",
+        "description": "The main limits of StatePort Alpha.5, including installer, platform, security, and product availability.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/docs/limitations.html",
         "dateModified": "2026-08-14",
         "inLanguage": "en"
@@ -59,8 +59,8 @@
       <section class="article-hero" aria-labelledby="limitations-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / Limitations</p>
-          <h1 id="limitations-title">What StatePort is not, today.</h1>
-          <p>Every claim on this site is bounded by the limits collected here. If a page seems to promise more than this page allows, this page wins.</p>
+          <h1 id="limitations-title">Current limitations</h1>
+          <p>StatePort is still young. Here is what that means before you try it.</p>
         </div>
       </section>
 
@@ -72,11 +72,11 @@
             <a href="foundations.html">Foundations</a>
             <a href="model.html">Model</a>
             <a href="lifecycle.html">Lifecycle</a>
-            <a href="governance.html">Governance</a>
+            <a href="governance.html">Review and control</a>
             <a href="security-and-privacy.html">Security &amp; privacy</a>
             <a href="hosts-and-portability.html">Hosts &amp; portability</a>
             <a href="platform-support.html">Platform support</a>
-            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="reference.html">Reference &amp; FAQ</a>
             <a href="getting-started.html">Getting started</a>
             <a href="study-state.html">StudyState</a>
@@ -89,59 +89,40 @@
         </aside>
 
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Alpha.5 installation temporarily unavailable.</strong> It remains <code>compatible_unvalidated</code>, without clean-install proof or acceptance.</p>
+          <p class="notice notice--quiet"><strong>The alpha installer is temporarily unavailable while we fix a problem found during testing.</strong></p>
 
-          <h2>Availability</h2>
+          <h2>Early alpha</h2>
+          <p>StatePort is in early alpha. Do not use it for important data.</p>
+
+          <h2>Computers</h2>
           <ul>
-            <li>Alpha.5 is published, but installation is temporarily disabled and no clean-install receipt exists.</li>
-            <li>Alpha.2 is signed and published but superseded and not installable or accepted. Its web image omitted two runtime source trees and its bootstrap remains disabled.</li>
-            <li>The curated alpha.5 source archive is public; code and StateSpec artifacts are AGPL-3.0-or-later, and documentation is CC-BY-4.0. Canonical development Git and its history are private. The separately signed <code>publicSnapshot</code> Git identity is remotely resolvable from the public <a href="https://github.com/lennertvhoy/StatePort-Source" target="_blank" rel="noopener">StatePort-Source repository</a>; that public projection is not the private canonical development history.</li>
-            <li>There is no hosted service: StatePort is not offered as a managed or cloud product.</li>
+            <li>Alpha.5 is being tested on Windows 11 with WSL2 and Ubuntu 24.04 on x86-64 computers.</li>
+            <li>WSL1, ARM64, macOS, Docker Desktop, native Linux, and other Linux distributions are not part of this Alpha.5 test.</li>
           </ul>
 
-          <h2>Product shape</h2>
+          <h2>Local use</h2>
           <ul>
-            <li>StatePort is designed as a single-user, local product. The normal local service binds to the loopback interface only; multi-user, public-network, SSO, and managed-service operation are not qualified.</li>
-            <li>The user interface and documentation are English-only.</li>
+            <li>StatePort is designed for one person on one local computer.</li>
+            <li>There is no hosted service, team account system, or supported public-network setup.</li>
+            <li>The interface and documentation are available in English only.</li>
           </ul>
 
-          <h2>Platform and execution host</h2>
+          <h2>Security</h2>
           <ul>
-            <li>Alpha.5 has one signed target: <code>wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet</code>. It requires Windows 11 build 22000 or newer, WSL2 AMD64, Ubuntu 24.04, cgroup v2, rootless Podman, Quadlet, systemd user services, and subordinate UID/GID mappings.</li>
-            <li>WSL1 is refused before host mutation. Native Linux, other distributions, Docker Desktop, macOS, and ARM64 do not inherit this release's target or public-test status.</li>
-            <li>Capability checks and focused local validation exist, but no successful Windows 11 + WSL2 + Ubuntu 24.04 clean-install acceptance run exists.</li>
+            <li>StatePort has not had an independent security review or penetration test.</li>
+            <li>Do not expose its local services to the public internet.</li>
+            <li>StatePort does not claim legal or regulatory certification.</li>
           </ul>
 
-          <h2>Security and compliance</h2>
+          <h2>Applications and features</h2>
           <ul>
-            <li>No independent security review, formal audit, or penetration test has been performed.</li>
-            <li>Release signatures are not uploaded to a public transparency log; verification relies on the pinned alpha release public key and its recorded fingerprint.</li>
-            <li>StatePort makes no GDPR, NIS2, or other legal or compliance certification claim.</li>
-            <li>There is no active public support or vulnerability-reporting route yet.</li>
+            <li>StudyState is a product preview, not a finished tutoring service.</li>
+            <li>Container deployment is for local, supported project shapes only.</li>
+            <li>Cloud deployment and managed hosting are not available.</li>
           </ul>
 
-          <h2>Deployments and updates</h2>
-          <ul>
-            <li>Container deployment is local-only and limited to projects that satisfy the documented contract (plus assisted proposals for recognizable Python, Node, and static-web repositories)—not “deploy anything”.</li>
-            <li>Deployment governance for unrelated projects is a host-CLI capability. Browser and preview capabilities described in source are not evidence of a production-qualified installation.</li>
-            <li>The signed Alpha.5 index describes an updater and pinned trust root; installed updater behavior remains bounded by the exact candidate and its receipts.</li>
-            <li>Trust-root rotation is a manual, out-of-band operator act; a release artifact can never rotate trust by itself.</li>
-            <li>Uninstall, purge, backup, restore, update, and rollback behavior require a successfully installed exact candidate and corresponding receipts. Alpha.2 has none.</li>
-            <li>There is no Azure or other cloud deployment; infrastructure code has no production-apply claim.</li>
-          </ul>
-
-          <h2>Applications</h2>
-          <ul>
-            <li>StudyState's canonical production release remains unresolved; alpha evidence uses local or synthetic inputs, not a production-eligible application release.</li>
-            <li>Study activity shown in the alpha is deterministic synthetic execution for testing—not evidence of tutoring quality or a live autonomous model.</li>
-          </ul>
-
-          <h2>Evidence</h2>
-          <ul>
-            <li>Alpha.5 has a published signed index, fresh-at-signing seven-image supply-chain evidence, independently re-derived candidate evidence, and a remotely resolvable public source snapshot. None substitutes for a successful real-host clean-install receipt.</li>
-            <li>Human acceptance, independent security review, stability, and production qualification remain open; Alpha.2 or Alpha.3 evidence was not transferred to Alpha.5 bytes.</li>
-            <li>No comparative or performance claim is made; none should be inferred from walkthroughs or documentation.</li>
-          </ul>
+          <h2>Release files</h2>
+          <p>Developers can inspect the signed index, source archive, signatures, and licenses on the <a href="../download/technical-release-files.html">technical release files</a> page.</p>
 
           <div class="inline-actions">
             <a class="button button--ink" href="../releases/">View release status</a>
@@ -162,7 +143,7 @@
           <a href="../tutorials/">Tutorials</a>
           <a href="../releases/">Release status</a>
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
     <script src="../assets/site.js?v=2026-08-10-1"></script>

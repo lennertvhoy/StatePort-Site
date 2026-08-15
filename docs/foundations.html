@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Foundations — StatePort public documentation preview.">
+    <meta name="description" content="Learn why StatePort keeps goals, decisions, progress, and history outside a temporary AI chat session.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Foundations — StatePort">
-    <meta property="og:description" content="Foundations — StatePort public documentation preview.">
+    <meta property="og:title" content="Why StatePort exists">
+    <meta property="og:description" content="AI chats are useful, but lasting work needs a place you can inspect and control.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/foundations.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -23,7 +23,7 @@
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
     <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
-    <title>Foundations — StatePort</title>
+    <title>Why StatePort exists</title>
   </head>
   <body class="article-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -46,9 +46,9 @@
     <main id="main">
       <section class="article-hero" aria-labelledby="page-title">
         <div class="article-hero-inner">
-          <p class="document-kicker">Documentation / 01</p>
-          <h1 id="page-title">Put the application boundary where people can inspect it.</h1>
-          <p>Stateware begins with a simple question: what must remain understandable when a model, session, or interface changes?</p>
+          <p class="document-kicker">Documentation / Why StatePort exists</p>
+          <h1 id="page-title">AI chats are useful. Your work needs more.</h1>
+          <p>Important goals, decisions, and progress should survive a closed tab, a new session, or a different AI tool.</p>
         </div>
       </section>
 
@@ -61,11 +61,11 @@
             <a href="foundations.html" aria-current="page">Foundations</a>
             <a href="model.html">Model</a>
             <a href="lifecycle.html">Lifecycle</a>
-            <a href="governance.html">Governance</a>
+            <a href="governance.html">Review and control</a>
             <a href="security-and-privacy.html">Security &amp; privacy</a>
             <a href="hosts-and-portability.html">Hosts &amp; portability</a>
             <a href="platform-support.html">Platform support</a>
-            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="reference.html">Reference &amp; FAQ</a>
             <a href="getting-started.html">Getting started</a>
             <a href="study-state.html">StudyState</a>
@@ -77,37 +77,37 @@
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Reading guide</strong> This page explores the model. <a href="../releases/">Availability lives in the release ledger.</a></p>
+          <p class="notice notice--quiet"><strong>Design overview.</strong> Check the <a href="../releases/">release status</a> for current software availability.</p>
 
-          <h2>The boundary problem</h2>
-          <p>Chat is a useful interface for asking a model to help. It is a weak place to keep an application’s memory, permissions, decisions, and record of change. Threads can be compacted, hosts can change, and a transcript alone rarely tells an owner which facts are current.</p>
-          <p>Stateware moves the boundary outward: an application is a durable instance with an explicit definition, user-controlled canonical state, declared authority, and a checkable lifecycle history. A conversation can be valuable operational context, but it is not automatically the authority for a person’s domain facts.</p>
+          <h2>The problem with chat alone</h2>
+          <p>A chat is good for asking questions. It is a poor place to keep an application's memory, permissions, decisions, and history. Long threads get shortened. Sessions disappear. A transcript may contain several conflicting versions of the same fact.</p>
+          <p>StatePort moves the important information into readable files on your machine. The chat can still help, but it is no longer the only copy of your work.</p>
 
           <h2>What Stateware means</h2>
-          <p><strong>Stateware</strong> is software whose durable, inspectable state and governed lifecycle contracts form the application boundary, independent of any single agent or model provider. The aim is work that is easier to understand, preserve, and review.</p>
-          <div class="code-panel" data-label="The working idea"><code>installed instance
-= pinned definition
-+ user-controlled canonical state
-+ explicit authority
-+ checkable lifecycle history</code></div>
+          <p><strong>Stateware</strong> is software built around durable, inspectable state. Its useful memory belongs to the application, not to one AI model or provider.</p>
+          <div class="code-panel" data-label="The working idea"><code>application
+= reusable workflow
++ your saved state
++ clear permissions
++ change history</code></div>
 
-          <h2>Where the coding agent fits</h2>
-          <p>StatePort does not replace your coding agent — it harnesses it. A headless agent like Codex runs inside a managed environment (your machine or an isolated container), plans its work, asks approval when consequences justify it, and writes results into the durable instance. Provider capabilities and behaviour differ and are explicitly profiled; the Stateware boundary is what survives when the agent, model, or session changes.</p>
+          <h2>Where the AI tool fits</h2>
+          <p>An AI tool can plan work, explain a choice, and prepare a change. StatePort decides what the tool may access, asks you before important actions, and saves the result in the application.</p>
           <figure class="diagram-figure reveal">
             <img src="../assets/diagrams/stateport-diagram-harness.png" alt="Diagram: profiled coding-agent providers feed an AgentRunSpec into the StatePort harness, which plans, approves, runs headlessly, and validates, writing results into a durable StateSpec instance.">
-            <figcaption>The harness orchestrates profiled execution providers; the durable instance is what survives.</figcaption>
+            <figcaption>The AI tool does the work. StatePort keeps the application and its history.</figcaption>
           </figure>
 
-          <h2>Why this changes the conversation</h2>
+          <h2>What this gives you</h2>
           <ul>
-            <li>A person can inspect the current plan, ownership, and evidence without replaying a model session.</li>
-            <li>A provider or execution host can be replaced only where the application’s contracts permit it.</li>
-            <li>A proposed action can remain distinct from an applied action, a validated result, and a human-accepted outcome.</li>
-            <li>A missing capability can appear as unavailable or degraded instead of silently becoming a different workflow.</li>
+            <li>Open the current goals and progress without replaying a chat.</li>
+            <li>Change AI tools without throwing away the application.</li>
+            <li>Review a proposal before it changes saved work.</li>
+            <li>See a clear message when a tool cannot do something safely.</li>
           </ul>
 
-          <h2>Questions worth testing</h2>
-          <p>Stateware is a design model. Its value should be measured in whether people recover faster, understand change more accurately, and retain useful continuity when a host changes.</p>
+          <h2>The goal</h2>
+          <p>StatePort should help you resume work faster, understand changes, and keep useful context when a tool or session changes.</p>
 
           <div class="inline-actions">
             <a class="button button--ink" href="model.html">Explore the model</a>
@@ -128,7 +128,7 @@
           <a href="../tutorials/">Tutorials</a>
           <a href="../releases/">Release status</a>
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
     <script src="../assets/site.js?v=2026-08-10-1"></script>

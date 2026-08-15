@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="The Stateware model — StatePort public documentation preview.">
+    <meta name="description" content="Learn how StatePort applications, personal copies, saved state, permissions, and change records fit together.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="The Stateware model — StatePort">
-    <meta property="og:description" content="The Stateware model — StatePort public documentation preview.">
+    <meta property="og:title" content="How StatePort applications work">
+    <meta property="og:description" content="Applications, personal copies, saved state, permissions, and change records in plain language.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/model.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -23,7 +23,7 @@
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
     <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
-    <title>The Stateware model — StatePort</title>
+    <title>How StatePort applications work</title>
   </head>
   <body class="article-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -46,9 +46,9 @@
     <main id="main">
       <section class="article-hero" aria-labelledby="page-title">
         <div class="article-hero-inner">
-          <p class="document-kicker">Documentation / 02</p>
-          <h1 id="page-title">Give each concern one declared authority.</h1>
-          <p>The model distinguishes an application, its instance, its state, its capabilities, and the evidence around change.</p>
+          <p class="document-kicker">Documentation / Core model</p>
+          <h1 id="page-title">A simple model for lasting AI applications</h1>
+          <p>StatePort separates the reusable application from your personal copy, your data, its permissions, and its history.</p>
         </div>
       </section>
 
@@ -61,11 +61,11 @@
             <a href="foundations.html">Foundations</a>
             <a href="model.html" aria-current="page">Model</a>
             <a href="lifecycle.html">Lifecycle</a>
-            <a href="governance.html">Governance</a>
+            <a href="governance.html">Review and control</a>
             <a href="security-and-privacy.html">Security &amp; privacy</a>
             <a href="hosts-and-portability.html">Hosts &amp; portability</a>
             <a href="platform-support.html">Platform support</a>
-            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="reference.html">Reference &amp; FAQ</a>
             <a href="getting-started.html">Getting started</a>
             <a href="study-state.html">StudyState</a>
@@ -77,28 +77,27 @@
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Reading guide</strong> This page explores the model. <a href="../releases/">Availability lives in the release ledger.</a></p>
+          <p class="notice notice--quiet"><strong>Design overview.</strong> Check the <a href="../releases/">release status</a> for current software availability.</p>
 
-          <h2>Application and instance</h2>
-          <p>An <strong>application</strong> is a reusable definition: it describes intended state, requested capabilities, views, lifecycle rules, and validation expectations. An <strong>instance</strong> is the particular durable copy a person, team, or class uses. It holds its own identity, private state, grants, and history.</p>
-          <p>This distinction prevents a reusable template from quietly becoming the owner of a person’s data. A template can request a capability; it cannot grant itself that capability.</p>
+          <h2>Application and personal copy</h2>
+          <p>An <strong>application</strong> is the reusable workflow and interface. Your <strong>instance</strong> is your personal copy. It contains your private state, settings, permissions, and history.</p>
+          <p>The application can ask for access, but it cannot give itself permission or take ownership of your data.</p>
 
-          <h2>Canonical state and projections</h2>
-          <p>Canonical state is the declared source of truth for a concern. A screen, summary, cached index, generated context pack, host session, or model response may be useful, but it must not silently outrank the source it represents.</p>
-          <div class="code-panel" data-label="Authority by concern"><code>template content      → designated source
-private instance facts → instance state
-generated views        → rebuildable projection
-provider session       → noncanonical operational context
-external system facts  → that external system</code></div>
+          <h2>Saved state</h2>
+          <p>Saved state is the application's current record of your goals, progress, and decisions. Screens and summaries can display that state, but they do not silently replace it.</p>
+          <div class="code-panel" data-label="Where information belongs"><code>reusable workflow  → application
+your goals         → personal state
+generated summary → temporary view
+AI conversation    → working context</code></div>
 
-          <h2>Capabilities are intersections</h2>
-          <p>Effective capability is deliberately narrower than a request. It is the intersection of what the application requests, what the instance grants, what operator policy permits, what the current actor may do, and what the runtime can actually support. If one part is missing, the user should see an honest limit.</p>
+          <h2>Permissions</h2>
+          <p>An application can use only the access you grant and the computer can safely provide. If something is missing, StatePort should stop or offer a limited mode instead of pretending the feature works.</p>
 
-          <h2>Approvals, grants, and receipts</h2>
-          <p>A standing grant defines a bounded class of authority. A decision can authorize a particular consequential act. A <strong>receipt</strong> is a structured, checkable claim about what was prepared, authorized, applied, observed, and validated. It is stronger when it binds exact identities and evidence; it is never magic proof on its own.</p>
+          <h2>Approvals and change records</h2>
+          <p>You can allow routine work while requiring fresh approval for important actions. A change record shows what was requested, approved, changed, and checked.</p>
 
-          <h2>Ownership categories</h2>
-          <p>Before an automated runner changes a workflow file, its authority must be legible: template-owned, instance-owned, generated, or an explicit override. This turns “the agent changed something” into a checkable question about a specific path and rule.</p>
+          <h2>File ownership</h2>
+          <p>StatePort tracks which files belong to the application, which belong to you, and which can be rebuilt. That helps updates avoid overwriting personal work.</p>
 
           <div class="inline-actions">
             <a class="button button--ink" href="lifecycle.html">Follow the lifecycle</a>
@@ -119,7 +118,7 @@ external system facts  → that external system</code></div>
           <a href="../tutorials/">Tutorials</a>
           <a href="../releases/">Release status</a>
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
     <script src="../assets/site.js?v=2026-08-10-1"></script>

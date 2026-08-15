@@ -1,7 +1,7 @@
 {
   "name": "StatePort",
   "short_name": "StatePort",
-  "description": "Public product story, documentation, tutorials, and release status for StatePort.",
+  "description": "AI-assisted applications that keep goals, progress, and history in files you control.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

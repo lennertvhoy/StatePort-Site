@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Governance — StatePort public documentation preview.">
+    <meta name="description" content="Learn how StatePort separates requests, permissions, changes, checks, and change records so you can stay in control.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Governance — StatePort">
-    <meta property="og:description" content="Governance — StatePort public documentation preview.">
+    <meta property="og:title" content="Review and control - StatePort">
+    <meta property="og:description" content="See what an application wants to do, approve important changes, and review the result.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/governance.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -23,7 +23,7 @@
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
     <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
-    <title>Governance — StatePort</title>
+    <title>Review and control - StatePort</title>
   </head>
   <body class="article-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -46,9 +46,9 @@
     <main id="main">
       <section class="article-hero" aria-labelledby="page-title">
         <div class="article-hero-inner">
-          <p class="document-kicker">Documentation / 04</p>
-          <h1 id="page-title">A change has stages, not one overloaded word.</h1>
-          <p>Governance keeps the meaning of proposal, authorization, execution, validation, and acceptance distinct.</p>
+          <p class="document-kicker">Documentation / Review and control</p>
+          <h1 id="page-title">See important changes before they happen</h1>
+          <p>StatePort keeps a request, your decision, the change, and the result separate.</p>
         </div>
       </section>
 
@@ -61,11 +61,11 @@
             <a href="foundations.html">Foundations</a>
             <a href="model.html">Model</a>
             <a href="lifecycle.html">Lifecycle</a>
-            <a href="governance.html" aria-current="page">Governance</a>
+            <a href="governance.html" aria-current="page">Review and control</a>
             <a href="security-and-privacy.html">Security &amp; privacy</a>
             <a href="hosts-and-portability.html">Hosts &amp; portability</a>
             <a href="platform-support.html">Platform support</a>
-            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="reference.html">Reference &amp; FAQ</a>
             <a href="getting-started.html">Getting started</a>
             <a href="study-state.html">StudyState</a>
@@ -77,37 +77,33 @@
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Reading guide</strong> This page explores the model. <a href="../releases/">Availability lives in the release ledger.</a></p>
+          <p class="notice notice--quiet"><strong>Design overview.</strong> Check the <a href="../releases/">release status</a> for current software availability.</p>
 
-          <h2>The action lifecycle</h2>
-          <div class="code-panel" data-label="A governed transition"><code>intent
-→ prepared proposal and preconditions
-→ exact grant or approval
-→ bounded execution
-→ transactional apply
-→ validation result
-→ receipt
-→ optional independent or human acceptance</code></div>
-          <p>The order matters. A model can propose without gaining authority. An applied change can fail validation. A locally validated result can remain pending independent review. Keeping those facts separate makes failure visible instead of hiding it behind “done.”</p>
+          <h2>One change, four clear steps</h2>
+          <div class="code-panel" data-label="A reviewed change"><code>request
+→ review and approval
+→ change
+→ check and record</code></div>
+          <p>The order matters. An application can suggest work without gaining permission to do it. A change can also fail its checks. StatePort keeps both outcomes visible.</p>
 
-          <h2>Authority should be specific</h2>
-          <p>Routine work may fit inside a bounded, revocable standing grant. Destructive, expensive, or external side effects should stop for a fresh decision. The exact policy depends on the application, but neither a template nor an assistant gets to widen its own authority.</p>
+          <h2>Permissions should be specific</h2>
+          <p>You can allow routine, reversible work without approving every small step. Deleting data, spending money, publishing content, or contacting another service should stop for a fresh decision. An application cannot give itself more access.</p>
 
-          <h2>Oversight stays on the loop</h2>
-          <p>Governance is not a toll on every action. Routine, reversible work proceeds while the owner supervises — with visibility into what the agent is doing, and the ability to interrupt, pause, redirect, roll back, or escalate. Approval becomes a distinct event only when consequences justify it. Governance is the enabling layer that makes this supervision cheap and honest, not a transaction wrapped around every keystroke.</p>
+          <h2>Stay in control without watching every step</h2>
+          <p>Routine work can continue while you supervise it. You should be able to pause, redirect, or stop the application. StatePort asks for approval when the consequences justify it.</p>
 
-          <h2>Receipts help a person ask the right questions</h2>
+          <h2>Change records answer simple questions</h2>
           <ul>
-            <li>What was requested and against which identity?</li>
-            <li>Who or what authorized it?</li>
-            <li>What did the system actually try to do?</li>
-            <li>What validation ran, and what did it report?</li>
-            <li>Which facts remain pending, unavailable, or rejected?</li>
+            <li>What was requested?</li>
+            <li>Who approved it?</li>
+            <li>What did the application do?</li>
+            <li>Did the checks pass?</li>
+            <li>What still needs attention?</li>
           </ul>
-          <p>A receipt is a durable claim with evidence, not a substitute for judgement. A well-governed bad decision is still a bad decision; the value is that it is visible, attributable, and reviewable.</p>
+          <p>A clear record does not make a bad decision good. It makes the decision easier to inspect and correct.</p>
 
-          <h2>Degraded modes are part of honesty</h2>
-          <p>Failing closed is a policy choice, not a reason to pretend an application is useless. Read-only, blocked, unavailable, and degraded states can be useful as long as the interface says what changed, why, and what a person can do next.</p>
+          <h2>Blocked work should be clear</h2>
+          <p>If StatePort cannot continue safely, it should stop and tell you why. Read-only or unavailable modes should always include a useful next step.</p>
 
           <div class="inline-actions">
             <a class="button button--ink" href="../tutorials/reading-a-receipt.html">Read a receipt walkthrough</a>
@@ -128,7 +124,7 @@
           <a href="../tutorials/">Tutorials</a>
           <a href="../releases/">Release status</a>
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
     <script src="../assets/site.js?v=2026-08-10-1"></script>

@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="How updates work in StatePort Alpha.5: signed releases, a pinned trust root, approval and health gates, rollback, and receipts for the WSL2 public-test candidate.">
+    <meta name="description" content="Learn how StatePort plans to check updates, show you the changes, ask for approval, test the result, and roll back failures.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="How updates work in the alpha — a change you approve, like any other">
-    <meta property="og:description" content="How updates work in StatePort Alpha.5: signed releases, a pinned trust root, approval and health gates, rollback, and receipts for the WSL2 public-test candidate.">
+    <meta property="og:title" content="How updates will work - StatePort">
+    <meta property="og:description" content="Check the release, review the changes, approve the update, test it, and roll back failures.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/updates.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/updates.html">
@@ -24,13 +24,13 @@
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
     <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
-    <title>How updates work in the alpha — StatePort</title>
+    <title>How updates will work - StatePort</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "TechArticle",
-        "headline": "How updates work in the alpha: an update is a change you approve, like any other",
-        "description": "How updates work in StatePort Alpha.5: signed releases, a pinned trust root, approval and health gates, rollback, and receipts for the WSL2 public-test candidate.",
+        "headline": "How StatePort updates will work",
+        "description": "Check the release, review the changes, approve the update, test it, and roll back failures.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/docs/updates.html",
         "dateModified": "2026-08-10",
         "inLanguage": "en"
@@ -59,8 +59,8 @@
       <section class="article-hero" aria-labelledby="updates-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / Updates</p>
-          <h1 id="updates-title">An update is a change you approve, like any other.</h1>
-          <p>This page describes the update contract shipped with the published v0.1.0-alpha.5 candidate. The public release remains an alpha candidate, and every update is still approval-gated and health-gated.</p>
+          <h1 id="updates-title">Review an update before it changes your application</h1>
+          <p>StatePort is designed to check each release, protect your personal files, and recover when an update fails.</p>
         </div>
       </section>
 
@@ -72,11 +72,11 @@
             <a href="foundations.html">Foundations</a>
             <a href="model.html">Model</a>
             <a href="lifecycle.html">Lifecycle</a>
-            <a href="governance.html">Governance</a>
+            <a href="governance.html">Review and control</a>
             <a href="security-and-privacy.html">Security &amp; privacy</a>
             <a href="hosts-and-portability.html">Hosts &amp; portability</a>
             <a href="platform-support.html">Platform support</a>
-            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="reference.html">Reference &amp; FAQ</a>
             <a href="getting-started.html">Getting started</a>
             <a href="study-state.html">StudyState</a>
@@ -89,31 +89,25 @@
         </aside>
 
         <article class="prose">
-          <p class="notice"><strong>Alpha.5 installation temporarily unavailable.</strong> The public-test command is disabled while a diagnostic failure is repaired. See the <a href="../releases/">release ledger</a>.</p>
+          <p class="notice"><strong>The alpha installer is temporarily unavailable while we fix a problem found during testing.</strong> Updates are not available until installation works.</p>
 
-          <h2>Exact releases, pinned by digest and signed</h2>
-          <p>An update starts from an exact, versioned release — never a moving “latest”. The candidate's images are bound to immutable digests, so what you approved is bit-for-bit what runs. The release index (<code>stateport.release-index/v1</code>) and the image set carry pinned-public-key Cosign signatures under the StatePort alpha release key, with SPDX SBOMs and vulnerability-scan dispositions alongside. Tampering with any signed field, image digest, or artifact refuses the install or update. For this private candidate the signatures are <strong>not</strong> uploaded to a public transparency log; verification relies on the pinned public key and its recorded fingerprint.</p>
+          <h2>Check the release</h2>
+          <p>An update starts from a specific, signed release. StatePort checks that the files match that release before using them. It does not update from a moving "latest" download.</p>
 
-          <h2>A pinned trust root that never rotates itself</h2>
-          <p>At install time the installer pins the release trust root out of band and stores it durably. Every successor release is verified against that pinned root — never against the candidate artifact itself. Trust-root rotation is a manual operator act through the same out-of-band path: a release artifact can never rotate trust in band, and a successor signed by a different key is refused as an untrusted signer.</p>
+          <h2>Keep trust changes separate</h2>
+          <p>An update cannot quietly replace the key used to trust future releases. Changing that key requires a separate manual action.</p>
 
-          <h2>Approval before application</h2>
-          <p>Updates follow the same governance rule as every other consequential change: StatePort proposes an exact change, you review it, and only an explicit approval lets it proceed. The alpha default update policy is <code>notify</code> — StatePort tells you an update exists and does nothing further. Applying an update requires an exact authorization bundle; automatic application is opt-in and remains health-gated.</p>
+          <h2>Review before updating</h2>
+          <p>StatePort should tell you that an update exists and show what will change. It waits for your approval before applying it. Automatic updates would be optional.</p>
 
-          <h2>Health-gated, with automatic rollback</h2>
-          <p>Apply installs the successor, waits for health checks to pass, and only then treats the update as successful. If the successor is unhealthy, the updater rolls back automatically and the predecessor is retained. The full line — <code>status</code>, <code>policy</code>, <code>check</code>, <code>plan</code>, <code>authorize</code>, <code>apply</code>, <code>rollback</code>, and <code>reconcile</code> — is driven through the <code>stateport-update</code> wrapper the installer writes.</p>
+          <h2>Check the result and roll back failures</h2>
+          <p>After an update, StatePort waits for the application checks to pass. If they fail, it should return to the previous version and keep a record of the failure.</p>
 
-          <h2>Receipts either way</h2>
-          <p>Installed, applied, refused, and failed updates all leave receipts. A failed update stays visible as a failed update; it is never silently retried, because retrying an operation with unknown external effects can do more harm than the original failure.</p>
+          <h2>Keep a change record</h2>
+          <p>Successful, refused, and failed updates should all leave a clear record. StatePort should not hide a failed update or retry risky work without asking.</p>
 
-          <h2>What this does not change</h2>
-          <ul>
-            <li>Alpha.5 is published only for its exact WSL2 Ubuntu 24.04 AMD64 public-test target; its artifacts and current status are on the <a href="../download/">download page</a>.</li>
-            <li>Signatures for this private candidate are not recorded in a public transparency log.</li>
-            <li>Trust-root rotation stays manual and operator-driven; nothing rotates trust automatically.</li>
-            <li>Human acceptance is pending, and reviews so far are internal multi-agent reviews with independence not established.</li>
-          </ul>
-          <p>The <a href="../releases/">release ledger</a> records when a public release exists, and the <a href="limitations.html">limitations page</a> collects every remaining boundary.</p>
+          <h2>Current status</h2>
+          <p>This page describes the update design. It is not a command guide. Check the <a href="../releases/">release status</a> and <a href="limitations.html">current limitations</a> before trying StatePort.</p>
 
           <div class="inline-actions">
             <a class="button button--ink" href="lifecycle.html">Lifecycle and recovery</a>
@@ -134,7 +128,7 @@
           <a href="../tutorials/">Tutorials</a>
           <a href="../releases/">Release status</a>
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
     <script src="../assets/site.js?v=2026-08-10-1"></script>

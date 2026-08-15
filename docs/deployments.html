@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="StatePort governs supported container deployments locally: inspect, plan, approve by digest, run on rootless Podman with health checks, and keep receipts at every step.">
+    <meta name="description" content="Learn how StatePort plans to inspect a project, show you a local container plan, ask for approval, and check the result.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Container deployments — approve the plan, or nothing runs">
-    <meta property="og:description" content="StatePort inspects a project, proposes an exact container plan, and runs it on rootless Podman with health checks — only after you approve, with receipts at every step.">
+    <meta property="og:title" content="Local container deployments - StatePort">
+    <meta property="og:description" content="Inspect a project, review a local container plan, approve it, and check the result.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/deployments.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/deployments.html">
@@ -29,8 +29,8 @@
       {
         "@context": "https://schema.org",
         "@type": "TechArticle",
-        "headline": "Container deployments: a deployment you approved, or no deployment at all",
-        "description": "StatePort governs supported container deployments locally: inspect, plan, approve by digest, run on rootless Podman with health checks, and keep receipts at every step.",
+        "headline": "Local container deployments",
+        "description": "How StatePort plans to inspect a project, show a local container plan, ask for approval, and check the result.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/docs/deployments.html",
         "dateModified": "2026-08-01",
         "inLanguage": "en"
@@ -59,8 +59,8 @@
       <section class="article-hero" aria-labelledby="deployments-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / Deployments</p>
-          <h1 id="deployments-title">A deployment you approved, or no deployment at all.</h1>
-          <p>StatePort can inspect a project, propose an exact container deployment plan, and run it on your own machine — but nothing is applied until you approve the exact plan, and every step leaves a receipt.</p>
+          <h1 id="deployments-title">Review a local deployment before it runs</h1>
+          <p>StatePort can inspect a project and prepare a container plan for your computer. You see the plan before anything starts.</p>
         </div>
       </section>
 
@@ -72,11 +72,11 @@
             <a href="foundations.html">Foundations</a>
             <a href="model.html">Model</a>
             <a href="lifecycle.html">Lifecycle</a>
-            <a href="governance.html">Governance</a>
+            <a href="governance.html">Review and control</a>
             <a href="security-and-privacy.html">Security &amp; privacy</a>
             <a href="hosts-and-portability.html">Hosts &amp; portability</a>
             <a href="platform-support.html">Platform support</a>
-            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="reference.html">Reference &amp; FAQ</a>
             <a href="getting-started.html">Getting started</a>
             <a href="study-state.html">StudyState</a>
@@ -89,30 +89,30 @@
         </aside>
 
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Availability boundary</strong> This page describes the deployment design, not a claim that every capability is accepted in signed Alpha.5. Alpha.5 is an unqualified WSL2 public-test candidate without a clean-install receipt or owner acceptance; <a href="../releases/">availability lives in the release ledger</a>.</p>
+          <p class="notice notice--quiet"><strong>Design preview.</strong> Local deployment is not available through the current installer. Check the <a href="../releases/">release status</a>.</p>
 
-          <h2>What a governed deployment is</h2>
-          <p>StatePort treats a deployment as durable state, not as a command someone once ran. Plans, approvals, accepted revisions, observations, transitions, and receipts remain StatePort records even when the container runtime is absent. Podman is a replaceable execution adapter: it performs bounded operations and reports what it observed — it is evidence, never the source of truth.</p>
+          <h2>What StatePort keeps</h2>
+          <p>StatePort saves the deployment plan, your approval, the result, and later status checks. That is more useful than a command with no record of why it ran.</p>
 
           <h2>How a deployment happens</h2>
           <ol>
-            <li><strong>Inspect.</strong> StatePort reads the project without changing it, bound to the exact committed source — never an uncontrolled working tree.</li>
-            <li><strong>Plan.</strong> The inspection becomes an exact, versioned plan: services, images, ports, storage, and generated configuration, in one reviewable document.</li>
-            <li><strong>Approve.</strong> You approve the plan by its digest. Change any part of the plan, the source, or the target, and the approval no longer applies.</li>
-            <li><strong>Apply and verify.</strong> The adapter builds and starts the deployment on local rootless Podman with deterministic names and ownership labels, then waits for the declared health checks before calling it healthy.</li>
-            <li><strong>Operate.</strong> Status, logs, and restart stay observable afterwards; an interrupted operation is reconciled from its records rather than silently replayed.</li>
-            <li><strong>Remove, or purge.</strong> Ordinary removal stops the runtime but keeps the named data volumes. Purging the data is a separate plan with its own exact approval.</li>
+            <li><strong>Inspect.</strong> Read the project without changing it.</li>
+            <li><strong>Plan.</strong> List the services, images, ports, storage, and generated configuration.</li>
+            <li><strong>Approve.</strong> Show you the complete plan and wait for your decision.</li>
+            <li><strong>Run and check.</strong> Start the containers with rootless Podman and wait for their health checks.</li>
+            <li><strong>Operate.</strong> Keep status, logs, and restart controls available.</li>
+            <li><strong>Remove.</strong> Stop the deployment without deleting stored data unless you approve that separately.</li>
           </ol>
-          <p>Every transition produces a receipt, and receipts are hash-chained: a failed or interrupted step stays visible instead of being retried blindly.</p>
+          <p>Each step leaves a change record. Failed or interrupted work stays visible.</p>
 
           <h2>What the plan refuses</h2>
-          <p>The alpha contract deliberately refuses deployment shapes it cannot govern safely: root containers, privileged or host namespaces, host bind mounts, mutable image tags, missing health checks, plaintext secret-like configuration, and exposure beyond the loopback interface. A refusal is a recorded outcome, not an error to work around.</p>
+          <p>The design refuses root containers, privileged access, host bind mounts, changing image tags, missing health checks, plain-text secrets, and public network exposure.</p>
 
           <h2>What is not supported yet</h2>
           <ul>
-            <li>Upgrade and rollback between deployment revisions — planned for a later slice; today, changing a deployment means a new reviewed plan.</li>
+            <li>Upgrade and rollback between deployment versions.</li>
             <li>Remote hosts over SSH, image-registry distribution, and a dedicated deployment interface.</li>
-            <li>Arbitrary projects. Support is limited to projects that satisfy the documented deployment contract, plus reviewable assisted proposals for recognizable Python, Node, and static-web repositories.</li>
+            <li>Arbitrary projects. Initial support focuses on clear Python, Node, and static web projects.</li>
             <li>Cloud or public-network deployment, including Azure. The current target is a single local machine.</li>
           </ul>
 
@@ -135,7 +135,7 @@
           <a href="../tutorials/">Tutorials</a>
           <a href="../releases/">Release status</a>
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
     <script src="../assets/site.js?v=2026-08-10-1"></script>

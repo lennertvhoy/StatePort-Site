@@ -16,7 +16,7 @@ Boundary — a candidate Stateware whitepaper, not yet published.">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -70,7 +70,7 @@ is its state.</p>
           </nav>
         </aside>
         <article class="prose paper-prose">
-          <p class="notice"><strong>Candidate note</strong> This is an unpublished candidate, version 1.2 (2026-07-26), prepared for owner review. The current public paper remains <a href="./stateware-whitepaper-public-v1.1.html">version 1.1</a>. <a href="../releases/">Software availability lives in the release ledger.</a></p>
+          <p class="notice"><strong>Candidate note</strong> This unpublished draft is version 1.2 (2026-07-26). The current public paper remains <a href="./stateware-whitepaper-public-v1.1.html">version 1.1</a>. Check <a href="../releases/">release status</a> for software availability.</p>
 <blockquote>
 <p><strong>Candidate status.</strong> Version 1.2 is an unpublished
 candidate prepared for owner review. Version 1.1 remains the current
@@ -111,22 +111,13 @@ comparative claims. It argues a single idea: <strong>state is the
 application boundary</strong> — and that moving the boundary there
 changes what an assistant can be.</p>
 <p><strong>Status of the reference implementation.</strong> The public
-walkthrough is a mock-backed, public-safe fixture and local development
-preview. It is not evidence of a live Alpha.5 backend, a hosted service, a
-cross-device service, or a production-qualified product. The signed Alpha.5
-release is a <code>compatible_unvalidated</code> WSL2 public-test candidate
-without a clean-install receipt.</p>
-<p><strong>Current delivery versus future architecture.</strong> The
-current delivery of the reference implementation is StatePort
-v0.1.0-alpha.5, a <strong>publicly published and signed WSL2 public-test
-candidate</strong>. Its exact Windows 11 + WSL2 + Ubuntu 24.04 AMD64 path is
-<code>compatible_unvalidated</code> until a real-host clean-install receipt
-exists. The curated Alpha.5 source archive is public, while canonical
-development Git remains private; its signed <code>publicSnapshot</code> is
-remotely resolvable from the public StatePort-Source repository. It is not
-owner-accepted, independently security-audited, stable, or production-ready.
-The delivery is rootless Podman and Quadlet under WSL2, loopback-only, and
-single-user. The wider
+walkthrough is a local development preview with sample data. Alpha.5 release
+files are public, but the installer is temporarily unavailable while a problem
+found during testing is fixed.</p>
+<p><strong>Current delivery versus future architecture.</strong> The current
+reference implementation is StatePort v0.1.0-alpha.5. StatePort is in early
+alpha. Do not use it for important data. Alpha.5 was prepared for Windows 11,
+WSL2, and Ubuntu 24.04 on x86-64, with local single-user operation. The wider
 architecture this paper describes — catalogues of community applications,
 multiple qualified providers, team deployments — is a direction, not a
 description of what the alpha delivers. Where the two differ, this paper
@@ -1043,7 +1034,7 @@ owner.</p>
           <a href="../tutorials/">Tutorials</a>
           <a href="../releases/">Release status</a>
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
     <script src="../assets/site.js?v=2026-08-10-1"></script>

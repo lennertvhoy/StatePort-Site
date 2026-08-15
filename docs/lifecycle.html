@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Lifecycle — StatePort public documentation preview.">
+    <meta name="description" content="Follow a StatePort application through setup, everyday use, updates, moving to another computer, backup, and recovery.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Lifecycle — StatePort">
-    <meta property="og:description" content="Lifecycle — StatePort public documentation preview.">
+    <meta property="og:title" content="Application lifecycle - StatePort">
+    <meta property="og:description" content="Setup, use, updates, backup, moving, and recovery for a durable application.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/lifecycle.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -23,7 +23,7 @@
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
     <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
-    <title>Lifecycle — StatePort</title>
+    <title>Application lifecycle - StatePort</title>
   </head>
   <body class="article-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -46,9 +46,9 @@
     <main id="main">
       <section class="article-hero" aria-labelledby="page-title">
         <div class="article-hero-inner">
-          <p class="document-kicker">Documentation / 03</p>
-          <h1 id="page-title">A durable application has a life beyond one run.</h1>
-          <p>The lifecycle keeps installation, use, understanding, change, movement, backup, and recovery as separate, inspectable responsibilities.</p>
+          <p class="document-kicker">Documentation / Lifecycle</p>
+          <h1 id="page-title">Your application should last beyond one session</h1>
+          <p>StatePort treats setup, everyday use, updates, backup, moving, and recovery as parts of one product journey.</p>
         </div>
       </section>
 
@@ -61,11 +61,11 @@
             <a href="foundations.html">Foundations</a>
             <a href="model.html">Model</a>
             <a href="lifecycle.html" aria-current="page">Lifecycle</a>
-            <a href="governance.html">Governance</a>
+            <a href="governance.html">Review and control</a>
             <a href="security-and-privacy.html">Security &amp; privacy</a>
             <a href="hosts-and-portability.html">Hosts &amp; portability</a>
             <a href="platform-support.html">Platform support</a>
-            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="reference.html">Reference &amp; FAQ</a>
             <a href="getting-started.html">Getting started</a>
             <a href="study-state.html">StudyState</a>
@@ -77,30 +77,26 @@
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Reading guide</strong> This page explores the model. <a href="../releases/">Availability lives in the release ledger.</a></p>
+          <p class="notice notice--quiet"><strong>Design overview.</strong> Check the <a href="../releases/">release status</a> for current software availability.</p>
 
-          <h2>Install from an identity, not a folder name</h2>
-          <p>Installability begins with a source that can be identified and checked. A release is a pinned identity, not a moving branch, matching directory name, or local fixture. Development candidates still have a useful role in isolated tests.</p>
+          <h2>Set up a known release</h2>
+          <p>StatePort should install a specific release that can be checked, not whichever files happen to be newest.</p>
 
-          <h2>Use and understand</h2>
-          <p>Application-first use means a person starts with their application’s conversation, actions, progress, and state. Provenance, ownership, capability state, approvals, and receipts are progressively disclosed when they are needed to understand what happened.</p>
+          <h2>Use the application</h2>
+          <p>You start with the application's conversation, next action, and progress. Permissions, history, and technical details stay available without taking over the main screen.</p>
 
-          <h2>Update and move</h2>
-          <p>A trustworthy update needs an exact source target, ownership-aware changes, conflict classification, a reviewable plan, validation, and a way to preserve the original instance if publication fails. Moving an instance has the same care: it is a migration with its own evidence.</p>
+          <h2>Update or move</h2>
+          <p>Before an update, StatePort should show what will change and protect your personal files. Moving to another computer should copy the application state and check it before you depend on the new copy.</p>
 
           <h2>Back up and recover</h2>
-          <p>A backup is a bounded archive with an identity and validation record. Recovery needs its own demonstration: a dry run, isolated target, validation, cleanup, and proof that the live instance stayed intact. The release ledger records when lifecycle steps become available.</p>
+          <p>A backup should include the application data you need and a way to check it. Recovery should be tested in a separate location before replacing your working copy.</p>
 
-          <h2>A useful reading rule</h2>
-          <div class="code-panel" data-label="Do not collapse these states"><code>designed ≠ implemented
-implemented ≠ locally validated
-locally validated ≠ independently accepted
-accepted ≠ released</code></div>
-          <p>The release ledger is intentionally separate from conceptual documentation so a future installation guide can bind to a real version, source identity, and verification record.</p>
+          <h2>Current availability</h2>
+          <p>These lifecycle features are the product direction. The Alpha.5 installer is temporarily unavailable, so do not use this page as setup instructions. Check the <a href="../releases/">release status</a>.</p>
 
           <div class="inline-actions">
-            <a class="button button--ink" href="governance.html">See governed change</a>
-            <a class="button button--outlined" href="../releases/">Read the release ledger</a>
+            <a class="button button--ink" href="governance.html">Review and control changes</a>
+            <a class="button button--outlined" href="../releases/">Check release status</a>
           </div>
         </article>
       </div>
@@ -117,7 +113,7 @@ accepted ≠ released</code></div>
           <a href="../tutorials/">Tutorials</a>
           <a href="../releases/">Release status</a>
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
     <script src="../assets/site.js?v=2026-08-10-1"></script>

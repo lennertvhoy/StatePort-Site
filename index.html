@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Alpha.5 is a signed WSL2 public-test with installation temporarily disabled; no clean-install receipt or owner acceptance exists.">
+    <meta name="description" content="StatePort helps you run AI-assisted applications that keep goals, progress, and history in files you control on your own computer.">
     <meta name="theme-color" content="#0B132B">
     <meta name="color-scheme" content="light">
     <meta property="og:type" content="website">
@@ -15,7 +15,7 @@
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="StatePort — a durable home for AI-assisted work">
     <meta name="twitter:description" content="Durable, user-owned AI applications on your own computer — state that survives sessions and change you can review and undo.">
@@ -67,7 +67,7 @@
           <div class="hero-copy">
             <p class="eyebrow">A lasting home for AI-assisted work</p>
             <h1 id="hero-title" aria-label="StatePort. Applications that keep their state.">StatePort<span aria-hidden="true">Applications that keep their state.</span></h1>
-            <p class="hero-deck">AI chats forget. Your work shouldn't. StatePort runs durable, user-owned AI applications on your own computer: each application keeps its goals, decisions, and history in files you can open, and important changes stay reviewable and undoable.</p>
+            <p class="hero-deck">AI chats forget. Your work should not. StatePort gives AI-assisted applications a lasting home on your computer. Goals, decisions, and history stay in files you can open. You review important changes before they happen.</p>
             <div class="hero-actions">
               <a class="button" href="#overview">See StatePort in 33 seconds</a>
               <a class="button button--quiet" href="docs/study-state.html">Explore StudyState</a>
@@ -75,7 +75,7 @@
 <!-- support-section-link:start -->
 
 <!-- support-section-link:end -->
-            <p class="availability"><strong>Alpha.5 installation temporarily unavailable.</strong><span>Signed release files remain available for inspection.</span><span aria-hidden="true">·</span><a href="download/">Release details</a></p>
+            <p class="availability"><strong>The alpha installer is temporarily unavailable while we fix a problem found during testing.</strong><span aria-hidden="true">·</span><a href="download/">Download status</a></p>
           </div>
 
           <figure class="hero-visual">
@@ -93,7 +93,7 @@
           <div class="prototype-intro reveal">
             <p class="section-kicker">Product walkthrough</p>
             <h2 id="overview-heading">See StatePort in 33 seconds.</h2>
-            <p>A working preview, shown step by step: an application that remembers, a change you review before it lands, and a receipt for what happened. Captions and a full transcript are included.</p>
+            <p>See an application remember your work, show a proposed change, and record what happened. Captions and a transcript are included.</p>
           </div>
 
           <div class="prototype-stage reveal">
@@ -102,7 +102,7 @@
               <track kind="captions" srclang="en" label="English" src="assets/media/stateport-overview.vtt?v=2026-08-12-1" default>
               Your browser does not support HTML video. The transcript below carries the same information.
             </video>
-            <p id="overview-caption">A concise 33.067-second product overview recorded on 12 August 2026. Its final Alpha.3 availability statement is historical; current availability lives on the release status page.</p>
+            <p id="overview-caption">A 33-second product overview recorded in August 2026. The closing Alpha.3 status line is out of date; check the current <a href="releases/">release status</a>.</p>
             <details class="video-transcript" id="overview-transcript">
               <summary>Read the transcript</summary>
               <p>AI chats forget. Your work shouldn't. StatePort gives AI-assisted work a durable home on your own machine.</p>
@@ -119,7 +119,7 @@
         <div class="audience-intro reveal">
            <p class="section-kicker">One journey, shown step by step</p>
           <h2 class="section-heading" id="journey-heading">Ask. Remember. Change. Undo.</h2>
-          <p>The public-safe StudyState preview illustrates the intended journey. You ask what to do next, and the proposed application answers from its own recorded context — your goal, your progress, your evidence — not from a chat transcript. A reflection becomes an exact proposed change to review, and the design keeps applied changes and receipts separate; persistent Undo and restart continuity remain design targets, not signed release capability claims.</p>
+          <p>The StudyState preview follows one simple flow. Ask what to do next. Get an answer based on your goal and progress. Review a proposed change. Keep a clear record of the result.</p>
         </div>
         <p class="prototype-gallery-intro reveal">Click any screen to inspect it at full size.</p>
         <div class="prototype-frames" role="group" aria-label="StudyState journey screens">
@@ -128,21 +128,21 @@
               <img src="assets/media/frame-conversation.png" alt="StudyState conversation: a user asks what to do next and the application answers from its stored learning state." width="1200" height="800" loading="lazy" decoding="async">
               <span class="prototype-frame-zoom" aria-hidden="true">View full size <span>↗</span></span>
             </a>
-             <figcaption><span>02 / ASK</span><strong>Ask a question</strong><p>The answer comes from the application's own memory, not a fragile chat history.</p></figcaption>
+              <figcaption><span>02 / ASK</span><strong>Ask a question</strong><p>The answer uses the application's saved goals and progress.</p></figcaption>
           </figure>
           <figure class="reveal">
             <a class="prototype-frame-link" href="assets/media/frame-result.png" data-prototype-gallery-item data-gallery-label="Review what changes" data-gallery-summary="Nothing consequential rewrites itself: check the proposal, then apply or undo it." aria-label="Open the reviewed change screenshot in the full-size gallery">
               <img src="assets/media/frame-result.png" alt="StudyState proposed change: a reflection turned into an exact change the user reviews before applying, with Undo available." width="1200" height="800" loading="lazy" decoding="async">
               <span class="prototype-frame-zoom" aria-hidden="true">View full size <span>↗</span></span>
             </a>
-             <figcaption><span>03 / CHANGE</span><strong>Review what changes</strong><p>Nothing consequential rewrites itself — you check the proposal, then apply or undo it.</p></figcaption>
+              <figcaption><span>03 / CHANGE</span><strong>Review what changes</strong><p>Check the proposal before it changes your saved work.</p></figcaption>
           </figure>
           <figure class="reveal">
             <a class="prototype-frame-link" href="assets/media/frame-mobile.png" data-prototype-gallery-item data-gallery-label="Continue on a smaller screen" data-gallery-summary="The preview remains readable on a smaller screen; it does not prove a synced service." aria-label="Open the mobile screenshot in the full-size gallery">
               <img src="assets/media/frame-mobile.png" alt="The same StudyState application on a phone, still readable, with its goal and next action intact." width="1200" height="800" loading="lazy" decoding="async">
               <span class="prototype-frame-zoom" aria-hidden="true">View full size <span>↗</span></span>
             </a>
-             <figcaption><span>04 / CONTINUE</span><strong>The same interface at phone size</strong><p>The preview remains readable on a smaller screen; the public-safe fixture does not prove a synced service.</p></figcaption>
+              <figcaption><span>04 / CONTINUE</span><strong>Use the same clear view</strong><p>The preview stays readable on a smaller screen.</p></figcaption>
           </figure>
         </div>
       </section>
@@ -161,12 +161,12 @@
           <article class="principle reveal">
             <p class="principle-index">02</p>
             <h3>Continuity is designed for restarts</h3>
-            <p>The design keeps goals, decisions, and history in durable files so work can resume after a restart; provider portability remains a proposed boundary, not a signed release capability claim.</p>
+            <p>Goals, decisions, and history live in durable files so you can pick up where you left off.</p>
           </article>
           <article class="principle reveal">
             <p class="principle-index">03</p>
             <h3>Change stays reviewable</h3>
-            <p>Proposals, approvals, applied results, and receipts remain separate facts — so important change can be checked, traced, and undone.</p>
+            <p>Important changes are proposed first. You can inspect the result and see what happened.</p>
           </article>
         </div>
       </section>
@@ -174,22 +174,22 @@
       <section class="route-section" id="how-it-works" aria-labelledby="how-it-works-heading">
         <div class="home-section">
           <p class="section-kicker reveal">How it works</p>
-          <h2 class="section-heading reveal" id="how-it-works-heading">Template, governed run, kept result.</h2>
+          <h2 class="section-heading reveal" id="how-it-works-heading">Choose an application. Review the work. Keep the result.</h2>
           <div class="route-list">
             <article class="route-step reveal">
               <p class="route-number">01 / TEMPLATE</p>
               <h3>Start from a template</h3>
-              <p>Each application is a bundle of durable state files plus the scripts an agent is allowed to run — a home the work can live in.</p>
+              <p>Each application combines a focused workflow with files that hold your goals, progress, and history.</p>
             </article>
             <article class="route-step reveal">
               <p class="route-number">02 / RUN</p>
-              <h3>Let it run, governed</h3>
-              <p>The proposed governed flow plans work, runs an agent, asks approval when it matters, and records what changed. Watching, pausing, redirecting, and rolling back are design language, not a claim of current signed-release availability.</p>
+              <h3>Stay in control</h3>
+              <p>StatePort shows what the application wants to do and asks before important changes.</p>
             </article>
             <article class="route-step reveal">
               <p class="route-number">03 / KEEP</p>
               <h3>Keep the result</h3>
-              <p>The design keeps decisions, files, and history in an instance. Provider or model changes are a proposed portability boundary, not a current signed-release capability claim.</p>
+              <p>Your application keeps its decisions, files, and history together on your machine.</p>
             </article>
           </div>
           <figure class="diagram-figure reveal">
@@ -202,29 +202,30 @@
       <section class="release-band" id="status" aria-labelledby="status-heading">
         <div class="release-band-inner release-band-inner--expanded">
           <div class="reveal">
-            <p class="release-label">Trust &amp; availability</p>
-            <h2 id="status-heading">A signed WSL2 public test, honestly bounded.</h2>
-            <p>Alpha.5 remains published and <code>compatible_unvalidated</code>. Installation is temporarily disabled while a diagnostic failure is repaired; no clean-install receipt exists.</p>
+            <p class="release-label">Current availability</p>
+            <h2 id="status-heading">Alpha.5 is available for inspection, not installation.</h2>
+            <p>StatePort is in early alpha. Do not use it for important data.</p>
+            <p>The alpha installer is temporarily unavailable while we fix a problem found during testing.</p>
             <p class="release-updated">Status reviewed <time datetime="2026-08-15">15 August 2026</time>.</p>
-            <p><a class="release-ledger-link" href="releases/">Full release status <span aria-hidden="true">↗</span></a> · <a href="download/">Release details</a> · <a href="docs/limitations.html">Current limitations</a></p>
+            <p><a class="release-ledger-link" href="releases/">Check release status <span aria-hidden="true">↗</span></a> · <a href="download/">Download</a> · <a href="docs/limitations.html">Current limitations</a></p>
             <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue</a>.</p>
           </div>
           <dl class="release-status-list reveal">
             <div>
-              <dt>Local prototype</dt>
-              <dd>Available to view</dd>
+              <dt>Product preview</dt>
+              <dd>Available</dd>
             </div>
             <div>
               <dt>Public documentation</dt>
               <dd>Available</dd>
             </div>
             <div>
-              <dt>Software download</dt>
-              <dd>v0.1.0-alpha.5 published — unqualified WSL2 public-test candidate</dd>
+              <dt>Alpha.5 release files</dt>
+              <dd>Available</dd>
             </div>
             <div>
-              <dt>Implementation source</dt>
-              <dd>The curated alpha.5 source archive is public. Canonical development Git is private; the signed <code>publicSnapshot</code> Git identity is remotely resolvable from the <a href="https://github.com/lennertvhoy/StatePort-Source" target="_blank" rel="noopener">public source repository</a>. Code and StateSpec artifacts are AGPL-3.0-or-later; documentation is CC-BY-4.0.</dd>
+              <dt>Installer</dt>
+              <dd>Temporarily unavailable</dd>
             </div>
           </dl>
         </div>
@@ -239,19 +240,19 @@
           <article class="audience-path reveal">
             <p class="audience-label">Curious</p>
             <h3>Watch the product work</h3>
-            <p>Follow the walkthrough: the interface, the journey, and the limits of that evidence.</p>
+            <p>Follow the interface from a question to a reviewed result.</p>
             <a href="docs/prototype-walkthrough.html">Open the product walkthrough <span aria-hidden="true">↗</span></a>
           </article>
           <article class="audience-path reveal">
             <p class="audience-label">Builders</p>
             <h3>Study the design</h3>
-            <p>Read the model, governance rules, portability notes, and exactly what we have tested.</p>
+            <p>Learn how StatePort stores work, controls changes, and stays portable.</p>
             <a href="docs/">Open the documentation <span aria-hidden="true">↗</span></a>
           </article>
           <article class="audience-path reveal">
             <p class="audience-label">Self-hosters</p>
-            <h3>Check the evidence</h3>
-            <p>See what is published, what can be tested, and which acceptance claims remain open.</p>
+            <h3>Check availability</h3>
+            <p>See what you can view or download today.</p>
             <a href="releases/">Open the release status <span aria-hidden="true">↗</span></a>
           </article>
         </div>
@@ -263,8 +264,8 @@
       <div class="prototype-gallery-shell">
         <header class="prototype-gallery-header">
           <div>
-            <h2 class="prototype-gallery-kicker" id="prototype-gallery-title">Prototype screens</h2>
-            <p class="prototype-gallery-description" id="prototype-gallery-description">Full-size interface evidence. Use the previous and next controls, or the left and right arrow keys.</p>
+            <h2 class="prototype-gallery-kicker" id="prototype-gallery-title">Preview screens</h2>
+            <p class="prototype-gallery-description" id="prototype-gallery-description">View each screen at full size. Use the previous and next controls, or the left and right arrow keys.</p>
           </div>
           <button class="prototype-gallery-close" type="button" data-prototype-gallery-close aria-label="Close full-size screenshot gallery"><span aria-hidden="true">×</span></button>
         </header>
@@ -300,7 +301,7 @@
 
 <!-- support-footer-link:end -->
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
     <script src="assets/site.js?v=2026-08-10-1"></script>

@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Follow a clear path through the StatePort product, Stateware model, StateSpec format, lifecycle, governance, security, portability, and evidence.">
+    <meta name="description" content="Learn how StatePort keeps AI-assisted work on your machine, saves useful context, controls changes, and supports recovery.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="StatePort documentation — Start in the right order">
-    <meta property="og:description" content="A guided route from the product experience to the Stateware and StateSpec system design.">
+    <meta property="og:title" content="StatePort documentation">
+    <meta property="og:description" content="Start with the product, then learn how StatePort stores work, controls changes, and stays portable.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/">
@@ -31,7 +31,7 @@
         "@context": "https://schema.org",
         "@type": "TechArticle",
         "headline": "StatePort documentation",
-        "description": "A guided introduction to the StatePort product, Stateware model, and StateSpec system design.",
+        "description": "A practical introduction to StatePort, from the product preview to storage, control, updates, and portability.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/docs/",
         "dateModified": "2026-08-01",
         "inLanguage": "en"
@@ -60,8 +60,8 @@
       <section class="article-hero" aria-labelledby="docs-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation</p>
-          <h1 id="docs-title">Understand StatePort in the right order.</h1>
-          <p>Start with the product experience. Go deeper into Stateware, StateSpec, operations, and evidence only when those details answer your question.</p>
+          <h1 id="docs-title">Learn how StatePort works.</h1>
+          <p>Start with the product preview. Then explore how StatePort saves work, reviews changes, handles updates, and keeps your data portable.</p>
         </div>
       </section>
 
@@ -81,11 +81,11 @@
         </aside>
 
         <article class="prose docs-overview" data-no-toc>
-          <p class="notice notice--quiet"><strong>Availability boundary</strong> These pages explain the product direction and design model. The <a href="../releases/">release ledger</a> is the source for what can actually be downloaded or installed.</p>
+          <p class="notice notice--quiet"><strong>Looking for the software?</strong> Check the <a href="../releases/">release status</a> before you try to download StatePort.</p>
 
           <h2>What is StatePort?</h2>
-          <p>StatePort is a local platform with two cooperating planes. On the <strong>application plane</strong>, durable, user-owned applications keep named state, history, goals, context, and continuity over time — <a href="study-state.html">a study coach</a>, a checklist, future domain applications. On the <strong>execution plane</strong>, a managed harness runs coding agents headlessly in environments you control, with supervision, permissions, isolation, cancellation, and evidence — including <a href="deployments.html">governed container deployments</a> you approve before anything runs. Neither plane replaces the other.</p>
-          <p>Each application is a Stateware template: durable state files (Markdown and YAML) plus the cockpit scripts the agent is allowed to run. StatePort owns intent, authority, state, evidence, and acceptance; the agent owns execution behaviour and must never silently become the source of truth.</p>
+          <p>StatePort gives AI-assisted applications a durable place to keep goals, progress, decisions, and history. That information lives in readable files on your machine instead of being trapped in one chat session.</p>
+          <p>Applications can ask an AI tool to help with work, but the tool does not own your data or decide its own permissions. StatePort keeps the current state, shows important proposed changes, and records the result.</p>
 
           <section class="docs-catalogue-section" aria-labelledby="catalogue-heading">
             <div class="docs-catalogue-heading">
@@ -105,19 +105,19 @@
                 <h3 id="docs-group-product">Start with the product</h3>
                 <div class="docs-index-links">
                   <a class="docs-index-link" href="prototype-walkthrough.html" data-doc-entry data-keywords="product demo video transcript interface prototype evidence">
-                    <span><strong>Prototype walkthrough</strong><small>See the current local interface and the limits of that evidence.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Product walkthrough</strong><small>See the current interface in a 33-second video.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="study-state.html" data-doc-entry data-keywords="studystate study coach application focus lifecycle reflection undo receipts durable state restart">
                     <span><strong>StudyState</strong><small>Meet the first application: a study coach whose changes you review, apply, and can undo.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="deployments.html" data-doc-entry data-keywords="deployment container podman plan approval health receipts inspect rollback">
-                    <span><strong>Container deployments</strong><small>Inspect, plan, approve by digest, and run locally with health checks and receipts.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Container deployments</strong><small>See how StatePort can prepare, review, and run local containers.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="foundations.html" data-doc-entry data-keywords="why problem chat durable work ownership stateware">
-                    <span><strong>Why StatePort exists</strong><small>Understand the boundary problem before the terminology.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Why StatePort exists</strong><small>Learn why a chat transcript is not enough for lasting work.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="../releases/" data-doc-entry data-keywords="release status availability download source install">
-                    <span><strong>Release status</strong><small>See what is public, what is viewable, and what is not yet available.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Release status</strong><small>See what you can view or download today.</small></span><i aria-hidden="true">↗</i>
                   </a>
                 </div>
               </section>
@@ -126,55 +126,55 @@
                 <h3 id="docs-group-build">Design and build</h3>
                 <div class="docs-index-links">
                   <a class="docs-index-link" href="model.html" data-doc-entry data-keywords="model application instance canonical state authority capability receipt">
-                    <span><strong>Core model</strong><small>Learn the relationships that make an application durable and governable.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Core model</strong><small>Learn how applications, personal copies, and saved state fit together.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="getting-started.html" data-doc-entry data-keywords="statespec yaml schema files getting started build example">
-                    <span><strong>StateSpec basics</strong><small>Read a small illustrative repository shape and its responsibilities.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>StateSpec basics</strong><small>See how StatePort keeps important facts in readable files.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="../tutorials/first-application.html" data-doc-entry data-keywords="tutorial first application design facts authority lifecycle evidence">
-                    <span><strong>Design a first application</strong><small>Map the facts, authority, lifecycle, and evidence a workflow needs.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Design a first application</strong><small>Choose what your application should remember and who may change it.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="../tutorials/reading-a-receipt.html" data-doc-entry data-keywords="tutorial receipt proposal approval applied validation acceptance">
-                    <span><strong>Read a governed receipt</strong><small>Practice separating proposal, authorization, execution, validation, and acceptance.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Read a change record</strong><small>Practice checking what was requested, approved, changed, and checked.</small></span><i aria-hidden="true">↗</i>
                   </a>
                 </div>
               </section>
 
               <section class="docs-group" aria-labelledby="docs-group-operate">
-                <h3 id="docs-group-operate">Trust, operate, and recover</h3>
+                <h3 id="docs-group-operate">Control, safety, and recovery</h3>
                 <div class="docs-index-links">
                   <a class="docs-index-link" href="lifecycle.html" data-doc-entry data-keywords="lifecycle install update move backup recovery restore">
-                    <span><strong>Lifecycle</strong><small>Keep install, use, update, movement, backup, and recovery distinct.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Lifecycle</strong><small>Follow an application from setup through use, updates, backup, and recovery.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="updates.html" data-doc-entry data-keywords="updates upgrade rollback health digest pinned release design target">
-                    <span><strong>How updates will work</strong><small>Read the update design — and exactly which parts are not delivered yet.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>How updates will work</strong><small>See how StatePort plans to review updates and recover from failures.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="governance.html" data-doc-entry data-keywords="governance permission capability approval receipt acceptance authority">
-                    <span><strong>Governed change</strong><small>Understand capability grants, approvals, receipts, and acceptance.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Review and control</strong><small>Understand permissions, approvals, and change records.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="security-and-privacy.html" data-doc-entry data-keywords="security privacy threat trust secrets data risk">
-                    <span><strong>Security and privacy</strong><small>Read the threat boundaries, design responses, and practical limits.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Security and privacy</strong><small>Read the safety approach and its current limits.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="hosts-and-portability.html" data-doc-entry data-keywords="host portability model provider execution runtime degradation move">
-                    <span><strong>Hosts and portability</strong><small>See how applications declare requirements and hosts declare capabilities.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>AI tools and portability</strong><small>See what stays with your application when tools change.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="platform-support.html" data-doc-entry data-keywords="platform support linux docker macos windows wsl qualification install">
-                    <span><strong>Platform support contract</strong><small>Read the qualification matrix without mistaking it for current availability.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Platform support</strong><small>Check which computers Alpha.5 is being prepared for.</small></span><i aria-hidden="true">↗</i>
                   </a>
                 </div>
               </section>
 
               <section class="docs-group" aria-labelledby="docs-group-evidence">
-                <h3 id="docs-group-evidence">Evidence, reference, and direction</h3>
+                <h3 id="docs-group-evidence">Roadmap and reference</h3>
                 <div class="docs-index-links">
                   <a class="docs-index-link" href="evidence-and-roadmap.html" data-doc-entry data-keywords="evidence roadmap claim proof validation acceptance release">
-                    <span><strong>Evidence and roadmap</strong><small>Distinguish a local observation, independent validation, acceptance, and release.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Roadmap</strong><small>See what is available now and what we plan to build next.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="limitations.html" data-doc-entry data-keywords="limitations boundaries alpha single user linux podman codex security review download">
-                    <span><strong>Current limitations</strong><small>Read the honest boundaries of the published alpha candidate in one place.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Current limitations</strong><small>Read the main limits of the early alpha in one place.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="reference.html" data-doc-entry data-keywords="reference glossary faq terms definition statedd statespec stateware">
-                    <span><strong>Reference and FAQ</strong><small>Keep the public terms and important distinctions close at hand.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Reference and FAQ</strong><small>Find short definitions and answers to common questions.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="../papers/stateware-whitepaper-public-v1.1.html" data-doc-entry data-keywords="paper whitepaper stateware architecture research thesis">
                     <span><strong>Stateware paper</strong><small>Read the longer design argument and its publication note.</small></span><i aria-hidden="true">↗</i>
@@ -202,7 +202,7 @@
           <a href="../tutorials/">Tutorials</a>
           <a href="../releases/">Release status</a>
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
     <script src="../assets/site.js?v=2026-08-10-1"></script>

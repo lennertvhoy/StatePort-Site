@@ -4,20 +4,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Check StatePort Alpha.5 availability, Windows 11 and WSL2 requirements, older-release warnings, and technical release files.">
+    <meta name="description" content="Technical files for StatePort Alpha.5, including the signed release index, source archive, signatures, release notes, and older release records.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Download StatePort Alpha.5">
-    <meta property="og:description" content="The Alpha.5 installer is temporarily unavailable. Release files and requirements remain available.">
-    <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/download/">
+    <meta property="og:title" content="Technical release files - StatePort">
+    <meta property="og:description" content="Signed indexes, source archives, signatures, notes, and other technical files for StatePort releases.">
+    <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/download/technical-release-files.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
-    <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/download/">
+    <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/download/technical-release-files.html">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
@@ -25,18 +25,7 @@
     <link rel="manifest" href="../site.webmanifest">
     <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
-    <title>Download StatePort Alpha.5</title>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Download StatePort Alpha.5",
-        "description": "The Alpha.5 installer is temporarily unavailable. Check requirements, older-release warnings, and technical release files.",
-        "url": "https://lennertvhoy.github.io/StatePort-Site/download/",
-        "dateModified": "2026-08-15",
-        "inLanguage": "en"
-      }
-    </script>
+    <title>Technical release files - StatePort</title>
   </head>
   <body class="article-page release-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -57,56 +46,61 @@
     </header>
 
     <main id="main">
-      <section class="article-hero" id="alpha5" aria-labelledby="download-title">
+      <section class="article-hero" aria-labelledby="technical-files-title">
         <div class="article-hero-inner">
-          <p class="document-kicker">Download</p>
-          <h1 id="download-title">StatePort Alpha.5</h1>
-          <p class="notice"><strong>The alpha installer is temporarily unavailable while we fix a problem found during testing.</strong></p>
-          <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue</a>.</p>
+          <p class="document-kicker">Download / Technical release files</p>
+          <h1 id="technical-files-title">Technical release files</h1>
+          <p>Use these files to inspect StatePort releases. If you only want to check installer availability, return to the <a href="./">download page</a>.</p>
         </div>
       </section>
 
       <div class="article-shell">
-        <aside class="doc-sidebar" aria-label="Download sections">
-          <h2>Download</h2>
+        <aside class="doc-sidebar" aria-label="Technical release file sections">
+          <h2>Release files</h2>
           <nav>
-            <a href="#alpha5" aria-current="page">Current status</a>
-            <a href="#requirements">Requirements</a>
-            <a href="#install">Installer</a>
-            <a href="#release-files">Technical release files</a>
+            <a href="#alpha5" aria-current="page">Alpha.5</a>
+            <a href="#source">Source and licenses</a>
             <a href="#older-releases">Older releases</a>
-            <a href="../releases/">Release status</a>
+            <a href="./">Download status</a>
           </nav>
         </aside>
 
-        <article class="prose release-overview" data-no-toc>
-          <p>StatePort is in early alpha. Do not use it for important data.</p>
-
-          <section id="requirements" aria-labelledby="requirements-heading">
-            <h2 id="requirements-heading">Before you start</h2>
+        <article class="prose" data-no-toc>
+          <section id="alpha5" aria-labelledby="alpha5-files-heading">
+            <h2 id="alpha5-files-heading">Alpha.5</h2>
             <ul>
-              <li>Windows 11 on an x86-64 computer.</li>
-              <li>WSL2 with Ubuntu 24.04.</li>
-              <li>A normal Ubuntu user with <code>sudo</code> access.</li>
-              <li>Internet access.</li>
+              <li><a href="0.1.0-alpha.5/release-index.json">Signed release index</a></li>
+              <li><a href="0.1.0-alpha.5/release-index.sigstore.json">Release index signature</a></li>
+              <li><a href="0.1.0-alpha.5/stateport-alpha-2026-08-cosign.pub">Release public key</a></li>
+              <li><a href="0.1.0-alpha.5/supply-chain/public-export-manifest.json">Public export manifest</a></li>
+              <li><a href="0.1.0-alpha.5/compose.yaml">Compose definition</a></li>
+              <li><a href="0.1.0-alpha.5/release-notes.md">Release notes</a></li>
+              <li><a href="0.1.0-alpha.5/known-limitations.md">Known limitations</a></li>
+              <li><a href="0.1.0-alpha.5/predecessor-bundle/release-index.sigstore.json">Alpha.3 predecessor signature</a></li>
             </ul>
           </section>
 
-          <section id="install" aria-labelledby="install-heading">
-            <h2 id="install-heading">Installer temporarily unavailable</h2>
-            <p>There is no install command to run right now. We will restore it after the current fix passes testing.</p>
-          </section>
-
-          <section id="release-files" aria-labelledby="release-files-heading">
-            <h2 id="release-files-heading">Technical release files</h2>
-            <p>Developers and reviewers can inspect the signed index, source archive, signatures, and other release material on a separate page.</p>
-            <p><a href="technical-release-files.html">Open technical release files</a></p>
+          <section id="source" aria-labelledby="source-heading">
+            <h2 id="source-heading">Source and licenses</h2>
+            <ul>
+              <li><a href="0.1.0-alpha.5/stateport-source.tar">Alpha.5 source archive</a></li>
+              <li><a href="https://github.com/lennertvhoy/StatePort-Source" target="_blank" rel="noopener">Public source repository</a></li>
+            </ul>
+            <p>Code and StateSpec files use AGPL-3.0-or-later. Documentation uses CC-BY-4.0.</p>
           </section>
 
           <section id="older-releases" aria-labelledby="older-releases-heading">
             <h2 id="older-releases-heading">Older releases</h2>
             <p><strong>Do not install Alpha 2 or Alpha 3. They contain known bugs.</strong></p>
-            <p><a href="erratum-alpha3.html">Read the Alpha.3 technical details</a> or <a href="technical-release-files.html#older-releases">find older release files</a>.</p>
+            <ul>
+              <li><a href="erratum-alpha3.html">Alpha.3 technical details</a></li>
+              <li><a href="0.1.0-alpha.3/release-index.json">Alpha.3 signed release index</a></li>
+              <li><a href="0.1.0-alpha.3/release-notes.md">Alpha.3 release notes</a></li>
+              <li><a href="0.1.0-alpha.3/known-limitations.md">Alpha.3 known limitations</a></li>
+              <li><a href="0.1.0-alpha.2/release-index.json">Alpha.2 signed release index</a></li>
+              <li><a href="0.1.0-alpha.2/release-notes.md">Alpha.2 release notes</a></li>
+              <li><a href="0.1.0-alpha.2/known-limitations.md">Alpha.2 known limitations</a></li>
+            </ul>
           </section>
         </article>
       </div>

@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Security and privacy — StatePort public documentation preview.">
+    <meta name="description" content="Read StatePort's current security and privacy approach, practical safety rules, and early-alpha limits.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="Security and privacy — StatePort">
-    <meta property="og:description" content="Security and privacy — StatePort public documentation preview.">
+    <meta property="og:description" content="How StatePort limits access, keeps secrets out of application files, and handles current security limits.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/security-and-privacy.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -47,8 +47,8 @@
       <section class="article-hero" aria-labelledby="page-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / 05</p>
-          <h1 id="page-title">Boundaries reduce risk. They do not make risk disappear.</h1>
-          <p>StatePort’s model uses explicit authority, source identity, and evidence to make sensitive work more inspectable—not to claim certification or perfect safety.</p>
+          <h1 id="page-title">Keep access narrow and data local</h1>
+          <p>StatePort is designed to make sensitive work easier to inspect. It does not remove every risk.</p>
         </div>
       </section>
 
@@ -61,11 +61,11 @@
             <a href="foundations.html">Foundations</a>
             <a href="model.html">Model</a>
             <a href="lifecycle.html">Lifecycle</a>
-            <a href="governance.html">Governance</a>
+            <a href="governance.html">Review and control</a>
             <a href="security-and-privacy.html" aria-current="page">Security &amp; privacy</a>
             <a href="hosts-and-portability.html">Hosts &amp; portability</a>
             <a href="platform-support.html">Platform support</a>
-            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="reference.html">Reference &amp; FAQ</a>
             <a href="getting-started.html">Getting started</a>
             <a href="study-state.html">StudyState</a>
@@ -77,33 +77,33 @@
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Reading guide</strong> This page explores the model. <a href="../releases/">Availability lives in the release ledger.</a></p>
+          <p class="notice notice--quiet"><strong>Early alpha.</strong> StatePort has not had an independent security review. Do not use it for important data.</p>
 
-          <h2>Threats worth naming</h2>
-          <p>An application that uses a model can face malicious source material, prompt injection, poisoned state, stale approvals, confused authority, compromised hosts, forged evidence, unsafe external effects, and backup leakage. Treating an “agent” as one trust boundary makes these problems harder to see.</p>
+          <h2>Main risks</h2>
+          <p>AI-assisted applications can read malicious content, follow unsafe instructions, use old permissions, expose secrets, or change the wrong files. A compromised computer can also bypass application-level controls.</p>
 
-          <h2>Design responses</h2>
+          <h2>How the design reduces risk</h2>
           <ul>
-            <li>Record source identity and reject untrusted promotion from a fixture or development candidate.</li>
-            <li>Give every workflow path an ownership rule before automated mutation.</li>
-            <li>Bind consequential approvals to exact proposals and preconditions.</li>
-            <li>Constrain execution hosts and make their capabilities and degradations explicit.</li>
-            <li>Keep secrets outside canonical state and avoid copying provider credentials into templates, images, or public material.</li>
-            <li>Use receipts and validation results to make changes reviewable after the fact.</li>
+            <li>Check where software and application files came from.</li>
+            <li>Define which files an application may change.</li>
+            <li>Ask before important or destructive actions.</li>
+            <li>Limit what AI tools and containers can access.</li>
+            <li>Keep passwords and provider credentials out of application files and images.</li>
+            <li>Record changes and their checks for later review.</li>
           </ul>
 
-          <h2>Privacy is a design responsibility</h2>
-          <p>Durable state and model context are different concerns. An application should make context-loading policy explicit, bounded, and measurable. Private notes, conversations, identifiers, credentials, and raw paths should not become fleet telemetry merely because they are convenient to aggregate.</p>
+          <h2>Privacy</h2>
+          <p>Application data stays on your machine by default. StatePort should send an AI model only the context needed for the current task. Private notes, conversations, identifiers, file paths, and credentials should not become analytics data.</p>
 
-          <h2>What this does not establish</h2>
-          <p>This documentation does not claim GDPR compliance, NIS2 compliance, certification, a penetration test, a complete threat model, or legal advice. Controls must be evaluated in the actual deployment, with real data flows, providers, retention, and operators in scope.</p>
+          <h2>Current limits</h2>
+          <p>StatePort has no security certification or penetration test. It does not claim GDPR, NIS2, or other legal compliance. Review the real setup, data, providers, and retention rules before using it.</p>
 
           <h2>Reporting a security issue</h2>
-          <p>There is no public vulnerability-reporting route yet. StatePort v0.1.0-alpha.5 is published as an unqualified public-test candidate, but no independent security review has been performed. Until a monitored intake address exists, there is deliberately no channel rather than an address nobody is watching.</p>
+          <p>There is no dedicated vulnerability-reporting address yet. For now, you can <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">open a public issue</a> for non-sensitive reports. Do not post secrets or private security details.</p>
 
           <div class="inline-actions">
             <a class="button button--ink" href="hosts-and-portability.html">Understand host boundaries</a>
-            <a class="button button--outlined" href="evidence-and-roadmap.html">Read the evidence vocabulary</a>
+            <a class="button button--outlined" href="evidence-and-roadmap.html">Read the roadmap</a>
           </div>
         </article>
       </div>
@@ -120,7 +120,7 @@
           <a href="../tutorials/">Tutorials</a>
           <a href="../releases/">Release status</a>
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
     <script src="../assets/site.js?v=2026-08-10-1"></script>

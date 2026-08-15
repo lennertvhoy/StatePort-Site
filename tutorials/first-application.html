@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="A conceptual tutorial for designing a durable, governable application with StateSpec.">
+    <meta name="description" content="Design a small AI-assisted application by choosing what it should remember, who may change it, and how to record the result.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="Design your first durable application — StatePort tutorial">
-    <meta property="og:description" content="A conceptual tutorial for designing a durable, governable application with StateSpec.">
+    <meta property="og:description" content="Choose what an application should remember, who may change it, and how to record the result.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/tutorials/first-application.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -48,7 +48,7 @@
         <div class="article-hero-inner">
           <p class="document-kicker">Tutorial / 01</p>
           <h1 id="tutorial-title">Design your first durable application.</h1>
-          <p>A conceptual walkthrough for bringing the important facts of a workflow out of ephemeral conversation and into an explicit lifecycle.</p>
+          <p>Move the important facts of a small workflow out of a temporary chat and into an application you can understand later.</p>
         </div>
       </section>
 
@@ -65,48 +65,48 @@
         </aside>
 
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Design exercise</strong> This uses a hypothetical study planner. <a href="../releases/">Availability lives in the release ledger.</a></p>
+          <p class="notice notice--quiet"><strong>Design exercise.</strong> This uses an imaginary study planner. You will not install anything.</p>
 
           <p><strong>New here? This is a thinking exercise, not a setup guide</strong> — you will not install anything. We imagine a small study planner and ask how its important facts can live outside a chat window, in plain language. If a word ever feels technical, it is safe to keep reading: the idea matters more than the vocabulary.</p>
 
           <h2>The scenario</h2>
           <p>Imagine a study planner that helps someone prepare for an exam. A chat assistant could suggest a plan, but the learner still needs to see the current plan, upcoming work, decisions, and completed evidence after the chat ends.</p>
-          <p>The goal is not to make the assistant cleverer. The goal is to make the application’s truth legible and durable.</p>
+          <p>The goal is not to make the assistant cleverer. The goal is to make the application easy to understand and continue later.</p>
 
           <h2>1. Separate facts from conversation</h2>
-          <p>Write down the facts that must survive a new model, a compacted context window, or an offline review:</p>
+          <p>Write down the facts that must survive a new model, a shorter chat history, or an offline review:</p>
           <ul>
             <li>the learner’s goal and target date;</li>
-            <li>the current plan and its owner-approved changes;</li>
-            <li>evidence that a task was completed or checked;</li>
-            <li>the policy that determines who may make which changes.</li>
+            <li>the current plan and approved changes;</li>
+            <li>a record that a task was completed or checked;</li>
+            <li>the rules for who may make changes.</li>
           </ul>
           <p>A conversation can discuss these facts. It should not be the only copy of them.</p>
 
           <h2>2. Give every file an owner</h2>
-          <p>Before allowing a runner to edit workflow files, record whether each path belongs to the template, the individual instance, generated output, or an explicit override. This turns “the agent changed something” into a reviewable question: was that agent allowed to change this exact material?</p>
+          <p>Separate reusable application files, personal files, and generated output. Then you can tell whether the AI tool changed something it was allowed to change.</p>
 
           <h2>3. Model a small lifecycle</h2>
           <p>For one proposed plan adjustment, the lifecycle could be as simple as:</p>
           <div class="code-panel" data-label="Illustrative lifecycle"><code>proposal
   ↓
-reviewed authority
+review and approval
   ↓
-applied change
+change
   ↓
-validation result
+check
   ↓
-receipt and current state</code></div>
-          <p>Each step has a different meaning. Keeping them distinct makes failures visible: an applied change can fail validation, and a locally validated change can still await human acceptance.</p>
+record and current state</code></div>
+          <p>Each step has a different meaning. A change may be approved but fail its checks. Keeping the steps separate makes that failure visible.</p>
 
-          <h2>4. Make the assistant an adapter</h2>
-          <p>The assistant may propose a plan, explain a state transition, or help fill a draft. It does not receive permission merely because it generated the idea. A host must declare what it can actually do, and any missing capability should degrade explicitly rather than silently changing the workflow.</p>
+          <h2>4. Keep the assistant in its role</h2>
+          <p>The assistant may propose a plan, explain a change, or prepare a draft. It does not receive permission just because it suggested the idea. If the tool cannot do something safely, it should stop and tell you.</p>
 
-          <h2>5. Close with evidence</h2>
-          <p>For the learner, a useful result is not just “done.” It is a clear current state plus enough evidence to understand what changed, what checked it, and what remains open. That same pattern helps a teacher, operator, or future maintainer reason about the application without replaying a conversation.</p>
+          <h2>5. End with a clear result</h2>
+          <p>A useful result is more than "done." Keep the current plan, what changed, whether the checks passed, and what still needs attention.</p>
 
           <h2>Takeaway</h2>
-          <p>StateSpec starts with the durable boundary: facts, ownership, authority, lifecycle, and evidence. Assistance becomes more useful when it works within that boundary.</p>
+          <p>Start with the facts, ownership, permissions, steps, and change history. AI assistance becomes more useful when it works inside those boundaries.</p>
           <div class="inline-actions">
             <a class="button button--ink" href="../docs/getting-started.html">Review the basics</a>
             <a class="button button--outlined" href="../releases/">Check public availability</a>
@@ -126,7 +126,7 @@ receipt and current state</code></div>
           <a href="./">Tutorials</a>
           <a href="../releases/">Release status</a>
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
     <script src="../assets/site.js?v=2026-08-10-1"></script>

@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Hosts and portability — StatePort public documentation preview.">
+    <meta name="description" content="Learn what StatePort keeps when an AI tool, model, session, or computer changes, and where portability still has limits.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Hosts and portability — StatePort">
-    <meta property="og:description" content="Hosts and portability — StatePort public documentation preview.">
+    <meta property="og:title" content="AI tools and portability - StatePort">
+    <meta property="og:description" content="What stays with your StatePort application when AI tools, models, or sessions change.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/hosts-and-portability.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -23,7 +23,7 @@
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
     <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
-    <title>Hosts and portability — StatePort</title>
+    <title>AI tools and portability - StatePort</title>
   </head>
   <body class="article-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -46,9 +46,9 @@
     <main id="main">
       <section class="article-hero" aria-labelledby="page-title">
         <div class="article-hero-inner">
-          <p class="document-kicker">Documentation / 06</p>
-          <h1 id="page-title">Execution providers differ. Declare the limits.</h1>
-          <p>A portable application does not require every host to behave the same. It requires the application’s durable boundary to survive while hosts declare what they can actually do.</p>
+          <p class="document-kicker">Documentation / AI tools and portability</p>
+          <h1 id="page-title">Keep the application when the tool changes</h1>
+          <p>AI tools and models behave differently. Your goals, files, decisions, and history should not disappear when you switch tools.</p>
         </div>
       </section>
 
@@ -61,11 +61,11 @@
             <a href="foundations.html">Foundations</a>
             <a href="model.html">Model</a>
             <a href="lifecycle.html">Lifecycle</a>
-            <a href="governance.html">Governance</a>
+            <a href="governance.html">Review and control</a>
             <a href="security-and-privacy.html">Security &amp; privacy</a>
             <a href="hosts-and-portability.html" aria-current="page">Hosts &amp; portability</a>
             <a href="platform-support.html">Platform support</a>
-            <a href="evidence-and-roadmap.html">Evidence &amp; roadmap</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="reference.html">Reference &amp; FAQ</a>
             <a href="getting-started.html">Getting started</a>
             <a href="study-state.html">StudyState</a>
@@ -77,24 +77,29 @@
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Reading guide</strong> This page explores the model. <a href="../releases/">Availability lives in the release ledger.</a></p>
+          <p class="notice notice--quiet"><strong>Design overview.</strong> Check the <a href="../releases/">release status</a> for current software availability.</p>
 
-          <h2>Host sessions are not the application</h2>
-          <p>A model session, prompt, authentication observation, host configuration, or context window can be useful operational data. It must not override the instance’s policy, approvals, lifecycle truth, or durable evidence. The same application should remain legible through its repository and command-line tools even when a particular host is unavailable.</p>
+          <h2>A session is not the application</h2>
+          <p>A model session can help with current work, but it should not be the only place that holds your goals or progress. The application should remain understandable even when that session is gone.</p>
 
-          <h2>Capability before branding</h2>
-          <p>Instead of assuming that a named host is interchangeable with another, a host should state its capabilities: structured events, cancellation, sandbox support, tool boundaries, output reporting, token telemetry, and the authentication route class. Missing support should produce an honest degradation, not an invented equivalence.</p>
+          <h2>Tools are not interchangeable</h2>
+          <p>One tool may support cancellation, safe file access, or detailed usage reporting while another does not. StatePort should check those abilities instead of assuming every provider works the same way.</p>
 
-          <h2>Where the provider work stands</h2>
-          <p>StatePort is a managed harness around coding agents: it orchestrates them headlessly and lets each provider declare what it can actually do. In the current published alpha candidate, Codex CLI is the only qualified provider — operator-authenticated, supervised, with external side effects denied by default. OpenCode is unqualified, there is no direct-API provider, and Pi remains a reference direction rather than a delivered adapter. StatePort preserves canonical application state across execution-provider integrations; the durable Stateware instance does not depend on any one of them.</p>
-          <p>The <a href="platform-support.html">platform-support contract</a> separates browser/storage qualification from host-integrated proof. The release ledger will carry supported installation and host coverage as they are verified.</p>
+          <h2>Current tool support</h2>
+          <p>The Alpha.5 design uses a locally authenticated Codex command-line tool. OpenCode, direct API providers, and Pi are not supported by this release.</p>
+          <p>See <a href="platform-support.html">platform support</a> for the computer requirements and <a href="../releases/">release status</a> for availability.</p>
 
-          <h2>What stronger evidence would look like</h2>
-          <p>Useful host evidence binds the exact application state, adapter and host versions, declared sandbox, model, context policy, authentication route class, validation commands, output artifacts, and observed failure/degradation modes. A provider label alone does not explain the result.</p>
+          <h2>What portability should preserve</h2>
+          <ul>
+            <li>Your application files and saved state.</li>
+            <li>Your goals, permissions, and history.</li>
+            <li>A clear record of which tool did the work.</li>
+            <li>An honest warning when a new tool lacks a needed feature.</li>
+          </ul>
 
           <div class="inline-actions">
             <a class="button button--ink" href="platform-support.html">View platform qualification</a>
-            <a class="button button--outlined" href="evidence-and-roadmap.html">Read evidence states</a>
+            <a class="button button--outlined" href="evidence-and-roadmap.html">Read the roadmap</a>
           </div>
         </article>
       </div>
@@ -111,7 +116,7 @@
           <a href="../tutorials/">Tutorials</a>
           <a href="../releases/">Release status</a>
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
     <script src="../assets/site.js?v=2026-08-10-1"></script>

@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Evidence and roadmap — StatePort public documentation preview.">
+    <meta name="description" content="See what you can explore in StatePort today and what the team plans to build next.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Evidence and roadmap — StatePort">
-    <meta property="og:description" content="Evidence and roadmap — StatePort public documentation preview.">
+    <meta property="og:title" content="Roadmap - StatePort">
+    <meta property="og:description" content="What is available in StatePort today and what comes next.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/evidence-and-roadmap.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 public-test status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -23,7 +23,7 @@
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
     <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
-    <title>Evidence and roadmap — StatePort</title>
+    <title>Roadmap - StatePort</title>
   </head>
   <body class="article-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -46,9 +46,9 @@
     <main id="main">
       <section class="article-hero" aria-labelledby="page-title">
         <div class="article-hero-inner">
-          <p class="document-kicker">Documentation / 07</p>
-          <h1 id="page-title">Claims should grow only as their evidence grows.</h1>
-          <p>A screenshot, a passing local test, a hosted CI run, and a human review are different kinds of evidence. StatePort keeps those states separate.</p>
+          <p class="document-kicker">Documentation / Roadmap</p>
+          <h1 id="page-title">What we are building next</h1>
+          <p>StatePort already has a working product preview and public release files. The installer and full user journey still need work.</p>
         </div>
       </section>
 
@@ -61,11 +61,11 @@
             <a href="foundations.html">Foundations</a>
             <a href="model.html">Model</a>
             <a href="lifecycle.html">Lifecycle</a>
-            <a href="governance.html">Governance</a>
+            <a href="governance.html">Review and control</a>
             <a href="security-and-privacy.html">Security &amp; privacy</a>
             <a href="hosts-and-portability.html">Hosts &amp; portability</a>
             <a href="platform-support.html">Platform support</a>
-            <a href="evidence-and-roadmap.html" aria-current="page">Evidence &amp; roadmap</a>
+            <a href="evidence-and-roadmap.html" aria-current="page">Roadmap</a>
             <a href="reference.html">Reference &amp; FAQ</a>
             <a href="getting-started.html">Getting started</a>
             <a href="study-state.html">StudyState</a>
@@ -77,34 +77,30 @@
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Reading guide</strong> This page explores the model. <a href="../releases/">Availability lives in the release ledger.</a></p>
+          <p class="notice notice--quiet"><strong>Looking for availability?</strong> Check the <a href="../releases/">release status</a>.</p>
 
-          <h2>Four useful evidence states</h2>
-          <div class="code-panel" data-label="A claim ladder"><code>implemented
-→ locally validated
-→ independently accepted
-→ human accepted
-→ released</code></div>
-          <p>These states do not collapse into one another. Local validation can be valuable and still be self-adjudicated. Independent CI can test an exact source without proving user value. Human acceptance can evaluate a product journey without converting an unresolved source into a release.</p>
-
-          <h2>What is public today</h2>
-          <p>This website brings together the documentation, prototype, paper, release ledger, signed Alpha.5 artifacts, and the curated Alpha.5 source archive. The curated Alpha.5 source archive is public; code and StateSpec artifacts are AGPL-3.0-or-later, and documentation is CC-BY-4.0. Canonical development Git and its history are private. The separately signed <code>publicSnapshot</code> Git identity is remotely resolvable from the public <a href="https://github.com/lennertvhoy/StatePort-Source" target="_blank" rel="noopener">StatePort-Source repository</a>; that public projection must not be mistaken for the private canonical development history.</p>
-
-          <h2>What remains open</h2>
+          <h2>Available now</h2>
           <ul>
-            <li>The first Windows 11 + WSL2 + Ubuntu 24.04 clean-install receipt for the Alpha.5 public-test candidate.</li>
-            <li>Independent validation of the exact delivered source and its packaged runtime.</li>
-            <li>Canonical upstream release acceptance for application packages.</li>
-            <li>External-user and human product acceptance.</li>
-            <li>Controlled evaluation before any comparative or performance claim.</li>
+            <li>A product preview with a short video, captions, and screenshots.</li>
+            <li>Documentation for the StatePort model and planned user experience.</li>
+            <li>Alpha.5 release files for technical inspection.</li>
           </ul>
 
-          <h2>How to evaluate the model</h2>
-          <p>The central questions are testable: does explicit state improve recovery after a session loss? Do digest-bound approvals reduce mismatch? Do receipts improve a person’s understanding of change? Does host replacement preserve more useful continuity than a transcript export? A credible answer needs baselines, repeated runs, and measures that can falsify the claim.</p>
+          <h2>Current priorities</h2>
+          <ul>
+            <li>Restore the Alpha.5 installer after the current fix passes testing.</li>
+            <li>Complete the first full setup on Windows 11, WSL2, and Ubuntu 24.04.</li>
+            <li>Make the StudyState journey usable from setup through backup and recovery.</li>
+            <li>Test the product with people who did not build it.</li>
+            <li>Review security before asking anyone to trust important data to StatePort.</li>
+          </ul>
+
+          <h2>Later</h2>
+          <p>After the basic journey works, the roadmap includes more applications, more platforms, stronger backup and update tools, and optional team or hosted services.</p>
 
           <div class="inline-actions">
             <a class="button button--ink" href="../releases/">View release status</a>
-            <a class="button button--outlined" href="reference.html">Review terms and questions</a>
+            <a class="button button--outlined" href="reference.html">Read the FAQ</a>
           </div>
         </article>
       </div>
@@ -121,7 +117,7 @@
           <a href="../tutorials/">Tutorials</a>
           <a href="../releases/">Release status</a>
         </nav>
-        <p class="footer-meta">StateSpec is the current public name for the portable specification, formerly called StateDD. <span data-current-year></span></p>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
     <script src="../assets/site.js?v=2026-08-10-1"></script>
