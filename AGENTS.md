@@ -118,7 +118,15 @@ exact-target preflight result.
 Mutable preflight publication `c561db2afd156eb09e61ce4e2da3158ea596a587`
 deployed through Pages build `1152559503`, run `31872664883`, and deployment
 `5918407409`. All ten changed paths and all 33 immutable Alpha.5 files matched
-anonymous bytes. Installation remains disabled pending the owner preflight.
+anonymous bytes.
+
+Owner directive `OD-2026-08-15-ALPHA5-INSTALL-REENABLE` supersedes the
+preflight-wait sequencing and authorizes restoring the public install command.
+Anonymous byte-verification confirmed the live mutable bootstrap carries the
+`c441ca7a` repair and that all 33 immutable Alpha.5 files are intact before
+re-enablement. The download page shows the pinned non-installing preflight as
+the recommended first step, then the exact pinned install command. The owner
+install result is pending.
 
 ## Mandatory read order
 
@@ -138,9 +146,10 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
   `4613fcad48ea1a2e7dd4350d61baa333efbc734b1fcba1a1c9ca62994d562b71`;
   signed payload:
   `sha256:e45d5c8ce6843bd0c3155ecd26940ff3dc11c5069a2de796a079708066faf98c`.
-- Installation is disabled after the continued Lionheart diagnostic failed
-  before root-helper materialization. WSL2 remains
-  `compatible_unvalidated`; no clean-install receipt exists.
+- Installation is re-enabled under owner directive
+  `OD-2026-08-15-ALPHA5-INSTALL-REENABLE` after anonymous verification confirmed
+  the live bootstrap carries the root-helper materialization repair. WSL2
+  remains `compatible_unvalidated`; no clean-install receipt exists.
 - Completed reviews bind the failure to a 4,096-byte truncated pipe-to-shell
   transfer. The complete 8,971-byte bootstrap and signed release payload remain
   intact; the replacement completes download, verifies pinned size and digest,
@@ -191,7 +200,8 @@ or production-ready. Never alter Alpha.2, Alpha.3, or anchored Alpha.5 bytes.
 
 1. Preserve Alpha.2 and Alpha.3 exactly and keep the Alpha.3 erratum historical.
 2. Preserve the anchored Alpha.5 tree and exact repaired mutable bootstrap.
-3. Keep public installation disabled pending a non-installing exact-target
-   preflight of the repaired root-helper materialization plan.
+3. Present the pinned non-installing preflight as the recommended first step
+   and the exact pinned install command as the primary download action; await
+   the owner install result.
 
 Everything else is backlog or history.

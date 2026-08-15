@@ -1,5 +1,28 @@
 # Worklog
 
+## 2026-08-15 - Alpha.5 install command restored after live-fix verification
+
+- Owner directive `OD-2026-08-15-ALPHA5-INSTALL-REENABLE` supersedes the
+  preflight-wait sequencing and authorizes restoring the public install command.
+- Before any copy change, an anonymous read-only verification confirmed the live
+  mutable bootstrap (17,561 bytes, SHA-256
+  `1c9e12c45a1c4cb79c9b6d0dd32860eb1a2c8b3c2427889aac98154f86f05b5c`) carries
+  the `c441ca7a` repair: root-owned `/usr/local/libexec` parent creation before
+  helper install, labeled bounded retries, and the no-root-write
+  materialization preflight. All 33 immutable Alpha.5 files and the pinned
+  release index matched.
+- Restored the exact pinned install command on `download/index.html` as the
+  primary call-to-action, with the pinned non-installing preflight shown as the
+  recommended first step. Home, release status, limitations, platform support,
+  lifecycle, updates, walkthrough, and both linked whitepapers now state that
+  the installer is available for a first test and not yet proven on a freshly
+  installed computer. The primary-page plain-language copy guard still passes.
+- Updated the release-semantics, surface-quality, and containment guards to
+  require the enabled state: exact pinned commands on the download page,
+  preflight before install, no pipe-to-shell, and no executable command in
+  metadata. No versioned Alpha.2, Alpha.3, or Alpha.5 file changed; no signed
+  index, signature, hash, image, or archive changed.
+
 ## 2026-08-15 - Public website copy corrected and remotely verified
 
 - Rewrote Home, Docs, Tutorials, Download, release status, limitations,

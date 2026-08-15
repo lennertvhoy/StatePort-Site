@@ -18,6 +18,7 @@ from urllib.parse import unquote, urlsplit
 import xml.etree.ElementTree as ET
 
 from validate_repo import (
+    INSTALLER_STATUS,
     ROOT,
     is_local_build_source,
     linked_public_markdown_pages,
@@ -589,11 +590,11 @@ def validate_linked_markdown_language() -> None:
 
 
 def validate_release_surface_quality(documents: dict[Path, DocumentFacts]) -> None:
-    """Keep install-disabled release metadata free of executable commands."""
+    """Keep install-enabled release metadata free of executable commands."""
     release_block = release_state_block()
-    install_disabled = re.search(r"^  installation_enabled: false\s*$", release_block, re.MULTILINE)
-    if not install_disabled:
-        raise AssertionError("Release surface quality checks require fail-closed installation state")
+    install_enabled = re.search(r"^  installation_enabled: true\s*$", release_block, re.MULTILINE)
+    if not install_enabled:
+        raise AssertionError("Release surface quality checks require the published installation state")
 
     command_pattern = re.compile(r"(?:curl|wget)\s[^<\n]*install\.sh")
     for page in mutable_public_pages():
@@ -609,7 +610,7 @@ def validate_release_surface_quality(documents: dict[Path, DocumentFacts]) -> No
             )
 
     release_description = (documents[Path("releases/index.html")].description or "").lower()
-    if "installer" not in release_description or "temporarily unavailable" not in release_description:
+    if "installer" not in release_description or "temporarily unavailable" in release_description:
         raise AssertionError(
             "releases/index.html: meta description must plainly state installer availability"
         )
@@ -639,11 +640,8 @@ def validate_primary_public_copy() -> None:
         if "StatePort is in early alpha. Do not use it for important data." not in text:
             raise AssertionError(f"{relative}: missing concise early-alpha warning")
 
-    unavailable = (
-        "The alpha installer is temporarily unavailable while we fix a problem found during testing."
-    )
     for relative in (Path("index.html"), Path("download/index.html"), Path("releases/index.html")):
-        if unavailable not in (ROOT / relative).read_text(encoding="utf-8"):
+        if INSTALLER_STATUS not in (ROOT / relative).read_text(encoding="utf-8"):
             raise AssertionError(f"{relative}: missing concise installer status")
 
 

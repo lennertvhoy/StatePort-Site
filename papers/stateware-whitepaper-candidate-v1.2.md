@@ -50,9 +50,8 @@ boundary** — and that moving the boundary there changes what an assistant can
 be.
 
 **Status of the reference implementation.** The public walkthrough is a local
-development preview with sample data. Alpha.5 release files are public, but the
-installer is temporarily unavailable while a problem found during testing is
-fixed.
+development preview with sample data. Alpha.5 release files are public, and the
+installer is available for a first test.
 
 **Current delivery versus future architecture.** The current reference
 implementation is StatePort v0.1.0-alpha.5. StatePort is in early alpha. Do not

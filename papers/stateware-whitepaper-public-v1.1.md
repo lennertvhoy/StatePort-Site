@@ -40,7 +40,8 @@ be.
 
 **Status of the reference implementation.** The website shows a local
 development preview with sample data. StatePort is in early alpha. Do not use it
-for important data. The Alpha.5 installer is temporarily unavailable.
+for important data. The Alpha.5 installer is available for a first test and has
+not yet been proven on a freshly installed computer.
 
 ## Scope and standing of this paper
 

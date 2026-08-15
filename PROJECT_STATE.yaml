@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-15T08:25:38Z"
-  updated_by: public_copy_correction_deployment_closure
+  updated_at: "2026-08-15T12:30:00Z"
+  updated_by: alpha5_install_reenable_content
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha5_install_disabled_materialization_preflight_pending
+  status: alpha5_install_reenabled_owner_install_result_pending
   purpose: public_documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -31,7 +31,7 @@ release:
   known_defective: false
   original_streamed_install_transport_defective: true
   owner_accepted: false
-  installation_enabled: false
+  installation_enabled: true
   support_tier: compatible_unvalidated
   public_download: "download/0.1.0-alpha.5/install.sh"
   release_index: "download/0.1.0-alpha.5/release-index.json"
@@ -99,10 +99,10 @@ site:
     pages_run: 31874362376
     pages_deployment: 5918682005
     deployment_sha: d334f739de21ad2f581115995cae7b57152e5048
-  current_release_surface: plain_language_public_copy_install_disabled
-  installer_command_shown: false
-  installer_command_locations: []
-  replacement_install_command: disabled_pending_materialization_preflight_result
+  current_release_surface: plain_language_public_copy_install_enabled
+  installer_command_shown: true
+  installer_command_locations: [download/index.html]
+  replacement_install_command: enabled_preflight_recommended_first_step
   nonexecuting_transport_probe: owner_reported_exact_target_passed
   nonexecuting_materialization_preflight: published_pending_owner_result
   immutable_tree_manifest: config/immutable-release-trees.json
@@ -136,23 +136,24 @@ site:
     browser_automation: unavailable_not_claimed
 
 owner_directive:
-  id: OD-2026-08-15-PUBLIC-COPY-CORRECTION
-  status: public_copy_deployed_remote_verified
+  id: OD-2026-08-15-ALPHA5-INSTALL-REENABLE
+  status: content_committed_deployment_pending
+  supersedes: OD-2026-08-15-PUBLIC-COPY-CORRECTION
   source_repository: /home/ff/Documents/Projects/StatePort
-  source_base: c1804c5b534fb33e4fd3adcabe9064e7c70c855b
-  site_base: e095cebf868700d93ff507d13d2a8b33dbeab4cb
-  objective: rewrite_public_site_in_plain_product_language_and_preserve_install_disabled_state
-  site_commit_push_and_pages_deployment: authorized_and_completed
-  public_copy_guard: implemented
+  source_base: 341a9721b5a6ef799c2e318d8d4900094b3ba67e
+  site_base: 7157e452da8b003f4dff5412db60d11ce49d3edf
+  objective: restore_public_alpha5_install_command_after_verifying_c441ca7a_fix_is_live
+  live_fix_verified_before_reenable: true
+  site_commit_push_and_pages_deployment: authorized
+  public_copy_guard: updated_and_passing
   versioned_release_file_changes: prohibited_and_absent
-  repaired_install_reenable: prohibited_until_materialization_preflight_result
   signing_or_successor_release: not_authorized
   human_acceptance: not_granted
 
 active_work:
   - id: BL-SITE-ALPHA5-MATERIALIZATION
     priority: P0
-    status: owner_materialization_preflight_pending
+    status: install_reenabled_owner_install_result_pending
 
 prior_work:
   - id: public_copy_correction

@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Check StatePort Alpha.5 availability, Windows 11 and WSL2 requirements, older-release warnings, and technical release files.">
+    <meta name="description" content="Install StatePort Alpha.5 on Windows 11 with WSL2 and Ubuntu 24.04, check requirements, or inspect technical release files.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="Download StatePort Alpha.5">
-    <meta property="og:description" content="The Alpha.5 installer is temporarily unavailable. Release files and requirements remain available.">
+    <meta property="og:description" content="The Alpha.5 installer is available for a first test on Windows 11 with WSL2 and Ubuntu 24.04.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/download/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -31,7 +31,7 @@
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "Download StatePort Alpha.5",
-        "description": "The Alpha.5 installer is temporarily unavailable. Check requirements, older-release warnings, and technical release files.",
+        "description": "The Alpha.5 installer is available for a first test. Check requirements, older-release warnings, and technical release files.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/download/",
         "dateModified": "2026-08-15",
         "inLanguage": "en"
@@ -61,7 +61,7 @@
         <div class="article-hero-inner">
           <p class="document-kicker">Download</p>
           <h1 id="download-title">StatePort Alpha.5</h1>
-          <p class="notice"><strong>The alpha installer is temporarily unavailable while we fix a problem found during testing.</strong></p>
+          <p class="notice"><strong>The Alpha.5 installer is available for a first test on Windows 11 with WSL2 and Ubuntu 24.04. It has not yet been proven on a freshly installed computer.</strong></p>
           <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue</a>.</p>
         </div>
       </section>
@@ -93,8 +93,14 @@
           </section>
 
           <section id="install" aria-labelledby="install-heading">
-            <h2 id="install-heading">Installer temporarily unavailable</h2>
-            <p>There is no install command to run right now. We will restore it after the current fix passes testing.</p>
+            <h2 id="install-heading">Install Alpha.5</h2>
+            <p><strong>Recommended first step: check your computer without changing it.</strong> In an Ubuntu 24.04 WSL2 terminal, as your normal user, run:</p>
+            <div class="code-panel" data-label="Alpha.5 preflight check"><code>(umask 077; tmp=&quot;$(mktemp)&quot; &amp;&amp; trap &#x27;rm -f &quot;$tmp&quot;&#x27; EXIT HUP INT TERM &amp;&amp; curl --fail --location --silent --show-error --proto &#x27;=https&#x27; --tlsv1.2 --output &quot;$tmp&quot; https://lennertvhoy.github.io/StatePort-Site/download/install.sh &amp;&amp; test &quot;$(wc -c &lt; &quot;$tmp&quot;)&quot; -eq 17561 &amp;&amp; printf &#x27;%s  %s\n&#x27; &#x27;1c9e12c45a1c4cb79c9b6d0dd32860eb1a2c8b3c2427889aac98154f86f05b5c&#x27; &quot;$tmp&quot; | sha256sum --check --status - &amp;&amp; /bin/sh -n &quot;$tmp&quot; &amp;&amp; /bin/sh &quot;$tmp&quot; --materialization-preflight)</code></div>
+            <p>The preflight downloads the installer bootstrap, verifies its exact size and pinned SHA-256, checks its shell syntax, and verifies the setup plan. It does not install anything: packages, root files, images, and the installer are not changed or executed.</p>
+            <p><strong>Then install.</strong> Run this exact command in the same terminal:</p>
+            <div class="code-panel" data-label="Alpha.5 install"><code>(umask 077; tmp=&quot;$(mktemp)&quot; &amp;&amp; trap &#x27;rm -f &quot;$tmp&quot;&#x27; EXIT HUP INT TERM &amp;&amp; curl --fail --location --silent --show-error --proto &#x27;=https&#x27; --tlsv1.2 --output &quot;$tmp&quot; https://lennertvhoy.github.io/StatePort-Site/download/install.sh &amp;&amp; test &quot;$(wc -c &lt; &quot;$tmp&quot;)&quot; -eq 17561 &amp;&amp; printf &#x27;%s  %s\n&#x27; &#x27;1c9e12c45a1c4cb79c9b6d0dd32860eb1a2c8b3c2427889aac98154f86f05b5c&#x27; &quot;$tmp&quot; | sha256sum --check --status - &amp;&amp; /bin/sh -n &quot;$tmp&quot; &amp;&amp; /bin/sh &quot;$tmp&quot;)</code></div>
+            <p>The install command downloads the bootstrap to a private temporary file, verifies its exact size and pinned SHA-256, and checks its shell syntax before running it. There is no pipe-to-shell stage.</p>
+            <p>If the install asks for your password, it is your own computer asking for the administrator rights needed to set up StatePort's helper program.</p>
           </section>
 
           <section id="release-files" aria-labelledby="release-files-heading">

@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-08-15
 **Execution Mode:** operating
-**Project State:** alpha5_install_disabled_materialization_preflight_pending
+**Project State:** alpha5_install_reenabled_owner_install_result_pending
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -87,10 +87,16 @@
   and Alpha.3 details now use short public language. Detailed release material
   is available through one `Technical release files` page, and a focused static
   guard rejects internal release vocabulary on primary pages.
-- No versioned Alpha.2, Alpha.3, or Alpha.5 file changed. Alpha.5 installation
-  remains disabled pending the materialization preflight.
+- No versioned Alpha.2, Alpha.3, or Alpha.5 file changed. Under owner directive
+  `OD-2026-08-15-ALPHA5-INSTALL-REENABLE`, installation is re-enabled after
+  anonymous byte-verification confirmed the live mutable bootstrap carries the
+  `c441ca7a` repair (root-owned `/usr/local/libexec` parent creation, labeled
+  bounded retries, no-root-write preflight). The download page shows the pinned
+  non-installing preflight as the recommended first step, then the exact pinned
+  install command. The owner install result is pending; Alpha.5 remains
+  `compatible_unvalidated` and unaccepted.
 
 ## Exact next action
 
-Await the exact-target non-installing materialization preflight result. Keep
-installation disabled.
+The owner runs the pinned install command on Windows 11 + WSL2 + Ubuntu 24.04
+(preflight first). Await the result.

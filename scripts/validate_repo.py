@@ -30,6 +30,11 @@ from render_support import load_config, rendered_home, support_enabled
 
 ROOT = Path(__file__).resolve().parents[1]
 
+INSTALLER_STATUS = (
+    "The Alpha.5 installer is available for a first test on Windows 11 with WSL2 "
+    "and Ubuntu 24.04. It has not yet been proven on a freshly installed computer."
+)
+
 # These publication anchors are intentionally duplicated here instead of being
 # imported from build_immutable_manifest.py. The validator is an independent
 # policy check over both the generator and its output.
@@ -1063,41 +1068,41 @@ def validate_source_disclosures(texts: dict[Path, str]) -> None:
 def validate_release_semantics() -> None:
     """Reject mutable-surface claims that contradict canonical release truth."""
     release_block = release_state_block()
-    install_disabled = re.search(r"^  installation_enabled: false\s*$", release_block, re.MULTILINE)
+    install_enabled = re.search(r"^  installation_enabled: true\s*$", release_block, re.MULTILINE)
     known_defective = re.search(r"^  known_defective: false\s*$", release_block, re.MULTILINE)
-    if not install_disabled or not known_defective:
+    if not install_enabled or not known_defective:
         raise AssertionError(
-            "PROJECT_STATE.yaml must disable installation without labelling signed Alpha.5 bytes defective"
+            "PROJECT_STATE.yaml must enable installation without labelling signed Alpha.5 bytes defective"
         )
 
     pages = mutable_public_pages()
     texts = {page: page.read_text(encoding="utf-8") for page in pages}
     pipe_to_shell = re.compile(r"(?:curl|wget)\s[^<\n]*\|\s*(?:/bin/)?sh\b")
-    install_command = re.compile(r"curl\s[^<\n]*install\.sh")
-    held_back = render_install_command(execute=True)
+    install_command = render_install_command(execute=True)
     preflight = render_install_command()
     for page, text in texts.items():
         relative = page.relative_to(ROOT)
         if pipe_to_shell.search(text):
             raise AssertionError(f"pipe-to-shell promotion is forbidden on {relative}")
-        if install_command.search(text) or escape(held_back) in text:
-            raise AssertionError(f"installation is disabled but a bootstrap command appears on {relative}")
 
     download = texts[ROOT / "download/index.html"]
-    for marker in (
-        "The alpha installer is temporarily unavailable while we fix a problem found during testing.",
-    ):
-        if marker not in download:
-            raise AssertionError(f"download/index.html lacks Alpha.5 containment marker {marker!r}")
+    if escape(preflight) not in download:
+        raise AssertionError("download/index.html must show the exact pinned Alpha.5 preflight command")
+    if escape(install_command) not in download:
+        raise AssertionError("download/index.html must show the exact pinned Alpha.5 install command")
+    if download.index(escape(preflight)) > download.index(escape(install_command)):
+        raise AssertionError("download/index.html must present the preflight before the install command")
+    if INSTALLER_STATUS not in download:
+        raise AssertionError(f"download/index.html lacks Alpha.5 installer status {INSTALLER_STATUS!r}")
 
-    if pipe_to_shell.search(held_back) or pipe_to_shell.search(preflight):
+    if pipe_to_shell.search(install_command) or pipe_to_shell.search(preflight):
         raise AssertionError("Alpha.5 transport generator must never use pipe-to-shell")
-    for command in (held_back, preflight):
+    for command in (install_command, preflight):
         for marker in (BOOTSTRAP_URL, BOOTSTRAP_SHA256, str(BOOTSTRAP_SIZE), '/bin/sh -n "$tmp"'):
             if marker not in command:
                 raise AssertionError(f"Alpha.5 transport generator lacks {marker!r}")
-    if '/bin/sh "$tmp"' not in held_back:
-        raise AssertionError("Alpha.5 held-back command must execute only after checks")
+    if '/bin/sh "$tmp"' not in install_command:
+        raise AssertionError("Alpha.5 install command must execute only after checks")
     if '/bin/sh "$tmp" --materialization-preflight' not in preflight or PREFLIGHT_SUCCESS not in require(
         "download/install.sh"
     ).read_text(encoding="utf-8"):
@@ -1316,9 +1321,9 @@ def main() -> None:
     require_text("docs/agent-kits.html", "Early direction")
     require_text("docs/platform-support.html", "Alpha.5 requirements")
     require_text("papers/stateware-whitepaper-public-v1.1.html", "Publication note")
-    require_text("releases/index.html", "installer temporarily unavailable")
+    require_text("releases/index.html", "installer available for a first test")
     require_text("download/index.html", "Do not install Alpha 2 or Alpha 3")
-    require_text("docs/limitations.html", "installer is temporarily unavailable")
+    require_text("docs/limitations.html", "installer is available for a first test")
     require_text(".github/workflows/deploy-pages.yml", "actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e")
 
     public_copy = "\n".join(

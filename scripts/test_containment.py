@@ -311,11 +311,13 @@ class CurrentBootstrapTests(unittest.TestCase):
         self.assertLess(command.index("sha256sum"), command.index('/bin/sh -n "$tmp"'))
         self.assertLess(command.index('/bin/sh -n "$tmp"'), command.rindex('/bin/sh "$tmp"'))
         download = (ROOT / "download/index.html").read_text(encoding="utf-8")
-        self.assertNotIn(escape(command), download)
-        self.assertIn(
-            "The alpha installer is temporarily unavailable while we fix a problem found during testing.",
-            download,
+        self.assertIn(escape(command), download)
+        self.assertIn(escape(install_transport.render_install_command()), download)
+        self.assertLess(
+            download.index(escape(install_transport.render_install_command())),
+            download.index(escape(command)),
         )
+        self.assertIn(validate_repo.INSTALLER_STATUS, download)
 
     def test_4096_byte_response_fails_before_shell_or_execution(self) -> None:
         bootstrap = (ROOT / "download/install.sh").read_bytes()
