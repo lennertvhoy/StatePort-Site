@@ -38,6 +38,64 @@ ENTRYPOINTS = {
     Path("tutorials/index.html"): f"{BASE_URL}tutorials/",
     Path("releases/index.html"): f"{BASE_URL}releases/",
 }
+PRIMARY_PUBLIC_COPY_PAGES = {
+    Path("index.html"),
+    Path("download/index.html"),
+    Path("download/erratum-alpha3.html"),
+    Path("releases/index.html"),
+    Path("tutorials/index.html"),
+    Path("tutorials/first-application.html"),
+    Path("tutorials/reading-a-receipt.html"),
+    *{Path(f"docs/{name}.html") for name in (
+        "index",
+        "agent-kits",
+        "deployments",
+        "evidence-and-roadmap",
+        "foundations",
+        "getting-started",
+        "governance",
+        "hosts-and-portability",
+        "lifecycle",
+        "limitations",
+        "model",
+        "platform-support",
+        "prototype-walkthrough",
+        "reference",
+        "security-and-privacy",
+        "study-state",
+        "updates",
+    )},
+}
+PUBLIC_COPY_REJECTIONS = {
+    "owner-reported": re.compile(r"owner[- ]reported", re.IGNORECASE),
+    "compatible_unvalidated": re.compile(r"compatible_unvalidated", re.IGNORECASE),
+    "exact-target": re.compile(r"exact[- ]target", re.IGNORECASE),
+    "clean-install receipt or proof": re.compile(
+        r"clean[- ]install\s+(?:receipt|proof)", re.IGNORECASE
+    ),
+    "remotely byte-verified": re.compile(r"remotely\s+byte[- ]verified", re.IGNORECASE),
+    "immutable bytes": re.compile(r"immutable\s+bytes", re.IGNORECASE),
+    "signed payload identity": re.compile(r"signed\s+payload\s+identity", re.IGNORECASE),
+    "internal target identifier": re.compile(
+        r"wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet", re.IGNORECASE
+    ),
+    "private source bookkeeping": re.compile(
+        r"canonical\s+development\s+git|publicsnapshot|curated\s+alpha\.5\s+source\s+archive",
+        re.IGNORECASE,
+    ),
+    "claim stack": re.compile(
+        r"honest\s+disclaimer|not\s+clean-installed|owner-accepted|"
+        r"independently\s+security-(?:reviewed|audited)|production-ready|"
+        r"human\s+acceptance|production\s+qualification",
+        re.IGNORECASE,
+    ),
+    "incident byte chronology": re.compile(r"\b(?:4,096|8,971|17,561)\s+bytes\b"),
+    "internal availability prose": re.compile(
+        r"availability\s+boundary|release\s+ledger|public[- ]test", re.IGNORECASE
+    ),
+    "raw SHA-256 inventory": re.compile(r"sha256:[0-9a-f]{64}", re.IGNORECASE),
+    "raw Git identity": re.compile(r"(?<![0-9a-f])[0-9a-f]{40}(?![0-9a-f])", re.IGNORECASE),
+}
 # Pages that exist in the repository but are self-marked as not yet published.
 # They stay out of sitemap.xml so crawlers are not sent to unfinished work.
 UNPUBLISHED_PAGES = {
@@ -516,13 +574,6 @@ def validate_public_media_boundaries(documents: dict[Path, DocumentFacts]) -> No
 def validate_linked_markdown_language() -> None:
     """Visitor-linked Markdown must carry the same current release boundary."""
 
-    whitepaper_terms = (
-        "v0.1.0-alpha.5",
-        "compatible_unvalidated",
-        "curated alpha.5 source archive",
-        "publicsnapshot",
-        "remotely resolvable",
-    )
     stale = (
         re.compile(r"\bv0\.1\.0-alpha\.1\b", re.IGNORECASE),
         re.compile(r"\bprivate product-owner candidate\b", re.IGNORECASE),
@@ -530,11 +581,6 @@ def validate_linked_markdown_language() -> None:
     )
     for path in sorted(linked_public_markdown_pages()):
         text = path.read_text(encoding="utf-8")
-        lowered = text.lower()
-        if path.name == "stateware-whitepaper-candidate-v1.2.md":
-            for term in whitepaper_terms:
-                if term not in lowered:
-                    raise AssertionError(f"{path.relative_to(ROOT)}: linked Markdown lacks {term!r}")
         for pattern in stale:
             if pattern.search(text):
                 raise AssertionError(
@@ -543,7 +589,7 @@ def validate_linked_markdown_language() -> None:
 
 
 def validate_release_surface_quality(documents: dict[Path, DocumentFacts]) -> None:
-    """Keep the public voice consistent with the unqualified public-test truth."""
+    """Keep install-disabled release metadata free of executable commands."""
     release_block = release_state_block()
     install_disabled = re.search(r"^  installation_enabled: false\s*$", release_block, re.MULTILINE)
     if not install_disabled:
@@ -562,13 +608,43 @@ def validate_release_surface_quality(documents: dict[Path, DocumentFacts]) -> No
                 f"{facts.path}: metadata must not contain an executable install command"
             )
 
-    for entrypoint in (Path("index.html"), Path("releases/index.html")):
-        facts = documents[entrypoint]
-        description = (facts.description or "").lower()
-        if "public-test" not in description or "clean-install" not in description:
-            raise AssertionError(
-                f"{entrypoint}: meta description must disclose public-test and clean-install status"
-            )
+    release_description = (documents[Path("releases/index.html")].description or "").lower()
+    if "installer" not in release_description or "temporarily unavailable" not in release_description:
+        raise AssertionError(
+            "releases/index.html: meta description must plainly state installer availability"
+        )
+
+
+def validate_primary_public_copy() -> None:
+    """Keep internal release and evidence vocabulary out of the visitor journey."""
+
+    for relative in sorted(PRIMARY_PUBLIC_COPY_PAGES):
+        path = ROOT / relative
+        if not path.is_file():
+            raise AssertionError(f"Missing primary public copy page: {relative}")
+        text = path.read_text(encoding="utf-8")
+        for label, pattern in PUBLIC_COPY_REJECTIONS.items():
+            if match := pattern.search(text):
+                raise AssertionError(
+                    f"{relative}: rejected public copy ({label}): {match.group(0)!r}"
+                )
+
+    for relative in (
+        Path("index.html"),
+        Path("download/index.html"),
+        Path("releases/index.html"),
+        Path("docs/limitations.html"),
+    ):
+        text = (ROOT / relative).read_text(encoding="utf-8")
+        if "StatePort is in early alpha. Do not use it for important data." not in text:
+            raise AssertionError(f"{relative}: missing concise early-alpha warning")
+
+    unavailable = (
+        "The alpha installer is temporarily unavailable while we fix a problem found during testing."
+    )
+    for relative in (Path("index.html"), Path("download/index.html"), Path("releases/index.html")):
+        if unavailable not in (ROOT / relative).read_text(encoding="utf-8"):
+            raise AssertionError(f"{relative}: missing concise installer status")
 
 
 def validate_source_disclosure_quality(documents: dict[Path, DocumentFacts]) -> None:
@@ -938,6 +1014,7 @@ def main() -> None:
     validate_privacy_and_asset_discipline()
     validate_public_media_boundaries(documents)
     validate_linked_markdown_language()
+    validate_primary_public_copy()
     validate_release_surface_quality(documents)
     validate_source_disclosure_quality(documents)
     print(

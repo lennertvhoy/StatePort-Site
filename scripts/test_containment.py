@@ -312,7 +312,10 @@ class CurrentBootstrapTests(unittest.TestCase):
         self.assertLess(command.index('/bin/sh -n "$tmp"'), command.rindex('/bin/sh "$tmp"'))
         download = (ROOT / "download/index.html").read_text(encoding="utf-8")
         self.assertNotIn(escape(command), download)
-        self.assertIn("Alpha test temporarily unavailable", download)
+        self.assertIn(
+            "The alpha installer is temporarily unavailable while we fix a problem found during testing.",
+            download,
+        )
 
     def test_4096_byte_response_fails_before_shell_or_execution(self) -> None:
         bootstrap = (ROOT / "download/install.sh").read_bytes()
@@ -347,13 +350,13 @@ class SourceDisclosureTests(unittest.TestCase):
         with self.assertRaisesRegex(AssertionError, "Stale pre-publication"):
             validate_repo.validate_source_disclosures(stale)
 
-        conflated = dict(texts)
-        download = ROOT / "download/index.html"
-        conflated[download] = conflated[download].replace(
-            "<dt>Canonical development Git</dt>", "<dt>Source</dt>"
+        missing = dict(texts)
+        technical = ROOT / "download/technical-release-files.html"
+        missing[technical] = missing[technical].replace(
+            "0.1.0-alpha.5/release-index.json", "missing-release-index.json"
         )
-        with self.assertRaisesRegex(AssertionError, "separate"):
-            validate_repo.validate_source_disclosures(conflated)
+        with self.assertRaisesRegex(AssertionError, "technical release files page lacks"):
+            validate_repo.validate_source_disclosures(missing)
 
 
 if __name__ == "__main__":

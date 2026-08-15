@@ -993,112 +993,41 @@ def _release_identity_tokens(release_root: str) -> set[str]:
 
 
 def validate_source_disclosures(texts: dict[Path, str]) -> None:
-    """Keep canonical Git, publicSnapshot, and archive identities distinct."""
+    """Keep technical source files available without crowding primary pages."""
 
-    current_disclosure_surfaces = (
-        "index.html",
-        "download/index.html",
-        "releases/index.html",
-        "docs/evidence-and-roadmap.html",
-        "docs/limitations.html",
+    technical_path = ROOT / "download/technical-release-files.html"
+    technical = texts.get(technical_path)
+    if technical is None:
+        raise AssertionError("Missing technical release files page")
+    required_links = (
+        "0.1.0-alpha.5/release-index.json",
+        "0.1.0-alpha.5/release-index.sigstore.json",
+        "0.1.0-alpha.5/stateport-alpha-2026-08-cosign.pub",
+        "0.1.0-alpha.5/stateport-source.tar",
+        "0.1.0-alpha.5/supply-chain/public-export-manifest.json",
+        "0.1.0-alpha.5/release-notes.md",
+        "0.1.0-alpha.5/known-limitations.md",
+        "https://github.com/lennertvhoy/StatePort-Source",
     )
-    common_terms = (
-        "canonical development git",
-        "private",
-        "publicsnapshot",
-        "is remotely resolvable",
-        "curated alpha.5 source archive",
-        "agpl-3.0-or-later",
-        "cc-by-4.0",
-    )
-    for surface in current_disclosure_surfaces:
-        text = texts[ROOT / surface].lower()
-        for term in common_terms:
-            if term not in text:
-                raise AssertionError(f"{surface} must distinguish source status with {term!r}")
-        semantic_patterns = (
-            r"curated alpha\.5 source archive.{0,120}\bpublic\b",
-            r"canonical development git.{0,240}\bprivate\b",
-            r"publicsnapshot.{0,800}\bis remotely resolvable\b",
-            r"code and statespec artifacts.{0,160}agpl-3\.0-or-later",
-            r"documentation.{0,120}cc-by-4\.0",
-        )
-        for pattern in semantic_patterns:
-            if not re.search(pattern, text, re.DOTALL):
-                raise AssertionError(
-                    f"{surface} conflates or omits a source/license relationship: {pattern}"
-                )
+    for link in required_links:
+        if link not in technical:
+            raise AssertionError(f"technical release files page lacks {link!r}")
+    for term in ("AGPL-3.0-or-later", "CC-BY-4.0"):
+        if term not in technical:
+            raise AssertionError(f"technical release files page lacks {term!r}")
 
-    identity_tokens = (
-        *CURRENT_CANONICAL_SOURCE_IDENTITY.values(),
-        *CURRENT_PUBLIC_SNAPSHOT_IDENTITY.values(),
-        CURRENT_CURATED_SOURCE_ARCHIVE["sha256"],
-    )
-    download_identity = texts[ROOT / "download/index.html"]
-    for token in identity_tokens:
-        if token not in download_identity:
-            raise AssertionError(f"download/index.html must bind the exact source identity {token!r}")
+    download = texts[ROOT / "download/index.html"]
+    if 'href="technical-release-files.html"' not in download:
+        raise AssertionError("download/index.html must link to technical release files")
 
-    download_text = texts[ROOT / "download/index.html"]
-    download_labels = {
-        "<dt>Canonical development Git</dt>": tuple(CURRENT_CANONICAL_SOURCE_IDENTITY.values()),
-        "<dt>Signed <code>publicSnapshot</code> Git identity</dt>": tuple(
-            CURRENT_PUBLIC_SNAPSHOT_IDENTITY.values()
-        ),
-        "<dt>Public curated source archive</dt>": (CURRENT_CURATED_SOURCE_ARCHIVE["sha256"],),
-    }
-    all_identity_tokens = set(identity_tokens)
-    for label, expected_tokens in download_labels.items():
-        match = re.search(
-            rf"{re.escape(label)}\s*<dd>(?P<body>.*?)</dd>",
-            download_text,
-            re.DOTALL,
-        )
-        if not match:
-            raise AssertionError(f"download/index.html must keep a separate {label}")
-        block = match.group("body")
-        for token in expected_tokens:
-            if token not in block:
-                raise AssertionError(f"{label} is not bound to {token}")
-        forbidden_tokens = all_identity_tokens - set(expected_tokens)
-        if conflated := sorted(token for token in forbidden_tokens if token in block):
-            raise AssertionError(f"{label} conflates separate source identities: {conflated}")
-
-    erratum_text = texts[ROOT / "download/erratum-alpha3.html"]
-    alpha3_identity_tokens = (
-        *ALPHA3_CANONICAL_SOURCE_IDENTITY.values(),
-        *ALPHA3_PUBLIC_SNAPSHOT_IDENTITY.values(),
-        ALPHA3_CURATED_SOURCE_ARCHIVE["sha256"],
-    )
-    erratum_blocks = (
-        (
-            r"<li>The <strong>canonical development Git repository is private</strong>.*?</li>",
-            tuple(ALPHA3_CANONICAL_SOURCE_IDENTITY.values()),
-        ),
-        (
-            r"<li>The release index separately records a <strong>signed "
-            r"<code>publicSnapshot</code> Git identity</strong>.*?</li>",
-            tuple(ALPHA3_PUBLIC_SNAPSHOT_IDENTITY.values()),
-        ),
-        (
-            r"<li>What <em>is</em> publicly distributed: the curated alpha\.3 "
-            r"source archive.*?</li>",
-            (ALPHA3_CURATED_SOURCE_ARCHIVE["sha256"],),
-        ),
-    )
-    for pattern, expected_tokens in erratum_blocks:
-        match = re.search(pattern, erratum_text, re.DOTALL)
-        if not match:
-            raise AssertionError("erratum-alpha3.html must keep three separate source disclosures")
-        block = match.group(0)
-        for token in expected_tokens:
-            if token not in block:
-                raise AssertionError(f"erratum source disclosure is not bound to {token}")
-        forbidden_tokens = set(alpha3_identity_tokens) - set(expected_tokens)
-        if conflated := sorted(token for token in forbidden_tokens if token in block):
-            raise AssertionError(
-                f"erratum source disclosure conflates separate identities: {conflated}"
-            )
+    erratum = texts[ROOT / "download/erratum-alpha3.html"]
+    for link in (
+        "0.1.0-alpha.3/release-index.json",
+        "0.1.0-alpha.3/release-index.sigstore.json",
+        "0.1.0-alpha.3/stateport-source.tar",
+    ):
+        if link not in erratum:
+            raise AssertionError(f"Alpha.3 technical page lacks {link!r}")
 
     stale_source_claims = (
         re.compile(r">\s*not public\s*<", re.IGNORECASE),
@@ -1122,12 +1051,11 @@ def validate_source_disclosures(texts: dict[Path, str]) -> None:
             re.IGNORECASE,
         ),
     )
-    for surface in (*current_disclosure_surfaces, "download/erratum-alpha3.html"):
-        text = texts[ROOT / surface]
+    for path, text in texts.items():
         for pattern in stale_source_claims:
             if pattern.search(text):
                 raise AssertionError(
-                    f"Stale pre-publication source or license copy in {surface}: "
+                    f"Stale pre-publication source or license copy in {path.relative_to(ROOT)}: "
                     f"{pattern.pattern}"
                 )
 
@@ -1157,7 +1085,7 @@ def validate_release_semantics() -> None:
 
     download = texts[ROOT / "download/index.html"]
     for marker in (
-        "Alpha test temporarily unavailable",
+        "The alpha installer is temporarily unavailable while we fix a problem found during testing.",
     ):
         if marker not in download:
             raise AssertionError(f"download/index.html lacks Alpha.5 containment marker {marker!r}")
@@ -1177,7 +1105,7 @@ def validate_release_semantics() -> None:
 
     for surface in ("index.html", "download/index.html", "releases/index.html", "docs/limitations.html"):
         text = texts[ROOT / surface].lower()
-        for marker in ("alpha.5", "public-test", "clean-install receipt"):
+        for marker in ("alpha.5", "stateport is in early alpha", "do not use it for important data"):
             if marker not in text:
                 raise AssertionError(f"{surface} must disclose current Alpha.5 boundary {marker!r}")
     if "erratum-alpha3.html" not in texts[ROOT / "download/index.html"]:
@@ -1340,6 +1268,7 @@ def main() -> None:
         "tutorials/reading-a-receipt.html",
         "releases/index.html",
         "download/index.html",
+        "download/technical-release-files.html",
         "download/erratum-alpha3.html",
         "download/install.sh",
         "download/0.1.0-alpha.2/install.sh",
@@ -1383,13 +1312,13 @@ def main() -> None:
     require_text("PROJECT_STATE.yaml", "statedd_mode: operating")
     require_text("index.html", "StatePort")
     require_text("index.html", "See StatePort in 33 seconds")
-    require_text("docs/prototype-walkthrough.html", "Working preview")
+    require_text("docs/prototype-walkthrough.html", "Development preview")
     require_text("docs/agent-kits.html", "Early direction")
-    require_text("docs/platform-support.html", "Capability-based qualification")
+    require_text("docs/platform-support.html", "Alpha.5 requirements")
     require_text("papers/stateware-whitepaper-public-v1.1.html", "Publication note")
-    require_text("releases/index.html", "installation temporarily unavailable")
-    require_text("download/index.html", "Do not install Alpha.2")
-    require_text("docs/limitations.html", "installation temporarily unavailable")
+    require_text("releases/index.html", "installer temporarily unavailable")
+    require_text("download/index.html", "Do not install Alpha 2 or Alpha 3")
+    require_text("docs/limitations.html", "installer is temporarily unavailable")
     require_text(".github/workflows/deploy-pages.yml", "actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e")
 
     public_copy = "\n".join(

@@ -40,13 +40,13 @@ audiences:
   - contributors using the remotely resolvable public source projection
 
 content_architecture:
-  first_screen: concrete product definition plus the current prototype and software-availability boundary
-  evidence: captioned local fixture walkthrough with explicit limits
-  product_path: definition, evidence, principles, operating model, audience route, release ledger
-  documentation_path: product first, then model, operation, evidence, and reference by visitor intent
-  tutorials: conceptual exercises with time, outcomes, and proof limits
-  release_status: one authoritative ledger separating public artifacts from software, source, license, downloads, and installation material
-  roadmap: labelled and subordinate to the unqualified alpha product
+  first_screen: concrete product definition plus concise installer availability
+  preview: captioned local walkthrough clearly labelled as a development preview
+  product_path: definition, preview, benefits, operating model, audience route, release status
+  documentation_path: product first, then storage, control, safety, portability, and reference by visitor intent
+  tutorials: short exercises with plain outcomes and no release-process commentary
+  release_status: simple user impact and availability with technical files on a separate page
+  roadmap: current product priorities in ordinary language
 
 visual_direction:
   visual_thesis: "A midnight state atlas: quiet archival depth, bright blue signals, and a single living mascot navigating durable routes."
@@ -71,8 +71,11 @@ visual_direction:
     - define the product before introducing the category thesis
     - lead with concrete work, ownership, and product surfaces
     - keep Stateware and StateSpec terms where they clarify the model
-    - keep availability in the release ledger instead of repeating long boundary disclaimers
-    - distinguish proposed, authorized, applied, validated, released, and human accepted
+    - use short active sentences and direct second-person instructions
+    - state early-alpha risk once in one plain sentence
+    - state installer outages as user impact without incident chronology
+    - keep internal target IDs, evidence taxonomy, commit identities, and release-engineering prose off primary pages
+    - put signed indexes, signatures, hashes, source archives, and other expert material behind the Technical release files route
     - avoid generic agent or AI labels, hype, decorative coordinates, and reflexive not-this/not-that copy
 
 interaction_direction:
@@ -100,6 +103,7 @@ quality_contract:
     - image alternatives, labelled controls, keyboard-navigation contracts, and video captions
     - canonical and social metadata, JSON-LD, manifest, fragments, and sitemap coverage
     - tracking absence, local scripts, safe DOM construction, and static asset budgets
+    - plain-language regression guard for primary public pages that excludes technical release files and machine-readable artifacts
   evidence_boundary:
     - static checks are not browser, assistive-technology, usability, deployment, runtime, or human-acceptance evidence
     - exact behavior-bearing commit identity and workflow run must be recorded
