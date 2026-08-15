@@ -14,8 +14,8 @@ VERSIONED_BOOTSTRAP_URL = (
 VERSIONED_BOOTSTRAP_SHA256 = "104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a"
 VERSIONED_BOOTSTRAP_SIZE = 8_971
 BOOTSTRAP_URL = "https://lennertvhoy.github.io/StatePort-Site/download/install.sh"
-BOOTSTRAP_SHA256 = "1c9e12c45a1c4cb79c9b6d0dd32860eb1a2c8b3c2427889aac98154f86f05b5c"
-BOOTSTRAP_SIZE = 17_561
+BOOTSTRAP_SHA256 = "cf8b20d09bc0865e222281cb09a4cece675eff979a84b6cb2e71ba53338a6300"
+BOOTSTRAP_SIZE = 17_620
 PREFLIGHT_SUCCESS = (
     "StatePort Alpha.5 materialization preflight passed: target, pinned helper transport, "
     "and absent-parent creation order verified; packages, root files, images, and installer "

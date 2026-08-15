@@ -122,7 +122,7 @@ manifest_carrier() {
   mkdir -p -m 700 "$carrier/blobs/sha256"
   cp "$manifest" "$carrier/blobs/sha256/$digest_hex"
   printf '{"schemaVersion":2,"manifests":[{"digest":"%s"}]}\n' "$digest" > "$carrier/index.json"
-  tar -cf "$tmp/image-archives/$image_id.oci.tar" -C "$carrier" index.json "blobs/sha256/$digest_hex"
+  tar -cf "$tmp/image-archives/$image_id.oci.tar" --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -C "$carrier" index.json "blobs/sha256/$digest_hex"
 }
 get "$RELEASE_ROOT/stateport-installer" "$tmp/installer" "signed installer"
 check "c1eea13b239c03dde7c405821d7ace5c215581dbe6a98257d68c7be74a6d0dcf" "$tmp/installer"
