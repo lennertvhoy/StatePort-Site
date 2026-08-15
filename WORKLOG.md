@@ -22,6 +22,10 @@
   preflight before install, no pipe-to-shell, and no executable command in
   metadata. No versioned Alpha.2, Alpha.3, or Alpha.5 file changed; no signed
   index, signature, hash, image, or archive changed.
+- Content `2061319d50cf1a7b59bca4a0ee5906688aed1170` deployed through Pages
+  build `1152707301`, run `31877244223`, and deployment `5919159551`. Anonymous
+  byte comparison matched all 20 changed mutable paths and all 33 immutable
+  Alpha.5 files; the pinned release-index SHA-256 matched.
 
 ## 2026-08-15 - Public website copy corrected and remotely verified
 

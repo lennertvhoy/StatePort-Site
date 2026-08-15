@@ -95,6 +95,10 @@
   non-installing preflight as the recommended first step, then the exact pinned
   install command. The owner install result is pending; Alpha.5 remains
   `compatible_unvalidated` and unaccepted.
+- Re-enable content `2061319d50cf1a7b59bca4a0ee5906688aed1170` deployed through
+  Pages build `1152707301`, run `31877244223`, and deployment `5919159551`. All
+  20 changed mutable paths and all 33 immutable Alpha.5 files matched anonymous
+  live bytes, and the pinned release-index hash matched.
 
 ## Exact next action
 

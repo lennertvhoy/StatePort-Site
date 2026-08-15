@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-15T12:30:00Z"
-  updated_by: alpha5_install_reenable_content
+  updated_at: "2026-08-15T12:40:00Z"
+  updated_by: alpha5_install_reenable_final_state
   format_version: statespec-site-state/v1
 
 workflow:
@@ -87,18 +87,18 @@ site:
   deployment:
     provider: GitHub Pages
     build_type: legacy
-    status: public_copy_correction_built_from_main_root_remotely_verified
+    status: alpha5_install_reenable_built_from_main_root_remotely_verified
     workflow: ".github/workflows/deploy-pages.yml"
     custom_workflow_status: disabled_manual_only_not_live_provider
     source_branch: main
     source_path: /
     deployment_head: derived_from_git_not_persisted
-    live_content_commit: d334f739de21ad2f581115995cae7b57152e5048
-    pages_build: unavailable_from_legacy_endpoint
-    pages_build_commit_field: d334f739de21ad2f581115995cae7b57152e5048
-    pages_run: 31874362376
-    pages_deployment: 5918682005
-    deployment_sha: d334f739de21ad2f581115995cae7b57152e5048
+    live_content_commit: 2061319d50cf1a7b59bca4a0ee5906688aed1170
+    pages_build: 1152707301
+    pages_build_commit_field: 2061319d50cf1a7b59bca4a0ee5906688aed1170
+    pages_run: 31877244223
+    pages_deployment: 5919159551
+    deployment_sha: 2061319d50cf1a7b59bca4a0ee5906688aed1170
   current_release_surface: plain_language_public_copy_install_enabled
   installer_command_shown: true
   installer_command_locations: [download/index.html]
@@ -132,12 +132,16 @@ site:
     public_copy_html_mismatches: 0
     public_copy_markdown_and_metadata_files_checked: 4
     public_copy_markdown_and_metadata_mismatches: 0
+    install_reenable_changed_files_checked: 20
+    install_reenable_changed_file_mismatches: 0
+    install_reenable_immutable_files_checked: 33
+    install_reenable_immutable_mismatches: 0
     transport_generator_sha256: d5882b368d2260f20ef56fea6f114c9e5eb5f8e38f07ba0c6945112caf1319c9
     browser_automation: unavailable_not_claimed
 
 owner_directive:
   id: OD-2026-08-15-ALPHA5-INSTALL-REENABLE
-  status: content_committed_deployment_pending
+  status: content_deployed_remote_verified
   supersedes: OD-2026-08-15-PUBLIC-COPY-CORRECTION
   source_repository: /home/ff/Documents/Projects/StatePort
   source_base: 341a9721b5a6ef799c2e318d8d4900094b3ba67e
@@ -178,7 +182,7 @@ prior_work:
     missing: exact_target_noninstalling_materialization_preflight_result
 
 workspace_inventory:
-  expected_content_head: d334f739de21ad2f581115995cae7b57152e5048
+  expected_content_head: 2061319d50cf1a7b59bca4a0ee5906688aed1170
   expected_origin_head: derived_from_git_not_persisted
-  expected_dirty_path: public_copy_correction_state_closure
+  expected_dirty_path: alpha5_install_reenable_final_state
   immutable_release_bytes_changed_after_anchor: false
