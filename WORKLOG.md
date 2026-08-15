@@ -13,6 +13,9 @@
   the root-owned helper parent, and adds a no-root-write fake-root preflight.
 - Staged only the generated 17,561-byte mutable bootstrap at SHA-256
   `1c9e12c45a1c4cb79c9b6d0dd32860eb1a2c8b3c2427889aac98154f86f05b5c`.
+- Publication `c561db2afd156eb09e61ce4e2da3158ea596a587` deployed through
+  build `1152559503`, run `31872664883`, and deployment `5918407409`; all ten
+  changed paths and all 33 immutable Alpha.5 files matched anonymous bytes.
 
 ## 2026-08-15 - Alpha.5 repaired command re-enable candidate
 

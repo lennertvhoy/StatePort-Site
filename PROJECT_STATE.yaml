@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-15T07:41:26Z"
-  updated_by: alpha5_materialization_preflight_publication_candidate
+  updated_at: "2026-08-15T07:44:13Z"
+  updated_by: alpha5_materialization_preflight_publication_closure
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha5_install_disabled_materialization_preflight_publication_candidate
+  status: alpha5_install_disabled_materialization_preflight_pending
   purpose: public_documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -74,7 +74,7 @@ acceptance:
   transport_probe: owner_reported_exact_target_complete_size_digest_and_dash_syntax_passed_without_execution
   installer_attempt: owner_reported_fail_closed_private_image_signature_refusal
   manifest_transport_probe: owner_reported_exact_target_passed
-  materialization_preflight: published_candidate_pending_owner_result
+  materialization_preflight: published_remote_verified_pending_owner_result
   human_acceptance: not_granted
   independent_security_review: not_performed
   stability: not_established
@@ -87,24 +87,24 @@ site:
   deployment:
     provider: GitHub Pages
     build_type: legacy
-    status: materialization_failure_containment_remote_verified
+    status: materialization_preflight_built_from_main_root_remotely_verified
     workflow: ".github/workflows/deploy-pages.yml"
     custom_workflow_status: disabled_manual_only_not_live_provider
     source_branch: main
     source_path: /
     deployment_head: derived_from_git_not_persisted
-    live_content_commit: 91b4e5588eb2e08fe167874f698bbdfa57c2ec07
-    pages_build: 1152538307
-    pages_build_commit_field: 91b4e5588eb2e08fe167874f698bbdfa57c2ec07
-    pages_run: 31872025558
-    pages_deployment: 5918308893
-    deployment_sha: 91b4e5588eb2e08fe167874f698bbdfa57c2ec07
-  current_release_surface: alpha5_materialization_preflight_publication_candidate
+    live_content_commit: c561db2afd156eb09e61ce4e2da3158ea596a587
+    pages_build: 1152559503
+    pages_build_commit_field: c561db2afd156eb09e61ce4e2da3158ea596a587
+    pages_run: 31872664883
+    pages_deployment: 5918407409
+    deployment_sha: c561db2afd156eb09e61ce4e2da3158ea596a587
+  current_release_surface: alpha5_materialization_preflight_remote_verified
   installer_command_shown: false
   installer_command_locations: []
   replacement_install_command: disabled_pending_materialization_preflight_result
   nonexecuting_transport_probe: owner_reported_exact_target_passed
-  nonexecuting_materialization_preflight: publication_candidate
+  nonexecuting_materialization_preflight: published_pending_owner_result
   immutable_tree_manifest: config/immutable-release-trees.json
   immutable_anchors:
     alpha2: 4043534a9a1d56c51c3d47d0906e0520963af79c
@@ -126,12 +126,14 @@ site:
     mutable_publication_mismatches: 0
     repaired_reenable_changed_files_checked: 15
     repaired_reenable_changed_file_mismatches: 0
+    materialization_publication_changed_files_checked: 10
+    materialization_publication_mismatches: 0
     transport_generator_sha256: d5882b368d2260f20ef56fea6f114c9e5eb5f8e38f07ba0c6945112caf1319c9
     browser_automation: unavailable_not_claimed
 
 owner_directive:
   id: OD-2026-08-14-ALPHA5-PUBLIC-CONTAINMENT
-  status: mutable_materialization_preflight_publication_active
+  status: materialization_preflight_published_owner_result_pending
   source_repository: /home/ff/Documents/Projects/StatePort
   source_commit: 793cd5ec24066deadde8b19492c3258004d9498a
   objective: publish_mutable_materialization_repair_keep_install_disabled_and_stage_noninstalling_preflight
@@ -147,7 +149,7 @@ owner_directive:
 active_work:
   - id: BL-SITE-ALPHA5-MATERIALIZATION
     priority: P0
-    status: mutable_preflight_publication_candidate
+    status: owner_materialization_preflight_pending
 
 prior_work:
   - id: alpha5_streamed_bootstrap_truncation
@@ -167,7 +169,7 @@ prior_work:
     missing: exact_target_noninstalling_materialization_preflight_result
 
 workspace_inventory:
-  expected_content_head: pending_materialization_preflight_publication_commit
+  expected_content_head: c561db2afd156eb09e61ce4e2da3158ea596a587
   expected_origin_head: derived_from_git_not_persisted
-  expected_dirty_path: materialization_preflight_publication_candidate
+  expected_dirty_path: materialization_preflight_publication_state_closure
   immutable_release_bytes_changed_after_anchor: false

@@ -115,6 +115,11 @@ and adds a non-installing fake-root materialization preflight. Only its mutable
 17,561-byte render may be published. Installation remains disabled pending the
 exact-target preflight result.
 
+Mutable preflight publication `c561db2afd156eb09e61ce4e2da3158ea596a587`
+deployed through Pages build `1152559503`, run `31872664883`, and deployment
+`5918407409`. All ten changed paths and all 33 immutable Alpha.5 files matched
+anonymous bytes. Installation remains disabled pending the owner preflight.
+
 ## Mandatory read order
 
 1. `AGENTS.md`

@@ -6,11 +6,11 @@
 
 ## P0 [BL-SITE-ALPHA5-MATERIALIZATION] Repair and publish safe preflight
 
-**Status:** StatePort `c441ca7a` repairs bounded downloads and helper-parent
-creation. Its 17,561-byte mutable render is staged; installation is disabled.
+**Status:** Mutable publication `c561db2` is remotely verified through deployment
+`5918407409`; all ten changed paths and all 33 immutable files matched.
 
-**Decision:** publish only that mutable bootstrap, verify exact live bytes, and
-provide its non-installing exact-target materialization preflight.
+**Decision:** provide only its non-installing exact-target materialization
+preflight. Keep installation disabled.
 
 **Exit:** the exact preflight passes on the owner host. Installation and fresh
 clean-install evidence remain separate actions.

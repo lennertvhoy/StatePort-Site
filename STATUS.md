@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-08-14
 **Execution Mode:** operating
-**Project State:** alpha5_install_disabled_materialization_preflight_publication_candidate
+**Project State:** alpha5_install_disabled_materialization_preflight_pending
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -75,9 +75,12 @@
   absent. No install or execution-host receipt exists; installation is disabled.
 - StatePort `c441ca7a` supplies explicit bounded atomic downloads, safe helper
   parent creation, and a no-root-write materialization preflight. Its mutable
-  17,561-byte render is staged for publication; installation remains disabled.
+  17,561-byte render is published; installation remains disabled.
+- Mutable publication `c561db2` deployed through build `1152559503`, run
+  `31872664883`, and deployment `5918407409`; all ten changed paths and all 33
+  immutable Alpha.5 files matched anonymous bytes.
 
 ## Exact next action
 
-Publish and remotely verify only the corrected mutable bootstrap, then await its
-non-installing exact-target materialization preflight result.
+Await the exact-target non-installing materialization preflight result. Keep
+installation disabled.
