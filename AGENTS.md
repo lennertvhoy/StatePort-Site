@@ -4,7 +4,7 @@ statedd_mode: operating
 repo_mode: operating
 statedd_version: statedd-template-v5
 initialized_on: 2026-07-21
-last_updated: 2026-08-14
+last_updated: 2026-08-15
 ---
 
 # StatePort Site — canonical agent operating contract
@@ -128,6 +128,19 @@ re-enablement. The download page shows the pinned non-installing preflight as
 the recommended first step, then the exact pinned install command. The owner
 install result is pending.
 
+The owner rerun refused with `image_archive_conflict`: runtime OCI archive
+creation embedded fresh mtimes, so retained bytes differed on every rerun.
+StatePort `dd61a7e6` makes archive creation deterministic under owner
+directive `OD-2026-08-15-ALPHA5-RERUN-CONFLICT-FIX`. Content
+`e72c8cf5c2b6845d6c2459c69e3777079a90202e` deployed through Pages build
+`1152792921`, run `31879838808`, and deployment `5919578251`; all 3 changed
+mutable paths and all 33 immutable Alpha.5 files matched anonymous live bytes.
+The mutable bootstrap is now 17,620 bytes at SHA-256
+`cf8b20d09bc0865e222281cb09a4cece675eff979a84b6cb2e71ba53338a6300`, and the
+pinned preflight and install commands were repinned. The owner clears retained
+state (`rm -rf ~/.local/state/stateport-install`), then reruns the pinned
+preflight and install command; the result is pending.
+
 ## Mandatory read order
 
 1. `AGENTS.md`
@@ -146,10 +159,11 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
   `4613fcad48ea1a2e7dd4350d61baa333efbc734b1fcba1a1c9ca62994d562b71`;
   signed payload:
   `sha256:e45d5c8ce6843bd0c3155ecd26940ff3dc11c5069a2de796a079708066faf98c`.
-- Installation is re-enabled under owner directive
-  `OD-2026-08-15-ALPHA5-INSTALL-REENABLE` after anonymous verification confirmed
-  the live bootstrap carries the root-helper materialization repair. WSL2
-  remains `compatible_unvalidated`; no clean-install receipt exists.
+- Installation is re-enabled under owner directives
+  `OD-2026-08-15-ALPHA5-INSTALL-REENABLE` and
+  `OD-2026-08-15-ALPHA5-RERUN-CONFLICT-FIX`; the live bootstrap carries the
+  root-helper materialization repair and deterministic archive creation.
+  WSL2 remains `compatible_unvalidated`; no clean-install receipt exists.
 - Completed reviews bind the failure to a 4,096-byte truncated pipe-to-shell
   transfer. The complete 8,971-byte bootstrap and signed release payload remain
   intact; the replacement completes download, verifies pinned size and digest,
@@ -201,7 +215,7 @@ or production-ready. Never alter Alpha.2, Alpha.3, or anchored Alpha.5 bytes.
 1. Preserve Alpha.2 and Alpha.3 exactly and keep the Alpha.3 erratum historical.
 2. Preserve the anchored Alpha.5 tree and exact repaired mutable bootstrap.
 3. Present the pinned non-installing preflight as the recommended first step
-   and the exact pinned install command as the primary download action; await
-   the owner install result.
+   and the exact pinned install command as the primary download action; the
+   owner clears retained state and reruns, and the install result is pending.
 
 Everything else is backlog or history.

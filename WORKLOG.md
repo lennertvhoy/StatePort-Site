@@ -1,5 +1,36 @@
 # Worklog
 
+## 2026-08-15 - Deterministic bootstrap published after rerun archive conflict
+
+- The owner rerun of the re-enabled install refused with
+  `image_archive_conflict`. Root cause proven from code: the bootstrap
+  recreated the OCI image archives at runtime with plain `tar -cf`, embedding
+  current file mtimes, so the retained archive bytes differed on every rerun
+  and the installer's retention byte-compare refused before convergence.
+- StatePort `dd61a7e6` makes the rendered archive creation deterministic (GNU
+  tar `--sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner`). A focused
+  test runs the rendered archive command twice with different source mtimes
+  and asserts byte-identical output; plain tar was independently shown to
+  differ on the same inputs.
+- Under owner directive `OD-2026-08-15-ALPHA5-RERUN-CONFLICT-FIX`, published
+  the mutable 17,620-byte bootstrap (SHA-256
+  `cf8b20d09bc0865e222281cb09a4cece675eff979a84b6cb2e71ba53338a6300`),
+  replacing the 17,561-byte render, and repinned the exact size and digest in
+  `scripts/install_transport.py` and both download-page commands (preflight
+  remains the recommended first step). The new render differs from the prior
+  live bootstrap by exactly the one archive-creation line.
+- Content `e72c8cf5c2b6845d6c2459c69e3777079a90202e` deployed through Pages
+  build `1152792921`, run `31879838808`, and deployment `5919578251`. Anonymous
+  byte comparison matched all 3 changed mutable paths
+  (`download/install.sh`, `download/index.html`,
+  `scripts/install_transport.py`) and all 33 immutable Alpha.5 files; the
+  pinned release-index SHA-256 matched. No versioned or signed bytes changed.
+- Next: the owner clears retained state on the exact target
+  (`rm -rf ~/.local/state/stateport-install`), then runs the pinned preflight
+  and the pinned install command. Digest-based retention comparison,
+  retention-after-convergence ordering, and a self-service reset path are
+  backlog for the next signed candidate.
+
 ## 2026-08-15 - Alpha.5 install command restored after live-fix verification
 
 - Owner directive `OD-2026-08-15-ALPHA5-INSTALL-REENABLE` supersedes the

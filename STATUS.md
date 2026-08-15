@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-08-15
 **Execution Mode:** operating
-**Project State:** alpha5_install_reenabled_owner_install_result_pending
+**Project State:** alpha5_install_reenabled_deterministic_bootstrap_owner_reset_and_rerun_pending
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -99,8 +99,26 @@
   Pages build `1152707301`, run `31877244223`, and deployment `5919159551`. All
   20 changed mutable paths and all 33 immutable Alpha.5 files matched anonymous
   live bytes, and the pinned release-index hash matched.
+- The owner rerun then refused with `image_archive_conflict`: the bootstrap
+  recreated OCI archives at runtime with plain `tar -cf`, embedding fresh
+  mtimes, so retained bytes differed on every rerun. Root cause is proven from
+  code; no install receipt exists. StatePort `dd61a7e6` makes archive creation
+  deterministic (GNU tar `--sort=name --mtime=@0 --owner=0 --group=0
+  --numeric-owner`), proven by a test running the rendered archive command
+  twice with different source mtimes and asserting byte-identical output.
+- Under owner directive `OD-2026-08-15-ALPHA5-RERUN-CONFLICT-FIX`, the mutable
+  17,620-byte bootstrap at SHA-256
+  `cf8b20d09bc0865e222281cb09a4cece675eff979a84b6cb2e71ba53338a6300` replaced
+  the prior render and the pinned preflight and install commands were repinned.
+  Content `e72c8cf5c2b6845d6c2459c69e3777079a90202e` deployed through Pages
+  build `1152792921`, run `31879838808`, and deployment `5919578251`. All 3
+  changed mutable paths and all 33 immutable Alpha.5 files matched anonymous
+  live bytes, and the pinned release-index hash matched. No versioned or signed
+  bytes changed.
 
 ## Exact next action
 
-The owner runs the pinned install command on Windows 11 + WSL2 + Ubuntu 24.04
-(preflight first). Await the result.
+The owner clears the retained state on the exact target
+(`rm -rf ~/.local/state/stateport-install`), then runs the pinned preflight and
+the pinned install command on Windows 11 + WSL2 + Ubuntu 24.04. Await the
+result.

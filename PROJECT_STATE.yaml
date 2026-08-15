@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-15T12:40:00Z"
-  updated_by: alpha5_install_reenable_final_state
+  updated_at: "2026-08-15T14:10:00Z"
+  updated_by: alpha5_rerun_conflict_fix_final_state
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha5_install_reenabled_owner_install_result_pending
+  status: alpha5_install_reenabled_deterministic_bootstrap_owner_reset_and_rerun_pending
   purpose: public_documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -50,8 +50,8 @@ release:
   target_id: wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet
   image_count: 7
   bootstrap_sha256: 104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a
-  mutable_preflight_bootstrap_sha256: 1c9e12c45a1c4cb79c9b6d0dd32860eb1a2c8b3c2427889aac98154f86f05b5c
-  mutable_preflight_bootstrap_bytes: 17561
+  mutable_preflight_bootstrap_sha256: cf8b20d09bc0865e222281cb09a4cece675eff979a84b6cb2e71ba53338a6300
+  mutable_preflight_bootstrap_bytes: 17620
 
 predecessors:
   alpha3:
@@ -87,18 +87,18 @@ site:
   deployment:
     provider: GitHub Pages
     build_type: legacy
-    status: alpha5_install_reenable_built_from_main_root_remotely_verified
+    status: alpha5_deterministic_bootstrap_built_from_main_root_remotely_verified
     workflow: ".github/workflows/deploy-pages.yml"
     custom_workflow_status: disabled_manual_only_not_live_provider
     source_branch: main
     source_path: /
     deployment_head: derived_from_git_not_persisted
-    live_content_commit: 2061319d50cf1a7b59bca4a0ee5906688aed1170
-    pages_build: 1152707301
-    pages_build_commit_field: 2061319d50cf1a7b59bca4a0ee5906688aed1170
-    pages_run: 31877244223
-    pages_deployment: 5919159551
-    deployment_sha: 2061319d50cf1a7b59bca4a0ee5906688aed1170
+    live_content_commit: e72c8cf5c2b6845d6c2459c69e3777079a90202e
+    pages_build: 1152792921
+    pages_build_commit_field: e72c8cf5c2b6845d6c2459c69e3777079a90202e
+    pages_run: 31879838808
+    pages_deployment: 5919578251
+    deployment_sha: e72c8cf5c2b6845d6c2459c69e3777079a90202e
   current_release_surface: plain_language_public_copy_install_enabled
   installer_command_shown: true
   installer_command_locations: [download/index.html]
@@ -113,8 +113,12 @@ site:
   remote_verification:
     alpha5_immutable_files_checked: 33
     alpha5_immutable_mismatches: 0
-    mutable_install_sha256: 1c9e12c45a1c4cb79c9b6d0dd32860eb1a2c8b3c2427889aac98154f86f05b5c
+    mutable_install_sha256: cf8b20d09bc0865e222281cb09a4cece675eff979a84b6cb2e71ba53338a6300
     mutable_install_matches_versioned: false
+    rerun_fix_changed_files_checked: 3
+    rerun_fix_changed_file_mismatches: 0
+    rerun_fix_immutable_files_checked: 33
+    rerun_fix_immutable_mismatches: 0
     repaired_install_changed_files_checked: 16
     repaired_install_changed_file_mismatches: 0
     signature_containment_changed_files_checked: 15
@@ -140,13 +144,13 @@ site:
     browser_automation: unavailable_not_claimed
 
 owner_directive:
-  id: OD-2026-08-15-ALPHA5-INSTALL-REENABLE
+  id: OD-2026-08-15-ALPHA5-RERUN-CONFLICT-FIX
   status: content_deployed_remote_verified
-  supersedes: OD-2026-08-15-PUBLIC-COPY-CORRECTION
+  supersedes: OD-2026-08-15-ALPHA5-INSTALL-REENABLE
   source_repository: /home/ff/Documents/Projects/StatePort
-  source_base: 341a9721b5a6ef799c2e318d8d4900094b3ba67e
-  site_base: 7157e452da8b003f4dff5412db60d11ce49d3edf
-  objective: restore_public_alpha5_install_command_after_verifying_c441ca7a_fix_is_live
+  source_base: 3e3e65aec594decad8abba35ea05a92fbc81429c
+  site_base: dbf7092ab3dd91599803fc4b6531696df30a647d
+  objective: publish_deterministic_archive_bootstrap_and_repinned_commands_after_image_archive_conflict_root_cause
   live_fix_verified_before_reenable: true
   site_commit_push_and_pages_deployment: authorized
   public_copy_guard: updated_and_passing
@@ -157,9 +161,14 @@ owner_directive:
 active_work:
   - id: BL-SITE-ALPHA5-MATERIALIZATION
     priority: P0
-    status: install_reenabled_owner_install_result_pending
+    status: deterministic_bootstrap_published_owner_reset_and_rerun_pending
 
 prior_work:
+  - id: alpha5_rerun_image_archive_conflict
+    verdict: runtime_tar_creation_embedded_fresh_mtimes_so_retained_archive_bytes_differed_on_every_rerun_stateport_dd61a7e6_makes_creation_deterministic_and_new_17620_byte_bootstrap_is_published_repinned_and_remote_verified
+    evidence: [owner_reported_image_archive_conflict_refusal, dd61a7e68d481e75bcc2a242a689f821470f3820, e72c8cf5c2b6845d6c2459c69e3777079a90202e, sha256:cf8b20d09bc0865e222281cb09a4cece675eff979a84b6cb2e71ba53338a6300, pages_build_1152792921, pages_run_31879838808, pages_deployment_5919578251]
+    validity: exact_alpha5_mutable_bootstrap_and_deterministic_archive_path
+    missing: owner_exact_target_reset_and_install_result
   - id: public_copy_correction
     verdict: primary_visitor_pages_rewritten_technical_files_separated_and_all_changed_pages_anonymously_byte_matched
     evidence: [1f19a4d, 72e2b80, d334f739de21ad2f581115995cae7b57152e5048, pages_run_31874362376, pages_deployment_5918682005, download/technical-release-files.html, scripts/check_site_quality.py]
@@ -182,7 +191,7 @@ prior_work:
     missing: exact_target_noninstalling_materialization_preflight_result
 
 workspace_inventory:
-  expected_content_head: 2061319d50cf1a7b59bca4a0ee5906688aed1170
+  expected_content_head: e72c8cf5c2b6845d6c2459c69e3777079a90202e
   expected_origin_head: derived_from_git_not_persisted
-  expected_dirty_path: alpha5_install_reenable_final_state
+  expected_dirty_path: alpha5_rerun_conflict_fix_final_state
   immutable_release_bytes_changed_after_anchor: false
