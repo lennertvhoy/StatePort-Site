@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha7_rehearsal_green_publication_pending_alpha6_fail_closed
+  status: alpha7_published_pages_verified_alpha6_fail_closed
   purpose: public_documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -27,7 +27,7 @@ release:
   version: 0.1.0-alpha.7
   channel: alpha
   qualification: candidate
-  published: false
+  published: true
   known_defective: false
   original_streamed_install_transport_defective: false
   owner_accepted: false
@@ -38,7 +38,7 @@ release:
   release_index_sha256: d60a1c1060ae84aab91bc92ab497c9bca9c5e82dc6267688398e1a2b18b9bcd9
   signed_payload_digest: sha256:15171f61eecb5138c1cd35cab5fb0f496d4d4bf954468c95957c68abcedb3cda
   index_signature_bundle_digest: sha256:a493e6ad3b1ab677e2dd12c359350b96c09f3eed91ecf49263a46b170af59432
-  predecessor_signature_bundle_digest: sha256:838c3106177b335e1a6a48a681cd173697c39a7bf6ac4908b6a05a5f5369eb82
+  predecessor_signature_bundle_digest: sha256:79854cf677f1d67bebc2834f4b5f2ed5063ba30fd4e75aee886b792163efc6ea
   trust_key_id: stateport-alpha-private-2026-08
   trust_key_fingerprint: sha256:3dca6219e41310c6a95a8189669aacad3198e6c84489946406b8f986e1f4211a
   source_commit: 7544af6615c492bd7c125c2a0cab9428b0fe9408
@@ -71,10 +71,10 @@ acceptance:
   publication: published_deployed_remotely_verified
   clean_install: no_receipt
   first_host_attempt: not_run
-  transport_probe: local_shell_syntax_passed
-  installer_attempt: not_run
-  manifest_transport_probe: not_run
-  materialization_preflight: not_run
+  transport_probe: clean_ubuntu_rehearsal_passed
+  installer_attempt: clean_ubuntu_rehearsal_passed_windows_owner_attempt_pending
+  manifest_transport_probe: clean_ubuntu_rehearsal_passed
+  materialization_preflight: clean_ubuntu_rehearsal_passed
   human_acceptance: not_granted
   independent_security_review: not_performed
   stability: not_established
@@ -87,24 +87,24 @@ site:
   deployment:
     provider: GitHub Pages
     build_type: legacy
-  status: alpha7_publication_pending_pages_deployment
+    status: alpha7_published_pages_verified_alpha6_fail_closed
     workflow: ".github/workflows/deploy-pages.yml"
     custom_workflow_status: disabled_manual_only_not_live_provider
     source_branch: main
     source_path: /
     deployment_head: derived_from_git_not_persisted
-    live_content_commit: e040a031e54267358a7734d025db54f695fd4205
-    pages_build: 1156880603
-    pages_build_commit_field: e040a031e54267358a7734d025db54f695fd4205
-    pages_run: 32026218172
-    pages_deployment: 5944258706
-    deployment_sha: e040a031e54267358a7734d025db54f695fd4205
+    live_content_commit: 09a2c9e54931de789d3dc8d24ed77944f27e0313
+    pages_build: 32046592525
+    pages_build_commit_field: 09a2c9e54931de789d3dc8d24ed77944f27e0313
+    pages_run: 32046592525
+    pages_deployment: 5947438349
+    deployment_sha: 09a2c9e54931de789d3dc8d24ed77944f27e0313
   current_release_surface: alpha7_public_test_candidate_alpha6_fail_closed
   installer_command_shown: true
   installer_command_locations: [download/index.html]
   replacement_install_command: enabled_preflight_recommended_first_step
   nonexecuting_transport_probe: local_shell_syntax_passed
-  nonexecuting_materialization_preflight: not_run
+  nonexecuting_materialization_preflight: clean_ubuntu_rehearsal_passed
   immutable_tree_manifest: config/immutable-release-trees.json
   immutable_anchors:
     alpha2: 4043534a9a1d56c51c3d47d0906e0520963af79c
@@ -115,12 +115,14 @@ site:
     alpha5_immutable_mismatches: 0
     retained_immutable_files_checked: 81
     retained_immutable_mismatches: 0
-  alpha6_changed_files_checked: 74
+    alpha6_changed_files_checked: 74
     alpha6_changed_file_mismatches: 0
     alpha6_manifest_files_checked: 7
     alpha6_manifest_mismatches: 0
-  mutable_install_sha256: 5704e26351357cb8e0f42baabc1d8d09559546e06919967a5d2ae6cdc31f54c5
-    mutable_install_matches_versioned: false
+    alpha7_live_bytes_checked: 15
+    alpha7_live_byte_mismatches: 0
+    mutable_install_sha256: 5704e26351357cb8e0f42baabc1d8d09559546e06919967a5d2ae6cdc31f54c5
+    mutable_install_matches_versioned: true
     rerun_fix_changed_files_checked: 3
     rerun_fix_changed_file_mismatches: 0
     rerun_fix_immutable_files_checked: 33
@@ -151,23 +153,23 @@ site:
 
 owner_directive:
   id: OD-2026-08-16-ALPHA6-AUTONOMOUS-RELEASE
-  status: alpha7_successor_authorized_rehearsal_green_publication_pending
+  status: alpha7_published_pages_verified_alpha6_fail_closed
   supersedes: OD-2026-08-15-ALPHA5-RERUN-CONFLICT-FIX
   source_repository: /home/ff/Documents/Projects/StatePort
-  source_base: f486e3c455f5630a4a416c616566c1cb5072e443
+  source_base: 7544af6615c492bd7c125c2a0cab9428b0fe9408
   site_base: 8911c956b2a39aa1a28b82724cfec1db15330b20
   objective: publish_alpha7_signed_candidate_fail_close_alpha6_and_supersede_alpha6
   live_fix_verified_before_reenable: false
   site_commit_push_and_pages_deployment: authorized
   public_copy_guard: updated_and_passing
-  versioned_release_file_changes: alpha6_additive_only_alpha2_alpha3_alpha5_immutable
+  versioned_release_file_changes: alpha7_additive_only_alpha2_alpha3_alpha5_immutable_alpha6_installer_fail_closed
   signing_or_successor_release: authorized_by_latest_stateport_directive
   human_acceptance: not_granted
 
 active_work:
   - id: BL-ALPHA7-PUBLICATION
     priority: P0
-    status: rehearsal_green_publication_pending_alpha6_fail_closed
+    status: published_deployed_remote_verified_alpha6_fail_closed
 
 prior_work:
   - id: alpha6_publication_pages_verification
