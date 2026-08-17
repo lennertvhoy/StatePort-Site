@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-17T11:39:20Z"
-  updated_by: alpha6_publication_pages_verified_state
+  updated_at: "2026-08-17T11:45:37Z"
+  updated_by: alpha6_final_pages_verified_state
   format_version: statespec-site-state/v1
 
 workflow:
@@ -93,12 +93,12 @@ site:
     source_branch: main
     source_path: /
     deployment_head: derived_from_git_not_persisted
-    live_content_commit: c5ced430cf8b00d6420a72467d3ecbdf0b8e391d
-    pages_build: 1156871424
-    pages_build_commit_field: c5ced430cf8b00d6420a72467d3ecbdf0b8e391d
-    pages_run: 32025739353
-    pages_deployment: 5944169434
-    deployment_sha: c5ced430cf8b00d6420a72467d3ecbdf0b8e391d
+    live_content_commit: e040a031e54267358a7734d025db54f695fd4205
+    pages_build: 1156880603
+    pages_build_commit_field: e040a031e54267358a7734d025db54f695fd4205
+    pages_run: 32026218172
+    pages_deployment: 5944258706
+    deployment_sha: e040a031e54267358a7734d025db54f695fd4205
   current_release_surface: alpha6_public_test_candidate
   installer_command_shown: true
   installer_command_locations: [download/index.html]
@@ -172,7 +172,7 @@ active_work:
 prior_work:
   - id: alpha6_publication_pages_verification
     verdict: signed_candidate_published_and_exact_live_bytes_anonymously_matched
-    evidence: [c5ced430cf8b00d6420a72467d3ecbdf0b8e391d, pages_build_1156871424, pages_run_32025739353, pages_deployment_5944169434, changed_files_74, retained_files_81]
+    evidence: [e040a031e54267358a7734d025db54f695fd4205, pages_build_1156880603, pages_run_32026218172, pages_deployment_5944258706, changed_files_74, retained_files_81]
     validity: exact_alpha6_candidate_and_pages_deployment
     missing: extended_rehearsal_r1_r6_and_clean_install_receipt
   - id: alpha5_rerun_image_archive_conflict
