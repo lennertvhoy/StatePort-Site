@@ -153,16 +153,19 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
 
 ## Current release truth
 
-- Current candidate: `v0.1.0-alpha.5`, signed for exact target
+- Current candidate: `v0.1.0-alpha.7`, signed for exact target
   `wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet`.
 - Signed index SHA-256:
-  `4613fcad48ea1a2e7dd4350d61baa333efbc734b1fcba1a1c9ca62994d562b71`;
+  `d60a1c1060ae84aab91bc92ab497c9bca9c5e82dc6267688398e1a2b18b9bcd9`;
   signed payload:
-  `sha256:e45d5c8ce6843bd0c3155ecd26940ff3dc11c5069a2de796a079708066faf98c`.
-- Installation is re-enabled under owner directives
-  `OD-2026-08-15-ALPHA5-INSTALL-REENABLE` and
-  `OD-2026-08-15-ALPHA5-RERUN-CONFLICT-FIX`; the live bootstrap carries the
-  root-helper materialization repair and deterministic archive creation.
+  `sha256:15171f61eecb5138c1cd35cab5fb0f496d4d4bf954468c95957c68abcedb3cda`.
+- Alpha.7 has passed the governed clean Ubuntu rehearsal, including install and
+  identical rerun plus extended R1-R6. It is available for a first owner test;
+  WSL2 remains `compatible_unvalidated` and no clean-install acceptance receipt
+  exists.
+- Published Alpha.6 is superseded and its installer route is fail-closed because
+  the candidate carries the updater venv cache-drift defect. Its signed index and
+  artifacts remain retained.
   WSL2 remains `compatible_unvalidated`; no clean-install receipt exists.
 - Completed reviews bind the failure to a 4,096-byte truncated pipe-to-shell
   transfer. The complete 8,971-byte bootstrap and signed release payload remain
@@ -171,8 +174,8 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
 - WSL1, native Linux, other distributions, ARM64, macOS, and Docker Desktop do
   not inherit this release target or its evidence.
 - Canonical development Git remains private. The signed public snapshot
-  `6911b7c1e73e0408af4a2a900aec585d15168a28` / tree
-  `05ca882f4e41b98f4ffa6f9257e068d72472e765` is anonymously resolvable from
+  `60cef2f9727d7a34485398eedb5d522f11b212ae` / tree
+  `20784f5977cb2222ff72b2fbd755c59acafbc60c` is anonymously resolvable from
   `lennertvhoy/StatePort-Source`; the curated source archive is public and
   digest-bound.
 - Alpha.3 remains signed, byte-intact, install-disabled, and governed by its
@@ -183,7 +186,7 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
 - Pages deploys from `main` through GitHub's managed legacy Pages build. The
   custom workflow is manual-only. Nothing is live until remotely verified.
 
-Never call Alpha.5 clean-installed, qualified, owner-accepted, stable, audited,
+Never call Alpha.7 clean-installed, qualified, owner-accepted, stable, audited,
 or production-ready. Never alter Alpha.2, Alpha.3, or anchored Alpha.5 bytes.
 
 ## Repository rules
@@ -214,8 +217,8 @@ or production-ready. Never alter Alpha.2, Alpha.3, or anchored Alpha.5 bytes.
 
 1. Preserve Alpha.2 and Alpha.3 exactly and keep the Alpha.3 erratum historical.
 2. Preserve the anchored Alpha.5 tree and exact repaired mutable bootstrap.
-3. Present the pinned non-installing preflight as the recommended first step
-   and the exact pinned install command as the primary download action; the
-   owner clears retained state and reruns, and the install result is pending.
+3. Present the pinned Alpha.7 non-installing preflight as the recommended first
+   step and the exact pinned install command as the primary download action;
+   owner clean-install and acceptance remain pending.
 
 Everything else is backlog or history.

@@ -1,0 +1,1 @@
+# StatePort alpha.7 WSL2 public-test candidate\n\nThis signed candidate is intended for owner testing after publication. It contains the updater cache-integrity repair and the pinned source-transport repairs. A real Windows 11, WSL2, and Ubuntu 24.04 clean-install receipt does not yet exist.\n

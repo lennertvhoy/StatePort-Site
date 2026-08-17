@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-17T11:45:37Z"
-  updated_by: alpha6_final_pages_verified_state
+  updated_at: "2026-08-17T16:28:08Z"
+  updated_by: alpha7_publication_staging
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha6_published_pages_verified_rehearsal_pending
+  status: alpha7_rehearsal_green_publication_pending_alpha6_fail_closed
   purpose: public_documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -24,33 +24,33 @@ canonical_truth:
   exact_head: derived_from_git_not_persisted
 
 release:
-  version: 0.1.0-alpha.6
+  version: 0.1.0-alpha.7
   channel: alpha
   qualification: candidate
-  published: true
+  published: false
   known_defective: false
   original_streamed_install_transport_defective: false
   owner_accepted: false
   installation_enabled: true
   support_tier: compatible_unvalidated
   public_download: "download/install.sh"
-  release_index: "download/0.1.0-alpha.6/release-index.json"
-  release_index_sha256: 607e21d73ff2bdf2582360d4d0d51fb9ef6528f61a1a440ffe52867bec2fe97e
-  signed_payload_digest: sha256:97f5cd5a1033afea0a0a856d358bdc05191d27ab26cb73f42028190a4b267c06
-  index_signature_bundle_digest: sha256:79854cf677f1d67bebc2834f4b5f2ed5063ba30fd4e75aee886b792163efc6ea
+  release_index: "download/0.1.0-alpha.7/release-index.json"
+  release_index_sha256: d60a1c1060ae84aab91bc92ab497c9bca9c5e82dc6267688398e1a2b18b9bcd9
+  signed_payload_digest: sha256:15171f61eecb5138c1cd35cab5fb0f496d4d4bf954468c95957c68abcedb3cda
+  index_signature_bundle_digest: sha256:a493e6ad3b1ab677e2dd12c359350b96c09f3eed91ecf49263a46b170af59432
   predecessor_signature_bundle_digest: sha256:838c3106177b335e1a6a48a681cd173697c39a7bf6ac4908b6a05a5f5369eb82
   trust_key_id: stateport-alpha-private-2026-08
   trust_key_fingerprint: sha256:3dca6219e41310c6a95a8189669aacad3198e6c84489946406b8f986e1f4211a
-  source_commit: f486e3c455f5630a4a416c616566c1cb5072e443
-  source_tree: b70e58caa709e0431e24df212d952c085cff94df
+  source_commit: 7544af6615c492bd7c125c2a0cab9428b0fe9408
+  source_tree: d239ca3e1f3568c75726c57ab984594068383ce2
   public_snapshot_repository: "https://github.com/lennertvhoy/StatePort-Source.git"
-  public_snapshot_commit: 13827b7c2e8e4855cb495dbc22833524a11062d4
-  public_snapshot_tree: 4a74f46f35685bb9642d902658c47ec5d8c02530
-  source_archive_sha256: 5e92b369953921dfede90d14d09d194700f7b8f5ec3a62007c5401aaf98da4c1
+  public_snapshot_commit: 60cef2f9727d7a34485398eedb5d522f11b212ae
+  public_snapshot_tree: 20784f5977cb2222ff72b2fbd755c59acafbc60c
+  source_archive_sha256: f8c5dccf3e3ba30ef3cd9e99e9d331c2d296ca519303ca8f866924290e5c662c
   target_id: wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet
   image_count: 7
-  bootstrap_sha256: ffc144d39502fde804c75f2dbf9994c25bd1f8a2cf3af7fbfb1e9a8352228ee9
-  mutable_preflight_bootstrap_sha256: ffc144d39502fde804c75f2dbf9994c25bd1f8a2cf3af7fbfb1e9a8352228ee9
+  bootstrap_sha256: 5704e26351357cb8e0f42baabc1d8d09559546e06919967a5d2ae6cdc31f54c5
+  mutable_preflight_bootstrap_sha256: 5704e26351357cb8e0f42baabc1d8d09559546e06919967a5d2ae6cdc31f54c5
   mutable_preflight_bootstrap_bytes: 18084
 
 predecessors:
@@ -87,7 +87,7 @@ site:
   deployment:
     provider: GitHub Pages
     build_type: legacy
-    status: alpha6_published_pages_verified_rehearsal_pending
+  status: alpha7_publication_pending_pages_deployment
     workflow: ".github/workflows/deploy-pages.yml"
     custom_workflow_status: disabled_manual_only_not_live_provider
     source_branch: main
@@ -99,7 +99,7 @@ site:
     pages_run: 32026218172
     pages_deployment: 5944258706
     deployment_sha: e040a031e54267358a7734d025db54f695fd4205
-  current_release_surface: alpha6_public_test_candidate
+  current_release_surface: alpha7_public_test_candidate_alpha6_fail_closed
   installer_command_shown: true
   installer_command_locations: [download/index.html]
   replacement_install_command: enabled_preflight_recommended_first_step
@@ -115,11 +115,11 @@ site:
     alpha5_immutable_mismatches: 0
     retained_immutable_files_checked: 81
     retained_immutable_mismatches: 0
-    alpha6_changed_files_checked: 74
+  alpha6_changed_files_checked: 74
     alpha6_changed_file_mismatches: 0
     alpha6_manifest_files_checked: 7
     alpha6_manifest_mismatches: 0
-    mutable_install_sha256: cf8b20d09bc0865e222281cb09a4cece675eff979a84b6cb2e71ba53338a6300
+  mutable_install_sha256: 5704e26351357cb8e0f42baabc1d8d09559546e06919967a5d2ae6cdc31f54c5
     mutable_install_matches_versioned: false
     rerun_fix_changed_files_checked: 3
     rerun_fix_changed_file_mismatches: 0
@@ -151,12 +151,12 @@ site:
 
 owner_directive:
   id: OD-2026-08-16-ALPHA6-AUTONOMOUS-RELEASE
-  status: published_deployed_remote_verified_rehearsal_pending
+  status: alpha7_successor_authorized_rehearsal_green_publication_pending
   supersedes: OD-2026-08-15-ALPHA5-RERUN-CONFLICT-FIX
   source_repository: /home/ff/Documents/Projects/StatePort
   source_base: f486e3c455f5630a4a416c616566c1cb5072e443
   site_base: 8911c956b2a39aa1a28b82724cfec1db15330b20
-  objective: publish_alpha6_signed_candidate_and_supersede_alpha5
+  objective: publish_alpha7_signed_candidate_fail_close_alpha6_and_supersede_alpha6
   live_fix_verified_before_reenable: false
   site_commit_push_and_pages_deployment: authorized
   public_copy_guard: updated_and_passing
@@ -165,9 +165,9 @@ owner_directive:
   human_acceptance: not_granted
 
 active_work:
-  - id: BL-ALPHA6-PUBLICATION
+  - id: BL-ALPHA7-PUBLICATION
     priority: P0
-    status: published_deployed_remote_verified_rehearsal_pending
+    status: rehearsal_green_publication_pending_alpha6_fail_closed
 
 prior_work:
   - id: alpha6_publication_pages_verification

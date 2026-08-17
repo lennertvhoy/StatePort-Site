@@ -1,22 +1,21 @@
 # NEXT_ACTIONS - active execution queue
 
-**Updated At:** 2026-08-15
+**Updated At:** 2026-08-17
 **Execution Mode:** operating
 **Max Items:** 1
 
-## P0 [BL-ALPHA6-PUBLICATION] Publish signed Alpha.6 successor
+## P0 [BL-ALPHA7-PUBLICATION] Publish signed Alpha.7 successor
 
 **Status:** Owner directive `OD-2026-08-16-ALPHA6-AUTONOMOUS-RELEASE` authorized
-the signed Alpha.6 publication chain. Site commit `c5ced43` deployed through
-Pages build `1156871424`, run `32025739353`, and deployment `5944169434`.
-All 74 changed files and 81 retained Alpha.2/Alpha.3/Alpha.5 files matched
-anonymous live bytes.
+the Alpha.7 successor. The signed candidate passed the clean Ubuntu rehearsal
+and extended R1-R6. Publication staging is ready; Alpha.6 remains retained and
+its installer route is fail-closed.
 
-**Decision:** run the extended Alpha.6 rehearsal R1-R6 against the published
-candidate. Alpha.5 is now superseded and install-disabled; its signed tree
-remains immutable.
+**Decision:** publish Alpha.7 additively, fail-close Alpha.6, and remotely verify
+the exact live bytes. Alpha.2, Alpha.3, and Alpha.5 remain retained and their
+signed trees remain immutable.
 
-**Exit:** rehearsal evidence and exact state closure are complete.
+**Exit:** Alpha.7 Pages deployment and exact state closure are complete.
 Clean-install qualification and acceptance remain separate owner actions.
 
 ## Completed since last update

@@ -1,9 +1,9 @@
 #!/bin/sh
-# StatePort v0.1.0-alpha.6 Windows 11 + WSL2 + Ubuntu 24.04 bootstrap.
+# StatePort v0.1.0-alpha.7 Windows 11 + WSL2 + Ubuntu 24.04 bootstrap.
 set -eu
-STATEPORT_VERSION="0.1.0-alpha.6"
-RELEASE_ROOT="https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.6"
-PROBE_ROOT="https://lennertvhoy.github.io/StatePort-Site/download/alpha6-manifests"
+STATEPORT_VERSION="0.1.0-alpha.7"
+RELEASE_ROOT="https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.7"
+PROBE_ROOT="https://lennertvhoy.github.io/StatePort-Site/download/alpha7-manifests"
 TARGET="wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet"
 STATE_ROOT="${STATEPORT_STATE_ROOT:-$HOME/.local/state/stateport-install}"
 RECEIPT="/var/lib/stateport-provisioning/receipts/execution-host-provisioning-receipt.json"
@@ -56,26 +56,26 @@ if [ "$mode" = probe ]; then
   command -v curl >/dev/null 2>&1 || fail "curl is required for the transport probe."
   command -v sha256sum >/dev/null 2>&1 || fail "sha256sum is required for the transport probe."
   umask 077
-  tmp=$(mktemp -d "${TMPDIR:-/tmp}/stateport-alpha6-probe.XXXXXX") || fail "Cannot create a private probe directory."
+  tmp=$(mktemp -d "${TMPDIR:-/tmp}/stateport-alpha7-probe.XXXXXX") || fail "Cannot create a private probe directory."
   trap 'rm -rf "$tmp"' EXIT
   trap 'exit 129' HUP
   trap 'exit 130' INT
   trap 'exit 143' TERM
   get "$PROBE_ROOT/stateport-api.json" "$tmp/stateport-api.manifest.json" "image manifest: stateport-api"
-  check "202a1a5a61a43633ffd32bef46c55654dec97f4b066c531a8cbd0b072c3a7eab" "$tmp/stateport-api.manifest.json"
+  check "4c9a99b84f5bb28aeed49735393ba9361a6e060ed52a88b43fe1886d7cb8cd0e" "$tmp/stateport-api.manifest.json"
   get "$PROBE_ROOT/stateport-dev-workspace.json" "$tmp/stateport-dev-workspace.manifest.json" "image manifest: stateport-dev-workspace"
-  check "7cbb7d90b17afb1557763d5e8ccb05b310443ca25fa22e744672798a0766192d" "$tmp/stateport-dev-workspace.manifest.json"
+  check "0102c422aa8cf9ba1abb5f708f5ba5280799e9407d9db938f2e771d069524b0f" "$tmp/stateport-dev-workspace.manifest.json"
   get "$PROBE_ROOT/stateport-execution-host.json" "$tmp/stateport-execution-host.manifest.json" "image manifest: stateport-execution-host"
-  check "374ef439641472465f12c37cefcf1914df800888ff84454517c6ad26d395bb2a" "$tmp/stateport-execution-host.manifest.json"
+  check "e152675e3948602a8885e091b558677b989e2f40083e4a9d554c589273c736ee" "$tmp/stateport-execution-host.manifest.json"
   get "$PROBE_ROOT/stateport-playwright.json" "$tmp/stateport-playwright.manifest.json" "image manifest: stateport-playwright"
-  check "e7a8c1dd4a7798bb8a9bee4068e845e41b845f52682338b0370d1e566c813db1" "$tmp/stateport-playwright.manifest.json"
+  check "214a7b50c8c1f0ba3f20ab3240d0ccce0e8b661f0faf261103717a3eb1bd2508" "$tmp/stateport-playwright.manifest.json"
   get "$PROBE_ROOT/stateport-runner.json" "$tmp/stateport-runner.manifest.json" "image manifest: stateport-runner"
-  check "604a93259b32a46849ea4ad098ae5aa379abf199a32c0f31b2f832b36af64795" "$tmp/stateport-runner.manifest.json"
+  check "4777530d08ee7b82a91d96ec735a67ae4397ac42aa363203b1c3bfdb0615d6bc" "$tmp/stateport-runner.manifest.json"
   get "$PROBE_ROOT/stateport-web.json" "$tmp/stateport-web.manifest.json" "image manifest: stateport-web"
-  check "945c09cced090aa67e773445e7580a232b9f2174742bddc9dc8fd264de774375" "$tmp/stateport-web.manifest.json"
+  check "967657d89a53014a6cb708964d77d8b9ee4913f8414da63a3135696b8b7e05b7" "$tmp/stateport-web.manifest.json"
   get "$PROBE_ROOT/stateport-worker.json" "$tmp/stateport-worker.manifest.json" "image manifest: stateport-worker"
-  check "f6e161c833ba1aba4173df5088f3cbb0d1a30032ae083c64dc525a1697a10f1b" "$tmp/stateport-worker.manifest.json"
-  printf "StatePort Alpha.6 transport probe passed: bootstrap syntax and 7 exact image manifests verified; installer was not executed.\n"
+  check "be89886a4ee1f766514c66742a366dd4714f60030eb7103bf1075cd3e94d4b02" "$tmp/stateport-worker.manifest.json"
+  printf "StatePort Alpha.7 transport probe passed: bootstrap syntax and 7 exact image manifests verified; installer was not executed.\n"
   exit 0
 fi
 if [ "$mode" = materialization-preflight ]; then
@@ -85,7 +85,7 @@ if [ "$mode" = materialization-preflight ]; then
   command -v stat >/dev/null 2>&1 || fail "stat is required for the materialization preflight."
   ensure_root_helper_parent / 0 0 check
   umask 077
-  tmp=$(mktemp -d "${TMPDIR:-/tmp}/stateport-alpha6-materialization.XXXXXX") || fail "Cannot create a private preflight directory."
+  tmp=$(mktemp -d "${TMPDIR:-/tmp}/stateport-alpha7-materialization.XXXXXX") || fail "Cannot create a private preflight directory."
   trap 'rm -rf "$tmp"' EXIT
   trap 'exit 129' HUP
   trap 'exit 130' INT
@@ -96,7 +96,7 @@ if [ "$mode" = materialization-preflight ]; then
   check "52b95efc18884368bf04a39cf31dca466f649883d4ab95d5de76bdde2ce0afba" "$tmp/provisioner"
   install -m 0555 -- "$tmp/provisioner" "$tmp/root/usr/local/libexec/stateport-execution-host-provision"
   check "52b95efc18884368bf04a39cf31dca466f649883d4ab95d5de76bdde2ce0afba" "$tmp/root/usr/local/libexec/stateport-execution-host-provision"
-  printf "StatePort Alpha.6 materialization preflight passed: target, pinned helper transport, and absent-parent creation order verified; packages, root files, images, and installer were not changed or executed.\n"
+  printf "StatePort Alpha.7 materialization preflight passed: target, pinned helper transport, and absent-parent creation order verified; packages, root files, images, and installer were not changed or executed.\n"
   exit 0
 fi
 command -v sudo >/dev/null 2>&1 || fail "sudo is required."
@@ -134,15 +134,15 @@ manifest_carrier() {
   tar -cf "$tmp/image-archives/$image_id.oci.tar" --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -C "$carrier" index.json "blobs/sha256/$digest_hex"
 }
 get "$RELEASE_ROOT/stateport-installer" "$tmp/installer" "signed installer"
-check "1462186afbdc33a66c52e71efafcfce463c60e79b35412f423ba987c82cc3230" "$tmp/installer"
+check "7599e3c87d495ce72b5f78bcaee0cb0d9babbc0abe79811a50d40acd1ade2e68" "$tmp/installer"
 get "$RELEASE_ROOT/stateport-execution-host-provision" "$tmp/provisioner" "execution-host provisioner"
 check "52b95efc18884368bf04a39cf31dca466f649883d4ab95d5de76bdde2ce0afba" "$tmp/provisioner"
 get "$RELEASE_ROOT/stateport-updater" "$tmp/updater" "signed updater"
-check "968b20e22def2c0e026fe3d78e8fdf07535bca3950138e05caff73d90e8cd3a3" "$tmp/updater"
+check "643d08656c4d6b322add1c26153d3c55a9866a814b3743515ffc9aa82393cd64" "$tmp/updater"
 get "$RELEASE_ROOT/release-index.json" "$tmp/release-index.json" "signed release index"
-check "607e21d73ff2bdf2582360d4d0d51fb9ef6528f61a1a440ffe52867bec2fe97e" "$tmp/release-index.json"
+check "d60a1c1060ae84aab91bc92ab497c9bca9c5e82dc6267688398e1a2b18b9bcd9" "$tmp/release-index.json"
 get "$RELEASE_ROOT/release-index.sigstore.json" "$tmp/release-index.sigstore.json" "release index signature"
-check "79854cf677f1d67bebc2834f4b5f2ed5063ba30fd4e75aee886b792163efc6ea" "$tmp/release-index.sigstore.json"
+check "a493e6ad3b1ab677e2dd12c359350b96c09f3eed91ecf49263a46b170af59432" "$tmp/release-index.sigstore.json"
 get "$RELEASE_ROOT/stateport-alpha-2026-08-cosign.pub" "$tmp/release.pub" "release trust key"
 check "f473c7447f329d84d6bf2219e8674edbf250a1fffbd393677e08ca16a9d6a99b" "$tmp/release.pub"
 get "$COSIGN_URL" "$tmp/cosign" "Cosign executable"
@@ -150,28 +150,28 @@ check "f7622ed3cf22e55e1ae6377c080979ff77a22da9981c11df222a2e444991e7cf" "$tmp/c
 chmod 700 "$tmp/installer" "$tmp/cosign"
 mkdir -m 700 "$tmp/predecessor-bundle"
 get "$RELEASE_ROOT/predecessor-bundle/release-index.sigstore.json" "$tmp/predecessor-bundle/release-index.sigstore.json" "predecessor signature bundle"
-check "838c3106177b335e1a6a48a681cd173697c39a7bf6ac4908b6a05a5f5369eb82" "$tmp/predecessor-bundle/release-index.sigstore.json"
+check "79854cf677f1d67bebc2834f4b5f2ed5063ba30fd4e75aee886b792163efc6ea" "$tmp/predecessor-bundle/release-index.sigstore.json"
 get "$RELEASE_ROOT/signatures/stateport-api.sigstore.json" "$tmp/image-bundles/stateport-api.sigstore.json" "image signature: stateport-api"
-check "c89b13afee0a6d0307658882e6db75d765efe048942cbba5ce7f08d7d4c73a89" "$tmp/image-bundles/stateport-api.sigstore.json"
+check "5d50048b8905714059744f77bf67ae243532061d8801cfad44c2893e93de5984" "$tmp/image-bundles/stateport-api.sigstore.json"
 get "$RELEASE_ROOT/signatures/stateport-dev-workspace.sigstore.json" "$tmp/image-bundles/stateport-dev-workspace.sigstore.json" "image signature: stateport-dev-workspace"
-check "3af01115ad6b4c9a58c12aae4709029d530cab39b6912ef4f9d099da6709d33a" "$tmp/image-bundles/stateport-dev-workspace.sigstore.json"
+check "c42aa9a1a283bc2bef6b12e9728dabd1183cb3a05dff9ba136dadf2d8f443c07" "$tmp/image-bundles/stateport-dev-workspace.sigstore.json"
 get "$RELEASE_ROOT/signatures/stateport-execution-host.sigstore.json" "$tmp/image-bundles/stateport-execution-host.sigstore.json" "image signature: stateport-execution-host"
-check "6d44e04982a350cfdcaaf98e1db69e30b9fc73bff321550f0bf56bc1c2293914" "$tmp/image-bundles/stateport-execution-host.sigstore.json"
+check "06ecb74b43ff41e087fd660515187b1f46e3b14cdb2949b54eecfa10bccececb" "$tmp/image-bundles/stateport-execution-host.sigstore.json"
 get "$RELEASE_ROOT/signatures/stateport-playwright.sigstore.json" "$tmp/image-bundles/stateport-playwright.sigstore.json" "image signature: stateport-playwright"
-check "08088e0cbcc4045b966b52abe8c07ceb001f0e41af3e50ff77ab560c1c6e2542" "$tmp/image-bundles/stateport-playwright.sigstore.json"
+check "70fbdf8464e8437e6cb0dd4549208e25edfc4c5d561490e2a9222f9ad100441a" "$tmp/image-bundles/stateport-playwright.sigstore.json"
 get "$RELEASE_ROOT/signatures/stateport-runner.sigstore.json" "$tmp/image-bundles/stateport-runner.sigstore.json" "image signature: stateport-runner"
-check "6318065b17ec4193c559ed5e9c94246709ace4f5c58640b43e0daafba0739349" "$tmp/image-bundles/stateport-runner.sigstore.json"
+check "b1941e9ef90507c5292f384b7f1307fe6ad4b7dc21d1efc7ea1a147f48921e1a" "$tmp/image-bundles/stateport-runner.sigstore.json"
 get "$RELEASE_ROOT/signatures/stateport-web.sigstore.json" "$tmp/image-bundles/stateport-web.sigstore.json" "image signature: stateport-web"
-check "d2546d4afd73ef9d0d123e8c8e7c9e4e05a602a2c7132b8f181948c3c56296bc" "$tmp/image-bundles/stateport-web.sigstore.json"
+check "bca4401d2e57b4ceafad69c3de560a17eb5a5b08b3fdbe37e275eafe7bed7a91" "$tmp/image-bundles/stateport-web.sigstore.json"
 get "$RELEASE_ROOT/signatures/stateport-worker.sigstore.json" "$tmp/image-bundles/stateport-worker.sigstore.json" "image signature: stateport-worker"
-check "fa9fb538dc21f26b45f52ffcc83faf7ad13eba173beee8a61ff4627a37585a01" "$tmp/image-bundles/stateport-worker.sigstore.json"
-manifest_carrier stateport-api ghcr.io/lennertvhoy/stateport-api@sha256:202a1a5a61a43633ffd32bef46c55654dec97f4b066c531a8cbd0b072c3a7eab sha256:202a1a5a61a43633ffd32bef46c55654dec97f4b066c531a8cbd0b072c3a7eab
-manifest_carrier stateport-dev-workspace ghcr.io/lennertvhoy/stateport-dev-workspace@sha256:7cbb7d90b17afb1557763d5e8ccb05b310443ca25fa22e744672798a0766192d sha256:7cbb7d90b17afb1557763d5e8ccb05b310443ca25fa22e744672798a0766192d
-manifest_carrier stateport-execution-host ghcr.io/lennertvhoy/stateport-execution-host@sha256:374ef439641472465f12c37cefcf1914df800888ff84454517c6ad26d395bb2a sha256:374ef439641472465f12c37cefcf1914df800888ff84454517c6ad26d395bb2a
-manifest_carrier stateport-playwright ghcr.io/lennertvhoy/stateport-playwright@sha256:e7a8c1dd4a7798bb8a9bee4068e845e41b845f52682338b0370d1e566c813db1 sha256:e7a8c1dd4a7798bb8a9bee4068e845e41b845f52682338b0370d1e566c813db1
-manifest_carrier stateport-runner ghcr.io/lennertvhoy/stateport-runner@sha256:604a93259b32a46849ea4ad098ae5aa379abf199a32c0f31b2f832b36af64795 sha256:604a93259b32a46849ea4ad098ae5aa379abf199a32c0f31b2f832b36af64795
-manifest_carrier stateport-web ghcr.io/lennertvhoy/stateport-web@sha256:945c09cced090aa67e773445e7580a232b9f2174742bddc9dc8fd264de774375 sha256:945c09cced090aa67e773445e7580a232b9f2174742bddc9dc8fd264de774375
-manifest_carrier stateport-worker ghcr.io/lennertvhoy/stateport-worker@sha256:f6e161c833ba1aba4173df5088f3cbb0d1a30032ae083c64dc525a1697a10f1b sha256:f6e161c833ba1aba4173df5088f3cbb0d1a30032ae083c64dc525a1697a10f1b
+check "b546d2664b1fca33d54e8a1b3c6a3ffccd3053c5a97a64aff372747b35f66f7e" "$tmp/image-bundles/stateport-worker.sigstore.json"
+manifest_carrier stateport-api ghcr.io/lennertvhoy/stateport-api@sha256:4c9a99b84f5bb28aeed49735393ba9361a6e060ed52a88b43fe1886d7cb8cd0e sha256:4c9a99b84f5bb28aeed49735393ba9361a6e060ed52a88b43fe1886d7cb8cd0e
+manifest_carrier stateport-dev-workspace ghcr.io/lennertvhoy/stateport-dev-workspace@sha256:0102c422aa8cf9ba1abb5f708f5ba5280799e9407d9db938f2e771d069524b0f sha256:0102c422aa8cf9ba1abb5f708f5ba5280799e9407d9db938f2e771d069524b0f
+manifest_carrier stateport-execution-host ghcr.io/lennertvhoy/stateport-execution-host@sha256:e152675e3948602a8885e091b558677b989e2f40083e4a9d554c589273c736ee sha256:e152675e3948602a8885e091b558677b989e2f40083e4a9d554c589273c736ee
+manifest_carrier stateport-playwright ghcr.io/lennertvhoy/stateport-playwright@sha256:214a7b50c8c1f0ba3f20ab3240d0ccce0e8b661f0faf261103717a3eb1bd2508 sha256:214a7b50c8c1f0ba3f20ab3240d0ccce0e8b661f0faf261103717a3eb1bd2508
+manifest_carrier stateport-runner ghcr.io/lennertvhoy/stateport-runner@sha256:4777530d08ee7b82a91d96ec735a67ae4397ac42aa363203b1c3bfdb0615d6bc sha256:4777530d08ee7b82a91d96ec735a67ae4397ac42aa363203b1c3bfdb0615d6bc
+manifest_carrier stateport-web ghcr.io/lennertvhoy/stateport-web@sha256:967657d89a53014a6cb708964d77d8b9ee4913f8414da63a3135696b8b7e05b7 sha256:967657d89a53014a6cb708964d77d8b9ee4913f8414da63a3135696b8b7e05b7
+manifest_carrier stateport-worker ghcr.io/lennertvhoy/stateport-worker@sha256:be89886a4ee1f766514c66742a366dd4714f60030eb7103bf1075cd3e94d4b02 sha256:be89886a4ee1f766514c66742a366dd4714f60030eb7103bf1075cd3e94d4b02
 python3 "$tmp/installer" \
   --release-index "$tmp/release-index.json" \
   --bundle-root "$tmp" \
@@ -198,7 +198,7 @@ sudo -n /usr/local/libexec/stateport-execution-host-provision materialize \
   --execution-host-provisioner /usr/local/libexec/stateport-execution-host-provision \
   --execution-host-provisioner-digest "sha256:52b95efc18884368bf04a39cf31dca466f649883d4ab95d5de76bdde2ce0afba" \
   --execution-host-provisioner-bytes "34937" \
-  --updater-wheel "$tmp/updater" --updater-wheel-digest "sha256:968b20e22def2c0e026fe3d78e8fdf07535bca3950138e05caff73d90e8cd3a3" \
+  --updater-wheel "$tmp/updater" --updater-wheel-digest "sha256:643d08656c4d6b322add1c26153d3c55a9866a814b3743515ffc9aa82393cd64" \
   --release-index "$tmp/release-index.json" --bundle-root "$tmp" \
   --cosign "$tmp/cosign" --cosign-digest "sha256:f7622ed3cf22e55e1ae6377c080979ff77a22da9981c11df222a2e444991e7cf" \
   --trust-public-key "$tmp/release.pub" --trust-public-key-digest "sha256:f473c7447f329d84d6bf2219e8674edbf250a1fffbd393677e08ca16a9d6a99b" \

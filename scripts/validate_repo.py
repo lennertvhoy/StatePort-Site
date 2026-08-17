@@ -31,8 +31,9 @@ from render_support import load_config, rendered_home, support_enabled
 ROOT = Path(__file__).resolve().parents[1]
 
 INSTALLER_STATUS = (
-    "The Alpha.6 installer is available for a first test on Windows 11 with WSL2 "
-    "and Ubuntu 24.04. It has not yet been proven on a freshly installed computer."
+    "The Alpha.7 installer is available for a first test on Windows 11 with WSL2 "
+    "and Ubuntu 24.04. It has passed a clean Ubuntu rehearsal but has not yet been "
+    "proven on a freshly installed Windows host."
 )
 
 # These publication anchors are intentionally duplicated here instead of being
@@ -57,16 +58,16 @@ ALPHA3_CURATED_SOURCE_ARCHIVE = {
     "sha256": "17f5680c30841b1e831b37df02dca8f03c2c03d265a42633dd525f99bd613398",
 }
 CURRENT_CANONICAL_SOURCE_IDENTITY = {
-    "commit": "f486e3c455f5630a4a416c616566c1cb5072e443",
-    "tree": "b70e58caa709e0431e24df212d952c085cff94df",
+    "commit": "7544af6615c492bd7c125c2a0cab9428b0fe9408",
+    "tree": "d239ca3e1f3568c75726c57ab984594068383ce2",
 }
 CURRENT_PUBLIC_SNAPSHOT_IDENTITY = {
-    "commit": "13827b7c2e8e4855cb495dbc22833524a11062d4",
-    "tree": "4a74f46f35685bb9642d902658c47ec5d8c02530",
+    "commit": "60cef2f9727d7a34485398eedb5d522f11b212ae",
+    "tree": "20784f5977cb2222ff72b2fbd755c59acafbc60c",
 }
 CURRENT_CURATED_SOURCE_ARCHIVE = {
-    "bytes": 22_589_440,
-    "sha256": "5e92b369953921dfede90d14d09d194700f7b8f5ec3a62007c5401aaf98da4c1",
+    "bytes": 22_599_680,
+    "sha256": "f8c5dccf3e3ba30ef3cd9e99e9d331c2d296ca519303ca8f866924290e5c662c",
 }
 CURRENT_PUBLIC_SOURCE_URL = "https://github.com/lennertvhoy/StatePort-Source.git"
 CURRENT_TARGET_ID = "wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet"
@@ -767,12 +768,12 @@ def validate_alpha3_release() -> None:
 def validate_alpha6_release() -> None:
     """Bind the current public-test release to exact signed and bootstrap bytes."""
 
-    release_root = "download/0.1.0-alpha.6"
+    release_root = "download/0.1.0-alpha.7"
     fixed_files = {
-        "release-index.json": "607e21d73ff2bdf2582360d4d0d51fb9ef6528f61a1a440ffe52867bec2fe97e",
-        "release-index.sigstore.json": "79854cf677f1d67bebc2834f4b5f2ed5063ba30fd4e75aee886b792163efc6ea",
-        "install.sh": "ffc144d39502fde804c75f2dbf9994c25bd1f8a2cf3af7fbfb1e9a8352228ee9",
-        "predecessor-bundle/release-index.sigstore.json": "838c3106177b335e1a6a48a681cd173697c39a7bf6ac4908b6a05a5f5369eb82",
+        "release-index.json": "d60a1c1060ae84aab91bc92ab497c9bca9c5e82dc6267688398e1a2b18b9bcd9",
+        "release-index.sigstore.json": "a493e6ad3b1ab677e2dd12c359350b96c09f3eed91ecf49263a46b170af59432",
+        "install.sh": "5704e26351357cb8e0f42baabc1d8d09559546e06919967a5d2ae6cdc31f54c5",
+        "predecessor-bundle/release-index.sigstore.json": "79854cf677f1d67bebc2834f4b5f2ed5063ba30fd4e75aee886b792163efc6ea",
     }
     for name, expected in fixed_files.items():
         path = require(f"{release_root}/{name}")
@@ -784,16 +785,16 @@ def validate_alpha6_release() -> None:
     index = json.loads(index_path.read_text(encoding="utf-8"))
     signed = index.get("signed", {})
     release = signed.get("release", {})
-    if release.get("version") != "0.1.0-alpha.6" or release.get("qualification") != "candidate":
+    if release.get("version") != "0.1.0-alpha.7" or release.get("qualification") != "candidate":
         raise AssertionError("alpha.6 must remain an explicitly unqualified candidate")
 
     signatures = index.get("signatures", [])
     if len(signatures) != 1:
         raise AssertionError("alpha.6 release index must carry exactly one index signature")
     signature = signatures[0]
-    if signature.get("subjectDigest") != "sha256:97f5cd5a1033afea0a0a856d358bdc05191d27ab26cb73f42028190a4b267c06":
+    if signature.get("subjectDigest") != "sha256:15171f61eecb5138c1cd35cab5fb0f496d4d4bf954468c95957c68abcedb3cda":
         raise AssertionError("alpha.6 signed payload digest is not the staged candidate")
-    if signature.get("bundle", {}).get("digest") != "sha256:79854cf677f1d67bebc2834f4b5f2ed5063ba30fd4e75aee886b792163efc6ea":
+    if signature.get("bundle", {}).get("digest") != "sha256:a493e6ad3b1ab677e2dd12c359350b96c09f3eed91ecf49263a46b170af59432":
         raise AssertionError("alpha.6 release-index signature descriptor is stale")
     if signature.get("publicKeyFingerprint") != "sha256:3dca6219e41310c6a95a8189669aacad3198e6c84489946406b8f986e1f4211a":
         raise AssertionError("alpha.6 trust-key fingerprint is stale")
@@ -835,13 +836,13 @@ def validate_alpha6_release() -> None:
         raise AssertionError("alpha.6 curated source archive identity is stale")
 
     expected_images = {
-        "stateport-api": "sha256:202a1a5a61a43633ffd32bef46c55654dec97f4b066c531a8cbd0b072c3a7eab",
-        "stateport-dev-workspace": "sha256:7cbb7d90b17afb1557763d5e8ccb05b310443ca25fa22e744672798a0766192d",
-        "stateport-execution-host": "sha256:374ef439641472465f12c37cefcf1914df800888ff84454517c6ad26d395bb2a",
-        "stateport-playwright": "sha256:e7a8c1dd4a7798bb8a9bee4068e845e41b845f52682338b0370d1e566c813db1",
-        "stateport-runner": "sha256:604a93259b32a46849ea4ad098ae5aa379abf199a32c0f31b2f832b36af64795",
-        "stateport-web": "sha256:945c09cced090aa67e773445e7580a232b9f2174742bddc9dc8fd264de774375",
-        "stateport-worker": "sha256:f6e161c833ba1aba4173df5088f3cbb0d1a30032ae083c64dc525a1697a10f1b",
+        "stateport-api": "sha256:4c9a99b84f5bb28aeed49735393ba9361a6e060ed52a88b43fe1886d7cb8cd0e",
+        "stateport-dev-workspace": "sha256:0102c422aa8cf9ba1abb5f708f5ba5280799e9407d9db938f2e771d069524b0f",
+        "stateport-execution-host": "sha256:e152675e3948602a8885e091b558677b989e2f40083e4a9d554c589273c736ee",
+        "stateport-playwright": "sha256:214a7b50c8c1f0ba3f20ab3240d0ccce0e8b661f0faf261103717a3eb1bd2508",
+        "stateport-runner": "sha256:4777530d08ee7b82a91d96ec735a67ae4397ac42aa363203b1c3bfdb0615d6bc",
+        "stateport-web": "sha256:967657d89a53014a6cb708964d77d8b9ee4913f8414da63a3135696b8b7e05b7",
+        "stateport-worker": "sha256:be89886a4ee1f766514c66742a366dd4714f60030eb7103bf1075cd3e94d4b02",
     }
     images = signed.get("images", [])
     if {image.get("imageId"): image.get("digest") for image in images} != expected_images:
@@ -870,9 +871,9 @@ def validate_alpha6_release() -> None:
             raise AssertionError(f"alpha.6 supply-chain descriptor mismatch: {evidence_id}")
 
     predecessor = require(f"{release_root}/predecessor-bundle/release-index.sigstore.json")
-    alpha5_signature = require("download/0.1.0-alpha.5/release-index.sigstore.json")
-    if predecessor.read_bytes() != alpha5_signature.read_bytes():
-        raise AssertionError("alpha.6 predecessor bundle is not the retained alpha.5 signature")
+    alpha6_signature = require("download/0.1.0-alpha.6/release-index.sigstore.json")
+    if predecessor.read_bytes() != alpha6_signature.read_bytes():
+        raise AssertionError("alpha.7 predecessor bundle is not the retained alpha.6 signature")
 
     versioned = require(f"{release_root}/install.sh")
     mutable = require("download/install.sh")
@@ -896,7 +897,7 @@ def validate_alpha6_release() -> None:
         if hashlib.sha256(manifest.read_bytes()).hexdigest() != expected:
             raise AssertionError(f"Retained Alpha.5 manifest is stale: {image_id}")
     for image_id, expected in MANIFEST_DIGESTS.items():
-        manifest = require(f"download/alpha6-manifests/{image_id}.json")
+        manifest = require(f"download/alpha7-manifests/{image_id}.json")
         if hashlib.sha256(manifest.read_bytes()).hexdigest() != expected:
             raise AssertionError(f"Alpha.6 manifest is stale: {image_id}")
     bootstrap = versioned.read_text(encoding="utf-8")
@@ -1016,13 +1017,13 @@ def validate_source_disclosures(texts: dict[Path, str]) -> None:
     if technical is None:
         raise AssertionError("Missing technical release files page")
     required_links = (
-        "0.1.0-alpha.6/release-index.json",
-        "0.1.0-alpha.6/release-index.sigstore.json",
-        "0.1.0-alpha.6/stateport-alpha-2026-08-cosign.pub",
-        "0.1.0-alpha.6/stateport-source.tar",
-        "0.1.0-alpha.6/supply-chain/public-export-manifest.json",
-        "0.1.0-alpha.6/release-notes.md",
-        "0.1.0-alpha.6/known-limitations.md",
+        "0.1.0-alpha.7/release-index.json",
+        "0.1.0-alpha.7/release-index.sigstore.json",
+        "0.1.0-alpha.7/stateport-alpha-2026-08-cosign.pub",
+        "0.1.0-alpha.7/stateport-source.tar",
+        "0.1.0-alpha.7/supply-chain/public-export-manifest.json",
+        "0.1.0-alpha.7/release-notes.md",
+        "0.1.0-alpha.7/known-limitations.md",
         "https://github.com/lennertvhoy/StatePort-Source",
     )
     for link in required_links:
@@ -1121,7 +1122,7 @@ def validate_release_semantics() -> None:
 
     for surface in ("index.html", "download/index.html", "releases/index.html", "docs/limitations.html"):
         text = texts[ROOT / surface].lower()
-        for marker in ("alpha.6", "stateport is in early alpha", "do not use it for important data"):
+        for marker in ("alpha.7", "stateport is in early alpha", "do not use it for important data"):
             if marker not in text:
                 raise AssertionError(f"{surface} must disclose current Alpha.5 boundary {marker!r}")
     if "erratum-alpha3.html" not in texts[ROOT / "download/index.html"]:
@@ -1154,7 +1155,8 @@ def validate_release_semantics() -> None:
     alpha3_tokens = _release_identity_tokens("download/0.1.0-alpha.3")
     alpha5_tokens = _release_identity_tokens("download/0.1.0-alpha.5")
     alpha6_tokens = _release_identity_tokens("download/0.1.0-alpha.6")
-    release_tokens = {"2": alpha2_tokens, "3": alpha3_tokens, "5": alpha5_tokens, "6": alpha6_tokens}
+    alpha7_tokens = _release_identity_tokens("download/0.1.0-alpha.7")
+    release_tokens = {"2": alpha2_tokens, "3": alpha3_tokens, "5": alpha5_tokens, "6": alpha6_tokens, "7": alpha7_tokens}
     unique_tokens = {
         version: tokens - set().union(*(other for key, other in release_tokens.items() if key != version))
         for version, tokens in release_tokens.items()

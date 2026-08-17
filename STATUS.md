@@ -1,14 +1,14 @@
 # StatePort Site status
 
-**Updated At:** 2026-08-15
+**Updated At:** 2026-08-17
 **Execution Mode:** operating
-**Project State:** alpha5_install_reenabled_deterministic_bootstrap_owner_reset_and_rerun_pending
+**Project State:** alpha7_rehearsal_green_publication_pending_alpha6_fail_closed
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
 ## Current truth
 
-- `v0.1.0-alpha.5` is the current signed public-test candidate for exact target
+- `v0.1.0-alpha.7` is the staged signed successor public-test candidate for exact target
   `wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet`. Its signed index
   SHA-256 is `4613fcad48ea1a2e7dd4350d61baa333efbc734b1fcba1a1c9ca62994d562b71`
   and signed payload is
@@ -37,7 +37,9 @@
   development Git. Signed public snapshot `6911b7c1` / tree `05ca882f` is
   anonymously resolvable from `lennertvhoy/StatePort-Source`. The curated
   Alpha.5 source archive is public and AGPL/CC-BY classified.
-- Alpha.3 remains signed, byte-intact, install-disabled, and historical. Its
+- Alpha.6 remains published, signed, byte-intact, and superseded; its installer
+  route is disabled because the published candidate has the updater cache-drift
+  defect. Alpha.3 remains signed, byte-intact, install-disabled, and historical. Its
   erratum remains public. Alpha.2 remains superseded and install-disabled.
   Neither retained release tree changed.
 - Alpha.5 containment content commit
@@ -87,7 +89,8 @@
   and Alpha.3 details now use short public language. Detailed release material
   is available through one `Technical release files` page, and a focused static
   guard rejects internal release vocabulary on primary pages.
-- No versioned Alpha.2, Alpha.3, or Alpha.5 file changed. Under the superseding
+- No versioned Alpha.2, Alpha.3, or Alpha.5 file changed. Alpha.7 is additive;
+  Alpha.6 signed index and artifacts remain retained. Under the superseding
   Alpha.6 release directive, the new candidate is staged pending publication;
   Alpha.5 installation is disabled when Alpha.6 becomes current. The prior
   Alpha.5 history remains preserved after
@@ -118,6 +121,6 @@
 
 ## Exact next action
 
-Run the extended Alpha.6 rehearsal R1-R6 against the published candidate, then
-record exact rehearsal evidence. Owner clean-install, acceptance, and
-qualification remain separate actions.
+Publish the rehearsed Alpha.7 tree, remotely verify all immutable and mutable
+bytes, and close the Alpha.6 installer route. Owner clean-install, acceptance,
+and qualification remain separate actions.
