@@ -4,24 +4,19 @@
 **Execution Mode:** operating
 **Max Items:** 1
 
-## P0 [BL-SITE-ALPHA5-MATERIALIZATION] Deterministic bootstrap live; owner resets and reruns
+## P0 [BL-ALPHA6-PUBLICATION] Publish signed Alpha.6 successor
 
-**Status:** Owner directive `OD-2026-08-15-ALPHA5-RERUN-CONFLICT-FIX` supersedes
-the install-wait sequencing. The owner rerun refused with
-`image_archive_conflict` because runtime archive creation embedded fresh
-mtimes; StatePort `dd61a7e6` makes it deterministic. The repinned 17,620-byte
-bootstrap (SHA-256
-`cf8b20d09bc0865e222281cb09a4cece675eff979a84b6cb2e71ba53338a6300`) deployed
-in content `e72c8cf` through Pages build `1152792921`, run `31879838808`, and
-deployment `5919578251`; all 3 changed paths and all 33 immutable files matched
-anonymous live bytes.
+**Status:** Owner directive `OD-2026-08-16-ALPHA6-AUTONOMOUS-RELEASE` authorizes
+the signed Alpha.6 publication chain. The local candidate is assembled,
+signed, re-derived, and staged with an 18,084-byte bootstrap at SHA-256
+`ffc144d39502fde804c75f2dbf9994c25bd1f8a2cf3af7fbfb1e9a8352228ee9`.
 
-**Decision:** the owner clears retained state on the exact target
-(`rm -rf ~/.local/state/stateport-install`), then runs the pinned preflight,
-then the pinned install command, on Windows 11 + WSL2 + Ubuntu 24.04.
+**Decision:** validate, commit, push, deploy, and anonymously verify the
+Alpha.6 Site content. Alpha.5 remains immutable and becomes superseded and
+install-disabled when Alpha.6 is live.
 
-**Exit:** the owner supplies the install result. Clean-install qualification
-and acceptance remain separate owner actions.
+**Exit:** exact live bytes and Site state are closed. Clean-install
+qualification and acceptance remain separate owner actions.
 
 ## Completed since last update
 

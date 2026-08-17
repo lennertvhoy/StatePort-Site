@@ -87,14 +87,14 @@
   and Alpha.3 details now use short public language. Detailed release material
   is available through one `Technical release files` page, and a focused static
   guard rejects internal release vocabulary on primary pages.
-- No versioned Alpha.2, Alpha.3, or Alpha.5 file changed. Under owner directive
-  `OD-2026-08-15-ALPHA5-INSTALL-REENABLE`, installation is re-enabled after
+- No versioned Alpha.2, Alpha.3, or Alpha.5 file changed. Under the superseding
+  Alpha.6 release directive, the new candidate is staged pending publication;
+  Alpha.5 installation is disabled when Alpha.6 becomes current. The prior
+  Alpha.5 history remains preserved after
   anonymous byte-verification confirmed the live mutable bootstrap carries the
   `c441ca7a` repair (root-owned `/usr/local/libexec` parent creation, labeled
-  bounded retries, no-root-write preflight). The download page shows the pinned
-  non-installing preflight as the recommended first step, then the exact pinned
-  install command. The owner install result is pending; Alpha.5 remains
-  `compatible_unvalidated` and unaccepted.
+  bounded retries, no-root-write preflight). Alpha.5 remains
+  `compatible_unvalidated` and unaccepted as historical evidence.
 - Re-enable content `2061319d50cf1a7b59bca4a0ee5906688aed1170` deployed through
   Pages build `1152707301`, run `31877244223`, and deployment `5919159551`. All
   20 changed mutable paths and all 33 immutable Alpha.5 files matched anonymous
@@ -118,7 +118,7 @@
 
 ## Exact next action
 
-The owner clears the retained state on the exact target
-(`rm -rf ~/.local/state/stateport-install`), then runs the pinned preflight and
-the pinned install command on Windows 11 + WSL2 + Ubuntu 24.04. Await the
-result.
+Validate the staged Alpha.6 tree and public copy, commit it on `main`, push it,
+wait for the managed Pages build, then verify the exact live Alpha.6 bytes and
+close Site state. Owner clean-install, acceptance, and qualification remain
+separate actions after publication.

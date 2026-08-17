@@ -31,7 +31,7 @@ from render_support import load_config, rendered_home, support_enabled
 ROOT = Path(__file__).resolve().parents[1]
 
 INSTALLER_STATUS = (
-    "The Alpha.5 installer is available for a first test on Windows 11 with WSL2 "
+    "The Alpha.6 installer is available for a first test on Windows 11 with WSL2 "
     "and Ubuntu 24.04. It has not yet been proven on a freshly installed computer."
 )
 
@@ -57,19 +57,28 @@ ALPHA3_CURATED_SOURCE_ARCHIVE = {
     "sha256": "17f5680c30841b1e831b37df02dca8f03c2c03d265a42633dd525f99bd613398",
 }
 CURRENT_CANONICAL_SOURCE_IDENTITY = {
-    "commit": "256d876156fbbde8547ecc04c1ac87d31df70bad",
-    "tree": "e7fb80c5ac2c8bbe6d48dd21e559a02328a70d0c",
+    "commit": "f486e3c455f5630a4a416c616566c1cb5072e443",
+    "tree": "b70e58caa709e0431e24df212d952c085cff94df",
 }
 CURRENT_PUBLIC_SNAPSHOT_IDENTITY = {
-    "commit": "6911b7c1e73e0408af4a2a900aec585d15168a28",
-    "tree": "05ca882f4e41b98f4ffa6f9257e068d72472e765",
+    "commit": "13827b7c2e8e4855cb495dbc22833524a11062d4",
+    "tree": "4a74f46f35685bb9642d902658c47ec5d8c02530",
 }
 CURRENT_CURATED_SOURCE_ARCHIVE = {
-    "bytes": 22_415_360,
-    "sha256": "00be84da7739a450b030432dece7caba93b79b59d575fefc89d2ba17bb31446b",
+    "bytes": 22_589_440,
+    "sha256": "5e92b369953921dfede90d14d09d194700f7b8f5ec3a62007c5401aaf98da4c1",
 }
 CURRENT_PUBLIC_SOURCE_URL = "https://github.com/lennertvhoy/StatePort-Source.git"
 CURRENT_TARGET_ID = "wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet"
+RETAINED_ALPHA5_MANIFEST_DIGESTS = {
+    "stateport-api": "a5c639880195ba6dc57fa9c13378fdf0cdb0361f08cbddea7b7e90f476906af8",
+    "stateport-dev-workspace": "1a9eecc2a087620e7139570e09c08b4ce6c17a8369d2b428551809dff3fda886",
+    "stateport-execution-host": "02d3ce6d6dfdacc164b947c1c88ebf6c64e0a103b05fbd420454083db589efb2",
+    "stateport-playwright": "a5e8bc89bd193bd149dcad3de03366796bcc8f903f019e9e599f928dfaed9096",
+    "stateport-runner": "45b5aaf0cd18699a66371ed800683ad5740b491d1442d9c1edd90d87089786ae",
+    "stateport-web": "57f625f36c590c1440d70f07a3aa1bee6b31c2a9c942285c897c7934635fccf1",
+    "stateport-worker": "ac835bf5449d1f7843734a8cbb9f4a332e9b01e6066f06599798a6964539e551",
+}
 
 # Local, untracked build source for the public overview media. It is not a
 # visitor page, so page-level scans must exclude this source tree while
@@ -755,15 +764,15 @@ def validate_alpha3_release() -> None:
 
 
 
-def validate_alpha5_release() -> None:
+def validate_alpha6_release() -> None:
     """Bind the current public-test release to exact signed and bootstrap bytes."""
 
-    release_root = "download/0.1.0-alpha.5"
+    release_root = "download/0.1.0-alpha.6"
     fixed_files = {
-        "release-index.json": "4613fcad48ea1a2e7dd4350d61baa333efbc734b1fcba1a1c9ca62994d562b71",
-        "release-index.sigstore.json": "838c3106177b335e1a6a48a681cd173697c39a7bf6ac4908b6a05a5f5369eb82",
-        "install.sh": "104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a",
-        "predecessor-bundle/release-index.sigstore.json": "e4fb2c0f274ed88e34a5904c2d85feb3dcc231a7a5d794072fff158a29178208",
+        "release-index.json": "607e21d73ff2bdf2582360d4d0d51fb9ef6528f61a1a440ffe52867bec2fe97e",
+        "release-index.sigstore.json": "79854cf677f1d67bebc2834f4b5f2ed5063ba30fd4e75aee886b792163efc6ea",
+        "install.sh": "ffc144d39502fde804c75f2dbf9994c25bd1f8a2cf3af7fbfb1e9a8352228ee9",
+        "predecessor-bundle/release-index.sigstore.json": "838c3106177b335e1a6a48a681cd173697c39a7bf6ac4908b6a05a5f5369eb82",
     }
     for name, expected in fixed_files.items():
         path = require(f"{release_root}/{name}")
@@ -775,35 +784,35 @@ def validate_alpha5_release() -> None:
     index = json.loads(index_path.read_text(encoding="utf-8"))
     signed = index.get("signed", {})
     release = signed.get("release", {})
-    if release.get("version") != "0.1.0-alpha.5" or release.get("qualification") != "candidate":
-        raise AssertionError("alpha.5 must remain an explicitly unqualified candidate")
+    if release.get("version") != "0.1.0-alpha.6" or release.get("qualification") != "candidate":
+        raise AssertionError("alpha.6 must remain an explicitly unqualified candidate")
 
     signatures = index.get("signatures", [])
     if len(signatures) != 1:
-        raise AssertionError("alpha.5 release index must carry exactly one index signature")
+        raise AssertionError("alpha.6 release index must carry exactly one index signature")
     signature = signatures[0]
-    if signature.get("subjectDigest") != "sha256:e45d5c8ce6843bd0c3155ecd26940ff3dc11c5069a2de796a079708066faf98c":
-        raise AssertionError("alpha.5 signed payload digest is not the published candidate")
-    if signature.get("bundle", {}).get("digest") != "sha256:838c3106177b335e1a6a48a681cd173697c39a7bf6ac4908b6a05a5f5369eb82":
-        raise AssertionError("alpha.5 release-index signature descriptor is stale")
+    if signature.get("subjectDigest") != "sha256:97f5cd5a1033afea0a0a856d358bdc05191d27ab26cb73f42028190a4b267c06":
+        raise AssertionError("alpha.6 signed payload digest is not the staged candidate")
+    if signature.get("bundle", {}).get("digest") != "sha256:79854cf677f1d67bebc2834f4b5f2ed5063ba30fd4e75aee886b792163efc6ea":
+        raise AssertionError("alpha.6 release-index signature descriptor is stale")
     if signature.get("publicKeyFingerprint") != "sha256:3dca6219e41310c6a95a8189669aacad3198e6c84489946406b8f986e1f4211a":
-        raise AssertionError("alpha.5 trust-key fingerprint is stale")
+        raise AssertionError("alpha.6 trust-key fingerprint is stale")
 
     source = signed.get("source", {})
     for field, expected in CURRENT_CANONICAL_SOURCE_IDENTITY.items():
         if source.get(field) != expected:
-            raise AssertionError(f"alpha.5 release index has the wrong canonical source {field}")
+            raise AssertionError(f"alpha.6 release index has the wrong canonical source {field}")
     public_snapshot = source.get("publicSnapshot", {})
     for field, expected in CURRENT_PUBLIC_SNAPSHOT_IDENTITY.items():
         if public_snapshot.get(field) != expected:
-            raise AssertionError(f"alpha.5 release index has the wrong publicSnapshot {field}")
+            raise AssertionError(f"alpha.6 release index has the wrong publicSnapshot {field}")
     for field in ("authorityUrl", "repository"):
         if public_snapshot.get(field) != CURRENT_PUBLIC_SOURCE_URL:
-            raise AssertionError(f"alpha.5 publicSnapshot {field} is not remotely resolvable")
+            raise AssertionError(f"alpha.6 publicSnapshot {field} is not remotely resolvable")
 
     targets = signed.get("targets", [])
     if len(targets) != 1 or targets[0].get("targetId") != CURRENT_TARGET_ID:
-        raise AssertionError("alpha.5 must name only the exact WSL2 Ubuntu 24.04 target")
+        raise AssertionError("alpha.6 must name only the exact WSL2 Ubuntu 24.04 target")
 
     artifact_paths = {
         "compose": "compose.yaml",
@@ -820,33 +829,33 @@ def validate_alpha5_release() -> None:
         path = require(f"{release_root}/{name}")
         observed = hashlib.sha256(path.read_bytes()).hexdigest()
         if descriptor.get("digest") != f"sha256:{observed}" or descriptor.get("size") != path.stat().st_size:
-            raise AssertionError(f"alpha.5 artifact descriptor mismatch: {artifact_id}")
+            raise AssertionError(f"alpha.6 artifact descriptor mismatch: {artifact_id}")
     source_archive = artifacts.get("sourceArchive", {})
     if source_archive.get("digest") != f"sha256:{CURRENT_CURATED_SOURCE_ARCHIVE['sha256']}" or source_archive.get("size") != CURRENT_CURATED_SOURCE_ARCHIVE["bytes"]:
-        raise AssertionError("alpha.5 curated source archive identity is stale")
+        raise AssertionError("alpha.6 curated source archive identity is stale")
 
     expected_images = {
-        "stateport-api": "sha256:a5c639880195ba6dc57fa9c13378fdf0cdb0361f08cbddea7b7e90f476906af8",
-        "stateport-dev-workspace": "sha256:1a9eecc2a087620e7139570e09c08b4ce6c17a8369d2b428551809dff3fda886",
-        "stateport-execution-host": "sha256:02d3ce6d6dfdacc164b947c1c88ebf6c64e0a103b05fbd420454083db589efb2",
-        "stateport-playwright": "sha256:a5e8bc89bd193bd149dcad3de03366796bcc8f903f019e9e599f928dfaed9096",
-        "stateport-runner": "sha256:45b5aaf0cd18699a66371ed800683ad5740b491d1442d9c1edd90d87089786ae",
-        "stateport-web": "sha256:57f625f36c590c1440d70f07a3aa1bee6b31c2a9c942285c897c7934635fccf1",
-        "stateport-worker": "sha256:ac835bf5449d1f7843734a8cbb9f4a332e9b01e6066f06599798a6964539e551",
+        "stateport-api": "sha256:202a1a5a61a43633ffd32bef46c55654dec97f4b066c531a8cbd0b072c3a7eab",
+        "stateport-dev-workspace": "sha256:7cbb7d90b17afb1557763d5e8ccb05b310443ca25fa22e744672798a0766192d",
+        "stateport-execution-host": "sha256:374ef439641472465f12c37cefcf1914df800888ff84454517c6ad26d395bb2a",
+        "stateport-playwright": "sha256:e7a8c1dd4a7798bb8a9bee4068e845e41b845f52682338b0370d1e566c813db1",
+        "stateport-runner": "sha256:604a93259b32a46849ea4ad098ae5aa379abf199a32c0f31b2f832b36af64795",
+        "stateport-web": "sha256:945c09cced090aa67e773445e7580a232b9f2174742bddc9dc8fd264de774375",
+        "stateport-worker": "sha256:f6e161c833ba1aba4173df5088f3cbb0d1a30032ae083c64dc525a1697a10f1b",
     }
     images = signed.get("images", [])
     if {image.get("imageId"): image.get("digest") for image in images} != expected_images:
-        raise AssertionError("alpha.5 image set is not the published seven-image set")
+        raise AssertionError("alpha.6 image set is not the staged seven-image set")
     for image in images:
         image_id = image["imageId"]
         digest = expected_images[image_id]
         if image.get("reference") != f"ghcr.io/lennertvhoy/{image_id}@{digest}":
-            raise AssertionError(f"alpha.5 image reference is not public and digest-pinned: {image_id}")
+            raise AssertionError(f"alpha.6 image reference is not public and digest-pinned: {image_id}")
         bundle = image.get("signature", {}).get("bundle", {})
         bundle_path = require(f"{release_root}/signatures/{image_id}.sigstore.json")
         observed = hashlib.sha256(bundle_path.read_bytes()).hexdigest()
         if bundle.get("digest") != f"sha256:{observed}" or bundle.get("size") != bundle_path.stat().st_size:
-            raise AssertionError(f"alpha.5 image signature descriptor mismatch: {image_id}")
+            raise AssertionError(f"alpha.6 image signature descriptor mismatch: {image_id}")
 
     supply_chain_paths = {
         "doubleBuildComparison": "double-build-comparison.json",
@@ -858,36 +867,38 @@ def validate_alpha5_release() -> None:
         path = require(f"{release_root}/supply-chain/{name}")
         observed = hashlib.sha256(path.read_bytes()).hexdigest()
         if descriptor.get("digest") != f"sha256:{observed}" or descriptor.get("size") != path.stat().st_size:
-            raise AssertionError(f"alpha.5 supply-chain descriptor mismatch: {evidence_id}")
+            raise AssertionError(f"alpha.6 supply-chain descriptor mismatch: {evidence_id}")
 
     predecessor = require(f"{release_root}/predecessor-bundle/release-index.sigstore.json")
-    alpha3_signature = require("download/0.1.0-alpha.3/release-index.sigstore.json")
-    if predecessor.read_bytes() != alpha3_signature.read_bytes():
-        raise AssertionError("alpha.5 predecessor bundle is not the retained alpha.3 signature")
+    alpha5_signature = require("download/0.1.0-alpha.5/release-index.sigstore.json")
+    if predecessor.read_bytes() != alpha5_signature.read_bytes():
+        raise AssertionError("alpha.6 predecessor bundle is not the retained alpha.5 signature")
 
     versioned = require(f"{release_root}/install.sh")
     mutable = require("download/install.sh")
     for path in (versioned, mutable):
         if stat.S_IMODE(path.stat().st_mode) != 0o755:
-            raise AssertionError(f"Alpha.5 bootstrap mode must be exactly 0755: {path}")
-    if mutable.read_bytes() == versioned.read_bytes():
-        raise AssertionError("Mutable probe bootstrap does not contain the manifest repair")
+            raise AssertionError(f"Alpha.6 bootstrap mode must be exactly 0755: {path}")
     if versioned.stat().st_size != VERSIONED_BOOTSTRAP_SIZE:
-        raise AssertionError("Immutable Alpha.5 bootstrap size changed")
+        raise AssertionError("Immutable Alpha.6 bootstrap size changed")
     if fixed_files["install.sh"] != VERSIONED_BOOTSTRAP_SHA256:
-        raise AssertionError("Immutable Alpha.5 bootstrap digest changed")
+        raise AssertionError("Immutable Alpha.6 bootstrap digest changed")
     if VERSIONED_BOOTSTRAP_URL != f"https://lennertvhoy.github.io/StatePort-Site/{release_root}/install.sh":
-        raise AssertionError("Immutable Alpha.5 bootstrap URL is stale")
+        raise AssertionError("Immutable Alpha.6 bootstrap URL is stale")
     if mutable.stat().st_size != BOOTSTRAP_SIZE:
-        raise AssertionError("Mutable Alpha.5 probe bootstrap size is stale")
+        raise AssertionError("Mutable Alpha.6 probe bootstrap size is stale")
     if hashlib.sha256(mutable.read_bytes()).hexdigest() != BOOTSTRAP_SHA256:
-        raise AssertionError("Mutable Alpha.5 probe bootstrap digest is stale")
+        raise AssertionError("Mutable Alpha.6 probe bootstrap digest is stale")
     if BOOTSTRAP_URL != "https://lennertvhoy.github.io/StatePort-Site/download/install.sh":
-        raise AssertionError("Alpha.5 transport generator points at the wrong mutable bootstrap")
-    for image_id, expected in MANIFEST_DIGESTS.items():
+        raise AssertionError("Alpha.6 transport generator points at the wrong mutable bootstrap")
+    for image_id, expected in RETAINED_ALPHA5_MANIFEST_DIGESTS.items():
         manifest = require(f"download/alpha5-manifests/{image_id}.json")
         if hashlib.sha256(manifest.read_bytes()).hexdigest() != expected:
-            raise AssertionError(f"Mutable Alpha.5 manifest is stale: {image_id}")
+            raise AssertionError(f"Retained Alpha.5 manifest is stale: {image_id}")
+    for image_id, expected in MANIFEST_DIGESTS.items():
+        manifest = require(f"download/alpha6-manifests/{image_id}.json")
+        if hashlib.sha256(manifest.read_bytes()).hexdigest() != expected:
+            raise AssertionError(f"Alpha.6 manifest is stale: {image_id}")
     bootstrap = versioned.read_text(encoding="utf-8")
     for fragment in (
         CURRENT_TARGET_ID,
@@ -897,7 +908,7 @@ def validate_alpha5_release() -> None:
         "Ubuntu 24.04 for WSL is required.",
     ):
         if fragment not in bootstrap:
-            raise AssertionError(f"Alpha.5 bootstrap lacks required contract: {fragment}")
+            raise AssertionError(f"Alpha.6 bootstrap lacks required contract: {fragment}")
 
 
 def validate_immutable_release_trees() -> None:
@@ -1005,13 +1016,13 @@ def validate_source_disclosures(texts: dict[Path, str]) -> None:
     if technical is None:
         raise AssertionError("Missing technical release files page")
     required_links = (
-        "0.1.0-alpha.5/release-index.json",
-        "0.1.0-alpha.5/release-index.sigstore.json",
-        "0.1.0-alpha.5/stateport-alpha-2026-08-cosign.pub",
-        "0.1.0-alpha.5/stateport-source.tar",
-        "0.1.0-alpha.5/supply-chain/public-export-manifest.json",
-        "0.1.0-alpha.5/release-notes.md",
-        "0.1.0-alpha.5/known-limitations.md",
+        "0.1.0-alpha.6/release-index.json",
+        "0.1.0-alpha.6/release-index.sigstore.json",
+        "0.1.0-alpha.6/stateport-alpha-2026-08-cosign.pub",
+        "0.1.0-alpha.6/stateport-source.tar",
+        "0.1.0-alpha.6/supply-chain/public-export-manifest.json",
+        "0.1.0-alpha.6/release-notes.md",
+        "0.1.0-alpha.6/known-limitations.md",
         "https://github.com/lennertvhoy/StatePort-Source",
     )
     for link in required_links:
@@ -1072,7 +1083,7 @@ def validate_release_semantics() -> None:
     known_defective = re.search(r"^  known_defective: false\s*$", release_block, re.MULTILINE)
     if not install_enabled or not known_defective:
         raise AssertionError(
-            "PROJECT_STATE.yaml must enable installation without labelling signed Alpha.5 bytes defective"
+            "PROJECT_STATE.yaml must enable installation without labelling signed Alpha.6 bytes defective"
         )
 
     pages = mutable_public_pages()
@@ -1087,30 +1098,30 @@ def validate_release_semantics() -> None:
 
     download = texts[ROOT / "download/index.html"]
     if escape(preflight) not in download:
-        raise AssertionError("download/index.html must show the exact pinned Alpha.5 preflight command")
+        raise AssertionError("download/index.html must show the exact pinned Alpha.6 preflight command")
     if escape(install_command) not in download:
-        raise AssertionError("download/index.html must show the exact pinned Alpha.5 install command")
+        raise AssertionError("download/index.html must show the exact pinned Alpha.6 install command")
     if download.index(escape(preflight)) > download.index(escape(install_command)):
         raise AssertionError("download/index.html must present the preflight before the install command")
     if INSTALLER_STATUS not in download:
-        raise AssertionError(f"download/index.html lacks Alpha.5 installer status {INSTALLER_STATUS!r}")
+        raise AssertionError(f"download/index.html lacks Alpha.6 installer status {INSTALLER_STATUS!r}")
 
     if pipe_to_shell.search(install_command) or pipe_to_shell.search(preflight):
-        raise AssertionError("Alpha.5 transport generator must never use pipe-to-shell")
+        raise AssertionError("Alpha.6 transport generator must never use pipe-to-shell")
     for command in (install_command, preflight):
         for marker in (BOOTSTRAP_URL, BOOTSTRAP_SHA256, str(BOOTSTRAP_SIZE), '/bin/sh -n "$tmp"'):
             if marker not in command:
-                raise AssertionError(f"Alpha.5 transport generator lacks {marker!r}")
+                    raise AssertionError(f"Alpha.6 transport generator lacks {marker!r}")
     if '/bin/sh "$tmp"' not in install_command:
-        raise AssertionError("Alpha.5 install command must execute only after checks")
+        raise AssertionError("Alpha.6 install command must execute only after checks")
     if '/bin/sh "$tmp" --materialization-preflight' not in preflight or PREFLIGHT_SUCCESS not in require(
         "download/install.sh"
     ).read_text(encoding="utf-8"):
-        raise AssertionError("Alpha.5 preflight must enter the exact non-installing bootstrap mode")
+        raise AssertionError("Alpha.6 preflight must enter the exact non-installing bootstrap mode")
 
     for surface in ("index.html", "download/index.html", "releases/index.html", "docs/limitations.html"):
         text = texts[ROOT / surface].lower()
-        for marker in ("alpha.5", "stateport is in early alpha", "do not use it for important data"):
+        for marker in ("alpha.6", "stateport is in early alpha", "do not use it for important data"):
             if marker not in text:
                 raise AssertionError(f"{surface} must disclose current Alpha.5 boundary {marker!r}")
     if "erratum-alpha3.html" not in texts[ROOT / "download/index.html"]:
@@ -1142,7 +1153,8 @@ def validate_release_semantics() -> None:
     alpha2_tokens = _release_identity_tokens("download/0.1.0-alpha.2")
     alpha3_tokens = _release_identity_tokens("download/0.1.0-alpha.3")
     alpha5_tokens = _release_identity_tokens("download/0.1.0-alpha.5")
-    release_tokens = {"2": alpha2_tokens, "3": alpha3_tokens, "5": alpha5_tokens}
+    alpha6_tokens = _release_identity_tokens("download/0.1.0-alpha.6")
+    release_tokens = {"2": alpha2_tokens, "3": alpha3_tokens, "5": alpha5_tokens, "6": alpha6_tokens}
     unique_tokens = {
         version: tokens - set().union(*(other for key, other in release_tokens.items() if key != version))
         for version, tokens in release_tokens.items()
@@ -1319,7 +1331,7 @@ def main() -> None:
     require_text("index.html", "See StatePort in 33 seconds")
     require_text("docs/prototype-walkthrough.html", "Development preview")
     require_text("docs/agent-kits.html", "Early direction")
-    require_text("docs/platform-support.html", "Alpha.5 requirements")
+    require_text("docs/platform-support.html", "Alpha.6 requirements")
     require_text("papers/stateware-whitepaper-public-v1.1.html", "Publication note")
     require_text("releases/index.html", "installer available for a first test")
     require_text("download/index.html", "Do not install Alpha 2 or Alpha 3")
@@ -1344,7 +1356,7 @@ def main() -> None:
     validate_support_configuration()
     validate_disabled_alpha2_bootstrap()
     validate_alpha3_release()
-    validate_alpha5_release()
+    validate_alpha6_release()
     validate_immutable_release_trees()
     validate_release_semantics()
     validate_asset_cache_keys()

@@ -224,10 +224,10 @@ class ImmutableManifestTests(unittest.TestCase):
 
 
 class CurrentBootstrapTests(unittest.TestCase):
-    def test_mutable_probe_bootstrap_is_bound_separately_from_immutable_alpha5(self) -> None:
+    def test_current_bootstrap_and_manifests_are_bound_to_alpha6(self) -> None:
         installer = ROOT / "download/install.sh"
-        versioned = ROOT / "download/0.1.0-alpha.5/install.sh"
-        self.assertNotEqual(installer.read_bytes(), versioned.read_bytes())
+        versioned = ROOT / "download/0.1.0-alpha.6/install.sh"
+        self.assertEqual(installer.read_bytes(), versioned.read_bytes())
         self.assertEqual(
             hashlib.sha256(installer.read_bytes()).hexdigest(),
             install_transport.BOOTSTRAP_SHA256,
@@ -239,7 +239,7 @@ class CurrentBootstrapTests(unittest.TestCase):
         )
         self.assertEqual(len(versioned.read_bytes()), install_transport.VERSIONED_BOOTSTRAP_SIZE)
         for image_id, digest in install_transport.MANIFEST_DIGESTS.items():
-            manifest = ROOT / "download/alpha5-manifests" / f"{image_id}.json"
+            manifest = ROOT / "download/alpha6-manifests" / f"{image_id}.json"
             self.assertEqual(hashlib.sha256(manifest.read_bytes()).hexdigest(), digest)
 
     def test_program_has_valid_shell_syntax(self) -> None:
@@ -355,7 +355,7 @@ class SourceDisclosureTests(unittest.TestCase):
         missing = dict(texts)
         technical = ROOT / "download/technical-release-files.html"
         missing[technical] = missing[technical].replace(
-            "0.1.0-alpha.5/release-index.json", "missing-release-index.json"
+            "0.1.0-alpha.6/release-index.json", "missing-release-index.json"
         )
         with self.assertRaisesRegex(AssertionError, "technical release files page lacks"):
             validate_repo.validate_source_disclosures(missing)

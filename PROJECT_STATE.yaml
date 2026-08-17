@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha5_install_reenabled_deterministic_bootstrap_owner_reset_and_rerun_pending
+  status: alpha6_candidate_staged_pending_pages_publication
   purpose: public_documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -24,34 +24,34 @@ canonical_truth:
   exact_head: derived_from_git_not_persisted
 
 release:
-  version: 0.1.0-alpha.5
+  version: 0.1.0-alpha.6
   channel: alpha
   qualification: candidate
-  published: true
+  published: false
   known_defective: false
-  original_streamed_install_transport_defective: true
+  original_streamed_install_transport_defective: false
   owner_accepted: false
   installation_enabled: true
   support_tier: compatible_unvalidated
-  public_download: "download/0.1.0-alpha.5/install.sh"
-  release_index: "download/0.1.0-alpha.5/release-index.json"
-  release_index_sha256: 4613fcad48ea1a2e7dd4350d61baa333efbc734b1fcba1a1c9ca62994d562b71
-  signed_payload_digest: sha256:e45d5c8ce6843bd0c3155ecd26940ff3dc11c5069a2de796a079708066faf98c
-  index_signature_bundle_digest: sha256:838c3106177b335e1a6a48a681cd173697c39a7bf6ac4908b6a05a5f5369eb82
-  predecessor_signature_bundle_digest: sha256:e4fb2c0f274ed88e34a5904c2d85feb3dcc231a7a5d794072fff158a29178208
+  public_download: "download/install.sh"
+  release_index: "download/0.1.0-alpha.6/release-index.json"
+  release_index_sha256: 607e21d73ff2bdf2582360d4d0d51fb9ef6528f61a1a440ffe52867bec2fe97e
+  signed_payload_digest: sha256:97f5cd5a1033afea0a0a856d358bdc05191d27ab26cb73f42028190a4b267c06
+  index_signature_bundle_digest: sha256:79854cf677f1d67bebc2834f4b5f2ed5063ba30fd4e75aee886b792163efc6ea
+  predecessor_signature_bundle_digest: sha256:838c3106177b335e1a6a48a681cd173697c39a7bf6ac4908b6a05a5f5369eb82
   trust_key_id: stateport-alpha-private-2026-08
   trust_key_fingerprint: sha256:3dca6219e41310c6a95a8189669aacad3198e6c84489946406b8f986e1f4211a
-  source_commit: 256d876156fbbde8547ecc04c1ac87d31df70bad
-  source_tree: e7fb80c5ac2c8bbe6d48dd21e559a02328a70d0c
+  source_commit: f486e3c455f5630a4a416c616566c1cb5072e443
+  source_tree: b70e58caa709e0431e24df212d952c085cff94df
   public_snapshot_repository: "https://github.com/lennertvhoy/StatePort-Source.git"
-  public_snapshot_commit: 6911b7c1e73e0408af4a2a900aec585d15168a28
-  public_snapshot_tree: 05ca882f4e41b98f4ffa6f9257e068d72472e765
-  source_archive_sha256: 00be84da7739a450b030432dece7caba93b79b59d575fefc89d2ba17bb31446b
+  public_snapshot_commit: 13827b7c2e8e4855cb495dbc22833524a11062d4
+  public_snapshot_tree: 4a74f46f35685bb9642d902658c47ec5d8c02530
+  source_archive_sha256: 5e92b369953921dfede90d14d09d194700f7b8f5ec3a62007c5401aaf98da4c1
   target_id: wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet
   image_count: 7
-  bootstrap_sha256: 104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a
-  mutable_preflight_bootstrap_sha256: cf8b20d09bc0865e222281cb09a4cece675eff979a84b6cb2e71ba53338a6300
-  mutable_preflight_bootstrap_bytes: 17620
+  bootstrap_sha256: ffc144d39502fde804c75f2dbf9994c25bd1f8a2cf3af7fbfb1e9a8352228ee9
+  mutable_preflight_bootstrap_sha256: ffc144d39502fde804c75f2dbf9994c25bd1f8a2cf3af7fbfb1e9a8352228ee9
+  mutable_preflight_bootstrap_bytes: 18084
 
 predecessors:
   alpha3:
@@ -68,13 +68,13 @@ predecessors:
     immutable_artifacts_retained: true
 
 acceptance:
-  publication: published_deployed_remotely_verified
-  clean_install: owner_reported_materialization_failure_no_receipt
-  first_host_attempt: owner_reported_prerequisites_installed_then_dash_unterminated_quote_no_python_installer
-  transport_probe: owner_reported_exact_target_complete_size_digest_and_dash_syntax_passed_without_execution
-  installer_attempt: owner_reported_fail_closed_private_image_signature_refusal
-  manifest_transport_probe: owner_reported_exact_target_passed
-  materialization_preflight: published_remote_verified_pending_owner_result
+  publication: candidate_staged_pending_pages_publication
+  clean_install: no_receipt
+  first_host_attempt: not_run
+  transport_probe: local_shell_syntax_passed
+  installer_attempt: not_run
+  manifest_transport_probe: not_run
+  materialization_preflight: not_run
   human_acceptance: not_granted
   independent_security_review: not_performed
   stability: not_established
@@ -87,24 +87,24 @@ site:
   deployment:
     provider: GitHub Pages
     build_type: legacy
-    status: alpha5_deterministic_bootstrap_built_from_main_root_remotely_verified
+    status: alpha6_candidate_staged_pending_pages_publication
     workflow: ".github/workflows/deploy-pages.yml"
     custom_workflow_status: disabled_manual_only_not_live_provider
     source_branch: main
     source_path: /
     deployment_head: derived_from_git_not_persisted
-    live_content_commit: e72c8cf5c2b6845d6c2459c69e3777079a90202e
-    pages_build: 1152792921
-    pages_build_commit_field: e72c8cf5c2b6845d6c2459c69e3777079a90202e
-    pages_run: 31879838808
-    pages_deployment: 5919578251
-    deployment_sha: e72c8cf5c2b6845d6c2459c69e3777079a90202e
-  current_release_surface: plain_language_public_copy_install_enabled
+    live_content_commit: pending
+    pages_build: pending
+    pages_build_commit_field: pending
+    pages_run: pending
+    pages_deployment: pending
+    deployment_sha: pending
+  current_release_surface: alpha6_public_test_candidate
   installer_command_shown: true
   installer_command_locations: [download/index.html]
   replacement_install_command: enabled_preflight_recommended_first_step
-  nonexecuting_transport_probe: owner_reported_exact_target_passed
-  nonexecuting_materialization_preflight: published_pending_owner_result
+  nonexecuting_transport_probe: local_shell_syntax_passed
+  nonexecuting_materialization_preflight: not_run
   immutable_tree_manifest: config/immutable-release-trees.json
   immutable_anchors:
     alpha2: 4043534a9a1d56c51c3d47d0906e0520963af79c
@@ -144,24 +144,24 @@ site:
     browser_automation: unavailable_not_claimed
 
 owner_directive:
-  id: OD-2026-08-15-ALPHA5-RERUN-CONFLICT-FIX
-  status: content_deployed_remote_verified
-  supersedes: OD-2026-08-15-ALPHA5-INSTALL-REENABLE
+  id: OD-2026-08-16-ALPHA6-AUTONOMOUS-RELEASE
+  status: candidate_staged_pending_publication
+  supersedes: OD-2026-08-15-ALPHA5-RERUN-CONFLICT-FIX
   source_repository: /home/ff/Documents/Projects/StatePort
-  source_base: 3e3e65aec594decad8abba35ea05a92fbc81429c
-  site_base: dbf7092ab3dd91599803fc4b6531696df30a647d
-  objective: publish_deterministic_archive_bootstrap_and_repinned_commands_after_image_archive_conflict_root_cause
-  live_fix_verified_before_reenable: true
+  source_base: f486e3c455f5630a4a416c616566c1cb5072e443
+  site_base: 8911c956b2a39aa1a28b82724cfec1db15330b20
+  objective: publish_alpha6_signed_candidate_and_supersede_alpha5
+  live_fix_verified_before_reenable: false
   site_commit_push_and_pages_deployment: authorized
   public_copy_guard: updated_and_passing
-  versioned_release_file_changes: prohibited_and_absent
-  signing_or_successor_release: not_authorized
+  versioned_release_file_changes: alpha6_additive_only_alpha2_alpha3_alpha5_immutable
+  signing_or_successor_release: authorized_by_latest_stateport_directive
   human_acceptance: not_granted
 
 active_work:
-  - id: BL-SITE-ALPHA5-MATERIALIZATION
+  - id: BL-ALPHA6-PUBLICATION
     priority: P0
-    status: deterministic_bootstrap_published_owner_reset_and_rerun_pending
+    status: candidate_staged_pending_pages_publication
 
 prior_work:
   - id: alpha5_rerun_image_archive_conflict

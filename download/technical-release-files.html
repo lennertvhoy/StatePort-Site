@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Technical files for StatePort Alpha.5, including the signed release index, source archive, signatures, release notes, and older release records.">
+    <meta name="description" content="Technical files for StatePort Alpha.6, including the signed release index, source archive, signatures, release notes, and older release records.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
@@ -14,7 +14,7 @@
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.6 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/download/technical-release-files.html">
@@ -58,7 +58,7 @@
         <aside class="doc-sidebar" aria-label="Technical release file sections">
           <h2>Release files</h2>
           <nav>
-            <a href="#alpha5" aria-current="page">Alpha.5</a>
+            <a href="#alpha6" aria-current="page">Alpha.6</a>
             <a href="#source">Source and licenses</a>
             <a href="#older-releases">Older releases</a>
             <a href="./">Download status</a>
@@ -66,8 +66,23 @@
         </aside>
 
         <article class="prose" data-no-toc>
+          <section id="alpha6" aria-labelledby="alpha6-files-heading">
+            <h2 id="alpha6-files-heading">Alpha.6</h2>
+            <ul>
+              <li><a href="0.1.0-alpha.6/release-index.json">Signed release index</a></li>
+              <li><a href="0.1.0-alpha.6/release-index.sigstore.json">Release index signature</a></li>
+              <li><a href="0.1.0-alpha.6/stateport-alpha-2026-08-cosign.pub">Release public key</a></li>
+              <li><a href="0.1.0-alpha.6/supply-chain/public-export-manifest.json">Public export manifest</a></li>
+              <li><a href="0.1.0-alpha.6/compose.yaml">Compose definition</a></li>
+              <li><a href="0.1.0-alpha.6/release-notes.md">Release notes</a></li>
+              <li><a href="0.1.0-alpha.6/known-limitations.md">Known limitations</a></li>
+              <li><a href="0.1.0-alpha.6/predecessor-bundle/release-index.sigstore.json">Alpha.5 predecessor signature</a></li>
+            </ul>
+          </section>
+
           <section id="alpha5" aria-labelledby="alpha5-files-heading">
-            <h2 id="alpha5-files-heading">Alpha.5</h2>
+            <h2 id="alpha5-files-heading">Alpha.5 (superseded)</h2>
+            <p>Alpha.5 remains retained for inspection but is no longer the current install surface.</p>
             <ul>
               <li><a href="0.1.0-alpha.5/release-index.json">Signed release index</a></li>
               <li><a href="0.1.0-alpha.5/release-index.sigstore.json">Release index signature</a></li>
@@ -83,7 +98,7 @@
           <section id="source" aria-labelledby="source-heading">
             <h2 id="source-heading">Source and licenses</h2>
             <ul>
-              <li><a href="0.1.0-alpha.5/stateport-source.tar">Alpha.5 source archive</a></li>
+              <li><a href="0.1.0-alpha.6/stateport-source.tar">Alpha.6 source archive</a></li>
               <li><a href="https://github.com/lennertvhoy/StatePort-Source" target="_blank" rel="noopener">Public source repository</a></li>
             </ul>
             <p>Code and StateSpec files use AGPL-3.0-or-later. Documentation uses CC-BY-4.0.</p>

@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Install StatePort Alpha.5 on Windows 11 with WSL2 and Ubuntu 24.04, check requirements, or inspect technical release files.">
+    <meta name="description" content="Install StatePort Alpha.6 on Windows 11 with WSL2 and Ubuntu 24.04, check requirements, or inspect technical release files.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Download StatePort Alpha.5">
-    <meta property="og:description" content="The Alpha.5 installer is available for a first test on Windows 11 with WSL2 and Ubuntu 24.04.">
+    <meta property="og:title" content="Download StatePort Alpha.6">
+    <meta property="og:description" content="The Alpha.6 installer is available for a first test on Windows 11 with WSL2 and Ubuntu 24.04.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/download/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.5 status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.6 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/download/">
@@ -25,13 +25,13 @@
     <link rel="manifest" href="../site.webmanifest">
     <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
-    <title>Download StatePort Alpha.5</title>
+    <title>Download StatePort Alpha.6</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Download StatePort Alpha.5",
-        "description": "The Alpha.5 installer is available for a first test. Check requirements, older-release warnings, and technical release files.",
+        "name": "Download StatePort Alpha.6",
+        "description": "The Alpha.6 installer is available for a first test. Check requirements, older-release warnings, and technical release files.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/download/",
         "dateModified": "2026-08-15",
         "inLanguage": "en"
@@ -57,11 +57,11 @@
     </header>
 
     <main id="main">
-      <section class="article-hero" id="alpha5" aria-labelledby="download-title">
+      <section class="article-hero" id="alpha6" aria-labelledby="download-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Download</p>
-          <h1 id="download-title">StatePort Alpha.5</h1>
-          <p class="notice"><strong>The Alpha.5 installer is available for a first test on Windows 11 with WSL2 and Ubuntu 24.04. It has not yet been proven on a freshly installed computer.</strong></p>
+          <h1 id="download-title">StatePort Alpha.6</h1>
+          <p class="notice"><strong>The Alpha.6 installer is available for a first test on Windows 11 with WSL2 and Ubuntu 24.04. It has not yet been proven on a freshly installed computer.</strong></p>
           <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue</a>.</p>
         </div>
       </section>
@@ -70,7 +70,7 @@
         <aside class="doc-sidebar" aria-label="Download sections">
           <h2>Download</h2>
           <nav>
-            <a href="#alpha5" aria-current="page">Current status</a>
+            <a href="#alpha6" aria-current="page">Current status</a>
             <a href="#requirements">Requirements</a>
             <a href="#install">Installer</a>
             <a href="#release-files">Technical release files</a>
@@ -93,12 +93,12 @@
           </section>
 
           <section id="install" aria-labelledby="install-heading">
-            <h2 id="install-heading">Install Alpha.5</h2>
+            <h2 id="install-heading">Install Alpha.6</h2>
             <p><strong>Recommended first step: check your computer without changing it.</strong> In an Ubuntu 24.04 WSL2 terminal, as your normal user, run:</p>
-            <div class="code-panel" data-label="Alpha.5 preflight check"><code>(umask 077; tmp=&quot;$(mktemp)&quot; &amp;&amp; trap &#x27;rm -f &quot;$tmp&quot;&#x27; EXIT HUP INT TERM &amp;&amp; curl --fail --location --silent --show-error --proto &#x27;=https&#x27; --tlsv1.2 --output &quot;$tmp&quot; https://lennertvhoy.github.io/StatePort-Site/download/install.sh &amp;&amp; test &quot;$(wc -c &lt; &quot;$tmp&quot;)&quot; -eq 17620 &amp;&amp; printf &#x27;%s  %s\n&#x27; &#x27;cf8b20d09bc0865e222281cb09a4cece675eff979a84b6cb2e71ba53338a6300&#x27; &quot;$tmp&quot; | sha256sum --check --status - &amp;&amp; /bin/sh -n &quot;$tmp&quot; &amp;&amp; /bin/sh &quot;$tmp&quot; --materialization-preflight)</code></div>
+            <div class="code-panel" data-label="Alpha.6 preflight check"><code>(umask 077; tmp=&quot;$(mktemp)&quot; &amp;&amp; trap &#x27;rm -f &quot;$tmp&quot;&#x27; EXIT HUP INT TERM &amp;&amp; curl --fail --location --silent --show-error --proto &#x27;=https&#x27; --tlsv1.2 --output &quot;$tmp&quot; https://lennertvhoy.github.io/StatePort-Site/download/install.sh &amp;&amp; test &quot;$(wc -c &lt; &quot;$tmp&quot;)&quot; -eq 18084 &amp;&amp; printf &#x27;%s  %s\n&#x27; &#x27;ffc144d39502fde804c75f2dbf9994c25bd1f8a2cf3af7fbfb1e9a8352228ee9&#x27; &quot;$tmp&quot; | sha256sum --check --status - &amp;&amp; /bin/sh -n &quot;$tmp&quot; &amp;&amp; /bin/sh &quot;$tmp&quot; --materialization-preflight)</code></div>
             <p>The preflight downloads the installer bootstrap, verifies its exact size and pinned SHA-256, checks its shell syntax, and verifies the setup plan. It does not install anything: packages, root files, images, and the installer are not changed or executed.</p>
             <p><strong>Then install.</strong> Run this exact command in the same terminal:</p>
-            <div class="code-panel" data-label="Alpha.5 install"><code>(umask 077; tmp=&quot;$(mktemp)&quot; &amp;&amp; trap &#x27;rm -f &quot;$tmp&quot;&#x27; EXIT HUP INT TERM &amp;&amp; curl --fail --location --silent --show-error --proto &#x27;=https&#x27; --tlsv1.2 --output &quot;$tmp&quot; https://lennertvhoy.github.io/StatePort-Site/download/install.sh &amp;&amp; test &quot;$(wc -c &lt; &quot;$tmp&quot;)&quot; -eq 17620 &amp;&amp; printf &#x27;%s  %s\n&#x27; &#x27;cf8b20d09bc0865e222281cb09a4cece675eff979a84b6cb2e71ba53338a6300&#x27; &quot;$tmp&quot; | sha256sum --check --status - &amp;&amp; /bin/sh -n &quot;$tmp&quot; &amp;&amp; /bin/sh &quot;$tmp&quot;)</code></div>
+            <div class="code-panel" data-label="Alpha.6 install"><code>(umask 077; tmp=&quot;$(mktemp)&quot; &amp;&amp; trap &#x27;rm -f &quot;$tmp&quot;&#x27; EXIT HUP INT TERM &amp;&amp; curl --fail --location --silent --show-error --proto &#x27;=https&#x27; --tlsv1.2 --output &quot;$tmp&quot; https://lennertvhoy.github.io/StatePort-Site/download/install.sh &amp;&amp; test &quot;$(wc -c &lt; &quot;$tmp&quot;)&quot; -eq 18084 &amp;&amp; printf &#x27;%s  %s\n&#x27; &#x27;ffc144d39502fde804c75f2dbf9994c25bd1f8a2cf3af7fbfb1e9a8352228ee9&#x27; &quot;$tmp&quot; | sha256sum --check --status - &amp;&amp; /bin/sh -n &quot;$tmp&quot; &amp;&amp; /bin/sh &quot;$tmp&quot;)</code></div>
             <p>The install command downloads the bootstrap to a private temporary file, verifies its exact size and pinned SHA-256, and checks its shell syntax before running it. There is no pipe-to-shell stage.</p>
             <p>If the install asks for your password, it is your own computer asking for the administrator rights needed to set up StatePort's helper program.</p>
           </section>
@@ -111,8 +111,8 @@
 
           <section id="older-releases" aria-labelledby="older-releases-heading">
             <h2 id="older-releases-heading">Older releases</h2>
-            <p><strong>Do not install Alpha 2 or Alpha 3. They contain known bugs.</strong></p>
-            <p><a href="erratum-alpha3.html">Read the Alpha.3 technical details</a> or <a href="technical-release-files.html#older-releases">find older release files</a>.</p>
+            <p><strong>Alpha.5 is superseded and install-disabled. Do not install Alpha 2 or Alpha 3. They contain known bugs.</strong></p>
+            <p><a href="technical-release-files.html#alpha5">Inspect the Alpha.5 record</a>, <a href="erratum-alpha3.html">read the Alpha.3 technical details</a>, or <a href="technical-release-files.html#older-releases">find older release files</a>.</p>
           </section>
         </article>
       </div>

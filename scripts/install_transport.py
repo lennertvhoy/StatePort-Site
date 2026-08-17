@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render the digest-pinned Alpha.5 bootstrap transport command."""
+"""Render the digest-pinned Alpha.6 bootstrap transport command."""
 
 from __future__ import annotations
 
@@ -9,26 +9,26 @@ import shlex
 
 VERSIONED_BOOTSTRAP_URL = (
     "https://lennertvhoy.github.io/StatePort-Site/"
-    "download/0.1.0-alpha.5/install.sh"
+    "download/0.1.0-alpha.6/install.sh"
 )
-VERSIONED_BOOTSTRAP_SHA256 = "104c7fd6a87014548e583e524918550cece08aac71af4fc2f764ff5edae2ed0a"
-VERSIONED_BOOTSTRAP_SIZE = 8_971
+VERSIONED_BOOTSTRAP_SHA256 = "ffc144d39502fde804c75f2dbf9994c25bd1f8a2cf3af7fbfb1e9a8352228ee9"
+VERSIONED_BOOTSTRAP_SIZE = 18_084
 BOOTSTRAP_URL = "https://lennertvhoy.github.io/StatePort-Site/download/install.sh"
-BOOTSTRAP_SHA256 = "cf8b20d09bc0865e222281cb09a4cece675eff979a84b6cb2e71ba53338a6300"
-BOOTSTRAP_SIZE = 17_620
+BOOTSTRAP_SHA256 = "ffc144d39502fde804c75f2dbf9994c25bd1f8a2cf3af7fbfb1e9a8352228ee9"
+BOOTSTRAP_SIZE = 18_084
 PREFLIGHT_SUCCESS = (
-    "StatePort Alpha.5 materialization preflight passed: target, pinned helper transport, "
+    "StatePort Alpha.6 materialization preflight passed: target, pinned helper transport, "
     "and absent-parent creation order verified; packages, root files, images, and installer "
     "were not changed or executed."
 )
 MANIFEST_DIGESTS = {
-    "stateport-api": "a5c639880195ba6dc57fa9c13378fdf0cdb0361f08cbddea7b7e90f476906af8",
-    "stateport-dev-workspace": "1a9eecc2a087620e7139570e09c08b4ce6c17a8369d2b428551809dff3fda886",
-    "stateport-execution-host": "02d3ce6d6dfdacc164b947c1c88ebf6c64e0a103b05fbd420454083db589efb2",
-    "stateport-playwright": "a5e8bc89bd193bd149dcad3de03366796bcc8f903f019e9e599f928dfaed9096",
-    "stateport-runner": "45b5aaf0cd18699a66371ed800683ad5740b491d1442d9c1edd90d87089786ae",
-    "stateport-web": "57f625f36c590c1440d70f07a3aa1bee6b31c2a9c942285c897c7934635fccf1",
-    "stateport-worker": "ac835bf5449d1f7843734a8cbb9f4a332e9b01e6066f06599798a6964539e551",
+    "stateport-api": "202a1a5a61a43633ffd32bef46c55654dec97f4b066c531a8cbd0b072c3a7eab",
+    "stateport-dev-workspace": "7cbb7d90b17afb1557763d5e8ccb05b310443ca25fa22e744672798a0766192d",
+    "stateport-execution-host": "374ef439641472465f12c37cefcf1914df800888ff84454517c6ad26d395bb2a",
+    "stateport-playwright": "e7a8c1dd4a7798bb8a9bee4068e845e41b845f52682338b0370d1e566c813db1",
+    "stateport-runner": "604a93259b32a46849ea4ad098ae5aa379abf199a32c0f31b2f832b36af64795",
+    "stateport-web": "945c09cced090aa67e773445e7580a232b9f2174742bddc9dc8fd264de774375",
+    "stateport-worker": "f6e161c833ba1aba4173df5088f3cbb0d1a30032ae083c64dc525a1697a10f1b",
 }
 
 
