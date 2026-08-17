@@ -118,7 +118,6 @@
 
 ## Exact next action
 
-Validate the staged Alpha.6 tree and public copy, commit it on `main`, push it,
-wait for the managed Pages build, then verify the exact live Alpha.6 bytes and
-close Site state. Owner clean-install, acceptance, and qualification remain
-separate actions after publication.
+Run the extended Alpha.6 rehearsal R1-R6 against the published candidate, then
+record exact rehearsal evidence. Owner clean-install, acceptance, and
+qualification remain separate actions.

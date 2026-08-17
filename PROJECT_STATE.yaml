@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-15T14:10:00Z"
-  updated_by: alpha5_rerun_conflict_fix_final_state
+  updated_at: "2026-08-17T11:39:20Z"
+  updated_by: alpha6_publication_pages_verified_state
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha6_candidate_staged_pending_pages_publication
+  status: alpha6_published_pages_verified_rehearsal_pending
   purpose: public_documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -27,7 +27,7 @@ release:
   version: 0.1.0-alpha.6
   channel: alpha
   qualification: candidate
-  published: false
+  published: true
   known_defective: false
   original_streamed_install_transport_defective: false
   owner_accepted: false
@@ -68,7 +68,7 @@ predecessors:
     immutable_artifacts_retained: true
 
 acceptance:
-  publication: candidate_staged_pending_pages_publication
+  publication: published_deployed_remotely_verified
   clean_install: no_receipt
   first_host_attempt: not_run
   transport_probe: local_shell_syntax_passed
@@ -87,18 +87,18 @@ site:
   deployment:
     provider: GitHub Pages
     build_type: legacy
-    status: alpha6_candidate_staged_pending_pages_publication
+    status: alpha6_published_pages_verified_rehearsal_pending
     workflow: ".github/workflows/deploy-pages.yml"
     custom_workflow_status: disabled_manual_only_not_live_provider
     source_branch: main
     source_path: /
     deployment_head: derived_from_git_not_persisted
-    live_content_commit: pending
-    pages_build: pending
-    pages_build_commit_field: pending
-    pages_run: pending
-    pages_deployment: pending
-    deployment_sha: pending
+    live_content_commit: c5ced430cf8b00d6420a72467d3ecbdf0b8e391d
+    pages_build: 1156871424
+    pages_build_commit_field: c5ced430cf8b00d6420a72467d3ecbdf0b8e391d
+    pages_run: 32025739353
+    pages_deployment: 5944169434
+    deployment_sha: c5ced430cf8b00d6420a72467d3ecbdf0b8e391d
   current_release_surface: alpha6_public_test_candidate
   installer_command_shown: true
   installer_command_locations: [download/index.html]
@@ -113,6 +113,12 @@ site:
   remote_verification:
     alpha5_immutable_files_checked: 33
     alpha5_immutable_mismatches: 0
+    retained_immutable_files_checked: 81
+    retained_immutable_mismatches: 0
+    alpha6_changed_files_checked: 74
+    alpha6_changed_file_mismatches: 0
+    alpha6_manifest_files_checked: 7
+    alpha6_manifest_mismatches: 0
     mutable_install_sha256: cf8b20d09bc0865e222281cb09a4cece675eff979a84b6cb2e71ba53338a6300
     mutable_install_matches_versioned: false
     rerun_fix_changed_files_checked: 3
@@ -145,7 +151,7 @@ site:
 
 owner_directive:
   id: OD-2026-08-16-ALPHA6-AUTONOMOUS-RELEASE
-  status: candidate_staged_pending_publication
+  status: published_deployed_remote_verified_rehearsal_pending
   supersedes: OD-2026-08-15-ALPHA5-RERUN-CONFLICT-FIX
   source_repository: /home/ff/Documents/Projects/StatePort
   source_base: f486e3c455f5630a4a416c616566c1cb5072e443
@@ -161,9 +167,14 @@ owner_directive:
 active_work:
   - id: BL-ALPHA6-PUBLICATION
     priority: P0
-    status: candidate_staged_pending_pages_publication
+    status: published_deployed_remote_verified_rehearsal_pending
 
 prior_work:
+  - id: alpha6_publication_pages_verification
+    verdict: signed_candidate_published_and_exact_live_bytes_anonymously_matched
+    evidence: [c5ced430cf8b00d6420a72467d3ecbdf0b8e391d, pages_build_1156871424, pages_run_32025739353, pages_deployment_5944169434, changed_files_74, retained_files_81]
+    validity: exact_alpha6_candidate_and_pages_deployment
+    missing: extended_rehearsal_r1_r6_and_clean_install_receipt
   - id: alpha5_rerun_image_archive_conflict
     verdict: runtime_tar_creation_embedded_fresh_mtimes_so_retained_archive_bytes_differed_on_every_rerun_stateport_dd61a7e6_makes_creation_deterministic_and_new_17620_byte_bootstrap_is_published_repinned_and_remote_verified
     evidence: [owner_reported_image_archive_conflict_refusal, dd61a7e68d481e75bcc2a242a689f821470f3820, e72c8cf5c2b6845d6c2459c69e3777079a90202e, sha256:cf8b20d09bc0865e222281cb09a4cece675eff979a84b6cb2e71ba53338a6300, pages_build_1152792921, pages_run_31879838808, pages_deployment_5919578251]
@@ -191,7 +202,7 @@ prior_work:
     missing: exact_target_noninstalling_materialization_preflight_result
 
 workspace_inventory:
-  expected_content_head: e72c8cf5c2b6845d6c2459c69e3777079a90202e
+  expected_content_head: c5ced430cf8b00d6420a72467d3ecbdf0b8e391d
   expected_origin_head: derived_from_git_not_persisted
-  expected_dirty_path: alpha5_rerun_conflict_fix_final_state
+  expected_dirty_path: alpha6_rehearsal_pending
   immutable_release_bytes_changed_after_anchor: false

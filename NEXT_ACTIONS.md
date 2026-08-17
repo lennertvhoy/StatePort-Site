@@ -6,17 +6,18 @@
 
 ## P0 [BL-ALPHA6-PUBLICATION] Publish signed Alpha.6 successor
 
-**Status:** Owner directive `OD-2026-08-16-ALPHA6-AUTONOMOUS-RELEASE` authorizes
-the signed Alpha.6 publication chain. The local candidate is assembled,
-signed, re-derived, and staged with an 18,084-byte bootstrap at SHA-256
-`ffc144d39502fde804c75f2dbf9994c25bd1f8a2cf3af7fbfb1e9a8352228ee9`.
+**Status:** Owner directive `OD-2026-08-16-ALPHA6-AUTONOMOUS-RELEASE` authorized
+the signed Alpha.6 publication chain. Site commit `c5ced43` deployed through
+Pages build `1156871424`, run `32025739353`, and deployment `5944169434`.
+All 74 changed files and 81 retained Alpha.2/Alpha.3/Alpha.5 files matched
+anonymous live bytes.
 
-**Decision:** validate, commit, push, deploy, and anonymously verify the
-Alpha.6 Site content. Alpha.5 remains immutable and becomes superseded and
-install-disabled when Alpha.6 is live.
+**Decision:** run the extended Alpha.6 rehearsal R1-R6 against the published
+candidate. Alpha.5 is now superseded and install-disabled; its signed tree
+remains immutable.
 
-**Exit:** exact live bytes and Site state are closed. Clean-install
-qualification and acceptance remain separate owner actions.
+**Exit:** rehearsal evidence and exact state closure are complete.
+Clean-install qualification and acceptance remain separate owner actions.
 
 ## Completed since last update
 
