@@ -155,7 +155,7 @@ owner_directive:
   id: OD-2026-08-16-ALPHA6-AUTONOMOUS-RELEASE
   status: alpha7_published_pages_verified_alpha6_fail_closed
   supersedes: OD-2026-08-15-ALPHA5-RERUN-CONFLICT-FIX
-  source_repository: /home/ff/Documents/Projects/StatePort
+  source_repository: /home/ff/Projects/StatePort
   source_base: 7544af6615c492bd7c125c2a0cab9428b0fe9408
   site_base: 8911c956b2a39aa1a28b82724cfec1db15330b20
   objective: publish_alpha7_signed_candidate_fail_close_alpha6_and_supersede_alpha6

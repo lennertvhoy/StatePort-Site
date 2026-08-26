@@ -22,7 +22,7 @@ Choose the applicable mode before review or editing.
 For a new slice with no declared owner-gated WIP:
 
 ```sh
-cd /home/ff/Documents/Projects/StatePort-Site
+cd /home/ff/Projects/StatePort-Site
 git fetch origin --prune
 test "$(git branch --show-current)" = "main"
 test -z "$(git status --porcelain)"
