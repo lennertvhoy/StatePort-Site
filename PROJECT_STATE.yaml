@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-31T19:07:39Z"
-  updated_by: alpha10_owner_rejected_mutable_installer_containment
+  updated_at: "2026-08-31T19:38:44Z"
+  updated_by: alpha10_rejection_containment_deployed_and_anonymously_verified
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha10_owner_rejected_mutable_installer_containment_pending
+  status: alpha10_contained_alpha11_engineering_active
   purpose: public_documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -83,7 +83,7 @@ predecessors:
 
 acceptance:
   ghcr_publication: published_and_anonymously_digest_verified
-  site_publication: published_deployed_anonymously_byte_verified
+  site_publication: alpha10_rejection_containment_deployed_and_anonymously_byte_verified
   candidate_rehearsals: passed_only_after_rehearsal_preinstalled_newer_Podman_not_valid_clean_owner_path_evidence
   public_transport_rehearsal: false_pass_rehearsal_preinstalled_Podman_5_4_2_before_public_bootstrap
   clean_install: owner_rejected_stock_Noble_Podman_4_9_3_below_floor
@@ -99,19 +99,19 @@ site:
   deployment:
     provider: GitHub Pages
     build_type: legacy
-    status: alpha10_rejection_containment_prepared_deployment_pending
+    status: alpha10_rejection_containment_deployed_and_anonymously_verified
     workflow: ".github/workflows/deploy-pages.yml"
     custom_workflow_status: disabled_manual_only_not_live_provider
     source_branch: main
     source_path: /
     deployment_head: derived_from_git_not_persisted
-    live_content_commit: 24428baa1dbee3eaac637e19c34c2aad00e7a38c
-    pages_build: 1185989241
-    pages_build_commit_field: 24428baa1dbee3eaac637e19c34c2aad00e7a38c
-    pages_run: 33408727082
-    pages_deployment: 6184162311
-    deployment_sha: 24428baa1dbee3eaac637e19c34c2aad00e7a38c
-  current_release_surface: alpha10_rejected_mutable_launcher_fail_closed_after_deployment_alpha11_pending
+    live_content_commit: 27bcf6c8431a89e8893f047d6a4b61b9467f460e
+    pages_build: 1186377823
+    pages_build_commit_field: 27bcf6c8431a89e8893f047d6a4b61b9467f460e
+    pages_run: 33431377948
+    pages_deployment: 6188165170
+    deployment_sha: 27bcf6c8431a89e8893f047d6a4b61b9467f460e
+  current_release_surface: alpha10_rejected_mutable_launcher_fail_closed_alpha11_pending
   installer_command_shown: false
   installer_command_locations: []
   replacement_install_command: disabled_owner_rejected
@@ -127,14 +127,16 @@ site:
     ghcr_digest_reference_mismatches: 0
     ghcr_receipt: /home/ff/.local/state/stateport/release/alpha10/ghcr-publication-930c2d9a-r1-terminal.json
     ghcr_anonymous_receipt: /home/ff/.local/state/stateport/release/alpha10/ghcr-anonymous-verification-930c2d9a-r1.json
-    pages_receipt: /home/ff/.local/state/stateport/release/alpha10/pages-anonymous-verification-24428baa-r1.json
-    publication_changed_files_checked: 75
-    publication_changed_file_mismatches: 0
+    pages_receipt: /home/ff/.local/state/stateport/release/alpha10/pages-anonymous-containment-verification-27bcf6c-r1.json
+    pages_receipt_sha256: e1eaf11f7deb756f31288f0ba321bc65abadb64c09b55ae865a742eb4105dcdd
+    containment_changed_files_checked: 20
+    containment_changed_file_mismatches: 0
     alpha10_site_files_checked: 39
     alpha10_site_file_mismatches: 0
-    retained_immutable_files_checked: 81
+    retained_immutable_files_checked: 113
     retained_immutable_mismatches: 0
-    live_bytes_checked: 92058494
+    unique_live_paths_checked: 140
+    live_bytes_checked: 91640298
     mutable_install_sha256: 47bcd413b87a45713da7f23c43d35882bc4eacc55f3aaf82e6a6732d6220665f
     mutable_install_matches_versioned: false
     public_transport_receipt: /home/ff/.local/state/stateport/release/alpha10/rehearsal-public-full-r1.json
@@ -152,8 +154,8 @@ owner_directive:
   id: STATEPORT-ALPHA11-PODMAN-CLEAN-INSTALL-20260831
   status: alpha10_containment_and_alpha11_successor_authorized
   source_repository: /home/ff/Projects/StatePort
-  source_base: 930c2d9ad3dcc659da9e8a2b966972cfd78f0f0e
-  site_base: d8aeb279c36432a1e4baed2c30960a42137c92f0
+  source_base: 5c198330dff8b42f03d2251274bc3fb61e2108a5
+  site_base: dbc3c30907c4a5912f7760ff02e3f5b1a7b6f31b
   objective: fail_close_rejected_alpha10_mutable_installer_then_publish_only_a_faithfully_rehearsed_alpha11_successor
   site_commit_push_and_pages_deployment: authorized
   versioned_release_file_changes: Alpha10_immutable_and_unchanged__Alpha11_additive_only_after_source_and_rehearsal_gates
@@ -163,7 +165,7 @@ owner_directive:
 active_work:
   - id: BL-ALPHA11-PODMAN-CLEAN-INSTALL
     priority: P0
-    status: alpha10_mutable_installer_containment_pending_then_alpha11_successor
+    status: alpha10_contained_alpha11_source_engineering_authorized
 
 prior_work:
   - id: alpha10_ghcr_publication
@@ -191,6 +193,11 @@ prior_work:
     evidence: [owner-test-failure-alpha10-podman-floor-r1.json, StatePort:scripts/render_wsl2_install_bootstrap.py, StatePort:infra/qualification/wsl2_rehearsal.py]
     validity: explicit_owner_verdict_and_source_audit_2026_08_31__no_raw_installer_receipt
     missing: faithful_Alpha11_stock_public_path_and_owner_retest
+  - id: alpha10_rejection_containment
+    verdict: content_commit_27bcf6c_deployed_through_build_1186377823_run_33431377948_deployment_6188165170_with_20_containment_paths_39_alpha10_release_or_manifest_files_and_113_anchored_immutable_files_matching_anonymous_live_bytes
+    evidence: [27bcf6c8431a89e8893f047d6a4b61b9467f460e, pages-anonymous-containment-verification-27bcf6c-r1.json, pages_build_1186377823, pages_run_33431377948, pages_deployment_6188165170]
+    validity: exact_alpha10_mutable_route_containment_and_immutable_release_preservation
+    missing: none
   - id: alpha7_publication_pages_verification
     verdict: signed_candidate_published_and_exact_live_bytes_anonymously_matched
     evidence: [09a2c9e54931de789d3dc8d24ed77944f27e0313, pages_run_32046592525, pages_deployment_5947438349]
@@ -198,7 +205,7 @@ prior_work:
     missing: none
 
 workspace_inventory:
-  expected_content_head: dbc3c30907c4a5912f7760ff02e3f5b1a7b6f31b
-  expected_origin_head: dbc3c30907c4a5912f7760ff02e3f5b1a7b6f31b
-  expected_dirty_path: alpha10_rejection_mutable_installer_containment
+  expected_content_head: 27bcf6c8431a89e8893f047d6a4b61b9467f460e
+  expected_origin_head: 27bcf6c8431a89e8893f047d6a4b61b9467f460e
+  expected_dirty_path: final_alpha10_rejection_containment_state_only_closure
   immutable_release_bytes_changed_after_anchor: false

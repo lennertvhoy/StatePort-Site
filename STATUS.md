@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-08-31
 **Execution Mode:** operating
-**Project State:** alpha10_owner_rejected_mutable_installer_containment_pending
+**Project State:** alpha10_contained_alpha11_engineering_active
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -21,12 +21,12 @@
   StatePort's floor.
 - The rehearsals had preinstalled Questing Podman 5.4.2 before running the
   bootstrap. Their install passes therefore do not prove the clean owner path.
-- Content commit `24428baa` deployed through Pages build `1185989241`, run
-  `33408727082`, and deployment `6184162311`. Anonymous checks matched all 75
-  changed paths, all 39 Alpha.10 release and manifest files, and all 81 retained
-  immutable files.
-- The mutable Alpha.10 installer route is being fail-closed. Versioned Alpha.10
-  files and signatures remain unchanged for inspection.
+- Containment commit `27bcf6c` deployed through Pages build `1186377823`, run
+  `33431377948`, and deployment `6188165170`. Anonymous checks matched all 20
+  containment paths, all 39 Alpha.10 release and manifest files, and all 113
+  publication-anchored immutable files across 140 unique live paths.
+- The mutable Alpha.10 installer route is fail-closed. Versioned Alpha.10 files
+  and signatures remain unchanged for inspection.
 - Alpha.10 has no authenticated predecessor under its current trust root;
   rollback is unsupported. Alpha.7 remains retained but is superseded and its
   installer route is fail-closed.
@@ -38,6 +38,6 @@
 
 ## Exact next action
 
-Deploy and anonymously verify the Alpha.10 mutable-route containment, then
-publish only an Alpha.11 successor whose exact public bootstrap provisions a
-pinned supported Podman and passes a stock-path post-publication rehearsal.
+Implement the smallest secure Alpha.11 Podman provisioning correction, remove
+material rehearsal-only runtime preparation, and prove the prospective exact
+public bootstrap from a stock Ubuntu 24.04 guest before publication.

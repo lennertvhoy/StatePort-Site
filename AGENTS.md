@@ -51,6 +51,15 @@ material rehearsal-only preparation, focused regressions, exact stock/public
 rehearsals, publication, and anonymous verification. Human acceptance remains
 separate and non-blocking for engineering closure.
 
+Containment commit `27bcf6c8431a89e8893f047d6a4b61b9467f460e`
+deployed through Pages build `1186377823`, run `33431377948`, and deployment
+`6188165170`. Anonymous verification matched all 20 containment paths, all 39
+Alpha.10 release and manifest files, and all 113 publication-anchored immutable
+files across 140 unique live paths. The mutable launcher is exactly 282 bytes at
+SHA-256 `47bcd413b87a45713da7f23c43d35882bc4eacc55f3aaf82e6a6732d6220665f`
+and exits 1 with the rejection notice. Alpha.11 source engineering may proceed;
+the failed owner distro remains diagnostic evidence only.
+
 ### Alpha.5 repaired public-install closure
 
 StatePort directive `OD-2026-08-14-ALPHA5-PUBLIC-CONTAINMENT`, admitted by

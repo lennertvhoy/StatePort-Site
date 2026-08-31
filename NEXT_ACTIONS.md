@@ -6,11 +6,11 @@
 
 ## P0 [BL-ALPHA11-PODMAN-CLEAN-INSTALL] Contain Alpha.10 and publish a faithful Alpha.11
 
-**Status:** Alpha.10 is owner-rejected. Stock Ubuntu 24.04 supplied Podman 4.9.3
-below StatePort's floor, while the rehearsal had prepared Podman 5.4.2 first.
+**Status:** Alpha.10 is owner-rejected and its mutable route is fail-closed.
+Containment and all retained immutable bytes are anonymously verified.
 
-**Decision:** fail-close only the mutable Alpha.10 route, preserve its immutable
-files, and publish Alpha.11 only after faithful stock-path proof.
+**Decision:** preserve Alpha.10 exactly and publish Alpha.11 only after secure
+runtime provisioning and faithful stock-path proof.
 
 **Exit:** Alpha.11 public bootstrap securely provisions supported Podman and the
 exact live command passes the stock post-publication rehearsal without hidden
