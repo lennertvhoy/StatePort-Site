@@ -43,12 +43,15 @@ direct public-transport rehearsal, and final state-only closure. Site base
 `d8aeb279c36432a1e4baed2c30960a42137c92f0` includes the owner-authored
 canonical-path repair and must remain an ancestor.
 
-The seven signed image manifests are already published to GHCR and
-anonymously verified by both tag and digest. This authority does not permit
-re-signing, changing Alpha.10 candidate bytes, rewriting retained signed
-indexes or artifacts, human acceptance, independent review, stability, or
-production qualification. Alpha.10 is additive; only the superseded Alpha.7
-launcher may be replaced by a fail-closed notice.
+The seven signed image manifests are published to GHCR and anonymously verified
+by both tag and digest. Content commit `24428baa1dbee3eaac637e19c34c2aad00e7a38c`
+deployed through Pages build `1185989241`, run `33408727082`, and deployment
+`6184162311`; all changed paths and retained immutable files matched anonymous
+bytes. The fresh direct-public rehearsal then passed install and identical rerun
+without a guest-local Site, registry mirror, or retained archive transport.
+Only the owner Windows/WSL/private `Study_Lenny` journey and human verdict are
+pending. This authority does not permit re-signing, candidate-byte changes,
+human acceptance, independent review, stability, or production qualification.
 
 ### Alpha.5 repaired public-install closure
 
@@ -177,11 +180,11 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
   `2fc626fcab180f664f04f36d1fcceacaffa81ca96a658585f6684e3cf37abf89`;
   signed payload:
   `sha256:2478e9c69aac1679813c448d25a7648e68d81f44daaa2d7bc3085aaf86b7b222`.
-- Alpha.10 passed two independent governed clean Ubuntu rehearsals, including
-  install and identical rerun. Its seven exact images are published and
-  anonymously digest-verified in GHCR. Pages publication and direct public
-  transport verification are the active work; WSL2 remains
-  `compatible_unvalidated` and no owner acceptance receipt exists.
+- Alpha.10 passed two independent governed clean Ubuntu rehearsals plus one
+  fresh direct anonymous public-transport rehearsal, each including install and
+  identical rerun. Its seven exact images and Site files are published and
+  anonymously verified. WSL2 remains `compatible_unvalidated`; the owner
+  Windows/WSL/private `Study_Lenny` journey and acceptance receipt are absent.
 - Alpha.10 has no authenticated predecessor under its current trust root and
   declares rollback unsupported. Never construct a predecessor bundle from the
   retired Alpha.7 trust root.
@@ -242,8 +245,8 @@ or production-ready. Never alter Alpha.2, Alpha.3, or anchored Alpha.5 bytes.
 
 1. Preserve Alpha.2 and Alpha.3 exactly and keep the Alpha.3 erratum historical.
 2. Preserve the anchored Alpha.5 tree and exact repaired mutable bootstrap.
-3. Publish and verify the pinned Alpha.10 non-installing preflight and exact
-   install command, then complete the direct anonymous public-transport
-   rehearsal; owner clean-install and acceptance remain pending.
+3. Preserve the verified Alpha.10 public transport while the owner runs the
+   Windows 11, WSL2, Ubuntu 24.04, and private `Study_Lenny` journey. Owner
+   clean-install and acceptance remain pending.
 
 Everything else is backlog or history.

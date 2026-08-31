@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-08-31
 **Execution Mode:** operating
-**Project State:** alpha10_ghcr_verified_site_publication_prepared_pages_pending
+**Project State:** alpha10_published_public_transport_verified_owner_journey_pending
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -19,9 +19,14 @@
 - Two independent governed clean Ubuntu 24.04 rehearsals passed install and
   identical rerun against the exact candidate through the prepublication
   digest-only registry transport.
-- The exact Site release tree, mutable pinned bootstrap, public copy, and
-  Alpha.7 fail-closed launcher are locally prepared. Pages deployment and
-  anonymous byte verification are pending.
+- Content commit `24428baa` deployed through Pages build `1185989241`, run
+  `33408727082`, and deployment `6184162311`. Anonymous checks matched all 75
+  changed paths, all 39 Alpha.10 release and manifest files, and all 81 retained
+  immutable files.
+- A fresh governed guest then used anonymous Pages and GHCR directly, with no
+  guest-local Site, registry mirror, or retained-archive transport. Bootstrap
+  fetch, runtime smoke, all seven manifest checks, materialization preflight,
+  install, and identical rerun passed.
 - Alpha.10 has no authenticated predecessor under its current trust root;
   rollback is unsupported. Alpha.7 remains retained but is superseded and its
   installer route is fail-closed.
@@ -33,5 +38,6 @@
 
 ## Exact next action
 
-Validate and publish the prepared Site content, anonymously match Pages bytes,
-then run the direct public Site/GHCR rehearsal before owner handoff.
+The owner runs the published Windows 11, WSL2, Ubuntu 24.04, and private
+`Study_Lenny` journey and records the human verdict. Engineering publication
+evidence does not supply that owner outcome.

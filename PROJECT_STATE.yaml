@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-31T14:40:00Z"
-  updated_by: alpha10_ghcr_verified_site_publication_prepared
+  updated_at: "2026-08-31T16:00:00Z"
+  updated_by: alpha10_pages_and_public_transport_verified_owner_journey_pending
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha10_ghcr_verified_site_publication_prepared_pages_pending
+  status: alpha10_published_public_transport_verified_owner_journey_pending
   purpose: public_documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -27,7 +27,7 @@ release:
   version: 0.1.0-alpha.10
   channel: alpha
   qualification: candidate
-  published: false
+  published: true
   registry_published: true
   known_defective: false
   owner_accepted: false
@@ -83,9 +83,9 @@ predecessors:
 
 acceptance:
   ghcr_publication: published_and_anonymously_digest_verified
-  site_publication: prepared_not_deployed
+  site_publication: published_deployed_anonymously_byte_verified
   candidate_rehearsals: two_independent_clean_ubuntu_full_runs_passed
-  public_transport_rehearsal: pending_pages_deployment
+  public_transport_rehearsal: exact_candidate_install_and_identical_rerun_passed_without_guest_local_site_mirror_or_archives
   clean_install: no_owner_receipt
   human_acceptance: not_granted
   independent_security_review: not_performed
@@ -99,16 +99,19 @@ site:
   deployment:
     provider: GitHub Pages
     build_type: legacy
-    status: alpha10_publication_content_prepared_push_pending
+    status: alpha10_content_deployed_and_anonymously_verified
     workflow: ".github/workflows/deploy-pages.yml"
     custom_workflow_status: disabled_manual_only_not_live_provider
     source_branch: main
     source_path: /
     deployment_head: derived_from_git_not_persisted
-    previous_live_content_commit: 09a2c9e54931de789d3dc8d24ed77944f27e0313
-    previous_pages_run: 32046592525
-    previous_pages_deployment: 5947438349
-  current_release_surface: alpha10_prepared_alpha7_fail_closed_after_deployment
+    live_content_commit: 24428baa1dbee3eaac637e19c34c2aad00e7a38c
+    pages_build: 1185989241
+    pages_build_commit_field: 24428baa1dbee3eaac637e19c34c2aad00e7a38c
+    pages_run: 33408727082
+    pages_deployment: 6184162311
+    deployment_sha: 24428baa1dbee3eaac637e19c34c2aad00e7a38c
+  current_release_surface: alpha10_public_owner_test_candidate_alpha7_fail_closed
   installer_command_shown: true
   installer_command_locations: [download/index.html]
   replacement_install_command: enabled_preflight_recommended_first_step
@@ -123,14 +126,26 @@ site:
     ghcr_digest_reference_mismatches: 0
     ghcr_receipt: /home/ff/.local/state/stateport/release/alpha10/ghcr-publication-930c2d9a-r1-terminal.json
     ghcr_anonymous_receipt: /home/ff/.local/state/stateport/release/alpha10/ghcr-anonymous-verification-930c2d9a-r1.json
-    alpha10_site_files_checked: 0
+    pages_receipt: /home/ff/.local/state/stateport/release/alpha10/pages-anonymous-verification-24428baa-r1.json
+    publication_changed_files_checked: 75
+    publication_changed_file_mismatches: 0
+    alpha10_site_files_checked: 39
     alpha10_site_file_mismatches: 0
-    retained_immutable_files_checked: 0
+    retained_immutable_files_checked: 81
     retained_immutable_mismatches: 0
+    live_bytes_checked: 92058494
+    mutable_install_sha256: afb807280e1588ce4903be79649a7b7dd69026177b18a7a98a95b01f54f74d5d
+    mutable_install_matches_versioned: true
+    public_transport_receipt: /home/ff/.local/state/stateport/release/alpha10/rehearsal-public-full-r1.json
+    public_transport_verification: /home/ff/.local/state/stateport/release/alpha10/public-rehearsal-verification-930c2d9a-r1.json
+    public_transport_phases_passed: 8
+    public_transport_guest_local_site: false
+    public_transport_guest_local_registry_mirror: false
+    public_transport_retained_archive_transport: false
 
 owner_directive:
   id: STATEPORT-WINDOWS-STUDY-LENNY-OWNER-TEST-READY-20260830
-  status: ghcr_published_verified_site_publication_in_progress
+  status: engineering_release_complete_owner_journey_pending
   source_repository: /home/ff/Projects/StatePort
   source_base: 930c2d9ad3dcc659da9e8a2b966972cfd78f0f0e
   site_base: d8aeb279c36432a1e4baed2c30960a42137c92f0
@@ -143,27 +158,37 @@ owner_directive:
 active_work:
   - id: BL-ALPHA10-PUBLICATION
     priority: P0
-    status: ghcr_verified_site_publication_prepared_pages_pending
+    status: published_public_transport_verified_owner_journey_pending
 
 prior_work:
   - id: alpha10_ghcr_publication
     verdict: seven_exact_signed_manifests_published_and_anonymously_verified_by_tag_and_digest
     evidence: [ghcr-publication-930c2d9a-r1-terminal.json, ghcr-anonymous-verification-930c2d9a-r1.json]
     validity: exact_alpha10_candidate_930c2d9a
-    missing: site_pages_deployment_public_transport_rehearsal_owner_verdict
+    missing: owner_verdict
   - id: alpha10_candidate_rehearsals
     verdict: two_independent_clean_ubuntu_full_rehearsals_passed_all_seven_phases
     evidence: [rehearsal-private-full-r2.json, rehearsal-private-full-r3.json]
     validity: exact_alpha10_candidate_and_digest_only_prepublication_registry_transport
-    missing: direct_anonymous_public_transport_rehearsal
+    missing: none
+  - id: alpha10_pages_publication
+    verdict: content_commit_24428baa_deployed_through_build_1185989241_run_33408727082_deployment_6184162311_and_all_75_changed_paths_39_alpha10_release_or_manifest_files_and_81_retained_immutable_files_matched_anonymous_live_bytes
+    evidence: [24428baa1dbee3eaac637e19c34c2aad00e7a38c, pages-anonymous-verification-24428baa-r1.json, pages_build_1185989241, pages_run_33408727082, pages_deployment_6184162311]
+    validity: exact_alpha10_site_content_and_retained_immutable_trees
+    missing: none
+  - id: alpha10_direct_public_transport
+    verdict: governed_fresh_guest_used_anonymous_pages_and_ghcr_without_guest_local_site_registry_mirror_or_retained_archive_transport_then_passed_bootstrap_fetch_runtime_smoke_seven_manifest_probe_materialization_preflight_install_and_identical_rerun
+    evidence: [rehearsal-public-full-r1.json, public-rehearsal-verification-930c2d9a-r1.json, governor-rehearsal-public-full-r1/background-safe-v1.json]
+    validity: exact_alpha10_candidate_public_transport_2026_08_31__not_owner_windows_clean_install_or_human_acceptance
+    missing: owner_windows_wsl2_private_Study_Lenny_journey_and_human_verdict
   - id: alpha7_publication_pages_verification
     verdict: signed_candidate_published_and_exact_live_bytes_anonymously_matched
     evidence: [09a2c9e54931de789d3dc8d24ed77944f27e0313, pages_run_32046592525, pages_deployment_5947438349]
     validity: retained_alpha7_signed_index_and_artifacts
-    missing: superseded_by_alpha10
+    missing: none
 
 workspace_inventory:
-  expected_content_head: pending_alpha10_publication_commit
-  expected_origin_head: 8cdb42dd5354cd650f230cdbc628b657abff131d
-  expected_dirty_path: alpha10_site_publication_candidate
+  expected_content_head: 24428baa1dbee3eaac637e19c34c2aad00e7a38c
+  expected_origin_head: 24428baa1dbee3eaac637e19c34c2aad00e7a38c
+  expected_dirty_path: final_alpha10_state_only_closure
   immutable_release_bytes_changed_after_anchor: false
