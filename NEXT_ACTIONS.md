@@ -4,14 +4,14 @@
 **Execution Mode:** operating
 **Max Items:** 1
 
-## P0 [BL-ALPHA10-PUBLICATION] Record the owner Alpha.10 journey
+## P0 [BL-ALPHA11-PODMAN-CLEAN-INSTALL] Contain Alpha.10 and publish a faithful Alpha.11
 
-**Status:** Engineering and release work is complete. Alpha.10 is published;
-Pages and GHCR bytes are anonymously verified; and the direct public-transport
-rehearsal passed install and identical rerun without guest-local transport.
+**Status:** Alpha.10 is owner-rejected. Stock Ubuntu 24.04 supplied Podman 4.9.3
+below StatePort's floor, while the rehearsal had prepared Podman 5.4.2 first.
 
-**Decision:** the owner runs the published journey on Windows 11 with WSL2,
-Ubuntu 24.04, and private `Study_Lenny`, then records the human verdict.
+**Decision:** fail-close only the mutable Alpha.10 route, preserve its immutable
+files, and publish Alpha.11 only after faithful stock-path proof.
 
-**Exit:** exact owner receipt and explicit human verdict. Independent review,
-stability, and production qualification remain separate outcomes.
+**Exit:** Alpha.11 public bootstrap securely provisions supported Podman and the
+exact live command passes the stock post-publication rehearsal without hidden
+runtime preparation. Human acceptance remains separate.

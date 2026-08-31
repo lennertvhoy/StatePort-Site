@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-31T16:00:00Z"
-  updated_by: alpha10_pages_and_public_transport_verified_owner_journey_pending
+  updated_at: "2026-08-31T19:07:39Z"
+  updated_by: alpha10_owner_rejected_mutable_installer_containment
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha10_published_public_transport_verified_owner_journey_pending
+  status: alpha10_owner_rejected_mutable_installer_containment_pending
   purpose: public_documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -29,9 +29,9 @@ release:
   qualification: candidate
   published: true
   registry_published: true
-  known_defective: false
+  known_defective: true
   owner_accepted: false
-  installation_enabled: true
+  installation_enabled: false
   support_tier: compatible_unvalidated
   public_download: "download/install.sh"
   release_index: "download/0.1.0-alpha.10/release-index.json"
@@ -51,8 +51,8 @@ release:
   target_id: wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet
   image_count: 7
   bootstrap_sha256: afb807280e1588ce4903be79649a7b7dd69026177b18a7a98a95b01f54f74d5d
-  mutable_preflight_bootstrap_sha256: afb807280e1588ce4903be79649a7b7dd69026177b18a7a98a95b01f54f74d5d
-  mutable_preflight_bootstrap_bytes: 17774
+  mutable_fail_closed_bootstrap_sha256: 47bcd413b87a45713da7f23c43d35882bc4eacc55f3aaf82e6a6732d6220665f
+  mutable_fail_closed_bootstrap_bytes: 282
 
 predecessors:
   alpha7:
@@ -84,10 +84,10 @@ predecessors:
 acceptance:
   ghcr_publication: published_and_anonymously_digest_verified
   site_publication: published_deployed_anonymously_byte_verified
-  candidate_rehearsals: two_independent_clean_ubuntu_full_runs_passed
-  public_transport_rehearsal: exact_candidate_install_and_identical_rerun_passed_without_guest_local_site_mirror_or_archives
-  clean_install: no_owner_receipt
-  human_acceptance: not_granted
+  candidate_rehearsals: passed_only_after_rehearsal_preinstalled_newer_Podman_not_valid_clean_owner_path_evidence
+  public_transport_rehearsal: false_pass_rehearsal_preinstalled_Podman_5_4_2_before_public_bootstrap
+  clean_install: owner_rejected_stock_Noble_Podman_4_9_3_below_floor
+  human_acceptance: rejected
   independent_security_review: not_performed
   stability: not_established
   production_qualification: not_performed
@@ -99,7 +99,7 @@ site:
   deployment:
     provider: GitHub Pages
     build_type: legacy
-    status: alpha10_content_deployed_and_anonymously_verified
+    status: alpha10_rejection_containment_prepared_deployment_pending
     workflow: ".github/workflows/deploy-pages.yml"
     custom_workflow_status: disabled_manual_only_not_live_provider
     source_branch: main
@@ -111,15 +111,16 @@ site:
     pages_run: 33408727082
     pages_deployment: 6184162311
     deployment_sha: 24428baa1dbee3eaac637e19c34c2aad00e7a38c
-  current_release_surface: alpha10_public_owner_test_candidate_alpha7_fail_closed
-  installer_command_shown: true
-  installer_command_locations: [download/index.html]
-  replacement_install_command: enabled_preflight_recommended_first_step
+  current_release_surface: alpha10_rejected_mutable_launcher_fail_closed_after_deployment_alpha11_pending
+  installer_command_shown: false
+  installer_command_locations: []
+  replacement_install_command: disabled_owner_rejected
   immutable_tree_manifest: config/immutable-release-trees.json
   immutable_anchors:
     alpha2: 4043534a9a1d56c51c3d47d0906e0520963af79c
     alpha3: 52b42dd47a11510220f33690075f1b6773f6a889
     alpha5: eaa1ca6a67844259860917442a95c891d097939f
+    alpha10: 24428baa1dbee3eaac637e19c34c2aad00e7a38c
   remote_verification:
     ghcr_images_checked: 7
     ghcr_tag_mismatches: 0
@@ -134,31 +135,35 @@ site:
     retained_immutable_files_checked: 81
     retained_immutable_mismatches: 0
     live_bytes_checked: 92058494
-    mutable_install_sha256: afb807280e1588ce4903be79649a7b7dd69026177b18a7a98a95b01f54f74d5d
-    mutable_install_matches_versioned: true
+    mutable_install_sha256: 47bcd413b87a45713da7f23c43d35882bc4eacc55f3aaf82e6a6732d6220665f
+    mutable_install_matches_versioned: false
     public_transport_receipt: /home/ff/.local/state/stateport/release/alpha10/rehearsal-public-full-r1.json
     public_transport_verification: /home/ff/.local/state/stateport/release/alpha10/public-rehearsal-verification-930c2d9a-r1.json
     public_transport_phases_passed: 8
     public_transport_guest_local_site: false
     public_transport_guest_local_registry_mirror: false
     public_transport_retained_archive_transport: false
+    owner_test_failure_receipt: /home/ff/.local/state/stateport/release/alpha10/owner-test-failure-alpha10-podman-floor-r1.json
+    owner_test_verdict: rejected
+    owner_test_failure: stock_Noble_Podman_4_9_3_below_required_floor
+    rehearsal_fidelity_defect: rehearsal_preinstalled_Questing_Podman_5_4_2_before_public_bootstrap
 
 owner_directive:
-  id: STATEPORT-WINDOWS-STUDY-LENNY-OWNER-TEST-READY-20260830
-  status: engineering_release_complete_owner_journey_pending
+  id: STATEPORT-ALPHA11-PODMAN-CLEAN-INSTALL-20260831
+  status: alpha10_containment_and_alpha11_successor_authorized
   source_repository: /home/ff/Projects/StatePort
   source_base: 930c2d9ad3dcc659da9e8a2b966972cfd78f0f0e
   site_base: d8aeb279c36432a1e4baed2c30960a42137c92f0
-  objective: publish_alpha10_verify_public_transport_and_prepare_owner_journey
+  objective: fail_close_rejected_alpha10_mutable_installer_then_publish_only_a_faithfully_rehearsed_alpha11_successor
   site_commit_push_and_pages_deployment: authorized
-  versioned_release_file_changes: alpha10_additive_alpha7_launcher_fail_closed_retained_signed_artifacts_unchanged
-  signing_or_successor_release: not_authorized_or_required
-  human_acceptance: not_granted
+  versioned_release_file_changes: Alpha10_immutable_and_unchanged__Alpha11_additive_only_after_source_and_rehearsal_gates
+  signing_or_successor_release: Alpha11_authorized_after_exact_engineering_gates
+  human_acceptance: Alpha10_rejected__Alpha11_non_blocking_for_engineering_closure
 
 active_work:
-  - id: BL-ALPHA10-PUBLICATION
+  - id: BL-ALPHA11-PODMAN-CLEAN-INSTALL
     priority: P0
-    status: published_public_transport_verified_owner_journey_pending
+    status: alpha10_mutable_installer_containment_pending_then_alpha11_successor
 
 prior_work:
   - id: alpha10_ghcr_publication
@@ -167,7 +172,7 @@ prior_work:
     validity: exact_alpha10_candidate_930c2d9a
     missing: owner_verdict
   - id: alpha10_candidate_rehearsals
-    verdict: two_independent_clean_ubuntu_full_rehearsals_passed_all_seven_phases
+    verdict: two_rehearsals_passed_all_seven_phases_only_after_preinstalling_Questing_Podman_5_4_2_so_they_do_not_prove_the_clean_owner_path
     evidence: [rehearsal-private-full-r2.json, rehearsal-private-full-r3.json]
     validity: exact_alpha10_candidate_and_digest_only_prepublication_registry_transport
     missing: none
@@ -177,10 +182,15 @@ prior_work:
     validity: exact_alpha10_site_content_and_retained_immutable_trees
     missing: none
   - id: alpha10_direct_public_transport
-    verdict: governed_fresh_guest_used_anonymous_pages_and_ghcr_without_guest_local_site_registry_mirror_or_retained_archive_transport_then_passed_bootstrap_fetch_runtime_smoke_seven_manifest_probe_materialization_preflight_install_and_identical_rerun
+    verdict: public_transport_and_artifact_fetch_were_anonymous_but_runtime_qualification_was_invalid_because_the_guest_had_preinstalled_Questing_Podman_5_4_2
     evidence: [rehearsal-public-full-r1.json, public-rehearsal-verification-930c2d9a-r1.json, governor-rehearsal-public-full-r1/background-safe-v1.json]
     validity: exact_alpha10_candidate_public_transport_2026_08_31__not_owner_windows_clean_install_or_human_acceptance
-    missing: owner_windows_wsl2_private_Study_Lenny_journey_and_human_verdict
+    missing: faithful_stock_Noble_runtime_provisioning_and_post_publication_rehearsal
+  - id: alpha10_owner_test_rejection
+    verdict: rejected_on_fresh_stock_Windows11_WSL2_Ubuntu2404_before_Study_Lenny_when_public_bootstrap_installed_Noble_Podman_4_9_3_below_floor_while_rehearsal_had_preinstalled_5_4_2
+    evidence: [owner-test-failure-alpha10-podman-floor-r1.json, StatePort:scripts/render_wsl2_install_bootstrap.py, StatePort:infra/qualification/wsl2_rehearsal.py]
+    validity: explicit_owner_verdict_and_source_audit_2026_08_31__no_raw_installer_receipt
+    missing: faithful_Alpha11_stock_public_path_and_owner_retest
   - id: alpha7_publication_pages_verification
     verdict: signed_candidate_published_and_exact_live_bytes_anonymously_matched
     evidence: [09a2c9e54931de789d3dc8d24ed77944f27e0313, pages_run_32046592525, pages_deployment_5947438349]
@@ -188,7 +198,7 @@ prior_work:
     missing: none
 
 workspace_inventory:
-  expected_content_head: 24428baa1dbee3eaac637e19c34c2aad00e7a38c
-  expected_origin_head: 24428baa1dbee3eaac637e19c34c2aad00e7a38c
-  expected_dirty_path: final_alpha10_state_only_closure
+  expected_content_head: dbc3c30907c4a5912f7760ff02e3f5b1a7b6f31b
+  expected_origin_head: dbc3c30907c4a5912f7760ff02e3f5b1a7b6f31b
+  expected_dirty_path: alpha10_rejection_mutable_installer_containment
   immutable_release_bytes_changed_after_anchor: false

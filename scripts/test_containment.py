@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from copy import deepcopy
-from html import escape
 import hashlib
 import json
 import os
@@ -74,6 +73,7 @@ class ImmutableManifestTests(unittest.TestCase):
             "download/0.1.0-alpha.2": "4043534a9a1d56c51c3d47d0906e0520963af79c",
             "download/0.1.0-alpha.3": "52b42dd47a11510220f33690075f1b6773f6a889",
             "download/0.1.0-alpha.5": "eaa1ca6a67844259860917442a95c891d097939f",
+            "download/0.1.0-alpha.10": "24428baa1dbee3eaac637e19c34c2aad00e7a38c",
         }
         self.assertEqual(manifest_builder.PUBLICATION_ANCHORS, expected)
         self.assertEqual(validate_repo.VALIDATOR_PUBLICATION_ANCHORS, expected)
@@ -224,15 +224,8 @@ class ImmutableManifestTests(unittest.TestCase):
 
 
 class CurrentBootstrapTests(unittest.TestCase):
-    def test_current_bootstrap_and_manifests_are_bound_to_alpha10(self) -> None:
-        installer = ROOT / "download/install.sh"
+    def test_versioned_alpha10_and_manifests_remain_immutable(self) -> None:
         versioned = ROOT / "download/0.1.0-alpha.10/install.sh"
-        self.assertEqual(installer.read_bytes(), versioned.read_bytes())
-        self.assertEqual(
-            hashlib.sha256(installer.read_bytes()).hexdigest(),
-            install_transport.BOOTSTRAP_SHA256,
-        )
-        self.assertEqual(len(installer.read_bytes()), install_transport.BOOTSTRAP_SIZE)
         self.assertEqual(
             hashlib.sha256(versioned.read_bytes()).hexdigest(),
             install_transport.VERSIONED_BOOTSTRAP_SHA256,
@@ -242,8 +235,19 @@ class CurrentBootstrapTests(unittest.TestCase):
             manifest = ROOT / "download/alpha10-manifests" / f"{image_id}.json"
             self.assertEqual(hashlib.sha256(manifest.read_bytes()).hexdigest(), digest)
 
-    def test_program_has_valid_shell_syntax(self) -> None:
+    def test_mutable_route_is_exact_and_fail_closed(self) -> None:
         installer = ROOT / "download/install.sh"
+        bootstrap = installer.read_bytes()
+        self.assertEqual(bootstrap, install_transport.FAIL_CLOSED_BOOTSTRAP)
+        self.assertEqual(len(bootstrap), install_transport.MUTABLE_BOOTSTRAP_SIZE)
+        self.assertEqual(
+            hashlib.sha256(bootstrap).hexdigest(),
+            install_transport.MUTABLE_BOOTSTRAP_SHA256,
+        )
+        self.assertNotEqual(
+            bootstrap,
+            (ROOT / "download/0.1.0-alpha.10/install.sh").read_bytes(),
+        )
         syntax = subprocess.run(
             ["/bin/sh", "-n", str(installer)],
             check=False,
@@ -251,92 +255,25 @@ class CurrentBootstrapTests(unittest.TestCase):
             env={"LC_ALL": "C", "PATH": os.environ.get("PATH", "")},
         )
         self.assertEqual(syntax.returncode, 0, syntax.stderr.decode("utf-8"))
-
-    def _run_transport(self, response: bytes, *, execute: bool) -> tuple[subprocess.CompletedProcess[str], Path]:
-        temporary = tempfile.TemporaryDirectory()
-        self.addCleanup(temporary.cleanup)
-        root = Path(temporary.name)
-        response_path = root / "response"
-        response_path.write_bytes(response)
-        shell_log = root / "shell.log"
-
-        curl = root / "curl"
-        curl.write_text(
-            "#!/bin/sh\n"
-            "while [ \"$#\" -gt 0 ]; do\n"
-            "  case \"$1\" in\n"
-            "    --output) output=$2; shift 2 ;;\n"
-            "    *) shift ;;\n"
-            "  esac\n"
-            "done\n"
-            "cp \"$BOOTSTRAP_RESPONSE\" \"$output\"\n",
-            encoding="utf-8",
-        )
-        curl.chmod(0o755)
-        shell = root / "checked-sh"
-        shell.write_text(
-            "#!/bin/sh\n"
-            "printf '%s\\n' \"$*\" >> \"$SHELL_LOG\"\n"
-            "if [ \"${2-}\" = --materialization-preflight ]; then\n"
-            f"  printf '%s\\n' '{install_transport.PREFLIGHT_SUCCESS}'\n"
-            "  exit 0\n"
-            "fi\n"
-            "exec /bin/sh \"$@\"\n",
-            encoding="utf-8",
-        )
-        shell.chmod(0o755)
-
-        command = install_transport.render_install_command(execute=execute, shell=str(shell))
         completed = subprocess.run(
-            ["/bin/sh", "-c", command],
+            ["/bin/sh", str(installer)],
             check=False,
             capture_output=True,
             text=True,
             env={
-                "BOOTSTRAP_RESPONSE": str(response_path),
                 "LC_ALL": "C",
-                "PATH": f"{root}:{os.environ.get('PATH', '')}",
-                "SHELL_LOG": str(shell_log),
-                "TMPDIR": str(root),
+                "PATH": os.environ.get("PATH", ""),
             },
         )
-        return completed, shell_log
+        self.assertEqual(completed.returncode, 1)
+        self.assertEqual(completed.stdout, "")
+        self.assertEqual(completed.stderr, f"{install_transport.FAIL_CLOSED_MESSAGE}\n")
 
-    def test_replacement_binds_exact_bootstrap_without_pipe_to_shell(self) -> None:
-        command = install_transport.render_install_command(execute=True)
-        self.assertNotRegex(command, r"install\.sh[^\n]*\|\s*(?:/bin/)?sh\b")
-        self.assertIn(install_transport.BOOTSTRAP_URL, command)
-        self.assertIn(install_transport.BOOTSTRAP_SHA256, command)
-        self.assertIn(str(install_transport.BOOTSTRAP_SIZE), command)
-        self.assertLess(command.index("curl "), command.index("sha256sum"))
-        self.assertLess(command.index("sha256sum"), command.index('/bin/sh -n "$tmp"'))
-        self.assertLess(command.index('/bin/sh -n "$tmp"'), command.rindex('/bin/sh "$tmp"'))
+    def test_download_page_has_no_alpha10_transport(self) -> None:
         download = (ROOT / "download/index.html").read_text(encoding="utf-8")
-        self.assertIn(escape(command), download)
-        self.assertIn(escape(install_transport.render_install_command()), download)
-        self.assertLess(
-            download.index(escape(install_transport.render_install_command())),
-            download.index(escape(command)),
-        )
         self.assertIn(validate_repo.INSTALLER_STATUS, download)
-
-    def test_4096_byte_response_fails_before_shell_or_execution(self) -> None:
-        bootstrap = (ROOT / "download/install.sh").read_bytes()
-        completed, shell_log = self._run_transport(bootstrap[:4096], execute=True)
-        self.assertNotEqual(completed.returncode, 0)
-        self.assertFalse(shell_log.exists(), "truncated response reached the shell")
-
-    def test_complete_exact_bytes_pass_dash_syntax_without_execution(self) -> None:
-        bootstrap = (ROOT / "download/install.sh").read_bytes()
-        self.assertEqual(len(bootstrap), install_transport.BOOTSTRAP_SIZE)
-        self.assertEqual(hashlib.sha256(bootstrap).hexdigest(), install_transport.BOOTSTRAP_SHA256)
-        completed, shell_log = self._run_transport(bootstrap, execute=False)
-        self.assertEqual(completed.returncode, 0, completed.stderr)
-        self.assertIn(install_transport.PREFLIGHT_SUCCESS, completed.stdout)
-        calls = shell_log.read_text(encoding="utf-8").splitlines()
-        self.assertEqual(len(calls), 2)
-        self.assertTrue(calls[0].startswith("-n "), calls)
-        self.assertTrue(calls[1].endswith(" --materialization-preflight"), calls)
+        self.assertNotIn("download/install.sh", download)
+        self.assertNotIn("curl ", download)
 
 
 class SourceDisclosureTests(unittest.TestCase):

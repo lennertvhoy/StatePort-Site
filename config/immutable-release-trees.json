@@ -2,6 +2,237 @@
   "description": "Exact path, SHA-256, byte-count, publication Git mode/type, and current lstat-mode manifest for the retained signed release trees, anchored to verified publication commits. Regenerate only with python3 scripts/build_immutable_manifest.py; the release trees are immutable and must never change nodes, modes, or bytes.",
   "schema": "stateport-site.immutable-release-trees/v2",
   "trees": {
+    "download/0.1.0-alpha.10": {
+      "anchor": {
+        "commit": "24428baa1dbee3eaac637e19c34c2aad00e7a38c"
+      },
+      "files": {
+        "compose.yaml": {
+          "bytes": 2318,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "558ea99618f5ba6aaab01f71ef7001a58065227509fd4bd7f6a437e195f3429e"
+        },
+        "install.sh": {
+          "bytes": 17774,
+          "gitMode": "100755",
+          "gitType": "blob",
+          "lstatMode": "100755",
+          "sha256": "afb807280e1588ce4903be79649a7b7dd69026177b18a7a98a95b01f54f74d5d"
+        },
+        "known-limitations.md": {
+          "bytes": 666,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "01757f4abd7837276f6233225c454119da45f096bf9c7db77460ca5b1171527c"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/materialization.template.json": {
+          "bytes": 4707,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "31a11c0f7c13fc3e3c52790a3e904b3a2f87f37db9d047af981ed549e4fcdaed"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-@@STATEPORT_NETWORK:stateport-control:accepted@@.network.in": {
+          "bytes": 305,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "fa0c73d211a151644ca98b8c3310d1fc83eb7a2e25abe3b786e6001fa0d0b992"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-@@STATEPORT_NETWORK:stateport-control:validation@@.network.in": {
+          "bytes": 309,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "276e1696de0a56a88320b754ee89335db93078c24a3a382b771c4a9c88db0895"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-ae4a67f11969-accepted-@@STATEPORT_REVISION:stateport-web:accepted@@.container.in": {
+          "bytes": 2239,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "4a5d11c2bb7b5b7e50b6b4776f9f61febbc612e22d4eb5ee9a1e0617730c09c0"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-ae4a67f11969-validation-@@STATEPORT_REVISION:stateport-web:validation@@.container.in": {
+          "bytes": 2256,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "e9a9eb7ae4a93cdd1ed9c836f40b03a3ac4628ebd325c7d772719edd8955e5e0"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-d864bc7ef3bf-accepted-@@STATEPORT_REVISION:stateport-worker:accepted@@.container.in": {
+          "bytes": 2014,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "aa915742b6a4d59bcc9247d94d1a821e6f459b6a836748a2c3ed9e557a0cdf0d"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-d864bc7ef3bf-validation-@@STATEPORT_REVISION:stateport-worker:validation@@.container.in": {
+          "bytes": 2031,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "d6d7b307c3c9d009b131e7a70340728c44a6212bf01bd5774726beeb5da488db"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-f544857680bc-accepted-@@STATEPORT_REVISION:stateport-api:accepted@@.container.in": {
+          "bytes": 1987,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "37beb68f0c03163573c1bdedb6ca44c4e55944380cd5f605c19b551987d32d1f"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-f544857680bc-validation-@@STATEPORT_REVISION:stateport-api:validation@@.container.in": {
+          "bytes": 2004,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "e7ca4a23a08d1b2258831806c356ba92a39f380830c2edbd575d2d626b5f0026"
+        },
+        "release-index.json": {
+          "bytes": 42519,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "2fc626fcab180f664f04f36d1fcceacaffa81ca96a658585f6684e3cf37abf89"
+        },
+        "release-index.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "db7814299a7603088e1a0cac3845a0c4be7a165465537bc7710957ecf5499b11"
+        },
+        "release-notes.md": {
+          "bytes": 313,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "f82bf310405746381aeddc6313371ea96404fb6ecee299f82f369d8aeb5abc0a"
+        },
+        "signatures/stateport-api.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "0ec448caad0230d9dad906901254f26d65999fc73c07c8d8b8008471fdfeaf9e"
+        },
+        "signatures/stateport-dev-workspace.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "b0238ded9fe803adbe869fc2a1fb395a6862b0f89912c2954c5ea805f8525d63"
+        },
+        "signatures/stateport-execution-host.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "0b8df9c1c037b62b68e24fe31aec332b64603c540fb0423e05d2ada1907d7749"
+        },
+        "signatures/stateport-playwright.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "44de023416958a2bb6da9d7543631b11df9e1a30ba23d79b589b74837f23c46b"
+        },
+        "signatures/stateport-runner.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "27495cadb8ba7065a7f071aa0956741aaa5f0b5424e2af97ba62b887b6bfac04"
+        },
+        "signatures/stateport-web.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "c2fa1c3a5963085f43aefdb80a7386b1acf1cb18156190080a1629309a7ed3a9"
+        },
+        "signatures/stateport-worker.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "d648fff90b6731e903f6061451344c4a78ed3c26fb7148e5e7e5858d06ea4a96"
+        },
+        "stateport-alpha-2026-08-cosign.pub": {
+          "bytes": 178,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "798d6ea6e2703993758f0fb45618b1f05b40f6ef116e7d286fd5a6867859b8ad"
+        },
+        "stateport-execution-host-provision": {
+          "bytes": 35615,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "312ef592fb05bb45458b8f58e5551f0e5594bde2111d90555267494785da6d32"
+        },
+        "stateport-installer": {
+          "bytes": 204073,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "8e8dbe88393d9a90b96727911a3eb7930ecae11b75e1099961560ec3c62d0df0"
+        },
+        "stateport-source.tar": {
+          "bytes": 24258560,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "7bd456b2ed3db1dcc881f78cc2f78ae88770af5ea9c75444d0eefa18be8ab795"
+        },
+        "stateport-updater": {
+          "bytes": 369355,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "cf083edb278b1d21ae8ec1062b6a81e73b133ef6d69243a9191612d832be2ae0"
+        },
+        "supply-chain/cosign.tool-provenance.json": {
+          "bytes": 441,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "032073a95053461af1d106865458bf376c2f36bf8133de97729bbc33632994d8"
+        },
+        "supply-chain/double-build-comparison.json": {
+          "bytes": 5436,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "5d0106dfa3f02e065dcd68685e758b764f8c7a502e52183293ddeefe7f25794c"
+        },
+        "supply-chain/grype.tool-provenance.json": {
+          "bytes": 441,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "400f218ed38df9fcb05018ebf65445215a32057f7f21fc6720a00c206fd606cc"
+        },
+        "supply-chain/public-export-manifest.json": {
+          "bytes": 537611,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "f579d7651f3e7783d30a5154a56bc2849a6308368841b733ba38af2da2b22c9f"
+        },
+        "supply-chain/syft.tool-provenance.json": {
+          "bytes": 438,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "22d2c8a0bc91f7a683b734f7a2b2e2cff093250f035eeddcef7f019f227fcc55"
+        }
+      }
+    },
     "download/0.1.0-alpha.2": {
       "anchor": {
         "commit": "4043534a9a1d56c51c3d47d0906e0520963af79c"

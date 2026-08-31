@@ -3,7 +3,6 @@
 
 from __future__ import annotations
 
-from html import escape
 from html.parser import HTMLParser
 import hashlib
 import json
@@ -15,26 +14,21 @@ import subprocess
 from urllib.parse import urlsplit
 
 from install_transport import (
-    BOOTSTRAP_SHA256,
-    BOOTSTRAP_SIZE,
-    BOOTSTRAP_URL,
+    FAIL_CLOSED_BOOTSTRAP,
+    FAIL_CLOSED_MESSAGE,
     MANIFEST_DIGESTS,
-    PREFLIGHT_SUCCESS,
+    MUTABLE_BOOTSTRAP_SHA256,
+    MUTABLE_BOOTSTRAP_SIZE,
     VERSIONED_BOOTSTRAP_SHA256,
     VERSIONED_BOOTSTRAP_SIZE,
     VERSIONED_BOOTSTRAP_URL,
-    render_install_command,
 )
 from render_support import load_config, rendered_home, support_enabled
 
 
 ROOT = Path(__file__).resolve().parents[1]
 
-INSTALLER_STATUS = (
-    "The Alpha.10 installer is available for an owner test on Windows 11 with WSL2 "
-    "and Ubuntu 24.04. It has passed two independent clean Ubuntu rehearsals but has "
-    "not yet been owner-tested through the published path."
-)
+INSTALLER_STATUS = "Alpha.10 is rejected and installation is disabled."
 
 # These publication anchors are intentionally duplicated here instead of being
 # imported from build_immutable_manifest.py. The validator is an independent
@@ -43,6 +37,7 @@ VALIDATOR_PUBLICATION_ANCHORS = {
     "download/0.1.0-alpha.2": "4043534a9a1d56c51c3d47d0906e0520963af79c",
     "download/0.1.0-alpha.3": "52b42dd47a11510220f33690075f1b6773f6a889",
     "download/0.1.0-alpha.5": "eaa1ca6a67844259860917442a95c891d097939f",
+    "download/0.1.0-alpha.10": "24428baa1dbee3eaac637e19c34c2aad00e7a38c",
 }
 
 ALPHA3_CANONICAL_SOURCE_IDENTITY = {
@@ -882,19 +877,21 @@ def validate_current_release() -> None:
     mutable = require("download/install.sh")
     for path in (versioned, mutable):
         if stat.S_IMODE(path.stat().st_mode) != 0o755:
-            raise AssertionError(f"Alpha.10 bootstrap mode must be exactly 0755: {path}")
+            raise AssertionError(f"Alpha.10 bootstrap route mode must be exactly 0755: {path}")
     if versioned.stat().st_size != VERSIONED_BOOTSTRAP_SIZE:
         raise AssertionError("Immutable Alpha.10 bootstrap size changed")
     if fixed_files["install.sh"] != VERSIONED_BOOTSTRAP_SHA256:
         raise AssertionError("Immutable Alpha.10 bootstrap digest changed")
     if VERSIONED_BOOTSTRAP_URL != f"https://lennertvhoy.github.io/StatePort-Site/{release_root}/install.sh":
         raise AssertionError("Immutable Alpha.10 bootstrap URL is stale")
-    if mutable.stat().st_size != BOOTSTRAP_SIZE:
-        raise AssertionError("Mutable Alpha.10 probe bootstrap size is stale")
-    if hashlib.sha256(mutable.read_bytes()).hexdigest() != BOOTSTRAP_SHA256:
-        raise AssertionError("Mutable Alpha.10 probe bootstrap digest is stale")
-    if BOOTSTRAP_URL != "https://lennertvhoy.github.io/StatePort-Site/download/install.sh":
-        raise AssertionError("Alpha.10 transport generator points at the wrong mutable bootstrap")
+    if mutable.stat().st_size != MUTABLE_BOOTSTRAP_SIZE:
+        raise AssertionError("Mutable Alpha.10 fail-closed bootstrap size is stale")
+    if hashlib.sha256(mutable.read_bytes()).hexdigest() != MUTABLE_BOOTSTRAP_SHA256:
+        raise AssertionError("Mutable Alpha.10 fail-closed bootstrap digest is stale")
+    if mutable.read_bytes() != FAIL_CLOSED_BOOTSTRAP:
+        raise AssertionError("Mutable Alpha.10 route is not the exact fail-closed program")
+    if mutable.read_bytes() == versioned.read_bytes():
+        raise AssertionError("Rejected Alpha.10 mutable route must not remain install-enabled")
     for image_id, expected in RETAINED_ALPHA5_MANIFEST_DIGESTS.items():
         manifest = require(f"download/alpha5-manifests/{image_id}.json")
         if hashlib.sha256(manifest.read_bytes()).hexdigest() != expected:
@@ -1083,49 +1080,48 @@ def validate_source_disclosures(texts: dict[Path, str]) -> None:
 def validate_release_semantics() -> None:
     """Reject mutable-surface claims that contradict canonical release truth."""
     release_block = release_state_block()
-    install_enabled = re.search(r"^  installation_enabled: true\s*$", release_block, re.MULTILINE)
-    known_defective = re.search(r"^  known_defective: false\s*$", release_block, re.MULTILINE)
-    if not install_enabled or not known_defective:
+    install_disabled = re.search(r"^  installation_enabled: false\s*$", release_block, re.MULTILINE)
+    known_defective = re.search(r"^  known_defective: true\s*$", release_block, re.MULTILINE)
+    if not install_disabled or not known_defective:
         raise AssertionError(
-            "PROJECT_STATE.yaml must enable installation without labelling signed Alpha.10 bytes defective"
+            "PROJECT_STATE.yaml must mark rejected Alpha.10 defective and disable installation"
         )
 
     pages = mutable_public_pages()
     texts = {page: page.read_text(encoding="utf-8") for page in pages}
     pipe_to_shell = re.compile(r"(?:curl|wget)\s[^<\n]*\|\s*(?:/bin/)?sh\b")
-    install_command = render_install_command(execute=True)
-    preflight = render_install_command()
     for page, text in texts.items():
         relative = page.relative_to(ROOT)
         if pipe_to_shell.search(text):
             raise AssertionError(f"pipe-to-shell promotion is forbidden on {relative}")
 
     download = texts[ROOT / "download/index.html"]
-    if escape(preflight) not in download:
-        raise AssertionError("download/index.html must show the exact pinned Alpha.10 preflight command")
-    if escape(install_command) not in download:
-        raise AssertionError("download/index.html must show the exact pinned Alpha.10 install command")
-    if download.index(escape(preflight)) > download.index(escape(install_command)):
-        raise AssertionError("download/index.html must present the preflight before the install command")
     if INSTALLER_STATUS not in download:
         raise AssertionError(f"download/index.html lacks Alpha.10 installer status {INSTALLER_STATUS!r}")
+    for marker in ("download/install.sh", "curl ", "wget "):
+        if marker in download:
+            raise AssertionError(f"Rejected Alpha.10 download page still exposes install transport: {marker!r}")
 
-    if pipe_to_shell.search(install_command) or pipe_to_shell.search(preflight):
-        raise AssertionError("Alpha.10 transport generator must never use pipe-to-shell")
-    for command in (install_command, preflight):
-        for marker in (BOOTSTRAP_URL, BOOTSTRAP_SHA256, str(BOOTSTRAP_SIZE), '/bin/sh -n "$tmp"'):
-            if marker not in command:
-                    raise AssertionError(f"Alpha.10 transport generator lacks {marker!r}")
-    if '/bin/sh "$tmp"' not in install_command:
-        raise AssertionError("Alpha.10 install command must execute only after checks")
-    if '/bin/sh "$tmp" --materialization-preflight' not in preflight or PREFLIGHT_SUCCESS not in require(
-        "download/install.sh"
-    ).read_text(encoding="utf-8"):
-        raise AssertionError("Alpha.10 preflight must enter the exact non-installing bootstrap mode")
+    launcher = require("download/install.sh")
+    completed = subprocess.run(
+        ["/bin/sh", str(launcher)],
+        check=False,
+        capture_output=True,
+        text=True,
+        env={"LC_ALL": "C", "PATH": os.environ.get("PATH", "")},
+        timeout=5,
+    )
+    if completed.returncode != 1 or completed.stdout or completed.stderr != f"{FAIL_CLOSED_MESSAGE}\n":
+        raise AssertionError("Mutable Alpha.10 launcher must fail closed with the exact rejection notice")
 
     for surface in ("index.html", "download/index.html", "releases/index.html", "docs/limitations.html"):
         text = texts[ROOT / surface].lower()
-        for marker in ("alpha.10", "stateport is in early alpha", "do not use it for important data"):
+        for marker in (
+            "alpha.10",
+            "stateport is in early alpha",
+            "do not use it for important data",
+            INSTALLER_STATUS.lower(),
+        ):
             if marker not in text:
                 raise AssertionError(f"{surface} must disclose current Alpha.10 boundary {marker!r}")
     if "erratum-alpha3.html" not in texts[ROOT / "download/index.html"]:
@@ -1341,9 +1337,9 @@ def main() -> None:
     require_text("docs/agent-kits.html", "Early direction")
     require_text("docs/platform-support.html", "Alpha.10 requirements")
     require_text("papers/stateware-whitepaper-public-v1.1.html", "Publication note")
-    require_text("releases/index.html", "installer available for an owner test")
+    require_text("releases/index.html", INSTALLER_STATUS)
     require_text("download/index.html", "Do not install Alpha 2 or Alpha 3")
-    require_text("docs/limitations.html", "installer is available for an owner test")
+    require_text("docs/limitations.html", INSTALLER_STATUS)
     require_text(".github/workflows/deploy-pages.yml", "actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e")
 
     public_copy = "\n".join(

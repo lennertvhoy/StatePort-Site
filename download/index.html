@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Install StatePort Alpha.10 on Windows 11 with WSL2 and Ubuntu 24.04, check requirements, or inspect technical release files.">
+    <meta name="description" content="StatePort Alpha.10 was rejected after its clean public install failed on stock Ubuntu 24.04. Installation is disabled while Alpha.11 is prepared.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="Download StatePort Alpha.10">
-    <meta property="og:description" content="The Alpha.10 installer is available for an owner test on Windows 11 with WSL2 and Ubuntu 24.04.">
+    <meta property="og:description" content="Alpha.10 is rejected and install-disabled after a stock Ubuntu 24.04 Podman provisioning failure.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/download/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -31,7 +31,7 @@
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "Download StatePort Alpha.10",
-        "description": "The Alpha.10 installer is available for an owner test. Check requirements, older-release warnings, and technical release files.",
+        "description": "Alpha.10 is rejected and install-disabled after a stock Ubuntu 24.04 Podman provisioning failure. Its technical release files remain available.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/download/",
         "dateModified": "2026-08-31",
         "inLanguage": "en"
@@ -61,7 +61,7 @@
         <div class="article-hero-inner">
           <p class="document-kicker">Download</p>
           <h1 id="download-title">StatePort Alpha.10</h1>
-          <p class="notice"><strong>The Alpha.10 installer is available for an owner test on Windows 11 with WSL2 and Ubuntu 24.04. It has passed two independent clean Ubuntu rehearsals but has not yet been owner-tested through the published path.</strong></p>
+          <p class="notice"><strong>Alpha.10 is rejected and installation is disabled. Its public bootstrap received Ubuntu 24.04's Podman 4.9.3, below StatePort's required floor, while the rehearsal had prepared a newer Podman first.</strong></p>
           <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue</a>.</p>
         </div>
       </section>
@@ -72,7 +72,7 @@
           <nav>
             <a href="#alpha10" aria-current="page">Current status</a>
             <a href="#requirements">Requirements</a>
-            <a href="#install">Installer</a>
+             <a href="#install">Installer status</a>
             <a href="#release-files">Technical release files</a>
             <a href="#older-releases">Older releases</a>
             <a href="../releases/">Release status</a>
@@ -93,14 +93,10 @@
           </section>
 
           <section id="install" aria-labelledby="install-heading">
-            <h2 id="install-heading">Install Alpha.10</h2>
-            <p><strong>Recommended first step: check your computer without changing it.</strong> In an Ubuntu 24.04 WSL2 terminal, as your normal user, run:</p>
-            <div class="code-panel" data-label="Alpha.10 preflight check"><code>(umask 077; tmp=&quot;$(mktemp)&quot; &amp;&amp; trap &#x27;rm -f &quot;$tmp&quot;&#x27; EXIT HUP INT TERM &amp;&amp; curl --fail --location --silent --show-error --proto &#x27;=https&#x27; --tlsv1.2 --output &quot;$tmp&quot; https://lennertvhoy.github.io/StatePort-Site/download/install.sh &amp;&amp; test &quot;$(wc -c &lt; &quot;$tmp&quot;)&quot; -eq 17774 &amp;&amp; printf &#x27;%s  %s\n&#x27; &#x27;afb807280e1588ce4903be79649a7b7dd69026177b18a7a98a95b01f54f74d5d&#x27; &quot;$tmp&quot; | sha256sum --check --status - &amp;&amp; /bin/sh -n &quot;$tmp&quot; &amp;&amp; /bin/sh &quot;$tmp&quot; --materialization-preflight)</code></div>
-            <p>The preflight downloads the installer bootstrap, verifies its exact size and pinned SHA-256, checks its shell syntax, and verifies the setup plan. It does not install anything: packages, root files, images, and the installer are not changed or executed.</p>
-            <p><strong>Then install.</strong> Run this exact command in the same terminal:</p>
-            <div class="code-panel" data-label="Alpha.10 install"><code>(umask 077; tmp=&quot;$(mktemp)&quot; &amp;&amp; trap &#x27;rm -f &quot;$tmp&quot;&#x27; EXIT HUP INT TERM &amp;&amp; curl --fail --location --silent --show-error --proto &#x27;=https&#x27; --tlsv1.2 --output &quot;$tmp&quot; https://lennertvhoy.github.io/StatePort-Site/download/install.sh &amp;&amp; test &quot;$(wc -c &lt; &quot;$tmp&quot;)&quot; -eq 17774 &amp;&amp; printf &#x27;%s  %s\n&#x27; &#x27;afb807280e1588ce4903be79649a7b7dd69026177b18a7a98a95b01f54f74d5d&#x27; &quot;$tmp&quot; | sha256sum --check --status - &amp;&amp; /bin/sh -n &quot;$tmp&quot; &amp;&amp; /bin/sh &quot;$tmp&quot;)</code></div>
-            <p>The install command downloads the bootstrap to a private temporary file, verifies its exact size and pinned SHA-256, and checks its shell syntax before running it. There is no pipe-to-shell stage.</p>
-            <p>If the install asks for your password, it is your own computer asking for the administrator rights needed to set up StatePort's helper program.</p>
+            <h2 id="install-heading">Alpha.10 installation is disabled</h2>
+            <p>The first owner test stopped on a freshly created Windows 11, WSL2, and Ubuntu 24.04 instance before the private application journey. Ubuntu installed Podman 4.9.3, which is below StatePort's supported floor.</p>
+            <p>The earlier rehearsal had installed a newer Podman before running the public bootstrap, so it did not faithfully prove the clean public path. Do not manually add a repository or upgrade Podman to continue Alpha.10.</p>
+            <p>Alpha.11 is being prepared to provision a pinned, verified supported Podman from inside the public bootstrap and to rehearse the exact stock-owner path.</p>
           </section>
 
           <section id="release-files" aria-labelledby="release-files-heading">

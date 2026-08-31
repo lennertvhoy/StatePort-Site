@@ -32,26 +32,24 @@ test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"
 Stop on divergence or unexplained dirty work and preserve it. Do not switch to
 an old site branch because its prose looks newer.
 
-### Alpha.10 owner-test publication closure
+### Alpha.10 owner-test rejection and Alpha.11 successor
 
-StatePort directive
-`STATEPORT-WINDOWS-STUDY-LENNY-OWNER-TEST-READY-20260830`, bound to source
-commit `930c2d9ad3dcc659da9e8a2b966972cfd78f0f0e` and tree
-`726d1dcba907d83ed926ffbf977a3ef4fe1e4725`, authorizes the exact Alpha.10 Site
-content commit, push, legacy Pages deployment, anonymous byte verification,
-direct public-transport rehearsal, and final state-only closure. Site base
-`d8aeb279c36432a1e4baed2c30960a42137c92f0` includes the owner-authored
-canonical-path repair and must remain an ancestor.
+StatePort directive `STATEPORT-ALPHA11-PODMAN-CLEAN-INSTALL-20260831` records the
+owner's rejection of Alpha.10 and authorizes immediate fail-closed containment
+of only its mutable installer route, followed by one additive Alpha.11 successor.
+The owner used a freshly created stock Windows 11, WSL2, and Ubuntu 24.04
+instance. The public bootstrap installed Noble Podman 4.9.3 below StatePort's
+floor before the private `Study_Lenny` journey. Source audit confirmed the
+rehearsal had preinstalled Questing Podman 5.4.2 before invoking the bootstrap,
+so its pass was not faithful clean-owner evidence.
 
-The seven signed image manifests are published to GHCR and anonymously verified
-by both tag and digest. Content commit `24428baa1dbee3eaac637e19c34c2aad00e7a38c`
-deployed through Pages build `1185989241`, run `33408727082`, and deployment
-`6184162311`; all changed paths and retained immutable files matched anonymous
-bytes. The fresh direct-public rehearsal then passed install and identical rerun
-without a guest-local Site, registry mirror, or retained archive transport.
-Only the owner Windows/WSL/private `Study_Lenny` journey and human verdict are
-pending. This authority does not permit re-signing, candidate-byte changes,
-human acceptance, independent review, stability, or production qualification.
+Never modify or re-sign Alpha.10 bytes. The mutable launcher must remain
+fail-closed until Alpha.11 is immutably published after stock-path proof. Do not
+tell the owner to repair Podman manually or use the failed distro as pass
+evidence. Alpha.11 is limited to secure pinned Podman provisioning, removal of
+material rehearsal-only preparation, focused regressions, exact stock/public
+rehearsals, publication, and anonymous verification. Human acceptance remains
+separate and non-blocking for engineering closure.
 
 ### Alpha.5 repaired public-install closure
 
@@ -174,17 +172,16 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
 
 ## Current release truth
 
-- Current candidate: `v0.1.0-alpha.10`, signed for exact target
+- Latest published candidate: `v0.1.0-alpha.10`, signed for exact target
   `wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet`.
 - Signed index SHA-256:
   `2fc626fcab180f664f04f36d1fcceacaffa81ca96a658585f6684e3cf37abf89`;
   signed payload:
   `sha256:2478e9c69aac1679813c448d25a7648e68d81f44daaa2d7bc3085aaf86b7b222`.
-- Alpha.10 passed two independent governed clean Ubuntu rehearsals plus one
-  fresh direct anonymous public-transport rehearsal, each including install and
-  identical rerun. Its seven exact images and Site files are published and
-  anonymously verified. WSL2 remains `compatible_unvalidated`; the owner
-  Windows/WSL/private `Study_Lenny` journey and acceptance receipt are absent.
+- Alpha.10 is owner-rejected and install-disabled. Stock Noble supplied Podman
+  4.9.3 below StatePort's floor, while all passing rehearsals had preinstalled
+  Podman 5.4.2. Its exact images and immutable Site files remain published and
+  byte-verified for inspection, not installation or acceptance.
 - Alpha.10 has no authenticated predecessor under its current trust root and
   declares rollback unsupported. Never construct a predecessor bundle from the
   retired Alpha.7 trust root.
@@ -214,8 +211,9 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
 - Pages deploys from `main` through GitHub's managed legacy Pages build. The
   custom workflow is manual-only. Nothing is live until remotely verified.
 
-Never call Alpha.10 clean-installed, qualified, owner-accepted, stable, audited,
-or production-ready. Never alter Alpha.2, Alpha.3, or anchored Alpha.5 bytes.
+Never call Alpha.10 owner-test-ready, clean-installed, qualified, owner-accepted,
+stable, audited, or production-ready. Never alter Alpha.2, Alpha.3, anchored
+Alpha.5, or Alpha.10 versioned bytes.
 
 ## Repository rules
 
@@ -224,7 +222,8 @@ or production-ready. Never alter Alpha.2, Alpha.3, or anchored Alpha.5 bytes.
 - Integrate finished work promptly. Do not create handoff, candidate-number,
   preservation, or generated-media branches.
 - Signed/versioned artifacts under `download/0.1.0-alpha.2/`,
-  `download/0.1.0-alpha.3/`, and `download/0.1.0-alpha.5/` are immutable.
+  `download/0.1.0-alpha.3/`, `download/0.1.0-alpha.5/`, and
+  `download/0.1.0-alpha.10/` are immutable.
   External errata and a fail-closed bootstrap may prevent use without changing
   the signed candidate.
 - `release-index.json` remains authority for version, digests, image references,
@@ -245,8 +244,8 @@ or production-ready. Never alter Alpha.2, Alpha.3, or anchored Alpha.5 bytes.
 
 1. Preserve Alpha.2 and Alpha.3 exactly and keep the Alpha.3 erratum historical.
 2. Preserve the anchored Alpha.5 tree and exact repaired mutable bootstrap.
-3. Preserve the verified Alpha.10 public transport while the owner runs the
-   Windows 11, WSL2, Ubuntu 24.04, and private `Study_Lenny` journey. Owner
-   clean-install and acceptance remain pending.
+3. Fail-close the mutable Alpha.10 launcher, preserve every versioned byte, and
+   publish Alpha.11 only after its exact public bootstrap provisions supported
+   Podman from stock Noble without rehearsal-only runtime preparation.
 
 Everything else is backlog or history.

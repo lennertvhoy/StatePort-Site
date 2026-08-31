@@ -33,6 +33,7 @@ PUBLICATION_ANCHORS = {
     "download/0.1.0-alpha.2": "4043534a9a1d56c51c3d47d0906e0520963af79c",
     "download/0.1.0-alpha.3": "52b42dd47a11510220f33690075f1b6773f6a889",
     "download/0.1.0-alpha.5": "eaa1ca6a67844259860917442a95c891d097939f",
+    "download/0.1.0-alpha.10": "24428baa1dbee3eaac637e19c34c2aad00e7a38c",
 }
 
 
