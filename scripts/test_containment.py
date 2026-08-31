@@ -224,9 +224,9 @@ class ImmutableManifestTests(unittest.TestCase):
 
 
 class CurrentBootstrapTests(unittest.TestCase):
-    def test_current_bootstrap_and_manifests_are_bound_to_alpha7(self) -> None:
+    def test_current_bootstrap_and_manifests_are_bound_to_alpha10(self) -> None:
         installer = ROOT / "download/install.sh"
-        versioned = ROOT / "download/0.1.0-alpha.7/install.sh"
+        versioned = ROOT / "download/0.1.0-alpha.10/install.sh"
         self.assertEqual(installer.read_bytes(), versioned.read_bytes())
         self.assertEqual(
             hashlib.sha256(installer.read_bytes()).hexdigest(),
@@ -239,7 +239,7 @@ class CurrentBootstrapTests(unittest.TestCase):
         )
         self.assertEqual(len(versioned.read_bytes()), install_transport.VERSIONED_BOOTSTRAP_SIZE)
         for image_id, digest in install_transport.MANIFEST_DIGESTS.items():
-            manifest = ROOT / "download/alpha7-manifests" / f"{image_id}.json"
+            manifest = ROOT / "download/alpha10-manifests" / f"{image_id}.json"
             self.assertEqual(hashlib.sha256(manifest.read_bytes()).hexdigest(), digest)
 
     def test_program_has_valid_shell_syntax(self) -> None:
@@ -297,6 +297,7 @@ class CurrentBootstrapTests(unittest.TestCase):
                 "LC_ALL": "C",
                 "PATH": f"{root}:{os.environ.get('PATH', '')}",
                 "SHELL_LOG": str(shell_log),
+                "TMPDIR": str(root),
             },
         )
         return completed, shell_log
@@ -355,7 +356,7 @@ class SourceDisclosureTests(unittest.TestCase):
         missing = dict(texts)
         technical = ROOT / "download/technical-release-files.html"
         missing[technical] = missing[technical].replace(
-            "0.1.0-alpha.7/release-index.json", "missing-release-index.json"
+            "0.1.0-alpha.10/release-index.json", "missing-release-index.json"
         )
         with self.assertRaisesRegex(AssertionError, "technical release files page lacks"):
             validate_repo.validate_source_disclosures(missing)

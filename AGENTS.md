@@ -4,7 +4,7 @@ statedd_mode: operating
 repo_mode: operating
 statedd_version: statedd-template-v5
 initialized_on: 2026-07-21
-last_updated: 2026-08-15
+last_updated: 2026-08-31
 ---
 
 # StatePort Site — canonical agent operating contract
@@ -31,6 +31,24 @@ test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"
 
 Stop on divergence or unexplained dirty work and preserve it. Do not switch to
 an old site branch because its prose looks newer.
+
+### Alpha.10 owner-test publication closure
+
+StatePort directive
+`STATEPORT-WINDOWS-STUDY-LENNY-OWNER-TEST-READY-20260830`, bound to source
+commit `930c2d9ad3dcc659da9e8a2b966972cfd78f0f0e` and tree
+`726d1dcba907d83ed926ffbf977a3ef4fe1e4725`, authorizes the exact Alpha.10 Site
+content commit, push, legacy Pages deployment, anonymous byte verification,
+direct public-transport rehearsal, and final state-only closure. Site base
+`d8aeb279c36432a1e4baed2c30960a42137c92f0` includes the owner-authored
+canonical-path repair and must remain an ancestor.
+
+The seven signed image manifests are already published to GHCR and
+anonymously verified by both tag and digest. This authority does not permit
+re-signing, changing Alpha.10 candidate bytes, rewriting retained signed
+indexes or artifacts, human acceptance, independent review, stability, or
+production qualification. Alpha.10 is additive; only the superseded Alpha.7
+launcher may be replaced by a fail-closed notice.
 
 ### Alpha.5 repaired public-install closure
 
@@ -153,16 +171,23 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
 
 ## Current release truth
 
-- Current candidate: `v0.1.0-alpha.7`, signed for exact target
+- Current candidate: `v0.1.0-alpha.10`, signed for exact target
   `wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet`.
 - Signed index SHA-256:
-  `d60a1c1060ae84aab91bc92ab497c9bca9c5e82dc6267688398e1a2b18b9bcd9`;
+  `2fc626fcab180f664f04f36d1fcceacaffa81ca96a658585f6684e3cf37abf89`;
   signed payload:
-  `sha256:15171f61eecb5138c1cd35cab5fb0f496d4d4bf954468c95957c68abcedb3cda`.
-- Alpha.7 has passed the governed clean Ubuntu rehearsal, including install and
-  identical rerun plus extended R1-R6. It is available for a first owner test;
-  WSL2 remains `compatible_unvalidated` and no clean-install acceptance receipt
-  exists.
+  `sha256:2478e9c69aac1679813c448d25a7648e68d81f44daaa2d7bc3085aaf86b7b222`.
+- Alpha.10 passed two independent governed clean Ubuntu rehearsals, including
+  install and identical rerun. Its seven exact images are published and
+  anonymously digest-verified in GHCR. Pages publication and direct public
+  transport verification are the active work; WSL2 remains
+  `compatible_unvalidated` and no owner acceptance receipt exists.
+- Alpha.10 has no authenticated predecessor under its current trust root and
+  declares rollback unsupported. Never construct a predecessor bundle from the
+  retired Alpha.7 trust root.
+- Alpha.7 remains published, signed, byte-intact except for its permitted
+  fail-closed launcher, and superseded. Its signed index and artifacts remain
+  retained.
 - Published Alpha.6 is superseded and its installer route is fail-closed because
   the candidate carries the updater venv cache-drift defect. Its signed index and
   artifacts remain retained.
@@ -174,8 +199,8 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
 - WSL1, native Linux, other distributions, ARM64, macOS, and Docker Desktop do
   not inherit this release target or its evidence.
 - Canonical development Git remains private. The signed public snapshot
-  `60cef2f9727d7a34485398eedb5d522f11b212ae` / tree
-  `20784f5977cb2222ff72b2fbd755c59acafbc60c` is anonymously resolvable from
+  `457423be626ad91d1d41d087b4bb056b96770304` / tree
+  `7eff2b9b715a0aa6a2e236b47a22a33ba54026aa` is anonymously resolvable from
   `lennertvhoy/StatePort-Source`; the curated source archive is public and
   digest-bound.
 - Alpha.3 remains signed, byte-intact, install-disabled, and governed by its
@@ -186,7 +211,7 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
 - Pages deploys from `main` through GitHub's managed legacy Pages build. The
   custom workflow is manual-only. Nothing is live until remotely verified.
 
-Never call Alpha.7 clean-installed, qualified, owner-accepted, stable, audited,
+Never call Alpha.10 clean-installed, qualified, owner-accepted, stable, audited,
 or production-ready. Never alter Alpha.2, Alpha.3, or anchored Alpha.5 bytes.
 
 ## Repository rules
@@ -217,8 +242,8 @@ or production-ready. Never alter Alpha.2, Alpha.3, or anchored Alpha.5 bytes.
 
 1. Preserve Alpha.2 and Alpha.3 exactly and keep the Alpha.3 erratum historical.
 2. Preserve the anchored Alpha.5 tree and exact repaired mutable bootstrap.
-3. Present the pinned Alpha.7 non-installing preflight as the recommended first
-   step and the exact pinned install command as the primary download action;
-   owner clean-install and acceptance remain pending.
+3. Publish and verify the pinned Alpha.10 non-installing preflight and exact
+   install command, then complete the direct anonymous public-transport
+   rehearsal; owner clean-install and acceptance remain pending.
 
 Everything else is backlog or history.
