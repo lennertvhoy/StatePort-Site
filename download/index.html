@@ -57,11 +57,11 @@
     </header>
 
     <main id="main">
-      <section class="article-hero" id="alpha10" aria-labelledby="download-title">
+      <section class="article-hero" id="alpha11" aria-labelledby="download-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Download</p>
-          <h1 id="download-title">StatePort Alpha.10</h1>
-          <p class="notice"><strong>Alpha.10 is rejected and installation is disabled. Its public bootstrap received Ubuntu 24.04's Podman 4.9.3, below StatePort's required floor, while the rehearsal had prepared a newer Podman first.</strong></p>
+          <h1 id="download-title">StatePort Alpha.11</h1>
+          <p class="notice"><strong>Alpha.11 provisions a pinned, verified supported Podman 5.4.2 from inside the public bootstrap, so the stock Windows 11 + WSL2 + Ubuntu 24.04 path does not depend on the distro's older Podman.</strong></p>
           <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue</a>.</p>
         </div>
       </section>
@@ -70,7 +70,7 @@
         <aside class="doc-sidebar" aria-label="Download sections">
           <h2>Download</h2>
           <nav>
-            <a href="#alpha10" aria-current="page">Current status</a>
+            <a href="#alpha11" aria-current="page">Current status</a>
             <a href="#requirements">Requirements</a>
              <a href="#install">Installer status</a>
             <a href="#release-files">Technical release files</a>
@@ -93,10 +93,10 @@
           </section>
 
           <section id="install" aria-labelledby="install-heading">
-            <h2 id="install-heading">Alpha.10 installation is disabled</h2>
-            <p>The first owner test stopped on a freshly created Windows 11, WSL2, and Ubuntu 24.04 instance before the private application journey. Ubuntu installed Podman 4.9.3, which is below StatePort's supported floor.</p>
-            <p>The earlier rehearsal had installed a newer Podman before running the public bootstrap, so it did not faithfully prove the clean public path. Do not manually add a repository or upgrade Podman to continue Alpha.10.</p>
-            <p>Alpha.11 is being prepared to provision a pinned, verified supported Podman from inside the public bootstrap and to rehearse the exact stock-owner path.</p>
+            <h2 id="install-heading">Alpha.11 installer</h2>
+            <p>Run the one-command installer in your Ubuntu 24.04 WSL2 terminal:</p>
+            <pre><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)</code></pre>
+            <p>Alpha.11 installs a pinned, verified Podman 5.4.2 package set from the signed release bundle, so a stock Ubuntu 24.04 install does not receive the distro's older Podman 4.9.3.</p>
           </section>
 
           <section id="release-files" aria-labelledby="release-files-heading">
@@ -107,8 +107,8 @@
 
           <section id="older-releases" aria-labelledby="older-releases-heading">
             <h2 id="older-releases-heading">Older releases</h2>
-            <p><strong>Alpha.7 is superseded and install-disabled. Do not install Alpha 2 or Alpha 3. They contain known bugs.</strong></p>
-            <p><a href="technical-release-files.html#alpha7">Inspect the Alpha.7 record</a>, <a href="erratum-alpha3.html">read the Alpha.3 technical details</a>, or <a href="technical-release-files.html#older-releases">find older release files</a>.</p>
+            <p><strong>Alpha.10 is rejected and install-disabled. Alpha.7 is superseded and install-disabled. Do not install Alpha 2 or Alpha 3. They contain known bugs.</strong></p>
+            <p><a href="technical-release-files.html#alpha10">Inspect the Alpha.10 record</a>, <a href="technical-release-files.html#alpha7">the Alpha.7 record</a>, <a href="erratum-alpha3.html">read the Alpha.3 technical details</a>, or <a href="technical-release-files.html#older-releases">find older release files</a>.</p>
           </section>
         </article>
       </div>

@@ -58,7 +58,7 @@
         <aside class="doc-sidebar" aria-label="Technical release file sections">
           <h2>Release files</h2>
           <nav>
-            <a href="#alpha10" aria-current="page">Alpha.10</a>
+            <a href="#alpha11" aria-current="page">Alpha.11</a>
             <a href="#source">Source and licenses</a>
             <a href="#older-releases">Older releases</a>
             <a href="./">Download status</a>
@@ -66,6 +66,22 @@
         </aside>
 
         <article class="prose" data-no-toc>
+          <section id="alpha11" aria-labelledby="alpha11-files-heading">
+            <h2 id="alpha11-files-heading">Alpha.11</h2>
+            <p><strong>Current public-test candidate:</strong> provisions a pinned, verified Podman 5.4.2 package set from the signed release bundle on the stock Windows 11 + WSL2 + Ubuntu 24.04 path.</p>
+            <ul>
+              <li><a href="0.1.0-alpha.11/release-index.json">Signed release index</a></li>
+              <li><a href="0.1.0-alpha.11/release-index.sigstore.json">Release index signature</a></li>
+              <li><a href="0.1.0-alpha.11/stateport-alpha-2026-08-cosign.pub">Release public key</a></li>
+              <li><a href="0.1.0-alpha.11/stateport-podman-package-bundle.tar">Podman package bundle</a></li>
+              <li><a href="0.1.0-alpha.11/supply-chain/public-export-manifest.json">Public export manifest</a></li>
+              <li><a href="0.1.0-alpha.11/compose.yaml">Compose definition</a></li>
+              <li><a href="0.1.0-alpha.11/release-notes.md">Release notes</a></li>
+              <li><a href="0.1.0-alpha.11/known-limitations.md">Known limitations</a></li>
+            </ul>
+            <p>Alpha.11 has no authenticated predecessor under its current trust root. Rollback is unsupported.</p>
+          </section>
+
           <section id="alpha10" aria-labelledby="alpha10-files-heading">
             <h2 id="alpha10-files-heading">Alpha.10</h2>
             <p><strong>Rejected and install-disabled:</strong> the stock Ubuntu 24.04 public path received Podman 4.9.3 below StatePort's floor. These immutable files remain available for inspection only.</p>
