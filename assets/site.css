@@ -220,6 +220,30 @@ select {
   border-color: var(--cyan);
 }
 
+.site-nav .nav-download {
+  padding: 0.5rem 0.92rem;
+  border: 1px solid var(--cyan);
+  border-radius: 999px;
+  color: var(--night);
+  background: var(--cyan);
+}
+
+.site-nav .nav-download::after {
+  display: none;
+}
+
+.site-nav .nav-download:hover {
+  color: var(--night);
+  background: var(--white);
+  border-color: var(--white);
+}
+
+.site-nav .nav-download[aria-current="page"] {
+  color: var(--white);
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
 .page-main {
   overflow: clip;
 }
@@ -1491,6 +1515,11 @@ select {
   }
 
   .site-nav .nav-release {
+    margin-top: 0.2rem;
+    text-align: center;
+  }
+
+  .site-nav .nav-download {
     margin-top: 0.2rem;
     text-align: center;
   }
