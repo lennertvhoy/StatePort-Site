@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="The Alpha.11 installer is available for a first public test on Windows 11 with WSL2 and Ubuntu 24.04. Release files remain available.">
+    <meta name="description" content="The Alpha.12 installer is available for a first public test on Windows 11 with WSL2 and Ubuntu 24.04. Release files remain available.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="StatePort release status">
-    <meta property="og:description" content="StatePort Alpha.11 release files are available, and the installer is available for a first public test.">
+    <meta property="og:description" content="StatePort Alpha.12 release files are available, and the installer is available for a first public test.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/releases/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.11 status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.12 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/releases/">
@@ -31,9 +31,9 @@
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "StatePort release status",
-        "description": "Alpha.11 is available for a first public test; its technical release files remain available.",
+        "description": "Alpha.12 is available for a first public test; its technical release files remain available.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/releases/",
-        "dateModified": "2026-08-31",
+        "dateModified": "2026-09-02",
         "inLanguage": "en"
       }
     </script>
@@ -70,7 +70,7 @@
           <h2>Status</h2>
           <nav>
             <a href="#current-status" aria-current="page">Current status</a>
-            <a href="../download/#alpha11">Download status</a>
+            <a href="../download/#alpha12">Download status</a>
             <a href="../download/erratum-alpha3.html">Alpha.3 erratum</a>
             <a href="../download/#older-releases">Older releases</a>
             <a href="../docs/limitations.html">Current limitations</a>
@@ -82,8 +82,8 @@
           <div class="release-summary" id="current-status">
             <div>
               <p class="release-summary-label">Current software status</p>
-              <h2>Alpha.11 installer available for a first public test</h2>
-              <p>Alpha.11 is a signed public-test candidate for Windows 11 with WSL2 and Ubuntu 24.04. It provisions a pinned, verified Podman 5.4.2 package set from the signed release bundle, so the stock path does not depend on the distro's older Podman. It has not yet been proven on a freshly installed Windows host, and the owner has not accepted it.</p>
+              <h2>Alpha.12 installer available for a first public test</h2>
+              <p>Alpha.12 is a signed public-test candidate for Windows 11 with WSL2 and Ubuntu 24.04. It repairs the Alpha.11 install-path defect — the installer imports the updater wheel from its zip and the release-contract schema loader reads schemas as zip members — so the corrected wheel is what runs on the stock path. It has not yet been proven on a freshly installed Windows host, and the owner has not accepted it.</p>
               <p><a class="button button--ink" href="../download/">Open download page <span aria-hidden="true">↗</span></a></p>
             </div>
             <p class="release-review-date">Status reviewed<br><time datetime="2026-09-02">2 September 2026</time></p>
@@ -99,8 +99,9 @@
                   <tr><th scope="row">Website</th><td>Live</td></tr>
                   <tr><th scope="row">Product preview</th><td>Available</td></tr>
                   <tr><th scope="row">Documentation</th><td>Available</td></tr>
-                  <tr><th scope="row">Alpha.11 release files</th><td>Available</td></tr>
-                  <tr><th scope="row">Alpha.11 installer</th><td>Available for a first public test</td></tr>
+                  <tr><th scope="row">Alpha.12 release files</th><td>Available</td></tr>
+                  <tr><th scope="row">Alpha.12 installer</th><td>Available for a first public test</td></tr>
+                  <tr><th scope="row">Alpha.11</th><td>Superseded and install-disabled</td></tr>
                   <tr><th scope="row">Alpha.10</th><td>Rejected and install-disabled</td></tr>
                   <tr><th scope="row">Alpha.7</th><td>Superseded and install-disabled</td></tr>
                   <tr><th scope="row">Older alphas</th><td>Do not install Alpha 2 or Alpha 3</td></tr>
@@ -112,7 +113,7 @@
           <section id="release-evidence" aria-labelledby="release-evidence-heading">
             <h2 id="release-evidence-heading">Before you use StatePort</h2>
             <p>StatePort is in early alpha. Do not use it for important data.</p>
-            <p><strong>Alpha.11 is available for a first public test and installation is enabled.</strong> Alpha.10 was rejected and install-disabled after stock Ubuntu 24.04 supplied Podman 4.9.3 below StatePort's required floor; do not use its files to install. Alpha.11 provisions the supported runtime itself and its clean stock-path owner test is still pending.</p>
+            <p><strong>Alpha.12 is available for a first public test and installation is enabled.</strong> Alpha.11 was superseded and install-disabled after its install path shipped a stale updater wheel; Alpha.10 was rejected and install-disabled after stock Ubuntu 24.04 supplied Podman 4.9.3 below StatePort's required floor. Do not use the Alpha.11 or Alpha.10 files to install. Alpha.12 repairs the install path so the corrected wheel runs, and its clean stock-path owner test is still pending.</p>
             <p><a href="../download/technical-release-files.html">Technical release files</a> remain available for developers and reviewers.</p>
           </section>
 

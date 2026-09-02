@@ -590,6 +590,363 @@
         }
       }
     },
+    "download/0.1.0-alpha.12": {
+      "anchor": {
+        "commit": "15b11d7c30df5c95f6bce81fa61e4814c0697520"
+      },
+      "files": {
+        "artifacts/executionHostProvisioner": {
+          "bytes": 35615,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "312ef592fb05bb45458b8f58e5551f0e5594bde2111d90555267494785da6d32"
+        },
+        "artifacts/installer": {
+          "bytes": 258532,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "36f00872df78f413153149168e2899c1313797468c6828bf9eee99fdb2ea7416"
+        },
+        "artifacts/knownLimitations": {
+          "bytes": 666,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "ff88e4e02a9f3822424edd0d858a87a7df79e6bf9183de14e168e4e0c04eb741"
+        },
+        "artifacts/podmanPackageBundle": {
+          "bytes": 37232640,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "445ddd9ac38cc581376260543e9246ebee360f75e75a22e6df3ce9a428b7106f"
+        },
+        "artifacts/releaseNotes": {
+          "bytes": 313,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "d850440cfff1af1bb387f808e6afff460670a2e99f706aa4d199b64c4367510d"
+        },
+        "artifacts/sourceArchive": {
+          "bytes": 24473600,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "c16f8f2dee70077b254af459ba3f308f45db64f54fd721fa9dda2096adc77ecc"
+        },
+        "artifacts/updater": {
+          "bytes": 371992,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "feec0e2de7b3666ca804e5a0802c192d17f1413915a6b855b697288e5ed41a70"
+        },
+        "compose.release.yaml": {
+          "bytes": 2318,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "cf15ecd4797c6b404a43338adb18355bb7797bc59915de73b46cb2b087b3b88c"
+        },
+        "compose.yaml": {
+          "bytes": 2318,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "cf15ecd4797c6b404a43338adb18355bb7797bc59915de73b46cb2b087b3b88c"
+        },
+        "image-bundles/stateport-api.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "f05880f1911a71c945765548f9d857d579434402af4553ee2327a26cf1c5d7af"
+        },
+        "image-bundles/stateport-dev-workspace.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "f6ab7f1048b34cab224e7731f642ff1434199a4dc3f3cc60f5ee5e2cfd557668"
+        },
+        "image-bundles/stateport-execution-host.sigstore.json": {
+          "bytes": 379,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "5d4ffb595b5da0d606a1a7b57dd8737ff87af362e7f06b681ba5df59bce46cad"
+        },
+        "image-bundles/stateport-playwright.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "385a0c909e03ca06d198c6ec8ac2017f6c7c38ec5af4f26e5440b4356f3e9cd4"
+        },
+        "image-bundles/stateport-runner.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "4af105b5f163da8d4b8ee7581f72dda118f224eccd3b22868b23604e5299c9de"
+        },
+        "image-bundles/stateport-web.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "783c5066016869108b6768bd4b81d44a2a2793d4fa2ba98083f68bcaf8b590c3"
+        },
+        "image-bundles/stateport-worker.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "3cb5866fd25f2d4ca675c925d289e532ff21fb85d5c4423eab96a5a74dafef0d"
+        },
+        "install.sh": {
+          "bytes": 31576,
+          "gitMode": "100755",
+          "gitType": "blob",
+          "lstatMode": "100755",
+          "sha256": "e552898fc2611d94bd6ec361624e8c95dcaaffcecc259ed1a7c20f08c01c2701"
+        },
+        "known-limitations.md": {
+          "bytes": 666,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "ff88e4e02a9f3822424edd0d858a87a7df79e6bf9183de14e168e4e0c04eb741"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/materialization.template.json": {
+          "bytes": 4707,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "8d9ffe668f9b69e08b896a364eb2d0ba6d359b7f1d40cefce9ba86c4d4fd409a"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-@@STATEPORT_NETWORK:stateport-control:accepted@@.network.in": {
+          "bytes": 305,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "62472d0b8366ae46aaecc85fa4923e486c93144a3914ebc828255856c0475b2c"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-@@STATEPORT_NETWORK:stateport-control:validation@@.network.in": {
+          "bytes": 309,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "c2272aa7f4949781eb4ff06170a671ecbe1acbc33c661a2da25ccd2548b522a3"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-ae4a67f11969-accepted-@@STATEPORT_REVISION:stateport-web:accepted@@.container.in": {
+          "bytes": 2239,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "2aa0ef128b014d90b2a6c8f7ae215df7db6f177924b97868e9fe182b6b03f4fb"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-ae4a67f11969-validation-@@STATEPORT_REVISION:stateport-web:validation@@.container.in": {
+          "bytes": 2256,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "8d2faf0ff9ac669b4a2b7d164343fd19f9f4a87141b7e4012dc3696fd48b5f86"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-d864bc7ef3bf-accepted-@@STATEPORT_REVISION:stateport-worker:accepted@@.container.in": {
+          "bytes": 2014,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "172f9c3867bcfeadffe7e08b0fdf179ee9d263f8292786ee87ba8772c0a91f57"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-d864bc7ef3bf-validation-@@STATEPORT_REVISION:stateport-worker:validation@@.container.in": {
+          "bytes": 2031,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "28780a8cf3324584f0dcfed8a18d0015b9d61b330769b96817028ea7e235dbe3"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-f544857680bc-accepted-@@STATEPORT_REVISION:stateport-api:accepted@@.container.in": {
+          "bytes": 1987,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "1b8aebcf40473035d398a202702897c8dd3fa408be42dfbbb1bc49e9da18f5bb"
+        },
+        "quadlet/wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet/templates/stateport-control/stateport-f544857680bc-validation-@@STATEPORT_REVISION:stateport-api:validation@@.container.in": {
+          "bytes": 2004,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "6974aca5b6297ca70dfba199063d553ea63de2adc608fbbe9aa155bfb8e26021"
+        },
+        "release-index.candidate.json": {
+          "bytes": 42327,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "1c04550300391076775b5d57dafeea88cd58ee1de5440c976d6d57eef3942584"
+        },
+        "release-index.json": {
+          "bytes": 42950,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "8fab98e60b1f4ed067aa8b3f2c8552f3dda266b53328c601eb67ce93671bfabb"
+        },
+        "release-index.signed-payload.json": {
+          "bytes": 42261,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "a16b154f37270f4aed2d7c7e60ee32279c7f36b6a1759aa1b7301cc787f708b1"
+        },
+        "release-index.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "6c1c0906742f778f9501405686c0c7de1959fe59c1fae4264cbeb99a6ad7ce31"
+        },
+        "release-notes.md": {
+          "bytes": 313,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "d850440cfff1af1bb387f808e6afff460670a2e99f706aa4d199b64c4367510d"
+        },
+        "signatures/stateport-api.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "f05880f1911a71c945765548f9d857d579434402af4553ee2327a26cf1c5d7af"
+        },
+        "signatures/stateport-dev-workspace.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "f6ab7f1048b34cab224e7731f642ff1434199a4dc3f3cc60f5ee5e2cfd557668"
+        },
+        "signatures/stateport-execution-host.sigstore.json": {
+          "bytes": 379,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "5d4ffb595b5da0d606a1a7b57dd8737ff87af362e7f06b681ba5df59bce46cad"
+        },
+        "signatures/stateport-playwright.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "385a0c909e03ca06d198c6ec8ac2017f6c7c38ec5af4f26e5440b4356f3e9cd4"
+        },
+        "signatures/stateport-runner.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "4af105b5f163da8d4b8ee7581f72dda118f224eccd3b22868b23604e5299c9de"
+        },
+        "signatures/stateport-web.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "783c5066016869108b6768bd4b81d44a2a2793d4fa2ba98083f68bcaf8b590c3"
+        },
+        "signatures/stateport-worker.sigstore.json": {
+          "bytes": 383,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "3cb5866fd25f2d4ca675c925d289e532ff21fb85d5c4423eab96a5a74dafef0d"
+        },
+        "stateport-alpha-2026-08-cosign.pub": {
+          "bytes": 178,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "798d6ea6e2703993758f0fb45618b1f05b40f6ef116e7d286fd5a6867859b8ad"
+        },
+        "stateport-execution-host-provision": {
+          "bytes": 35615,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "312ef592fb05bb45458b8f58e5551f0e5594bde2111d90555267494785da6d32"
+        },
+        "stateport-installer": {
+          "bytes": 258532,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "36f00872df78f413153149168e2899c1313797468c6828bf9eee99fdb2ea7416"
+        },
+        "stateport-podman-package-bundle.tar": {
+          "bytes": 37232640,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "445ddd9ac38cc581376260543e9246ebee360f75e75a22e6df3ce9a428b7106f"
+        },
+        "stateport-source.tar": {
+          "bytes": 24473600,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "c16f8f2dee70077b254af459ba3f308f45db64f54fd721fa9dda2096adc77ecc"
+        },
+        "stateport-updater": {
+          "bytes": 371992,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "feec0e2de7b3666ca804e5a0802c192d17f1413915a6b855b697288e5ed41a70"
+        },
+        "supply-chain/cosign.tool-provenance.json": {
+          "bytes": 441,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "032073a95053461af1d106865458bf376c2f36bf8133de97729bbc33632994d8"
+        },
+        "supply-chain/double-build-comparison.json": {
+          "bytes": 5436,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "e481437c15b020aca4c53152eaca6371e166125b2ded717c96452f26d3f82166"
+        },
+        "supply-chain/grype.tool-provenance.json": {
+          "bytes": 441,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "400f218ed38df9fcb05018ebf65445215a32057f7f21fc6720a00c206fd606cc"
+        },
+        "supply-chain/public-export-manifest.json": {
+          "bytes": 538024,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "8ed08c0d88329d58463838c54cb2d9c326f3b650840e933d76477e769fae3681"
+        },
+        "supply-chain/syft.tool-provenance.json": {
+          "bytes": 438,
+          "gitMode": "100644",
+          "gitType": "blob",
+          "lstatMode": "100644",
+          "sha256": "22d2c8a0bc91f7a683b734f7a2b2e2cff093250f035eeddcef7f019f227fcc55"
+        }
+      }
+    },
     "download/0.1.0-alpha.2": {
       "anchor": {
         "commit": "4043534a9a1d56c51c3d47d0906e0520963af79c"

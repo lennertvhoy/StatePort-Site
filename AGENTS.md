@@ -4,7 +4,7 @@ statedd_mode: operating
 repo_mode: operating
 statedd_version: statedd-template-v5
 initialized_on: 2026-07-21
-last_updated: 2026-08-31
+last_updated: 2026-09-02
 ---
 
 # StatePort Site — canonical agent operating contract
@@ -181,27 +181,34 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
 
 ## Current release truth
 
-- Latest published candidate: `v0.1.0-alpha.11`, signed for exact target
+- Latest published candidate: `v0.1.0-alpha.12`, signed for exact target
   `wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet`.
 - Signed index SHA-256:
-  `8a26f7d36b5c6883c314db7323c4a79a497e0973e0ec671c02c6b38f0f533f2c`;
+  `8fab98e60b1f4ed067aa8b3f2c8552f3dda266b53328c601eb67ce93671bfabb`;
   signed payload:
-  `sha256:9b98e07040107fe0644a2b95648a19bef3aef50df540dde77460880dc204f51c`.
-- Alpha.11 is published and install-enabled as a public-test candidate
-  (`compatible_unvalidated`). It provisions a pinned, verified Podman 5.4.2
-  package set from the signed release bundle on the stock Windows 11 + WSL2 +
-  Ubuntu 24.04 path. The mutable installer route `download/install.sh` is
-  byte-identical to the versioned Alpha.11 bootstrap (31,576 bytes, SHA-256
-  `9aaea4790059579d22db4e5537485a84cc094d9f2b8b0bafc04c618b5e0052df`).
-- Alpha.11 is not owner-accepted. The owner public-path install test on a real
+  `sha256:a16b154f37270f4aed2d7c7e60ee32279c7f36b6a1759aa1b7301cc787f708b1`.
+- Alpha.12 is published and install-enabled as a public-test candidate
+  (`compatible_unvalidated`). It repairs the Alpha.11 install-path defect (the
+  installer imports the updater wheel from its zip, and the release-contract
+  schema loader reads schemas as zip members when no filesystem path exists)
+  and packages the corrected updater wheel plus seven reproducible images from
+  source `2343197a` on the stock Windows 11 + WSL2 + Ubuntu 24.04 path. The
+  mutable installer route `download/install.sh` is byte-identical to the
+  versioned Alpha.12 bootstrap (31,576 bytes, SHA-256
+  `e552898fc2611d94bd6ec361624e8c95dcaaffcecc259ed1a7c20f08c01c2701`).
+- Alpha.12 is not owner-accepted. The owner public-path install test on a real
   Windows 11 + WSL2 + Ubuntu 24.04 host is pending; a clean-install receipt and
   human verdict remain absent. Independent security review, stability, and
   production qualification are unproven.
+- Alpha.11 is superseded and install-disabled because the site's mutable route
+  now serves Alpha.12. Its exact immutable files remain published and
+  byte-verified for inspection only as the retained predecessor record. Never
+  present Alpha.11 as installable.
 - Alpha.10 is owner-rejected and install-disabled after stock Noble supplied
   Podman 4.9.3 below StatePort's floor while all passing rehearsals had
   preinstalled Podman 5.4.2. Its exact immutable Site files remain published
   and byte-verified for inspection only. Never present Alpha.10 as installable.
-- Alpha.11 has no authenticated predecessor under its current trust root and
+- Alpha.12 has no authenticated predecessor under its current trust root and
   declares rollback unsupported. Never construct a predecessor bundle from an
   earlier trust root.
 - Alpha.7 remains published, signed, byte-intact except for its permitted
@@ -214,8 +221,8 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
 - WSL1, native Linux, other distributions, ARM64, macOS, and Docker Desktop do
   not inherit this release target or its evidence.
 - Canonical development Git remains private. The signed public snapshot
-  `34ca6ef40a0640ff9b550fb355b9b1cf153ad183` / tree
-  `408f0c0fe4bf6aaab1513ea195bd650cf042cb75` is anonymously resolvable from
+  `a925496a276e8337b1d44dfa88a2ac5d91939643` / tree
+  `50b75c586d2b969401947426d8e6b125ea67c5ec` is anonymously resolvable from
   `lennertvhoy/StatePort-Source`; the curated source archive is public and
   digest-bound.
 - Alpha.3 remains signed, byte-intact, install-disabled, and governed by its
@@ -226,10 +233,11 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
 - Pages deploys from `main` through GitHub's managed legacy Pages build. The
   custom workflow is manual-only. Nothing is live until remotely verified.
 
-Never call Alpha.11 owner-test-accepted, clean-installed, qualified,
-owner-accepted, stable, audited, or production-ready. Never call Alpha.10
+Never call Alpha.12 owner-test-accepted, clean-installed, qualified,
+owner-accepted, stable, audited, or production-ready. Never call Alpha.11
+installable or owner-test-ready. Never call Alpha.10
 installable or owner-test-ready. Never alter Alpha.2, Alpha.3, anchored
-Alpha.5, Alpha.10, or Alpha.11 versioned bytes.
+Alpha.5, Alpha.10, Alpha.11, or Alpha.12 versioned bytes.
 
 ## Repository rules
 
@@ -239,7 +247,8 @@ Alpha.5, Alpha.10, or Alpha.11 versioned bytes.
   preservation, or generated-media branches.
 - Signed/versioned artifacts under `download/0.1.0-alpha.2/`,
   `download/0.1.0-alpha.3/`, `download/0.1.0-alpha.5/`,
-  `download/0.1.0-alpha.10/`, and `download/0.1.0-alpha.11/` are immutable.
+  `download/0.1.0-alpha.10/`, `download/0.1.0-alpha.11/`, and
+  `download/0.1.0-alpha.12/` are immutable.
   External errata and a fail-closed bootstrap may prevent use without changing
   the signed candidate.
 - `release-index.json` remains authority for version, digests, image references,
@@ -261,8 +270,10 @@ Alpha.5, Alpha.10, or Alpha.11 versioned bytes.
 1. Preserve Alpha.2 and Alpha.3 exactly and keep the Alpha.3 erratum historical.
 2. Preserve the anchored Alpha.5 tree and exact repaired mutable bootstrap.
 3. Preserve Alpha.10 exactly as the rejected, install-disabled predecessor.
-4. Present Alpha.11 as the current published public-test candidate with an
-   install-enabled mutable route, and preserve every versioned Alpha.11 byte.
+4. Preserve Alpha.11 exactly as the superseded, install-disabled retained
+   predecessor record.
+5. Present Alpha.12 as the current published public-test candidate with an
+   install-enabled mutable route, and preserve every versioned Alpha.12 byte.
    The owner public-path install test on real Windows 11 + WSL2 + Ubuntu 24.04
    and the human acceptance verdict remain open owner actions.
 

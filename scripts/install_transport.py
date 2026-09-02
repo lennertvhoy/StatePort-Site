@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bind immutable Alpha.11 bytes and its exact install-enabled mutable route."""
+"""Bind immutable Alpha.12 bytes and its exact install-enabled mutable route."""
 
 from __future__ import annotations
 
@@ -8,18 +8,30 @@ import sys
 
 VERSIONED_BOOTSTRAP_URL = (
     "https://lennertvhoy.github.io/StatePort-Site/"
-    "download/0.1.0-alpha.11/install.sh"
+    "download/0.1.0-alpha.12/install.sh"
 )
-VERSIONED_BOOTSTRAP_SHA256 = "9aaea4790059579d22db4e5537485a84cc094d9f2b8b0bafc04c618b5e0052df"
+VERSIONED_BOOTSTRAP_SHA256 = "e552898fc2611d94bd6ec361624e8c95dcaaffcecc259ed1a7c20f08c01c2701"
 VERSIONED_BOOTSTRAP_SIZE = 31_576
-# The mutable public route and the versioned Alpha.11 bootstrap are byte-identical:
+# The mutable public route and the versioned Alpha.12 bootstrap are byte-identical:
 # the mutable route no longer carries a fail-closed launcher.
 MUTABLE_BOOTSTRAP_SHA256 = VERSIONED_BOOTSTRAP_SHA256
 MUTABLE_BOOTSTRAP_SIZE = VERSIONED_BOOTSTRAP_SIZE
+RETAINED_ALPHA11_BOOTSTRAP_SHA256 = "9aaea4790059579d22db4e5537485a84cc094d9f2b8b0bafc04c618b5e0052df"
+RETAINED_ALPHA11_BOOTSTRAP_SIZE = 31_576
+RETAINED_ALPHA11_INDEX_SHA256 = "8a26f7d36b5c6883c314db7323c4a79a497e0973e0ec671c02c6b38f0f533f2c"
 RETAINED_ALPHA10_BOOTSTRAP_SHA256 = "afb807280e1588ce4903be79649a7b7dd69026177b18a7a98a95b01f54f74d5d"
 RETAINED_ALPHA10_BOOTSTRAP_SIZE = 17_774
 RETAINED_ALPHA10_INDEX_SHA256 = "2fc626fcab180f664f04f36d1fcceacaffa81ca96a658585f6684e3cf37abf89"
 MANIFEST_DIGESTS = {
+    "stateport-api": "01de186713c69817c1c09e5a36d7f94a8a24031efaf0105153f86372525c9578",
+    "stateport-dev-workspace": "14151a4b5bb47dc4b7b9004fd68a2acee5ac4c97e514fe950d048d029f3717d5",
+    "stateport-execution-host": "8baf9d180df73096ef26e4d25b44c046f39c29248ebba66b35d5841b72884fd9",
+    "stateport-playwright": "c12380bb195db1b8a77fe1d39fc2dc87d04c54f1cfd9759b4cfac129a3f03f19",
+    "stateport-runner": "96f41f8a153c6a57fc7d6535cde8135051f3f9cefc1cb48bda651b02baf52a6a",
+    "stateport-web": "14becec41e36b3883886128c230a733ca333842824fea812e6b1f96e0c1df7c3",
+    "stateport-worker": "77e4f18306e9f43bb415bf0dd73c1c2645d39366908fed59ad93af43639d10f3",
+}
+RETAINED_ALPHA11_MANIFEST_DIGESTS = {
     "stateport-api": "bc15758766b9cceeb842b935415a12087bd5269c0cc5125ce939b4be0b0a11fc",
     "stateport-dev-workspace": "af767264b264cfbdc88ff3d4c32736fc6da9ebbb3e043c7450ebd5154b4d715d",
     "stateport-execution-host": "58f2e6b9541f06bc26bf23b509dc359c7886274c0a80af3e5a58d958550693e9",
@@ -40,7 +52,7 @@ RETAINED_ALPHA10_MANIFEST_DIGESTS = {
 
 
 def main() -> None:
-    print("Alpha.11 installation is enabled; use the download page command.", file=sys.stderr)
+    print("Alpha.12 installation is enabled; use the download page command.", file=sys.stderr)
     raise SystemExit(0)
 
 

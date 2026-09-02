@@ -75,6 +75,7 @@ class ImmutableManifestTests(unittest.TestCase):
             "download/0.1.0-alpha.5": "eaa1ca6a67844259860917442a95c891d097939f",
             "download/0.1.0-alpha.10": "24428baa1dbee3eaac637e19c34c2aad00e7a38c",
             "download/0.1.0-alpha.11": "eff7302670e313c79b7fb79155fd5be607dcfdcf",
+            "download/0.1.0-alpha.12": "15b11d7c30df5c95f6bce81fa61e4814c0697520",
         }
         self.assertEqual(manifest_builder.PUBLICATION_ANCHORS, expected)
         self.assertEqual(validate_repo.VALIDATOR_PUBLICATION_ANCHORS, expected)
@@ -225,14 +226,25 @@ class ImmutableManifestTests(unittest.TestCase):
 
 
 class CurrentBootstrapTests(unittest.TestCase):
-    def test_versioned_alpha11_and_manifests_remain_immutable(self) -> None:
-        versioned = ROOT / "download/0.1.0-alpha.11/install.sh"
+    def test_versioned_alpha12_and_manifests_remain_immutable(self) -> None:
+        versioned = ROOT / "download/0.1.0-alpha.12/install.sh"
         self.assertEqual(
             hashlib.sha256(versioned.read_bytes()).hexdigest(),
             install_transport.VERSIONED_BOOTSTRAP_SHA256,
         )
         self.assertEqual(len(versioned.read_bytes()), install_transport.VERSIONED_BOOTSTRAP_SIZE)
         for image_id, digest in install_transport.MANIFEST_DIGESTS.items():
+            manifest = ROOT / "download/alpha12-manifests" / f"{image_id}.json"
+            self.assertEqual(hashlib.sha256(manifest.read_bytes()).hexdigest(), digest)
+
+    def test_retained_alpha11_remains_immutable(self) -> None:
+        versioned = ROOT / "download/0.1.0-alpha.11/install.sh"
+        self.assertEqual(
+            hashlib.sha256(versioned.read_bytes()).hexdigest(),
+            install_transport.RETAINED_ALPHA11_BOOTSTRAP_SHA256,
+        )
+        self.assertEqual(len(versioned.read_bytes()), install_transport.RETAINED_ALPHA11_BOOTSTRAP_SIZE)
+        for image_id, digest in install_transport.RETAINED_ALPHA11_MANIFEST_DIGESTS.items():
             manifest = ROOT / "download/alpha11-manifests" / f"{image_id}.json"
             self.assertEqual(hashlib.sha256(manifest.read_bytes()).hexdigest(), digest)
 
@@ -252,7 +264,7 @@ class CurrentBootstrapTests(unittest.TestCase):
         bootstrap = installer.read_bytes()
         self.assertEqual(
             bootstrap,
-            (ROOT / "download/0.1.0-alpha.11/install.sh").read_bytes(),
+            (ROOT / "download/0.1.0-alpha.12/install.sh").read_bytes(),
         )
         self.assertEqual(len(bootstrap), install_transport.MUTABLE_BOOTSTRAP_SIZE)
         self.assertEqual(
@@ -261,7 +273,7 @@ class CurrentBootstrapTests(unittest.TestCase):
         )
         self.assertNotEqual(
             bootstrap,
-            (ROOT / "download/0.1.0-alpha.10/install.sh").read_bytes(),
+            (ROOT / "download/0.1.0-alpha.11/install.sh").read_bytes(),
         )
         syntax = subprocess.run(
             ["/bin/sh", "-n", str(installer)],
@@ -271,7 +283,7 @@ class CurrentBootstrapTests(unittest.TestCase):
         )
         self.assertEqual(syntax.returncode, 0, syntax.stderr.decode("utf-8"))
 
-    def test_download_page_has_alpha11_install_command(self) -> None:
+    def test_download_page_has_alpha12_install_command(self) -> None:
         download = (ROOT / "download/index.html").read_text(encoding="utf-8")
         self.assertIn(validate_repo.INSTALLER_STATUS, download)
         self.assertIn("download/install.sh", download)
@@ -294,7 +306,7 @@ class SourceDisclosureTests(unittest.TestCase):
         missing = dict(texts)
         technical = ROOT / "download/technical-release-files.html"
         missing[technical] = missing[technical].replace(
-            "0.1.0-alpha.11/release-index.json", "missing-release-index.json"
+            "0.1.0-alpha.12/release-index.json", "missing-release-index.json"
         )
         with self.assertRaisesRegex(AssertionError, "technical release files page lacks"):
             validate_repo.validate_source_disclosures(missing)

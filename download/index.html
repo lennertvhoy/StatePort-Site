@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Install StatePort Alpha.11 on Windows 11 with WSL2 and Ubuntu 24.04, check requirements, or inspect technical release files.">
+    <meta name="description" content="Install StatePort Alpha.12 on Windows 11 with WSL2 and Ubuntu 24.04, check requirements, or inspect technical release files.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Download StatePort Alpha.11">
-    <meta property="og:description" content="The Alpha.11 installer is available for a first public test on Windows 11 with WSL2 and Ubuntu 24.04.">
+    <meta property="og:title" content="Download StatePort Alpha.12">
+    <meta property="og:description" content="The Alpha.12 installer is available for a first public test on Windows 11 with WSL2 and Ubuntu 24.04.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/download/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.11 status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.12 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/download/">
@@ -25,13 +25,13 @@
     <link rel="manifest" href="../site.webmanifest">
     <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
-    <title>Download StatePort Alpha.11</title>
+    <title>Download StatePort Alpha.12</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Download StatePort Alpha.11",
-        "description": "The Alpha.11 installer is available for a first public test on Windows 11 with WSL2 and Ubuntu 24.04. Check requirements, older-release warnings, and technical release files.",
+        "name": "Download StatePort Alpha.12",
+        "description": "The Alpha.12 installer is available for a first public test on Windows 11 with WSL2 and Ubuntu 24.04. Check requirements, older-release warnings, and technical release files.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/download/",
         "dateModified": "2026-09-02",
         "inLanguage": "en"
@@ -57,11 +57,11 @@
     </header>
 
     <main id="main">
-      <section class="article-hero" id="alpha11" aria-labelledby="download-title">
+      <section class="article-hero" id="alpha12" aria-labelledby="download-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Download</p>
-          <h1 id="download-title">StatePort Alpha.11</h1>
-          <p class="notice"><strong>Alpha.11 provisions a pinned, verified supported Podman 5.4.2 from inside the public bootstrap, so the stock Windows 11 + WSL2 + Ubuntu 24.04 path does not depend on the distro's older Podman.</strong></p>
+          <h1 id="download-title">StatePort Alpha.12</h1>
+          <p class="notice"><strong>Alpha.12 repairs the Alpha.11 install-path defect: the installer imports the updater wheel from its zip, and the release-contract schema loader reads schemas as zip members, so the corrected wheel is what runs on the stock Windows 11 + WSL2 + Ubuntu 24.04 path.</strong></p>
           <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue</a>.</p>
         </div>
       </section>
@@ -70,7 +70,7 @@
         <aside class="doc-sidebar" aria-label="Download sections">
           <h2>Download</h2>
           <nav>
-            <a href="#alpha11" aria-current="page">Current status</a>
+            <a href="#alpha12" aria-current="page">Current status</a>
             <a href="#requirements">Requirements</a>
              <a href="#install">Installer status</a>
             <a href="#release-files">Technical release files</a>
@@ -93,11 +93,11 @@
           </section>
 
           <section id="install" aria-labelledby="install-heading">
-            <h2 id="install-heading">Alpha.11 installer</h2>
-            <p><strong>Alpha.11 is available for a first public test and installation is enabled.</strong></p>
+            <h2 id="install-heading">Alpha.12 installer</h2>
+            <p><strong>Alpha.12 is available for a first public test and installation is enabled.</strong></p>
             <p>Run the one-command installer in your Ubuntu 24.04 WSL2 terminal:</p>
             <pre><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)</code></pre>
-            <p>Alpha.11 installs a pinned, verified Podman 5.4.2 package set from the signed release bundle, so a stock Ubuntu 24.04 install does not receive the distro's older Podman 4.9.3.</p>
+            <p>Alpha.12 imports the corrected updater wheel from inside the signed bootstrap zip, so the installer that runs matches the signed release rather than a stale copy shipped on the release path.</p>
           </section>
 
           <section id="release-files" aria-labelledby="release-files-heading">
@@ -108,8 +108,8 @@
 
           <section id="older-releases" aria-labelledby="older-releases-heading">
             <h2 id="older-releases-heading">Older releases</h2>
-            <p><strong>Alpha.10 is rejected and install-disabled. Alpha.7 is superseded and install-disabled. Do not install Alpha 2 or Alpha 3. They contain known bugs.</strong></p>
-            <p><a href="technical-release-files.html#alpha10">Inspect the Alpha.10 record</a>, <a href="technical-release-files.html#alpha7">the Alpha.7 record</a>, <a href="erratum-alpha3.html">read the Alpha.3 technical details</a>, or <a href="technical-release-files.html#older-releases">find older release files</a>.</p>
+            <p><strong>Alpha.11 is superseded and install-disabled. Alpha.10 is rejected and install-disabled. Alpha.7 is superseded and install-disabled. Do not install Alpha 2 or Alpha 3. They contain known bugs.</strong></p>
+            <p><a href="technical-release-files.html#alpha11">Inspect the Alpha.11 record</a>, <a href="technical-release-files.html#alpha10">the Alpha.10 record</a>, <a href="technical-release-files.html#alpha7">the Alpha.7 record</a>, <a href="erratum-alpha3.html">read the Alpha.3 technical details</a>, or <a href="technical-release-files.html#older-releases">find older release files</a>.</p>
           </section>
         </article>
       </div>
