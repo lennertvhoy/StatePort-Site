@@ -74,6 +74,7 @@ class ImmutableManifestTests(unittest.TestCase):
             "download/0.1.0-alpha.3": "52b42dd47a11510220f33690075f1b6773f6a889",
             "download/0.1.0-alpha.5": "eaa1ca6a67844259860917442a95c891d097939f",
             "download/0.1.0-alpha.10": "24428baa1dbee3eaac637e19c34c2aad00e7a38c",
+            "download/0.1.0-alpha.11": "eff7302670e313c79b7fb79155fd5be607dcfdcf",
         }
         self.assertEqual(manifest_builder.PUBLICATION_ANCHORS, expected)
         self.assertEqual(validate_repo.VALIDATOR_PUBLICATION_ANCHORS, expected)
@@ -224,21 +225,35 @@ class ImmutableManifestTests(unittest.TestCase):
 
 
 class CurrentBootstrapTests(unittest.TestCase):
-    def test_versioned_alpha10_and_manifests_remain_immutable(self) -> None:
-        versioned = ROOT / "download/0.1.0-alpha.10/install.sh"
+    def test_versioned_alpha11_and_manifests_remain_immutable(self) -> None:
+        versioned = ROOT / "download/0.1.0-alpha.11/install.sh"
         self.assertEqual(
             hashlib.sha256(versioned.read_bytes()).hexdigest(),
             install_transport.VERSIONED_BOOTSTRAP_SHA256,
         )
         self.assertEqual(len(versioned.read_bytes()), install_transport.VERSIONED_BOOTSTRAP_SIZE)
         for image_id, digest in install_transport.MANIFEST_DIGESTS.items():
+            manifest = ROOT / "download/alpha11-manifests" / f"{image_id}.json"
+            self.assertEqual(hashlib.sha256(manifest.read_bytes()).hexdigest(), digest)
+
+    def test_retained_alpha10_remains_immutable(self) -> None:
+        versioned = ROOT / "download/0.1.0-alpha.10/install.sh"
+        self.assertEqual(
+            hashlib.sha256(versioned.read_bytes()).hexdigest(),
+            install_transport.RETAINED_ALPHA10_BOOTSTRAP_SHA256,
+        )
+        self.assertEqual(len(versioned.read_bytes()), install_transport.RETAINED_ALPHA10_BOOTSTRAP_SIZE)
+        for image_id, digest in install_transport.RETAINED_ALPHA10_MANIFEST_DIGESTS.items():
             manifest = ROOT / "download/alpha10-manifests" / f"{image_id}.json"
             self.assertEqual(hashlib.sha256(manifest.read_bytes()).hexdigest(), digest)
 
-    def test_mutable_route_is_exact_and_fail_closed(self) -> None:
+    def test_mutable_route_is_exact_and_install_enabled(self) -> None:
         installer = ROOT / "download/install.sh"
         bootstrap = installer.read_bytes()
-        self.assertEqual(bootstrap, install_transport.FAIL_CLOSED_BOOTSTRAP)
+        self.assertEqual(
+            bootstrap,
+            (ROOT / "download/0.1.0-alpha.11/install.sh").read_bytes(),
+        )
         self.assertEqual(len(bootstrap), install_transport.MUTABLE_BOOTSTRAP_SIZE)
         self.assertEqual(
             hashlib.sha256(bootstrap).hexdigest(),
@@ -255,25 +270,11 @@ class CurrentBootstrapTests(unittest.TestCase):
             env={"LC_ALL": "C", "PATH": os.environ.get("PATH", "")},
         )
         self.assertEqual(syntax.returncode, 0, syntax.stderr.decode("utf-8"))
-        completed = subprocess.run(
-            ["/bin/sh", str(installer)],
-            check=False,
-            capture_output=True,
-            text=True,
-            env={
-                "LC_ALL": "C",
-                "PATH": os.environ.get("PATH", ""),
-            },
-        )
-        self.assertEqual(completed.returncode, 1)
-        self.assertEqual(completed.stdout, "")
-        self.assertEqual(completed.stderr, f"{install_transport.FAIL_CLOSED_MESSAGE}\n")
 
-    def test_download_page_has_no_alpha10_transport(self) -> None:
+    def test_download_page_has_alpha11_install_command(self) -> None:
         download = (ROOT / "download/index.html").read_text(encoding="utf-8")
         self.assertIn(validate_repo.INSTALLER_STATUS, download)
-        self.assertNotIn("download/install.sh", download)
-        self.assertNotIn("curl ", download)
+        self.assertIn("download/install.sh", download)
 
 
 class SourceDisclosureTests(unittest.TestCase):
@@ -293,7 +294,7 @@ class SourceDisclosureTests(unittest.TestCase):
         missing = dict(texts)
         technical = ROOT / "download/technical-release-files.html"
         missing[technical] = missing[technical].replace(
-            "0.1.0-alpha.10/release-index.json", "missing-release-index.json"
+            "0.1.0-alpha.11/release-index.json", "missing-release-index.json"
         )
         with self.assertRaisesRegex(AssertionError, "technical release files page lacks"):
             validate_repo.validate_source_disclosures(missing)

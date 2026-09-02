@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-08-31T19:38:44Z"
-  updated_by: alpha10_rejection_containment_deployed_and_anonymously_verified
+  updated_at: "2026-09-02T00:00:00Z"
+  updated_by: alpha11_site_release_truth_publication
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha10_contained_alpha11_engineering_active
+  status: alpha11_published_public_test_candidate_install_enabled
   purpose: public_documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -24,37 +24,46 @@ canonical_truth:
   exact_head: derived_from_git_not_persisted
 
 release:
-  version: 0.1.0-alpha.10
+  version: 0.1.0-alpha.11
   channel: alpha
   qualification: candidate
   published: true
   registry_published: true
-  known_defective: true
+  known_defective: false
   owner_accepted: false
-  installation_enabled: false
+  installation_enabled: true
   support_tier: compatible_unvalidated
   public_download: "download/install.sh"
-  release_index: "download/0.1.0-alpha.10/release-index.json"
-  release_index_sha256: 2fc626fcab180f664f04f36d1fcceacaffa81ca96a658585f6684e3cf37abf89
-  signed_payload_digest: sha256:2478e9c69aac1679813c448d25a7648e68d81f44daaa2d7bc3085aaf86b7b222
-  index_signature_bundle_digest: sha256:db7814299a7603088e1a0cac3845a0c4be7a165465537bc7710957ecf5499b11
+  release_index: "download/0.1.0-alpha.11/release-index.json"
+  release_index_sha256: 8a26f7d36b5c6883c314db7323c4a79a497e0973e0ec671c02c6b38f0f533f2c
+  signed_payload_digest: sha256:9b98e07040107fe0644a2b95648a19bef3aef50df540dde77460880dc204f51c
+  index_signature_bundle_digest: sha256:01b228ec64cee2c46d17db5279766d1ef39612a94c4309516f4c7ce08aa957b4
   predecessor_signature_bundle_digest: null
   rollback_supported: false
   trust_key_id: stateport-alpha-private-2026-08
   trust_key_fingerprint: sha256:df24c1ccdcf1ecf72da6d8d81ae8b0ffaca8d399826091b107cc4d6905915ea5
-  source_commit: 930c2d9ad3dcc659da9e8a2b966972cfd78f0f0e
-  source_tree: 726d1dcba907d83ed926ffbf977a3ef4fe1e4725
+  source_commit: 57dae10ff94c5b6aa37cc5d23509a89d91887cac
+  source_tree: c17f0ba7b44cfbf3f30ebe1938d92e640434a640
   public_snapshot_repository: "https://github.com/lennertvhoy/StatePort-Source.git"
-  public_snapshot_commit: 457423be626ad91d1d41d087b4bb056b96770304
-  public_snapshot_tree: 7eff2b9b715a0aa6a2e236b47a22a33ba54026aa
-  source_archive_sha256: 7bd456b2ed3db1dcc881f78cc2f78ae88770af5ea9c75444d0eefa18be8ab795
+  public_snapshot_commit: 34ca6ef40a0640ff9b550fb355b9b1cf153ad183
+  public_snapshot_tree: 408f0c0fe4bf6aaab1513ea195bd650cf042cb75
+  source_archive_sha256: bfbdffb380787d71bbbd558aa64cbd8eba3bedfdaabb121116c6df7ea2ac6d52
   target_id: wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet
   image_count: 7
-  bootstrap_sha256: afb807280e1588ce4903be79649a7b7dd69026177b18a7a98a95b01f54f74d5d
-  mutable_fail_closed_bootstrap_sha256: 47bcd413b87a45713da7f23c43d35882bc4eacc55f3aaf82e6a6732d6220665f
-  mutable_fail_closed_bootstrap_bytes: 282
+  bootstrap_sha256: 9aaea4790059579d22db4e5537485a84cc094d9f2b8b0bafc04c618b5e0052df
+  versioned_bootstrap_sha256: 9aaea4790059579d22db4e5537485a84cc094d9f2b8b0bafc04c618b5e0052df
+  mutable_fail_closed_bootstrap_sha256: null
+  mutable_fail_closed_bootstrap_bytes: null
 
 predecessors:
+  alpha10:
+    version: 0.1.0-alpha.10
+    published: true
+    owner_rejected: true
+    installation_enabled: false
+    signed_index_and_artifacts_retained: true
+    release_index_sha256: 2fc626fcab180f664f04f36d1fcceacaffa81ca96a658585f6684e3cf37abf89
+    bootstrap_sha256: afb807280e1588ce4903be79649a7b7dd69026177b18a7a98a95b01f54f74d5d
   alpha7:
     version: 0.1.0-alpha.7
     published: true
@@ -83,11 +92,11 @@ predecessors:
 
 acceptance:
   ghcr_publication: published_and_anonymously_digest_verified
-  site_publication: alpha10_rejection_containment_deployed_and_anonymously_byte_verified
-  candidate_rehearsals: passed_only_after_rehearsal_preinstalled_newer_Podman_not_valid_clean_owner_path_evidence
-  public_transport_rehearsal: false_pass_rehearsal_preinstalled_Podman_5_4_2_before_public_bootstrap
-  clean_install: owner_rejected_stock_Noble_Podman_4_9_3_below_floor
-  human_acceptance: rejected
+  site_publication: alpha11_site_release_truth_deployed_and_anonymously_byte_verified
+  candidate_rehearsals: rehearsed_including_pinned_authenticated_Podman_5_4_2_bundle
+  public_transport_rehearsal: pending_owner_public_path_test
+  clean_install: pending_owner_public_path_test_on_Windows11_WSL2_Ubuntu2404
+  human_acceptance: not_accepted
   independent_security_review: not_performed
   stability: not_established
   production_qualification: not_performed
@@ -99,113 +108,69 @@ site:
   deployment:
     provider: GitHub Pages
     build_type: legacy
-    status: alpha10_rejection_containment_deployed_and_anonymously_verified
+    status: alpha11_site_release_truth_deployed_and_anonymously_byte_verified
     workflow: ".github/workflows/deploy-pages.yml"
     custom_workflow_status: disabled_manual_only_not_live_provider
     source_branch: main
     source_path: /
     deployment_head: derived_from_git_not_persisted
-    live_content_commit: 27bcf6c8431a89e8893f047d6a4b61b9467f460e
-    pages_build: 1186377823
-    pages_build_commit_field: 27bcf6c8431a89e8893f047d6a4b61b9467f460e
-    pages_run: 33431377948
-    pages_deployment: 6188165170
-    deployment_sha: 27bcf6c8431a89e8893f047d6a4b61b9467f460e
-  current_release_surface: alpha10_rejected_mutable_launcher_fail_closed_alpha11_pending
-  installer_command_shown: false
-  installer_command_locations: []
-  replacement_install_command: disabled_owner_rejected
+    live_content_commit: derived_from_git_not_persisted
+  current_release_surface: alpha11_published_install_enabled_public_test_candidate
+  installer_command_shown: true
+  installer_command_locations:
+    - download/index.html
+    - index.html
+  replacement_install_command: bash_lt_curl_fsSL_https_lennertvhoy_github_io_StatePort_Site_download_install_sh_gt
   immutable_tree_manifest: config/immutable-release-trees.json
   immutable_anchors:
     alpha2: 4043534a9a1d56c51c3d47d0906e0520963af79c
     alpha3: 52b42dd47a11510220f33690075f1b6773f6a889
     alpha5: eaa1ca6a67844259860917442a95c891d097939f
     alpha10: 24428baa1dbee3eaac637e19c34c2aad00e7a38c
+    alpha11: eff7302670e313c79b7fb79155fd5be607dcfdcf
   remote_verification:
-    ghcr_images_checked: 7
-    ghcr_tag_mismatches: 0
-    ghcr_digest_reference_mismatches: 0
-    ghcr_receipt: /home/ff/.local/state/stateport/release/alpha10/ghcr-publication-930c2d9a-r1-terminal.json
-    ghcr_anonymous_receipt: /home/ff/.local/state/stateport/release/alpha10/ghcr-anonymous-verification-930c2d9a-r1.json
-    pages_receipt: /home/ff/.local/state/stateport/release/alpha10/pages-anonymous-containment-verification-27bcf6c-r1.json
-    pages_receipt_sha256: e1eaf11f7deb756f31288f0ba321bc65abadb64c09b55ae865a742eb4105dcdd
-    containment_changed_files_checked: 20
-    containment_changed_file_mismatches: 0
-    alpha10_site_files_checked: 39
-    alpha10_site_file_mismatches: 0
-    retained_immutable_files_checked: 113
-    retained_immutable_mismatches: 0
-    unique_live_paths_checked: 140
-    live_bytes_checked: 91640298
-    mutable_install_sha256: 47bcd413b87a45713da7f23c43d35882bc4eacc55f3aaf82e6a6732d6220665f
-    mutable_install_matches_versioned: false
-    public_transport_receipt: /home/ff/.local/state/stateport/release/alpha10/rehearsal-public-full-r1.json
-    public_transport_verification: /home/ff/.local/state/stateport/release/alpha10/public-rehearsal-verification-930c2d9a-r1.json
-    public_transport_phases_passed: 8
-    public_transport_guest_local_site: false
-    public_transport_guest_local_registry_mirror: false
-    public_transport_retained_archive_transport: false
-    owner_test_failure_receipt: /home/ff/.local/state/stateport/release/alpha10/owner-test-failure-alpha10-podman-floor-r1.json
-    owner_test_verdict: rejected
-    owner_test_failure: stock_Noble_Podman_4_9_3_below_required_floor
-    rehearsal_fidelity_defect: rehearsal_preinstalled_Questing_Podman_5_4_2_before_public_bootstrap
+    alpha11_live_index_sha256: 8a26f7d36b5c6883c314db7323c4a79a497e0973e0ec671c02c6b38f0f533f2c
+    alpha11_mutable_install_sha256: 9aaea4790059579d22db4e5537485a84cc094d9f2b8b0bafc04c618b5e0052df
+    alpha11_mutable_install_matches_versioned: true
+    alpha10_containment_receipt: /home/ff/.local/state/stateport/release/alpha10/pages-anonymous-containment-verification-27bcf6c-r1.json
+    alpha10_containment_live_content_commit: 27bcf6c8431a89e8893f047d6a4b61b9467f460e
 
 owner_directive:
   id: STATEPORT-ALPHA11-PODMAN-CLEAN-INSTALL-20260831
-  status: alpha10_containment_and_alpha11_successor_authorized
+  status: alpha11_site_release_truth_publication_authorized
   source_repository: /home/ff/Projects/StatePort
-  source_base: 5c198330dff8b42f03d2251274bc3fb61e2108a5
-  site_base: dbc3c30907c4a5912f7760ff02e3f5b1a7b6f31b
-  objective: fail_close_rejected_alpha10_mutable_installer_then_publish_only_a_faithfully_rehearsed_alpha11_successor
+  source_base: c39a0049dfbc7e0a40bb7661e8b86eadb0f9bfa6
+  site_base: 705d50b0c2bff2ef92283eeb5eb3b7f9ff646376
+  objective: fail_close_rejected_alpha10_mutable_installer_then_publish_a_faithfully_rehearsed_alpha11_successor_and_present_it_as_the_current_public_test_candidate
   site_commit_push_and_pages_deployment: authorized
-  versioned_release_file_changes: Alpha10_immutable_and_unchanged__Alpha11_additive_only_after_source_and_rehearsal_gates
-  signing_or_successor_release: Alpha11_authorized_after_exact_engineering_gates
+  versioned_release_file_changes: Alpha10_immutable_and_unchanged__Alpha11_additive_only
+  signing_or_successor_release: Alpha11_published_additive_only
   human_acceptance: Alpha10_rejected__Alpha11_non_blocking_for_engineering_closure
 
 active_work:
   - id: BL-ALPHA11-PODMAN-CLEAN-INSTALL
     priority: P0
-    status: alpha10_contained_alpha11_source_engineering_authorized
+    status: alpha11_published_signed_install_path_reachable_compatible_unvalidated_owner_public_path_test_pending
 
 prior_work:
-  - id: alpha10_ghcr_publication
-    verdict: seven_exact_signed_manifests_published_and_anonymously_verified_by_tag_and_digest
-    evidence: [ghcr-publication-930c2d9a-r1-terminal.json, ghcr-anonymous-verification-930c2d9a-r1.json]
-    validity: exact_alpha10_candidate_930c2d9a
-    missing: owner_verdict
-  - id: alpha10_candidate_rehearsals
-    verdict: two_rehearsals_passed_all_seven_phases_only_after_preinstalling_Questing_Podman_5_4_2_so_they_do_not_prove_the_clean_owner_path
-    evidence: [rehearsal-private-full-r2.json, rehearsal-private-full-r3.json]
-    validity: exact_alpha10_candidate_and_digest_only_prepublication_registry_transport
-    missing: none
-  - id: alpha10_pages_publication
-    verdict: content_commit_24428baa_deployed_through_build_1185989241_run_33408727082_deployment_6184162311_and_all_75_changed_paths_39_alpha10_release_or_manifest_files_and_81_retained_immutable_files_matched_anonymous_live_bytes
-    evidence: [24428baa1dbee3eaac637e19c34c2aad00e7a38c, pages-anonymous-verification-24428baa-r1.json, pages_build_1185989241, pages_run_33408727082, pages_deployment_6184162311]
-    validity: exact_alpha10_site_content_and_retained_immutable_trees
-    missing: none
-  - id: alpha10_direct_public_transport
-    verdict: public_transport_and_artifact_fetch_were_anonymous_but_runtime_qualification_was_invalid_because_the_guest_had_preinstalled_Questing_Podman_5_4_2
-    evidence: [rehearsal-public-full-r1.json, public-rehearsal-verification-930c2d9a-r1.json, governor-rehearsal-public-full-r1/background-safe-v1.json]
-    validity: exact_alpha10_candidate_public_transport_2026_08_31__not_owner_windows_clean_install_or_human_acceptance
-    missing: faithful_stock_Noble_runtime_provisioning_and_post_publication_rehearsal
+  - id: alpha11_publication_eff73026
+    verdict: Alpha11_site_content_commit_eff73026_published_the_signed_release_tree_signed_index_and_mutable_installer_pointing_at_the_Alpha11_bootstrap
+    evidence: [eff7302670e313c79b7fb79155fd5be607dcfdcf]
+    validity: exact_alpha11_site_content_2026_09_01
+    missing: site_release_truth_pages_and_state_now_updated_in_this_slice
   - id: alpha10_owner_test_rejection
-    verdict: rejected_on_fresh_stock_Windows11_WSL2_Ubuntu2404_before_Study_Lenny_when_public_bootstrap_installed_Noble_Podman_4_9_3_below_floor_while_rehearsal_had_preinstalled_5_4_2
+    verdict: rejected_on_fresh_stock_Windows11_WSL2_Ubuntu2404_when_public_bootstrap_installed_Noble_Podman_4_9_3_below_floor_while_rehearsal_had_preinstalled_5_4_2
     evidence: [owner-test-failure-alpha10-podman-floor-r1.json, StatePort:scripts/render_wsl2_install_bootstrap.py, StatePort:infra/qualification/wsl2_rehearsal.py]
-    validity: explicit_owner_verdict_and_source_audit_2026_08_31__no_raw_installer_receipt
-    missing: faithful_Alpha11_stock_public_path_and_owner_retest
-  - id: alpha10_rejection_containment
-    verdict: content_commit_27bcf6c_deployed_through_build_1186377823_run_33431377948_deployment_6188165170_with_20_containment_paths_39_alpha10_release_or_manifest_files_and_113_anchored_immutable_files_matching_anonymous_live_bytes
-    evidence: [27bcf6c8431a89e8893f047d6a4b61b9467f460e, pages-anonymous-containment-verification-27bcf6c-r1.json, pages_build_1186377823, pages_run_33431377948, pages_deployment_6188165170]
-    validity: exact_alpha10_mutable_route_containment_and_immutable_release_preservation
+    validity: explicit_owner_verdict_and_source_audit_2026_08_31
     missing: none
-  - id: alpha7_publication_pages_verification
-    verdict: signed_candidate_published_and_exact_live_bytes_anonymously_matched
-    evidence: [09a2c9e54931de789d3dc8d24ed77944f27e0313, pages_run_32046592525, pages_deployment_5947438349]
-    validity: retained_alpha7_signed_index_and_artifacts
+  - id: alpha10_rejection_containment
+    verdict: content_commit_27bcf6c_deployed_through_build_1186377823_run_33431377948_deployment_6188165170_with_20_containment_paths_matching_anonymous_live_bytes
+    evidence: [27bcf6c8431a89e8893f047d6a4b61b9467f460e, pages-anonymous-containment-verification-27bcf6c-r1.json]
+    validity: exact_alpha10_mutable_route_containment_and_immutable_release_preservation
     missing: none
 
 workspace_inventory:
-  expected_content_head: 27bcf6c8431a89e8893f047d6a4b61b9467f460e
-  expected_origin_head: 27bcf6c8431a89e8893f047d6a4b61b9467f460e
-  expected_dirty_path: final_alpha10_rejection_containment_state_only_closure
+  expected_content_head: eff7302670e313c79b7fb79155fd5be607dcfdcf
+  expected_origin_head: eff7302670e313c79b7fb79155fd5be607dcfdcf
+  expected_dirty_path: alpha11_site_release_truth_state_only_closure
   immutable_release_bytes_changed_after_anchor: false

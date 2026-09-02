@@ -181,35 +181,41 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
 
 ## Current release truth
 
-- Latest published candidate: `v0.1.0-alpha.10`, signed for exact target
+- Latest published candidate: `v0.1.0-alpha.11`, signed for exact target
   `wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet`.
 - Signed index SHA-256:
-  `2fc626fcab180f664f04f36d1fcceacaffa81ca96a658585f6684e3cf37abf89`;
+  `8a26f7d36b5c6883c314db7323c4a79a497e0973e0ec671c02c6b38f0f533f2c`;
   signed payload:
-  `sha256:2478e9c69aac1679813c448d25a7648e68d81f44daaa2d7bc3085aaf86b7b222`.
-- Alpha.10 is owner-rejected and install-disabled. Stock Noble supplied Podman
-  4.9.3 below StatePort's floor, while all passing rehearsals had preinstalled
-  Podman 5.4.2. Its exact images and immutable Site files remain published and
-  byte-verified for inspection, not installation or acceptance.
-- Alpha.10 has no authenticated predecessor under its current trust root and
-  declares rollback unsupported. Never construct a predecessor bundle from the
-  retired Alpha.7 trust root.
+  `sha256:9b98e07040107fe0644a2b95648a19bef3aef50df540dde77460880dc204f51c`.
+- Alpha.11 is published and install-enabled as a public-test candidate
+  (`compatible_unvalidated`). It provisions a pinned, verified Podman 5.4.2
+  package set from the signed release bundle on the stock Windows 11 + WSL2 +
+  Ubuntu 24.04 path. The mutable installer route `download/install.sh` is
+  byte-identical to the versioned Alpha.11 bootstrap (31,576 bytes, SHA-256
+  `9aaea4790059579d22db4e5537485a84cc094d9f2b8b0bafc04c618b5e0052df`).
+- Alpha.11 is not owner-accepted. The owner public-path install test on a real
+  Windows 11 + WSL2 + Ubuntu 24.04 host is pending; a clean-install receipt and
+  human verdict remain absent. Independent security review, stability, and
+  production qualification are unproven.
+- Alpha.10 is owner-rejected and install-disabled after stock Noble supplied
+  Podman 4.9.3 below StatePort's floor while all passing rehearsals had
+  preinstalled Podman 5.4.2. Its exact immutable Site files remain published
+  and byte-verified for inspection only. Never present Alpha.10 as installable.
+- Alpha.11 has no authenticated predecessor under its current trust root and
+  declares rollback unsupported. Never construct a predecessor bundle from an
+  earlier trust root.
 - Alpha.7 remains published, signed, byte-intact except for its permitted
   fail-closed launcher, and superseded. Its signed index and artifacts remain
   retained.
 - Published Alpha.6 is superseded and its installer route is fail-closed because
   the candidate carries the updater venv cache-drift defect. Its signed index and
   artifacts remain retained.
-  WSL2 remains `compatible_unvalidated`; no clean-install receipt exists.
-- Completed reviews bind the failure to a 4,096-byte truncated pipe-to-shell
-  transfer. The complete 8,971-byte bootstrap and signed release payload remain
-  intact; the replacement completes download, verifies pinned size and digest,
-  passes `/bin/sh -n`, and executes only after every check succeeds.
+- WSL2 remains `compatible_unvalidated`; no clean-install receipt exists.
 - WSL1, native Linux, other distributions, ARM64, macOS, and Docker Desktop do
   not inherit this release target or its evidence.
 - Canonical development Git remains private. The signed public snapshot
-  `457423be626ad91d1d41d087b4bb056b96770304` / tree
-  `7eff2b9b715a0aa6a2e236b47a22a33ba54026aa` is anonymously resolvable from
+  `34ca6ef40a0640ff9b550fb355b9b1cf153ad183` / tree
+  `408f0c0fe4bf6aaab1513ea195bd650cf042cb75` is anonymously resolvable from
   `lennertvhoy/StatePort-Source`; the curated source archive is public and
   digest-bound.
 - Alpha.3 remains signed, byte-intact, install-disabled, and governed by its
@@ -220,9 +226,10 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
 - Pages deploys from `main` through GitHub's managed legacy Pages build. The
   custom workflow is manual-only. Nothing is live until remotely verified.
 
-Never call Alpha.10 owner-test-ready, clean-installed, qualified, owner-accepted,
-stable, audited, or production-ready. Never alter Alpha.2, Alpha.3, anchored
-Alpha.5, or Alpha.10 versioned bytes.
+Never call Alpha.11 owner-test-accepted, clean-installed, qualified,
+owner-accepted, stable, audited, or production-ready. Never call Alpha.10
+installable or owner-test-ready. Never alter Alpha.2, Alpha.3, anchored
+Alpha.5, Alpha.10, or Alpha.11 versioned bytes.
 
 ## Repository rules
 
@@ -231,8 +238,8 @@ Alpha.5, or Alpha.10 versioned bytes.
 - Integrate finished work promptly. Do not create handoff, candidate-number,
   preservation, or generated-media branches.
 - Signed/versioned artifacts under `download/0.1.0-alpha.2/`,
-  `download/0.1.0-alpha.3/`, `download/0.1.0-alpha.5/`, and
-  `download/0.1.0-alpha.10/` are immutable.
+  `download/0.1.0-alpha.3/`, `download/0.1.0-alpha.5/`,
+  `download/0.1.0-alpha.10/`, and `download/0.1.0-alpha.11/` are immutable.
   External errata and a fail-closed bootstrap may prevent use without changing
   the signed candidate.
 - `release-index.json` remains authority for version, digests, image references,
@@ -253,8 +260,10 @@ Alpha.5, or Alpha.10 versioned bytes.
 
 1. Preserve Alpha.2 and Alpha.3 exactly and keep the Alpha.3 erratum historical.
 2. Preserve the anchored Alpha.5 tree and exact repaired mutable bootstrap.
-3. Fail-close the mutable Alpha.10 launcher, preserve every versioned byte, and
-   publish Alpha.11 only after its exact public bootstrap provisions supported
-   Podman from stock Noble without rehearsal-only runtime preparation.
+3. Preserve Alpha.10 exactly as the rejected, install-disabled predecessor.
+4. Present Alpha.11 as the current published public-test candidate with an
+   install-enabled mutable route, and preserve every versioned Alpha.11 byte.
+   The owner public-path install test on real Windows 11 + WSL2 + Ubuntu 24.04
+   and the human acceptance verdict remain open owner actions.
 
 Everything else is backlog or history.

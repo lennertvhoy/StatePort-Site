@@ -1,17 +1,18 @@
 # NEXT_ACTIONS - active execution queue
 
-**Updated At:** 2026-08-31
+**Updated At:** 2026-09-02
 **Execution Mode:** operating
 **Max Items:** 1
 
-## P0 [BL-ALPHA11-PODMAN-CLEAN-INSTALL] Contain Alpha.10 and publish a faithful Alpha.11
+## P0 [BL-ALPHA11-PODMAN-CLEAN-INSTALL] Owner public-path test of published Alpha.11
 
-**Status:** Alpha.10 is owner-rejected and its mutable route is fail-closed.
-Containment and all retained immutable bytes are anonymously verified.
+**Status:** Alpha.11 is published, signed, install-enabled, and presented on
+the site as the current public-test candidate. Alpha.10 remains rejected and
+install-disabled.
 
-**Decision:** preserve Alpha.10 exactly and publish Alpha.11 only after secure
-runtime provisioning and faithful stock-path proof.
+**Decision:** Alpha.11 is the current public-test candidate; the site release
+truth and validators now bind Alpha.11. The owner public-path install test and
+human verdict remain.
 
-**Exit:** Alpha.11 public bootstrap securely provisions supported Podman and the
-exact live command passes the stock post-publication rehearsal without hidden
-runtime preparation. Human acceptance remains separate.
+**Exit:** Owner clean-install receipt on a real Windows 11 + WSL2 + Ubuntu
+24.04 host, then the human verdict. Human acceptance remains separate.
