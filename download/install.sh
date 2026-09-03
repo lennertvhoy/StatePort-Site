@@ -304,7 +304,6 @@ python3 "$tmp/installer" \
   --state-root "$STATE_ROOT" \
   --podman-package-preflight "$tmp/podman-package-preflight.json" \
   --confirmed-package-plan-digest "$package_plan_digest" \
-  --yes --confirmed-plan-digest "$install_plan_digest" \
   --prepare-execution-host
 sudo -v
 install_plan_digest=$(python3 - "$STATE_ROOT/install-plan.json" <<'PY'

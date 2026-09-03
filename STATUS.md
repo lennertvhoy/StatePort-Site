@@ -18,8 +18,8 @@
 - The versioned Alpha.12 bootstrap remains immutable (31,576 bytes, SHA-256
   `e552898fc2611d94bd6ec361624e8c95dcaaffcecc259ed1a7c20f08c01c2701`).
 - The mutable installer route `download/install.sh` now carries transport
-  repairs over that immutable bootstrap (31,769 bytes, SHA-256
-  `0f30a3c3adf5bc1a60b367577becde9440bf6c8e9142c7e75439ec53862fd8f8`): it
+  repairs over that immutable bootstrap (31,712 bytes, SHA-256
+  `a189338670d4e24c15b1fefc915e0b2770214efa5ec7c87aec31980343e3deae`): it
   stages the release-index and every image signature bundle into its
   content-addressed `$tmp/<sha256>/<name>` slot, and it installs the real
   `python3-venv` package (Ubuntu universe, exactly matching the signed bundle

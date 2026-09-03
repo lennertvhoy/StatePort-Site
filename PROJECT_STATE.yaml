@@ -52,8 +52,8 @@ release:
   image_count: 7
   bootstrap_sha256: e552898fc2611d94bd6ec361624e8c95dcaaffcecc259ed1a7c20f08c01c2701
   versioned_bootstrap_sha256: e552898fc2611d94bd6ec361624e8c95dcaaffcecc259ed1a7c20f08c01c2701
-  mutable_install_sha256: 0f30a3c3adf5bc1a60b367577becde9440bf6c8e9142c7e75439ec53862fd8f8
-  mutable_install_bytes: 31769
+  mutable_install_sha256: a189338670d4e24c15b1fefc915e0b2770214efa5ec7c87aec31980343e3deae
+  mutable_install_bytes: 31712
   mutable_install_transport_repair: digest_slot_bundle_staging_plus_real_python3_venv_install_for_immutable_installer_package_preflight
   mutable_fail_closed_bootstrap_sha256: null
   mutable_fail_closed_bootstrap_bytes: null
@@ -143,7 +143,7 @@ site:
     alpha12: 15b11d7c30df5c95f6bce81fa61e4814c0697520
   remote_verification:
     alpha12_live_index_sha256: 8fab98e60b1f4ed067aa8b3f2c8552f3dda266b53328c601eb67ce93671bfabb
-    alpha12_mutable_install_sha256: 0f30a3c3adf5bc1a60b367577becde9440bf6c8e9142c7e75439ec53862fd8f8
+    alpha12_mutable_install_sha256: a189338670d4e24c15b1fefc915e0b2770214efa5ec7c87aec31980343e3deae
     alpha12_mutable_install_matches_versioned: false
     alpha12_mutable_install_carries_digest_slot_and_real_python3_venv_install_repairs: true
     alpha10_containment_receipt: /home/ff/.local/state/stateport/release/alpha10/pages-anonymous-containment-verification-27bcf6c-r1.json
