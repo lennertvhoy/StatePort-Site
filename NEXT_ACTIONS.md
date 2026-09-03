@@ -10,10 +10,11 @@
 the site as the current public-test candidate. The owner public-path test
 first refused in the immutable installer package preflight because the
 bootstrap had not staged signature bundles into their digest slots; after
-that repair it refused again because a leftover non-installed dpkg row made
-`python3-venv` report a malformed identity and the bundle's `python3.12-venv`
-dependency was unsatisfied. The mutable route now carries both transport
-repairs over the unchanged versioned bootstrap. Alpha.11 is superseded and
+that repair it refused again because apt left `python3-venv` as a negative
+not-installed record (only python3.12-venv was installed) that the preflight
+reports as malformed. The mutable route now installs the real `python3-venv`
+package before the preflight; both transport repairs sit over the unchanged
+versioned bootstrap. Alpha.11 is superseded and
 install-disabled (retained as history); Alpha.10 remains rejected and
 install-disabled.
 

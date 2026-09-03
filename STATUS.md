@@ -18,17 +18,16 @@
 - The versioned Alpha.12 bootstrap remains immutable (31,576 bytes, SHA-256
   `e552898fc2611d94bd6ec361624e8c95dcaaffcecc259ed1a7c20f08c01c2701`).
 - The mutable installer route `download/install.sh` now carries transport
-  repairs over that immutable bootstrap (33,498 bytes, SHA-256
-  `10b5f337ef8736b97acca2954a96f32a778a0eacb0eab51a6390aa060b0e7d1d`): it
+  repairs over that immutable bootstrap (33,276 bytes, SHA-256
+  `efc4f388e259ab6a25fc4d9be438629ea122aef7920732695473befcf7bfd95a`): it
   stages the release-index and every image signature bundle into its
-  content-addressed `$tmp/<sha256>/<name>` slot, and it converges the host
-  python venv state (purges leftover non-installed dpkg rows and installs
-  `python3.12-venv` from Ubuntu universe) before the immutable installer's
-  package-preflight admission. The owner's Alpha.12 public-path test first
+  content-addressed `$tmp/<sha256>/<name>` slot, and it installs the real
+  `python3-venv` package (Ubuntu universe, exactly matching the signed bundle
+  record) before the immutable installer's package-preflight admission. The owner's Alpha.12 public-path test first
   refused with `signature bundle is not a regular file` on the missing digest
   slots, then after that fix with `installed python3-venv package identity is
-  malformed` caused by a leftover non-installed dpkg row plus the bundle's
-  unsatisfied `python3.12-venv` dependency.
+  malformed` caused by apt leaving a negative not-installed record when only
+  `python3.12-venv` was installed without `python3-venv` itself.
 - Alpha.12 is not yet accepted by the owner. A clean owner public-path install
   receipt is still pending after the mutable-route repair; independent security
   review, stability, and production qualification remain absent.

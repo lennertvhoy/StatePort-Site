@@ -1,5 +1,30 @@
 # Worklog
 
+## 2026-09-03 - Mutable route installs real python3-venv after third Alpha.12 refusal
+
+- The prior convergence repair installed only `python3.12-venv`; that made apt
+  leave `python3-venv` as a negative not-installed record, and `dpkg-query
+  --show python3-venv` reports such a record with empty fields and rc 0. The
+  immutable package preflight therefore refused with `installed python3-venv
+  package identity is malformed` on every retest, including the owner's host.
+  A clean Ubuntu 24.04 container reproduction proved installing only
+  `python3.12-venv` creates the phantom and installing the real `python3-venv`
+  yields `installed 3.12.3-0ubuntu2.1 amd64` exactly matching the signed
+  bundle record.
+- StatePort `9ea0c7a5` makes the rendered bootstrap install the real
+  `python3-venv` package from Ubuntu universe before invoking the immutable
+  unprivileged package-preflight admission. Focused regressions updated; the
+  full installer module passes.
+- Published only the mutable 33,276-byte `download/install.sh` (SHA-256
+  `efc4f388e259ab6a25fc4d9be438629ea122aef7920732695473befcf7bfd95a`) over the
+  unchanged immutable versioned Alpha.12 bootstrap (31,576 bytes, SHA-256
+  `e552898f...`). Repinned `scripts/install_transport.py`, updated
+  `scripts/validate_repo.py`, and refreshed site state. Site validation and the
+  containment suite pass.
+- Next: the owner reruns the one-line installer on the exact Windows 11 + WSL2 +
+  Ubuntu 24.04 path and records the clean-install receipt, then the human
+  verdict.
+
 ## 2026-09-03 - Mutable route python venv convergence after second Alpha.12 owner-path refusal
 
 - After the digest-slot repair deployed, the owner's retest advanced past
