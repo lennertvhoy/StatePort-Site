@@ -200,6 +200,15 @@ mkdir -m 700 "$tmp/image-carriers/stateport-worker" "$tmp/image-carriers/statepo
 cp "$tmp/image-manifests/stateport-worker" "$tmp/image-carriers/stateport-worker/blobs/sha256/77e4f18306e9f43bb415bf0dd73c1c2645d39366908fed59ad93af43639d10f3"
 printf '{"schemaVersion":2,"manifests":[{"digest":"sha256:77e4f18306e9f43bb415bf0dd73c1c2645d39366908fed59ad93af43639d10f3"}]}\n' > "$tmp/image-carriers/stateport-worker/index.json"
 tar -cf "$tmp/image-archives/stateport-worker.oci.tar" --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -C "$tmp/image-carriers/stateport-worker" index.json "blobs/sha256/77e4f18306e9f43bb415bf0dd73c1c2645d39366908fed59ad93af43639d10f3"
+retain_slot() { mkdir -p -m 700 "$1"; install -m 600 "$2" "$1/$3"; }
+retain_slot "$tmp/6c1c0906742f778f9501405686c0c7de1959fe59c1fae4264cbeb99a6ad7ce31" "$tmp/release-index.sigstore.json" "release-index.sigstore.json"
+retain_slot "$tmp/f05880f1911a71c945765548f9d857d579434402af4553ee2327a26cf1c5d7af" "$tmp/image-bundles/stateport-api.sigstore.json" "stateport-api.sigstore.json"
+retain_slot "$tmp/f6ab7f1048b34cab224e7731f642ff1434199a4dc3f3cc60f5ee5e2cfd557668" "$tmp/image-bundles/stateport-dev-workspace.sigstore.json" "stateport-dev-workspace.sigstore.json"
+retain_slot "$tmp/5d4ffb595b5da0d606a1a7b57dd8737ff87af362e7f06b681ba5df59bce46cad" "$tmp/image-bundles/stateport-execution-host.sigstore.json" "stateport-execution-host.sigstore.json"
+retain_slot "$tmp/385a0c909e03ca06d198c6ec8ac2017f6c7c38ec5af4f26e5440b4356f3e9cd4" "$tmp/image-bundles/stateport-playwright.sigstore.json" "stateport-playwright.sigstore.json"
+retain_slot "$tmp/4af105b5f163da8d4b8ee7581f72dda118f224eccd3b22868b23604e5299c9de" "$tmp/image-bundles/stateport-runner.sigstore.json" "stateport-runner.sigstore.json"
+retain_slot "$tmp/783c5066016869108b6768bd4b81d44a2a2793d4fa2ba98083f68bcaf8b590c3" "$tmp/image-bundles/stateport-web.sigstore.json" "stateport-web.sigstore.json"
+retain_slot "$tmp/3cb5866fd25f2d4ca675c925d289e532ff21fb85d5c4423eab96a5a74dafef0d" "$tmp/image-bundles/stateport-worker.sigstore.json" "stateport-worker.sigstore.json"
 python3 "$tmp/installer" --verify-podman-package-bundle \
   --release-index "$tmp/release-index.json" \
   --bundle-root "$tmp" \

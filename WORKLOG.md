@@ -1,5 +1,31 @@
 # Worklog
 
+## 2026-09-03 - Mutable route digest-slot transport repair after Alpha.12 owner-path refusal
+
+- The owner's Alpha.12 public-path one-liner refused in the immutable
+  installer's `--verify-podman-package-bundle` package preflight with
+  `signature bundle is not a regular file` for the release-index digest slot
+  (`6c1c0906.../release-index.sigstore.json`) and the stateport-api digest slot
+  (`f05880f1.../stateport-api.sigstore.json`). Root cause from code: the
+  bootstrap staged signature bundles flat and under `image-bundles/`, but the
+  updater-wheel release verifier resolves every signature bundle from
+  content-addressed digest slots (`bundle_root/<sha256>/<name>.sigstore.json`).
+  The genesis install mode retained bundles into those slots before verifying;
+  the package-preflight admission path did not, so a clean host always refused.
+- StatePort `33b97098` makes the rendered bootstrap stage the release-index and
+  every image signature bundle into its `$tmp/<sha256>/<name>` digest slot
+  before invoking the immutable installer. Focused regression added; 190
+  release-related tests pass.
+- Published only the mutable 33,003-byte `download/install.sh` (SHA-256
+  `34bfc7c5210841990a982e82fab2a4af08e23d8d4b3416a8a6673b7973148486`) carrying
+  that repair over the unchanged immutable versioned Alpha.12 bootstrap (31,576
+  bytes, SHA-256 `e552898f...`). Repinned `scripts/install_transport.py`, updated
+  `scripts/validate_repo.py` and `scripts/test_containment.py`, and refreshed
+  site state. Site validation and 29 tests plus 17 subtests pass.
+- Next: the owner reruns the one-line installer on the exact Windows 11 + WSL2 +
+  Ubuntu 24.04 path and records the clean-install receipt, then the human
+  verdict.
+
 ## 2026-08-15 - Deterministic bootstrap published after rerun archive conflict
 
 - The owner rerun of the re-enabled install refused with

@@ -261,16 +261,23 @@ class CurrentBootstrapTests(unittest.TestCase):
 
     def test_mutable_route_is_exact_and_install_enabled(self) -> None:
         installer = ROOT / "download/install.sh"
+        versioned = ROOT / "download/0.1.0-alpha.12/install.sh"
         bootstrap = installer.read_bytes()
-        self.assertEqual(
-            bootstrap,
-            (ROOT / "download/0.1.0-alpha.12/install.sh").read_bytes(),
-        )
+        # The mutable route carries the digest-slot transport repair over the
+        # unchanged immutable Alpha.12 bootstrap; it must still be a superset
+        # that preserves the versioned release contract and install flow.
         self.assertEqual(len(bootstrap), install_transport.MUTABLE_BOOTSTRAP_SIZE)
         self.assertEqual(
             hashlib.sha256(bootstrap).hexdigest(),
             install_transport.MUTABLE_BOOTSTRAP_SHA256,
         )
+        self.assertNotEqual(bootstrap, versioned.read_bytes())
+        versioned_text = versioned.read_text(encoding="utf-8")
+        mutable_text = bootstrap.decode("utf-8")
+        for line in versioned_text.splitlines():
+            if "sigstore" not in line and "signatures/" not in line:
+                self.assertIn(line, mutable_text)
+        self.assertIn("retain_slot() {", mutable_text)
         self.assertNotEqual(
             bootstrap,
             (ROOT / "download/0.1.0-alpha.11/install.sh").read_bytes(),

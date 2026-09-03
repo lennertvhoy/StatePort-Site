@@ -1,6 +1,6 @@
 metadata:
-  updated_at: "2026-09-02T18:50:02Z"
-  updated_by: alpha12_site_release_truth_publication
+  updated_at: "2026-09-03T00:00:00Z"
+  updated_by: alpha12_mutable_install_digest_slot_transport_repair
   format_version: statespec-site-state/v1
 
 workflow:
@@ -14,7 +14,7 @@ project:
   name: StatePort Site
   product: StatePort
   phase: operating
-  status: alpha12_published_public_test_candidate_install_enabled
+  status: alpha12_published_public_test_candidate_install_enabled_mutable_install_carries_digest_slot_transport_repair
   purpose: public_documentation_release_distribution_and_evidence_boundary
 
 canonical_truth:
@@ -52,6 +52,9 @@ release:
   image_count: 7
   bootstrap_sha256: e552898fc2611d94bd6ec361624e8c95dcaaffcecc259ed1a7c20f08c01c2701
   versioned_bootstrap_sha256: e552898fc2611d94bd6ec361624e8c95dcaaffcecc259ed1a7c20f08c01c2701
+  mutable_install_sha256: 34bfc7c5210841990a982e82fab2a4af08e23d8d4b3416a8a6673b7973148486
+  mutable_install_bytes: 33003
+  mutable_install_transport_repair: digest_slot_bundle_staging_for_immutable_installer_package_preflight
   mutable_fail_closed_bootstrap_sha256: null
   mutable_fail_closed_bootstrap_bytes: null
 
@@ -102,7 +105,7 @@ acceptance:
   ghcr_publication: published_and_anonymously_digest_verified
   site_publication: alpha12_site_release_truth_deployed_and_anonymously_byte_verified
   candidate_rehearsals: rehearsed_including_pinned_authenticated_Podman_5_4_2_bundle
-  public_transport_rehearsal: pending_owner_public_path_test
+  public_transport_rehearsal: owner_public_path_refused_on_package_preflight_signature_bundle_digest_slot_then_mutable_route_repaired
   clean_install: pending_owner_public_path_test_on_Windows11_WSL2_Ubuntu2404
   human_acceptance: not_accepted
   independent_security_review: not_performed
@@ -129,6 +132,7 @@ site:
     - download/index.html
     - index.html
   replacement_install_command: bash_lt_curl_fsSL_https_lennertvhoy_github_io_StatePort_Site_download_install_sh_gt
+  mutable_install_note: The mutable download/install.sh carries a digest-slot transport repair over the immutable Alpha.12 bootstrap so the immutable installer's package-preflight admission resolves every signature bundle on a clean host.
   immutable_tree_manifest: config/immutable-release-trees.json
   immutable_anchors:
     alpha2: 4043534a9a1d56c51c3d47d0906e0520963af79c
@@ -139,8 +143,9 @@ site:
     alpha12: 15b11d7c30df5c95f6bce81fa61e4814c0697520
   remote_verification:
     alpha12_live_index_sha256: 8fab98e60b1f4ed067aa8b3f2c8552f3dda266b53328c601eb67ce93671bfabb
-    alpha12_mutable_install_sha256: e552898fc2611d94bd6ec361624e8c95dcaaffcecc259ed1a7c20f08c01c2701
-    alpha12_mutable_install_matches_versioned: true
+    alpha12_mutable_install_sha256: 34bfc7c5210841990a982e82fab2a4af08e23d8d4b3416a8a6673b7973148486
+    alpha12_mutable_install_matches_versioned: false
+    alpha12_mutable_install_carries_digest_slot_transport_repair: true
     alpha10_containment_receipt: /home/ff/.local/state/stateport/release/alpha10/pages-anonymous-containment-verification-27bcf6c-r1.json
     alpha10_containment_live_content_commit: 27bcf6c8431a89e8893f047d6a4b61b9467f460e
 
@@ -162,6 +167,11 @@ active_work:
     status: alpha12_published_signed_install_path_reachable_compatible_unvalidated_owner_public_path_test_pending
 
 prior_work:
+  - id: alpha12_owner_public_path_package_preflight_refusal
+    verdict: the_owner_public_path_test_of_the_published_Alpha12_one_liner_refused_in_the_immutable_installer_package_preflight_with_signature_bundle_is_not_a_regular_file_for_the_release_index_and_stateport_api_digest_slots__the_bootstrap_staged_signature_bundles_flat_and_under_image_bundles_but_the_updater_wheel_verifier_resolves_every_bundle_from_bundle_root_digest_sha256_slots__the_mutable_route_now_carries_a_digest_slot_staging_repair_over_the_unchanged_immutable_Alpha12_bootstrap_so_the_package_preflight_admission_resolves_every_bundle_on_a_clean_host
+    evidence: [StatePort:33b97098, download/install.sh, scripts/install_transport.py, scripts/validate_repo.py, scripts/test_containment.py]
+    validity: exact_owner_path_refusal_and_mutable_transport_repair_2026_09_03__versioned_Alpha12_bytes_unchanged_clean_install_receipt_and_human_verdict_remain_pending
+    missing: owner_clean_public_path_install_receipt_then_human_verdict
   - id: alpha12_publication_15b11d7
     verdict: Alpha12_site_content_commit_15b11d7_published_the_signed_release_tree_signed_index_and_mutable_installer_pointing_at_the_Alpha12_bootstrap
     evidence: [15b11d7c30df5c95f6bce81fa61e4814c0697520]

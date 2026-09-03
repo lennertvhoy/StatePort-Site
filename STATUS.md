@@ -1,8 +1,8 @@
 # StatePort Site status
 
-**Updated At:** 2026-09-02
+**Updated At:** 2026-09-03
 **Execution Mode:** operating
-**Project State:** alpha12_published_public_test_candidate_install_enabled
+**Project State:** alpha12_published_public_test_candidate_install_enabled_mutable_install_carries_digest_slot_transport_repair
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -15,18 +15,20 @@
   `8fab98e60b1f4ed067aa8b3f2c8552f3dda266b53328c601eb67ce93671bfabb` and
   signed payload is
   `sha256:a16b154f37270f4aed2d7c7e60ee32279c7f36b6a1759aa1b7301cc787f708b1`.
-- The mutable installer route `download/install.sh` is byte-identical to the
-  versioned Alpha.12 bootstrap (31,576 bytes, SHA-256
-  `e552898fc2611d94bd6ec361624e8c95dcaaffcecc259ed1a7c20f08c01c2701`) and
-  serves the Alpha.12 install path.
-- Alpha.12 repairs the Alpha.11 install-path defect: the installer imports the
-  updater wheel from its zip, and the release-contract schema loader reads
-  schemas as zip members when no filesystem path exists. It packages the
-  corrected updater wheel and seven reproducible images from source
-  `2343197a` on the stock Windows 11 + WSL2 + Ubuntu 24.04 path.
+- The versioned Alpha.12 bootstrap remains immutable (31,576 bytes, SHA-256
+  `e552898fc2611d94bd6ec361624e8c95dcaaffcecc259ed1a7c20f08c01c2701`).
+- The mutable installer route `download/install.sh` now carries a digest-slot
+  transport repair over that immutable bootstrap (33,003 bytes, SHA-256
+  `34bfc7c5210841990a982e82fab2a4af08e23d8d4b3416a8a6673b7973148486`): it
+  stages the release-index and every image signature bundle into its
+  content-addressed `$tmp/<sha256>/<name>` slot before the immutable
+  installer's package-preflight admission, which resolves each signature
+  bundle from those slots. The owner's Alpha.12 public-path test refused with
+  `signature bundle is not a regular file` on those digest slots before this
+  repair.
 - Alpha.12 is not yet accepted by the owner. A clean owner public-path install
-  receipt is still pending; independent security review, stability, and
-  production qualification remain absent.
+  receipt is still pending after the mutable-route repair; independent security
+  review, stability, and production qualification remain absent.
 - Alpha.11 is superseded and install-disabled: its mutable route now serves
   Alpha.12. Its exact immutable files remain published for inspection only as
   the retained predecessor record.

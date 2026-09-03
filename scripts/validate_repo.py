@@ -916,8 +916,18 @@ def validate_current_release() -> None:
         raise AssertionError("Mutable Alpha.12 bootstrap size is stale")
     if hashlib.sha256(mutable.read_bytes()).hexdigest() != MUTABLE_BOOTSTRAP_SHA256:
         raise AssertionError("Mutable Alpha.12 bootstrap digest is stale")
-    if mutable.read_bytes() != versioned.read_bytes():
-        raise AssertionError("Install-enabled Alpha.12 mutable route must match the versioned bootstrap")
+    mutable_text = mutable.read_text(encoding="utf-8")
+    for fragment in (
+        CURRENT_TARGET_ID,
+        "RELEASE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.12\"",
+        "Windows 11 build 22000 or newer is required.",
+        "Ubuntu 24.04 for WSL is required.",
+        "WSL2 is required; WSL1 and native Linux are not this release target.",
+        "retain_slot() {",
+        "retain_slot \"$tmp/6c1c0906742f778f9501405686c0c7de1959fe59c1fae4264cbeb99a6ad7ce31\"",
+    ):
+        if fragment not in mutable_text:
+            raise AssertionError(f"Mutable Alpha.12 bootstrap lacks required repair: {fragment}")
     for image_id, expected in MANIFEST_DIGESTS.items():
         manifest = require(f"download/alpha12-manifests/{image_id}.json")
         if hashlib.sha256(manifest.read_bytes()).hexdigest() != expected:

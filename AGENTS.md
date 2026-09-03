@@ -193,9 +193,15 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
   schema loader reads schemas as zip members when no filesystem path exists)
   and packages the corrected updater wheel plus seven reproducible images from
   source `2343197a` on the stock Windows 11 + WSL2 + Ubuntu 24.04 path. The
-  mutable installer route `download/install.sh` is byte-identical to the
-  versioned Alpha.12 bootstrap (31,576 bytes, SHA-256
-  `e552898fc2611d94bd6ec361624e8c95dcaaffcecc259ed1a7c20f08c01c2701`).
+  versioned Alpha.12 bootstrap remains immutable (31,576 bytes, SHA-256
+  `e552898fc2611d94bd6ec361624e8c95dcaaffcecc259ed1a7c20f08c01c2701`). The
+  mutable installer route `download/install.sh` carries a digest-slot
+  transport repair over that immutable bootstrap (33,003 bytes, SHA-256
+  `34bfc7c5210841990a982e82fab2a4af08e23d8d4b3416a8a6673b7973148486`) that
+  stages the release-index and image signature bundles into their
+  content-addressed `$tmp/<sha256>/<name>` slots before the immutable
+  installer's package-preflight admission, after the owner's Alpha.12
+  public-path test refused with `signature bundle is not a regular file`.
 - Alpha.12 is not owner-accepted. The owner public-path install test on a real
   Windows 11 + WSL2 + Ubuntu 24.04 host is pending; a clean-install receipt and
   human verdict remain absent. Independent security review, stability, and
