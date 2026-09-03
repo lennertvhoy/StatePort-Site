@@ -196,8 +196,8 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
   versioned Alpha.12 bootstrap remains immutable (31,576 bytes, SHA-256
   `e552898fc2611d94bd6ec361624e8c95dcaaffcecc259ed1a7c20f08c01c2701`). The
   mutable installer route `download/install.sh` carries transport repairs over
-  that immutable bootstrap (33,276 bytes, SHA-256
-  `efc4f388e259ab6a25fc4d9be438629ea122aef7920732695473befcf7bfd95a`) that
+  that immutable bootstrap (33,481 bytes, SHA-256
+  `2b1c039a23f9d7500e8047548a45ce7ac184e2b94ac5143263de2eb4c1e75256`) that
   stage the release-index and image signature bundles into their
   content-addressed `$tmp/<sha256>/<name>` slots and install the real `python3-venv` package
   from Ubuntu universe (matching the signed bundle record) before the immutable

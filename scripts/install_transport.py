@@ -14,13 +14,13 @@ VERSIONED_BOOTSTRAP_SHA256 = "e552898fc2611d94bd6ec361624e8c95dcaaffcecc259ed1a7
 VERSIONED_BOOTSTRAP_SIZE = 31_576
 # The mutable public route carries transport repairs over the immutable
 # Alpha.12 bootstrap: it stages every signed index/image signature bundle into
-# its content-addressed digest slot under $tmp, and it installs the real
-# python3-venv package (Ubuntu universe, matching the signed bundle record)
-# before the immutable installer's package-preflight admission so the baseline
-# is not a negative not-installed record. The versioned Alpha.12 bootstrap
+# its content-addressed digest slot under $tmp, and it installs the complete
+# host dependency set the signed bundle pins (dbus, glib, gpgme, devmapper,
+# fuse, systemd/pam, nftables, python3-venv) before the immutable installer's
+# package-preflight admission so the offline closure simulation resolves. The versioned Alpha.12 bootstrap
 # bytes are unchanged release evidence.
-MUTABLE_BOOTSTRAP_SHA256 = "efc4f388e259ab6a25fc4d9be438629ea122aef7920732695473befcf7bfd95a"
-MUTABLE_BOOTSTRAP_SIZE = 33_276
+MUTABLE_BOOTSTRAP_SHA256 = "2b1c039a23f9d7500e8047548a45ce7ac184e2b94ac5143263de2eb4c1e75256"
+MUTABLE_BOOTSTRAP_SIZE = 33_481
 RETAINED_ALPHA11_BOOTSTRAP_SHA256 = "9aaea4790059579d22db4e5537485a84cc094d9f2b8b0bafc04c618b5e0052df"
 RETAINED_ALPHA11_BOOTSTRAP_SIZE = 31_576
 RETAINED_ALPHA11_INDEX_SHA256 = "8a26f7d36b5c6883c314db7323c4a79a497e0973e0ec671c02c6b38f0f533f2c"

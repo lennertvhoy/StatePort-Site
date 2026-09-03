@@ -211,7 +211,7 @@ retain_slot "$tmp/783c5066016869108b6768bd4b81d44a2a2793d4fa2ba98083f68bcaf8b590
 retain_slot "$tmp/3cb5866fd25f2d4ca675c925d289e532ff21fb85d5c4423eab96a5a74dafef0d" "$tmp/image-bundles/stateport-worker.sigstore.json" "stateport-worker.sigstore.json"
 sudo -v
 sudo apt-get update -o DPkg::Lock::Timeout=300 || { printf "StatePort apt update retry after lock contention\n" >&2; sleep 10; sudo apt-get update -o DPkg::Lock::Timeout=300; }
-sudo apt-get install -y --no-install-recommends -o DPkg::Lock::Timeout=300 python3-venv
+sudo apt-get install -y --no-install-recommends -o DPkg::Lock::Timeout=300 ca-certificates fuse3 nftables libglib2.0-0t64 libgpgme11t64 libdevmapper1.02.1 libfuse3-3 libseccomp2 libsqlite3-0 libaudit1 libselinux1 dbus-broker dbus-session-bus-common libpam-systemd systemd python3 python3-venv
 python3 "$tmp/installer" --verify-podman-package-bundle \
   --release-index "$tmp/release-index.json" \
   --bundle-root "$tmp" \
