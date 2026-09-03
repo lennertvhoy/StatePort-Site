@@ -276,7 +276,14 @@ class CurrentBootstrapTests(unittest.TestCase):
         mutable_text = bootstrap.decode("utf-8")
         for line in versioned_text.splitlines():
             if "sigstore" not in line and "signatures/" not in line:
+                # The one intentional divergence: the versioned bootstrap
+                # installs the sealed bundle debs with apt-get (broken by the
+                # noble apt 2.8.3 local-.deb Internal Error), while the mutable
+                # repair installs them with dpkg -i.
+                if "apt-get install -y --no-download" in line:
+                    continue
                 self.assertIn(line, mutable_text)
+        self.assertIn("dpkg -i -- *.deb", mutable_text)
         self.assertIn("retain_slot() {", mutable_text)
         self.assertNotEqual(
             bootstrap,
