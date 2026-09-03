@@ -19,8 +19,8 @@ VERSIONED_BOOTSTRAP_SIZE = 31_576
 # fuse, systemd/pam, nftables, python3-venv) before the immutable installer's
 # package-preflight admission so the offline closure simulation resolves. The versioned Alpha.12 bootstrap
 # bytes are unchanged release evidence.
-MUTABLE_BOOTSTRAP_SHA256 = "2b1c039a23f9d7500e8047548a45ce7ac184e2b94ac5143263de2eb4c1e75256"
-MUTABLE_BOOTSTRAP_SIZE = 33_481
+MUTABLE_BOOTSTRAP_SHA256 = "0f30a3c3adf5bc1a60b367577becde9440bf6c8e9142c7e75439ec53862fd8f8"
+MUTABLE_BOOTSTRAP_SIZE = 31_769
 RETAINED_ALPHA11_BOOTSTRAP_SHA256 = "9aaea4790059579d22db4e5537485a84cc094d9f2b8b0bafc04c618b5e0052df"
 RETAINED_ALPHA11_BOOTSTRAP_SIZE = 31_576
 RETAINED_ALPHA11_INDEX_SHA256 = "8a26f7d36b5c6883c314db7323c4a79a497e0973e0ec671c02c6b38f0f533f2c"

@@ -926,6 +926,7 @@ def validate_current_release() -> None:
         "retain_slot() {",
         "retain_slot \"$tmp/6c1c0906742f778f9501405686c0c7de1959fe59c1fae4264cbeb99a6ad7ce31\"",
         "sudo apt-get install -y --no-install-recommends -o DPkg::Lock::Timeout=300 ca-certificates fuse3 nftables",
+        "dpkg -i -- *.deb",
     ):
         if fragment not in mutable_text:
             raise AssertionError(f"Mutable Alpha.12 bootstrap lacks required repair: {fragment}")

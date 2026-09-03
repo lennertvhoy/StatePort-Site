@@ -1,5 +1,23 @@
 # Worklog
 
+## 2026-09-03 - Mutable route installs bundle debs with dpkg after apt Internal Error
+
+- The owner path reached the sealed root package stage and apt aborted every
+  local .deb install with `E: Internal Error, Pathname to install is not
+  absolute 'netavark_...deb'`. Reproduced in a clean Ubuntu 24.04 container
+  (apt 2.8.3) even for a single absolute-path .deb; `dpkg -i` succeeds.
+- StatePort `9ac5ee18` makes the bootstrap install the preflight-authenticated
+  sealed bundle debs with `dpkg -i -- *.deb` instead of apt-get. Verified
+  end-to-end in a container: all 15 bundle packages install cleanly, dpkg audit
+  clean, podman 5.4.2 present.
+- Published only the mutable 31,769-byte `download/install.sh` (SHA-256
+  `0f30a3c3adf5bc1a60b367577becde9440bf6c8e9142c7e75439ec53862fd8f8`) over the
+  unchanged immutable versioned Alpha.12 bootstrap. Repinned
+  `scripts/install_transport.py`, updated `scripts/validate_repo.py`, refreshed
+  site state. Site validation passes.
+- Next: the owner reruns the one-line installer and records the clean-install
+  receipt, then the human verdict.
+
 ## 2026-09-03 - Mutable route installs real python3-venv after third Alpha.12 refusal
 
 - The prior convergence repair installed only `python3.12-venv`; that made apt
