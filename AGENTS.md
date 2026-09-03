@@ -195,13 +195,16 @@ Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
   source `2343197a` on the stock Windows 11 + WSL2 + Ubuntu 24.04 path. The
   versioned Alpha.12 bootstrap remains immutable (31,576 bytes, SHA-256
   `e552898fc2611d94bd6ec361624e8c95dcaaffcecc259ed1a7c20f08c01c2701`). The
-  mutable installer route `download/install.sh` carries a digest-slot
-  transport repair over that immutable bootstrap (33,003 bytes, SHA-256
-  `34bfc7c5210841990a982e82fab2a4af08e23d8d4b3416a8a6673b7973148486`) that
-  stages the release-index and image signature bundles into their
-  content-addressed `$tmp/<sha256>/<name>` slots before the immutable
-  installer's package-preflight admission, after the owner's Alpha.12
-  public-path test refused with `signature bundle is not a regular file`.
+  mutable installer route `download/install.sh` carries transport repairs over
+  that immutable bootstrap (33,498 bytes, SHA-256
+  `10b5f337ef8736b97acca2954a96f32a778a0eacb0eab51a6390aa060b0e7d1d`) that
+  stage the release-index and image signature bundles into their
+  content-addressed `$tmp/<sha256>/<name>` slots and converge the host python
+  venv state (purge leftover non-installed dpkg rows, install
+  `python3.12-venv` from Ubuntu universe) before the immutable installer's
+  package-preflight admission, after the owner's Alpha.12 public-path test
+  refused first with `signature bundle is not a regular file` and then with
+  `installed python3-venv package identity is malformed`.
 - Alpha.12 is not owner-accepted. The owner public-path install test on a real
   Windows 11 + WSL2 + Ubuntu 24.04 host is pending; a clean-install receipt and
   human verdict remain absent. Independent security review, stability, and

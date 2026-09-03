@@ -2,7 +2,7 @@
 
 **Updated At:** 2026-09-03
 **Execution Mode:** operating
-**Project State:** alpha12_published_public_test_candidate_install_enabled_mutable_install_carries_digest_slot_transport_repair
+**Project State:** alpha12_published_public_test_candidate_install_enabled_mutable_install_carries_transport_repairs
 **Canonical:** `main`; exact head derives from Git
 **Hosting:** https://lennertvhoy.github.io/StatePort-Site/
 
@@ -17,15 +17,18 @@
   `sha256:a16b154f37270f4aed2d7c7e60ee32279c7f36b6a1759aa1b7301cc787f708b1`.
 - The versioned Alpha.12 bootstrap remains immutable (31,576 bytes, SHA-256
   `e552898fc2611d94bd6ec361624e8c95dcaaffcecc259ed1a7c20f08c01c2701`).
-- The mutable installer route `download/install.sh` now carries a digest-slot
-  transport repair over that immutable bootstrap (33,003 bytes, SHA-256
-  `34bfc7c5210841990a982e82fab2a4af08e23d8d4b3416a8a6673b7973148486`): it
+- The mutable installer route `download/install.sh` now carries transport
+  repairs over that immutable bootstrap (33,498 bytes, SHA-256
+  `10b5f337ef8736b97acca2954a96f32a778a0eacb0eab51a6390aa060b0e7d1d`): it
   stages the release-index and every image signature bundle into its
-  content-addressed `$tmp/<sha256>/<name>` slot before the immutable
-  installer's package-preflight admission, which resolves each signature
-  bundle from those slots. The owner's Alpha.12 public-path test refused with
-  `signature bundle is not a regular file` on those digest slots before this
-  repair.
+  content-addressed `$tmp/<sha256>/<name>` slot, and it converges the host
+  python venv state (purges leftover non-installed dpkg rows and installs
+  `python3.12-venv` from Ubuntu universe) before the immutable installer's
+  package-preflight admission. The owner's Alpha.12 public-path test first
+  refused with `signature bundle is not a regular file` on the missing digest
+  slots, then after that fix with `installed python3-venv package identity is
+  malformed` caused by a leftover non-installed dpkg row plus the bundle's
+  unsatisfied `python3.12-venv` dependency.
 - Alpha.12 is not yet accepted by the owner. A clean owner public-path install
   receipt is still pending after the mutable-route repair; independent security
   review, stability, and production qualification remain absent.

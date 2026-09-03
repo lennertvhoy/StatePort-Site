@@ -12,13 +12,15 @@ VERSIONED_BOOTSTRAP_URL = (
 )
 VERSIONED_BOOTSTRAP_SHA256 = "e552898fc2611d94bd6ec361624e8c95dcaaffcecc259ed1a7c20f08c01c2701"
 VERSIONED_BOOTSTRAP_SIZE = 31_576
-# The mutable public route carries a transport repair over the immutable
+# The mutable public route carries transport repairs over the immutable
 # Alpha.12 bootstrap: it stages every signed index/image signature bundle into
 # its content-addressed digest slot under $tmp so the immutable installer's
-# package-preflight admission can resolve each bundle on a clean host.  The
-# versioned Alpha.12 bootstrap bytes are unchanged release evidence.
-MUTABLE_BOOTSTRAP_SHA256 = "34bfc7c5210841990a982e82fab2a4af08e23d8d4b3416a8a6673b7973148486"
-MUTABLE_BOOTSTRAP_SIZE = 33_003
+# package-preflight admission can resolve each bundle on a clean host, and it
+# converges the host python venv state (purges leftover non-installed dpkg rows
+# and installs python3.12-venv from Ubuntu universe) before that admission.
+# The versioned Alpha.12 bootstrap bytes are unchanged release evidence.
+MUTABLE_BOOTSTRAP_SHA256 = "10b5f337ef8736b97acca2954a96f32a778a0eacb0eab51a6390aa060b0e7d1d"
+MUTABLE_BOOTSTRAP_SIZE = 33_498
 RETAINED_ALPHA11_BOOTSTRAP_SHA256 = "9aaea4790059579d22db4e5537485a84cc094d9f2b8b0bafc04c618b5e0052df"
 RETAINED_ALPHA11_BOOTSTRAP_SIZE = 31_576
 RETAINED_ALPHA11_INDEX_SHA256 = "8a26f7d36b5c6883c314db7323c4a79a497e0973e0ec671c02c6b38f0f533f2c"

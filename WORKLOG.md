@@ -1,5 +1,33 @@
 # Worklog
 
+## 2026-09-03 - Mutable route python venv convergence after second Alpha.12 owner-path refusal
+
+- After the digest-slot repair deployed, the owner's retest advanced past
+  signature verification and refused in the immutable package preflight with
+  `installed python3-venv package identity is malformed`. Host diagnostics
+  showed leftover `deinstall ok not-installed` dpkg rows for both
+  `python3-venv` and `python3.12-venv` (from earlier interrupted attempts):
+  dpkg-query exits 0 with empty version/architecture for those rows, which the
+  preflight rejects as malformed. A second defect was proven in an Ubuntu 24.04
+  container: the signed bundle's `python3-venv` metapackage depends on
+  `python3.12-venv`, which neither the bundle nor a stock WSL rootfs carries,
+  so the admission's offline apt closure simulation cannot resolve it
+  (`python3-venv : Depends: python3.12-venv ... but it is not installable`).
+- StatePort `2d3b72da` makes the rendered bootstrap purge only leftover
+  non-installed dpkg rows (never a genuinely installed package) and install
+  `python3.12-venv` from the host's normal Ubuntu universe before invoking the
+  immutable unprivileged package-preflight admission. Focused regression
+  updated; 124 release-related tests pass.
+- Published only the mutable 33,498-byte `download/install.sh` (SHA-256
+  `10b5f337ef8736b97acca2954a96f32a778a0eacb0eab51a6390aa060b0e7d1d`) carrying
+  that repair over the unchanged immutable versioned Alpha.12 bootstrap (31,576
+  bytes, SHA-256 `e552898f...`). Repinned `scripts/install_transport.py`, updated
+  `scripts/validate_repo.py`, and refreshed site state. Site validation and the
+  containment suite pass.
+- Next: the owner reruns the one-line installer on the exact Windows 11 + WSL2 +
+  Ubuntu 24.04 path and records the clean-install receipt, then the human
+  verdict.
+
 ## 2026-09-03 - Mutable route digest-slot transport repair after Alpha.12 owner-path refusal
 
 - The owner's Alpha.12 public-path one-liner refused in the immutable
