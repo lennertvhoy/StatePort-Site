@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bind immutable Alpha.15 bytes and its exact install-enabled mutable route."""
+"""Bind immutable Alpha.16 bytes and its exact install-enabled mutable route."""
 
 from __future__ import annotations
 
@@ -8,11 +8,11 @@ import sys
 
 VERSIONED_BOOTSTRAP_URL = (
     "https://lennertvhoy.github.io/StatePort-Site/"
-    "download/0.1.0-alpha.15/bootstrap.sh"
+    "download/0.1.0-alpha.16/bootstrap.sh"
 )
-VERSIONED_BOOTSTRAP_SHA256 = "a045d3d0c6478bae04b20923fe7e98025e46ea4c6b10f69667cc46852cf3a51f"
-VERSIONED_BOOTSTRAP_SIZE = 31_763
-# Alpha.15 deliberately serves identical bootstrap bytes at the mutable
+VERSIONED_BOOTSTRAP_SHA256 = "6feedf5273547f4a98f5d8edb6fe24e729104ad822c4d58da70cb1f0fdad417a"
+VERSIONED_BOOTSTRAP_SIZE = 32_081
+# Alpha.16 deliberately serves identical bootstrap bytes at the mutable
 # one-command route and the immutable versioned route. Every release input is
 # digest-pinned inside the bootstrap; no mutable repair layer is applied.
 MUTABLE_BOOTSTRAP_SHA256 = VERSIONED_BOOTSTRAP_SHA256
@@ -24,13 +24,13 @@ RETAINED_ALPHA10_BOOTSTRAP_SHA256 = "afb807280e1588ce4903be79649a7b7dd69026177b1
 RETAINED_ALPHA10_BOOTSTRAP_SIZE = 17_774
 RETAINED_ALPHA10_INDEX_SHA256 = "2fc626fcab180f664f04f36d1fcceacaffa81ca96a658585f6684e3cf37abf89"
 MANIFEST_DIGESTS = {
-    "stateport-api": "507691145e9900022e7be30222a12a34389f12b1855fddc1e6e65f6989314c52",
-    "stateport-dev-workspace": "13b4b2c52f26f30c3a42f264ba80fb0bdc476da4b946c4d93878b55b1d3a6a64",
-    "stateport-execution-host": "7766a32d32471c48b153bf7ec96401728757460e20fe79c639ac93ec2c4c0d3a",
-    "stateport-playwright": "c4b31ba99602d23202f4c8f8ce4995ac025aa4d96143381277a3b28a93deed45",
-    "stateport-runner": "1cf5bea27ffed6b909d3384c45d32fb1e728c7dc9000ffdddf8090085b781a81",
-    "stateport-web": "fadb99f743acd10971c576e212d74c85a4ae879eba5f4ac3a980cf9156222a5e",
-    "stateport-worker": "8930a946988627fa9cebd900b86043460a9e34e5252c7ad2f5601629621694ed",
+    "stateport-api": "95c3adccacfaabfb70430d299a578c33ebafa2f0fb16ab129d0ac271847a3c73",
+    "stateport-dev-workspace": "fee3e363718c71222fdcacfd63fa61088ecae66da727c617a92ca9fc3e635e43",
+    "stateport-execution-host": "221ddc06dd59cd3c5810b2d38a0eb5c44aaaa4bb522abcdc8b5ed0e4d2b3793e",
+    "stateport-playwright": "885f078be50869a958f7867c74b75760dc7bafef33579877ef769d4cc2e182fe",
+    "stateport-runner": "38086218681ba5b64adece703cda8eed817a692c7f0436faccbe6bfae4143885",
+    "stateport-web": "bbb120242e44e77b79de85d924021b3a2950ed6ff304061c6a6f8482f98b486d",
+    "stateport-worker": "a4367aa99b222a80fe420afa1e48c937bda2a5c38bc2d6d5a202167a2d30fad3",
 }
 RETAINED_ALPHA11_MANIFEST_DIGESTS = {
     "stateport-api": "bc15758766b9cceeb842b935415a12087bd5269c0cc5125ce939b4be0b0a11fc",
@@ -53,7 +53,7 @@ RETAINED_ALPHA10_MANIFEST_DIGESTS = {
 
 
 def main() -> None:
-    print("Alpha.15 installation is enabled; use the download page command.", file=sys.stderr)
+    print("Alpha.16 installation is enabled; use the download page command.", file=sys.stderr)
     raise SystemExit(0)
 
 

@@ -34,7 +34,15 @@ from projectstate_gate import validate as validate_projectstate
 
 ROOT = Path(__file__).resolve().parents[1]
 
-INSTALLER_STATUS = "Alpha.15 is available for a first public test and installation is enabled."
+CURRENT_RELEASE_VERSION = "0.1.0-alpha.16"
+CURRENT_RELEASE_LABEL = "Alpha.16"
+CURRENT_RELEASE_ROOT = "download/0.1.0-alpha.16"
+CURRENT_MANIFEST_ROOT = "download/alpha16-manifests"
+CURRENT_RELEASE_INDEX_SHA256 = "8dad6399e66956d1dcb5aebb5a5119c6001617b3279902f0746857b5e6bfac47"
+CURRENT_RELEASE_INDEX_SIGSTORE_SHA256 = "ff36ca75c5139d58a92e7d9b78a53f120aa4e4f42cdf9be35603eef3e682b557"
+CURRENT_SIGNED_PAYLOAD_SHA256 = "5594dc7dc3711ffdfbd74da271012c02dc23e5fa626d12f59d41a768058b2bac"
+CURRENT_TRUST_PUBLIC_KEY_SHA256 = "798d6ea6e2703993758f0fb45618b1f05b40f6ef116e7d286fd5a6867859b8ad"
+INSTALLER_STATUS = "Alpha.16 is available for a first public test and installation is enabled."
 
 # These publication anchors are intentionally duplicated here instead of being
 # imported from build_immutable_manifest.py. The validator is an independent
@@ -61,16 +69,16 @@ ALPHA3_CURATED_SOURCE_ARCHIVE = {
     "sha256": "17f5680c30841b1e831b37df02dca8f03c2c03d265a42633dd525f99bd613398",
 }
 CURRENT_CANONICAL_SOURCE_IDENTITY = {
-    "commit": "6f6b6b7b1dd1ef5374883e2229cec351cc8b3cbc",
-    "tree": "0be1aef3c5cfaa09d92588f6e4ac8b5e869c314a",
+    "commit": "0807b68edca8a1ae6fc1c1f16ddba9740783a951",
+    "tree": "126587c310cf195e1ac06a59d76134ab6f8cc975",
 }
 CURRENT_PUBLIC_SNAPSHOT_IDENTITY = {
-    "commit": "f4badb23696b74d0569668d5cca5ba16626fa4db",
-    "tree": "3e1104e1ea7c615d51b8c4742e1005810c72b8ae",
+    "commit": "05c2ace3b07233c1a84bd2a4b006c7ec6d2a918f",
+    "tree": "cdc5769ff933599fba8c74d95842eb7cae0b0bd5",
 }
 CURRENT_CURATED_SOURCE_ARCHIVE = {
     "bytes": 24_463_360,
-    "sha256": "3fccfb97b04bf9f93f35da0aa6c77a13a25f14b4d206b1e46b94a3e83adeeb93",
+    "sha256": "7e106b4d72895f5d77593d0111d4d53bdb02a2318d2c63e0a364630c31e1d47c",
 }
 CURRENT_PUBLIC_SOURCE_URL = "https://github.com/lennertvhoy/StatePort-Source.git"
 CURRENT_TARGET_ID = "wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet"
@@ -789,14 +797,14 @@ def validate_alpha3_release() -> None:
 
 
 def validate_current_release() -> None:
-    """Bind Alpha.15 to its signed index, public images, and exact bootstrap."""
+    """Bind the active Alpha.16 release to its signed index and exact bytes."""
 
-    release_root = "download/0.1.0-alpha.15"
+    release_root = CURRENT_RELEASE_ROOT
     fixed_files = {
-        "release-index.json": "931cc726628c40cf749e99ee14478dba228478884980d63cd3ce0ce96d817097",
-        "release-index.sigstore.json": "56d8761f1bcc23109cef0b20cdbd6adf3b9844cc7c2afb181bd48a16fa9802a7",
-        "release-index.signed-payload.json": "66483f166570dea5135b732bd3c31a05d52691d48a3e8ddd94ae793d3654a47d",
-        "stateport-alpha-2026-08-cosign.pub": "798d6ea6e2703993758f0fb45618b1f05b40f6ef116e7d286fd5a6867859b8ad",
+        "release-index.json": CURRENT_RELEASE_INDEX_SHA256,
+        "release-index.sigstore.json": CURRENT_RELEASE_INDEX_SIGSTORE_SHA256,
+        "release-index.signed-payload.json": CURRENT_SIGNED_PAYLOAD_SHA256,
+        "stateport-alpha-2026-08-cosign.pub": CURRENT_TRUST_PUBLIC_KEY_SHA256,
         "bootstrap.sh": VERSIONED_BOOTSTRAP_SHA256,
     }
     for name, expected in fixed_files.items():
@@ -809,35 +817,35 @@ def validate_current_release() -> None:
     index = json.loads(index_path.read_text(encoding="utf-8"))
     signed = index.get("signed", {})
     release = signed.get("release", {})
-    if release.get("version") != "0.1.0-alpha.15" or release.get("qualification") != "candidate":
-        raise AssertionError("Alpha.15 must remain an explicitly unqualified candidate")
+    if release.get("version") != CURRENT_RELEASE_VERSION or release.get("qualification") != "candidate":
+        raise AssertionError("Alpha.16 must remain an explicitly unqualified candidate")
 
     signatures = index.get("signatures", [])
     if len(signatures) != 1:
-        raise AssertionError("Alpha.15 release index must carry exactly one index signature")
+        raise AssertionError("Alpha.16 release index must carry exactly one index signature")
     signature = signatures[0]
-    if signature.get("subjectDigest") != "sha256:66483f166570dea5135b732bd3c31a05d52691d48a3e8ddd94ae793d3654a47d":
-        raise AssertionError("Alpha.15 signed payload digest is stale")
-    if signature.get("bundle", {}).get("digest") != "sha256:56d8761f1bcc23109cef0b20cdbd6adf3b9844cc7c2afb181bd48a16fa9802a7":
-        raise AssertionError("Alpha.15 release-index signature descriptor is stale")
+    if signature.get("subjectDigest") != f"sha256:{CURRENT_SIGNED_PAYLOAD_SHA256}":
+        raise AssertionError("Alpha.16 signed payload digest is stale")
+    if signature.get("bundle", {}).get("digest") != f"sha256:{CURRENT_RELEASE_INDEX_SIGSTORE_SHA256}":
+        raise AssertionError("Alpha.16 release-index signature descriptor is stale")
     if signature.get("publicKeyFingerprint") != "sha256:df24c1ccdcf1ecf72da6d8d81ae8b0ffaca8d399826091b107cc4d6905915ea5":
-        raise AssertionError("Alpha.15 trust-key fingerprint is stale")
+        raise AssertionError("Alpha.16 trust-key fingerprint is stale")
 
     source = signed.get("source", {})
     for field, expected in CURRENT_CANONICAL_SOURCE_IDENTITY.items():
         if source.get(field) != expected:
-            raise AssertionError(f"Alpha.15 release index has the wrong canonical source {field}")
+            raise AssertionError(f"Alpha.16 release index has the wrong canonical source {field}")
     public_snapshot = source.get("publicSnapshot", {})
     for field, expected in CURRENT_PUBLIC_SNAPSHOT_IDENTITY.items():
         if public_snapshot.get(field) != expected:
-            raise AssertionError(f"Alpha.15 release index has the wrong public snapshot {field}")
+            raise AssertionError(f"Alpha.16 release index has the wrong public snapshot {field}")
     for field in ("authorityUrl", "repository"):
         if public_snapshot.get(field) != CURRENT_PUBLIC_SOURCE_URL:
-            raise AssertionError(f"Alpha.15 public snapshot {field} is not remotely resolvable")
+            raise AssertionError(f"Alpha.16 public snapshot {field} is not remotely resolvable")
 
     targets = signed.get("targets", [])
     if len(targets) != 1 or targets[0].get("targetId") != CURRENT_TARGET_ID:
-        raise AssertionError("Alpha.15 must name only the exact WSL2 Ubuntu 24.04 target")
+        raise AssertionError("Alpha.16 must name only the exact WSL2 Ubuntu 24.04 target")
 
     artifact_paths = {
         "compose": "compose.yaml",
@@ -855,25 +863,25 @@ def validate_current_release() -> None:
         path = require(f"{release_root}/{name}")
         observed = hashlib.sha256(path.read_bytes()).hexdigest()
         if descriptor.get("digest") != f"sha256:{observed}" or descriptor.get("size") != path.stat().st_size:
-            raise AssertionError(f"Alpha.15 artifact descriptor mismatch: {artifact_id}")
+            raise AssertionError(f"Alpha.16 artifact descriptor mismatch: {artifact_id}")
     source_archive = artifacts.get("sourceArchive", {})
     if source_archive.get("digest") != f"sha256:{CURRENT_CURATED_SOURCE_ARCHIVE['sha256']}" or source_archive.get("size") != CURRENT_CURATED_SOURCE_ARCHIVE["bytes"]:
-        raise AssertionError("Alpha.15 curated source archive identity is stale")
+        raise AssertionError("Alpha.16 curated source archive identity is stale")
 
     expected_images = {image_id: f"sha256:{digest}" for image_id, digest in MANIFEST_DIGESTS.items()}
     images = signed.get("images", [])
     if {image.get("imageId"): image.get("digest") for image in images} != expected_images:
-        raise AssertionError("Alpha.15 image set is not the signed seven-image set")
+        raise AssertionError("Alpha.16 image set is not the signed seven-image set")
     for image in images:
         image_id = image["imageId"]
         digest = expected_images[image_id]
-        if image.get("reference") != f"ghcr.io/lennertvhoy/{image_id}@{digest}":
-            raise AssertionError(f"Alpha.15 image reference is not public and digest-pinned: {image_id}")
+        if image.get("reference") != f"ghcr.io/lennertvhoy/stateport/{image_id}@{digest}":
+            raise AssertionError(f"Alpha.16 image reference is not public and digest-pinned: {image_id}")
         bundle = image.get("signature", {}).get("bundle", {})
         bundle_path = require(f"{release_root}/signatures/{image_id}.sigstore.json")
         observed = hashlib.sha256(bundle_path.read_bytes()).hexdigest()
         if bundle.get("digest") != f"sha256:{observed}" or bundle.get("size") != bundle_path.stat().st_size:
-            raise AssertionError(f"Alpha.15 image signature descriptor mismatch: {image_id}")
+            raise AssertionError(f"Alpha.16 image signature descriptor mismatch: {image_id}")
 
     supply_chain_paths = {
         "doubleBuildComparison": "double-build-comparison.json",
@@ -885,35 +893,41 @@ def validate_current_release() -> None:
         path = require(f"{release_root}/supply-chain/{name}")
         observed = hashlib.sha256(path.read_bytes()).hexdigest()
         if descriptor.get("digest") != f"sha256:{observed}" or descriptor.get("size") != path.stat().st_size:
-            raise AssertionError(f"Alpha.15 supply-chain descriptor mismatch: {evidence_id}")
+            raise AssertionError(f"Alpha.16 supply-chain descriptor mismatch: {evidence_id}")
 
-    if (ROOT / release_root / "predecessor-bundle").exists():
-        raise AssertionError("Alpha.15 must not invent an unauthenticated predecessor bundle")
+    predecessor_bundle = ROOT / release_root / "predecessor-bundle/release-index.sigstore.json"
+    if not predecessor_bundle.is_file():
+        raise AssertionError("Alpha.16 must retain the authenticated Alpha.15 predecessor bundle")
     successor = signed.get("successor", {})
     compatibility = signed.get("compatibility", {})
-    if successor.get("predecessor") is not None:
-        raise AssertionError("Alpha.15 successor contract must declare no authenticated predecessor")
-    if compatibility.get("predecessor") is not None or compatibility.get("rollback", {}).get("supported") is not False:
-        raise AssertionError("Alpha.15 rollback must remain explicitly unsupported")
+    predecessor = successor.get("predecessor", {})
+    if predecessor.get("formatVersion") != "stateport.release-predecessor/v1":
+        raise AssertionError("Alpha.16 successor contract must identify its authenticated predecessor")
+    if compatibility.get("predecessor", {}).get("version") != "0.1.0-alpha.15":
+        raise AssertionError("Alpha.16 compatibility must identify Alpha.15 as its predecessor")
+    if compatibility.get("predecessor", {}).get("signedPayloadDigest") != "sha256:66483f166570dea5135b732bd3c31a05d52691d48a3e8ddd94ae793d3654a47d":
+        raise AssertionError("Alpha.16 compatibility predecessor payload is stale")
+    if compatibility.get("rollback", {}).get("supported") is not False:
+        raise AssertionError("Alpha.16 rollback must remain explicitly unsupported")
 
     versioned = require(f"{release_root}/bootstrap.sh")
     mutable = require("download/install.sh")
     for path in (versioned, mutable):
         if stat.S_IMODE(path.stat().st_mode) != 0o755:
-            raise AssertionError(f"Alpha.15 bootstrap route mode must be exactly 0755: {path}")
+            raise AssertionError(f"Alpha.16 bootstrap route mode must be exactly 0755: {path}")
     if versioned.stat().st_size != VERSIONED_BOOTSTRAP_SIZE:
-        raise AssertionError("Immutable Alpha.15 bootstrap size changed")
+        raise AssertionError("Immutable Alpha.16 bootstrap size changed")
     if VERSIONED_BOOTSTRAP_URL != f"https://lennertvhoy.github.io/StatePort-Site/{release_root}/bootstrap.sh":
-        raise AssertionError("Immutable Alpha.15 bootstrap URL is stale")
+        raise AssertionError("Immutable Alpha.16 bootstrap URL is stale")
     if mutable.stat().st_size != MUTABLE_BOOTSTRAP_SIZE or mutable.read_bytes() != versioned.read_bytes():
-        raise AssertionError("Mutable Alpha.15 bootstrap must equal the versioned bytes")
+        raise AssertionError("Mutable Alpha.16 bootstrap must equal the versioned bytes")
     if hashlib.sha256(mutable.read_bytes()).hexdigest() != MUTABLE_BOOTSTRAP_SHA256:
-        raise AssertionError("Mutable Alpha.15 bootstrap digest is stale")
+        raise AssertionError("Mutable Alpha.16 bootstrap digest is stale")
     bootstrap = mutable.read_text(encoding="utf-8")
     for fragment in (
         CURRENT_TARGET_ID,
-        "RELEASE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.15\"",
-        "PROBE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/alpha15-manifests\"",
+        "RELEASE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.16\"",
+        "PROBE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/alpha16-manifests\"",
         "Windows 11 build 22000 or newer is required.",
         "Ubuntu 24.04 for WSL is required.",
         "WSL2 is required; WSL1 and native Linux are not this release target.",
@@ -921,11 +935,58 @@ def validate_current_release() -> None:
         "Type install-exact to authorize",
     ):
         if fragment not in bootstrap:
-            raise AssertionError(f"Alpha.15 bootstrap lacks required contract: {fragment}")
+            raise AssertionError(f"Alpha.16 bootstrap lacks required contract: {fragment}")
     for image_id, expected in MANIFEST_DIGESTS.items():
-        manifest = require(f"download/alpha15-manifests/{image_id}.json")
+        manifest = require(f"{CURRENT_MANIFEST_ROOT}/{image_id}.json")
         if hashlib.sha256(manifest.read_bytes()).hexdigest() != expected:
-            raise AssertionError(f"Alpha.15 manifest is stale: {image_id}")
+            raise AssertionError(f"Alpha.16 manifest is stale: {image_id}")
+
+
+def validate_retained_alpha15() -> None:
+    """Keep the superseded Alpha.15 tree byte-identical while Alpha.16 is current."""
+
+    release_root = "download/0.1.0-alpha.15"
+    fixed_files = {
+        "release-index.json": "931cc726628c40cf749e99ee14478dba228478884980d63cd3ce0ce96d817097",
+        "release-index.sigstore.json": "56d8761f1bcc23109cef0b20cdbd6adf3b9844cc7c2afb181bd48a16fa9802a7",
+        "release-index.signed-payload.json": "66483f166570dea5135b732bd3c31a05d52691d48a3e8ddd94ae793d3654a47d",
+        "bootstrap.sh": "a045d3d0c6478bae04b20923fe7e98025e46ea4c6b10f69667cc46852cf3a51f",
+        "stateport-alpha-2026-08-cosign.pub": CURRENT_TRUST_PUBLIC_KEY_SHA256,
+    }
+    for name, expected in fixed_files.items():
+        path = require(f"{release_root}/{name}")
+        observed = hashlib.sha256(path.read_bytes()).hexdigest()
+        if observed != expected:
+            raise AssertionError(f"{path.relative_to(ROOT)} digest {observed} != {expected}")
+
+    index = json.loads(require(f"{release_root}/release-index.json").read_text(encoding="utf-8"))
+    signed = index.get("signed", {})
+    if signed.get("release", {}).get("version") != "0.1.0-alpha.15":
+        raise AssertionError("Retained Alpha.15 index has the wrong version")
+    source = signed.get("source", {})
+    if source.get("commit") != "6f6b6b7b1dd1ef5374883e2229cec351cc8b3cbc":
+        raise AssertionError("Retained Alpha.15 canonical source commit changed")
+    if source.get("tree") != "0be1aef3c5cfaa09d92588f6e4ac8b5e869c314a":
+        raise AssertionError("Retained Alpha.15 canonical source tree changed")
+    public_snapshot = source.get("publicSnapshot", {})
+    if public_snapshot.get("commit") != "f4badb23696b74d0569668d5cca5ba16626fa4db":
+        raise AssertionError("Retained Alpha.15 public source commit changed")
+    if public_snapshot.get("tree") != "3e1104e1ea7c615d51b8c4742e1005810c72b8ae":
+        raise AssertionError("Retained Alpha.15 public source tree changed")
+
+    retained_manifests = {
+        "stateport-api": "507691145e9900022e7be30222a12a34389f12b1855fddc1e6e65f6989314c52",
+        "stateport-dev-workspace": "13b4b2c52f26f30c3a42f264ba80fb0bdc476da4b946c4d93878b55b1d3a6a64",
+        "stateport-execution-host": "7766a32d32471c48b153bf7ec96401728757460e20fe79c639ac93ec2c4c0d3a",
+        "stateport-playwright": "c4b31ba99602d23202f4c8f8ce4995ac025aa4d96143381277a3b28a93deed45",
+        "stateport-runner": "1cf5bea27ffed6b909d3384c45d32fb1e728c7dc9000ffdddf8090085b781a81",
+        "stateport-web": "fadb99f743acd10971c576e212d74c85a4ae879eba5f4ac3a980cf9156222a5e",
+        "stateport-worker": "8930a946988627fa9cebd900b86043460a9e34e5252c7ad2f5601629621694ed",
+    }
+    for image_id, expected in retained_manifests.items():
+        path = require(f"download/alpha15-manifests/{image_id}.json")
+        if hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+            raise AssertionError(f"Retained Alpha.15 manifest is stale: {image_id}")
 
 
 def validate_retained_alpha11() -> None:
@@ -1069,9 +1130,9 @@ def release_state_block() -> str:
     """ProjectState v6 keeps the active release outcome in one compact state file."""
 
     text = require("STATE.yaml").read_text(encoding="utf-8")
-    if "0.1.0-alpha.15" not in text or "download/install.sh" not in text:
-        raise AssertionError("STATE.yaml does not bind the active Alpha.15 public route")
-    return "  installation_enabled: true\n  version: 0.1.0-alpha.15\n"
+    if CURRENT_RELEASE_VERSION not in text or "download/install.sh" not in text:
+        raise AssertionError(f"STATE.yaml does not bind the active {CURRENT_RELEASE_LABEL} public route")
+    return f"  installation_enabled: true\n  version: {CURRENT_RELEASE_VERSION}\n"
 
 
 def mutable_public_pages() -> list[Path]:
@@ -1130,14 +1191,14 @@ def validate_source_disclosures(texts: dict[Path, str]) -> None:
     if technical is None:
         raise AssertionError("Missing technical release files page")
     required_links = (
-        "0.1.0-alpha.15/release-index.json",
-        "0.1.0-alpha.15/release-index.sigstore.json",
-        "0.1.0-alpha.15/stateport-alpha-2026-08-cosign.pub",
-        "0.1.0-alpha.15/stateport-source.tar",
-        "0.1.0-alpha.15/stateport-podman-package-bundle.tar",
-        "0.1.0-alpha.15/supply-chain/public-export-manifest.json",
-        "0.1.0-alpha.15/release-notes.md",
-        "0.1.0-alpha.15/known-limitations.md",
+        "0.1.0-alpha.16/release-index.json",
+        "0.1.0-alpha.16/release-index.sigstore.json",
+        "0.1.0-alpha.16/stateport-alpha-2026-08-cosign.pub",
+        "0.1.0-alpha.16/stateport-source.tar",
+        "0.1.0-alpha.16/stateport-podman-package-bundle.tar",
+        "0.1.0-alpha.16/supply-chain/public-export-manifest.json",
+        "0.1.0-alpha.16/release-notes.md",
+        "0.1.0-alpha.16/known-limitations.md",
         "https://github.com/lennertvhoy/StatePort-Source",
     )
     for link in required_links:
@@ -1197,7 +1258,7 @@ def validate_release_semantics() -> None:
     install_enabled = re.search(r"^  installation_enabled: true\s*$", release_block, re.MULTILINE)
     if not install_enabled:
         raise AssertionError(
-            "STATE.yaml must bind the enabled Alpha.15 public-test route"
+            f"STATE.yaml must bind the enabled {CURRENT_RELEASE_LABEL} public-test route"
         )
 
     pages = mutable_public_pages()
@@ -1227,8 +1288,8 @@ def validate_release_semantics() -> None:
     )
     for surface in current_surfaces:
         surface_text = require(surface).read_text(encoding="utf-8")
-        if "alpha.15" not in surface_text.lower() and "0.1.0-alpha.15" not in surface_text.lower():
-            raise AssertionError(f"{surface} must identify Alpha.15 as the current release")
+        if CURRENT_RELEASE_LABEL.lower() not in surface_text.lower() and CURRENT_RELEASE_VERSION not in surface_text:
+            raise AssertionError(f"{surface} must identify {CURRENT_RELEASE_LABEL} as the current release")
         for line in surface_text.splitlines():
             if not current_release_claim.search(line):
                 continue
@@ -1247,13 +1308,13 @@ def validate_release_semantics() -> None:
 
     download = texts[ROOT / "download/index.html"]
     if INSTALLER_STATUS not in download:
-        raise AssertionError(f"download/index.html lacks Alpha.15 installer status {INSTALLER_STATUS!r}")
+        raise AssertionError(f"download/index.html lacks {CURRENT_RELEASE_LABEL} installer status {INSTALLER_STATUS!r}")
     if "download/install.sh" not in download:
         raise AssertionError("download/index.html must show the install command with download/install.sh")
 
     launcher = require("download/install.sh")
     if stat.S_IMODE(launcher.stat().st_mode) != 0o755:
-        raise AssertionError("Alpha.15 mutable bootstrap route must remain executable")
+        raise AssertionError(f"{CURRENT_RELEASE_LABEL} mutable bootstrap route must remain executable")
     syntax = subprocess.run(
         ["/bin/sh", "-n", str(launcher)],
         check=False,
@@ -1262,13 +1323,13 @@ def validate_release_semantics() -> None:
         timeout=5,
     )
     if syntax.returncode != 0:
-        raise AssertionError("Alpha.15 mutable bootstrap must pass shell syntax check")
+        raise AssertionError(f"{CURRENT_RELEASE_LABEL} mutable bootstrap must pass shell syntax check")
 
     for surface in ("index.html", "download/index.html", "releases/index.html", "docs/limitations.html"):
         text = texts[ROOT / surface].lower()
-        for marker in ("alpha.15", "early alpha"):
+        for marker in (CURRENT_RELEASE_LABEL.lower(), "early alpha"):
             if marker not in text:
-                raise AssertionError(f"{surface} must disclose current Alpha.15 boundary {marker!r}")
+                raise AssertionError(f"{surface} must disclose current {CURRENT_RELEASE_LABEL} boundary {marker!r}")
     if "erratum-alpha3.html" not in texts[ROOT / "download/index.html"]:
         raise AssertionError("download/index.html must retain the historical alpha.3 erratum")
 
@@ -1300,7 +1361,8 @@ def validate_release_semantics() -> None:
     alpha11_tokens = _release_identity_tokens("download/0.1.0-alpha.11")
     alpha12_tokens = _release_identity_tokens("download/0.1.0-alpha.12")
     alpha15_tokens = _release_identity_tokens("download/0.1.0-alpha.15")
-    release_tokens = {"2": alpha2_tokens, "3": alpha3_tokens, "5": alpha5_tokens, "6": alpha6_tokens, "7": alpha7_tokens, "10": alpha10_tokens, "11": alpha11_tokens, "12": alpha12_tokens, "15": alpha15_tokens}
+    alpha16_tokens = _release_identity_tokens(CURRENT_RELEASE_ROOT)
+    release_tokens = {"2": alpha2_tokens, "3": alpha3_tokens, "5": alpha5_tokens, "6": alpha6_tokens, "7": alpha7_tokens, "10": alpha10_tokens, "11": alpha11_tokens, "12": alpha12_tokens, "15": alpha15_tokens, "16": alpha16_tokens}
     unique_tokens = {
         version: tokens - set().union(*(other for key, other in release_tokens.items() if key != version))
         for version, tokens in release_tokens.items()
@@ -1418,7 +1480,7 @@ def main() -> None:
         "AGENTS.md",
         "PROJECT.md",
         "STATE.yaml",
-        "evidence/alpha15-public-install-001/summary.md",
+        "evidence/alpha16-public-install-001/summary.md",
         "scripts/projectstate_gate.py",
         "SUPPORT_SETUP.md",
         "config/support.json",
@@ -1446,6 +1508,8 @@ def main() -> None:
         "download/technical-release-files.html",
         "download/erratum-alpha3.html",
         "download/install.sh",
+        "download/0.1.0-alpha.16/bootstrap.sh",
+        "download/alpha16-manifests/stateport-api.json",
         "download/0.1.0-alpha.2/install.sh",
         "download/0.1.0-alpha.3/install.sh",
         "download/0.1.0-alpha.5/install.sh",
@@ -1487,14 +1551,14 @@ def main() -> None:
         require(path)
 
     require_text("AGENTS.md", "projectstate-template-v6")
-    require_text("PROJECT.md", "Alpha.15")
-    require_text("STATE.yaml", "0.1.0-alpha.15")
-    require_text("evidence/alpha15-public-install-001/summary.md", "## Primary journey")
+    require_text("PROJECT.md", "Alpha.16")
+    require_text("STATE.yaml", "0.1.0-alpha.16")
+    require_text("evidence/alpha16-public-install-001/summary.md", "## Primary journey")
     require_text("index.html", "StatePort")
     require_text("index.html", "See StatePort in 33 seconds")
     require_text("docs/prototype-walkthrough.html", "Development preview")
     require_text("docs/agent-kits.html", "Early direction")
-    require_text("docs/platform-support.html", "Alpha.15 requirements")
+    require_text("docs/platform-support.html", "Alpha.16 requirements")
     require_text("papers/stateware-whitepaper-public-v1.1.html", "Publication note")
     require_text("releases/index.html", INSTALLER_STATUS)
     require_text("releases/index.html", "Do not install Alpha 2 or Alpha 3")
@@ -1521,6 +1585,7 @@ def main() -> None:
     validate_alpha3_release()
     validate_retained_alpha10()
     validate_retained_alpha11()
+    validate_retained_alpha15()
     validate_current_release()
     validate_immutable_release_trees()
     validate_release_semantics()

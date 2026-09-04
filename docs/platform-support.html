@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="See the exact Windows 11, WSL2, Ubuntu 24.04, and AMD64 requirements for StatePort Alpha.15.">
+    <meta name="description" content="See the exact Windows 11, WSL2, Ubuntu 24.04, and AMD64 requirements for StatePort Alpha.16.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="Platform support - StatePort">
-    <meta property="og:description" content="Computer requirements, preflight checks, and platform limits for StatePort Alpha.15.">
+    <meta property="og:description" content="Computer requirements, preflight checks, and platform limits for StatePort Alpha.16.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/platform-support.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.15 status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.16 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -47,8 +47,8 @@
       <section class="article-hero" aria-labelledby="page-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / Platform support</p>
-          <h1 id="page-title">Where Alpha.15 is meant to run</h1>
-          <p>Alpha.15 deliberately supports one reproducible Windows and WSL environment. The installer checks it before changing the host.</p>
+          <h1 id="page-title">Where Alpha.16 is meant to run</h1>
+          <p>Alpha.16 deliberately supports one reproducible Windows and WSL environment. The installer checks it before changing the host.</p>
         </div>
       </section>
 
@@ -77,9 +77,9 @@
         </aside>
 
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Alpha.15 is the current public-test candidate.</strong> It installs its exact Podman stack and crun runtime instead of depending on Ubuntu's stock Podman version, and it provisions the complete control plane plus isolated execution host.</p>
+          <p class="notice notice--quiet"><strong>Alpha.16 is the current public-test candidate.</strong> It installs its exact Podman stack and crun runtime instead of depending on Ubuntu's stock Podman version, and it provisions the complete control plane plus isolated execution host.</p>
 
-          <h2>Alpha.15 requirements</h2>
+          <h2>Alpha.16 requirements</h2>
           <ul>
             <li>Windows 11 on an x86-64 computer.</li>
             <li>WSL2 with Ubuntu 24.04.</li>
@@ -101,7 +101,7 @@ ps -p 1 -o comm=</code></pre>
               <thead>
                 <tr>
                   <th scope="col">Environment</th>
-                  <th scope="col">Alpha.15 status</th>
+                  <th scope="col">Alpha.16 status</th>
                   <th scope="col">What to know</th>
                 </tr>
               </thead>
@@ -114,16 +114,16 @@ ps -p 1 -o comm=</code></pre>
                 <tr>
                   <th scope="row">WSL1</th>
                   <td>Not supported</td>
-                  <td>Alpha.15 refuses WSL1 before installation state or host mutation.</td>
+                  <td>Alpha.16 refuses WSL1 before installation state or host mutation.</td>
                 </tr>
                 <tr>
                   <th scope="row">Native Linux</th>
-                  <td>Not supported by Alpha.15</td>
+                  <td>Not supported by Alpha.16</td>
                   <td>Native Linux needs a separate release path.</td>
                 </tr>
                 <tr>
                   <th scope="row">macOS, Docker Desktop, ARM64, other Linux distributions</th>
-                  <td>Not supported by Alpha.15</td>
+                  <td>Not supported by Alpha.16</td>
                   <td>These platforms need separate testing and packaging.</td>
                 </tr>
               </tbody>
@@ -134,7 +134,7 @@ ps -p 1 -o comm=</code></pre>
           <p>StatePort uses local storage, Linux services, containers, and an AI command-line tool. A setup is only useful when all of those parts work together and your data survives a restart. We will add platforms only after testing the full journey.</p>
 
           <h2>Check before you start</h2>
-          <p>Use the <a href="../releases/">release status</a> for current availability. Do not edit the bootstrap, mix older release files into Alpha.15, or relabel another platform as this release target.</p>
+          <p>Use the <a href="../releases/">release status</a> for current availability. Do not edit the bootstrap, mix older release files into Alpha.16, or relabel another platform as this release target.</p>
 
           <div class="inline-actions">
             <a class="button button--ink" href="hosts-and-portability.html">Read host boundaries</a>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Check an installed StatePort Alpha.15 release, understand exact signed updates, rerun safely, or uninstall while preserving state.">
+    <meta name="description" content="Check an installed StatePort Alpha.16 release, understand exact signed updates, rerun safely, or uninstall while preserving state.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
@@ -14,7 +14,7 @@
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.15 status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.16 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/updates.html">
@@ -89,13 +89,13 @@
         </aside>
 
         <article class="prose">
-          <p class="notice"><strong>Alpha.15 has no approved predecessor or successor under its trust root.</strong> Do not manufacture an update by swapping image tags or files. Use an exact signed successor when one is published.</p>
+          <p class="notice"><strong>Alpha.16 has an authenticated Alpha.15 predecessor, but rollback is not supported.</strong> Do not manufacture an update by swapping image tags or files. Use an exact signed successor when one is published.</p>
 
           <h2>Check the installed identity</h2>
           <pre><code>~/.local/state/stateport-install/bin/stateport-update status</code></pre>
           <p>This reads the durable installed identity and updater state. It does not download or change a release.</p>
 
-          <h2>Repair or recheck Alpha.15</h2>
+          <h2>Repair or recheck Alpha.16</h2>
           <p>Rerun the same public installer command. The installer recognizes the same exact release and converges on its recorded resources:</p>
           <pre><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)</code></pre>
 
@@ -115,9 +115,9 @@
           <p>Successful, refused, and failed updates should all leave a clear record. StatePort should not hide a failed update or retry risky work without asking.</p>
 
           <h2>Uninstall while preserving installer state</h2>
-          <p>Download the immutable Alpha.15 installer, verify its signed-index digest, and ask it to remove only the recorded Alpha.15 runtime resources:</p>
+          <p>Download the immutable Alpha.16 installer, verify its signed-index digest, and ask it to remove only the recorded Alpha.16 runtime resources:</p>
           <pre><code>installer=$(mktemp)
-curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.15/stateport-installer -o "$installer"
+curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.16/stateport-installer -o "$installer"
 printf '%s  %s\n' 7930d29b04d169475c62cc104c5f0f4dab7a76fe7cda16c853e814b26eee319f "$installer" | sha256sum -c -
 python3 "$installer" --uninstall --state-root "$HOME/.local/state/stateport-install"
 rm -f "$installer"</code></pre>

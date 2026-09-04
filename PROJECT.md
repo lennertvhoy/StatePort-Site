@@ -19,11 +19,12 @@ contract, recover from common problems, update, and uninstall.
 
 - Clear getting-started, template, troubleshooting, update, uninstall, and
   evidence documentation for the supported environment.
-- One anonymous integrity-checked Alpha.15 installer command.
-- An additive, signed, immutable Alpha.15 download tree and its exact manifest
+- One anonymous integrity-checked Alpha.16 installer command.
+- An additive, signed, immutable Alpha.16 download tree and its exact manifest
   transport files.
 - A mutable `download/install.sh` pointer whose bytes and claims agree with the
-  Alpha.15 release index.
+  Alpha.16 release index.
+- Retention of the immutable Alpha.15 predecessor and its exact public evidence.
 - Anonymous verification of the deployed Pages bytes and links.
 - Preservation of every earlier anchored versioned release tree.
 

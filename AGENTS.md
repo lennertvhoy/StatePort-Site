@@ -26,7 +26,7 @@ sources of current truth.
 - The human owns the user, outcome, scope, non-goals, acceptance criteria,
   governance, risk exceptions, and product acceptance.
 - The 2026-09-04 owner directive authorizes the bounded work required to make
-  the documented Alpha.15 one-line installer and complete product work. For
+  the documented Alpha.16 one-line installer and complete product work. For
   this repository that includes additive release materialization, documentation
   changes, validated commits, push to `main`, Pages deployment, anonymous byte
   verification, and cleanup of artifacts created by this work.
@@ -54,9 +54,10 @@ smallest real journey before adding mechanism.
 
 ## Public release constraints
 
-- Published versioned and signed release artifacts are immutable. Alpha.15 is
-  additive; never rewrite Alpha.2, Alpha.3, Alpha.5, Alpha.6, Alpha.7,
-  Alpha.10, Alpha.11, Alpha.12, or the defective Alpha.13 record.
+- Published versioned and signed release artifacts are immutable. Alpha.16 is
+  additive; retain Alpha.15 as its immutable predecessor and never rewrite
+  Alpha.2, Alpha.3, Alpha.5, Alpha.6, Alpha.7, Alpha.10, Alpha.11, Alpha.12,
+  or the defective Alpha.13 record.
 - `release-index.json` is authority for version, target, source, artifact, image,
   trust, and signature identity. Public prose and the mutable installer route
   must agree with it.
@@ -92,7 +93,7 @@ smallest real journey before adding mechanism.
 The owner-authored 2026-09-04 migration directive remains in force. The v5
 `STATUS.md`, `PROJECT_STATE.yaml`, `NEXT_ACTIONS.md`, `PROJECT_DNA.yaml`,
 `WORKLOG.md`, and `BACKLOG.md` are retained only for migration review and are
-not current authority. Keep them as inert legacy snapshots for this Alpha.15
+not current authority. Keep them as inert legacy snapshots for this Alpha.16
 release; their later deletion is a separate post-acceptance cleanup. The only
 live ProjectState inputs are `PROJECT.md`, `STATE.yaml`, `AGENTS.md`,
 `evidence/`, and the v6 scripts.

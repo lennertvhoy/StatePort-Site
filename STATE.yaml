@@ -4,24 +4,24 @@ profile: core
 project:
   outcome_ref: "PROJECT.md#outcome"
 current_slice:
-  id: alpha15-public-install-001
-  objective: "Publish one accurate StatePort 0.1.0-alpha.15 site whose Alpha.15 one-line installer delivers the complete product on fresh Windows 11 WSL2 Ubuntu 24.04, then enlarge the public header mascot to about 1.75 times its current visual size."
+  id: alpha16-public-install-001
+  objective: "Publish one accurate StatePort 0.1.0-alpha.16 site whose Alpha.16 one-line installer reports the live reconciled web port and delivers the complete product on fresh Windows 11 WSL2 Ubuntu 24.04."
   status: implementing
   # Human-owned. Agents may report results but may not weaken these criteria.
   acceptance:
     - "One consistent public documentation path gives a fresh Windows 11 WSL2 Ubuntu 24.04 AMD64 user exactly one anonymous installer command, then clear open-product, template, troubleshooting, update, and uninstall guidance."
-    - "The signed index, versioned URL, displayed version, source identity, image manifests, mutable installer, and installed receipt all identify Alpha.15 exactly."
-    - "The additive Alpha.15 tree is deployed and anonymously byte-verified while every anchored earlier versioned release tree remains unchanged."
+    - "The signed index, versioned URL, displayed version, source identity, image manifests, mutable installer, and installed receipt all identify Alpha.16 exactly."
+    - "The additive Alpha.16 tree is deployed and anonymously byte-verified while the immutable Alpha.15 predecessor and every anchored earlier versioned release tree remain unchanged."
     - "The public command installs the web UI, control API, worker, execution host, persistence, restart and reboot behavior, and supports the actual ProjectState and StudyState repositories plus an independent third valid template."
     - "The site remains accessible without JavaScript and contains no analytics, tracking, third-party runtime scripts, secrets, or mutable artifact references."
   primary_journey:
     description: "From a genuinely fresh Windows 11 WSL2 Ubuntu 24.04 AMD64 environment, follow the public docs, run the anonymous command, exercise the complete product and three template types, reboot, uninstall, and reinstall."
     command: "bash <(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)"
     environment: "Fresh Windows 11 AMD64 host; WSL2; stock Ubuntu 24.04; normal sudo-capable user; anonymous public Pages and GHCR; no checkout, prepared packages, mirrors, shims, or staged files"
-    status: publicly_verified
-    evidence: "evidence/alpha15-public-install-001/summary.md"
+    status: assembled
+    evidence: "evidence/alpha16-public-install-001/summary.md"
 validation:
-  primary_journey: publicly_verified
+  primary_journey: assembled
   automated_tests: passed
   human_acceptance: pending
 delivery_boundary:
@@ -30,22 +30,22 @@ delivery_boundary:
   simplification_review: null
 blockers: []
 risks:
-  - id: alpha15-site-not-yet-published
+  - id: alpha16-site-not-yet-published
     category: delivery
     severity: high
     exposure: local_only
     affected_environment: "StatePort-Site working tree"
-    consequence: "Before this slice completed, the signed Alpha.15 artifacts and updated documentation were not yet public."
+    consequence: "The signed Alpha.16 artifacts and updated documentation are assembled locally but are not yet public."
     owner: agent
-    decision: resolved
+    decision: mitigate
     expires: null
-  - id: alpha15-native-wsl2-target-unavailable
+  - id: alpha16-native-wsl2-target-unavailable
     category: delivery_boundary
     severity: high
     exposure: unknown
     affected_environment: "Fresh Windows 11 WSL2 Ubuntu 24.04 acceptance target"
-    consequence: "The public Alpha.15 release is verified, but native install, lifecycle, three-template, shutdown/restart, uninstall, reinstall, and human acceptance evidence cannot be produced from this Linux host without an approved Windows target."
+    consequence: "Native install, lifecycle, three-template, shutdown/restart, uninstall, reinstall, and human acceptance evidence cannot be produced from this Linux host without an approved Windows target."
     owner: human
     decision: mitigate
     expires: null
-next_action: "On an approved Windows 11 host, run the existing native WSL2 qualification command against public Alpha.15 and retain its machine-generated receipt before human acceptance."
+next_action: "Complete the guarded Alpha.16 Pages publication and anonymous byte verification, then run the existing native WSL2 qualification command on an approved Windows 11 host."

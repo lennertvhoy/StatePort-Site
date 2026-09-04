@@ -226,14 +226,33 @@ class ImmutableManifestTests(unittest.TestCase):
 
 
 class CurrentBootstrapTests(unittest.TestCase):
-    def test_versioned_alpha15_and_manifests_remain_immutable(self) -> None:
-        versioned = ROOT / "download/0.1.0-alpha.15/bootstrap.sh"
+    def test_versioned_alpha16_and_manifests_remain_immutable(self) -> None:
+        versioned = ROOT / "download/0.1.0-alpha.16/bootstrap.sh"
         self.assertEqual(
             hashlib.sha256(versioned.read_bytes()).hexdigest(),
             install_transport.VERSIONED_BOOTSTRAP_SHA256,
         )
         self.assertEqual(len(versioned.read_bytes()), install_transport.VERSIONED_BOOTSTRAP_SIZE)
         for image_id, digest in install_transport.MANIFEST_DIGESTS.items():
+            manifest = ROOT / "download/alpha16-manifests" / f"{image_id}.json"
+            self.assertEqual(hashlib.sha256(manifest.read_bytes()).hexdigest(), digest)
+
+    def test_retained_alpha15_bootstrap_and_manifests_remain_immutable(self) -> None:
+        versioned = ROOT / "download/0.1.0-alpha.15/bootstrap.sh"
+        self.assertEqual(
+            hashlib.sha256(versioned.read_bytes()).hexdigest(),
+            "a045d3d0c6478bae04b20923fe7e98025e46ea4c6b10f69667cc46852cf3a51f",
+        )
+        retained = {
+            "stateport-api": "507691145e9900022e7be30222a12a34389f12b1855fddc1e6e65f6989314c52",
+            "stateport-dev-workspace": "13b4b2c52f26f30c3a42f264ba80fb0bdc476da4b946c4d93878b55b1d3a6a64",
+            "stateport-execution-host": "7766a32d32471c48b153bf7ec96401728757460e20fe79c639ac93ec2c4c0d3a",
+            "stateport-playwright": "c4b31ba99602d23202f4c8f8ce4995ac025aa4d96143381277a3b28a93deed45",
+            "stateport-runner": "1cf5bea27ffed6b909d3384c45d32fb1e728c7dc9000ffdddf8090085b781a81",
+            "stateport-web": "fadb99f743acd10971c576e212d74c85a4ae879eba5f4ac3a980cf9156222a5e",
+            "stateport-worker": "8930a946988627fa9cebd900b86043460a9e34e5252c7ad2f5601629621694ed",
+        }
+        for image_id, digest in retained.items():
             manifest = ROOT / "download/alpha15-manifests" / f"{image_id}.json"
             self.assertEqual(hashlib.sha256(manifest.read_bytes()).hexdigest(), digest)
 
@@ -261,9 +280,9 @@ class CurrentBootstrapTests(unittest.TestCase):
 
     def test_mutable_route_is_exact_and_install_enabled(self) -> None:
         installer = ROOT / "download/install.sh"
-        versioned = ROOT / "download/0.1.0-alpha.15/bootstrap.sh"
+        versioned = ROOT / "download/0.1.0-alpha.16/bootstrap.sh"
         bootstrap = installer.read_bytes()
-        # The mutable route is byte-identical to the immutable Alpha.15
+        # The mutable route is byte-identical to the immutable Alpha.16
         # bootstrap, so the public command cannot drift from the signed bytes.
         self.assertEqual(len(bootstrap), install_transport.MUTABLE_BOOTSTRAP_SIZE)
         self.assertEqual(
@@ -296,7 +315,7 @@ class CurrentBootstrapTests(unittest.TestCase):
         )
         self.assertEqual(syntax.returncode, 0, syntax.stderr.decode("utf-8"))
 
-    def test_download_page_has_alpha15_install_command(self) -> None:
+    def test_download_page_has_alpha16_install_command(self) -> None:
         download = (ROOT / "download/index.html").read_text(encoding="utf-8")
         self.assertIn(validate_repo.INSTALLER_STATUS, download)
         self.assertIn("download/install.sh", download)
@@ -319,7 +338,7 @@ class SourceDisclosureTests(unittest.TestCase):
         missing = dict(texts)
         technical = ROOT / "download/technical-release-files.html"
         missing[technical] = missing[technical].replace(
-            "0.1.0-alpha.15/release-index.json", "missing-release-index.json"
+            "0.1.0-alpha.16/release-index.json", "missing-release-index.json"
         )
         with self.assertRaisesRegex(AssertionError, "technical release files page lacks"):
             validate_repo.validate_source_disclosures(missing)
