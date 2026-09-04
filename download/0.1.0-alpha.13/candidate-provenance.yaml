@@ -1,0 +1,120 @@
+artifacts:
+  candidateInputManifest:
+    bytes: 4636
+    path: candidate-input-manifest.json
+    sha256: a353cce06dee6640fa870e5f56fe983ddc07c0d0330abf53b89648e63e70d943
+  executionHostProvisioner:
+    bytes: 35615
+    path: provisioning/stateport-execution-host-provision
+    sha256: 312ef592fb05bb45458b8f58e5551f0e5594bde2111d90555267494785da6d32
+    sourceCommit: 85e46ccc5d5d444e7c9c802ae1ecdd3a1ab8f5a2
+    sourcePath: scripts/stateport-execution-host-provision
+  gitBundle:
+    bytes: 6207045
+    commit: b13864960284ac1514bdcc36c1bfcce2a0ed2c8d
+    path: source/stateport-public.git.bundle
+    ref: refs/heads/public-main
+    sha256: f5092f3ad2a28d317c950ba5638da603c72230aa3c74680907958f34bb26cd9e
+    tree: 8d248661a12feb33993bddb577184ee0662bdf43
+  installer:
+    bytes: 259605
+    path: installer/install.sh
+    sha256: ed8eb6cbb6cd828b7abb361f9b81976fd3892ad303a078a849817733669d8727
+    sourceCommit: 85e46ccc5d5d444e7c9c802ae1ecdd3a1ab8f5a2
+    sourcePath: scripts/install_no_checkout.py
+  licensingInventory:
+    bytes: 557778
+    path: source/licensing-inventory.yaml
+    sha256: 668d7a625683a6b46f2cf1600081202020942af964d7e2ec97c047d6d09f4ad3
+  normalCloneReceipt:
+    bytes: 500
+    path: evidence/anonymous-normal-clone-receipt.json
+    sha256: b88221a602e6b4c9cf7ffb9bb1ea77f49e81caed9550532162e842dee0553da4
+  podmanPackageBundle:
+    bytes: 37232640
+    path: packages/podman-package-bundle.tar
+    sha256: 445ddd9ac38cc581376260543e9246ebee360f75e75a22e6df3ce9a428b7106f
+  publicManifest:
+    bytes: 538024
+    path: source/public-export-manifest.json
+    sha256: af0f4018735a6df0af4485b54fb669b21971f53405dffc84cd28bb1c2bc712ca
+  releaseTreeManifest:
+    bytes: 5162
+    path: release-tree-manifest.json
+    sha256: c9bd72d89adbe1803d3b994fe49139e2c94a6f63899e69ae496f11bd3e8b77f5
+  sourceArchive:
+    bytes: 24504320
+    embeddedGitIdentity:
+      authorityUrl: https://github.com/lennertvhoy/StatePort-Source.git
+      commit: b13864960284ac1514bdcc36c1bfcce2a0ed2c8d
+      manifestSha256: af0f4018735a6df0af4485b54fb669b21971f53405dffc84cd28bb1c2bc712ca
+      ref: refs/heads/public-main
+      tree: 8d248661a12feb33993bddb577184ee0662bdf43
+    path: source/stateport-source.tar
+    sha256: c700a8af0762ef7c08bfbf440393be62b62b4e84abc32949feff24d44ff1170b
+  updaterWheel:
+    buildEvidence:
+      formatVersion: stateport.updater-build-evidence/v1
+      lockedInputsSha256: 41921434a37e250d4ab08ac16da76fabd7115260c47e82a57e647fc595111a39
+      path: stateport_updater/_build_identity.py
+      runtime:
+        implementation: CPython
+        pip: 26.2.1
+        pipExecutable: build-venv/bin/python -m pip
+        python: 3.14.7
+        pythonExecutable: build-venv/bin/python
+        setuptools: 80.10.2
+        wheel: 0.45.1
+      sourceTree: 8d248661a12feb33993bddb577184ee0662bdf43
+    bytes: 372130
+    firstBytes: 372130
+    firstPath: updater/stateport-updater-first.whl
+    firstSha256: d666dd17f70289ff43e90cb6893ffea2a148c2dfa0bd765d9a01b8a75fb3fc0d
+    path: updater/stateport-updater.whl
+    reproducible: true
+    secondBytes: 372130
+    secondPath: updater/stateport-updater-second.whl
+    secondSha256: d666dd17f70289ff43e90cb6893ffea2a148c2dfa0bd765d9a01b8a75fb3fc0d
+    sha256: d666dd17f70289ff43e90cb6893ffea2a148c2dfa0bd765d9a01b8a75fb3fc0d
+authoritativeForInstallation: false
+authorityClass: public_git_authority_and_local_build_evidence
+candidateId: stateport-alpha13-85e46ccc5d5d
+classification: public_successor_release_candidate
+materialization:
+  exporter:
+    gitBlob: d9feb3cb69f151211d9f111242e419ee72d264e5
+    sha256: fb6344a16cb901be91c19ca6fe64fe41b2d3b712891933778e9267f4fe182312
+  materializer:
+    gitBlob: e29608d4b5334b15cc618b4717f2b30ac7ad64b3
+    sha256: 0fd9bcdd63050366293741bb39dcc9c6800d6bf18434a0a126e28c5aeaa738e1
+  policy:
+    gitBlob: b5d2e8b4e67789a5ff7bd9e0ee990dce21b72e5a
+    sha256: 2dedf3a165fcee9f6ae76302557690d3c6ed9a3e184597b3ff7933e96c81f4cf
+  sourceCommit: 85e46ccc5d5d444e7c9c802ae1ecdd3a1ab8f5a2
+  sourceRepository: https://github.com/lennertvhoy/StatePort.git
+  sourceTree: 50b46915e71db7a60d5a6a885c51adb70cc0bfc2
+repository:
+  authorityUrl: https://github.com/lennertvhoy/StatePort-Source.git
+  commit: b13864960284ac1514bdcc36c1bfcce2a0ed2c8d
+  normalCloneVerification:
+    commit: b13864960284ac1514bdcc36c1bfcce2a0ed2c8d
+    receiptId: clone_receipt_7f4d88156418c71d237bce8225b33cf8
+    receiptSha256: 7f4d88156418c71d237bce8225b33cf82e9c388a23b14417587879fea53bab3c
+    ref: refs/heads/public-main
+    status: verified_anonymous_normal_clone
+    tree: 8d248661a12feb33993bddb577184ee0662bdf43
+    url: https://github.com/lennertvhoy/StatePort-Source.git
+  objectFormat: sha1
+  ref: refs/heads/public-main
+  tree: 8d248661a12feb33993bddb577184ee0662bdf43
+retention:
+  deletionRequiresExplicitOwnerApproval: true
+  retainUntil: explicit_owner_disposition_or_superseding_verified_candidate
+  status: local_candidate_not_published
+schema: stateport.candidate-provenance/v2
+verification:
+  gitBundle: verified_ref_commit_tree_recovery
+  normalClone: verified_anonymous_normal_clone
+  signing: pending_owner_authorized_signing
+  sourceArchive: verified_contents_and_embedded_git_identity
+  updaterWheel: verified_twice_byte_equal_from_locked_inputs
