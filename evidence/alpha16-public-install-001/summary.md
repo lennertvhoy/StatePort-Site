@@ -83,10 +83,10 @@ Image manifest digests:
 - Anonymous protected-byte verification passed for all 66 Alpha.16 files and
   all 64 retained Alpha.15 versioned files. The receipt, including response
   headers, final URLs, complete hashes, source audit, and exact GHCR identity,
-  is at `/home/ff/.local/state/stateport/release/alpha16/public-byte-verification-r1.json`.
+  is at `/home/ff/.local/state/stateport/release/alpha16/public-byte-verification-r2.json`.
 - Anonymous current-page, CSS, mascot-asset, sitemap, and historical-claim
   verification passed for 13 public pages and 3 assets. The receipt is at
-  `/home/ff/.local/state/stateport/release/alpha16/public-site-verification-r1.json`.
+  `/home/ff/.local/state/stateport/release/alpha16/public-site-verification-r2.json`.
 - Alpha.15 protected bytes remain covered by the pre-Alpha.16 inventory and the
   Site validator retains Alpha.15 as an immutable predecessor.
 - The shared header mascot remains at the accepted approximately 1.75x desktop
