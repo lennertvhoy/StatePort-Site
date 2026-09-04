@@ -1555,7 +1555,7 @@ def verify_podman_package_bundle(
                 timeout=30,
             )
             fields = queried.stdout.strip().split("\t")
-            if queried.returncode == 0:
+            if queried.returncode == 0 and fields[:1] != ["not-installed"]:
                 if (
                     len(fields) != 3
                     or fields[0] != "installed"
@@ -1579,6 +1579,13 @@ def verify_podman_package_bundle(
                     action = "upgrade"
                 current_version: str | None = fields[1]
             else:
+                # A genuinely absent package makes dpkg-query exit non-zero, and
+                # a negative "not-installed" record (left by apt/dpkg metadata
+                # processing without the package payload, for example podman
+                # after netavark is installed on a stock Noble cloud image)
+                # makes it exit 0 with empty version and architecture fields.
+                # Both mean the package is not actually installed, so the sealed
+                # bundle installs it.
                 action = "install"
                 current_version = None
             transaction[name] = {
@@ -5977,10 +5984,18 @@ def main(argv: Sequence[str] | None = None) -> int:
         parser.error(
             "--podman-package-preflight and --confirmed-package-plan-digest must be supplied together"
         )
+    # The --prepare-execution-host mode writes the signed execution-host plan
+    # and returns before the confirmed install transaction, so it must not
+    # require the final --confirmed-plan-digest (which the bootstrap only has
+    # after the prepare step produces the plan).  Requiring it here made the
+    # prepare call fail argparse validation before it could ever prepare.
+    plan_digest_required = not bool(args.prepare_execution_host)
     missing = [
         flag
         for flag, value in install_flags.items()
-        if value is None and flag != "--podman-package-bundle"
+        if value is None
+        and flag != "--podman-package-bundle"
+        and (flag != "--confirmed-plan-digest" or plan_digest_required)
     ]
     if missing:
         parser.error("install mode requires: " + ", ".join(missing))
