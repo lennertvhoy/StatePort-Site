@@ -8,13 +8,17 @@ Environment: fresh Windows 11 AMD64 host, WSL2, stock Ubuntu 24.04, normal
 sudo-capable user, anonymous public Pages and GHCR, with no checkout, prepared
 packages, mirrors, shims, or staged files.
 
-The genuine native WSL2 journey and human acceptance remain unrecorded.
+The Site candidate is committed at
+`d61e195d937f078f15855be93a7e8c227162e06a`. Guarded publication completed and
+anonymous verification confirms the public Pages route serves Alpha.15. The
+genuine fresh Windows 11 WSL2 Ubuntu 24.04 journey and human acceptance remain
+unrecorded.
 
-- Public publication is not complete. The Site working tree contains the
-  additive Alpha.15 tree, mutable installer, documentation rewrite, and the
-  completed v6 validator migration; the candidate is not committed yet.
-- The genuine fresh Windows 11 WSL2 Ubuntu 24.04 public-path journey and human
-  acceptance remain unrecorded.
+- Public publication: passed through the existing guarded Pages push.
+- Anonymous protected-byte verification: passed for all 65 Alpha.15 protected
+  files; the public installer and release-index hashes match the fixed values.
+- Native WSL2 acceptance: pending an approved Windows host; no native result is
+  inferred from the local Linux or QEMU environments.
 
 ## Secondary checks
 
@@ -32,8 +36,8 @@ The genuine native WSL2 journey and human acceptance remain unrecorded.
 - Fresh isolated Ubuntu 24.04 rehearsal passed bootstrap fetch, transport,
   materialization preflight, full install, installed health gates, exact
   runtime-package checks, identical rerun, and the second runtime smoke:
-  `/home/ff/.local/state/stateport/release/alpha15/rehearsal-full-r1.json`.
-  This is simulation-only evidence, not native WSL2 acceptance.
+  retained Alpha.15 QEMU rehearsal receipt in the external closure evidence
+  directory. This is simulation-only evidence, not native WSL2 acceptance.
 - The retained installed guest twice passed web/API/worker health, exact image
   digest checks, browser session establishment, application catalog loading,
   and real StudyState instance creation. The obsolete diagnostic tail failed
@@ -44,6 +48,10 @@ The genuine native WSL2 journey and human acceptance remain unrecorded.
   ProjectState and StudyState repositories plus an independent generic
   StateSpec template, including exact-commit import, trusted action, source
   non-mutation, and service-restart continuity.
+- Public verification receipts and headers are retained in the external closure
+  evidence directory as `public-byte-verification-r1.json`,
+  `public-site-verification-r2.json`, and
+  `public-mascot-visual-verification-r1.json`.
 
 ## Artifacts
 
@@ -51,7 +59,7 @@ The genuine native WSL2 journey and human acceptance remain unrecorded.
 - Exact manifest transport: `download/alpha15-manifests/`.
 - Mutable installer bytes equal the tested bootstrap: `download/install.sh`.
 - New/updated install, template, platform, lifecycle, limitations, evidence,
-  release, technical-files, docs-index, and homepage copy is prepared for the
+  release, technical-files, docs-index, and homepage copy is published as the
   Alpha.15 candidate.
 - The v6 gate and validator use the canonical inputs; the v5 files remain inert
   legacy snapshots.
@@ -60,6 +68,6 @@ The genuine native WSL2 journey and human acceptance remain unrecorded.
 
 ## Limitations
 
-- Alpha.15 Site publication, anonymous public-byte verification, genuine native
-  Windows 11 WSL2 acceptance, and explicit human acceptance are not yet
-  recorded.
+- Genuine native Windows 11 WSL2 acceptance and explicit human acceptance are
+  not yet recorded. The current agent host cannot run the existing native
+  runner because it has no Windows/WSL2 substrate.

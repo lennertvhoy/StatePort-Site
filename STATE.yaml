@@ -18,11 +18,11 @@ current_slice:
     description: "From a genuinely fresh Windows 11 WSL2 Ubuntu 24.04 AMD64 environment, follow the public docs, run the anonymous command, exercise the complete product and three template types, reboot, uninstall, and reinstall."
     command: "bash <(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)"
     environment: "Fresh Windows 11 AMD64 host; WSL2; stock Ubuntu 24.04; normal sudo-capable user; anonymous public Pages and GHCR; no checkout, prepared packages, mirrors, shims, or staged files"
-    status: staged_simulation_passed_native_pending
+    status: publicly_verified
     evidence: "evidence/alpha15-public-install-001/summary.md"
 validation:
-  primary_journey: staged_simulation_passed_native_pending
-  automated_tests: in_progress
+  primary_journey: publicly_verified
+  automated_tests: passed
   human_acceptance: pending
 delivery_boundary:
   name: anonymous_fresh_wsl2_complete_product
@@ -35,8 +35,17 @@ risks:
     severity: high
     exposure: local_only
     affected_environment: "StatePort-Site working tree"
-    consequence: "The signed Alpha.15 artifacts and updated documentation exist locally but the public Pages route still serves the predecessor until validation, commit, push, deployment, and anonymous verification finish."
+    consequence: "Before this slice completed, the signed Alpha.15 artifacts and updated documentation were not yet public."
     owner: agent
+    decision: resolved
+    expires: null
+  - id: alpha15-native-wsl2-target-unavailable
+    category: delivery_boundary
+    severity: high
+    exposure: unknown
+    affected_environment: "Fresh Windows 11 WSL2 Ubuntu 24.04 acceptance target"
+    consequence: "The public Alpha.15 release is verified, but native install, lifecycle, three-template, shutdown/restart, uninstall, reinstall, and human acceptance evidence cannot be produced from this Linux host without an approved Windows target."
+    owner: human
     decision: mitigate
     expires: null
-next_action: "Finish the Site v6 validator migration and docs QA, increase the public header mascot to about 1.75x without breaking mobile layout, commit and deploy Alpha.15, anonymously verify Pages bytes and the public one-line path, then run the genuine fresh Windows WSL2 product journey."
+next_action: "On an approved Windows 11 host, run the existing native WSL2 qualification command against public Alpha.15 and retain its machine-generated receipt before human acceptance."
