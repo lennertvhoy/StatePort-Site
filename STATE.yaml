@@ -18,10 +18,10 @@ current_slice:
     description: "From a genuinely fresh Windows 11 WSL2 Ubuntu 24.04 AMD64 environment, follow the public docs, run the anonymous command, exercise the complete product and three template types, reboot, uninstall, and reinstall."
     command: "bash <(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)"
     environment: "Fresh Windows 11 AMD64 host; WSL2; stock Ubuntu 24.04; normal sudo-capable user; anonymous public Pages and GHCR; no checkout, prepared packages, mirrors, shims, or staged files"
-    status: assembled
+    status: publicly_verified
     evidence: "evidence/alpha16-public-install-001/summary.md"
 validation:
-  primary_journey: assembled
+  primary_journey: publicly_verified
   automated_tests: passed
   human_acceptance: pending
 delivery_boundary:
@@ -35,9 +35,9 @@ risks:
     severity: high
     exposure: local_only
     affected_environment: "StatePort-Site working tree"
-    consequence: "The signed Alpha.16 artifacts and updated documentation are assembled locally but are not yet public."
+    consequence: "The signed Alpha.16 artifacts and updated documentation are now public and anonymously byte-verified."
     owner: agent
-    decision: mitigate
+    decision: resolved
     expires: null
   - id: alpha16-native-wsl2-target-unavailable
     category: delivery_boundary
@@ -48,4 +48,4 @@ risks:
     owner: human
     decision: mitigate
     expires: null
-next_action: "Complete the guarded Alpha.16 Pages publication and anonymous byte verification, then run the existing native WSL2 qualification command on an approved Windows 11 host."
+next_action: "Run the existing native WSL2 qualification command on an approved Windows 11 host and retain its machine-generated receipt before human acceptance."

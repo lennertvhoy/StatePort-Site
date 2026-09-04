@@ -9,9 +9,12 @@ installer printed the stale pre-reconciliation port `18638`. Alpha.16 derives
 the printed and persisted local URL from the live reconciled web unit.
 
 The Alpha.16 release candidate is assembled, signed, scanned, and its seven
-OCI images are published at exact digest-pinned GHCR references. The Site
-materialization and Pages publication remain separate gates. No native
-Windows 11 WSL2 receipt or human acceptance is claimed here.
+OCI images are published at exact digest-pinned GHCR references. The Site was
+published from commit `a2225169a0450cd160b3aafa6fd0f2e16c9790ef` through the
+guarded Pages push. Anonymous verification then matched all 66 Alpha.16
+protected files and all 64 retained Alpha.15 versioned files, including their
+response headers and final bytes. No native Windows 11 WSL2 receipt or human
+acceptance is claimed here.
 
 ## Primary journey
 
@@ -22,7 +25,7 @@ Environment: fresh Windows 11 AMD64 host, WSL2, stock Ubuntu 24.04, normal
 sudo-capable user, anonymous public Pages and GHCR, with no checkout, prepared
 packages, mirrors, shims, or staged files.
 
-Status: `assembled`; native validation is pending an approved Windows target.
+Status: `publicly_verified`; native validation is pending an approved Windows target.
 
 ## Candidate identity
 
@@ -74,6 +77,16 @@ Image manifest digests:
 - GHCR publication passed with exact remote manifest verification for all seven
   image references. The durable receipt is outside Git at
   `/home/ff/.local/state/stateport/release/alpha16/ghcr-publication-r3.json`.
+- Guarded Pages publication passed from commit
+  `a2225169a0450cd160b3aafa6fd0f2e16c9790ef`; the governor receipt is at
+  `/home/ff/.local/state/stateport/release/alpha16/governor-site-publication-r1/background-safe-v1.json`.
+- Anonymous protected-byte verification passed for all 66 Alpha.16 files and
+  all 64 retained Alpha.15 versioned files. The receipt, including response
+  headers, final URLs, complete hashes, source audit, and exact GHCR identity,
+  is at `/home/ff/.local/state/stateport/release/alpha16/public-byte-verification-r1.json`.
+- Anonymous current-page, CSS, mascot-asset, sitemap, and historical-claim
+  verification passed for 13 public pages and 3 assets. The receipt is at
+  `/home/ff/.local/state/stateport/release/alpha16/public-site-verification-r1.json`.
 - Alpha.15 protected bytes remain covered by the pre-Alpha.16 inventory and the
   Site validator retains Alpha.15 as an immutable predecessor.
 - The shared header mascot remains at the accepted approximately 1.75x desktop
@@ -89,7 +102,6 @@ Image manifest digests:
 
 ## Limitations
 
-- Guarded Site publication and anonymous public-byte verification are pending.
 - A genuinely fresh native Windows 11 WSL2 Ubuntu 24.04 run of the exact public
   command is pending. QEMU and prepared Linux evidence are not substitutes.
 - Native service, execution, persistence, three-template, restart, WSL
@@ -98,6 +110,6 @@ Image manifest digests:
 
 ## Next action
 
-Complete the guarded Alpha.16 Pages publication and anonymous byte verification,
-then run the existing native WSL2 qualification command on an approved Windows
-11 host and retain its machine-generated receipt.
+Run the existing native WSL2 qualification command on an approved Windows 11
+host and retain its machine-generated receipt before requesting human
+acceptance.
