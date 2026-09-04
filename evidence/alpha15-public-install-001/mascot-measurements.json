@@ -1,0 +1,26 @@
+{
+  "component": "shared .brand img header mascot",
+  "artwork": "assets/stateport-mascot-block-arch-light.svg",
+  "aspect_ratio": "1:1",
+  "before": {
+    "css_token": "clamp(55px, 5.625vw, 105px)",
+    "rendered_css_px": {"320": 55, "375": 55, "768": 55, "1440": 81}
+  },
+  "after": {
+    "css_token": "clamp(96px, 9.84375vw, 184px)",
+    "rendered_css_px": {"320": 96, "375": 96, "768": 96, "1440": 141.75},
+    "ratio_to_before": {"320": 1.74545, "375": 1.74545, "768": 1.74545, "1440": 1.75}
+  },
+  "responsive_checks": {
+    "320": "toggle visible; menu closed; content fits without horizontal overflow in isolated render",
+    "375": "toggle visible; menu closed; content fits without horizontal overflow in isolated render",
+    "768": "toggle visible; menu closed; content fits without horizontal overflow in isolated render",
+    "1440": "full navigation visible; no overlap or clipping in isolated render"
+  },
+  "screenshots": [
+    "mascot-mobile-320-final.png",
+    "mascot-mobile-375.png",
+    "mascot-tablet-768.png",
+    "mascot-desktop-1440-headless.png"
+  ]
+}

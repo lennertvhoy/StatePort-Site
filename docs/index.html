@@ -14,7 +14,7 @@
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.12 status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.15 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/">
@@ -33,7 +33,7 @@
         "headline": "StatePort documentation",
         "description": "A practical introduction to StatePort, from the product preview to storage, control, updates, and portability.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/docs/",
-        "dateModified": "2026-08-01",
+        "dateModified": "2026-09-04",
         "inLanguage": "en"
       }
     </script>
@@ -61,7 +61,7 @@
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation</p>
           <h1 id="docs-title">Learn how StatePort works.</h1>
-          <p>Start with the product preview. Then explore how StatePort saves work, reviews changes, handles updates, and keeps your data portable.</p>
+          <p>Install the product, bring a template, then learn how StatePort saves work, reviews changes, handles updates, and keeps your data portable.</p>
         </div>
       </section>
 
@@ -75,13 +75,14 @@
             <a href="deployments.html">Container deployments</a>
             <a href="foundations.html">Why StatePort exists</a>
             <a href="model.html">How the model works</a>
-            <a href="getting-started.html">StateSpec basics</a>
+            <a href="getting-started.html">Install and open</a>
+            <a href="templates.html">Use a template</a>
             <a href="../releases/">Release status</a>
           </nav>
         </aside>
 
         <article class="prose docs-overview" data-no-toc>
-          <p class="notice notice--quiet"><strong>Looking for the software?</strong> Check the <a href="../releases/">release status</a> before you try to download StatePort.</p>
+          <p class="notice notice--quiet"><strong>Ready to run it?</strong> Alpha.15 installs the complete local product with <a href="getting-started.html">one command on the supported WSL2 environment</a>.</p>
 
           <h2>What is StatePort?</h2>
           <p>StatePort gives AI-assisted applications a durable place to keep goals, progress, decisions, and history. That information lives in readable files on your machine instead of being trapped in one chat session.</p>
@@ -104,6 +105,12 @@
               <section class="docs-group" aria-labelledby="docs-group-product">
                 <h3 id="docs-group-product">Start with the product</h3>
                 <div class="docs-index-links">
+                  <a class="docs-index-link" href="getting-started.html" data-doc-entry data-keywords="install setup windows wsl ubuntu one line open first run">
+                    <span><strong>Install and open StatePort</strong><small>Go from a fresh Ubuntu 24.04 WSL2 terminal to a healthy local product.</small></span><i aria-hidden="true">↗</i>
+                  </a>
+                  <a class="docs-index-link" href="templates.html" data-doc-entry data-keywords="template import projectstate studystate statespec repository git isolated copy">
+                    <span><strong>Use your template</strong><small>Import ProjectState, StudyState, or another supported StateSpec repository by exact commit.</small></span><i aria-hidden="true">↗</i>
+                  </a>
                   <a class="docs-index-link" href="prototype-walkthrough.html" data-doc-entry data-keywords="product demo video transcript interface prototype evidence">
                     <span><strong>Product walkthrough</strong><small>See the current interface in a 33-second video.</small></span><i aria-hidden="true">↗</i>
                   </a>
@@ -128,9 +135,6 @@
                   <a class="docs-index-link" href="model.html" data-doc-entry data-keywords="model application instance canonical state authority capability receipt">
                     <span><strong>Core model</strong><small>Learn how applications, personal copies, and saved state fit together.</small></span><i aria-hidden="true">↗</i>
                   </a>
-                  <a class="docs-index-link" href="getting-started.html" data-doc-entry data-keywords="statespec yaml schema files getting started build example">
-                    <span><strong>StateSpec basics</strong><small>See how StatePort keeps important facts in readable files.</small></span><i aria-hidden="true">↗</i>
-                  </a>
                   <a class="docs-index-link" href="../tutorials/first-application.html" data-doc-entry data-keywords="tutorial first application design facts authority lifecycle evidence">
                     <span><strong>Design a first application</strong><small>Choose what your application should remember and who may change it.</small></span><i aria-hidden="true">↗</i>
                   </a>
@@ -147,7 +151,7 @@
                     <span><strong>Lifecycle</strong><small>Follow an application from setup through use, updates, backup, and recovery.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="updates.html" data-doc-entry data-keywords="updates upgrade rollback health digest pinned release design target">
-                    <span><strong>How updates will work</strong><small>See how StatePort plans to review updates and recover from failures.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Update or uninstall</strong><small>Check installed identity, rerun safely, or remove recorded runtime resources.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="governance.html" data-doc-entry data-keywords="governance permission capability approval receipt acceptance authority">
                     <span><strong>Review and control</strong><small>Understand permissions, approvals, and change records.</small></span><i aria-hidden="true">↗</i>
@@ -159,7 +163,7 @@
                     <span><strong>AI tools and portability</strong><small>See what stays with your application when tools change.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="platform-support.html" data-doc-entry data-keywords="platform support linux docker macos windows wsl qualification install">
-                    <span><strong>Platform support</strong><small>Check which computers Alpha.12 is prepared for.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Platform support</strong><small>Check the exact Windows 11, WSL2, Ubuntu 24.04, and AMD64 requirements.</small></span><i aria-hidden="true">↗</i>
                   </a>
                 </div>
               </section>

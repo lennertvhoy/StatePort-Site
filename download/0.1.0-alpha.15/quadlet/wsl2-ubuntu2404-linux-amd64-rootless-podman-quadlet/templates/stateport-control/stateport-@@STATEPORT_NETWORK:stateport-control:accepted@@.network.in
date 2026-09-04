@@ -1,0 +1,7 @@
+[Network]
+NetworkName=stateport-@@STATEPORT_NETWORK:stateport-control:accepted@@
+Label=io.stateport.managed=true
+Label=io.stateport.release.id=stateport-alpha-0.1.0-alpha.15
+Label=io.stateport.target.id=wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet
+Label=io.stateport.profile=accepted
+Internal=true

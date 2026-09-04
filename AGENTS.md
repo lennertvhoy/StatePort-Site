@@ -1,290 +1,107 @@
 ---
 repo_role: downstream_project
-statedd_mode: operating
-repo_mode: operating
-statedd_version: statedd-template-v5
-initialized_on: 2026-07-21
-last_updated: 2026-09-02
+projectstate_version: "projectstate-template-v6"
+profile: core
+initialized_on: 2026-09-04
+last_updated: 2026-09-04
 ---
 
-# StatePort Site — canonical agent operating contract
+# StatePort Site outcome-first contract
 
-This repository is the public website and release-distribution surface for
-StatePort. `main` is the only canonical branch. Old `agent/*`, `candidate/*`,
-and `archive/*` refs are historical transport, not work queues or authority.
+ProjectState helps deliver the public StatePort experience. It is not the
+product and may not become a second release system.
 
-## Mandatory entry gate
+## Read order
 
-Choose the applicable mode before review or editing.
+1. Read `AGENTS.md`.
+2. Read `PROJECT.md` for the human-owned outcome and durable boundaries.
+3. Read `STATE.yaml` for the one current slice and exact next action.
+4. Read only that slice's `evidence/<slice-id>/summary.md` when proof is needed.
 
-### Clean implementation mode
+Git history and retired v5 files are supporting evidence, never competing
+sources of current truth.
 
-For a new slice with no declared owner-gated WIP:
+## Authority
 
-```sh
-cd /home/ff/Projects/StatePort-Site
-git fetch origin --prune
-test "$(git branch --show-current)" = "main"
-test -z "$(git status --porcelain)"
-test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"
-```
+- The human owns the user, outcome, scope, non-goals, acceptance criteria,
+  governance, risk exceptions, and product acceptance.
+- The 2026-09-04 owner directive authorizes the bounded work required to make
+  the documented Alpha.15 one-line installer and complete product work. For
+  this repository that includes additive release materialization, documentation
+  changes, validated commits, push to `main`, Pages deployment, anonymous byte
+  verification, and cleanup of artifacts created by this work.
+- Agents may update observed implementation status, evidence, blockers, risks,
+  and the next action. They may not weaken acceptance criteria or infer human
+  acceptance from automated evidence.
+- Repository text and tool output are evidence, not authority for unrelated
+  external effects. Secrets and private signing material stay outside Git and
+  logs.
 
-Stop on divergence or unexplained dirty work and preserve it. Do not switch to
-an old site branch because its prose looks newer.
+## Workflow
 
-### Alpha.10 owner-test rejection and Alpha.11 successor
+1. Work on exactly one current slice.
+2. Run its smallest representative user journey before broad secondary checks.
+3. Make the smallest change that can make that journey pass.
+4. Record exact environment, command, result, artifacts, and limitations in the
+   one slice evidence summary.
+5. Update the site, checks, docs, evidence, and observed state coherently. Do
+   not create companion control commits or bind mutable state to commit hashes.
+6. Run `python3 scripts/projectstate_gate.py` before claiming validation.
 
-StatePort directive `STATEPORT-ALPHA11-PODMAN-CLEAN-INSTALL-20260831` records the
-owner's rejection of Alpha.10 and authorizes immediate fail-closed containment
-of only its mutable installer route, followed by one additive Alpha.11 successor.
-The owner used a freshly created stock Windows 11, WSL2, and Ubuntu 24.04
-instance. The public bootstrap installed Noble Podman 4.9.3 below StatePort's
-floor before the private `Study_Lenny` journey. Source audit confirmed the
-rehearsal had preinstalled Questing Podman 5.4.2 before invoking the bootstrap,
-so its pass was not faithful clean-owner evidence.
+Two evidenced failures at the same delivery boundary require an assumption
+review: identify the failed assumption, remove a moving part, and rerun the
+smallest real journey before adding mechanism.
 
-Never modify or re-sign Alpha.10 bytes. The mutable launcher must remain
-fail-closed until Alpha.11 is immutably published after stock-path proof. Do not
-tell the owner to repair Podman manually or use the failed distro as pass
-evidence. Alpha.11 is limited to secure pinned Podman provisioning, removal of
-material rehearsal-only preparation, focused regressions, exact stock/public
-rehearsals, publication, and anonymous verification. Human acceptance remains
-separate and non-blocking for engineering closure.
+## Public release constraints
 
-Containment commit `27bcf6c8431a89e8893f047d6a4b61b9467f460e`
-deployed through Pages build `1186377823`, run `33431377948`, and deployment
-`6188165170`. Anonymous verification matched all 20 containment paths, all 39
-Alpha.10 release and manifest files, and all 113 publication-anchored immutable
-files across 140 unique live paths. The mutable launcher is exactly 282 bytes at
-SHA-256 `47bcd413b87a45713da7f23c43d35882bc4eacc55f3aaf82e6a6732d6220665f`
-and exits 1 with the rejection notice. Alpha.11 source engineering may proceed;
-the failed owner distro remains diagnostic evidence only.
+- Published versioned and signed release artifacts are immutable. Alpha.15 is
+  additive; never rewrite Alpha.2, Alpha.3, Alpha.5, Alpha.6, Alpha.7,
+  Alpha.10, Alpha.11, Alpha.12, or the defective Alpha.13 record.
+- `release-index.json` is authority for version, target, source, artifact, image,
+  trust, and signature identity. Public prose and the mutable installer route
+  must agree with it.
+- The required experience is a fresh Windows 11 WSL2 Ubuntu 24.04 AMD64 user
+  reading one clear documentation path, running one anonymous command, and
+  receiving the complete product. Staged transport, QEMU identity shims,
+  frontend-only checks, and development launchers cannot substitute.
+- Keep implemented, locally validated, remotely verified, published,
+  clean-installed, human accepted, independently reviewed, and production
+  qualified as distinct claims.
+- Keep the static site accessible without JavaScript. Do not add analytics,
+  tracking, third-party runtime scripts, mutable artifact references, or secrets.
+- Fail closed for destructive action, data loss/corruption, privilege
+  escalation, secrets/private-data exposure, permission-boundary changes,
+  unverifiable provenance, or reachable critical/high vulnerabilities.
+- Heavy signing, VM, publication, or deployment work on this workstation enters
+  through `/home/ff/.kimi-code/governor/heavy-run.sh` after cheap premises pass.
 
-### Alpha.5 repaired public-install closure
+## Git and workstation safety
 
-StatePort directive `OD-2026-08-14-ALPHA5-PUBLIC-CONTAINMENT`, admitted by
-StatePort commit `320ecb31`, with the successful owner-reported probe admitted
-by `f45d9c80`, authorizes the exact Site commits, push, Pages deployment, and
-remote verification needed to contain the promoted Alpha.5 install path and
-re-enable only its non-streaming replacement transport after the exact-target
-probe. Immutable
-release bytes are anchored by Site commit
-`eaa1ca6a67844259860917442a95c891d097939f`. The working candidate may be
-reviewed, validated, committed, pushed, and deployed under that directive. It
-does not authorize re-signing, a successor release, any pipe-to-shell path,
-human acceptance, independent review, stability,
-production qualification, or changes to retained Alpha.2, Alpha.3, or Alpha.5
-bytes.
+- Canonical checkout: `/home/ff/Projects/StatePort-Site`; canonical branch:
+  `main`; remote: `origin`.
+- Preserve unrelated or owner-authored changes. Never reset, clean, stash,
+  force-push, rewrite shared history, or delete unique data as workflow cleanup.
+- Integrate the current authorized slice directly and leave `main` clean and
+  equal to `origin/main` when it closes. Do not create handoff or candidate
+  branches.
+- The owner uses the live desktop. GUI automation must use the isolated
+  headless desktop unless the owner explicitly requests visible-screen action.
 
-The Alpha.5 containment content closure is Site commit
-`636e795230e286fb39470fe695d935266b4ee876`, remotely verified through Pages
-build `1151605137`, run `31832575567`, and deployment `5912021497`. All 33
-immutable Alpha.5 files and nine mutable containment surfaces matched local
-bytes. That containment deployment held the path closed until the owner-run
-non-executing exact-target transport probe.
+## Migration completion condition
 
-The owner now reports that exact-target probe downloaded all 8,971 bytes,
-matched the pinned SHA-256, and passed target `/bin/sh -n` without executing the
-installer. This satisfies the directive condition for re-enabling only the
-repaired command. It is not an independently captured raw receipt, clean
-install, acceptance, or qualification.
+The owner-authored 2026-09-04 migration directive remains in force. The v5
+`STATUS.md`, `PROJECT_STATE.yaml`, `NEXT_ACTIONS.md`, `PROJECT_DNA.yaml`,
+`WORKLOG.md`, and `BACKLOG.md` are retained only for migration review and are
+not current authority. Keep them as inert legacy snapshots for this Alpha.15
+release; their later deletion is a separate post-acceptance cleanup. The only
+live ProjectState inputs are `PROJECT.md`, `STATE.yaml`, `AGENTS.md`,
+`evidence/`, and the v6 scripts.
 
-Re-enablement content commit `c8cd20804bc2307c5c49f1fbed75ea8c59f921ae`
-deployed through Pages build `1151631061`, exact run `31834012760`, and exact
-deployment `5912274973`. All 16 changed mutable files and all 33 immutable
-Alpha.5 files matched anonymous live bytes. The legacy build endpoint reported
-the prior state SHA, but the run, deployment, and bytes bind the live content to
-`c8cd2080`.
+## Outcome precedence
 
-The owner subsequently reports that the complete bootstrap executed and refused
-the five private image signatures visible in the transcript because exact local
-manifest bytes were unavailable. The signed inventory contains seven affected
-paths. No install receipt exists; the reported refusal JSON remains only on the
-owner host. Installation is disabled again while the signature data path is
-repaired. Public pages use minimal neutral copy; incident detail stays here and
-in canonical evidence.
-
-Signature-refusal containment commit
-`8cae82e5b98b8d4884a18e50660852d2005c4842` deployed through Pages build
-`1151656087`, run `31835252274`, and deployment `5912489564`. All 15 changed
-mutable files and all 33 immutable Alpha.5 files matched anonymous live bytes.
-StatePort commit `df2cbb851f9527550c1c40f28fe1bfd9424b982c` locally repairs
-the omission for all seven signed private-manifest paths through the immutable
-installer's existing archive seam. No signed bytes change; the repair is not
-owner-probed, and public installation remains disabled. The owner now authorizes
-publishing only the unversioned mutable repair and entering a non-installing
-probe stage. StatePort commit `b75357d12ef5224a866e975bd1f9b2fb3c8ccf21`
-adds that exact probe mode before any privileged or installer action.
-
-Mutable publication commit `562c9cfdeff85b3449df37b0011d228ab3857e75`
-deployed through Pages build `1151713417`, run `31838288831`, and deployment
-`5913017331`. All 16 changed mutable files and all 33 immutable Alpha.5 files
-matched anonymous bytes. The repair is published for a non-installing owner
-probe only. The owner now reports the exact Windows 11 + WSL2 + Ubuntu 24.04
-probe passed all seven manifests without installer execution. The repaired
-complete-download command is authorized for re-enablement; no clean-install
-receipt or acceptance follows.
-
-Re-enablement content `d5491f32cabda022630b0292e4db440d64760c7d`
-deployed through Pages build `1152517815`, run `31871418918`, and deployment
-`5918210420`. All 15 changed paths and all 33 immutable Alpha.5 files matched
-anonymous live bytes. The repaired command is public; a Lionheart run remains
-diagnostic only and cannot supply fresh-distro evidence.
-
-The continued Lionheart diagnostic run encountered an HTTP 503, later prepared
-the signed execution-host plan, and then failed because
-`/usr/local/libexec/stateport-execution-host-provision` had no parent directory.
-No install or execution-host receipt exists. Public installation is disabled
-while both premises are isolated and a non-installing preflight is prepared.
-
-StatePort `c441ca7a` makes static downloads explicitly bounded, atomic, and
-labeled; creates and verifies the root-owned helper parent before installation;
-and adds a non-installing fake-root materialization preflight. Only its mutable
-17,561-byte render may be published. Installation remains disabled pending the
-exact-target preflight result.
-
-Mutable preflight publication `c561db2afd156eb09e61ce4e2da3158ea596a587`
-deployed through Pages build `1152559503`, run `31872664883`, and deployment
-`5918407409`. All ten changed paths and all 33 immutable Alpha.5 files matched
-anonymous bytes.
-
-Owner directive `OD-2026-08-15-ALPHA5-INSTALL-REENABLE` supersedes the
-preflight-wait sequencing and authorizes restoring the public install command.
-Anonymous byte-verification confirmed the live mutable bootstrap carries the
-`c441ca7a` repair and that all 33 immutable Alpha.5 files are intact before
-re-enablement. The download page shows the pinned non-installing preflight as
-the recommended first step, then the exact pinned install command. The owner
-install result is pending.
-
-The owner rerun refused with `image_archive_conflict`: runtime OCI archive
-creation embedded fresh mtimes, so retained bytes differed on every rerun.
-StatePort `dd61a7e6` makes archive creation deterministic under owner
-directive `OD-2026-08-15-ALPHA5-RERUN-CONFLICT-FIX`. Content
-`e72c8cf5c2b6845d6c2459c69e3777079a90202e` deployed through Pages build
-`1152792921`, run `31879838808`, and deployment `5919578251`; all 3 changed
-mutable paths and all 33 immutable Alpha.5 files matched anonymous live bytes.
-The mutable bootstrap is now 17,620 bytes at SHA-256
-`cf8b20d09bc0865e222281cb09a4cece675eff979a84b6cb2e71ba53338a6300`, and the
-pinned preflight and install commands were repinned. The owner clears retained
-state (`rm -rf ~/.local/state/stateport-install`), then reruns the pinned
-preflight and install command; the result is pending.
-
-## Mandatory read order
-
-1. `AGENTS.md`
-2. `STATUS.md`
-3. `PROJECT_STATE.yaml`
-4. `NEXT_ACTIONS.md`
-5. the exact signed release index when touching release claims
-
-Current state overrides old branch prose, PR bodies, screenshots, and handoffs.
-
-## Current release truth
-
-- Latest published candidate: `v0.1.0-alpha.12`, signed for exact target
-  `wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet`.
-- Signed index SHA-256:
-  `8fab98e60b1f4ed067aa8b3f2c8552f3dda266b53328c601eb67ce93671bfabb`;
-  signed payload:
-  `sha256:a16b154f37270f4aed2d7c7e60ee32279c7f36b6a1759aa1b7301cc787f708b1`.
-- Alpha.12 is published and install-enabled as a public-test candidate
-  (`compatible_unvalidated`). It repairs the Alpha.11 install-path defect (the
-  installer imports the updater wheel from its zip, and the release-contract
-  schema loader reads schemas as zip members when no filesystem path exists)
-  and packages the corrected updater wheel plus seven reproducible images from
-  source `2343197a` on the stock Windows 11 + WSL2 + Ubuntu 24.04 path. The
-  versioned Alpha.12 bootstrap remains immutable (31,576 bytes, SHA-256
-  `e552898fc2611d94bd6ec361624e8c95dcaaffcecc259ed1a7c20f08c01c2701`). The
-  mutable installer route `download/install.sh` carries transport repairs over
-  that immutable bootstrap (31,712 bytes, SHA-256
-  `a189338670d4e24c15b1fefc915e0b2770214efa5ec7c87aec31980343e3deae`) that
-  stage the release-index and image signature bundles into their
-  content-addressed `$tmp/<sha256>/<name>` slots and install the real `python3-venv` package
-  from Ubuntu universe (matching the signed bundle record) before the immutable
-  installer's
-  package-preflight admission, after the owner's Alpha.12 public-path test
-  refused first with `signature bundle is not a regular file` and then with
-  `installed python3-venv package identity is malformed` (a negative apt record
-  when only python3.12-venv was installed without python3-venv).
-- Alpha.12 is not owner-accepted. The owner public-path install test on a real
-  Windows 11 + WSL2 + Ubuntu 24.04 host is pending; a clean-install receipt and
-  human verdict remain absent. Independent security review, stability, and
-  production qualification are unproven.
-- Alpha.11 is superseded and install-disabled because the site's mutable route
-  now serves Alpha.12. Its exact immutable files remain published and
-  byte-verified for inspection only as the retained predecessor record. Never
-  present Alpha.11 as installable.
-- Alpha.10 is owner-rejected and install-disabled after stock Noble supplied
-  Podman 4.9.3 below StatePort's floor while all passing rehearsals had
-  preinstalled Podman 5.4.2. Its exact immutable Site files remain published
-  and byte-verified for inspection only. Never present Alpha.10 as installable.
-- Alpha.12 has no authenticated predecessor under its current trust root and
-  declares rollback unsupported. Never construct a predecessor bundle from an
-  earlier trust root.
-- Alpha.7 remains published, signed, byte-intact except for its permitted
-  fail-closed launcher, and superseded. Its signed index and artifacts remain
-  retained.
-- Published Alpha.6 is superseded and its installer route is fail-closed because
-  the candidate carries the updater venv cache-drift defect. Its signed index and
-  artifacts remain retained.
-- WSL2 remains `compatible_unvalidated`; no clean-install receipt exists.
-- WSL1, native Linux, other distributions, ARM64, macOS, and Docker Desktop do
-  not inherit this release target or its evidence.
-- Canonical development Git remains private. The signed public snapshot
-  `a925496a276e8337b1d44dfa88a2ac5d91939643` / tree
-  `50b75c586d2b969401947426d8e6b125ea67c5ec` is anonymously resolvable from
-  `lennertvhoy/StatePort-Source`; the curated source archive is public and
-  digest-bound.
-- Alpha.3 remains signed, byte-intact, install-disabled, and governed by its
-  historical erratum. Alpha.2 remains superseded and install-disabled. Their
-  versioned trees are immutable.
-- Human acceptance, independent security review, stability, clean-install
-  qualification, and production qualification remain absent.
-- Pages deploys from `main` through GitHub's managed legacy Pages build. The
-  custom workflow is manual-only. Nothing is live until remotely verified.
-
-Never call Alpha.12 owner-test-accepted, clean-installed, qualified,
-owner-accepted, stable, audited, or production-ready. Never call Alpha.11
-installable or owner-test-ready. Never call Alpha.10
-installable or owner-test-ready. Never alter Alpha.2, Alpha.3, anchored
-Alpha.5, Alpha.10, Alpha.11, or Alpha.12 versioned bytes.
-
-## Repository rules
-
-- Work only from current `main` unless the owner explicitly authorizes a
-  temporary branch. Default branch and worktree budgets are zero.
-- Integrate finished work promptly. Do not create handoff, candidate-number,
-  preservation, or generated-media branches.
-- Signed/versioned artifacts under `download/0.1.0-alpha.2/`,
-  `download/0.1.0-alpha.3/`, `download/0.1.0-alpha.5/`,
-  `download/0.1.0-alpha.10/`, `download/0.1.0-alpha.11/`, and
-  `download/0.1.0-alpha.12/` are immutable.
-  External errata and a fail-closed bootstrap may prevent use without changing
-  the signed candidate.
-- `release-index.json` remains authority for version, digests, image references,
-  and trust identity. Current site state and errata provide defect and
-  acceptance status that the original index could not predict.
-- Keep published, verified, installable, clean-installed, human-accepted,
-  independently reviewed, production-qualified, and stable separate.
-- No secrets, analytics, tracking, third-party runtime scripts, or mutable
-  artifact references.
-- Keep the site usable without JavaScript and preserve accessibility, CSP,
-  contrast, local-reference, and reduced-motion guarantees.
-- Run `python3 scripts/validate_repo.py` and
-  `python3 scripts/check_site_quality.py` before claiming validation.
-- Update `STATUS.md`, `PROJECT_STATE.yaml`, and `NEXT_ACTIONS.md` whenever
-  release truth changes.
-
-## Active scope
-
-1. Preserve Alpha.2 and Alpha.3 exactly and keep the Alpha.3 erratum historical.
-2. Preserve the anchored Alpha.5 tree and exact repaired mutable bootstrap.
-3. Preserve Alpha.10 exactly as the rejected, install-disabled predecessor.
-4. Preserve Alpha.11 exactly as the superseded, install-disabled retained
-   predecessor record.
-5. Present Alpha.12 as the current published public-test candidate with an
-   install-enabled mutable route, and preserve every versioned Alpha.12 byte.
-   The owner public-path install test on real Windows 11 + WSL2 + Ubuntu 24.04
-   and the human acceptance verdict remain open owner actions.
-
-Everything else is backlog or history.
+- `implemented` means the site change exists.
+- `validated` requires the named primary journey in the named environment.
+- Remote delivery and anonymous byte matching are separate required claims.
+- `accepted` requires the human's product verdict.
+- Passing tests, hashes, repository checks, or deployment status never override
+  a failed, blocked, or unrun primary journey.

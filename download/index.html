@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Install StatePort Alpha.13 on Windows 11 with WSL2 and Ubuntu 24.04, check requirements, or inspect technical release files.">
+    <meta name="description" content="Install the complete StatePort Alpha.15 product on Windows 11 with WSL2 and Ubuntu 24.04 using one command.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Download StatePort Alpha.13">
-    <meta property="og:description" content="The Alpha.13 installer is available for a first public test on Windows 11 with WSL2 and Ubuntu 24.04.">
+    <meta property="og:title" content="Download StatePort Alpha.15">
+    <meta property="og:description" content="One signed command installs StatePort's web interface, API, worker, persistence, and execution host on the supported WSL2 environment.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/download/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.13 status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.15 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/download/">
@@ -25,15 +25,15 @@
     <link rel="manifest" href="../site.webmanifest">
     <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
-    <title>Download StatePort Alpha.13</title>
+    <title>Download StatePort Alpha.15</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Download StatePort Alpha.13",
-        "description": "The Alpha.13 installer is available for a first public test on Windows 11 with WSL2 and Ubuntu 24.04. Check requirements, older-release warnings, and technical release files.",
+        "name": "Download StatePort Alpha.15",
+        "description": "Install the complete StatePort Alpha.15 product on Windows 11 with WSL2 and Ubuntu 24.04 using one signed command.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/download/",
-        "dateModified": "2026-09-02",
+        "dateModified": "2026-09-04",
         "inLanguage": "en"
       }
     </script>
@@ -57,11 +57,12 @@
     </header>
 
     <main id="main">
-      <section class="article-hero" id="alpha12" aria-labelledby="download-title">
+      <section class="article-hero" id="alpha15" aria-labelledby="download-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Download</p>
-          <h1 id="download-title">StatePort Alpha.13</h1>
-          <p class="notice"><strong>Alpha.13 repairs the Alpha.11 install-path defect: the installer imports the updater wheel from its zip, and the release-contract schema loader reads schemas as zip members, so the corrected wheel is what runs on the stock Windows 11 + WSL2 + Ubuntu 24.04 path.</strong></p>
+          <h1 id="download-title">StatePort Alpha.15</h1>
+          <p>Install the complete local product—web interface, control API, worker, durable storage, and isolated execution host—from one signed, digest-pinned release.</p>
+          <p><strong>Alpha.15 is available for a first public test and installation is enabled.</strong></p>
           <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue</a>.</p>
         </div>
       </section>
@@ -70,9 +71,10 @@
         <aside class="doc-sidebar" aria-label="Download sections">
           <h2>Download</h2>
           <nav>
-            <a href="#alpha12" aria-current="page">Current status</a>
+            <a href="#alpha15" aria-current="page">Current status</a>
             <a href="#requirements">Requirements</a>
-             <a href="#install">Installer status</a>
+            <a href="#install">Install</a>
+            <a href="#after-install">After installation</a>
             <a href="#release-files">Technical release files</a>
             <a href="#older-releases">Older releases</a>
             <a href="../releases/">Release status</a>
@@ -80,7 +82,7 @@
         </aside>
 
         <article class="prose release-overview" data-no-toc>
-          <p>StatePort is in early alpha. Do not use it for important data.</p>
+          <p class="notice"><strong>StatePort is in early alpha. Do not use it for important data.</strong> Use test data and keep your own backups. Alpha.15 is intended for one person on one local Windows 11 laptop; it is not production software.</p>
 
           <section id="requirements" aria-labelledby="requirements-heading">
             <h2 id="requirements-heading">Before you start</h2>
@@ -88,16 +90,27 @@
               <li>Windows 11 on an x86-64 computer.</li>
               <li>WSL2 with Ubuntu 24.04.</li>
               <li>A normal Ubuntu user with <code>sudo</code> access.</li>
-              <li>Internet access.</li>
+              <li>Internet access, <code>sudo</code>, and several gigabytes of free WSL disk space.</li>
+              <li>Systemd enabled inside WSL.</li>
             </ul>
+            <p><a href="../docs/getting-started.html">Run the three environment checks and see the complete walkthrough</a>.</p>
           </section>
 
           <section id="install" aria-labelledby="install-heading">
-            <h2 id="install-heading">Alpha.13 installer</h2>
-            <p><strong>Alpha.13 is available for a first public test and installation is enabled.</strong></p>
-            <p>Run the one-command installer in your Ubuntu 24.04 WSL2 terminal:</p>
+            <h2 id="install-heading">Install Alpha.15</h2>
+            <p>Open Ubuntu 24.04 in WSL2 and run this as your normal Ubuntu user:</p>
             <pre><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)</code></pre>
-            <p>Alpha.13 imports the corrected updater wheel from inside the signed bootstrap zip, so the installer that runs matches the signed release rather than a stale copy shipped on the release path.</p>
+            <p>The installer checks the host before mutation, verifies the signed release and exact image manifests, shows the package and installation plans, and asks for two explicit confirmations. A successful run prints <strong>StatePort is installed and healthy</strong>, the local URL, and the durable receipt path.</p>
+          </section>
+
+          <section id="after-install" aria-labelledby="after-install-heading">
+            <h2 id="after-install-heading">After installation</h2>
+            <ol>
+              <li>Open the printed <code>http://127.0.0.1:…/</code> address in your Windows browser.</li>
+              <li>Install the reviewed StudyState sample from <strong>Catalog</strong>, or place a Git repository below <code>/var/lib/stateport/imports</code>.</li>
+              <li>Use <strong>Catalog → Import a local repository</strong> to review its exact commit and create an isolated ProjectState, StudyState, or generic StateSpec workspace.</li>
+            </ol>
+            <p><a href="../docs/templates.html">Open the exact template workflow</a> or <a href="../docs/getting-started.html">read the full getting-started guide</a>.</p>
           </section>
 
           <section id="release-files" aria-labelledby="release-files-heading">
@@ -108,8 +121,8 @@
 
           <section id="older-releases" aria-labelledby="older-releases-heading">
             <h2 id="older-releases-heading">Older releases</h2>
-            <p><strong>Alpha.11 is superseded and install-disabled. Alpha.10 is rejected and install-disabled. Alpha.7 is superseded and install-disabled. Do not install Alpha 2 or Alpha 3. They contain known bugs.</strong></p>
-            <p><a href="technical-release-files.html#alpha11">Inspect the Alpha.11 record</a>, <a href="technical-release-files.html#alpha10">the Alpha.10 record</a>, <a href="technical-release-files.html#alpha7">the Alpha.7 record</a>, <a href="erratum-alpha3.html">read the Alpha.3 technical details</a>, or <a href="technical-release-files.html#older-releases">find older release files</a>.</p>
+            <p><strong>Alpha.14, Alpha.13, and earlier are superseded or rejected and are not the current install path. Never substitute files from one candidate into another.</strong></p>
+            <p><a href="technical-release-files.html#older-releases">Inspect retained release records</a> or <a href="erratum-alpha3.html">read the Alpha.3 technical details</a>.</p>
           </section>
         </article>
       </div>

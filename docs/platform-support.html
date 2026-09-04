@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="See which computers StatePort Alpha.12 is prepared for and which platforms are not supported by this release.">
+    <meta name="description" content="See the exact Windows 11, WSL2, Ubuntu 24.04, and AMD64 requirements for StatePort Alpha.15.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="Platform support - StatePort">
-    <meta property="og:description" content="Computer requirements and platform limits for StatePort Alpha.12.">
+    <meta property="og:description" content="Computer requirements, preflight checks, and platform limits for StatePort Alpha.15.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/platform-support.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.12 status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.15 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -47,8 +47,8 @@
       <section class="article-hero" aria-labelledby="page-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / Platform support</p>
-          <h1 id="page-title">Where Alpha.12 is meant to run</h1>
-          <p>Alpha.12 is prepared for one Windows and WSL setup. Other platforms will need separate work.</p>
+          <h1 id="page-title">Where Alpha.15 is meant to run</h1>
+          <p>Alpha.15 deliberately supports one reproducible Windows and WSL environment. The installer checks it before changing the host.</p>
         </div>
       </section>
 
@@ -77,15 +77,23 @@
         </aside>
 
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Alpha.12 is the current public-test candidate.</strong> It repairs the Alpha.11 install-path defect so the installer imports the corrected updater wheel from its zip, on the stock Windows 11 + WSL2 + Ubuntu 24.04 path. Alpha.11 is superseded and install-disabled; Alpha.10 is rejected and install-disabled.</p>
+          <p class="notice notice--quiet"><strong>Alpha.15 is the current public-test candidate.</strong> It installs its exact Podman stack and crun runtime instead of depending on Ubuntu's stock Podman version, and it provisions the complete control plane plus isolated execution host.</p>
 
-          <h2>Alpha.12 requirements</h2>
+          <h2>Alpha.15 requirements</h2>
           <ul>
             <li>Windows 11 on an x86-64 computer.</li>
             <li>WSL2 with Ubuntu 24.04.</li>
             <li>A normal Ubuntu user with <code>sudo</code> access.</li>
-            <li>Internet access.</li>
+            <li>Systemd enabled in WSL and Windows interoperability available.</li>
+            <li>Internet access and several gigabytes of free WSL disk space.</li>
           </ul>
+
+          <h2>Quick preflight</h2>
+          <p>Run these inside Ubuntu. They must report <code>x86_64</code>, Ubuntu <code>24.04</code>, and <code>systemd</code>:</p>
+          <pre><code>uname -m
+grep '^VERSION_ID=' /etc/os-release
+ps -p 1 -o comm=</code></pre>
+          <p>The installer also verifies WSL2, Windows 11 build 22000 or newer, cgroup v2, subordinate UID/GID mappings, Quadlet, and the exact signed runtime inputs. If a requirement is missing, it refuses with a specific code instead of silently selecting a different setup.</p>
 
           <div class="table-scroll" tabindex="0" role="region" aria-label="Platform qualification matrix">
             <table>
@@ -93,29 +101,29 @@
               <thead>
                 <tr>
                   <th scope="col">Environment</th>
-                  <th scope="col">Alpha.12 status</th>
+                  <th scope="col">Alpha.15 status</th>
                   <th scope="col">What to know</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th scope="row">Windows 11 + WSL2 + Ubuntu 24.04 AMD64</th>
-                  <td>Alpha.12 available for a first public test</td>
-                    <td>Installation is enabled; a clean owner-path receipt is still pending.</td>
+                  <td>Supported public-test target</td>
+                  <td>The exact one-line path is exercised in clean Ubuntu 24.04 guest qualification; native WSL2 evidence remains a distinct acceptance category.</td>
                 </tr>
                 <tr>
                   <th scope="row">WSL1</th>
                   <td>Not supported</td>
-                    <td>Alpha.12 requires WSL2.</td>
+                  <td>Alpha.15 refuses WSL1 before installation state or host mutation.</td>
                 </tr>
                 <tr>
                   <th scope="row">Native Linux</th>
-                    <td>Not supported by Alpha.12</td>
+                  <td>Not supported by Alpha.15</td>
                   <td>Native Linux needs a separate release path.</td>
                 </tr>
                 <tr>
                   <th scope="row">macOS, Docker Desktop, ARM64, other Linux distributions</th>
-                    <td>Not supported by Alpha.12</td>
+                  <td>Not supported by Alpha.15</td>
                   <td>These platforms need separate testing and packaging.</td>
                 </tr>
               </tbody>
@@ -126,7 +134,7 @@
           <p>StatePort uses local storage, Linux services, containers, and an AI command-line tool. A setup is only useful when all of those parts work together and your data survives a restart. We will add platforms only after testing the full journey.</p>
 
           <h2>Check before you start</h2>
-          <p>Use the <a href="../releases/">release status</a> for current availability. Do not use older install instructions or try to adapt the Alpha.11 or Alpha.10 files to another platform.</p>
+          <p>Use the <a href="../releases/">release status</a> for current availability. Do not edit the bootstrap, mix older release files into Alpha.15, or relabel another platform as this release target.</p>
 
           <div class="inline-actions">
             <a class="button button--ink" href="hosts-and-portability.html">Read host boundaries</a>

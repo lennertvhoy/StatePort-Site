@@ -226,15 +226,15 @@ class ImmutableManifestTests(unittest.TestCase):
 
 
 class CurrentBootstrapTests(unittest.TestCase):
-    def test_versioned_alpha12_and_manifests_remain_immutable(self) -> None:
-        versioned = ROOT / "download/0.1.0-alpha.12/install.sh"
+    def test_versioned_alpha15_and_manifests_remain_immutable(self) -> None:
+        versioned = ROOT / "download/0.1.0-alpha.15/bootstrap.sh"
         self.assertEqual(
             hashlib.sha256(versioned.read_bytes()).hexdigest(),
             install_transport.VERSIONED_BOOTSTRAP_SHA256,
         )
         self.assertEqual(len(versioned.read_bytes()), install_transport.VERSIONED_BOOTSTRAP_SIZE)
         for image_id, digest in install_transport.MANIFEST_DIGESTS.items():
-            manifest = ROOT / "download/alpha12-manifests" / f"{image_id}.json"
+            manifest = ROOT / "download/alpha15-manifests" / f"{image_id}.json"
             self.assertEqual(hashlib.sha256(manifest.read_bytes()).hexdigest(), digest)
 
     def test_retained_alpha11_remains_immutable(self) -> None:
@@ -261,17 +261,16 @@ class CurrentBootstrapTests(unittest.TestCase):
 
     def test_mutable_route_is_exact_and_install_enabled(self) -> None:
         installer = ROOT / "download/install.sh"
-        versioned = ROOT / "download/0.1.0-alpha.12/install.sh"
+        versioned = ROOT / "download/0.1.0-alpha.15/bootstrap.sh"
         bootstrap = installer.read_bytes()
-        # The mutable route carries the digest-slot transport repair over the
-        # unchanged immutable Alpha.12 bootstrap; it must still be a superset
-        # that preserves the versioned release contract and install flow.
+        # The mutable route is byte-identical to the immutable Alpha.15
+        # bootstrap, so the public command cannot drift from the signed bytes.
         self.assertEqual(len(bootstrap), install_transport.MUTABLE_BOOTSTRAP_SIZE)
         self.assertEqual(
             hashlib.sha256(bootstrap).hexdigest(),
             install_transport.MUTABLE_BOOTSTRAP_SHA256,
         )
-        self.assertNotEqual(bootstrap, versioned.read_bytes())
+        self.assertEqual(bootstrap, versioned.read_bytes())
         versioned_text = versioned.read_text(encoding="utf-8")
         mutable_text = bootstrap.decode("utf-8")
         for line in versioned_text.splitlines():
@@ -297,7 +296,7 @@ class CurrentBootstrapTests(unittest.TestCase):
         )
         self.assertEqual(syntax.returncode, 0, syntax.stderr.decode("utf-8"))
 
-    def test_download_page_has_alpha12_install_command(self) -> None:
+    def test_download_page_has_alpha15_install_command(self) -> None:
         download = (ROOT / "download/index.html").read_text(encoding="utf-8")
         self.assertIn(validate_repo.INSTALLER_STATUS, download)
         self.assertIn("download/install.sh", download)
@@ -320,7 +319,7 @@ class SourceDisclosureTests(unittest.TestCase):
         missing = dict(texts)
         technical = ROOT / "download/technical-release-files.html"
         missing[technical] = missing[technical].replace(
-            "0.1.0-alpha.12/release-index.json", "missing-release-index.json"
+            "0.1.0-alpha.15/release-index.json", "missing-release-index.json"
         )
         with self.assertRaisesRegex(AssertionError, "technical release files page lacks"):
             validate_repo.validate_source_disclosures(missing)

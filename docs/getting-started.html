@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="A plain-English first step for deciding what an AI project must keep and protect.">
+    <meta name="description" content="Install StatePort Alpha.15 in a fresh Ubuntu 24.04 WSL2 terminal, open the complete local product, and create your first application.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="Getting started — StatePort">
-    <meta property="og:description" content="A plain-English first step for deciding what an AI project must keep and protect.">
+    <meta property="og:description" content="Check WSL2, run the one-line installer, open StatePort, and create a StudyState or template-backed application.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/getting-started.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.11 status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.15 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -46,9 +46,9 @@
     <main id="main">
       <section class="article-hero" aria-labelledby="getting-started-title">
         <div class="article-hero-inner">
-          <p class="document-kicker">Documentation / StateSpec basics</p>
-          <h1 id="getting-started-title">Start with what must not be lost.</h1>
-          <p>Before choosing a model or tool, decide what people should still be able to understand tomorrow.</p>
+          <p class="document-kicker">Documentation / Getting started</p>
+          <h1 id="getting-started-title">From a fresh WSL terminal to a working application.</h1>
+          <p>Check the supported environment, run one command, open the local product, and keep your first application in durable state.</p>
         </div>
       </section>
 
@@ -77,37 +77,40 @@
         </aside>
 
         <article class="prose">
-          <p class="notice notice--quiet"><strong>No setup required.</strong> This page explains the idea. Check the <a href="../releases/">release status</a> before looking for an installer.</p>
+          <p class="notice"><strong>Alpha.15 is an early public test.</strong> Use test data, keep your own backups, and do not expose the local services to the public internet.</p>
 
-          <p><strong>No technical background needed.</strong> Start with one question: when AI helps with your work, what should still make sense tomorrow?</p>
+          <h2>1. Confirm the supported environment</h2>
+          <p>Open <strong>Ubuntu 24.04</strong> in WSL2 on a Windows 11 x86-64 laptop. Run these checks inside Ubuntu:</p>
+          <pre><code>uname -m
+grep '^VERSION_ID=' /etc/os-release
+ps -p 1 -o comm=</code></pre>
+          <p>The results must be <code>x86_64</code>, <code>VERSION_ID="24.04"</code>, and <code>systemd</code>. Run the installer as your normal Ubuntu user, not as root. You need internet access, <code>sudo</code>, and several gigabytes of free WSL disk space.</p>
+          <p>If PID 1 is not <code>systemd</code>, create <code>/etc/wsl.conf</code> with the following content, run <code>wsl --shutdown</code> from PowerShell, and reopen Ubuntu:</p>
+          <pre><code>[boot]
+systemd=true</code></pre>
 
-          <h2>1. Decide what must not be lost</h2>
-          <p>Write down the things people will need later: goals, decisions, rules, who owns the work, what is happening now, and how you know it is right.</p>
-          <p>Keep the list short. Clear facts are more useful than a long chat that only one AI tool understands.</p>
+          <h2>2. Run the one-line installer</h2>
+          <pre><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)</code></pre>
+          <p>The bootstrap verifies Windows, WSL, Ubuntu, signed release metadata, the exact packages, and seven digest-pinned images before installing. It shows the exact package and release plans before asking you to type <code>install-packages</code> and <code>install-exact</code>. The <code>sudo</code> prompt is expected.</p>
+          <p>Do not close the terminal while it installs. A successful run ends with <strong>StatePort is installed and healthy</strong> and prints the exact local URL and install-receipt path.</p>
 
-          <h2>2. Make ownership clear</h2>
-          <p>Separate the reusable application, your personal data, and files that can be rebuilt. Then an update can change the application without overwriting your work.</p>
-          <div class="code-panel" data-label="Illustrative application shape"><code>example-application/
-├── application/   # reusable workflow
-├── my-state/      # goals, progress, and decisions
-├── history/       # records of change
-└── generated/     # views that can be rebuilt</code></div>
-          <p>The names may differ. The important part is knowing what belongs to you.</p>
+          <h2>3. Open the complete product</h2>
+          <p>Open the printed <code>http://127.0.0.1:…/</code> URL in your Windows browser. The address is loopback-only: the web interface, API, worker, persistence layer, and execution host stay on your laptop.</p>
+          <p>If you misplaced the URL, rerun the same installer command. An identical run is safe and rechecks the installed release rather than creating a second installation.</p>
 
-          <h2>3. Ask for access; do not hand out unlimited access</h2>
-          <p>A tool can say what it needs to do. People and the project decide what it may actually do. “The workflow asked for it” should never be the whole permission check.</p>
+          <h2>4. Create an application</h2>
+          <p>For a built-in reviewed sample, open <strong>Catalog</strong>, choose StudyState, review what it needs, and install an instance. To use your own ProjectState, StudyState, or StateSpec repository, follow the <a href="templates.html">template import guide</a>.</p>
 
-          <h2>4. Keep the steps separate</h2>
-          <p>Planning, approving, changing, and checking are different steps. Keeping them separate makes it easier to see what happened.</p>
+          <h2>5. Know where proof and state live</h2>
+          <p>The installer writes a durable receipt below <code>~/.local/state/stateport-install/receipts</code>. Application state and managed template copies are kept separately from replaceable container images. Inside the product, <strong>Receipts</strong>, <strong>Activity</strong>, and application provenance show what StatePort changed and why.</p>
 
-          <h2>5. Do not tie the work to one tool</h2>
-          <p>The application should remain understandable if a model, AI tool, or computer changes. A new tool should say what it can and cannot do.</p>
+          <h2>If installation stops</h2>
+          <p>Read the final refusal code before retrying. The installer fails before or at a recorded boundary; it does not silently continue with a partially trusted release. Check <a href="platform-support.html">platform support</a> for environment failures and the <a href="../download/">download page</a> for the current candidate. If a network download was interrupted, rerun the same command.</p>
 
           <h2>Where to go next</h2>
-          <p>Use the first tutorial to turn these ideas into a small application design. You will not need to install anything.</p>
           <div class="inline-actions">
-            <a class="button button--ink" href="../tutorials/first-application.html">Start the tutorial</a>
-            <a class="button button--outlined" href="../releases/">Check availability</a>
+            <a class="button button--ink" href="templates.html">Use your template</a>
+            <a class="button button--outlined" href="study-state.html">Explore StudyState</a>
           </div>
         </article>
       </div>

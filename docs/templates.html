@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+    <meta name="description" content="Use ProjectState, StudyState, or another supported StateSpec template with an installed StatePort workspace.">
+    <meta name="theme-color" content="#0B132B">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="StatePort">
+    <meta property="og:title" content="Use a template — StatePort">
+    <meta property="og:description" content="Put a Git repository in StatePort's import folder, review its exact commit, and create an isolated managed application.">
+    <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/templates.html">
+    <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.15 status.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
+    <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/templates.html">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
+    <title>Use a template — StatePort</title>
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-block-arch-light.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="./" aria-current="page">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="templates-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Documentation / Templates</p>
+          <h1 id="templates-title">Bring your template. Keep the source untouched.</h1>
+          <p>StatePort recognizes ProjectState, StudyState, and portable StateSpec repositories, then runs an exact committed snapshot in an isolated managed workspace.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+        <aside class="doc-sidebar" aria-label="Template guide sections">
+          <h2>Template guide</h2>
+          <nav>
+            <a href="#prepare" aria-current="page">Prepare the repository</a>
+            <a href="#import">Import in StatePort</a>
+            <a href="#recognized">Recognized templates</a>
+            <a href="#safety">What StatePort copies</a>
+            <a href="#troubleshooting">Troubleshooting</a>
+            <a href="getting-started.html">Install and open</a>
+          </nav>
+        </aside>
+
+        <article class="prose">
+          <p class="notice notice--quiet"><strong>Prerequisite:</strong> install Alpha.15 and open the local URL printed by the installer. The import folder is created for the Ubuntu user who ran the installer.</p>
+
+          <section id="prepare" aria-labelledby="prepare-heading">
+            <h2 id="prepare-heading">1. Put a Git repository in the import folder</h2>
+            <p>Clone a public repository directly into StatePort's allowlisted folder:</p>
+            <pre><code>git clone https://example.com/your/template.git /var/lib/stateport/imports/my-template</code></pre>
+            <p>Or clone a repository that already exists in your Ubuntu home. This transfers its committed history without giving StatePort access to the original working directory:</p>
+            <pre><code>git clone ~/Projects/my-template /var/lib/stateport/imports/my-template</code></pre>
+            <p>Commit the version you want to use first. Uncommitted and untracked files are reported during review and are never included in a managed template copy.</p>
+          </section>
+
+          <section id="import" aria-labelledby="import-heading">
+            <h2 id="import-heading">2. Review and create the application</h2>
+            <ol>
+              <li>Open <strong>Catalog</strong> in StatePort.</li>
+              <li>Choose <strong>Import a local repository</strong>.</li>
+              <li>Select the repository. StatePort reads its files and Git metadata without executing repository code.</li>
+              <li>Check the detected template type, branch, exact commit, working-tree status, and inspection findings.</li>
+              <li>Enter an application name, approve that exact inspection, and choose <strong>Create isolated copy</strong>.</li>
+              <li>Open the application or its durable import receipt.</li>
+            </ol>
+            <p>If the repository changes after inspection, StatePort refuses the stale approval. Inspect again so the application always binds to the commit and content you reviewed.</p>
+          </section>
+
+          <section id="recognized" aria-labelledby="recognized-heading">
+            <h2 id="recognized-heading">3. What Alpha.15 recognizes</h2>
+            <div class="table-scroll" tabindex="0" role="region" aria-label="Recognized template formats">
+              <table>
+                <thead><tr><th scope="col">Repository</th><th scope="col">Detected from</th><th scope="col">Managed application</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">ProjectState v6</th><td><code>PROJECT.md</code> and <code>STATE.yaml</code> with <code>projectstate-template-v6</code></td><td>ProjectState workspace</td></tr>
+                  <tr><th scope="row">StudyState</th><td>StudyState's committed application and state contract</td><td>StudyState workspace</td></tr>
+                  <tr><th scope="row">Portable StateSpec</th><td>A valid StateSpec template manifest and declared trusted actions</td><td>Generic StateSpec workspace</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>An ordinary Git repository without a supported template contract can still be inspected and registered, but it does not gain template actions merely by being imported.</p>
+          </section>
+
+          <section id="safety" aria-labelledby="safety-heading">
+            <h2 id="safety-heading">What StatePort copies and runs</h2>
+            <ul>
+              <li>The source repository remains untouched.</li>
+              <li>Only the exact committed tree is copied into StatePort-managed storage.</li>
+              <li>The managed copy receives its own identity, history, provenance, and import receipt.</li>
+              <li>Repository hooks and arbitrary repository commands are not run during inspection or import.</li>
+              <li>Only actions implemented and owned by StatePort for the detected adapter are available; a template cannot grant itself more authority.</li>
+            </ul>
+          </section>
+
+          <section id="troubleshooting" aria-labelledby="troubleshooting-heading">
+            <h2 id="troubleshooting-heading">If the repository does not appear</h2>
+            <ul>
+              <li>Confirm it is a Git repository below <code>/var/lib/stateport/imports</code>.</li>
+              <li>Do not use a symbolic link; import roots and repositories must be real directories.</li>
+              <li>Confirm the installer user can read the repository: <code>git -C /var/lib/stateport/imports/my-template status</code>.</li>
+              <li>Refresh Catalog after copying or cloning the repository.</li>
+              <li>If inspection reports an invalid or partial contract, fix and commit the named files, then inspect again.</li>
+            </ul>
+          </section>
+
+          <div class="inline-actions">
+            <a class="button button--ink" href="getting-started.html">Install StatePort</a>
+            <a class="button button--outlined" href="study-state.html">Learn about StudyState</a>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-block-arch-light.svg" alt="">
+          <p><strong>StatePort</strong>Durable AI-assisted work, kept in view.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="./">Docs</a>
+          <a href="../tutorials/">Tutorials</a>
+          <a href="../releases/">Release status</a>
+        </nav>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
+      </div>
+    </footer>
+    <script src="../assets/site.js?v=2026-08-10-1"></script>
+  </body>
+</html>

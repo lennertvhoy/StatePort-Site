@@ -15,7 +15,7 @@
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   --page: min(1180px, calc(100% - 48px));
   --reading: min(720px, calc(100% - 48px));
-  --mascot-header-size: clamp(55px, 5.625vw, 105px);
+  --mascot-header-size: clamp(96px, 9.84375vw, 184px);
   --mascot-footer-size: clamp(55px, 5vw, 85px);
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }

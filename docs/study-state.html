@@ -14,7 +14,7 @@
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.11 status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.15 status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/study-state.html">
@@ -89,7 +89,7 @@
         </aside>
 
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Product preview.</strong> StudyState is not available to install yet. Check the <a href="../releases/">release status</a> for updates.</p>
+          <p class="notice notice--quiet"><strong>Available in Alpha.15.</strong> Install StatePort, then create the reviewed StudyState sample from Catalog or import your own committed StudyState template.</p>
 
           <h2>What StudyState is</h2>
           <p>StudyState is a study coach built around your goals, activities, progress, and reflections. The conversation belongs to the application, and the useful facts live in files you can open.</p>
@@ -115,8 +115,17 @@
             <li>The current preview uses sample activity. It is not a live tutoring service.</li>
             <li>It does not change your learning state silently. Mutations are proposed, reviewed, and explicitly applied.</li>
             <li>Importing an existing learning history is not available yet.</li>
-            <li>StudyState is not a released product yet.</li>
+            <li>StudyState is an early-alpha application, not a finished or independently evaluated tutoring service.</li>
           </ul>
+
+          <h2>Use StudyState</h2>
+          <ol>
+            <li><a href="getting-started.html">Install and open StatePort</a>.</li>
+            <li>Open <strong>Catalog</strong> and install the reviewed StudyState sample, or put your StudyState Git repository below <code>/var/lib/stateport/imports</code>.</li>
+            <li>For your own repository, choose <strong>Import a local repository</strong>, review the exact commit and detected StudyState adapter, approve it, and create the isolated copy.</li>
+            <li>Open the application. Goals, activity, proposals, approvals, receipts, and history remain attached to that durable instance.</li>
+          </ol>
+          <p><a href="templates.html">Read the complete ProjectState, StudyState, and StateSpec template guide</a>.</p>
 
           <div class="inline-actions">
             <a class="button button--ink" href="model.html">How the model works</a>

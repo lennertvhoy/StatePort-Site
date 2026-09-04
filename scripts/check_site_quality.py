@@ -43,6 +43,7 @@ PRIMARY_PUBLIC_COPY_PAGES = {
     Path("index.html"),
     Path("download/index.html"),
     Path("download/erratum-alpha3.html"),
+    Path("docs/templates.html"),
     Path("releases/index.html"),
     Path("tutorials/index.html"),
     Path("tutorials/first-application.html"),
@@ -594,11 +595,11 @@ def validate_linked_markdown_language() -> None:
 
 
 def validate_release_surface_quality(documents: dict[Path, DocumentFacts]) -> None:
-    """Keep the enabled Alpha.12 release metadata explicit and free of pipe-to-shell."""
+    """Keep the enabled Alpha.15 release metadata explicit and free of pipe-to-shell."""
     release_block = release_state_block()
     install_enabled = re.search(r"^  installation_enabled: true\s*$", release_block, re.MULTILINE)
     if not install_enabled:
-        raise AssertionError("Release surface quality checks require enabled Alpha.12 state")
+        raise AssertionError("Release surface quality checks require enabled Alpha.15 state")
 
     command_pattern = re.compile(r"(?:curl|wget)\s[^<\n]*install\.sh")
     for page in mutable_public_pages():

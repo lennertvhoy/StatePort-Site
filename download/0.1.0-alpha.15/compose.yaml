@@ -1,0 +1,111 @@
+services:
+  stateport-web:
+    image: ghcr.io/lennertvhoy/stateport-web@sha256:fadb99f743acd10971c576e212d74c85a4ae879eba5f4ac3a980cf9156222a5e
+    init: true
+    read_only: true
+    security_opt:
+    - no-new-privileges:true
+    cap_drop:
+    - ALL
+    tmpfs:
+    - /tmp
+    networks:
+    - stateport
+    logging:
+      driver: json-file
+      options:
+        max-size: 1m
+        max-file: '3'
+    healthcheck:
+      test:
+      - CMD
+      - /usr/local/bin/stateport-healthcheck
+      - --kind
+      - http
+      - --host
+      - 127.0.0.1
+      - --port
+      - '8080'
+      - --path
+      - /health
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    ports:
+    - 127.0.0.1:${STATEPORT_WEB_PORT:-8080}:8080
+    volumes:
+    - stateport-product-data:/var/lib/stateport
+  stateport-api:
+    image: ghcr.io/lennertvhoy/stateport-api@sha256:507691145e9900022e7be30222a12a34389f12b1855fddc1e6e65f6989314c52
+    init: true
+    read_only: true
+    security_opt:
+    - no-new-privileges:true
+    cap_drop:
+    - ALL
+    tmpfs:
+    - /tmp
+    networks:
+    - stateport
+    logging:
+      driver: json-file
+      options:
+        max-size: 1m
+        max-file: '3'
+    healthcheck:
+      test:
+      - CMD
+      - /usr/local/bin/stateport-healthcheck
+      - --kind
+      - http
+      - --host
+      - 127.0.0.1
+      - --port
+      - '8790'
+      - --path
+      - /readyz
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    volumes:
+    - stateport-operations:/workspace/.stateport
+  stateport-worker:
+    image: ghcr.io/lennertvhoy/stateport-worker@sha256:8930a946988627fa9cebd900b86043460a9e34e5252c7ad2f5601629621694ed
+    init: true
+    read_only: true
+    security_opt:
+    - no-new-privileges:true
+    cap_drop:
+    - ALL
+    tmpfs:
+    - /tmp
+    networks:
+    - stateport
+    logging:
+      driver: json-file
+      options:
+        max-size: 1m
+        max-file: '3'
+    healthcheck:
+      test:
+      - CMD
+      - /usr/local/bin/stateport-healthcheck
+      - --kind
+      - http
+      - --host
+      - 127.0.0.1
+      - --port
+      - '8791'
+      - --path
+      - /readyz
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    volumes:
+    - stateport-operations:/workspace/.stateport
+networks:
+  stateport:
+    driver: bridge
+volumes:
+  stateport-operations: {}
+  stateport-product-data: {}
