@@ -132,7 +132,7 @@ check "ed8eb6cbb6cd828b7abb361f9b81976fd3892ad303a078a849817733669d8727" "$tmp/i
 get "$RELEASE_ROOT/stateport-execution-host-provision" "$tmp/provisioner" "execution-host provisioner"
 check "312ef592fb05bb45458b8f58e5551f0e5594bde2111d90555267494785da6d32" "$tmp/provisioner"
 get "$RELEASE_ROOT/stateport-updater" "$tmp/updater" "signed updater"
-check "feec0e2de7b3666ca804e5a0802c192d17f1413915a6b855b697288e5ed41a70" "$tmp/updater"
+check "d666dd17f70289ff43e90cb6893ffea2a148c2dfa0bd765d9a01b8a75fb3fc0d" "$tmp/updater"
 get "$RELEASE_ROOT/release-index.json" "$tmp/release-index.json" "signed release index"
 check "8fab98e60b1f4ed067aa8b3f2c8552f3dda266b53328c601eb67ce93671bfabb" "$tmp/release-index.json"
 get "$RELEASE_ROOT/release-index.sigstore.json" "$tmp/release-index.sigstore.json" "release index signature"
@@ -318,7 +318,7 @@ sudo -n /usr/local/libexec/stateport-execution-host-provision materialize \
   --execution-host-provisioner /usr/local/libexec/stateport-execution-host-provision \
   --execution-host-provisioner-digest "sha256:312ef592fb05bb45458b8f58e5551f0e5594bde2111d90555267494785da6d32" \
   --execution-host-provisioner-bytes "35615" \
-  --updater-wheel "$tmp/updater" --updater-wheel-digest "sha256:feec0e2de7b3666ca804e5a0802c192d17f1413915a6b855b697288e5ed41a70" \
+  --updater-wheel "$tmp/updater" --updater-wheel-digest "sha256:d666dd17f70289ff43e90cb6893ffea2a148c2dfa0bd765d9a01b8a75fb3fc0d" \
   --release-index "$tmp/release-index.json" --bundle-root "$tmp" \
   --cosign "$tmp/cosign" --cosign-digest "sha256:4629c757b7618056f8ddd7e2625ae9fdd94c0372a65049520bc7d9df9efc7f71" \
   --trust-public-key "$tmp/release.pub" --trust-public-key-digest "sha256:798d6ea6e2703993758f0fb45618b1f05b40f6ef116e7d286fd5a6867859b8ad" \

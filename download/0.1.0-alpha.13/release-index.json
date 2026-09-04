@@ -3,9 +3,9 @@
   "signatures": [
     {
       "bundle": {
-        "digest": "sha256:492fa65fd88cc4d7e719fb52d87d5f582eb65219586170e31f505a892ef85e74",
+        "digest": "sha256:e6aaea63d1e10d3fb7cef2825b1091fed6f74a397063c52a1ab5d27032399875",
         "mediaType": "application/vnd.sigstore.bundle.v0.3+json",
-        "size": 3614,
+        "size": 3755,
         "uri": "operator://release/release-index.sigstore.json"
       },
       "publicKeyFingerprint": "sha256:df24c1ccdcf1ecf72da6d8d81ae8b0ffaca8d399826091b107cc4d6905915ea5",
@@ -62,15 +62,15 @@
         "uri": "operator://release/artifacts/releaseNotes"
       },
       "sourceArchive": {
-        "digest": "sha256:c16f8f2dee70077b254af459ba3f308f45db64f54fd721fa9dda2096adc77ecc",
+        "digest": "sha256:c700a8af0762ef7c08bfbf440393be62b62b4e84abc32949feff24d44ff1170b",
         "mediaType": "application/octet-stream",
-        "size": 24473600,
+        "size": 24504320,
         "uri": "operator://release/artifacts/sourceArchive"
       },
       "updater": {
-        "digest": "sha256:feec0e2de7b3666ca804e5a0802c192d17f1413915a6b855b697288e5ed41a70",
+        "digest": "sha256:d666dd17f70289ff43e90cb6893ffea2a148c2dfa0bd765d9a01b8a75fb3fc0d",
         "mediaType": "application/octet-stream",
-        "size": 371992,
+        "size": 372130,
         "uri": "operator://release/artifacts/updater"
       }
     },
