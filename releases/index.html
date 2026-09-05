@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="StatePort Alpha.16 is the current signed public-test release; its one-line installer is available for Windows 11, WSL2, and Ubuntu 24.04.">
+    <meta name="description" content="StatePort Alpha.16 files remain available, but its fresh installer has a known signature-check failure. Wait for a corrected release.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="StatePort release status">
-    <meta property="og:description" content="Alpha.16 provides the complete signed local stack and one-line installer for the supported WSL2 environment.">
+    <meta property="og:description" content="Alpha.16 is published; fresh installation is blocked by a known signature-check failure.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/releases/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -79,14 +79,15 @@
         </aside>
 
         <article class="prose release-overview" data-no-toc>
+          <p class="notice"><strong>Alpha.16 remains published, but fresh installation is blocked by a known signature-check failure.</strong> Wait for a corrected release before a fresh install. Repeating the same installer does not repair this failure. Published files remain available for inspection.</p>
           <div class="release-summary" id="current-status">
             <div>
               <p class="release-summary-label">Current software status</p>
-              <h2>Alpha.16 installs the complete local product</h2>
-              <p>Alpha.16 is the current signed public-test candidate for Windows 11 with WSL2 and Ubuntu 24.04. Its one-line path installs the web interface, API, worker, persistent application service, exact rootless Podman stack, and isolated execution host. ProjectState, StudyState, and portable StateSpec repositories can be reviewed and copied into managed applications.</p>
+              <h2>Alpha.16 fresh installation is blocked</h2>
+              <p>Alpha.16 is the current signed public-test candidate for Windows 11 with WSL2 and Ubuntu 24.04. Its signed package contains the web interface, API, worker, persistent application service, rootless Podman stack, and isolated execution host; the fresh installer currently fails before completing this setup. ProjectState, StudyState, and portable StateSpec repositories can be reviewed and copied into managed applications.</p>
               <p><a class="button button--ink" href="../download/">Open download page <span aria-hidden="true">↗</span></a></p>
             </div>
-            <p class="release-review-date">Status reviewed<br><time datetime="2026-09-04">4 September 2026</time></p>
+            <p class="release-review-date">Status reviewed<br><time datetime="2026-09-05">5 September 2026</time></p>
           </div>
 
           <section id="available-now" aria-labelledby="available-now-heading">
@@ -100,9 +101,9 @@
                   <tr><th scope="row">Product preview</th><td>Available</td></tr>
                   <tr><th scope="row">Documentation</th><td>Available</td></tr>
                   <tr><th scope="row">Alpha.16 signed release files</th><td>Available</td></tr>
-                  <tr><th scope="row">Alpha.16 one-line installer</th><td>Enabled for the supported public-test target</td></tr>
+                  <tr><th scope="row">Alpha.16 one-line installer</th><td>Fresh installation blocked; correction pending</td></tr>
                   <tr><th scope="row">Seven release images</th><td>Public at exact signed GHCR digests</td></tr>
-                  <tr><th scope="row">Clean isolated Ubuntu 24.04 rehearsal</th><td>Install, health gates, and identical rerun passed</td></tr>
+                  <tr><th scope="row">Clean isolated Ubuntu 24.04 rehearsal</th><td>Fresh public install failed its package signature check; service and rerun steps did not pass</td></tr>
                   <tr><th scope="row">Native Windows/WSL owner acceptance</th><td>Not yet recorded</td></tr>
                   <tr><th scope="row">Alpha.14, Alpha.13, and earlier</th><td>Superseded, rejected, or retained for inspection only; never a current install path</td></tr>
                   <tr><th scope="row">Older alphas</th><td>Do not install Alpha 2 or Alpha 3</td></tr>
@@ -114,7 +115,7 @@
           <section id="release-evidence" aria-labelledby="release-evidence-heading">
             <h2 id="release-evidence-heading">Before you use StatePort</h2>
             <p>StatePort is in early alpha. Do not use it for important data.</p>
-            <p><strong>Alpha.16 is available for a first public test and installation is enabled.</strong> Its signed index binds the corrected installer source identity, runtime package bundle, seven image digests, and image signatures. Anonymous public-byte verification passed for the published files; native Windows/WSL acceptance remains a separate gate.</p>
+            <p><strong>Alpha.16 remains published, but fresh installation is blocked by a known signature-check failure.</strong> Its signed index binds the corrected installer source identity, runtime package bundle, seven image digests, and image signatures. Anonymous public-byte verification passed for the published files; native Windows/WSL acceptance remains a separate gate.</p>
             <p><a href="../download/technical-release-files.html">Technical release files</a> remain available for developers and reviewers.</p>
           </section>
 

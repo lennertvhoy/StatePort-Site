@@ -18,22 +18,26 @@ current_slice:
     description: "From a genuinely fresh Windows 11 WSL2 Ubuntu 24.04 AMD64 environment, follow the public docs, run the anonymous command, exercise the complete product and three template types, reboot, uninstall, and reinstall."
     command: "bash <(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)"
     environment: "Fresh Windows 11 AMD64 host; WSL2; stock Ubuntu 24.04; normal sudo-capable user; anonymous public Pages and GHCR; no checkout, prepared packages, mirrors, shims, or staged files"
-    status: publicly_verified
+    status: blocked
     evidence: "evidence/alpha16-public-install-001/summary.md"
 validation:
-  primary_journey: publicly_verified
+  primary_journey: blocked
   automated_tests: passed
   human_acceptance: pending
 delivery_boundary:
   name: anonymous_fresh_wsl2_complete_product
-  failed_attempts: []
+  failed_attempts:
+    - evidence: "evidence/alpha16-public-install-001/alpha16-rehearsal-failure.json"
+      cause: "Fresh public Alpha.16 Ubuntu 24.04 QEMU simulation failed package preflight because the bootstrap omits the predecessor signature digest directory required by production verification."
   simplification_review: null
-blockers: []
+blockers:
+  - "Immutable Alpha.16 fails fresh package preflight at predecessor signature lookup. Source repair exists in StatePort; an additive successor still requires its own qualification."
+  - "Native Windows 11 WSL2 complete-product proof remains pending. Routine tests belong to agents on the workstation, not the owner laptop."
 risks:
   - id: alpha16-site-not-yet-published
     category: delivery
     severity: high
-    exposure: local_only
+    exposure: unreachable
     affected_environment: "StatePort-Site working tree"
     consequence: "The signed Alpha.16 artifacts and updated documentation are now public and anonymously byte-verified."
     owner: agent
@@ -44,8 +48,8 @@ risks:
     severity: high
     exposure: unknown
     affected_environment: "Fresh Windows 11 WSL2 Ubuntu 24.04 acceptance target"
-    consequence: "Native install, lifecycle, three-template, shutdown/restart, uninstall, reinstall, and human acceptance evidence cannot be produced from this Linux host without an approved Windows target."
+    consequence: "Native Windows 11 WSL2 install, lifecycle, three-template, shutdown/restart, uninstall and reinstall evidence remains unrecorded. Agents must investigate feasible local native infrastructure; Linux simulation is not native evidence. Human acceptance is separate."
     owner: human
     decision: mitigate
     expires: null
-next_action: "Run the existing native WSL2 qualification command on an approved Windows 11 host and retain its machine-generated receipt before human acceptance."
+next_action: "Publish truthful Alpha.16 failure guidance after local checks; preserve signed bytes. Qualify a reviewed additive StatePort successor locally and in feasible native infrastructure before enabling successor guidance. Native complete-product acceptance remains pending."

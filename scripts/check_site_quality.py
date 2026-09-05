@@ -595,11 +595,11 @@ def validate_linked_markdown_language() -> None:
 
 
 def validate_release_surface_quality(documents: dict[Path, DocumentFacts]) -> None:
-    """Keep the enabled Alpha.16 release metadata explicit and free of pipe-to-shell."""
+    """Keep the published Alpha.16 release metadata explicit and free of pipe-to-shell."""
     release_block = release_state_block()
-    install_enabled = re.search(r"^  installation_enabled: true\s*$", release_block, re.MULTILINE)
-    if not install_enabled:
-        raise AssertionError("Release surface quality checks require enabled Alpha.16 state")
+    route_available = re.search(r"^  public_route_available: true\s*$", release_block, re.MULTILINE)
+    if not route_available:
+        raise AssertionError("Release surface quality checks require published Alpha.16 route state")
 
     command_pattern = re.compile(r"(?:curl|wget)\s[^<\n]*install\.sh")
     for page in mutable_public_pages():

@@ -42,7 +42,7 @@ CURRENT_RELEASE_INDEX_SHA256 = "8dad6399e66956d1dcb5aebb5a5119c6001617b3279902f0
 CURRENT_RELEASE_INDEX_SIGSTORE_SHA256 = "ff36ca75c5139d58a92e7d9b78a53f120aa4e4f42cdf9be35603eef3e682b557"
 CURRENT_SIGNED_PAYLOAD_SHA256 = "5594dc7dc3711ffdfbd74da271012c02dc23e5fa626d12f59d41a768058b2bac"
 CURRENT_TRUST_PUBLIC_KEY_SHA256 = "798d6ea6e2703993758f0fb45618b1f05b40f6ef116e7d286fd5a6867859b8ad"
-INSTALLER_STATUS = "Alpha.16 is available for a first public test and installation is enabled."
+INSTALLER_STATUS = "Alpha.16 remains published, but fresh installation is blocked by a known signature-check failure."
 
 # These publication anchors are intentionally duplicated here instead of being
 # imported from build_immutable_manifest.py. The validator is an independent
@@ -1132,7 +1132,7 @@ def release_state_block() -> str:
     text = require("STATE.yaml").read_text(encoding="utf-8")
     if CURRENT_RELEASE_VERSION not in text or "download/install.sh" not in text:
         raise AssertionError(f"STATE.yaml does not bind the active {CURRENT_RELEASE_LABEL} public route")
-    return f"  installation_enabled: true\n  version: {CURRENT_RELEASE_VERSION}\n"
+    return f"  public_route_available: true\n  version: {CURRENT_RELEASE_VERSION}\n"
 
 
 def mutable_public_pages() -> list[Path]:
@@ -1255,10 +1255,10 @@ def validate_source_disclosures(texts: dict[Path, str]) -> None:
 def validate_release_semantics() -> None:
     """Reject mutable-surface claims that contradict canonical release truth."""
     release_block = release_state_block()
-    install_enabled = re.search(r"^  installation_enabled: true\s*$", release_block, re.MULTILINE)
-    if not install_enabled:
+    route_available = re.search(r"^  public_route_available: true\s*$", release_block, re.MULTILINE)
+    if not route_available:
         raise AssertionError(
-            f"STATE.yaml must bind the enabled {CURRENT_RELEASE_LABEL} public-test route"
+            f"STATE.yaml must bind the published {CURRENT_RELEASE_LABEL} route"
         )
 
     pages = mutable_public_pages()

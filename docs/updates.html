@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Check an installed StatePort Alpha.16 release, understand exact signed updates, rerun safely, or uninstall while preserving state.">
+    <meta name="description" content="Check an installed StatePort Alpha.16 release, understand the blocked fresh installer, exact signed updates, or uninstall while preserving state.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
@@ -89,14 +89,16 @@
         </aside>
 
         <article class="prose">
+          <p class="notice"><strong>Alpha.16 remains published, but fresh installation is blocked by a known signature-check failure.</strong> Wait for a corrected release before a fresh install. Repeating the same installer does not repair this failure. Published files remain available for inspection.</p>
           <p class="notice"><strong>Alpha.16 has an authenticated Alpha.15 predecessor, but rollback is not supported.</strong> Do not manufacture an update by swapping image tags or files. Use an exact signed successor when one is published.</p>
 
           <h2>Check the installed identity</h2>
           <pre><code>~/.local/state/stateport-install/bin/stateport-update status</code></pre>
           <p>This reads the durable installed identity and updater state. It does not download or change a release.</p>
 
-          <h2>Repair or recheck Alpha.16</h2>
-          <p>Rerun the same public installer command. The installer recognizes the same exact release and converges on its recorded resources:</p>
+          <h2>Historical Alpha.16 rerun command</h2>
+          <p>The intended rerun behavior recognizes the same release and its recorded resources. Alpha.16 currently fails its fresh signature check; this command is not a repair for that failure:</p>
+          <p><strong>Historical command, currently blocked:</strong> retained for identifying the affected route; wait for a corrected release.</p>
           <pre><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)</code></pre>
 
           <h2>Check the release</h2>

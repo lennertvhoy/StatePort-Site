@@ -1,0 +1,27 @@
+{
+  "boundary": "Alpha.16 predecessor signature retention",
+  "predecessorVersion": "0.1.0-alpha.15",
+  "bundleDigest": "sha256:56d8761f1bcc23109cef0b20cdbd6adf3b9844cc7c2afb181bd48a16fa9802a7",
+  "results": {
+    "published-layout": {
+      "result": "failed",
+      "error": "signature bundle is not a regular file: <disposable-root>/56d8761f1bcc23109cef0b20cdbd6adf3b9844cc7c2afb181bd48a16fa9802a7/release-index.sigstore.json"
+    },
+    "source-fixed-layout": {
+      "result": "passed",
+      "signatureVerified": true
+    }
+  },
+  "scope": "local real signature verification only; no installation or release mutation",
+  "rehearsal": {
+    "environment": "Ubuntu 24.04 QEMU/KVM with WSL identity shims; simulation_only",
+    "command": "python3 infra/qualification/wsl2_rehearsal.py --local-public",
+    "result": "failed",
+    "installExitCode": 2,
+    "wrapperExitCode": 1,
+    "receipt": "/home/ff/.local/state/stateport/qualification/local-public/alpha16-21ynxhq2/receipt.json",
+    "receiptSha256": "18645af7db9454fc95c5cb66f94db08f41fba8e52fe3c14c71706297a97c0bac",
+    "cleanup": "passed",
+    "secondOverlay": "not_run: immutable public bootstrap remains defective"
+  }
+}
