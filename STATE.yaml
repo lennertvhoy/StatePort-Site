@@ -31,6 +31,7 @@ delivery_boundary:
       cause: "Fresh public Alpha.16 Ubuntu 24.04 QEMU simulation failed package preflight because the bootstrap omits the predecessor signature digest directory required by production verification."
   simplification_review: null
 blockers:
+  - "All seven Alpha.16 GHCR packages are private; anonymous image access fails HTTP 401 independently of signature preflight. Package-wide visibility is not safe to change based on the reviewed Alpha.16 digests because fourteen older versions lack matching public signed provenance."
   - "Immutable Alpha.16 fails fresh package preflight at predecessor signature lookup. Source repair exists in StatePort; an additive successor still requires its own qualification."
   - "Native Windows 11 WSL2 complete-product proof remains pending. Routine tests belong to agents on the workstation, not the owner laptop."
 risks:
@@ -52,4 +53,4 @@ risks:
     owner: human
     decision: mitigate
     expires: null
-next_action: "Publish truthful Alpha.16 failure guidance after local checks; preserve signed bytes. Qualify a reviewed additive StatePort successor locally and in feasible native infrastructure before enabling successor guidance. Native complete-product acceptance remains pending."
+next_action: "Publish the additional anonymous-registry failure guidance after local checks; preserve signed bytes and private package visibility. The prior signature-failure guidance is deployed and twelve public pages byte-match. Qualify a reviewed additive StatePort successor locally and in feasible native infrastructure before enabling successor guidance. Native complete-product acceptance remains pending."

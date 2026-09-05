@@ -79,7 +79,7 @@
         </aside>
 
         <article class="prose release-overview" data-no-toc>
-          <p class="notice"><strong>Alpha.16 remains published, but fresh installation is blocked by a known signature-check failure.</strong> Wait for a corrected release before a fresh install. Repeating the same installer does not repair this failure. Published files remain available for inspection.</p>
+          <p class="notice"><strong>Alpha.16 remains published, but fresh installation is blocked by a known signature-check failure.</strong> Anonymous image downloads also fail with HTTP 401 because the release image registry packages are private. Fixing the signature check alone will not complete installation. Wait for a corrected, qualified release; repeating this installer does not repair either failure. Published files remain available for inspection.</p>
           <div class="release-summary" id="current-status">
             <div>
               <p class="release-summary-label">Current software status</p>
@@ -102,7 +102,7 @@
                   <tr><th scope="row">Documentation</th><td>Available</td></tr>
                   <tr><th scope="row">Alpha.16 signed release files</th><td>Available</td></tr>
                   <tr><th scope="row">Alpha.16 one-line installer</th><td>Fresh installation blocked; correction pending</td></tr>
-                  <tr><th scope="row">Seven release images</th><td>Public at exact signed GHCR digests</td></tr>
+                  <tr><th scope="row">Seven release images</th><td>Exact signed GHCR digests; anonymous downloads blocked (HTTP 401)</td></tr>
                   <tr><th scope="row">Clean isolated Ubuntu 24.04 rehearsal</th><td>Fresh public install failed its package signature check; service and rerun steps did not pass</td></tr>
                   <tr><th scope="row">Native Windows/WSL owner acceptance</th><td>Not yet recorded</td></tr>
                   <tr><th scope="row">Alpha.14, Alpha.13, and earlier</th><td>Superseded, rejected, or retained for inspection only; never a current install path</td></tr>

@@ -23,7 +23,7 @@ installer printed the stale pre-reconciliation port `18638`. Alpha.16 derives
 the printed and persisted local URL from the live reconciled web unit.
 
 The Alpha.16 release candidate is assembled, signed, scanned, and its seven
-OCI images are published at exact digest-pinned GHCR references. The Site was
+OCI images were pushed at exact digest-pinned GHCR references. These packages are currently private; the historical push and digest checks do not establish anonymous image access. The Site was
 published from commit `a2225169a0450cd160b3aafa6fd0f2e16c9790ef` through the
 guarded Pages push. Anonymous verification then matched all 66 Alpha.16
 protected files and all 64 retained Alpha.15 versioned files, including their
@@ -88,7 +88,7 @@ Image manifest digests:
 - Release bundle assembly, seven reproducible image builds, fresh vulnerability
   evidence collection, image signing, index signing, and Alpha.16 site staging
   passed through the existing guarded heavy-run path.
-- GHCR publication passed with exact remote manifest verification for all seven
+- Authenticated GHCR publication passed with exact remote manifest verification for all seven
   image references. The durable receipt is outside Git at
   `/home/ff/.local/state/stateport/release/alpha16/ghcr-publication-r3.json`.
 - Guarded Pages publication passed from commit
@@ -124,7 +124,9 @@ Image manifest digests:
 
 ## Next action
 
-Publish the corrected failure guidance after its local checks. Qualify a reviewed
+Publish the additional registry-failure guidance after its local checks. Resolve
+anonymous access through reviewed release publication without exposing unreviewed
+historical package versions. Qualify a reviewed
 additive successor using agent-owned local disposable environments, then retain
 separate native evidence when feasible. Do not ask the owner to retry Alpha.16.
 
@@ -148,3 +150,34 @@ The corrected Site gate exits 1 (`OUTCOME NOT VALIDATED`) with no schema errors.
 The direct `python3 scripts/test_render_support.py` invocation cannot resolve its
 package imports; its existing module invocation above passes.
 These edits are local only; no new publication or native installation is claimed.
+
+
+## Additional anonymous registry blocker — 2026-09-05
+
+The lead observed anonymous image access returning HTTP 401. Read-only GitHub
+package inspection at 2026-09-05T07:59:34Z confirms all seven nested Alpha.16
+GHCR packages are private. This is an additional installation boundary after
+signature preflight, not evidence that the failed guest reached image startup.
+Only seven exact Alpha.16 digests match reviewed signed records. Fourteen older
+Alpha.5/6-tagged versions do not match the checked public signed indexes;
+package-wide visibility must remain unchanged. Tags are not provenance.
+
+Evidence: `/home/ff/.local/state/stateport/release/alpha17/registry-visibility-review.json`.
+The prior signature-failure correction was deployed from `f2b0c4f`; the lead
+verified twelve mutable pages anonymously against deployed bytes. The earlier
+local-only statement describes that correction before deployment. This additional
+registry notice is local pending lead review/publication. No installer, immutable
+release files, package visibility, or owner-authored instructions were changed.
+
+Current mutable install, release, and support notices disclose both blockers;
+release/evidence pages no longer describe the private images as publicly
+available. Native and complete-product qualification remain blocked.
+
+Checks for the registry correction: `python3 scripts/validate_repo.py` passed,
+including protected immutable bytes; `python3 scripts/check_site_quality.py`
+passed for 29 pages. `python3 -m unittest scripts.test_render_support
+scripts.test_site_runtime scripts.test_containment scripts.test_contrast`
+passed all 30 tests. `python3 scripts/projectstate_gate.py` exits 1 as expected
+(`OUTCOME NOT VALIDATED`: installation and native journey remain blocked).
+`git diff --check` passed. These are local Site checks, not deployment or
+installed-runtime qualification.
