@@ -21,8 +21,8 @@
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
     <title>Agent Kits roadmap — StatePort</title>
   </head>
   <body class="article-page">
@@ -40,6 +40,7 @@
         <a href="./" aria-current="page">Docs</a>
         <a href="../tutorials/">Tutorials</a>
         <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
+      <a href="../papers/">Papers</a>
       </nav>
     </header>
 
@@ -77,36 +78,37 @@
         <article class="prose">
           <p class="notice notice--quiet"><strong>Early direction.</strong> Agent Kits are not available yet. Check the <a href="../releases/">release status</a> for current software.</p>
 
-          <h2>A useful shape for a focused tool</h2>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#a-useful-shape-for-a-focused-tool">A useful shape for a focused tool</a></li><li data-level="3"><a href="#public-template">Public template</a></li><li data-level="3"><a href="#declared-runtime">Declared runtime</a></li><li data-level="3"><a href="#explicit-authority">Explicit authority</a></li><li data-level="3"><a href="#owned-instance">Owned instance</a></li><li data-level="2"><a href="#docker-first-later">Docker-first, later</a></li><li data-level="2"><a href="#before-it-ships">Before it ships</a></li></ol></details>
+          <h2 id="a-useful-shape-for-a-focused-tool">A useful shape for a focused tool</h2>
           <p>A study guide, project starter, or checklist helper should clearly say what it does, what access it needs, and where your work will live. An Agent Kit would package that reusable starting point.</p>
 
           <div class="kit-flow" aria-label="Proposed Agent Kit lifecycle">
             <section>
               <span>01</span>
-              <h3>Public template</h3>
+              <h3 id="public-template">Public template</h3>
               <p>The workflow starts from a public, versioned source.</p>
             </section>
             <section>
               <span>02</span>
-              <h3>Declared runtime</h3>
+              <h3 id="declared-runtime">Declared runtime</h3>
               <p>The kit lists the computer features and AI tools it needs.</p>
             </section>
             <section>
               <span>03</span>
-              <h3>Explicit authority</h3>
+              <h3 id="explicit-authority">Explicit authority</h3>
               <p>You decide which requested permissions to grant.</p>
             </section>
             <section>
               <span>04</span>
-              <h3>Owned instance</h3>
+              <h3 id="owned-instance">Owned instance</h3>
               <p>Your personal copy keeps its own data and history.</p>
             </section>
           </div>
 
-          <h2>Docker-first, later</h2>
+          <h2 id="docker-first-later">Docker-first, later</h2>
           <p>The first packaging option under consideration is Docker. Application data and credentials would stay outside the container so an update cannot replace them.</p>
 
-          <h2>Before it ships</h2>
+          <h2 id="before-it-ships">Before it ships</h2>
           <ul>
             <li>Publish a versioned source.</li>
             <li>Document permissions and security risks.</li>
@@ -137,6 +139,6 @@
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
-    <script src="../assets/site.js?v=2026-08-10-1"></script>
+    <script src="../assets/site.js?v=2026-09-05-2"></script>
   </body>
 </html>

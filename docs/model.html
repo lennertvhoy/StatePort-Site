@@ -21,8 +21,8 @@
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
     <title>How StatePort applications work</title>
   </head>
   <body class="article-page">
@@ -40,6 +40,7 @@
         <a href="./" aria-current="page">Docs</a>
         <a href="../tutorials/">Tutorials</a>
         <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
+      <a href="../papers/">Papers</a>
       </nav>
     </header>
 
@@ -79,24 +80,25 @@
         <article class="prose">
           <p class="notice notice--quiet"><strong>Design overview.</strong> Check the <a href="../releases/">release status</a> for current software availability.</p>
 
-          <h2>Application and personal copy</h2>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#application-and-personal-copy">Application and personal copy</a></li><li data-level="2"><a href="#saved-state">Saved state</a></li><li data-level="2"><a href="#permissions">Permissions</a></li><li data-level="2"><a href="#approvals-and-change-records">Approvals and change records</a></li><li data-level="2"><a href="#file-ownership">File ownership</a></li></ol></details>
+          <h2 id="application-and-personal-copy">Application and personal copy</h2>
           <p>An <strong>application</strong> is the reusable workflow and interface. Your <strong>instance</strong> is your personal copy. It contains your private state, settings, permissions, and history.</p>
           <p>The application can ask for access, but it cannot give itself permission or take ownership of your data.</p>
 
-          <h2>Saved state</h2>
+          <h2 id="saved-state">Saved state</h2>
           <p>Saved state is the application's current record of your goals, progress, and decisions. Screens and summaries can display that state, but they do not silently replace it.</p>
           <div class="code-panel" data-label="Where information belongs"><code>reusable workflow  → application
 your goals         → personal state
 generated summary → temporary view
 AI conversation    → working context</code></div>
 
-          <h2>Permissions</h2>
+          <h2 id="permissions">Permissions</h2>
           <p>An application can use only the access you grant and the computer can safely provide. If something is missing, StatePort should stop or offer a limited mode instead of pretending the feature works.</p>
 
-          <h2>Approvals and change records</h2>
+          <h2 id="approvals-and-change-records">Approvals and change records</h2>
           <p>You can allow routine work while requiring fresh approval for important actions. A change record shows what was requested, approved, changed, and checked.</p>
 
-          <h2>File ownership</h2>
+          <h2 id="file-ownership">File ownership</h2>
           <p>StatePort tracks which files belong to the application, which belong to you, and which can be rebuilt. That helps updates avoid overwriting personal work.</p>
 
           <div class="inline-actions">
@@ -121,6 +123,6 @@ AI conversation    → working context</code></div>
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
-    <script src="../assets/site.js?v=2026-08-10-1"></script>
+    <script src="../assets/site.js?v=2026-09-05-2"></script>
   </body>
 </html>

@@ -1,0 +1,535 @@
+{
+  "findings": [
+    {
+      "route": "/",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/getting-started.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/templates.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/foundations.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/model.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/lifecycle.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/governance.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/security-and-privacy.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/hosts-and-portability.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/platform-support.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/evidence-and-roadmap.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/reference.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/prototype-walkthrough.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/agent-kits.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/study-state.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/deployments.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/limitations.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/updates.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/tutorials/",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/tutorials/first-application.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/tutorials/reading-a-receipt.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/download/",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/download/technical-release-files.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/download/erratum-alpha3.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/releases/",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/papers/stateware-whitepaper-public-v1.1.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/papers/",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/tutorials/site-orientation.html",
+      "width": 360,
+      "js": true,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/getting-started.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/templates.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/foundations.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/model.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/lifecycle.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/governance.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/security-and-privacy.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/hosts-and-portability.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/platform-support.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/evidence-and-roadmap.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/reference.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/prototype-walkthrough.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/agent-kits.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/study-state.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/deployments.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/limitations.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/docs/updates.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/tutorials/",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/tutorials/first-application.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/tutorials/reading-a-receipt.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/download/",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/download/technical-release-files.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/download/erratum-alpha3.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/releases/",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/papers/stateware-whitepaper-public-v1.1.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/papers/",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    },
+    {
+      "route": "/tutorials/site-orientation.html",
+      "width": 1440,
+      "js": false,
+      "overflow": false,
+      "broken": [],
+      "h1": 1,
+      "errors": []
+    }
+  ],
+  "filter": true,
+  "gallery": true,
+  "mobileNavigation": true,
+  "media": {
+    "duration": 86,
+    "width": 1920,
+    "height": 1080,
+    "tracks": 1
+  }
+}

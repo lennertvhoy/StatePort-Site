@@ -22,8 +22,8 @@
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
     <title>Container deployments — StatePort</title>
     <script type="application/ld+json">
       {
@@ -52,6 +52,7 @@
         <a href="./" aria-current="page">Docs</a>
         <a href="../tutorials/">Tutorials</a>
         <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
+      <a href="../papers/">Papers</a>
       </nav>
     </header>
 
@@ -91,10 +92,11 @@
         <article class="prose">
           <p class="notice notice--quiet"><strong>Design preview.</strong> Local deployment is not available through the current installer. Check the <a href="../releases/">release status</a>.</p>
 
-          <h2>What StatePort keeps</h2>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-stateport-keeps">What StatePort keeps</a></li><li data-level="2"><a href="#how-a-deployment-happens">How a deployment happens</a></li><li data-level="2"><a href="#what-the-plan-refuses">What the plan refuses</a></li><li data-level="2"><a href="#what-is-not-supported-yet">What is not supported yet</a></li></ol></details>
+          <h2 id="what-stateport-keeps">What StatePort keeps</h2>
           <p>StatePort saves the deployment plan, your approval, the result, and later status checks. That is more useful than a command with no record of why it ran.</p>
 
-          <h2>How a deployment happens</h2>
+          <h2 id="how-a-deployment-happens">How a deployment happens</h2>
           <ol>
             <li><strong>Inspect.</strong> Read the project without changing it.</li>
             <li><strong>Plan.</strong> List the services, images, ports, storage, and generated configuration.</li>
@@ -105,10 +107,10 @@
           </ol>
           <p>Each step leaves a change record. Failed or interrupted work stays visible.</p>
 
-          <h2>What the plan refuses</h2>
+          <h2 id="what-the-plan-refuses">What the plan refuses</h2>
           <p>The design refuses root containers, privileged access, host bind mounts, changing image tags, missing health checks, plain-text secrets, and public network exposure.</p>
 
-          <h2>What is not supported yet</h2>
+          <h2 id="what-is-not-supported-yet">What is not supported yet</h2>
           <ul>
             <li>Upgrade and rollback between deployment versions.</li>
             <li>Remote hosts over SSH, image-registry distribution, and a dedicated deployment interface.</li>
@@ -138,6 +140,6 @@
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
-    <script src="../assets/site.js?v=2026-08-10-1"></script>
+    <script src="../assets/site.js?v=2026-09-05-2"></script>
   </body>
 </html>

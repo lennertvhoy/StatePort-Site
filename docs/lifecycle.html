@@ -21,8 +21,8 @@
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
     <title>Application lifecycle - StatePort</title>
   </head>
   <body class="article-page">
@@ -40,6 +40,7 @@
         <a href="./" aria-current="page">Docs</a>
         <a href="../tutorials/">Tutorials</a>
         <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
+      <a href="../papers/">Papers</a>
       </nav>
     </header>
 
@@ -79,19 +80,20 @@
         <article class="prose">
           <p class="notice notice--quiet"><strong>Design overview.</strong> Check the <a href="../releases/">release status</a> for current software availability.</p>
 
-          <h2>Set up a known release</h2>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#set-up-a-known-release">Set up a known release</a></li><li data-level="2"><a href="#use-the-application">Use the application</a></li><li data-level="2"><a href="#update-or-move">Update or move</a></li><li data-level="2"><a href="#back-up-and-recover">Back up and recover</a></li><li data-level="2"><a href="#current-availability">Current availability</a></li></ol></details>
+          <h2 id="set-up-a-known-release">Set up a known release</h2>
           <p>StatePort should install a specific release that can be checked, not whichever files happen to be newest.</p>
 
-          <h2>Use the application</h2>
+          <h2 id="use-the-application">Use the application</h2>
           <p>You start with the application's conversation, next action, and progress. Permissions, history, and technical details stay available without taking over the main screen.</p>
 
-          <h2>Update or move</h2>
+          <h2 id="update-or-move">Update or move</h2>
           <p>Before an update, StatePort should show what will change and protect your personal files. Moving to another computer should copy the application state and check it before you depend on the new copy.</p>
 
-          <h2>Back up and recover</h2>
+          <h2 id="back-up-and-recover">Back up and recover</h2>
           <p>A backup should include the application data you need and a way to check it. Recovery should be tested in a separate location before replacing your working copy.</p>
 
-          <h2>Current availability</h2>
+          <h2 id="current-availability">Current availability</h2>
           <p>These lifecycle features are the product direction. Alpha.16 is the current public-test candidate, but this page is not setup instructions. Check the <a href="../releases/">release status</a>.</p>
 
           <div class="inline-actions">
@@ -116,6 +118,6 @@
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
-    <script src="../assets/site.js?v=2026-08-10-1"></script>
+    <script src="../assets/site.js?v=2026-09-05-2"></script>
   </body>
 </html>

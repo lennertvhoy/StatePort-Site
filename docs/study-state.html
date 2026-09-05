@@ -22,8 +22,8 @@
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
     <title>StudyState — StatePort</title>
     <script type="application/ld+json">
       {
@@ -52,6 +52,7 @@
         <a href="./" aria-current="page">Docs</a>
         <a href="../tutorials/">Tutorials</a>
         <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
+      <a href="../papers/">Papers</a>
       </nav>
     </header>
 
@@ -92,26 +93,27 @@
           <p class="notice"><strong>Alpha.16 remains published, but fresh installation is blocked by a known signature-check failure.</strong> Anonymous image downloads also fail with HTTP 401 because the release image registry packages are private. Fixing the signature check alone will not complete installation. Wait for a corrected, qualified release; repeating this installer does not repair either failure. Published files remain available for inspection.</p>
           <p class="notice notice--quiet"><strong>Available in Alpha.16.</strong> Install StatePort, then create the reviewed StudyState sample from Catalog or import your own committed StudyState template.</p>
 
-          <h2>What StudyState is</h2>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-studystate-is">What StudyState is</a></li><li data-level="2"><a href="#the-focus-default-what-to-do-next-and-why">The Focus default: what to do next, and why</a></li><li data-level="2"><a href="#lifecycle-you-control">Lifecycle you control</a></li><li data-level="2"><a href="#reflection-becomes-a-change-you-review">Reflection becomes a change you review</a></li><li data-level="2"><a href="#undo-and-change-history">Undo and change history</a></li><li data-level="2"><a href="#state-that-survives-restarts">State that survives restarts</a></li><li data-level="2"><a href="#what-studystate-deliberately-does-not-do">What StudyState deliberately does not do</a></li><li data-level="2"><a href="#use-studystate">Use StudyState</a></li></ol></details>
+          <h2 id="what-studystate-is">What StudyState is</h2>
           <p>StudyState is a study coach built around your goals, activities, progress, and reflections. The conversation belongs to the application, and the useful facts live in files you can open.</p>
           <p>Most of the time, you see the coach and your next task. History and change records are available when you need them.</p>
 
-          <h2>The Focus default: what to do next, and why</h2>
+          <h2 id="the-focus-default-what-to-do-next-and-why">The Focus default: what to do next, and why</h2>
           <p>The default view answers one question: what should I do next, and why? StudyState plans the next learning activity from your durable learning state, so the suggestion is grounded in your goals and history rather than in whatever happened to be said last in a chat.</p>
 
-          <h2>Lifecycle you control</h2>
+          <h2 id="lifecycle-you-control">Lifecycle you control</h2>
           <p>The design lets you start, pause, resume, or change an activity. The coach suggests the next step. You stay in control of the plan.</p>
 
-          <h2>Reflection becomes a change you review</h2>
+          <h2 id="reflection-becomes-a-change-you-review">Reflection becomes a change you review</h2>
           <p>When you reflect on what you learned, StudyState can turn that reflection into a proposed update. You review it before it changes your saved progress.</p>
 
-          <h2>Undo and change history</h2>
+          <h2 id="undo-and-change-history">Undo and change history</h2>
           <p>The preview shows the planned ability to undo an applied change and review its history. This work is still part of the product roadmap.</p>
 
-          <h2>State that survives restarts</h2>
+          <h2 id="state-that-survives-restarts">State that survives restarts</h2>
           <p>Your goals, activities, and progress are designed to live in durable files on your machine, so a new session does not start from nothing.</p>
 
-          <h2>What StudyState deliberately does not do</h2>
+          <h2 id="what-studystate-deliberately-does-not-do">What StudyState deliberately does not do</h2>
           <ul>
             <li>The current preview uses sample activity. It is not a live tutoring service.</li>
             <li>It does not change your learning state silently. Mutations are proposed, reviewed, and explicitly applied.</li>
@@ -119,7 +121,7 @@
             <li>StudyState is an early-alpha application, not a finished or independently evaluated tutoring service.</li>
           </ul>
 
-          <h2>Use StudyState</h2>
+          <h2 id="use-studystate">Use StudyState</h2>
           <ol>
             <li><a href="getting-started.html">Install and open StatePort</a>.</li>
             <li>Open <strong>Catalog</strong> and install the reviewed StudyState sample, or put your StudyState Git repository below <code>/var/lib/stateport/imports</code>.</li>
@@ -150,6 +152,6 @@
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
-    <script src="../assets/site.js?v=2026-08-10-1"></script>
+    <script src="../assets/site.js?v=2026-09-05-2"></script>
   </body>
 </html>

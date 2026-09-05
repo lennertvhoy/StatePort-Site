@@ -21,8 +21,8 @@
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
     <title>Why StatePort exists</title>
   </head>
   <body class="article-page">
@@ -40,6 +40,7 @@
         <a href="./" aria-current="page">Docs</a>
         <a href="../tutorials/">Tutorials</a>
         <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
+      <a href="../papers/">Papers</a>
       </nav>
     </header>
 
@@ -79,11 +80,12 @@
         <article class="prose">
           <p class="notice notice--quiet"><strong>Design overview.</strong> Check the <a href="../releases/">release status</a> for current software availability.</p>
 
-          <h2>The problem with chat alone</h2>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#the-problem-with-chat-alone">The problem with chat alone</a></li><li data-level="2"><a href="#what-stateware-means">What Stateware means</a></li><li data-level="2"><a href="#where-the-ai-tool-fits">Where the AI tool fits</a></li><li data-level="2"><a href="#what-this-gives-you">What this gives you</a></li><li data-level="2"><a href="#the-goal">The goal</a></li></ol></details>
+          <h2 id="the-problem-with-chat-alone">The problem with chat alone</h2>
           <p>A chat is good for asking questions. It is a poor place to keep an application's memory, permissions, decisions, and history. Long threads get shortened. Sessions disappear. A transcript may contain several conflicting versions of the same fact.</p>
           <p>StatePort moves the important information into readable files on your machine. The chat can still help, but it is no longer the only copy of your work.</p>
 
-          <h2>What Stateware means</h2>
+          <h2 id="what-stateware-means">What Stateware means</h2>
           <p><strong>Stateware</strong> is software built around durable, inspectable state. Its useful memory belongs to the application, not to one AI model or provider.</p>
           <div class="code-panel" data-label="The working idea"><code>application
 = reusable workflow
@@ -91,14 +93,14 @@
 + clear permissions
 + change history</code></div>
 
-          <h2>Where the AI tool fits</h2>
+          <h2 id="where-the-ai-tool-fits">Where the AI tool fits</h2>
           <p>An AI tool can plan work, explain a choice, and prepare a change. StatePort decides what the tool may access, asks you before important actions, and saves the result in the application.</p>
           <figure class="diagram-figure reveal">
             <img src="../assets/diagrams/stateport-diagram-harness.png" alt="Diagram: profiled coding-agent providers feed an AgentRunSpec into the StatePort harness, which plans, approves, runs headlessly, and validates, writing results into a durable StateSpec instance.">
             <figcaption>The AI tool does the work. StatePort keeps the application and its history.</figcaption>
           </figure>
 
-          <h2>What this gives you</h2>
+          <h2 id="what-this-gives-you">What this gives you</h2>
           <ul>
             <li>Open the current goals and progress without replaying a chat.</li>
             <li>Change AI tools without throwing away the application.</li>
@@ -106,7 +108,7 @@
             <li>See a clear message when a tool cannot do something safely.</li>
           </ul>
 
-          <h2>The goal</h2>
+          <h2 id="the-goal">The goal</h2>
           <p>StatePort should help you resume work faster, understand changes, and keep useful context when a tool or session changes.</p>
 
           <div class="inline-actions">
@@ -131,6 +133,6 @@
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
-    <script src="../assets/site.js?v=2026-08-10-1"></script>
+    <script src="../assets/site.js?v=2026-09-05-2"></script>
   </body>
 </html>

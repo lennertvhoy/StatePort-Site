@@ -21,8 +21,8 @@
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
     <title>Platform support - StatePort</title>
   </head>
   <body class="article-page">
@@ -40,6 +40,7 @@
         <a href="./" aria-current="page">Docs</a>
         <a href="../tutorials/">Tutorials</a>
         <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
+      <a href="../papers/">Papers</a>
       </nav>
     </header>
 
@@ -80,7 +81,8 @@
           <p class="notice"><strong>Alpha.16 remains published, but fresh installation is blocked by a known signature-check failure.</strong> Anonymous image downloads also fail with HTTP 401 because the release image registry packages are private. Fixing the signature check alone will not complete installation. Wait for a corrected, qualified release; repeating this installer does not repair either failure. Published files remain available for inspection.</p>
           <p class="notice notice--quiet"><strong>Alpha.16 is the current public-test candidate.</strong> Its package declares an exact Podman stack and crun runtime plus the control plane and isolated execution host. Fresh installation is currently blocked before completing that setup.</p>
 
-          <h2>Alpha.16 requirements</h2>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#alpha16-requirements">Alpha.16 requirements</a></li><li data-level="2"><a href="#quick-preflight">Quick preflight</a></li><li data-level="2"><a href="#why-support-is-narrow">Why support is narrow</a></li><li data-level="2"><a href="#check-before-you-start">Check before you start</a></li></ol></details>
+          <h2 id="alpha16-requirements">Alpha.16 requirements</h2>
           <ul>
             <li>Windows 11 on an x86-64 computer.</li>
             <li>WSL2 with Ubuntu 24.04.</li>
@@ -89,7 +91,7 @@
             <li>Internet access and several gigabytes of free WSL disk space.</li>
           </ul>
 
-          <h2>Quick preflight</h2>
+          <h2 id="quick-preflight">Quick preflight</h2>
           <p>Run these inside Ubuntu. They must report <code>x86_64</code>, Ubuntu <code>24.04</code>, and <code>systemd</code>:</p>
           <pre><code>uname -m
 grep '^VERSION_ID=' /etc/os-release
@@ -131,10 +133,10 @@ ps -p 1 -o comm=</code></pre>
             </table>
           </div>
 
-          <h2>Why support is narrow</h2>
+          <h2 id="why-support-is-narrow">Why support is narrow</h2>
           <p>StatePort uses local storage, Linux services, containers, and an AI command-line tool. A setup is only useful when all of those parts work together and your data survives a restart. We will add platforms only after testing the full journey.</p>
 
-          <h2>Check before you start</h2>
+          <h2 id="check-before-you-start">Check before you start</h2>
           <p>Use the <a href="../releases/">release status</a> for current availability. Do not edit the bootstrap, mix older release files into Alpha.16, or relabel another platform as this release target.</p>
 
           <div class="inline-actions">
@@ -159,6 +161,6 @@ ps -p 1 -o comm=</code></pre>
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
-    <script src="../assets/site.js?v=2026-08-10-1"></script>
+    <script src="../assets/site.js?v=2026-09-05-2"></script>
   </body>
 </html>

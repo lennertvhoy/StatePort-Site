@@ -6,7 +6,41 @@ initialized_on: 2026-09-04
 last_updated: 2026-09-04
 ---
 
+<!-- projectstate-persistent-threads-2026-09-05:start -->
+## Required first action — refresh ProjectState before ordinary work
+
+User-authorized queue, 2026-09-05: before the next ordinary task, update this
+project’s template coordination from the local reference at
+`/home/ff/Projects/.projectstate-handoffs/persistent-threads-2026-09-05`.
+Read its `docs/UPGRADING.md`; review `core/AGENTS.md` and the applicable gate.
+This source supersedes the older template revision in any migration notice below.
+Preserve project-specific rules, product truth, acceptance criteria, evidence,
+and all uncommitted work. Merge semantically; do not replace real state with
+scaffold placeholders or run the v5 automatic upgrader. Install the optional
+persistent-thread rules without activating threads or changing model choices.
+
+Keep the pending product task. After refreshing, run the real primary journey
+and outcome gate, record results, then resume that task. If blocked, retain this
+notice and the exact blocker/next action; do not claim migration completed.
+Remove this notice and superseded migration notices only after validation.
+Urgent safety or data-loss work may preempt setup; migration remains queued.
+<!-- projectstate-persistent-threads-2026-09-05:end -->
+
+
 # StatePort Site outcome-first contract
+
+## Required first action — ProjectState v6 core refresh queued
+
+Human directive, 2026-09-05: before the next ordinary site or release slice,
+refresh this repository's existing ProjectState v6 core from the local
+`../ProjectState_Template` checkout at commit
+`7e4cb7c3397324d09f768eeb1d722316714c46e1` (or a descendant that includes it).
+Review the corrected gate, generated instructions, and upgrade guidance while
+preserving the site's product truth, release evidence, publication boundaries,
+and uncommitted work. Rerun the named primary journey after the refresh and
+record its result before continuing. Remove this notice only after the
+refreshed core and primary journey validate. Urgent release, safety, or
+data-loss work may preempt the refresh, but it remains queued.
 
 ProjectState helps deliver the public StatePort experience. It is not the
 product and may not become a second release system.
@@ -106,3 +140,37 @@ live ProjectState inputs are `PROJECT.md`, `STATE.yaml`, `AGENTS.md`,
 - `accepted` requires the human's product verdict.
 - Passing tests, hashes, repository checks, or deployment status never override
   a failed, blocked, or unrun primary journey.
+
+## Optional persistent threads
+
+Use named threads only when the human selects this workflow and the current
+slice has separable work. A single agent remains the default; no thread roster,
+model matrix, scheduler, or extra state file is required.
+
+- One coordinator owns integration and writes canonical state and evidence.
+  Workers return changes and proof; they do not edit shared coordination truth.
+- Assign one bounded task with slice ID, objective, allowed paths, repository,
+  branch/base revision, dependencies, required proof, and stop conditions.
+  A thread name or past conversation is not an assignment or fresh authority.
+- Concurrent writers use separate private branches and worktrees (or clones
+  where required). Serialize overlapping work and shared runtime resources.
+- Refresh from AGENTS.md, PROJECT.md, STATE.yaml, and relevant evidence on each
+  assignment. Keep a concise active assignment in the slice summary only when
+  needed for recovery; replace stale assignments rather than adding a ledger.
+- Choose models by task difficulty, risk, available tools, and observed results.
+  Reserve stronger reasoning for ambiguity and review; escalate failed narrow
+  work instead of assuming a cheaper model plus review is always economical.
+- Review actual changes and rerun the primary journey on the integrated result.
+  Worker tests or reviewer confidence cannot establish product validation.
+- Before replacing a thread, preserve changes, proof, unresolved failures, and
+  exact next action outside chat. Persistent conversations can become stale.
+- Route messages manually unless the host's cross-thread capability and human
+  authorization are established. Do not silently substitute subagents or launch
+  background work. Two failures still trigger the simplification rule.
+
+
+## Recorded journey semantics
+
+Journey status is only `not_run`, `passed`, `failed`, or `blocked`. The gate
+checks recorded consistency; it does not run the journey or authenticate human
+approval. A blocked target environment remains blocked despite site checks.

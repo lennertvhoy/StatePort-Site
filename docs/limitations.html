@@ -22,8 +22,8 @@
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
     <title>Current limitations — StatePort</title>
     <script type="application/ld+json">
       {
@@ -52,6 +52,7 @@
         <a href="./" aria-current="page">Docs</a>
         <a href="../tutorials/">Tutorials</a>
         <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
+      <a href="../papers/">Papers</a>
       </nav>
     </header>
 
@@ -92,30 +93,31 @@
           <p class="notice"><strong>Alpha.16 remains published, but fresh installation is blocked by a known signature-check failure.</strong> Anonymous image downloads also fail with HTTP 401 because the release image registry packages are private. Fixing the signature check alone will not complete installation. Wait for a corrected, qualified release; repeating this installer does not repair either failure. Published files remain available for inspection.</p>
           <p class="notice notice--quiet"><strong>Alpha.16 remains published, but fresh installation is blocked by a known signature-check failure.</strong> A fresh public installation failed before the services could be installed. It remains early alpha: qualification evidence is not the same as a third-party security review or production readiness.</p>
 
-          <h2>Early alpha</h2>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#early-alpha">Early alpha</a></li><li data-level="2"><a href="#computers">Computers</a></li><li data-level="2"><a href="#local-use">Local use</a></li><li data-level="2"><a href="#security">Security</a></li><li data-level="2"><a href="#applications-and-features">Applications and features</a></li><li data-level="2"><a href="#release-evidence">Release evidence</a></li><li data-level="2"><a href="#release-files">Release files</a></li></ol></details>
+          <h2 id="early-alpha">Early alpha</h2>
           <p>StatePort is in early alpha. Do not use it for important data.</p>
 
-          <h2>Computers</h2>
+          <h2 id="computers">Computers</h2>
           <ul>
             <li>Alpha.16 targets Windows 11 with WSL2 and Ubuntu 24.04 on x86-64.</li>
             <li>WSL1, ARM64, macOS, Docker Desktop, native Linux, and other Linux distributions are not part of this Alpha.16 release.</li>
           </ul>
 
-          <h2>Local use</h2>
+          <h2 id="local-use">Local use</h2>
           <ul>
             <li>StatePort is designed for one person on one local computer.</li>
             <li>There is no hosted service, team account system, or supported public-network setup.</li>
             <li>The interface and documentation are available in English only.</li>
           </ul>
 
-          <h2>Security</h2>
+          <h2 id="security">Security</h2>
           <ul>
             <li>StatePort has not had an independent security review or penetration test.</li>
             <li>Do not expose its local services to the public internet.</li>
             <li>StatePort does not claim legal or regulatory certification.</li>
           </ul>
 
-          <h2>Applications and features</h2>
+          <h2 id="applications-and-features">Applications and features</h2>
           <ul>
             <li>StudyState works as an early-alpha application; it is not a finished or independently evaluated tutoring service.</li>
             <li>ProjectState, StudyState, and portable StateSpec imports must be Git repositories under the installer-created allowlisted import folder.</li>
@@ -124,10 +126,10 @@
             <li>Cloud deployment and managed hosting are not available.</li>
           </ul>
 
-          <h2>Release evidence</h2>
+          <h2 id="release-evidence">Release evidence</h2>
           <p>Signed artifacts, reproducible image builds, vulnerability scans, an isolated clean-guest installation, an identical rerun, and lifecycle tests each establish a specific fact. None of them alone proves readiness for important data or routine production use. The <a href="../releases/">release status</a> keeps those categories separate.</p>
 
-          <h2>Release files</h2>
+          <h2 id="release-files">Release files</h2>
           <p>Developers can inspect the signed index, source archive, signatures, and licenses on the <a href="../download/technical-release-files.html">technical release files</a> page.</p>
 
           <div class="inline-actions">
@@ -152,6 +154,6 @@
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
-    <script src="../assets/site.js?v=2026-08-10-1"></script>
+    <script src="../assets/site.js?v=2026-09-05-2"></script>
   </body>
 </html>

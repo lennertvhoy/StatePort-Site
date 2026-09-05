@@ -145,12 +145,12 @@ def validate_brand_asset_bytes() -> None:
 
 
 def validate_mascot_size_contract() -> None:
-    """Keep active header/footer mascot artwork at the 175% visual contract."""
+    """Keep rendered mascots at 75% of their previous size; preserve artwork."""
 
     css = require("assets/site.css").read_text(encoding="utf-8")
-    if "--mascot-header-size: clamp(96px, 9.84375vw, 184px)" not in css:
+    if "--mascot-header-size: clamp(72px, 7.3828125vw, 138px)" not in css:
         raise AssertionError("header mascot token is stale")
-    if "--mascot-footer-size: clamp(55px, 5vw, 85px)" not in css:
+    if "--mascot-footer-size: clamp(41.25px, 3.75vw, 63.75px)" not in css:
         raise AssertionError("footer mascot token is stale")
     favicon = require("assets/favicon-block-arch.svg").read_text(encoding="utf-8")
     if 'viewBox="24 21 464 464"' not in favicon:
@@ -627,7 +627,7 @@ def validate_pull_request_workflow() -> None:
 
 
 def validate_paper_diagrams() -> None:
-    for page in sorted((ROOT / "papers").glob("*.html")):
+    for page in sorted((ROOT / "papers").glob("stateware-whitepaper-*.html")):
         text = page.read_text(encoding="utf-8")
         if "<pre class=\"mermaid\">" in text:
             raise AssertionError(

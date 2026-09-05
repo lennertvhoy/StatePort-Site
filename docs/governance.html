@@ -21,8 +21,8 @@
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
     <title>Review and control - StatePort</title>
   </head>
   <body class="article-page">
@@ -40,6 +40,7 @@
         <a href="./" aria-current="page">Docs</a>
         <a href="../tutorials/">Tutorials</a>
         <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
+      <a href="../papers/">Papers</a>
       </nav>
     </header>
 
@@ -79,20 +80,21 @@
         <article class="prose">
           <p class="notice notice--quiet"><strong>Design overview.</strong> Check the <a href="../releases/">release status</a> for current software availability.</p>
 
-          <h2>One change, four clear steps</h2>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#one-change-four-clear-steps">One change, four clear steps</a></li><li data-level="2"><a href="#permissions-should-be-specific">Permissions should be specific</a></li><li data-level="2"><a href="#stay-in-control-without-watching-every-step">Stay in control without watching every step</a></li><li data-level="2"><a href="#change-records-answer-simple-questions">Change records answer simple questions</a></li><li data-level="2"><a href="#blocked-work-should-be-clear">Blocked work should be clear</a></li></ol></details>
+          <h2 id="one-change-four-clear-steps">One change, four clear steps</h2>
           <div class="code-panel" data-label="A reviewed change"><code>request
 → review and approval
 → change
 → check and record</code></div>
           <p>The order matters. An application can suggest work without gaining permission to do it. A change can also fail its checks. StatePort keeps both outcomes visible.</p>
 
-          <h2>Permissions should be specific</h2>
+          <h2 id="permissions-should-be-specific">Permissions should be specific</h2>
           <p>You can allow routine, reversible work without approving every small step. Deleting data, spending money, publishing content, or contacting another service should stop for a fresh decision. An application cannot give itself more access.</p>
 
-          <h2>Stay in control without watching every step</h2>
+          <h2 id="stay-in-control-without-watching-every-step">Stay in control without watching every step</h2>
           <p>Routine work can continue while you supervise it. You should be able to pause, redirect, or stop the application. StatePort asks for approval when the consequences justify it.</p>
 
-          <h2>Change records answer simple questions</h2>
+          <h2 id="change-records-answer-simple-questions">Change records answer simple questions</h2>
           <ul>
             <li>What was requested?</li>
             <li>Who approved it?</li>
@@ -102,13 +104,14 @@
           </ul>
           <p>A clear record does not make a bad decision good. It makes the decision easier to inspect and correct.</p>
 
-          <h2>Blocked work should be clear</h2>
+          <h2 id="blocked-work-should-be-clear">Blocked work should be clear</h2>
           <p>If StatePort cannot continue safely, it should stop and tell you why. Read-only or unavailable modes should always include a useful next step.</p>
 
           <div class="inline-actions">
             <a class="button button--ink" href="../tutorials/reading-a-receipt.html">Read a receipt walkthrough</a>
             <a class="button button--outlined" href="security-and-privacy.html">Review safety limits</a>
           </div>
+        <figure class="diagram-figure"><img src="../assets/diagrams/stateport-change-path.svg" alt="A requested change is scoped, checked against permission, reviewed when required, then applied and recorded. A refusal stops the operation." width="576" height="991" loading="lazy" decoding="async"><figcaption>The conceptual change path. Approval is required by the operation's policy; a receipt alone does not prove correctness.</figcaption></figure>
         </article>
       </div>
     </main>
@@ -127,6 +130,6 @@
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
-    <script src="../assets/site.js?v=2026-08-10-1"></script>
+    <script src="../assets/site.js?v=2026-09-05-2"></script>
   </body>
 </html>

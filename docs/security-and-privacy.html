@@ -21,8 +21,8 @@
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
     <title>Security and privacy — StatePort</title>
   </head>
   <body class="article-page">
@@ -40,6 +40,7 @@
         <a href="./" aria-current="page">Docs</a>
         <a href="../tutorials/">Tutorials</a>
         <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
+      <a href="../papers/">Papers</a>
       </nav>
     </header>
 
@@ -79,10 +80,11 @@
         <article class="prose">
           <p class="notice notice--quiet"><strong>Early alpha.</strong> StatePort has not had an independent security review. Do not use it for important data.</p>
 
-          <h2>Main risks</h2>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#main-risks">Main risks</a></li><li data-level="2"><a href="#how-the-design-reduces-risk">How the design reduces risk</a></li><li data-level="2"><a href="#privacy">Privacy</a></li><li data-level="2"><a href="#current-limits">Current limits</a></li><li data-level="2"><a href="#reporting-a-security-issue">Reporting a security issue</a></li></ol></details>
+          <h2 id="main-risks">Main risks</h2>
           <p>AI-assisted applications can read malicious content, follow unsafe instructions, use old permissions, expose secrets, or change the wrong files. A compromised computer can also bypass application-level controls.</p>
 
-          <h2>How the design reduces risk</h2>
+          <h2 id="how-the-design-reduces-risk">How the design reduces risk</h2>
           <ul>
             <li>Check where software and application files came from.</li>
             <li>Define which files an application may change.</li>
@@ -92,13 +94,13 @@
             <li>Record changes and their checks for later review.</li>
           </ul>
 
-          <h2>Privacy</h2>
+          <h2 id="privacy">Privacy</h2>
           <p>Application data stays on your machine by default. StatePort should send an AI model only the context needed for the current task. Private notes, conversations, identifiers, file paths, and credentials should not become analytics data.</p>
 
-          <h2>Current limits</h2>
+          <h2 id="current-limits">Current limits</h2>
           <p>StatePort has no security certification or penetration test. It does not claim GDPR, NIS2, or other legal compliance. Review the real setup, data, providers, and retention rules before using it.</p>
 
-          <h2>Reporting a security issue</h2>
+          <h2 id="reporting-a-security-issue">Reporting a security issue</h2>
           <p>There is no dedicated vulnerability-reporting address yet. For now, you can <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">open a public issue</a> for non-sensitive reports. Do not post secrets or private security details.</p>
 
           <div class="inline-actions">
@@ -123,6 +125,6 @@
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
-    <script src="../assets/site.js?v=2026-08-10-1"></script>
+    <script src="../assets/site.js?v=2026-09-05-2"></script>
   </body>
 </html>

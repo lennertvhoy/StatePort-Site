@@ -181,3 +181,203 @@ passed all 30 tests. `python3 scripts/projectstate_gate.py` exits 1 as expected
 (`OUTCOME NOT VALIDATED`: installation and native journey remain blocked).
 `git diff --check` passed. These are local Site checks, not deployment or
 installed-runtime qualification.
+
+## Public experience review — 2026-09-05
+
+Reviewed the persistent-threads handoff upgrade guidance, core instructions, and
+gate. The installed gate already byte-matches that reference. Added optional
+thread rules without starting threads or changing models. Existing staged
+AGENTS edits and untracked alpha14 evidence are preserved. The named fresh
+Windows 11 WSL2 journey cannot run in this Linux session and remains blocked;
+no product checkout or installer was executed. Refresh notices remain pending
+that validation. The user authorized improving Site and Papers and explicitly
+restricted StatePort to read-only access. Documentation work continues within
+the current slice without altering release artifacts or qualification claims.
+
+## Integrated experience refresh — local result, 2026-09-05
+
+The site, papers reading room, documentation navigation, static contents, and
+71-second narrated field guide are implemented locally. The mascot bytes and
+size contract remain unchanged. The Site's existing staged/unstaged AGENTS
+changes and untracked alpha14 evidence were preserved. No StatePort product
+checkout file was edited and no product runtime or installer was executed.
+
+Defects corrected: mobile status link collapsed into a narrow column; stale
+StateSpec breadcrumb on the install guide; oversized guide headers; install
+copy that risked replacing existing WSL configuration; retries recommended
+despite known Alpha.16 blockers; no-JavaScript filter presented as usable;
+long documentation contents dependent on JavaScript. The reading-room hub
+distinguishes the public 1.1 paper from its 1.2 candidate.
+
+Local environment: Linux workstation, Python 3.14, Chromium 151.0.7922.173 (Arch Linux),
+Playwright from the managed Codex runtime; http.server at 127.0.0.1:4173.
+Browser version was obtained from `chromium --version`.
+
+Checks:
+
+- `python3 scripts/validate_repo.py`: passed, including immutable release and
+  mascot-byte/size protection. It reports the existing product outcome blockers.
+- `python3 scripts/check_site_quality.py`: passed for 31 HTML pages, including
+  local references, metadata, media, caption duration, privacy and asset budgets.
+- `python3 -m unittest scripts.test_render_support scripts.test_site_runtime
+  scripts.test_containment scripts.test_contrast`: all 30 passed.
+- Headless focused journey: 48 views across eight routes, 360/768/1440px, with
+  and without JavaScript; no overflow, broken loaded images, missing H1 or
+  script errors. Filter, gallery dismissal, mobile navigation, and actual video
+  playback passed. `experience-browser.json` contains the results.
+- Final sitemap journey: all 29 sitemap routes, phone with JavaScript and
+  desktop without it (58 views), passed the same structural browser checks.
+  `experience-all-pages.json` contains the results. The separate quality check
+  includes non-sitemap historical/error pages as well.
+- Rendered page screenshots were inspected; mobile status layout and reading
+  headers were corrected after visual review. Source checks alone did not catch
+  the status-column defect. Lazy images were decoded before image validation.
+- HyperFrames 0.8.29: zero lint/runtime/layout/motion warnings after corrections;
+  50/50 text contrast checks passed. Final video: H.264, 1920x1080, 24fps, 71s,
+  AAC audio, 16 WebVTT cues. Captions match the narration text and served duration.
+  Rendered frames, cursor placement and chapter cuts inspected; FFmpeg found no
+  black interval of 0.25s or longer. Audio-level evidence is in the local review
+  directory. This is documentation footage, not installed-product evidence.
+- `git diff --check`: passed.
+
+Media source, voice stems, original ambient audio and render logs are preserved
+outside the Pages tree at `/home/ff/Projects/.local/stateport-site-media-sep05/`.
+The media manifest records final public asset hashes. Site screenshots and
+render inspection files are in ignored `output/experience-review/`. The media
+render used a separate transient 3G/150% CPU scope; the product release governor
+requires product-release inputs and was not invoked for this media-only job.
+
+No commit, push, deployment, native WSL2 installation, or human acceptance is
+claimed for this refresh. Existing publication receipts earlier in this summary
+remain historical. The site primary journey and refresh notices remain blocked
+until the named complete-product Windows journey is actually validated.
+
+
+## Owner steering — handoff only, 2026-09-05
+
+The owner requested implementation in a fresh session. The latest local
+ProjectState template must be integrated into the papers, the mascot must
+be 25% smaller, and the video must show StatePort itself. The owner rejected
+the documentation-footage direction. Earlier technical checks remain
+historical evidence, not acceptance of that video or validation of these
+pending revisions. No product/UI/media changes were made for this handoff.
+
+Canonical next-session handoff: `HANDOFF_2026-09-05-PRODUCT-VIDEO-AND-PAPERS.md`.
+StatePort remains read-only; preserve all existing work.
+
+
+## Product capture prerequisite — 2026-09-05 resumed session
+
+Reviewed the queued reference's upgrade guidance, core instructions and gate;
+the installed gate byte-matches the reference and optional threads remain inert.
+The native Windows primary journey is still unavailable; retain refresh notices.
+Downloaded the public installer anonymously to `output/product-refresh/public-install.sh`.
+Its SHA-256 still matches the immutable Alpha.16 bootstrap
+`6feedf5273547f4a98f5d8edb6fe24e729104ad822c4d58da70cb1f0fdad417a`.
+Running `bash output/product-refresh/public-install.sh` on this native Linux
+workstation exits 1 before changes: `WSL2 is required; WSL1 and native Linux
+are not this release target.` This is a local install refusal, not a native
+Windows journey attempt or an installed product. The outcome gate exits 1.
+Fresh screenshots and product video depend on a usable separately installed
+public release; the development checkout/runtime remains untouched.
+
+
+## Independent local build and visual corrections — in progress
+
+The owner authorized a local-file installation after the public path refused.
+Created an independent snapshot of committed StatePort source
+`28f72db7ef8f30e6a3a24641c4d61f8b58d5a297` at
+`/home/ff/.local/share/stateport-local/releases/28f72db7ef8f30e6a3a24641c4d61f8b58d5a297`.
+It has its own Git metadata and no development-checkout symlinks/remotes.
+Prepared a uv-managed Python environment build, separate XDG data paths and
+three local service units on ports 18780/18790/18791. No usable installation
+is claimed until build/start and the real product journey pass.
+The governor refused admission with exit 75 because another release compilation
+holds the shared lock; that process was not disturbed.
+
+Gallery image CSS now preserves intrinsic proportions without a stretched
+letterbox border. Corrected the old conversation caption to match the actual
+development fixture. Header/footer mascot rendered dimensions are 75% of
+previous values, with artwork byte checks retained. Template docs explain the
+current v6 workflow independently of product validation. Site validators pass,
+58 sitemap browser views report no structural defects, and all 30 unit tests
+pass. New product captures and video remain pending local startup.
+
+
+## Fresh installed-product media and local result — 2026-09-05
+
+The public bootstrap refused native Linux before mutation. With the owner's
+explicit fallback authorization, installed an independent local source snapshot
+under `/home/ff/.local/share/stateport-local`, using uv-managed CPython 3.13.15
+and the source's hashed runtime dependency lock. Frontend dependencies were
+installed from its lock and the production frontend built in that snapshot.
+The guarded build passed after the existing release compilation released the
+mission lock. The snapshot's Git metadata is independent; no dev checkout
+symlinks/remotes are used. Original commit: `28f72db7ef8f30e6a3a24641c4d61f8b58d5a297`.
+
+Local URL: `http://127.0.0.1:18780`; controls: `stateport-local`
+`start|stop|restart|status|logs`; app launcher: **StatePort (Local)**. Three
+separate systemd user services use isolated XDG data and loopback ports
+18780/18790/18791. The target is enabled for user login. This does not claim a
+machine reboot test. No provider credentials were copied and no model choice
+was changed. External execution-host setup, worker execution and provider
+configuration remain separate limitations, visible in readiness.
+
+Real local journey passed: installed StudyState Sample through Catalog;
+prepared and approved the exact Start change; drafted, reviewed and applied a
+reflection; inspected the applied receipt; restarted the service and verified
+50% progress plus the exact reflection persisted. Self-reported evidence is
+explicitly unassessed. `local-installation.json` records the changed PIDs and
+checks. An exploratory duplicate proposal was rejected through the normal UI.
+The capture script initially waited for a control hidden by the success panel;
+reloading showed the successful persisted change. No UI result was fabricated.
+
+Replaced all four homepage preview captures with fresh images from this
+installation, including the phone view. Corrected their alt text, captions and
+intrinsic dimensions; the gallery keeps the image's aspect ratio and the phone
+thumbnail uses contain. Historical originals are retained in the external media
+source. The immutable historical 33-second overview is unchanged.
+
+Replaced the rejected documentation guide with an 86-second H.264/AAC product
+guide, narrated with Edge Andrew, with 20 matching caption cues, a fresh poster,
+chapter timings and verbatim transcript. Real captured controls determine the
+animated pointer positions; the actions themselves were performed during capture.
+HyperFrames checks: zero lint/runtime/layout/motion errors or warnings, 50/50
+contrast checks passed. Inspected rendered review, reflection and restart frames.
+FFmpeg found no black interval at least 0.25s; audio mean -21.9dB, peak -2.9dB.
+
+Source: `/home/ff/Projects/.local/stateport-product-guide-sep05/`. Media rendering
+used the handoff's separate 3G/150% CPU scope. A first attempt at release-governor
+admission found another release job; that lock was not changed or bypassed.
+The optional Nice setting was unsupported on a scope and was moved to the
+wrapped `nice` command. `experience-media.json` records final asset hashes.
+
+Papers: latest-template content and 25% mascot reduction are independently
+validated in its own evidence; nine PDFs, 120 pages. The product checkout
+remains read-only. Local installation and sample behavior do not satisfy the
+fresh Windows WSL2 public release journey; its gate remains blocked.
+
+The independent installation also imported snapshots of the actual local
+ProjectState and StudyState templates (tracked working changes included).
+Original source repositories are unchanged; the import root is restricted to
+`stateport-local/imports`. Both managed applications appear after reload.
+The capture automation raced automatic navigation after import and timed out;
+a new browser session confirmed both completed imports. Imported ProjectState
+reports unavailable package metadata and Runs, so no template execution claim
+is made. Sample review/apply/persistence remains the verified local workflow.
+
+Final sitemap browser check: 58 views, zero structural defects; video playback
+uses the new 86-second asset and captions. Site validators and diff whitespace
+check pass. Separate gallery checks are recorded in `product-gallery.json`.
+
+Publication proof is written to
+`/home/ff/Projects/.local/stateport-product-guide-sep05/publication-verification.json`
+by the guarded publisher's anonymous verifier. That receipt records exact
+remote-byte matches and the observed commit after deployment; absence or a
+failed result does not establish publication. This fixed evidence pointer
+avoids a companion state-only commit after deployment.
+
+Final checks: Site validators pass; all 30 unit tests pass; 58 sitemap views
+and 12 gallery views pass. The native outcome gate still exits 1 with the
+recorded release blockers. Prior untracked Alpha.14 evidence is unrelated
+legacy material and remains preserved outside this change's staging.

@@ -1,0 +1,10 @@
+flowchart TB
+    request["1. Ask for a change"] --> proposal["2. Inspect the proposed scope"]
+    proposal --> permission{"3. Is the operation permitted?"}
+    permission -->|"No"| refused["Stop and explain why"]
+    permission -->|"Review required"| decision["Review the exact plan"]
+    decision -->|"Approve"| apply["4. Apply through the supported path"]
+    decision -->|"Reject"| refused
+    permission -->|"Within existing permission"| apply
+    apply --> check["5. Check the result and read the receipt"]
+    check --> nextWork["6. Continue from saved state"]

@@ -62,7 +62,8 @@ class SiteRuntimeContractTests(unittest.TestCase):
         walkthrough = (ROOT / "docs/prototype-walkthrough.html").read_text(encoding="utf-8")
         self.assertIn("Product walkthrough", homepage)
         self.assertIn("Development preview", walkthrough)
-        self.assertIn("Ask a question", homepage)
+        self.assertIn("Review a change", homepage)
+        self.assertIn("Inspect the receipt", homepage)
         self.assertIn("Use the same clear view", homepage)
         self.assertIn("See an application remember", homepage)
         for text in (homepage, walkthrough):

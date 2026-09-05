@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-05T16:57:38.395Z",
+  "url": "http://127.0.0.1:18780",
+  "kind": "independent native Linux local source installation",
+  "manager": "uv",
+  "sampleInstance": "ins_c338a0e756dc7d76",
+  "sourceCommit": "28f72db7ef8f30e6a3a24641c4d61f8b58d5a297",
+  "checks": {
+    "catalogInstall": true,
+    "reviewStart": true,
+    "approveStart": true,
+    "reviewReflection": true,
+    "applyReflection": true,
+    "receipt": true,
+    "serviceRestart": true,
+    "reflectionPersisted": true,
+    "progressAfterRestart": "50%",
+    "beforePID": "4155481",
+    "afterPID": "10541",
+    "realTemplateImports": [
+      "ProjectState Workspace",
+      "StudyState Workspace"
+    ]
+  },
+  "limitations": [
+    "Sample content; not a genuine WSL2 release qualification",
+    "External execution host unconfigured; worker execution disabled",
+    "Provider credentials/configuration not copied or verified",
+    "Imported ProjectState opens with unavailable package metadata and Runs; import success is not action-execution validation"
+  ]
+}

@@ -302,3 +302,37 @@ state, external service, or tracking configuration to undo.
    generated HTML deployable without a framework runtime.
 6. Decide separately whether privacy-preserving aggregate analytics provides
    enough value to justify its governance and operational cost.
+
+## September 2026 editorial and visual review
+
+The owner requested a full Site and Papers improvement pass while the product
+checkout remained read-only. The mascot bytes and size contract are retained.
+
+- Reworked the homepage into explicit exploration, documentation, and reading
+  paths; shortened its introduction and made the blocked-install status concise.
+- Reduced oversized reading-page headers, corrected stale breadcrumb labels
+  and navigation grouping, and added a public reading room.
+- Added static contents to documentation so section navigation works without
+  JavaScript; hid the unavailable filter in the no-JavaScript experience.
+- Corrected WSL configuration overwrite risk and inappropriate retry guidance.
+- Fixed the mobile status-link column collapse found by rendered inspection.
+- Added a Mermaid change-path diagram and a new narrated HyperFrames guide.
+- Retained historical public whitepaper editions with an explicit current-status
+  note; confidential Papers files remain outside the public repository.
+
+Supporting checks and limitations are recorded in the current slice summary.
+Static checks and local browser results do not establish fresh product installation.
+
+## Follow-up: installed-product captures, 5 September 2026
+
+The owner's follow-up supersedes the earlier size and video direction: rendered
+mascots are 25% smaller with unchanged artwork. The rejected documentation video
+is replaced by an 86-second guide showing the actual separate local StatePort
+installation. Four fresh homepage captures replace the older fixture images;
+copy and intrinsic dimensions match them. Gallery images preserve their natural
+proportions, including the complete phone capture.
+
+The local sample's review, approval, durable reflection, receipt and service
+restart passed. The public Alpha.16/native WSL2 journey remains blocked, and
+external execution/provider setup remains unconfigured in the local installation.
+All claims and asset hashes are in the slice evidence; no release artifact changed.

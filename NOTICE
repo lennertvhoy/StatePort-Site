@@ -53,3 +53,16 @@ known tracking patterns.
 executable or published Pages asset. Its source manifest records the final
 capture inputs, mascot provenance, `mp4Present: true`, and the local MP4
 digest without making a publication or acceptance claim.
+
+## September 2026 experience refresh
+
+`assets/media/stateport-field-guide.mp4`, its VTT captions and JPEG poster are
+new locally produced documentation media. They combine real Site captures,
+an animated cursor, Edge synthetic narration, and an original synthesized
+ambient bed. Source and rendering provenance: `evidence/alpha16-public-install-001/experience-media.json`.
+The mascot is the existing owner-controlled brand asset, unchanged in bytes.
+The composition dependencies remain outside the Pages tree.
+
+`assets/diagrams/stateport-change-path.svg` is a build-time Mermaid rendering
+of the adjacent source under `assets/diagrams/src/`; it uses the existing
+site palette and has a textual equivalent in its caption and alt text.

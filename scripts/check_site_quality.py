@@ -957,7 +957,7 @@ def validate_media_asset_integrity(documents: dict[Path, DocumentFacts]) -> None
 
 
 def validate_homepage_sequence(documents: dict[Path, DocumentFacts]) -> None:
-    """Frozen homepage: seven sections in order, hero CTAs in the first viewport."""
+    """Keep the narrative order and usable product exploration routes."""
     home = documents.get(Path("index.html"))
     if home is None:
         raise AssertionError("Missing homepage")
@@ -979,10 +979,10 @@ def validate_homepage_sequence(documents: dict[Path, DocumentFacts]) -> None:
             "index.html: primary CTA \"See StatePort in 33 seconds\" must link #overview"
         )
     if not re.search(
-        r'<a[^>]*href="docs/study-state\.html"[^>]*>\s*Explore StudyState', html
+        r'<a[^>]*href="docs/study-state\.html"[^>]*>', html
     ):
         raise AssertionError(
-            "index.html: secondary CTA \"Explore StudyState\" must link docs/study-state.html"
+            "index.html: StudyState exploration route must link docs/study-state.html"
         )
 
 

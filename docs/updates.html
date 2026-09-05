@@ -22,8 +22,8 @@
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
     <title>Update or uninstall StatePort</title>
     <script type="application/ld+json">
       {
@@ -52,6 +52,7 @@
         <a href="./" aria-current="page">Docs</a>
         <a href="../tutorials/">Tutorials</a>
         <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
+      <a href="../papers/">Papers</a>
       </nav>
     </header>
 
@@ -92,31 +93,32 @@
           <p class="notice"><strong>Alpha.16 remains published, but fresh installation is blocked by a known signature-check failure.</strong> Anonymous image downloads also fail with HTTP 401 because the release image registry packages are private. Fixing the signature check alone will not complete installation. Wait for a corrected, qualified release; repeating this installer does not repair either failure. Published files remain available for inspection.</p>
           <p class="notice"><strong>Alpha.16 has an authenticated Alpha.15 predecessor, but rollback is not supported.</strong> Do not manufacture an update by swapping image tags or files. Use an exact signed successor when one is published.</p>
 
-          <h2>Check the installed identity</h2>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#check-the-installed-identity">Check the installed identity</a></li><li data-level="2"><a href="#historical-alpha16-rerun-command">Historical Alpha.16 rerun command</a></li><li data-level="2"><a href="#check-the-release">Check the release</a></li><li data-level="2"><a href="#keep-trust-changes-separate">Keep trust changes separate</a></li><li data-level="2"><a href="#review-before-updating">Review before updating</a></li><li data-level="2"><a href="#check-the-result-and-roll-back-failures">Check the result and roll back failures</a></li><li data-level="2"><a href="#keep-a-change-record">Keep a change record</a></li><li data-level="2"><a href="#uninstall-while-preserving-installer-state">Uninstall while preserving installer state</a></li><li data-level="2"><a href="#purge-is-destructive">Purge is destructive</a></li><li data-level="2"><a href="#current-status">Current status</a></li></ol></details>
+          <h2 id="check-the-installed-identity">Check the installed identity</h2>
           <pre><code>~/.local/state/stateport-install/bin/stateport-update status</code></pre>
           <p>This reads the durable installed identity and updater state. It does not download or change a release.</p>
 
-          <h2>Historical Alpha.16 rerun command</h2>
+          <h2 id="historical-alpha16-rerun-command">Historical Alpha.16 rerun command</h2>
           <p>The intended rerun behavior recognizes the same release and its recorded resources. Alpha.16 currently fails its fresh signature check; this command is not a repair for that failure:</p>
           <p><strong>Historical command, currently blocked:</strong> retained for identifying the affected route; wait for a corrected release.</p>
           <pre><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)</code></pre>
 
-          <h2>Check the release</h2>
+          <h2 id="check-the-release">Check the release</h2>
           <p>An update starts from a specific, signed release. StatePort checks that the files match that release before using them. It does not update from a moving "latest" download.</p>
 
-          <h2>Keep trust changes separate</h2>
+          <h2 id="keep-trust-changes-separate">Keep trust changes separate</h2>
           <p>An update cannot quietly replace the key used to trust future releases. Changing that key requires a separate manual action.</p>
 
-          <h2>Review before updating</h2>
+          <h2 id="review-before-updating">Review before updating</h2>
           <p>StatePort should tell you that an update exists and show what will change. It waits for your approval before applying it. Automatic updates would be optional.</p>
 
-          <h2>Check the result and roll back failures</h2>
+          <h2 id="check-the-result-and-roll-back-failures">Check the result and roll back failures</h2>
           <p>After an update, StatePort waits for the application checks to pass. If they fail, it should return to the previous version and keep a record of the failure.</p>
 
-          <h2>Keep a change record</h2>
+          <h2 id="keep-a-change-record">Keep a change record</h2>
           <p>Successful, refused, and failed updates should all leave a clear record. StatePort should not hide a failed update or retry risky work without asking.</p>
 
-          <h2>Uninstall while preserving installer state</h2>
+          <h2 id="uninstall-while-preserving-installer-state">Uninstall while preserving installer state</h2>
           <p>Download the immutable Alpha.16 installer, verify its signed-index digest, and ask it to remove only the recorded Alpha.16 runtime resources:</p>
           <pre><code>installer=$(mktemp)
 curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.16/stateport-installer -o "$installer"
@@ -125,10 +127,10 @@ python3 "$installer" --uninstall --state-root "$HOME/.local/state/stateport-inst
 rm -f "$installer"</code></pre>
           <p>Uninstall removes the recorded units, containers, and live runtime configuration but keeps the installer state and receipts needed to understand or resume the installation.</p>
 
-          <h2>Purge is destructive</h2>
+          <h2 id="purge-is-destructive">Purge is destructive</h2>
           <p><code>--purge</code> additionally removes the installation's recorded retained state. Export or back up anything you need first. Purge is intentionally not presented as a copy-paste quick action.</p>
 
-          <h2>Current status</h2>
+          <h2 id="current-status">Current status</h2>
           <p>Check the <a href="../releases/">release status</a> before applying any successor and read the <a href="limitations.html">current limitations</a> before using important data.</p>
 
           <div class="inline-actions">
@@ -153,6 +155,6 @@ rm -f "$installer"</code></pre>
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
-    <script src="../assets/site.js?v=2026-08-10-1"></script>
+    <script src="../assets/site.js?v=2026-09-05-2"></script>
   </body>
 </html>

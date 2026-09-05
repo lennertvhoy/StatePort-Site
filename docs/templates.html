@@ -22,8 +22,8 @@
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
     <title>Use a template — StatePort</title>
   </head>
   <body class="article-page">
@@ -41,6 +41,7 @@
         <a href="./" aria-current="page">Docs</a>
         <a href="../tutorials/">Tutorials</a>
         <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
+      <a href="../papers/">Papers</a>
       </nav>
     </header>
 
@@ -71,7 +72,8 @@
           <p class="notice notice--quiet"><strong>Prerequisite:</strong> install Alpha.16 and open the live local URL printed by the installer. The import folder is created for the Ubuntu user who ran the installer.</p>
 
           <section id="prepare" aria-labelledby="prepare-heading">
-            <h2 id="prepare-heading">1. Put a Git repository in the import folder</h2>
+            <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#prepare-heading">1. Put a Git repository in the import folder</a></li><li data-level="2"><a href="#import-heading">2. Review and create the application</a></li><li data-level="2"><a href="#recognized-heading">3. What Alpha.16 recognizes</a></li><li data-level="2"><a href="#safety-heading">What StatePort copies and runs</a></li><li data-level="2"><a href="#troubleshooting-heading">If the repository does not appear</a></li></ol></details>
+          <h2 id="prepare-heading">1. Put a Git repository in the import folder</h2>
             <p>Clone a public repository directly into StatePort's allowlisted folder:</p>
             <pre><code>git clone https://example.com/your/template.git /var/lib/stateport/imports/my-template</code></pre>
             <p>Or clone a repository that already exists in your Ubuntu home. This transfers its committed history without giving StatePort access to the original working directory:</p>
@@ -105,6 +107,10 @@
               </table>
             </div>
             <p>An ordinary Git repository without a supported template contract can still be inspected and registered, but it does not gain template actions merely by being imported.</p>
+            <h3>What the current ProjectState template contains</h3>
+            <p>ProjectState v6 keeps the human-owned outcome in <code>PROJECT.md</code>, one current slice in <code>STATE.yaml</code>, authority rules in <code>AGENTS.md</code>, and exact results in <code>evidence/&lt;slice-id&gt;/summary.md</code>. It works independently of StatePort.</p>
+            <p>Run the smallest real user journey, make the smallest useful change, then record and repeat that journey. The outcome gate checks recorded consistency; it does not run the journey or approve the product on the owner’s behalf. Two failures at the same delivery boundary call for reviewing the assumption and removing a moving part.</p>
+            <p>Named persistent threads are optional and start only when the human selects that workflow. A coordinator integrates isolated worker changes and reruns the journey. Template files alone do not establish that an installed StatePort supports the full workflow.</p>
           </section>
 
           <section id="safety" aria-labelledby="safety-heading">
@@ -151,6 +157,6 @@
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
-    <script src="../assets/site.js?v=2026-08-10-1"></script>
+    <script src="../assets/site.js?v=2026-09-05-2"></script>
   </body>
 </html>

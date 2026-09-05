@@ -21,8 +21,8 @@
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
     <title>Getting started — StatePort</title>
   </head>
   <body class="article-page">
@@ -40,6 +40,7 @@
         <a href="./" aria-current="page">Docs</a>
         <a href="../tutorials/">Tutorials</a>
         <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
+      <a href="../papers/">Papers</a>
       </nav>
     </header>
 
@@ -47,8 +48,8 @@
       <section class="article-hero" aria-labelledby="getting-started-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / Getting started</p>
-          <h1 id="getting-started-title">From a fresh WSL terminal to a working application.</h1>
-          <p>Check the supported environment, run one command, open the local product, and keep your first application in durable state.</p>
+          <h1 id="getting-started-title">Understand the setup before you install.</h1>
+          <p>Check current blockers and the intended WSL2 setup. The steps below explain the installation path; Alpha.16 cannot complete a fresh installation.</p>
         </div>
       </section>
 
@@ -80,36 +81,40 @@
           <p class="notice"><strong>Alpha.16 remains published, but fresh installation is blocked by a known signature-check failure.</strong> Anonymous image downloads also fail with HTTP 401 because the release image registry packages are private. Fixing the signature check alone will not complete installation. Wait for a corrected, qualified release; repeating this installer does not repair either failure. Published files remain available for inspection.</p>
           <p class="notice"><strong>Alpha.16 is an early public test.</strong> Use test data, keep your own backups, and do not expose the local services to the public internet.</p>
 
-          <h2>1. Confirm the supported environment</h2>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#1-confirm-the-supported-environment">1. Confirm the supported environment</a></li><li data-level="2"><a href="#2-run-the-one-line-installer">2. Run the one-line installer</a></li><li data-level="2"><a href="#3-open-the-complete-product">3. Open the complete product</a></li><li data-level="2"><a href="#4-create-an-application">4. Create an application</a></li><li data-level="2"><a href="#5-know-where-proof-and-state-live">5. Know where proof and state live</a></li><li data-level="2"><a href="#if-installation-stops">If installation stops</a></li><li data-level="2"><a href="#report-a-problem">Report a problem without sharing private data</a></li><li data-level="2"><a href="#where-to-go-next">Where to go next</a></li></ol></details>
+          <h2 id="1-confirm-the-supported-environment">1. Confirm the supported environment</h2>
           <p>Open <strong>Ubuntu 24.04</strong> in WSL2 on a Windows 11 x86-64 laptop. Run these checks inside Ubuntu:</p>
           <pre><code>uname -m
 grep '^VERSION_ID=' /etc/os-release
 ps -p 1 -o comm=</code></pre>
           <p>The results must be <code>x86_64</code>, <code>VERSION_ID="24.04"</code>, and <code>systemd</code>. Run the installer as your normal Ubuntu user, not as root. You need internet access, <code>sudo</code>, and several gigabytes of free WSL disk space.</p>
-          <p>If PID 1 is not <code>systemd</code>, create <code>/etc/wsl.conf</code> with the following content, run <code>wsl --shutdown</code> from PowerShell, and reopen Ubuntu:</p>
+          <p>If PID 1 is not <code>systemd</code>, first save any work in all WSL sessions. Edit <code>/etc/wsl.conf</code> with administrator privileges, preserving its existing settings. Add <code>systemd=true</code> under the existing <code>[boot]</code> section, or add that section if it is missing. Then run <code>wsl --shutdown</code> from PowerShell and reopen Ubuntu. Shutdown stops all running WSL distributions.</p>
           <pre><code>[boot]
 systemd=true</code></pre>
 
-          <h2>2. Run the one-line installer</h2>
+          <h2 id="2-run-the-one-line-installer">2. Run the one-line installer</h2>
           <p><strong>Historical command, currently blocked:</strong> retained for identifying the affected route; wait for a corrected release.</p>
           <pre><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)</code></pre>
           <p>The bootstrap verifies Windows, WSL, Ubuntu, signed release metadata, the exact packages, and seven digest-pinned images before installing. It shows the exact package and release plans before asking you to type <code>install-packages</code> and <code>install-exact</code>. The <code>sudo</code> prompt is expected.</p>
           <p>Do not close the terminal while it installs. A successful run ends with <strong>StatePort is installed and healthy</strong> and prints the exact local URL and install-receipt path.</p>
 
-          <h2>3. Open the complete product</h2>
+          <h2 id="3-open-the-complete-product">3. Open the complete product</h2>
           <p>Open the printed <code>http://127.0.0.1:…/</code> URL in your Windows browser. The address is loopback-only: the web interface, API, worker, persistence layer, and execution host stay on your laptop.</p>
-          <p>If you misplaced the URL, rerun the same installer command. An identical run is safe and rechecks the installed release rather than creating a second installation.</p>
+          <p>These steps describe the intended successful flow; Alpha.16 has not passed the fresh-install journey. If you already have an installation, use its recorded URL and receipt. Do not rerun the blocked public installer to recover the address.</p>
 
-          <h2>4. Create an application</h2>
+          <h2 id="4-create-an-application">4. Create an application</h2>
           <p>For a built-in reviewed sample, open <strong>Catalog</strong>, choose StudyState, review what it needs, and install an instance. To use your own ProjectState, StudyState, or StateSpec repository, follow the <a href="templates.html">template import guide</a>.</p>
 
-          <h2>5. Know where proof and state live</h2>
+          <h2 id="5-know-where-proof-and-state-live">5. Know where proof and state live</h2>
           <p>The installer writes a durable receipt below <code>~/.local/state/stateport-install/receipts</code>. Application state and managed template copies are kept separately from replaceable container images. Inside the product, <strong>Receipts</strong>, <strong>Activity</strong>, and application provenance show what StatePort changed and why.</p>
 
-          <h2>If installation stops</h2>
-          <p>Read the final refusal code before retrying. The installer fails before or at a recorded boundary; it does not silently continue with a partially trusted release. Check <a href="platform-support.html">platform support</a> for environment failures and the <a href="../download/">download page</a> for the current candidate. If a network download was interrupted, rerun the same command.</p>
+          <h2 id="if-installation-stops">If installation stops</h2>
+          <p>Read the final refusal code before retrying. The installer fails before or at a recorded boundary; it does not silently continue with a partially trusted release. Check <a href="platform-support.html">platform support</a> for environment failures and the <a href="../download/">download page</a> for the current candidate. For Alpha.16, neither the known signature error nor an anonymous registry HTTP 401 is fixed by retrying. Preserve the error and wait for a corrected release.</p>
 
-          <h2>Where to go next</h2>
+          <h2 id="report-a-problem">Report a problem without sharing private data</h2>
+          <p>Include the release version, the last error code, your Windows / WSL / Ubuntu versions, and the step that stopped. Remove access tokens, passwords, private repository URLs, and personal file contents from logs. Never attach a complete home directory or credential file.</p>
+          <p><a href="https://github.com/lennertvhoy/StatePort-Site/issues" rel="noopener" target="_blank">Open a documentation or installation issue</a>. For update, backup, and uninstall guidance, read <a href="updates.html">Updates</a> and <a href="lifecycle.html">Lifecycle and recovery</a>.</p>
+          <h2 id="where-to-go-next">Where to go next</h2>
           <div class="inline-actions">
             <a class="button button--ink" href="templates.html">Use your template</a>
             <a class="button button--outlined" href="study-state.html">Explore StudyState</a>
@@ -132,6 +137,6 @@ systemd=true</code></pre>
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
-    <script src="../assets/site.js?v=2026-08-10-1"></script>
+    <script src="../assets/site.js?v=2026-09-05-2"></script>
   </body>
 </html>

@@ -21,8 +21,8 @@
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
     <title>Roadmap - StatePort</title>
   </head>
   <body class="article-page">
@@ -40,6 +40,7 @@
         <a href="./" aria-current="page">Docs</a>
         <a href="../tutorials/">Tutorials</a>
         <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
+      <a href="../papers/">Papers</a>
       </nav>
     </header>
 
@@ -80,7 +81,8 @@
           <p class="notice"><strong>Alpha.16 remains published, but fresh installation is blocked by a known signature-check failure.</strong> Anonymous image downloads also fail with HTTP 401 because the release image registry packages are private. Fixing the signature check alone will not complete installation. Wait for a corrected, qualified release; repeating this installer does not repair either failure. Published files remain available for inspection.</p>
           <p class="notice notice--quiet"><strong>Looking for availability?</strong> Check the <a href="../releases/">release status</a>.</p>
 
-          <h2>Available now</h2>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#available-now">Available now</a></li><li data-level="2"><a href="#current-priorities">Current priorities</a></li><li data-level="2"><a href="#later">Later</a></li></ol></details>
+          <h2 id="available-now">Available now</h2>
           <ul>
             <li>A one-line installer for Windows 11, WSL2, Ubuntu 24.04, and AMD64.</li>
             <li>The web interface, API, worker, persistence service, rootless Podman runtime, and isolated execution host.</li>
@@ -89,7 +91,7 @@
             <li>A clean isolated Ubuntu 24.04 guest installation, health gates, and identical rerun for the exact candidate bytes.</li>
           </ul>
 
-          <h2>Current priorities</h2>
+          <h2 id="current-priorities">Current priorities</h2>
           <ul>
             <li>Record the separately classified native Windows 11/WSL2 owner acceptance journey from the anonymously served installer.</li>
             <li>Expand backup, recovery, and signed successor-update guidance around real user workflows.</li>
@@ -97,7 +99,7 @@
             <li>Review security before asking anyone to trust important data to StatePort.</li>
           </ul>
 
-          <h2>Later</h2>
+          <h2 id="later">Later</h2>
           <p>After the basic journey works, the roadmap includes more applications, more platforms, stronger backup and update tools, and optional team or hosted services.</p>
 
           <div class="inline-actions">
@@ -122,6 +124,6 @@
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
-    <script src="../assets/site.js?v=2026-08-10-1"></script>
+    <script src="../assets/site.js?v=2026-09-05-2"></script>
   </body>
 </html>

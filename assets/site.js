@@ -21,9 +21,17 @@
     "docs/platform-support.html": "Platform support",
     "docs/evidence-and-roadmap.html": "Evidence and roadmap",
     "docs/reference.html": "Reference and FAQ",
-    "docs/prototype-walkthrough.html": "Prototype walkthrough",
+    "docs/prototype-walkthrough.html": "Product walkthrough",
     "docs/agent-kits.html": "Agent Kits roadmap",
-    "docs/getting-started.html": "StateSpec basics",
+    "docs/templates.html": "Use a template",
+    "docs/study-state.html": "StudyState",
+    "docs/deployments.html": "Container deployments",
+    "docs/updates.html": "Updates",
+    "docs/limitations.html": "Current limitations",
+    "papers/": "Reading room",
+    "download/": "Download and installation status",
+    "tutorials/site-orientation.html": "Video field guide",
+    "docs/getting-started.html": "Install and open",
     "tutorials/": "Tutorials",
     "tutorials/first-application.html": "First application",
     "tutorials/reading-a-receipt.html": "Read a receipt",
@@ -34,6 +42,10 @@
 
   const documentationSequence = [
     ["docs/", "Documentation home"],
+    ["docs/prototype-walkthrough.html", "Product walkthrough"],
+    ["docs/getting-started.html", "Install and open"],
+    ["docs/templates.html", "Use a template"],
+    ["docs/study-state.html", "StudyState"],
     ["docs/foundations.html", "Why StatePort exists"],
     ["docs/model.html", "Core model"],
     ["docs/lifecycle.html", "Lifecycle"],
@@ -43,8 +55,9 @@
     ["docs/platform-support.html", "Platform support"],
     ["docs/evidence-and-roadmap.html", "Evidence and roadmap"],
     ["docs/reference.html", "Reference and FAQ"],
-    ["docs/prototype-walkthrough.html", "Prototype walkthrough"],
-    ["docs/getting-started.html", "StateSpec basics"],
+    ["docs/deployments.html", "Container deployments"],
+    ["docs/updates.html", "Updates"],
+    ["docs/limitations.html", "Current limitations"],
     ["docs/agent-kits.html", "Agent Kits roadmap"],
   ];
 
@@ -343,9 +356,9 @@
 
   function classifyDocumentationLink(path) {
     const groups = [
-      ["Start", ["docs/", "docs/foundations.html", "docs/prototype-walkthrough.html"]],
-      ["Design", ["docs/model.html", "docs/getting-started.html", "tutorials/", "tutorials/first-application.html", "tutorials/reading-a-receipt.html"]],
-      ["Operate", ["docs/lifecycle.html", "docs/governance.html", "docs/security-and-privacy.html", "docs/hosts-and-portability.html", "docs/platform-support.html"]],
+      ["Start", ["docs/", "docs/getting-started.html", "docs/templates.html", "docs/study-state.html", "docs/foundations.html", "docs/prototype-walkthrough.html"]],
+      ["Design", ["docs/model.html", "tutorials/", "tutorials/first-application.html", "tutorials/reading-a-receipt.html"]],
+      ["Operate", ["docs/updates.html", "docs/deployments.html", "docs/limitations.html", "docs/lifecycle.html", "docs/governance.html", "docs/security-and-privacy.html", "docs/hosts-and-portability.html", "docs/platform-support.html"]],
       ["Evidence", ["docs/evidence-and-roadmap.html", "docs/reference.html", "docs/agent-kits.html", "papers/stateware-whitepaper-public-v1.1.html", "releases/"]],
     ];
     return groups.find(([, paths]) => paths.includes(path))?.[0] || "More";
@@ -432,7 +445,10 @@
 
   function initPageTableOfContents() {
     const article = document.querySelector(".prose:not([data-no-toc])");
-    if (!article || article.querySelector(".page-toc")) {
+    if (!article) return;
+    const existing = article.querySelector(".page-toc");
+    if (existing) {
+      existing.open = window.matchMedia("(min-width: 801px)").matches;
       return;
     }
 

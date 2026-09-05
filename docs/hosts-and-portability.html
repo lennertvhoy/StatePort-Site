@@ -21,8 +21,8 @@
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
     <title>AI tools and portability - StatePort</title>
   </head>
   <body class="article-page">
@@ -40,6 +40,7 @@
         <a href="./" aria-current="page">Docs</a>
         <a href="../tutorials/">Tutorials</a>
         <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
+      <a href="../papers/">Papers</a>
       </nav>
     </header>
 
@@ -79,17 +80,18 @@
         <article class="prose">
           <p class="notice notice--quiet"><strong>Design overview.</strong> Check the <a href="../releases/">release status</a> for current software availability.</p>
 
-          <h2>A session is not the application</h2>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#a-session-is-not-the-application">A session is not the application</a></li><li data-level="2"><a href="#tools-are-not-interchangeable">Tools are not interchangeable</a></li><li data-level="2"><a href="#current-tool-support">Current tool support</a></li><li data-level="2"><a href="#what-portability-should-preserve">What portability should preserve</a></li></ol></details>
+          <h2 id="a-session-is-not-the-application">A session is not the application</h2>
           <p>A model session can help with current work, but it should not be the only place that holds your goals or progress. The application should remain understandable even when that session is gone.</p>
 
-          <h2>Tools are not interchangeable</h2>
+          <h2 id="tools-are-not-interchangeable">Tools are not interchangeable</h2>
           <p>One tool may support cancellation, safe file access, or detailed usage reporting while another does not. StatePort should check those abilities instead of assuming every provider works the same way.</p>
 
-          <h2>Current tool support</h2>
+          <h2 id="current-tool-support">Current tool support</h2>
           <p>The Alpha.5 design uses a locally authenticated Codex command-line tool. OpenCode, direct API providers, and Pi are not supported by this release.</p>
           <p>See <a href="platform-support.html">platform support</a> for the computer requirements and <a href="../releases/">release status</a> for availability.</p>
 
-          <h2>What portability should preserve</h2>
+          <h2 id="what-portability-should-preserve">What portability should preserve</h2>
           <ul>
             <li>Your application files and saved state.</li>
             <li>Your goals, permissions, and history.</li>
@@ -119,6 +121,6 @@
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
-    <script src="../assets/site.js?v=2026-08-10-1"></script>
+    <script src="../assets/site.js?v=2026-09-05-2"></script>
   </body>
 </html>

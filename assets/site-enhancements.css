@@ -212,6 +212,8 @@ video {
 }
 .prototype-gallery-image {
  display: block;
+ width: auto;
+ height: auto;
  max-width: 100%;
  max-height: min(70svh, 72rem);
  border: 1px solid rgba(172, 195, 236, 0.2);
@@ -1463,3 +1465,6 @@ html:not(.js) .reveal,
    box-shadow: none;
  }
 }
+
+/* Show the complete phone capture inside the landscape preview card. */
+.prototype-frame-link img[src*="/frame-mobile.png"] { object-fit: contain; background: #f4f4f2; }

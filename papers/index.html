@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+    <meta name="description" content="Read the Stateware whitepapers and learn the ideas behind durable, user-owned AI applications.">
+    <meta name="theme-color" content="#0B132B">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="StatePort">
+    <meta property="og:title" content="StatePort papers and reading room">
+    <meta property="og:description" content="Start with the product, then learn how StatePort stores work, controls changes, and stays portable.">
+    <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/papers/">
+    <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.16 status.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
+    <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/papers/">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+    <link rel="manifest" href="../site.webmanifest">
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
+    <title>Papers — StatePort</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "StatePort papers and reading room",
+        "description": "A practical introduction to StatePort, from the product preview to storage, control, updates, and portability.",
+        "url": "https://lennertvhoy.github.io/StatePort-Site/papers/",
+        "dateModified": "2026-09-04",
+        "inLanguage": "en"
+      }
+    </script>
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-block-arch-light.svg" alt="" width="105" height="105">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Open navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="../docs/">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
+      <a href="../papers/" aria-current="page">Papers</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="papers-title"><div class="article-hero-inner">
+        <p class="document-kicker">The reading room</p><h1 id="papers-title">The work should outlast the tool.</h1>
+        <p>Stateware is the idea. StatePort is the product exploring it. Start with the essentials, then read the reasoning behind durable, user-owned AI applications.</p>
+      </div></section>
+      <div class="article-shell article-shell--docs-overview">
+        <aside class="doc-sidebar" aria-label="Reading room sections"><h2>In this collection</h2><nav><a href="#start">Start here</a><a href="#papers">Whitepapers</a><a href="#terms">Three useful distinctions</a><a href="../docs/">Practical documentation</a><a href="../releases/">Current product status</a></nav></aside>
+        <article class="prose" data-no-toc>
+          <p class="notice notice--quiet"><strong>An idea is not a release guarantee.</strong> These papers explain the model. The <a href="../releases/">release page</a> is the current source for product availability and installation limits.</p>
+          <h2 id="start">Start with one question.</h2>
+          <p>When an AI session ends, where does the work live? Stateware puts goals, decisions, progress, and history in a durable application state that you can inspect. Models and interfaces work with that state under explicit rules.</p>
+          <div class="quick-routes"><a href="../docs/foundations.html"><strong>The idea in plain language</strong><span>A short introduction to why StatePort exists →</span></a><a href="../docs/model.html"><strong>From idea to working model</strong><span>Templates, instances, state, and change records →</span></a></div>
+          <h2 id="papers">Choose an edition.</h2>
+          <div class="paper-editions">
+            <section class="paper-edition"><p class="section-kicker">Public edition · v1.1</p><h3>State as the Application Boundary</h3><p>The established public paper: the core argument, application lifecycle, governance, and the wider vision.</p><p class="edition-note">Historical edition. Its implementation examples and release references belong to its publication period.</p><p><a class="button button--ink" href="stateware-whitepaper-public-v1.1.html">Read the public paper</a></p><p><a href="stateware-whitepaper-public-v1.1.md">Markdown source</a></p></section>
+            <section class="paper-edition"><p class="section-kicker">Review draft · v1.2</p><h3>The model, refined through implementation</h3><p>A candidate revision that clarifies the role of governance, ongoing work, and the gap between current delivery and future architecture.</p><p class="edition-note">Available to inspect as a draft. It has not replaced the public edition or received an acceptance claim.</p><p><a class="button button--outlined" href="stateware-whitepaper-candidate-v1.2.html">Read the candidate</a></p><p><a href="stateware-whitepaper-candidate-v1.2.md">Markdown source</a></p></section>
+          </div>
+          <h2 id="terms">Three useful distinctions</h2>
+          <dl class="plain-definitions"><dt>Stateware / StatePort</dt><dd>Stateware names the proposed model. StatePort is an implementation exploring it.</dd><dt>Template / instance</dt><dd>A template defines an application. An instance is your own working copy, with its own state and history.</dd><dt>Recorded / verified</dt><dd>A receipt records an operation. Verification checks a specific result. Neither alone establishes that an answer is correct or that a person accepted it.</dd></dl>
+          <h2>Read critically. Follow the evidence.</h2><p>Readable files are not automatically portable execution. Local storage does not mean an external AI provider receives no data. A recorded change is not necessarily reversible. The practical guides explain these boundaries.</p>
+          <p><a href="../docs/security-and-privacy.html">Security and privacy</a> · <a href="../docs/lifecycle.html">Recovery and lifecycle</a> · <a href="../docs/evidence-and-roadmap.html">Evidence and roadmap</a></p>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-block-arch-light.svg" alt="" width="85" height="85">
+          <p><strong>StatePort</strong>Durable AI-assisted work, kept in view.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="../docs/">Docs</a>
+          <a href="../tutorials/">Tutorials</a>
+          <a href="../releases/">Release status</a>
+        </nav>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
+      </div>
+    </footer>
+    <script src="../assets/site.js?v=2026-09-05-2"></script>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+{
+  "review_date": "2026-09-05",
+  "kind": "independent local StatePort installation, real sample review/apply/receipt/restart journey",
+  "source_directory": "/home/ff/Projects/.local/stateport-product-guide-sep05",
+  "source_commit": "28f72db7ef8f30e6a3a24641c4d61f8b58d5a297",
+  "renderer": "HyperFrames 0.8.29 / GSAP / Chromium / FFmpeg",
+  "render_settings": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "duration_seconds": 86,
+    "workers": 1,
+    "memory_max": "3G",
+    "cpu_quota": "150%",
+    "scope": "separate bounded media scope from handoff; product release lock left untouched"
+  },
+  "narration": "Microsoft Edge en-US-AndrewMultilingualNeural, rate -5%; no workstation playback",
+  "cursor": "Animated pointer targets measured controls in fresh real product captures; actual actions were performed during capture",
+  "music": "Original synthesized ambient audio from prior source, mixed quietly under normalized narration",
+  "assets": {
+    "assets/media/stateport-field-guide.mp4": {
+      "sha256": "88a3de817bc70b1a4a8aa6b735b22f9a44382079ea6f98857a647d551223847a",
+      "bytes": 7533172
+    },
+    "assets/media/stateport-field-guide-poster.jpg": {
+      "sha256": "e2b45bb17ae93f38b370cb50ac3d6fe9375cea99d46af7029554e839a13c63de",
+      "bytes": 90580
+    },
+    "assets/media/stateport-field-guide.vtt": {
+      "sha256": "e3544939e37b2ee4311849c4e594bc6326c0fa5e8975c7b251ee4f178704d835",
+      "bytes": 1717
+    },
+    "assets/media/stateport-hero-preview.png": {
+      "sha256": "43bece91f495ef0ab70b8fcd1994511cac5d7a96c9da2101dec41a9f797d4859",
+      "bytes": 133750
+    },
+    "assets/media/frame-conversation.png": {
+      "sha256": "4c5b480512e1882239f71049093ef319df97ad6f6fe23b0e72cdaa06261f7f3d",
+      "bytes": 122268
+    },
+    "assets/media/frame-result.png": {
+      "sha256": "5b1bf106303d5eada9a9275281d8f446e11aadf6309d1d21549e7ca7c0f2db30",
+      "bytes": 97764
+    },
+    "assets/media/frame-mobile.png": {
+      "sha256": "4f9f9d8bbc2c7254fa3c89576253606f701f4beda716c5c21b5d3802f090debd",
+      "bytes": 73992
+    }
+  },
+  "limitations": [
+    "Local source installation; not public Alpha.16 installer success or native WSL2 qualification",
+    "StudyState Sample uses invented sample content",
+    "External execution runtime and AI-provider setup are unconfigured",
+    "Historical 33-second overview is unchanged"
+  ]
+}

@@ -21,8 +21,8 @@
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-08-10-1">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-08-10-1" data-site-enhancements>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
     <title>Reference and FAQ — StatePort</title>
   </head>
   <body class="article-page">
@@ -40,6 +40,7 @@
         <a href="./" aria-current="page">Docs</a>
         <a href="../tutorials/">Tutorials</a>
         <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
+      <a href="../papers/">Papers</a>
       </nav>
     </header>
 
@@ -79,28 +80,29 @@
         <article class="prose">
           <p class="notice notice--quiet"><strong>Looking for availability?</strong> Check the <a href="../releases/">release status</a>.</p>
 
-          <h2>Glossary</h2>
-          <h3>Stateware</h3>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#glossary">Glossary</a></li><li data-level="3"><a href="#stateware">Stateware</a></li><li data-level="3"><a href="#statespec">StateSpec</a></li><li data-level="3"><a href="#canonical-state">Canonical state</a></li><li data-level="3"><a href="#instance">Instance</a></li><li data-level="3"><a href="#change-record">Change record</a></li><li data-level="2"><a href="#frequently-asked-questions">Frequently asked questions</a></li><li data-level="3"><a href="#where-can-i-check-availability">Where can I check availability?</a></li><li data-level="3"><a href="#is-a-conversation-the-applications-truth">Is a conversation the application’s truth?</a></li><li data-level="3"><a href="#does-portability-mean-identical-behavior-everywhere">Does portability mean identical behavior everywhere?</a></li><li data-level="3"><a href="#does-a-change-record-prove-a-decision-was-good">Does a change record prove a decision was good?</a></li><li data-level="3"><a href="#where-should-i-begin">Where should I begin?</a></li></ol></details>
+          <h2 id="glossary">Glossary</h2>
+          <h3 id="stateware">Stateware</h3>
           <p>Software that keeps its important state in a durable, inspectable form instead of depending on one AI session or provider.</p>
-          <h3>StateSpec</h3>
+          <h3 id="statespec">StateSpec</h3>
           <p>The file format and rules StatePort uses for durable facts, ownership, requested access, lifecycle steps, and checks.</p>
-          <h3>Canonical state</h3>
+          <h3 id="canonical-state">Canonical state</h3>
           <p>The place an application treats as the current version of a specific fact.</p>
-          <h3>Instance</h3>
+          <h3 id="instance">Instance</h3>
           <p>Your particular copy of an application, with its own private state, permissions, and history.</p>
-          <h3>Change record</h3>
+          <h3 id="change-record">Change record</h3>
           <p>A record of what was requested, approved, changed, and checked.</p>
 
-          <h2>Frequently asked questions</h2>
-          <h3>Where can I check availability?</h3>
+          <h2 id="frequently-asked-questions">Frequently asked questions</h2>
+          <h3 id="where-can-i-check-availability">Where can I check availability?</h3>
           <p>Use the <a href="../releases/">release status</a> page.</p>
-          <h3>Is a conversation the application’s truth?</h3>
+          <h3 id="is-a-conversation-the-applications-truth">Is a conversation the application’s truth?</h3>
           <p>No. A conversation can help with work, but important facts need a clear place to live.</p>
-          <h3>Does portability mean identical behavior everywhere?</h3>
+          <h3 id="does-portability-mean-identical-behavior-everywhere">Does portability mean identical behavior everywhere?</h3>
           <p>No. It means your application data and history can survive while each tool reports what it can and cannot do.</p>
-          <h3>Does a change record prove a decision was good?</h3>
+          <h3 id="does-a-change-record-prove-a-decision-was-good">Does a change record prove a decision was good?</h3>
           <p>No. It makes the decision and result easier to inspect. You still need to judge whether the choice was right.</p>
-          <h3>Where should I begin?</h3>
+          <h3 id="where-should-i-begin">Where should I begin?</h3>
           <p>Read the foundations page, then the model and lifecycle. The first-application tutorial turns those concepts into a small design exercise.</p>
 
           <div class="inline-actions">
@@ -125,6 +127,6 @@
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
-    <script src="../assets/site.js?v=2026-08-10-1"></script>
+    <script src="../assets/site.js?v=2026-09-05-2"></script>
   </body>
 </html>

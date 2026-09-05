@@ -23,6 +23,11 @@ client-side data dependency. Core content remains readable without JavaScript.
 - `assets/site.js` adds resilient navigation, breadcrumbs, documentation
   grouping, page tables of contents, previous/next links, code copy, and the
   documentation filter.
+- `papers/` is the public reading room, with public and candidate editions distinguished.
+- `tutorials/site-orientation.html` is the narrated 86-second installed-product field guide, with
+  a visible cursor, chapter links, captions, and a full transcript.
+- Documentation contents are present in HTML; JavaScript enhances navigation,
+  filtering, galleries, and copy actions.
 - `releases/` is the authoritative public availability boundary.
 - `SITE_AUDIT.md` records the critical UX/product audit, decisions, risks, and
   deferred work.
