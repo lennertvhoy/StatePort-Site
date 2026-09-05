@@ -1,0 +1,10 @@
+{
+  "title": "StatePort — pick up where you left off",
+  "slides": [
+    {"title":"Pick up your work where you left off", "body":"StatePort keeps your study plan or project on your computer, with your progress and a record of changes.", "image":"stateport-hero-preview.png", "note":"For students and project owners. Screenshots are the separate local StudyState Sample captured on 5 September 2026."},
+    {"title":"Review before you start", "body":"Your study activity is not started. Choose Start, inspect the proposed change, then approve it to mark the activity in progress.", "image":"frame-conversation.png", "note":"Verified built-in sample behavior. This is not evidence of general AI execution or imported-template Runs."},
+    {"title":"Save what you learned", "body":"Write a reflection, review its effect, and save it. Open the receipt: it records the change that was applied.", "image":"frame-result.png", "note":"A reflection is self-reported learning, not independently verified learning. A receipt does not establish correctness or reversibility."},
+    {"title":"Return to saved progress", "body":"After a local service restart, the activity and reflection were still there. You can see where the study session left off.", "image":"frame-mobile.png", "note":"Phone-sized browser view only. No cross-device synchronization or machine reboot claim."},
+    {"title":"Start with the study example", "body":"Watch the 86-second field guide or read its transcript. Fresh public installation is blocked; wait for a corrected, qualified release.", "link":"https://lennertvhoy.github.io/StatePort-Site/tutorials/site-orientation.html", "note":"Status as of 5 September 2026: Alpha.16 predecessor signature lookup and private image registry prevent fresh installation. Native Windows 11 WSL2 qualification and human acceptance remain pending."}
+  ]
+}

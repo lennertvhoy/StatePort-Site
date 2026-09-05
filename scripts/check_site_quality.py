@@ -962,7 +962,7 @@ def validate_homepage_sequence(documents: dict[Path, DocumentFacts]) -> None:
     if home is None:
         raise AssertionError("Missing homepage")
     html = (ROOT / "index.html").read_text(encoding="utf-8")
-    sections = ("overview", "journey", "benefits", "how-it-works", "status", "routes")
+    sections = ("journey", "overview", "benefits", "how-it-works", "status", "routes")
     positions: list[int] = []
     for section in sections:
         marker = f'id="{section}"'
@@ -974,9 +974,9 @@ def validate_homepage_sequence(documents: dict[Path, DocumentFacts]) -> None:
         raise AssertionError(
             f"index.html: homepage sections out of order: {sections}"
         )
-    if not re.search(r'<a[^>]*href="#overview"[^>]*>\s*See StatePort in 33 seconds', html):
+    if not re.search(r'<a[^>]*href="#journey"[^>]*>\s*Follow the study example', html):
         raise AssertionError(
-            "index.html: primary CTA \"See StatePort in 33 seconds\" must link #overview"
+            "index.html: primary CTA \"Follow the study example\" must link #journey"
         )
     if not re.search(
         r'<a[^>]*href="docs/study-state\.html"[^>]*>', html

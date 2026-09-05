@@ -381,3 +381,73 @@ Final checks: Site validators pass; all 30 unit tests pass; 58 sitemap views
 and 12 gallery views pass. The native outcome gate still exits 1 with the
 recorded release blockers. Prior untracked Alpha.14 evidence is unrelated
 legacy material and remains preserved outside this change's staging.
+
+
+## Owner steering — understanding and slides handoff, 2026-09-05
+
+The owner requested a preserved next-session handoff focused on newcomers
+understanding StatePort and the concern that confusion could hurt retention.
+Also requested programmatic/API slide creation, maintenance and presentation
+with interoperability with existing PowerPoints. Framework choice and
+implementation are deferred; comprehension and PPTX compatibility are not yet
+validated. Canonical next-session brief: `HANDOFF_2026-09-05-FIRST-VISIT-UNDERSTANDING-AND-SLIDES.md`.
+
+The prior Site and private Papers changes were pushed; the Pages build and
+43 anonymous public-byte matches passed, recorded in
+`/home/ff/Projects/.local/stateport-product-guide-sep05/publication-verification.json`.
+This adds the delivery result to prior local evidence without treating it as
+human acceptance or native release qualification. All previous evidence,
+release blockers, local installation limits and original handoff are retained.
+
+## First-visit explanation and programmable slides — 2026-09-05
+
+Executed the owner handoff. Full narrative/comprehension protocol is in
+`first-visit-review.md`; slide source, commands and compatibility limits are in
+`presentations/README.md`. The site leads with one concrete study example and
+one next action, preserving the original media and all release limitations.
+Public introductory copy was aligned across four pages. No private paper or
+existing-deck content was copied into the public Site.
+
+Refresh preflight: compared the local gate with the queued 2026-09-05 reference;
+bytes match. Reviewed UPGRADING.md and core/AGENTS.md; optional persistent-thread
+rules already match and remain inactive. No repeated scaffolding was needed.
+`uname -sr` reports Linux 7.1.9-arch1-2, not the required fresh Windows/WSL2 target.
+The real primary journey cannot be rerun here: native target unavailable and
+immutable Alpha.16 still has the recorded signature and anonymous image blockers.
+`python3 scripts/projectstate_gate.py` returned 1, OUTCOME NOT VALIDATED. Both
+queued notices remain; migration completion is not claimed. Next migration step
+is a qualified additive release and the real native journey, then record its
+result and rerun the gate. Product checkout/runtime were not modified.
+
+Local checks: `python3 scripts/validate_repo.py`,
+`python3 scripts/check_site_quality.py`, and all 30 `unittest` tests passed.
+Headless Chromium: 16 phone/desktop/JS/no-JS views passed; primary action lands
+on the example; no page errors or horizontal overflow. No live desktop input.
+Human comprehension is `not_run`; retention improvement is not claimed.
+
+Slides: five native editable PPTX slides, plus standalone HTML presentation.
+Built and finalized using the installed Artifact Tool 2.8.59; JSON title update
+and a second rebuild passed. A separate imported-PPTX title edit retained all
+other text, notes and image bytes in the new deck. Bundled LibreOffice opened
+and rendered every slide; five full-size slides and playback screenshots were
+reviewed. Browser keyboard/buttons/API/fullscreen and no-JS playback passed.
+Actual Microsoft PowerPoint is not available and is `not_run`.
+
+Private compatibility experiment: inventoried six distinct existing decks and
+copied a 28-slide deck outside the Site. Imported it, changed one title, exported,
+rendered all 28 slides, and compared before/after. All other slide text and six
+image payloads survived; slide count stayed 28. Native shape count changed
+325 → 311; connectors disappeared on slides 5, 15 and 24. Note-page numbers and
+some font references changed. Twenty rendered thumbnails matched exactly; eight
+differed including the intended title edit. Original files remain untouched.
+This is a demonstrated lossy round-trip, not full PowerPoint interoperability.
+Motion, substantive old-deck notes, charts, SmartArt and external hyperlinks
+were absent from this fixture or not exercised and remain unqualified.
+
+Artifacts and private test receipts:
+`/home/ff/Projects/.local/stateport-first-visit-sep05/`.
+Shareable new artifacts: `final/output/stateport-introduction.pptx` and
+`final/output/stateport-introduction.html` under that directory. They contain only
+public sample content. Editable source and commands remain in this repository.
+The original handoffs, unrelated untracked Alpha.14 evidence, historical release
+records, native blockers, and human acceptance status are preserved.

@@ -53,4 +53,4 @@ risks:
     owner: human
     decision: mitigate
     expires: null
-next_action: "Review the refreshed public experience and independent local installation at http://127.0.0.1:18780. Check the publication receipt at /home/ff/Projects/.local/stateport-product-guide-sep05/publication-verification.json for remote verification. Continue the qualified additive release in StatePort; local external runtime/provider setup and imported-template Runs/metadata remain open. Fresh Windows WSL2 acceptance and human product acceptance are not established by the local sample journey."
+next_action: "First-visit example and programmable slide workflow are implemented; see evidence/alpha16-public-install-001/first-visit-review.md and presentations/README.md. Obtain an uncoached first-time-reader comprehension check when available. Existing PowerPoint round-trip loses connectors; preserve originals and test a fidelity-preserving route plus actual Microsoft PowerPoint before promising compatibility. Public installer/native qualification blockers and human acceptance remain pending. Retain queued refresh notices until the real native journey validates."
