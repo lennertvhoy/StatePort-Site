@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
     <title>Stateware: State as the Application
 Boundary — StatePort</title>
-      <link rel="stylesheet" href="../assets/whitepaper-diagrams.css?v=2026-09-09-diagrams">
+      <link rel="stylesheet" href="../assets/whitepaper-diagrams.css?v=2026-09-09-svg-text">
   </head>
   <body class="article-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -174,7 +174,7 @@ belong in durable storage. A rendered conversation can be rebuilt; an
 unrecorded user decision cannot.</p>
 <figure class="paper-diagram" id="figure-1" data-mermaid-id="stateware-whitepaper-public-v1-1-01">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 1: The work stays; the tools can change">
-    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-01.svg" alt="Durable state supplies views and task context. The selected context informs a model or agent, which proposes a change. Authority and validation checks govern whether that change becomes the next revision of the same durable state." width="222" height="517" loading="lazy">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-01.svg" alt="Durable state supplies views and task context. The selected context informs a model or agent, which proposes a change. Authority and validation checks govern whether that change becomes the next revision of the same durable state." width="246" height="519" loading="lazy">
   </div>
   <figcaption><strong>Figure 1. The work stays; the tools can change</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-01.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-01.mmd">Mermaid source</a></span></figcaption>
 </figure>
@@ -199,7 +199,7 @@ study template while keeping separate plans, histories, settings, and
 permissions.</p>
 <figure class="paper-diagram" id="figure-2" data-mermaid-id="stateware-whitepaper-public-v1-1-02">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 2: One definition, separate owned instances">
-    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-02.svg" alt="A shared StudyState definition creates Amira and Ben instances. Each instance contains its own plan, progress, and decisions; neither learner shares private state merely by using the same template." width="292" height="284" loading="lazy">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-02.svg" alt="A shared StudyState definition creates Amira and Ben instances. Each instance contains its own plan, progress, and decisions; neither learner shares private state merely by using the same template." width="323" height="284" loading="lazy">
   </div>
   <figcaption><strong>Figure 2. One definition, separate owned instances</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-02.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-02.mmd">Mermaid source</a></span></figcaption>
 </figure>
@@ -237,7 +237,7 @@ These are logical roles, not a requirement to create a separate service
 for every concern.</p>
 <figure class="paper-diagram" id="figure-3" data-mermaid-id="stateware-whitepaper-public-v1-1-03">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 3: How a work request moves through StatePort">
-    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-03.svg" alt="The interface submits a request to control checks. Admitted work is coordinated and executed; observed results are recorded in durable state and become visible through the interface. This is a conceptual permitted-work path, not a service topology." width="238" height="582" loading="lazy">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-03.svg" alt="The interface submits a request to control checks. Admitted work is coordinated and executed; observed results are recorded in durable state and become visible through the interface. This is a conceptual permitted-work path, not a service topology." width="262" height="592" loading="lazy">
   </div>
   <figcaption><strong>Figure 3. How a work request moves through StatePort</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-03.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-03.mmd">Mermaid source</a></span></figcaption>
 </figure>
@@ -307,7 +307,7 @@ be able and permitted to provide it. An operation is eligible only where
 all three agree.</p>
 <figure class="paper-diagram" id="figure-4" data-mermaid-id="stateware-whitepaper-public-v1-1-04">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 4: A request alone gives no permission">
-    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-04.svg" alt="Effective authority is the shared scope of the template request, the operator grant, and host support and policy. Each restricts the request; if no shared permission remains, the operation is unavailable. Action-specific checks still apply." width="256" height="354" loading="lazy">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-04.svg" alt="Effective authority is the shared scope of the template request, the operator grant, and host support and policy. Each restricts the request; if no shared permission remains, the operation is unavailable. Action-specific checks still apply." width="279" height="362" loading="lazy">
   </div>
   <figcaption><strong>Figure 4. A request alone gives no permission</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-04.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-04.mmd">Mermaid source</a></span></figcaption>
 </figure>
@@ -431,7 +431,7 @@ requires separate delivery evidence; <strong>accepted</strong> requires
 the human’s verdict.</p>
 <figure class="paper-diagram" id="figure-5" data-mermaid-id="stateware-whitepaper-public-v1-1-05">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 5: From the intended outcome to observed evidence">
-    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-05.svg" alt="The human-owned outcome defines a bounded slice. The real user journey produces evidence. That evidence informs two separate questions: whether the outcome is satisfied and whether another work increment is justified." width="301" height="438" loading="lazy">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-05.svg" alt="The human-owned outcome defines a bounded slice. The real user journey produces evidence. That evidence informs two separate questions: whether the outcome is satisfied and whether another work increment is justified." width="350" height="448" loading="lazy">
   </div>
   <figcaption><strong>Figure 5. From the intended outcome to observed evidence</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-05.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-05.mmd">Mermaid source</a></span></figcaption>
 </figure>
@@ -483,7 +483,7 @@ lifecycle, and governed execution. The instance preserves the project’s
 history as its work develops and continues in operation.</p>
 <figure class="paper-diagram" id="figure-6" data-mermaid-id="stateware-whitepaper-public-v1-1-06">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 6: One ProjectState instance, two uses">
-    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-06.svg" alt="A ProjectState template creates a project instance that holds the actual goals, decisions, and history. The instance supports both development and operating work. These are uses of the instance, not mandatory stages or separate applications." width="237" height="239" loading="lazy">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-06.svg" alt="A ProjectState template creates a project instance that holds the actual goals, decisions, and history. The instance supports both development and operating work. These are uses of the instance, not mandatory stages or separate applications." width="285" height="248" loading="lazy">
   </div>
   <figcaption><strong>Figure 6. One ProjectState instance, two uses</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-06.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-06.mmd">Mermaid source</a></span></figcaption>
 </figure>
@@ -513,7 +513,7 @@ authorized, unchanged action adds friction without strengthening the
 boundary.</p>
 <figure class="paper-diagram" id="figure-7" data-mermaid-id="stateware-whitepaper-public-v1-1-07">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 7: An approved intention still needs a checked execution">
-    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-07.svg" alt="A proposal is checked against authority. A permitted proposal uses existing authority or receives any required approval, then passes validation before an execution attempt. The system records observed outcomes. Refusal or invalidation prevents the attempt; an attempted effect can still fail or remain uncertain." width="296" height="687" loading="lazy">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-07.svg" alt="A proposal is checked against authority. A permitted proposal uses existing authority or receives any required approval, then passes validation before an execution attempt. The system records observed outcomes. Refusal or invalidation prevents the attempt; an attempted effect can still fail or remain uncertain." width="344" height="703" loading="lazy">
   </div>
   <figcaption><strong>Figure 7. An approved intention still needs a checked execution</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-07.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-07.mmd">Mermaid source</a></span></figcaption>
 </figure>
@@ -555,7 +555,7 @@ service, or require human investigation. Retrying blindly can repeat the
 effect.</p>
 <figure class="paper-diagram" id="figure-8" data-mermaid-id="stateware-whitepaper-public-v1-1-08">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 8: A missing reply is not proof of failure">
-    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-08.svg" alt="A remote request may have been accepted when its reply is lost. The local outcome remains uncertain until checking the remote result or human investigation establishes what happened. Retry decisions come after reconciliation." width="263" height="404" loading="lazy">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-08.svg" alt="A remote request may have been accepted when its reply is lost. The local outcome remains uncertain until checking the remote result or human investigation establishes what happened. Retry decisions come after reconciliation." width="293" height="421" loading="lazy">
   </div>
   <figcaption><strong>Figure 8. A missing reply is not proof of failure</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-08.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-08.mmd">Mermaid source</a></span></figcaption>
 </figure>
@@ -610,7 +610,7 @@ cost of moving visible rather than promising that moving has no
 cost.</p>
 <figure class="paper-diagram" id="figure-9" data-mermaid-id="stateware-whitepaper-public-v1-1-09">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 9: Moving the files is only the first question">
-    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-09.svg" alt="Portability asks separate questions about retained data, preserved meaning, available execution, and comparable behavior. Passing one question does not prove the next." width="256" height="450" loading="lazy">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-09.svg" alt="Portability asks separate questions about retained data, preserved meaning, available execution, and comparable behavior. Passing one question does not prove the next." width="272" height="435" loading="lazy">
   </div>
   <figcaption><strong>Figure 9. Moving the files is only the first question</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-09.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-09.mmd">Mermaid source</a></span></figcaption>
 </figure>
@@ -631,7 +631,7 @@ stronger evidence of recoverability than the existence of an
 archive.</p>
 <figure class="paper-diagram" id="figure-10" data-mermaid-id="stateware-whitepaper-public-v1-1-10">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 10: Recovery restores a coherent working instance">
-    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-10.svg" alt="Create a consistent snapshot of authoritative records. Recovery verifies the backup, restores compatible state, re-establishes identity and permissions, reconciles interrupted effects, and rebuilds derived views before resuming." width="256" height="532" loading="lazy">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-10.svg" alt="Create a consistent snapshot of authoritative records. Recovery verifies the backup, restores compatible state, re-establishes identity and permissions, reconciles interrupted effects, and rebuilds derived views before resuming." width="270" height="537" loading="lazy">
   </div>
   <figcaption><strong>Figure 10. Recovery restores a coherent working instance</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-10.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-10.mmd">Mermaid source</a></span></figcaption>
 </figure>

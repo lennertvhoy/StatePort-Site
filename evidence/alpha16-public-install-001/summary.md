@@ -1,5 +1,17 @@
 # Evidence: alpha16-public-install-001
 
+## Whitepaper diagram text repair — 9 September 2026
+
+Executed the clipping handoff. A controlled wider-font substitution reproduced
+cropped HTML labels in all ten live SVGs. Regenerated them using native SVG text,
+added node padding, and made embedded diagrams fit phone-width figures. Every
+source label and its rendered bounds passed the desktop/mobile, JS on/off matrix
+and wider-font regression check. See [repair evidence](mermaid-text-clipping-fix.md).
+Local and live reports are under `output/diagram-clipping-20260909/`; publication
+and anonymous checks must be read from those reports, not inferred from local QA.
+The previous diagram loading-only legibility conclusion remains superseded.
+Native primary and migration-completion blockers are unchanged.
+
 ## Public copy correction — 9 September 2026
 
 Owner requested removal of internal recording and release-qualification commentary
@@ -619,3 +631,35 @@ Shareable new artifacts: `final/output/stateport-introduction.pptx` and
 public sample content. Editable source and commands remain in this repository.
 The original handoffs, unrelated untracked Alpha.14 evidence, historical release
 records, native blockers, and human acceptance status are preserved.
+
+Publication attempt: guarded heavy-run returned 75 because another agent's
+active Windows-native qualification holds `/tmp/stateport-heavy.lock`. The lock
+was not bypassed and that run was not disturbed. Site and Papers each have one
+local commit awaiting push. The exact publish command, artifact hashes and
+recovery state are in
+`/home/ff/Projects/.local/stateport-first-visit-sep05/delivery-status.json`.
+After the lock is free, refresh command-bound authorization, execute `publish.sh`
+through heavy-run, check the Pages build, and anonymously compare index.html,
+docs/getting-started.html, tutorials/site-orientation.html and papers/index.html.
+No new public deployment or anonymous verification is claimed for this change.
+The supplied source ZIP was also extracted and rebuilt successfully in an
+independent directory. Unrelated Alpha.14 evidence remains intact.
+
+## Publication completed — 2026-09-05, 18:28 UTC
+
+The owner explicitly requested that the latest site be public and online.
+Fresh guard admission initially encountered another agent's transient dirty
+product checkout; after it became clean, the exact command was admitted without
+changing that checkout. Guarded heavy-run publication succeeded. Site commit
+`dde8532` and private Papers commit `ee81ef4` are on their origin/main branches.
+GitHub Pages run 33984052951 completed build and deploy successfully for the
+site commit. Anonymous requests returned HTTP 200 and exact local-byte matches
+for the homepage, getting-started, field guide and public reading guide.
+
+Receipt: `/home/ff/Projects/.local/stateport-first-visit-sep05/publication-verification.json`.
+Governor: `governor-publication-r2/background-safe-v1.json` in the same directory.
+An earlier request while Pages was still building returned old page bytes;
+that observation is preserved as `publication-building-observation.json`.
+The final verification was performed after the successful deployment.
+This supersedes the pending-publication observation above. Installed-product
+qualification and human acceptance remain separate and unchanged.

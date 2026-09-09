@@ -211,6 +211,10 @@ def render_paper(stem: str, work: Path) -> None:
 def render_public_paper(stem: str, work: Path) -> None:
     """Build the current paper from Markdown, with isolated SVG image assets.
 
+    Native SVG text avoids fixed-size HTML foreignObject labels whose text can
+    clip when a reader resolves a different system font. The paper theme keeps
+    HTML labels disabled; node padding accommodates modest font metric changes.
+
     SVG image documents keep Mermaid's style and marker IDs local to each image.
     This avoids both the page CSP rejecting inline styles and IDs colliding when
     several Mermaid diagrams share a page. No visitor JavaScript is required.
