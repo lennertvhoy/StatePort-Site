@@ -98,9 +98,9 @@ grep '^VERSION_ID=' /etc/os-release
 ps -p 1 -o comm=</code></pre>
           <p>The installer also verifies WSL2, Windows 11 build 22000 or newer, cgroup v2, subordinate UID/GID mappings, Quadlet, and the exact signed runtime inputs. If a requirement is missing, it refuses with a specific code instead of silently selecting a different setup.</p>
 
-          <div class="table-scroll" tabindex="0" role="region" aria-label="Platform qualification matrix">
+          <div class="table-scroll" tabindex="0" role="region" aria-label="Platform support">
             <table>
-              <caption class="sr-only">Platform qualification matrix</caption>
+              <caption class="sr-only">Platform support</caption>
               <thead>
                 <tr>
                   <th scope="col">Environment</th>
@@ -111,8 +111,8 @@ ps -p 1 -o comm=</code></pre>
               <tbody>
                 <tr>
                   <th scope="row">Windows 11 + WSL2 + Ubuntu 24.04 AMD64</th>
-                  <td>Supported public-test target</td>
-                  <td>The exact one-line path is exercised in clean Ubuntu 24.04 guest qualification; native WSL2 evidence remains a distinct acceptance category.</td>
+                  <td>Intended platform; installation currently blocked</td>
+                  <td>Fresh installation is currently blocked. See the <a href="../download/">download page</a> for known issues and availability.</td>
                 </tr>
                 <tr>
                   <th scope="row">WSL1</th>

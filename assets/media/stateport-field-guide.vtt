@@ -1,61 +1,49 @@
 WEBVTT
 
-00:00:00.550 --> 00:00:04.421
-This is StatePort, running from a separate local installation.
-
-00:00:04.421 --> 00:00:10.381
+00:00:00.000 --> 00:00:05.960
 In this sample learning application, the goal and next activity are saved with the work.
 
-00:00:12.550 --> 00:00:16.065
+00:00:08.129 --> 00:00:11.644
 Starting an activity first opens a review.
 
-00:00:16.065 --> 00:00:21.710
+00:00:11.644 --> 00:00:17.289
 It names the activity and shows the exact change, from not started to in progress.
 
-00:00:21.710 --> 00:00:24.342
+00:00:17.289 --> 00:00:19.921
 Approve only when it matches your intent.
 
-00:00:26.550 --> 00:00:31.934
+00:00:22.129 --> 00:00:27.513
 After approval, StatePort applies the change and updates the learning state.
 
-00:00:31.934 --> 00:00:34.460
+00:00:27.513 --> 00:00:30.039
 The activity is now in progress.
 
-00:00:34.460 --> 00:00:38.868
+00:00:30.039 --> 00:00:34.447
 You can pause it, choose another activity, or write a reflection.
 
-00:00:40.550 --> 00:00:43.460
+00:00:36.129 --> 00:00:39.039
 A reflection starts as a browser draft.
 
-00:00:43.460 --> 00:00:48.013
+00:00:39.039 --> 00:00:43.592
 Review its exact effect before saving it as evidence.
 
-00:00:48.013 --> 00:00:51.105
+00:00:43.592 --> 00:00:46.684
 StatePort keeps self-reported learning
 
-00:00:51.105 --> 00:00:54.197
+00:00:46.684 --> 00:00:49.776
 separate from independently verified progress.
 
-00:00:55.550 --> 00:00:58.736
+00:00:51.129 --> 00:00:54.315
 Open the receipt to inspect what StatePort applied.
 
-00:00:58.736 --> 00:01:02.065
+00:00:54.315 --> 00:00:57.644
 The recorded result belongs to this application.
 
-00:01:02.065 --> 00:01:05.558
+00:00:57.644 --> 00:01:01.137
 It provides a trail you can inspect, without
 
-00:01:05.558 --> 00:01:09.052
+00:01:01.137 --> 00:01:04.631
 treating a saved reflection as independently verified learning.
 
-00:01:10.550 --> 00:01:16.447
+00:01:06.129 --> 00:01:12.026
 After restarting the local service, the completed activity and reflection are still here.
-
-00:01:16.447 --> 00:01:18.960
-This is an installed local sample.
-
-00:01:18.960 --> 00:01:22.480
-AI-provider setup and public Windows
-
-00:01:22.480 --> 00:01:26.000
-release qualification are separate steps.

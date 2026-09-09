@@ -1,5 +1,31 @@
 # Evidence: alpha16-public-install-001
 
+## Public copy correction — 9 September 2026
+
+Owner requested removal of internal recording and release-qualification commentary
+from the public product experience. Rewrote homepage gallery copy, field-guide
+intro/caption, and related documentation. The guide now runs 72 seconds: removed
+the opening installation-provenance sentence and closing qualification narration;
+retimed captions and chapter links, retained matching transcript, and replaced
+its internal production footer with the sample name. Original media/provenance
+remain recoverable in Git and previous evidence. Product behavior, self-reported
+learning semantics, and download/release limitations remain accurate.
+
+Continuation: continue with one bounded editorial/media correction and static-site
+publication; no installer artifact or runtime changed. The unchanged blocked
+native primary is not actionable from this change; no heavy build or qualification
+rerun is warranted. Queued migration completion remains blocked with that primary.
+
+Validation: repository validator and 31-page quality check passed; 30 unit tests
+passed. Headless Chromium checked homepage, guide, docs and getting-started at
+360/1440px with JavaScript enabled/disabled (16 page checks); no overflow or page
+errors, transcript disclosure worked, and enabled playback loaded the 72-second
+video and sought to the final chapter. Poster visually reviewed. The outcome gate
+retains exit 1 for the existing blocked full-product primary. Local browser report:
+`output/public-copy-20260909/local-browser.json`. Publication completion is checked
+through anonymous public byte comparison and the same live browser journey, saved
+under `output/public-copy-20260909/`; do not infer installer qualification from it.
+
 ## Illustrated whitepaper clarity review — 2026-09-09
 
 Owner requests a whole-paper clarity review with more Mermaid diagrams. Existing
