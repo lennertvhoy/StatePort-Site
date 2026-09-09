@@ -17,7 +17,7 @@ AI-assisted work increasingly extends beyond a single exchange: a student follow
 
 **Stateware** proposes an application boundary around durable state and the rules for changing it. The application retains its identity and useful work across sessions; interfaces present views of that work; models and agents act as replaceable processors within explicit authority. Governance supports continuity by making consequential changes attributable and reviewable. It is a means of sustaining useful work, not the purpose of the application.
 
-This paper develops that model through StatePort, a platform for managing stateful AI applications, and ProjectState, a repository-based method for coordinating product development. They address different layers: StatePort manages application lifecycle and execution; ProjectState keeps development aligned with a human-owned outcome. Their separation is essential. A product must not need its development coordination files in order to run.
+This paper develops that model through StatePort, a platform for managing stateful AI applications, and ProjectState, a template for developing and operating projects around a human-owned outcome. A ProjectState instance carries the goals, decisions, work, and evidence of a particular project. StatePort itself was developed using such an instance; StatePort can also host ProjectState and StudyState instances as applications for ongoing project work and study.
 
 The central claim is architectural: **the durable identity of an AI application should reside in its state and contracts, rather than in the session or engine currently acting on them.** This does not make model behavior deterministic, make every operation reversible, or establish that every implementation satisfies the model. It creates boundaries against which those properties can be examined.
 
@@ -147,9 +147,9 @@ An execution host can provide tools, sessions, context handling, and provider-sp
 
 Interchangeability is therefore conditional. Two engines may honor the same input contract and still differ in reasoning quality, tool behavior, authentication, latency, cost, or failure modes. Stateware aims to make replacement possible and inspectable; it does not promise equivalent outputs.
 
-# 5. ProjectState: coordinating development without coupling the runtime
+# 5. ProjectState: developing and operating projects
 
-ProjectState applies the same concern for durable authority to the work of building a product. Its v6 core is intentionally small: a human-owned outcome, one current slice of work, one representative user journey, and evidence of what actually happened.
+ProjectState applies the same concern for durable authority to developing and operating a project. The template provides the reusable structure; an instance holds the actual project and its ongoing work. Its v6 core is intentionally small: a human-owned outcome, one current slice of work, one representative user journey, and evidence of what actually happened.
 
 | Canonical artifact | Responsibility |
 | --- | --- |
@@ -180,13 +180,13 @@ These rules constrain the process without turning persistence into an end in its
 
 The rules are advisory unless an actual runner enforces admission. Writing a deadline in a file is not the same as preventing work after it. An explicit long run needs bounded work and a finalization reserve; parallel threads remain optional, with one coordinator responsible for integrated state and evidence. Neither threads nor model choices are activated by installing the template.
 
-## 5.3 The two uses of ProjectState
+## 5.3 Development and operating use
 
-ProjectState can coordinate the development of StatePort. In that role it is outside the application runtime: removing the development coordination layer must not stop the product.
+A ProjectState instance can support both the development of a product and the ongoing operation of a project. In development use, it organizes the work of creating and improving something: the intended outcome, the current increment, the decisions made, and the evidence that the result works. StatePort itself was developed using a ProjectState instance.
 
-StatePort can also host a ProjectState-based project as an application instance. In that role, the project's coordination files are intentionally the instance's domain data, read through the relevant adapter. This does not make StatePort dependent on the coordination files used to develop StatePort itself.
+In operating use, the instance remains the working home of the project: maintaining its goals, planning and carrying out work, reviewing results, and deciding what comes next. Its purpose extends beyond producing software. Just as a StudyState instance supports a learner's ongoing study, a ProjectState instance supports ongoing project work, with continuity across sessions and agents.
 
-That distinction generalizes. A platform can host accounting records without depending on its own company's accounts to start. Likewise, it can host development state without making development governance part of the platform's boot sequence.
+StatePort can host a ProjectState instance in either use. ProjectState and StudyState supply the structure and behavior of their respective domains; StatePort supplies the application interface, lifecycle, and governed execution. The instance preserves the project's history as its work develops and continues in operation.
 
 # 6. Change, authority, and evidence
 
@@ -270,7 +270,7 @@ Open design questions include concurrent writers, migration between contract ver
 
 The value of an AI application accumulates in the work it helps someone carry forward: a clearer plan, a maintained system, a body of knowledge, a sequence of decisions they can still understand. That value should not have to be reconstructed whenever a session ends or an engine changes.
 
-Stateware places durable state and explicit contracts at that boundary. StatePort explores how to host and operate applications around it. ProjectState applies the same discipline to development: preserve the human's outcome, work in bounded increments, and let observed results outrank administrative success.
+Stateware places durable state and explicit contracts at that boundary. StatePort explores how to host and operate applications around it. ProjectState applies the same discipline to developing and operating projects: preserve the human's outcome, work in bounded increments, and let observed results outrank administrative success.
 
 The proposal is not that state removes uncertainty. It is that uncertainty, authority, and continuity should have places in the application that its owner can inspect. Models can improve and interfaces can change while the work remains something the owner can keep.
 

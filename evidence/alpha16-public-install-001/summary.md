@@ -1,5 +1,23 @@
 # Evidence: alpha16-public-install-001
 
+## ProjectState development and operating use — owner correction, 2026-09-09
+
+Owner clarifies that ProjectState instances support both development and ongoing
+operating use, analogous to StudyState for ongoing study; StatePort itself was
+developed with a ProjectState instance. Rewrote section 5.3 around that distinction
+and aligned the abstract, section 5 introduction and conclusion. Removed the
+accounting analogy and misplaced emphasis on boot/runtime files. This describes
+uses of an instance, not a newly implemented UI mode switch. Existing HTML section
+anchors remain stable. Product and template implementation are unchanged.
+
+Focused reading journey passed in isolated headless Chromium at 360/768/1440px
+with JavaScript on/off; the reading-room→paper→source route and mobile navigation
+passed. Repository and 31-page quality checks passed. Outcome gate remains exit 1
+for the unchanged native installed primary; refresh notices and acceptance stay
+pending. Existing publication authority covers this correction. Guarded publication
+and anonymous comparison will be recorded in the local publication receipt under
+`output/whitepaper-20260909/operating-public.json`.
+
 ## Public whitepaper architectural revision — 2026-09-09
 
 Owner requests the public paper be aligned with current StatePort and ProjectState,
