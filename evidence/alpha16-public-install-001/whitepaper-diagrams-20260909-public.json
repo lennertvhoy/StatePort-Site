@@ -1,0 +1,215 @@
+{
+  "checked_utc": "2026-09-09T11:05:23.500309+00:00",
+  "site_commit": "edf196bf54ffbdc11e14efc62a787c7bc4605c8d",
+  "authentication": "none",
+  "results": [
+    {
+      "path": "papers/stateware-whitepaper-public-v1.1.html",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/papers/stateware-whitepaper-public-v1.1.html",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/papers/stateware-whitepaper-public-v1.1.html",
+      "local_sha256": "2c567f44aeb3b0d206704f47aa7fd05589929ebfb9418fd1a5b77ea51b040544",
+      "remote_sha256": "2c567f44aeb3b0d206704f47aa7fd05589929ebfb9418fd1a5b77ea51b040544",
+      "match": true
+    },
+    {
+      "path": "papers/stateware-whitepaper-public-v1.1.md",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/papers/stateware-whitepaper-public-v1.1.md",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/papers/stateware-whitepaper-public-v1.1.md",
+      "local_sha256": "e15c34ebab82d3303e8e6fc3d4bf5b42b1dde12a33b78b13ca20f9d8e59108f0",
+      "remote_sha256": "e15c34ebab82d3303e8e6fc3d4bf5b42b1dde12a33b78b13ca20f9d8e59108f0",
+      "match": true
+    },
+    {
+      "path": "assets/whitepaper-diagrams.css",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/assets/whitepaper-diagrams.css",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/assets/whitepaper-diagrams.css",
+      "local_sha256": "951df3e0260bade1aa35711e0d34a98af3cdea61370edf59cbef560da4090bd1",
+      "remote_sha256": "951df3e0260bade1aa35711e0d34a98af3cdea61370edf59cbef560da4090bd1",
+      "match": true
+    },
+    {
+      "path": "assets/diagrams/paper/stateware-whitepaper-public-v1-1-01.svg",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/paper/stateware-whitepaper-public-v1-1-01.svg",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/paper/stateware-whitepaper-public-v1-1-01.svg",
+      "local_sha256": "68364393946e5aef0a30ef242e2c3bd0fc356f4a952c778fa1ba3301de558be4",
+      "remote_sha256": "68364393946e5aef0a30ef242e2c3bd0fc356f4a952c778fa1ba3301de558be4",
+      "match": true
+    },
+    {
+      "path": "assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-01.mmd",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-01.mmd",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-01.mmd",
+      "local_sha256": "215fce931c72f7bf948dc54111dfc72b723fe4e863ae314b2fc582762bfc119d",
+      "remote_sha256": "215fce931c72f7bf948dc54111dfc72b723fe4e863ae314b2fc582762bfc119d",
+      "match": true
+    },
+    {
+      "path": "assets/diagrams/paper/stateware-whitepaper-public-v1-1-02.svg",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/paper/stateware-whitepaper-public-v1-1-02.svg",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/paper/stateware-whitepaper-public-v1-1-02.svg",
+      "local_sha256": "02796dde8f46f3c954c4d4986bcf3c130a2e4b2f5ce6d9700e8556108c534983",
+      "remote_sha256": "02796dde8f46f3c954c4d4986bcf3c130a2e4b2f5ce6d9700e8556108c534983",
+      "match": true
+    },
+    {
+      "path": "assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-02.mmd",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-02.mmd",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-02.mmd",
+      "local_sha256": "ac179529e42940415e9304b9d896a53b755277a5f86cc41745e6a5eaad7b366a",
+      "remote_sha256": "ac179529e42940415e9304b9d896a53b755277a5f86cc41745e6a5eaad7b366a",
+      "match": true
+    },
+    {
+      "path": "assets/diagrams/paper/stateware-whitepaper-public-v1-1-03.svg",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/paper/stateware-whitepaper-public-v1-1-03.svg",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/paper/stateware-whitepaper-public-v1-1-03.svg",
+      "local_sha256": "c622a3028100e0eb1dbe258d97fa9b17b66cf7524868cfcabb3f3f7c049e4d29",
+      "remote_sha256": "c622a3028100e0eb1dbe258d97fa9b17b66cf7524868cfcabb3f3f7c049e4d29",
+      "match": true
+    },
+    {
+      "path": "assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-03.mmd",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-03.mmd",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-03.mmd",
+      "local_sha256": "2d7f8783e880c3972236487370383e6a7eda4bba0a1195e41cb68b93f9ef4a4f",
+      "remote_sha256": "2d7f8783e880c3972236487370383e6a7eda4bba0a1195e41cb68b93f9ef4a4f",
+      "match": true
+    },
+    {
+      "path": "assets/diagrams/paper/stateware-whitepaper-public-v1-1-04.svg",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/paper/stateware-whitepaper-public-v1-1-04.svg",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/paper/stateware-whitepaper-public-v1-1-04.svg",
+      "local_sha256": "85b8815348bf49238d3c2b90a8b9853c243637710276e8b57950e8a98c7b4a56",
+      "remote_sha256": "85b8815348bf49238d3c2b90a8b9853c243637710276e8b57950e8a98c7b4a56",
+      "match": true
+    },
+    {
+      "path": "assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-04.mmd",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-04.mmd",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-04.mmd",
+      "local_sha256": "c70ed2ed3453e8f144b8d1a03e793722edab5b3c31ccf5c7fbb20df3806bc514",
+      "remote_sha256": "c70ed2ed3453e8f144b8d1a03e793722edab5b3c31ccf5c7fbb20df3806bc514",
+      "match": true
+    },
+    {
+      "path": "assets/diagrams/paper/stateware-whitepaper-public-v1-1-05.svg",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/paper/stateware-whitepaper-public-v1-1-05.svg",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/paper/stateware-whitepaper-public-v1-1-05.svg",
+      "local_sha256": "f67589d0c92cc3a5644172e2afad3f8ea29b3dee62b604398f7f911b4c18cc2e",
+      "remote_sha256": "f67589d0c92cc3a5644172e2afad3f8ea29b3dee62b604398f7f911b4c18cc2e",
+      "match": true
+    },
+    {
+      "path": "assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-05.mmd",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-05.mmd",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-05.mmd",
+      "local_sha256": "dbc685bcb660b4ce0e3d4cd2cef9f660f0bf71bcebce640719f08ae8f5897186",
+      "remote_sha256": "dbc685bcb660b4ce0e3d4cd2cef9f660f0bf71bcebce640719f08ae8f5897186",
+      "match": true
+    },
+    {
+      "path": "assets/diagrams/paper/stateware-whitepaper-public-v1-1-06.svg",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/paper/stateware-whitepaper-public-v1-1-06.svg",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/paper/stateware-whitepaper-public-v1-1-06.svg",
+      "local_sha256": "141730843491455236dd9ab8eb310a73667d0e6fbc0197a236a19b9959eb2e26",
+      "remote_sha256": "141730843491455236dd9ab8eb310a73667d0e6fbc0197a236a19b9959eb2e26",
+      "match": true
+    },
+    {
+      "path": "assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-06.mmd",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-06.mmd",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-06.mmd",
+      "local_sha256": "b4c33ce5955642c858c048cf5ddf31a68a9770931e30a0b690f3fcf378d1f397",
+      "remote_sha256": "b4c33ce5955642c858c048cf5ddf31a68a9770931e30a0b690f3fcf378d1f397",
+      "match": true
+    },
+    {
+      "path": "assets/diagrams/paper/stateware-whitepaper-public-v1-1-07.svg",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/paper/stateware-whitepaper-public-v1-1-07.svg",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/paper/stateware-whitepaper-public-v1-1-07.svg",
+      "local_sha256": "c07dc9c1a0b9f77a4bea70666ae036ffb763db5e2cdef7cc7f9b64d9bbbdca02",
+      "remote_sha256": "c07dc9c1a0b9f77a4bea70666ae036ffb763db5e2cdef7cc7f9b64d9bbbdca02",
+      "match": true
+    },
+    {
+      "path": "assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-07.mmd",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-07.mmd",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-07.mmd",
+      "local_sha256": "beee22e5eb1df79d96bb2461d6707c94bf81587e1c52e87cf2bb73abb4507d30",
+      "remote_sha256": "beee22e5eb1df79d96bb2461d6707c94bf81587e1c52e87cf2bb73abb4507d30",
+      "match": true
+    },
+    {
+      "path": "assets/diagrams/paper/stateware-whitepaper-public-v1-1-08.svg",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/paper/stateware-whitepaper-public-v1-1-08.svg",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/paper/stateware-whitepaper-public-v1-1-08.svg",
+      "local_sha256": "d76ed5d4c59675010d8eca3cd9eaf9645724a119a2d6a3331d7a83b6d120fb1e",
+      "remote_sha256": "d76ed5d4c59675010d8eca3cd9eaf9645724a119a2d6a3331d7a83b6d120fb1e",
+      "match": true
+    },
+    {
+      "path": "assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-08.mmd",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-08.mmd",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-08.mmd",
+      "local_sha256": "193beb9208dbc088f300d6325c4acf476a0b90be4fa91c91267312bdd0ba3aae",
+      "remote_sha256": "193beb9208dbc088f300d6325c4acf476a0b90be4fa91c91267312bdd0ba3aae",
+      "match": true
+    },
+    {
+      "path": "assets/diagrams/paper/stateware-whitepaper-public-v1-1-09.svg",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/paper/stateware-whitepaper-public-v1-1-09.svg",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/paper/stateware-whitepaper-public-v1-1-09.svg",
+      "local_sha256": "12660d356c87e527bed802ceba5f9c04f53a2472c749703c5748ff189a2acae7",
+      "remote_sha256": "12660d356c87e527bed802ceba5f9c04f53a2472c749703c5748ff189a2acae7",
+      "match": true
+    },
+    {
+      "path": "assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-09.mmd",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-09.mmd",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-09.mmd",
+      "local_sha256": "441a309b6fd66a630b20baa4f1adeeaeddfcbb09e067530d6dd2e4c8fcf614b0",
+      "remote_sha256": "441a309b6fd66a630b20baa4f1adeeaeddfcbb09e067530d6dd2e4c8fcf614b0",
+      "match": true
+    },
+    {
+      "path": "assets/diagrams/paper/stateware-whitepaper-public-v1-1-10.svg",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/paper/stateware-whitepaper-public-v1-1-10.svg",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/paper/stateware-whitepaper-public-v1-1-10.svg",
+      "local_sha256": "7b98565bcca2a1d27be1adb2cf6aef8ceac4271c7a0b40c590e953a73f6f06e3",
+      "remote_sha256": "7b98565bcca2a1d27be1adb2cf6aef8ceac4271c7a0b40c590e953a73f6f06e3",
+      "match": true
+    },
+    {
+      "path": "assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-10.mmd",
+      "url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-10.mmd",
+      "status": 200,
+      "final_url": "https://lennertvhoy.github.io/StatePort-Site/assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-10.mmd",
+      "local_sha256": "ccb7a54e10a0f9d554bb9a7b8fd7c15f8300af5f7e943fac47cd75fa1d232f69",
+      "remote_sha256": "ccb7a54e10a0f9d554bb9a7b8fd7c15f8300af5f7e943fac47cd75fa1d232f69",
+      "match": true
+    }
+  ],
+  "passed": true
+}

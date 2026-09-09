@@ -47,9 +47,17 @@ Commands and results:
 
 Local browser proof: `whitepaper-diagrams-20260909-browser.json`. Screenshots, before
 text and publication verification script/receipt are under ignored
-`output/whitepaper-diagrams-20260909/`. Publication is the remaining action: guarded
-push, Pages completion and anonymous comparison of the paper and all diagram assets.
-The final receipt will be `output/whitepaper-diagrams-20260909/public.json`.
+`output/whitepaper-diagrams-20260909/`. Publication completed: guarded push published
+`edf196b`; Pages reports built. All 23 user-facing files (paper HTML/Markdown,
+stylesheet, ten SVGs and ten Mermaid sources) return anonymous HTTP 200 and match
+local bytes. The live six-view browser journey also passes with all 60 diagram
+observations and source/full-size navigation. Receipts:
+`whitepaper-diagrams-20260909-public.json` and
+`whitepaper-diagrams-20260909-live-browser.json`.
+Governor completed with exit 0 at
+`/home/ff/.local/state/stateport/whitepaper-publication-20260909/governor-diagrams/background-safe-v1.json`.
+Paper delivery is complete; product installation/acceptance and migration closure
+remain separate pending work. The task-owned loopback preview was stopped.
 Preserve pre-existing changes in AGENTS.md, STATE.yaml and this summary, plus the
 untracked Alpha.14 evidence directory; they are not part of this publication.
 
