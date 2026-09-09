@@ -1,28 +1,20 @@
 #!/usr/bin/env python3
-"""Render the Stateware whitepaper Mermaid blocks to inline SVG.
+"""Build Stateware diagrams for static, JavaScript-free reading.
 
-Reproducible build-time step (no visitor-runtime dependency):
+The current public paper is rebuilt from Markdown using Pandoc and Mermaid CLI.
+Diagrams become isolated SVG image files with accessible descriptions and links
+back to their Mermaid sources. SVG-local styles and IDs do not enter the page.
 
-  papers/*.md  ```mermaid blocks   --mmdc-->  scoped inline <svg>
-                                          -> assets/diagrams/src/paper/*.mmd
+  python3 scripts/render_paper_diagrams.py --paper stateware-whitepaper-public-v1.1
 
-The Markdown stays the source of truth (and renders natively on GitHub).
-This script renders each block to a static SVG with the project theme,
-scopes every internal id so multiple inline diagrams never collide, and
-inlines the result into the corresponding paper HTML. The public site
-therefore displays the diagrams with zero client-side JavaScript and no
-third-party runtime, consistent with the site's static-first policy.
-
-Re-run from the repo root:
-
-  python3 scripts/render_paper_diagrams.py
-
-Requires the `mmdc` (mermaid-cli) executable and a Chrome/Chromium binary
-discovered automatically or via the MMDC_CHROME_BIN environment variable.
+Requires pandoc, mmdc, and a Chrome/Chromium executable (or MMDC_CHROME_BIN).
+Without --paper, both papers render; the historical candidate retains its legacy
+inline-SVG rendering path. Its content is not rebuilt from Markdown.
 """
 from __future__ import annotations
 
 import html
+import argparse
 import os
 import re
 import shutil
@@ -75,14 +67,14 @@ def detect_chrome() -> str | None:
     return None
 
 
-def render_svg(source: str, out_svg: Path, work: Path) -> None:
+def render_svg(source: str, out_svg: Path, work: Path, theme_config: Path = THEME_CONFIG) -> None:
     mmd = work / "diagram.mmd"
     mmd.write_text(source, encoding="utf-8")
     cmd: list[str] = [
         "mmdc",
         "-i", str(mmd),
         "-o", str(out_svg),
-        "-c", str(THEME_CONFIG),
+        "-c", str(theme_config),
         "--backgroundColor", "transparent",
         "-q",
     ]
@@ -173,6 +165,9 @@ def slugify(stem: str) -> str:
 
 
 def render_paper(stem: str, work: Path) -> None:
+    if stem == "stateware-whitepaper-public-v1.1":
+        render_public_paper(stem, work)
+        return
     md_path = PAPERS / (stem + ".md")
     html_path = PAPERS / (stem + ".html")
     if not md_path.is_file() or not html_path.is_file():
@@ -213,14 +208,83 @@ def render_paper(stem: str, work: Path) -> None:
     print(f"  inlined {len(figures)} diagrams into {html_path.relative_to(ROOT)}")
 
 
+def render_public_paper(stem: str, work: Path) -> None:
+    """Build the current paper from Markdown, with isolated SVG image assets.
+
+    SVG image documents keep Mermaid's style and marker IDs local to each image.
+    This avoids both the page CSP rejecting inline styles and IDs colliding when
+    several Mermaid diagrams share a page. No visitor JavaScript is required.
+    """
+    md_path = PAPERS / f"{stem}.md"
+    html_path = PAPERS / f"{stem}.html"
+    markdown = md_path.read_text(encoding="utf-8")
+    body = subprocess.run(
+        ["pandoc", "--from=markdown", "--to=html5", "--shift-heading-level-by=1"],
+        input=markdown, text=True, capture_output=True, check=True,
+    ).stdout
+    asset_dir = ROOT / "assets/diagrams/paper"
+    asset_dir.mkdir(parents=True, exist_ok=True)
+    MMD_SRC_DIR.mkdir(parents=True, exist_ok=True)
+    figures = []
+    for index, source in enumerate(extract_mermaid_blocks(markdown), start=1):
+        diagram_id = f"{slugify(stem)}-{index:02d}"
+        title = re.search(r"^\s*accTitle:\s*(.+)$", source, re.MULTILINE)
+        description = re.search(r"^\s*accDescr:\s*(.+)$", source, re.MULTILINE)
+        if not title or not description:
+            raise AssertionError(f"{diagram_id}: provide an accessible title and description")
+        (MMD_SRC_DIR / f"{diagram_id}.mmd").write_text(source, encoding="utf-8")
+        target = asset_dir / f"{diagram_id}.svg"
+        render_svg(source, target, work, ROOT / "config/mermaid-paper-theme.json")
+        svg = target.read_text(encoding="utf-8")
+        bounds = re.search(r'viewBox="([\d. -]+)"', svg)
+        if not bounds:
+            raise AssertionError(f"{diagram_id}: missing SVG dimensions")
+        _, _, width, height = map(float, bounds[1].split())
+        target.write_text(svg.replace('width="100%"', f'width="{width}"', 1), encoding="utf-8")
+        image_url = f"../assets/diagrams/paper/{diagram_id}.svg"
+        source_url = f"../assets/diagrams/src/paper/{diagram_id}.mmd"
+        label = html.escape(title[1], quote=True)
+        alt = html.escape(description[1], quote=True)
+        figures.append(
+            f'<figure class="paper-diagram" id="figure-{index}" data-mermaid-id="{diagram_id}">\n'
+            f'  <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure {index}: {label}">\n'
+            f'    <img src="{image_url}" alt="{alt}" width="{round(width)}" height="{round(height)}" loading="lazy">\n'
+            f'  </div>\n'
+            f'  <figcaption><strong>Figure {index}. {label}</strong>'
+            f'<span class="paper-diagram-links"><a href="{image_url}">Open full diagram</a> · '
+            f'<a href="{source_url}">Mermaid source</a></span></figcaption>\n'
+            f'</figure>'
+        )
+        print(f"  rendered {diagram_id}: {width:.0f} × {height:.0f}")
+    slots = list(DIAGRAM_SLOT.finditer(body))
+    if len(slots) != len(figures):
+        raise AssertionError("Markdown render lost diagram slots")
+    replacements = iter(figures)
+    body = DIAGRAM_SLOT.sub(lambda _: next(replacements), body)
+    # Preserve section URLs from the previous public revision.
+    body = body.replace('id="projectstate-developing-and-operating-projects"',
+                        'id="projectstate-coordinating-development-without-coupling-the-runtime"')
+    body = body.replace('id="development-and-operating-use"', 'id="the-two-uses-of-projectstate"')
+    page = html_path.read_text(encoding="utf-8")
+    start = page.index('<article class="prose paper-prose">')
+    start = page.index('<h2 ', start)
+    finish = page.index('</article>', start)
+    html_path.write_text(page[:start] + body + page[finish:], encoding="utf-8")
+    print(f"  rebuilt public paper with {len(figures)} static diagrams")
+
+
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--paper", choices=PAPERS_TO_RENDER, action="append",
+                        help="Render only the named paper; repeat to select more than one")
+    args = parser.parse_args()
     if not shutil.which("mmdc"):
         sys.exit("missing required tool: mmdc (npm i -g @mermaid-js/mermaid-cli)")
     if not THEME_CONFIG.is_file():
         sys.exit(f"missing theme config: {THEME_CONFIG.relative_to(ROOT)}")
     work = Path(tempfile.mkdtemp(prefix="paper-diagrams-"))
     try:
-        for stem in PAPERS_TO_RENDER:
+        for stem in args.paper or PAPERS_TO_RENDER:
             print(f"rendering {stem}")
             render_paper(stem, work)
     finally:

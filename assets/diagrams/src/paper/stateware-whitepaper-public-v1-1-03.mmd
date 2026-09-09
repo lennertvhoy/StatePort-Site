@@ -1,9 +1,9 @@
 flowchart TB
-    S[(Canonical state<br/>the only truth)]
-    S --> CV[Conversation view]
-    S --> FV[File & preview views]
-    S --> TV[Terminal view]
-    S --> DV[Dashboards & notifications]
-    S --> CX[Compiled model context<br/>bounded, task-scoped, disposable]
-    CX -.->|consumed once, then discarded| OUT[Model output]
-    OUT -.->|never writes state directly| S
+    accTitle: How a work request moves through StatePort
+    accDescr: The interface submits a request to control checks. Admitted work is coordinated and executed; observed results are recorded in durable state and become visible through the interface. This is a conceptual permitted-work path, not a service topology.
+    view["Application interface"]
+    view -->|"request work"| api["Control and policy checks"]
+    api -->|"admit"| worker["Work coordination"]
+    worker -->|"dispatch"| host["Execution host"]
+    host -->|"report observations"| records[("Durable work records")]
+    records -->|"refresh"| updated["Updated application view"]

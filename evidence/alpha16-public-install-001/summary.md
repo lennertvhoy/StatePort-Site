@@ -1,5 +1,58 @@
 # Evidence: alpha16-public-install-001
 
+## Illustrated whitepaper clarity review — 2026-09-09
+
+Owner requests a whole-paper clarity review with more Mermaid diagrams. Existing
+publication authority persists. All nine chapters were reviewed: the introduction
+now distinguishes the four names and instance; chapter 2 retains the boundary
+questions; chapter 3 defines canonical state/context/adapters in plain language and
+replaces its two diagrams; chapter 4 illustrates the request path and permission
+intersection and adds a cancellation example; chapter 5 illustrates outcome versus
+continuation and preserves the owner's development/operating correction; chapter 6
+illustrates approval/validation and uncertain external effects; chapter 7 illustrates
+portability and recovery; chapter 8 clarifies format/maintenance costs; chapter 9
+retains the thesis without adding development-status detail.
+
+There are ten diagrams (eight additional), each with a caption, accessible description,
+full-size SVG link and exact Mermaid source. Layouts were narrowed after inspection;
+final diagrams are 222–301px wide with 16px labels and fit the 360px reading viewport.
+The public paper renderer now builds body prose from Markdown with Pandoc and renders
+standalone SVG image documents. This removes inherited inline-CSP/style and marker-ID
+coupling from the public paper; no visitor JavaScript or third-party runtime is added.
+The historical candidate and immutable installer/release trees are untouched. Existing
+section anchors and the public URL remain stable. The stylesheet cache key changed.
+
+Real reader journey: isolated headless Chromium on loopback port 4193; reading room
+→ paper → Markdown; all ten figures decoded in each of six views (360/768/1440px,
+JavaScript enabled/disabled). All ten source links and a full-size diagram link passed.
+No page or console errors, broken images, invalid local fragments, or document overflow.
+Every diagram was visually inspected, including branching flows at phone width.
+Original wider intermediate render was refined before publication. Port 4189 was
+occupied, so a separate task-owned server used 4193; the existing listener was untouched.
+
+Commands and results:
+- `python3 scripts/render_paper_diagrams.py --paper stateware-whitepaper-public-v1.1`:
+  passed; ten Mermaid SVGs and the article rebuilt from Markdown.
+- `PAPER_BASE=http://127.0.0.1:4193 node output/whitepaper-diagrams-20260909/review.cjs`:
+  six views, 60 diagram render observations, reading/source/mobile navigation passed.
+- Source/SVG consistency: all ten extracted MMD files match the Markdown fences;
+  all SVG marker references resolve; no SVG scripts.
+- `python3 scripts/validate_repo.py` and `python3 scripts/check_site_quality.py`:
+  repository and 31-page site quality checks passed.
+- `PYTHONDONTWRITEBYTECODE=1 python3 -B -m unittest discover -s scripts -p 'test_*.py'`:
+  30 existing tests passed.
+- `python3 scripts/projectstate_gate.py`: exit 1, unchanged blocked native product
+  outcome. The queued refresh is already merged but remains pending its real primary;
+  no unchanged installer retry, runtime claim, or new slice was admitted.
+
+Local browser proof: `whitepaper-diagrams-20260909-browser.json`. Screenshots, before
+text and publication verification script/receipt are under ignored
+`output/whitepaper-diagrams-20260909/`. Publication is the remaining action: guarded
+push, Pages completion and anonymous comparison of the paper and all diagram assets.
+The final receipt will be `output/whitepaper-diagrams-20260909/public.json`.
+Preserve pre-existing changes in AGENTS.md, STATE.yaml and this summary, plus the
+untracked Alpha.14 evidence directory; they are not part of this publication.
+
 ## ProjectState development and operating use — owner correction, 2026-09-09
 
 Owner clarifies that ProjectState instances support both development and ongoing

@@ -1,21 +1,8 @@
 flowchart TB
-    subgraph BOUNDARY["The application"]
-        S[(Canonical state<br/>user-owned, durable, readable)]
-        GOV[Governance<br/>capabilities · approvals · validation · receipts]
-    end
-
-    subgraph VIEWS["Projections — replaceable"]
-        C[Conversation]
-        F[Files & previews]
-        D[Dashboards]
-        N[Notifications]
-    end
-
-    subgraph ENGINES["Engines — replaceable"]
-        M1[Model / agent A]
-        M2[Model / agent B]
-    end
-
-    S --> C & F & D & N
-    ENGINES --> GOV
-    GOV -->|"governed transactions"| S
+    accTitle: The work stays; the tools can change
+    accDescr: Durable state supplies views and task context. The selected context informs a model or agent, which proposes a change. Authority and validation checks govern whether that change becomes the next revision of the same durable state.
+    stateStore[("Durable application state")]
+    stateStore -->|"derive"| projections["Views and task context"]
+    projections -->|"selected context"| engine["Model or agent"]
+    engine -->|"proposed change"| control["Authority and validation"]
+    control -->|"permitted change"| updated[("Next state revision")]

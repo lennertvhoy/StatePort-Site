@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
     <title>Stateware: State as the Application
 Boundary — StatePort</title>
-      <link rel="stylesheet" href="../assets/whitepaper-diagrams.css?v=2026-09-09">
+      <link rel="stylesheet" href="../assets/whitepaper-diagrams.css?v=2026-09-09-diagrams">
   </head>
   <body class="article-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -117,6 +117,12 @@ an agreed objective.</p>
 a program without changing what the owner asked the program to achieve.
 Keeping those two kinds of change distinct is one of the model’s most
 consequential decisions.</p>
+<p>Four names recur below. <strong>Stateware</strong> is the
+architectural idea. <strong>StatePort</strong> is the host for
+applications built around that idea. <strong>ProjectState</strong>
+supplies a template for project work; <strong>StudyState</strong>
+supplies one for study. An <strong>instance</strong> is the particular
+project or learner’s working application, with its own state.</p>
 <h2 id="why-the-boundary-matters">2. Why the boundary matters</h2>
 <p>The problem is not conversation itself. Chat is an effective
 interface, and systems can combine it with durable storage, versioning,
@@ -150,11 +156,11 @@ assistant’s ongoing work coherent across those changing processors.</p>
 <h2 id="the-application-model">3. The application model</h2>
 <h3 id="durable-state-and-derived-views">3.1 Durable state and derived
 views</h3>
-<p>Canonical state is the authoritative record for a defined
-responsibility: the accepted plan, the current artifact, the granted
-permission, or the recorded result. It need not be one file or one
-database. The requirement is one authority for each fact, with explicit
-relationships between records.</p>
+<p><strong>Canonical state</strong> means the record the application
+treats as authoritative: the accepted plan, current artifact, granted
+permission, or recorded result. It need not be one file or database. The
+rule is that each fact has a clear home. If a dashboard disagrees with
+the accepted plan, the application knows which record to trust.</p>
 <p>A conversation view, dashboard, search index, preview, and model
 context are projections of that state. They can be optimized for
 different purposes without creating competing versions of the truth. A
@@ -166,26 +172,36 @@ and external identifiers may contain facts that exist nowhere else. If
 the application needs those facts for continuity or recovery, they
 belong in durable storage. A rendered conversation can be rebuilt; an
 unrecorded user decision cannot.</p>
-<figure class="paper-diagram" tabindex="0" role="img" aria-label="Models and agents act through governance on durable canonical state; conversation, files, dashboards and notifications are derived views." data-mermaid-id="stateware-whitepaper-public-v1-1-01">
-<svg role="img" aria-hidden="true" focusable="false" id="stateware_whitepaper_public_v1_1_01_svg" width="855.281" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="paper-inline-1 flowchart paper-diagram__svg" viewBox="0 0 855.28125 793.4264526367188" role="graphics-document document" aria-roledescription="flowchart-v2"><g><marker id="stateware_whitepaper_public_v1_1_01_my-svg_flowchart-v2-pointEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="paper-inline-2 arrowMarkerPath"/></marker><marker id="stateware_whitepaper_public_v1_1_01_my-svg_flowchart-v2-pointStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="4.5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="paper-inline-3 arrowMarkerPath"/></marker><marker id="stateware_whitepaper_public_v1_1_01_my-svg_flowchart-v2-circleEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="11" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="paper-inline-4 arrowMarkerPath"/></marker><marker id="stateware_whitepaper_public_v1_1_01_my-svg_flowchart-v2-circleStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-1" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="paper-inline-5 arrowMarkerPath"/></marker><marker id="stateware_whitepaper_public_v1_1_01_my-svg_flowchart-v2-crossEnd" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="12" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="paper-inline-6 arrowMarkerPath"/></marker><marker id="stateware_whitepaper_public_v1_1_01_my-svg_flowchart-v2-crossStart" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="-1" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="paper-inline-7 arrowMarkerPath"/></marker><g class="root"><g class="clusters"><g class="cluster" id="stateware_whitepaper_public_v1_1_01_VIEWS" data-look="classic"><rect x="8" y="682.9264831542969" width="839.28125" height="102.5"/><g class="cluster-label" transform="translate(336.296875, 682.9264831542969)"><foreignObject width="182.6875" height="22.5"><div class="paper-inline-8" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Projections — replaceable</p></span></div></foreignObject></g></g><g class="cluster" id="stateware_whitepaper_public_v1_1_01_BOUNDARY" data-look="classic"><rect x="61.98046875" y="283" width="722.34765625" height="349.9264831542969"/><g class="cluster-label" transform="translate(369.240234375, 283)"><foreignObject width="107.828125" height="22.5"><div class="paper-inline-9" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>The application</p></span></div></foreignObject></g></g></g><g class="edgePaths"><path d="M328.949,573.493L294.07,583.398C259.19,593.304,189.431,613.115,154.551,627.188C119.672,641.26,119.672,649.593,119.672,657.926C119.672,666.26,119.672,674.593,119.672,682.26C119.672,689.926,119.672,696.926,119.672,700.426L119.672,703.926" id="stateware_whitepaper_public_v1_1_01_L_S_C_0" class="paper-inline-10 edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="stateware_whitepaper_public_v1_1_01_L_S_C_0" data-points="W3sieCI6MzI4Ljk0OTIxODc1LCJ5Ijo1NzMuNDkyNzI0MzgzNzcxOH0seyJ4IjoxMTkuNjcxODc1LCJ5Ijo2MzIuOTI2NDgzMTU0Mjk2OX0seyJ4IjoxMTkuNjcxODc1LCJ5Ijo2NTcuOTI2NDgzMTU0Mjk2OX0seyJ4IjoxMTkuNjcxODc1LCJ5Ijo2ODIuOTI2NDgzMTU0Mjk2OX0seyJ4IjoxMTkuNjcxODc1LCJ5Ijo3MDcuOTI2NDgzMTU0Mjk2OX1d" marker-end="url(#stateware_whitepaper_public_v1_1_01_my-svg_flowchart-v2-pointEnd)"/><path d="M361.223,603.411L356.398,608.33C351.573,613.249,341.923,623.088,337.098,632.174C332.273,641.26,332.273,649.593,332.273,657.926C332.273,666.26,332.273,674.593,332.273,682.26C332.273,689.926,332.273,696.926,332.273,700.426L332.273,703.926" id="stateware_whitepaper_public_v1_1_01_L_S_F_0" class="paper-inline-11 edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="stateware_whitepaper_public_v1_1_01_L_S_F_0" data-points="W3sieCI6MzYxLjIyMjk3ODI4NTY4NCwieSI6NjAzLjQxMDg0MTU5NTkzNX0seyJ4IjozMzIuMjczNDM3NSwieSI6NjMyLjkyNjQ4MzE1NDI5Njl9LHsieCI6MzMyLjI3MzQzNzUsInkiOjY1Ny45MjY0ODMxNTQyOTY5fSx7IngiOjMzMi4yNzM0Mzc1LCJ5Ijo2ODIuOTI2NDgzMTU0Mjk2OX0seyJ4IjozMzIuMjczNDM3NSwieSI6NzA3LjkyNjQ4MzE1NDI5Njl9XQ==" marker-end="url(#stateware_whitepaper_public_v1_1_01_my-svg_flowchart-v2-pointEnd)"/><path d="M511.675,603.411L516.5,608.33C521.325,613.249,530.975,623.088,535.8,632.174C540.625,641.26,540.625,649.593,540.625,657.926C540.625,666.26,540.625,674.593,540.625,682.26C540.625,689.926,540.625,696.926,540.625,700.426L540.625,703.926" id="stateware_whitepaper_public_v1_1_01_L_S_D_0" class="paper-inline-12 edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="stateware_whitepaper_public_v1_1_01_L_S_D_0" data-points="W3sieCI6NTExLjY3NTQ1OTIxNDMxNiwieSI6NjAzLjQxMDg0MTU5NTkzNX0seyJ4Ijo1NDAuNjI1LCJ5Ijo2MzIuOTI2NDgzMTU0Mjk2OX0seyJ4Ijo1NDAuNjI1LCJ5Ijo2NTcuOTI2NDgzMTU0Mjk2OX0seyJ4Ijo1NDAuNjI1LCJ5Ijo2ODIuOTI2NDgzMTU0Mjk2OX0seyJ4Ijo1NDAuNjI1LCJ5Ijo3MDcuOTI2NDgzMTU0Mjk2OX1d" marker-end="url(#stateware_whitepaper_public_v1_1_01_my-svg_flowchart-v2-pointEnd)"/><path d="M543.949,575.07L576.235,584.713C608.521,594.356,673.092,613.641,705.378,627.45C737.664,641.26,737.664,649.593,737.664,657.926C737.664,666.26,737.664,674.593,737.664,682.26C737.664,689.926,737.664,696.926,737.664,700.426L737.664,703.926" id="stateware_whitepaper_public_v1_1_01_L_S_N_0" class="paper-inline-13 edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="stateware_whitepaper_public_v1_1_01_L_S_N_0" data-points="W3sieCI6NTQzLjk0OTIxODc1LCJ5Ijo1NzUuMDcwMDUzOTQxMTgzN30seyJ4Ijo3MzcuNjY0MDYyNSwieSI6NjMyLjkyNjQ4MzE1NDI5Njl9LHsieCI6NzM3LjY2NDA2MjUsInkiOjY1Ny45MjY0ODMxNTQyOTY5fSx7IngiOjczNy42NjQwNjI1LCJ5Ijo2ODIuOTI2NDgzMTU0Mjk2OX0seyJ4Ijo3MzcuNjY0MDYyNSwieSI6NzA3LjkyNjQ4MzE1NDI5Njl9XQ==" marker-end="url(#stateware_whitepaper_public_v1_1_01_my-svg_flowchart-v2-pointEnd)"/><path d="M436.449,405.5L436.449,411.542C436.449,417.583,436.449,429.667,436.449,441.083C436.449,452.5,436.449,463.25,436.449,468.625L436.449,474" id="stateware_whitepaper_public_v1_1_01_L_GOV_S_0" class="paper-inline-14 edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="stateware_whitepaper_public_v1_1_01_L_GOV_S_0" data-points="W3sieCI6NDM2LjQ0OTIxODc1LCJ5Ijo0MDUuNX0seyJ4Ijo0MzYuNDQ5MjE4NzUsInkiOjQ0MS43NX0seyJ4Ijo0MzYuNDQ5MjE4NzUsInkiOjQ3OH1d" marker-end="url(#stateware_whitepaper_public_v1_1_01_my-svg_flowchart-v2-pointEnd)"/><path d="M436.449,233L436.449,237.167C436.449,241.333,436.449,249.667,436.449,258C436.449,266.333,436.449,274.667,436.449,282.333C436.449,290,436.449,297,436.449,300.5L436.449,304" id="stateware_whitepaper_public_v1_1_01_L_ENGINES_GOV_0" class="paper-inline-15 edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="stateware_whitepaper_public_v1_1_01_L_ENGINES_GOV_0" data-points="W3sieCI6NDM2LjQ0OTIxODc1LCJ5IjoyMzN9LHsieCI6NDM2LjQ0OTIxODc1LCJ5IjoyNTh9LHsieCI6NDM2LjQ0OTIxODc1LCJ5IjoyODN9LHsieCI6NDM2LjQ0OTIxODc1LCJ5IjozMDh9XQ==" marker-end="url(#stateware_whitepaper_public_v1_1_01_my-svg_flowchart-v2-pointEnd)"/></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" data-id="stateware_whitepaper_public_v1_1_01_L_S_C_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="paper-inline-16 labelBkg"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="stateware_whitepaper_public_v1_1_01_L_S_F_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="paper-inline-17 labelBkg"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="stateware_whitepaper_public_v1_1_01_L_S_D_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="paper-inline-18 labelBkg"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="stateware_whitepaper_public_v1_1_01_L_S_N_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="paper-inline-19 labelBkg"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(436.44921875, 441.75)"><g class="label" data-id="stateware_whitepaper_public_v1_1_01_L_GOV_S_0" transform="translate(-78.875, -11.25)"><foreignObject width="157.75" height="22.5"><div xmlns="http://www.w3.org/1999/xhtml" class="paper-inline-20 labelBkg"><span class="edgeLabel"><p>governed transactions</p></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" data-id="stateware_whitepaper_public_v1_1_01_L_ENGINES_GOV_0" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="paper-inline-21 labelBkg"><span class="edgeLabel"></span></div></foreignObject></g></g></g><g class="nodes"><g class="root" transform="translate(304.91796875, 0)"><g class="clusters"><g class="cluster" id="stateware_whitepaper_public_v1_1_01_ENGINES" data-look="classic"><rect x="8" y="8" width="247.0625" height="225"/><g class="cluster-label" transform="translate(51.5703125, 8)"><foreignObject width="159.921875" height="22.5"><div class="paper-inline-22" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Engines — replaceable</p></span></div></foreignObject></g></g></g><g class="edgePaths"/><g class="edgeLabels"/><g class="nodes"><g class="node default" id="stateware_whitepaper_public_v1_1_01_flowchart-M1-6" transform="translate(131.53125, 69.25)"><rect class="basic label-container" x="-85.9453125" y="-26.25" width="171.890625" height="52.5"/><g class="label" transform="translate(-55.9453125, -11.25)"><rect/><foreignObject width="111.890625" height="22.5"><div class="paper-inline-23" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Model / agent A</p></span></div></foreignObject></g></g><g class="node default" id="stateware_whitepaper_public_v1_1_01_flowchart-M2-7" transform="translate(131.53125, 171.75)"><rect class="basic label-container" x="-86.03125" y="-26.25" width="172.0625" height="52.5"/><g class="label" transform="translate(-56.03125, -11.25)"><rect/><foreignObject width="112.0625" height="22.5"><div class="paper-inline-24" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Model / agent B</p></span></div></foreignObject></g></g></g></g><g class="node default" id="stateware_whitepaper_public_v1_1_01_flowchart-S-0" transform="translate(436.44921875, 542.9632415771484)"><path d="M0,15.808823529411764 a107.5,15.808823529411764 0,0,0 215,0 a107.5,15.808823529411764 0,0,0 -215,0 l0,98.30882352941177 a107.5,15.808823529411764 0,0,0 215,0 l0,-98.30882352941177" class="basic label-container" transform="translate(-107.5, -64.96323529411765)"/><g class="label" transform="translate(-100, -23.75)"><rect/><foreignObject width="200" height="67.5"><div class="paper-inline-25" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Canonical state<br />user-owned, durable, readable</p></span></div></foreignObject></g></g><g class="node default" id="stateware_whitepaper_public_v1_1_01_flowchart-GOV-1" transform="translate(436.44921875, 356.75)"><rect class="basic label-container" x="-130" y="-48.75" width="260" height="97.5"/><g class="label" transform="translate(-100, -33.75)"><rect/><foreignObject width="200" height="67.5"><div class="paper-inline-26" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Governance<br />capabilities · approvals · validation · receipts</p></span></div></foreignObject></g></g><g class="node default" id="stateware_whitepaper_public_v1_1_01_flowchart-C-2" transform="translate(119.671875, 734.1764831542969)"><rect class="basic label-container" x="-76.671875" y="-26.25" width="153.34375" height="52.5"/><g class="label" transform="translate(-46.671875, -11.25)"><rect/><foreignObject width="93.34375" height="22.5"><div class="paper-inline-27" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Conversation</p></span></div></foreignObject></g></g><g class="node default" id="stateware_whitepaper_public_v1_1_01_flowchart-F-3" transform="translate(332.2734375, 734.1764831542969)"><rect class="basic label-container" x="-85.9296875" y="-26.25" width="171.859375" height="52.5"/><g class="label" transform="translate(-55.9296875, -11.25)"><rect/><foreignObject width="111.859375" height="22.5"><div class="paper-inline-28" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Files &amp; previews</p></span></div></foreignObject></g></g><g class="node default" id="stateware_whitepaper_public_v1_1_01_flowchart-D-4" transform="translate(540.625, 734.1764831542969)"><rect class="basic label-container" x="-72.421875" y="-26.25" width="144.84375" height="52.5"/><g class="label" transform="translate(-42.421875, -11.25)"><rect/><foreignObject width="84.84375" height="22.5"><div class="paper-inline-29" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Dashboards</p></span></div></foreignObject></g></g><g class="node default" id="stateware_whitepaper_public_v1_1_01_flowchart-N-5" transform="translate(737.6640625, 734.1764831542969)"><rect class="basic label-container" x="-74.6171875" y="-26.25" width="149.234375" height="52.5"/><g class="label" transform="translate(-44.6171875, -11.25)"><rect/><foreignObject width="89.234375" height="22.5"><div class="paper-inline-30" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Notifications</p></span></div></foreignObject></g></g></g></g></g></svg>
+<figure class="paper-diagram" id="figure-1" data-mermaid-id="stateware-whitepaper-public-v1-1-01">
+  <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 1: The work stays; the tools can change">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-01.svg" alt="Durable state supplies views and task context. The selected context informs a model or agent, which proposes a change. Authority and validation checks govern whether that change becomes the next revision of the same durable state." width="222" height="517" loading="lazy">
+  </div>
+  <figcaption><strong>Figure 1. The work stays; the tools can change</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-01.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-01.mmd">Mermaid source</a></span></figcaption>
 </figure>
-<p><em>Conceptual boundary.</em> Views and engines are replaceable
-roles. The governance layer represents the required control of
-mutations; the diagram is not a claim that all implementation paths have
-been independently verified.</p>
-<p>The same discipline applies to context. Context is a bounded
-selection prepared for a task, not an accumulation that becomes
-authoritative by surviving in a model session. Its omissions matter.
-When a task needs evidence outside that selection, the engine should
-request or retrieve it through the permitted interface rather than
-invent a missing fact.</p>
+<p>The arrows show two different activities: reading state to prepare a
+view or task, and changing state through the appropriate controls.
+Replacing the model or rebuilding a dashboard should preserve the
+accepted work. This is the conceptual boundary, not a diagram of every
+implementation path.</p>
+<p><strong>Context</strong> is the material selected for a particular
+model task. For a study-plan revision, that might be the current plan,
+recent exercise results, and the learner’s available time. It need not
+include every past conversation. When the task needs missing evidence,
+the engine should retrieve or request it through the permitted
+interface. What happens to remain in a model session does not become
+authoritative by default.</p>
 <h3 id="definition-and-instance">3.2 Definition and instance</h3>
-<p>An application definition describes reusable behavior, state
-structure, views, and requested capabilities. An instance is one owner’s
-working realization of that definition, with private content, history,
-configuration, and grants.</p>
-<figure class="paper-diagram" tabindex="0" role="img" aria-label="One reusable application definition creates separate owned instances for Amira, Ben and a class, each with private state." data-mermaid-id="stateware-whitepaper-public-v1-1-02">
-<svg role="img" aria-hidden="true" focusable="false" id="stateware_whitepaper_public_v1_1_02_svg" width="738.859" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="paper-inline-31 flowchart paper-diagram__svg" viewBox="0 0 738.859375 341" role="graphics-document document" aria-roledescription="flowchart-v2"><g><marker id="stateware_whitepaper_public_v1_1_02_my-svg_flowchart-v2-pointEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="paper-inline-32 arrowMarkerPath"/></marker><marker id="stateware_whitepaper_public_v1_1_02_my-svg_flowchart-v2-pointStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="4.5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="paper-inline-33 arrowMarkerPath"/></marker><marker id="stateware_whitepaper_public_v1_1_02_my-svg_flowchart-v2-circleEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="11" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="paper-inline-34 arrowMarkerPath"/></marker><marker id="stateware_whitepaper_public_v1_1_02_my-svg_flowchart-v2-circleStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-1" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="paper-inline-35 arrowMarkerPath"/></marker><marker id="stateware_whitepaper_public_v1_1_02_my-svg_flowchart-v2-crossEnd" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="12" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="paper-inline-36 arrowMarkerPath"/></marker><marker id="stateware_whitepaper_public_v1_1_02_my-svg_flowchart-v2-crossStart" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="-1" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="paper-inline-37 arrowMarkerPath"/></marker><g class="root"><g class="clusters"/><g class="edgePaths"><path d="M146.698,133L163.269,118.417C179.84,103.833,212.983,74.667,236.546,60.083C260.109,45.5,274.094,45.5,281.086,45.5L288.078,45.5" id="stateware_whitepaper_public_v1_1_02_L_APP_I1_0" class="paper-inline-38 edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="stateware_whitepaper_public_v1_1_02_L_APP_I1_0" data-points="W3sieCI6MTQ2LjY5NzY1NjI1LCJ5IjoxMzN9LHsieCI6MjQ2LjEyNSwieSI6NDUuNX0seyJ4IjoyOTIuMDc4MTI1LCJ5Ijo0NS41fV0=" marker-end="url(#stateware_whitepaper_public_v1_1_02_my-svg_flowchart-v2-pointEnd)"/><path d="M200.172,170.5L207.831,170.5C215.49,170.5,230.807,170.5,246.651,170.5C262.495,170.5,278.865,170.5,287.049,170.5L295.234,170.5" id="stateware_whitepaper_public_v1_1_02_L_APP_I2_0" class="paper-inline-39 edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="stateware_whitepaper_public_v1_1_02_L_APP_I2_0" data-points="W3sieCI6MjAwLjE3MTg3NSwieSI6MTcwLjV9LHsieCI6MjQ2LjEyNSwieSI6MTcwLjV9LHsieCI6Mjk5LjIzNDM3NSwieSI6MTcwLjV9XQ==" marker-end="url(#stateware_whitepaper_public_v1_1_02_my-svg_flowchart-v2-pointEnd)"/><path d="M146.698,208L163.269,222.583C179.84,237.167,212.983,266.333,243.142,280.917C273.302,295.5,300.479,295.5,314.068,295.5L327.656,295.5" id="stateware_whitepaper_public_v1_1_02_L_APP_I3_0" class="paper-inline-40 edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="stateware_whitepaper_public_v1_1_02_L_APP_I3_0" data-points="W3sieCI6MTQ2LjY5NzY1NjI1LCJ5IjoyMDh9LHsieCI6MjQ2LjEyNSwieSI6Mjk1LjV9LHsieCI6MzMxLjY1NjI1LCJ5IjoyOTUuNX1d" marker-end="url(#stateware_whitepaper_public_v1_1_02_my-svg_flowchart-v2-pointEnd)"/><path d="M491.547,45.5L503.047,45.5C514.547,45.5,537.547,45.5,559.88,45.5C582.214,45.5,603.88,45.5,614.714,45.5L625.547,45.5" id="stateware_whitepaper_public_v1_1_02_L_I1_S1_0" class="paper-inline-41 edge-thickness-normal edge-pattern-dotted edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="stateware_whitepaper_public_v1_1_02_L_I1_S1_0" data-points="W3sieCI6NDkxLjU0Njg3NSwieSI6NDUuNX0seyJ4Ijo1NjAuNTQ2ODc1LCJ5Ijo0NS41fSx7IngiOjYyOS41NDY4NzUsInkiOjQ1LjV9XQ==" marker-end="url(#stateware_whitepaper_public_v1_1_02_my-svg_flowchart-v2-pointEnd)"/><path d="M484.391,170.5L497.083,170.5C509.776,170.5,535.161,170.5,558.688,170.5C582.214,170.5,603.88,170.5,614.714,170.5L625.547,170.5" id="stateware_whitepaper_public_v1_1_02_L_I2_S2_0" class="paper-inline-42 edge-thickness-normal edge-pattern-dotted edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="stateware_whitepaper_public_v1_1_02_L_I2_S2_0" data-points="W3sieCI6NDg0LjM5MDYyNSwieSI6MTcwLjV9LHsieCI6NTYwLjU0Njg3NSwieSI6MTcwLjV9LHsieCI6NjI5LjU0Njg3NSwieSI6MTcwLjV9XQ==" marker-end="url(#stateware_whitepaper_public_v1_1_02_my-svg_flowchart-v2-pointEnd)"/><path d="M451.969,295.5L470.065,295.5C488.161,295.5,524.354,295.5,553.284,295.5C582.214,295.5,603.88,295.5,614.714,295.5L625.547,295.5" id="stateware_whitepaper_public_v1_1_02_L_I3_S3_0" class="paper-inline-43 edge-thickness-normal edge-pattern-dotted edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="stateware_whitepaper_public_v1_1_02_L_I3_S3_0" data-points="W3sieCI6NDUxLjk2ODc1LCJ5IjoyOTUuNX0seyJ4Ijo1NjAuNTQ2ODc1LCJ5IjoyOTUuNX0seyJ4Ijo2MjkuNTQ2ODc1LCJ5IjoyOTUuNX1d" marker-end="url(#stateware_whitepaper_public_v1_1_02_my-svg_flowchart-v2-pointEnd)"/></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(246.125, 45.5)"><g class="label" data-id="stateware_whitepaper_public_v1_1_02_L_APP_I1_0" transform="translate(-20.953125, -11.25)"><foreignObject width="41.90625" height="22.5"><div xmlns="http://www.w3.org/1999/xhtml" class="paper-inline-44 labelBkg"><span class="edgeLabel"><p>install</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(246.125, 170.5)"><g class="label" data-id="stateware_whitepaper_public_v1_1_02_L_APP_I2_0" transform="translate(-20.953125, -11.25)"><foreignObject width="41.90625" height="22.5"><div xmlns="http://www.w3.org/1999/xhtml" class="paper-inline-45 labelBkg"><span class="edgeLabel"><p>install</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(246.125, 295.5)"><g class="label" data-id="stateware_whitepaper_public_v1_1_02_L_APP_I3_0" transform="translate(-20.953125, -11.25)"><foreignObject width="41.90625" height="22.5"><div xmlns="http://www.w3.org/1999/xhtml" class="paper-inline-46 labelBkg"><span class="edgeLabel"><p>install</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(560.546875, 45.5)"><g class="label" data-id="stateware_whitepaper_public_v1_1_02_L_I1_S1_0" transform="translate(-44, -11.25)"><foreignObject width="88" height="22.5"><div xmlns="http://www.w3.org/1999/xhtml" class="paper-inline-47 labelBkg"><span class="edgeLabel"><p>private state</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(560.546875, 170.5)"><g class="label" data-id="stateware_whitepaper_public_v1_1_02_L_I2_S2_0" transform="translate(-44, -11.25)"><foreignObject width="88" height="22.5"><div xmlns="http://www.w3.org/1999/xhtml" class="paper-inline-48 labelBkg"><span class="edgeLabel"><p>private state</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(560.546875, 295.5)"><g class="label" data-id="stateware_whitepaper_public_v1_1_02_L_I3_S3_0" transform="translate(-44, -11.25)"><foreignObject width="88" height="22.5"><div xmlns="http://www.w3.org/1999/xhtml" class="paper-inline-49 labelBkg"><span class="edgeLabel"><p>private state</p></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default" id="stateware_whitepaper_public_v1_1_02_flowchart-APP-0" transform="translate(104.0859375, 170.5)"><rect class="basic label-container" x="-96.0859375" y="-37.5" width="192.171875" height="75"/><g class="label" transform="translate(-66.0859375, -22.5)"><rect/><foreignObject width="132.171875" height="45"><div class="paper-inline-50" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Application<br />reusable definition</p></span></div></foreignObject></g></g><g class="node default" id="stateware_whitepaper_public_v1_1_02_flowchart-I1-1" transform="translate(391.8125, 45.5)"><rect class="basic label-container" x="-99.734375" y="-37.5" width="199.46875" height="75"/><g class="label" transform="translate(-69.734375, -22.5)"><rect/><foreignObject width="139.46875" height="45"><div class="paper-inline-51" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Instance<br />Amira's study coach</p></span></div></foreignObject></g></g><g class="node default" id="stateware_whitepaper_public_v1_1_02_flowchart-I2-3" transform="translate(391.8125, 170.5)"><rect class="basic label-container" x="-92.578125" y="-37.5" width="185.15625" height="75"/><g class="label" transform="translate(-62.578125, -22.5)"><rect/><foreignObject width="125.15625" height="45"><div class="paper-inline-52" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Instance<br />Ben's study coach</p></span></div></foreignObject></g></g><g class="node default" id="stateware_whitepaper_public_v1_1_02_flowchart-I3-5" transform="translate(391.8125, 295.5)"><rect class="basic label-container" x="-60.15625" y="-37.5" width="120.3125" height="75"/><g class="label" transform="translate(-30.15625, -22.5)"><rect/><foreignObject width="60.3125" height="45"><div class="paper-inline-53" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>Instance<br />Class 3B</p></span></div></foreignObject></g></g><g class="node default" id="stateware_whitepaper_public_v1_1_02_flowchart-S1-7" transform="translate(680.203125, 45.5)"><path d="M0,11.191659762496547 a50.65625,11.191659762496547 0,0,0 101.3125,0 a50.65625,11.191659762496547 0,0,0 -101.3125,0 l0,48.69165976249655 a50.65625,11.191659762496547 0,0,0 101.3125,0 l0,-48.69165976249655" class="basic label-container" transform="translate(-50.65625, -35.53748964374482)"/><g class="label" transform="translate(-43.15625, -1.25)"><rect/><foreignObject width="86.3125" height="22.5"><div class="paper-inline-54" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>owned state</p></span></div></foreignObject></g></g><g class="node default" id="stateware_whitepaper_public_v1_1_02_flowchart-S2-9" transform="translate(680.203125, 170.5)"><path d="M0,11.191659762496547 a50.65625,11.191659762496547 0,0,0 101.3125,0 a50.65625,11.191659762496547 0,0,0 -101.3125,0 l0,48.69165976249655 a50.65625,11.191659762496547 0,0,0 101.3125,0 l0,-48.69165976249655" class="basic label-container" transform="translate(-50.65625, -35.53748964374482)"/><g class="label" transform="translate(-43.15625, -1.25)"><rect/><foreignObject width="86.3125" height="22.5"><div class="paper-inline-55" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>owned state</p></span></div></foreignObject></g></g><g class="node default" id="stateware_whitepaper_public_v1_1_02_flowchart-S3-11" transform="translate(680.203125, 295.5)"><path d="M0,11.191659762496547 a50.65625,11.191659762496547 0,0,0 101.3125,0 a50.65625,11.191659762496547 0,0,0 -101.3125,0 l0,48.69165976249655 a50.65625,11.191659762496547 0,0,0 101.3125,0 l0,-48.69165976249655" class="basic label-container" transform="translate(-50.65625, -35.53748964374482)"/><g class="label" transform="translate(-43.15625, -1.25)"><rect/><foreignObject width="86.3125" height="22.5"><div class="paper-inline-56" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel"><p>owned state</p></span></div></foreignObject></g></g></g></g></g></svg>
+<p>An <strong>application definition</strong>, supplied by a template,
+describes reusable behavior, state structure, views, and requested
+capabilities. An <strong>instance</strong> is one owner’s working
+application created from that definition. Two learners can use the same
+study template while keeping separate plans, histories, settings, and
+permissions.</p>
+<figure class="paper-diagram" id="figure-2" data-mermaid-id="stateware-whitepaper-public-v1-1-02">
+  <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 2: One definition, separate owned instances">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-02.svg" alt="A shared StudyState definition creates Amira and Ben instances. Each instance contains its own plan, progress, and decisions; neither learner shares private state merely by using the same template." width="292" height="284" loading="lazy">
+  </div>
+  <figcaption><strong>Figure 2. One definition, separate owned instances</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-02.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-02.mmd">Mermaid source</a></span></figcaption>
 </figure>
 <p>The template author owns the reusable definition. The instance owner
 owns their working content and decisions. StatePort owns the mechanics
@@ -203,12 +219,12 @@ StatePort architecture. A contract describes the structure and
 capabilities a host can recognize; it is not a universal promise that
 any agent can run any repository. Compatibility requires agreement on
 schemas, action semantics, authority, and runtime prerequisites.</p>
-<p>StatePort’s adapter model also accommodates existing domain formats,
-including ProjectState and StudyState. An adapter recognizes and
-validates a supported format, translates it into the host’s lifecycle
-model, and exposes a bounded set of host-owned actions. Recognition of a
-template does not authorize execution of arbitrary commands found inside
-it.</p>
+<p>StatePort uses <strong>adapters</strong> to work with supported
+formats such as ProjectState and StudyState. An adapter acts as a
+translator: it recognizes the template’s structure, checks that it is
+valid, and exposes the operations the host knows how to handle. Reading
+a template successfully does not give its contents permission to run
+arbitrary commands.</p>
 <p>The distinction matters for extensibility. A platform should be able
 to support a new domain without requiring every domain to adopt the same
 internal files. It still needs an explicit compatibility boundary: an
@@ -219,6 +235,16 @@ lifecycle</h2>
 <p>StatePort gives the model a concrete division of responsibilities.
 These are logical roles, not a requirement to create a separate service
 for every concern.</p>
+<figure class="paper-diagram" id="figure-3" data-mermaid-id="stateware-whitepaper-public-v1-1-03">
+  <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 3: How a work request moves through StatePort">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-03.svg" alt="The interface submits a request to control checks. Admitted work is coordinated and executed; observed results are recorded in durable state and become visible through the interface. This is a conceptual permitted-work path, not a service topology." width="238" height="582" loading="lazy">
+  </div>
+  <figcaption><strong>Figure 3. How a work request moves through StatePort</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-03.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-03.mmd">Mermaid source</a></span></figcaption>
+</figure>
+<p>The interface asks; the control layer checks permission; coordination
+follows the work; the execution host performs it. The result must be
+recorded before a later session can reliably continue from it. A
+response in the interface alone is not that durable record.</p>
 <table>
 <colgroup>
 <col style="width: 33%" />
@@ -275,10 +301,20 @@ changes</td>
 <h3 id="capability-is-an-intersection">4.1 Capability is an
 intersection</h3>
 <p>A template can request a terminal, file access, provider execution,
-or an external operation. A request is descriptive, not a grant.
-Effective authority is the intersection of the template’s request, the
-operator’s explicit grant, and the host’s policy and available
-capabilities.</p>
+or an external operation. That request describes what the application
+would like to do. The operator decides what to grant, and the host must
+be able and permitted to provide it. An operation is eligible only where
+all three agree.</p>
+<figure class="paper-diagram" id="figure-4" data-mermaid-id="stateware-whitepaper-public-v1-1-04">
+  <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 4: A request alone gives no permission">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-04.svg" alt="Effective authority is the shared scope of the template request, the operator grant, and host support and policy. Each restricts the request; if no shared permission remains, the operation is unavailable. Action-specific checks still apply." width="256" height="354" loading="lazy">
+  </div>
+  <figcaption><strong>Figure 4. A request alone gives no permission</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-04.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-04.mmd">Mermaid source</a></span></figcaption>
+</figure>
+<p>For example, a study template might request file access. The owner
+can grant access to one study folder; that does not grant access to the
+rest of the machine. The host must enforce that boundary when the action
+runs.</p>
 <p>The execution environment supplies enforcement: restricted
 identities, filesystem access, network policy, and mediated interfaces
 where applicable. A browser must not receive the host control socket. A
@@ -300,6 +336,10 @@ recollection.</p>
 an intention; a stopped process is an observation; preserved results and
 reconciled external effects are further facts. The interface should not
 collapse them into a single reassuring label.</p>
+<p>For example, “cancel requested” should remain distinct from
+“execution stopped.” If a report was already written or a remote request
+already sent, cancellation must also account for that effect. A worker
+restart should recover those facts from the work record.</p>
 <p>Recovery has an ownership boundary too. Discovering a container or
 directory does not establish permission to delete it. A host must
 distinguish resources it can attribute to the recovering instance from
@@ -389,6 +429,17 @@ means a change exists; <strong>validated</strong> means the named
 journey passed in the named environment; <strong>published</strong>
 requires separate delivery evidence; <strong>accepted</strong> requires
 the human’s verdict.</p>
+<figure class="paper-diagram" id="figure-5" data-mermaid-id="stateware-whitepaper-public-v1-1-05">
+  <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 5: From the intended outcome to observed evidence">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-05.svg" alt="The human-owned outcome defines a bounded slice. The real user journey produces evidence. That evidence informs two separate questions: whether the outcome is satisfied and whether another work increment is justified." width="301" height="438" loading="lazy">
+  </div>
+  <figcaption><strong>Figure 5. From the intended outcome to observed evidence</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-05.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-05.mmd">Mermaid source</a></span></figcaption>
+</figure>
+<p>Imagine a change intended to let a learner reopen a saved study plan.
+A successful build shows that the program can be assembled. Closing and
+reopening the application, then finding the correct plan, checks the
+user’s outcome. The evidence should say which of those was actually
+tested.</p>
 <h3 id="continuing-is-a-separate-decision">5.2 Continuing is a separate
 decision</h3>
 <p>Closure asks whether the recorded outcome is satisfied. Continuation
@@ -430,6 +481,16 @@ ProjectState and StudyState supply the structure and behavior of their
 respective domains; StatePort supplies the application interface,
 lifecycle, and governed execution. The instance preserves the project’s
 history as its work develops and continues in operation.</p>
+<figure class="paper-diagram" id="figure-6" data-mermaid-id="stateware-whitepaper-public-v1-1-06">
+  <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 6: One ProjectState instance, two uses">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-06.svg" alt="A ProjectState template creates a project instance that holds the actual goals, decisions, and history. The instance supports both development and operating work. These are uses of the instance, not mandatory stages or separate applications." width="237" height="239" loading="lazy">
+  </div>
+  <figcaption><strong>Figure 6. One ProjectState instance, two uses</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-06.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-06.mmd">Mermaid source</a></span></figcaption>
+</figure>
+<p>Both kinds of instance retain goals, decisions, and results across
+sessions. The branches describe uses of the instance; they do not
+require a separate application or a fresh start when the work
+changes.</p>
 <h2 id="change-authority-and-evidence">6. Change, authority, and
 evidence</h2>
 <h3 id="from-intent-to-a-recorded-result">6.1 From intent to a recorded
@@ -450,6 +511,16 @@ confirmation is needed when the action falls outside that authority or
 policy requires a specific decision. Repeatedly asking for an already
 authorized, unchanged action adds friction without strengthening the
 boundary.</p>
+<figure class="paper-diagram" id="figure-7" data-mermaid-id="stateware-whitepaper-public-v1-1-07">
+  <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 7: An approved intention still needs a checked execution">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-07.svg" alt="A proposal is checked against authority. A permitted proposal uses existing authority or receives any required approval, then passes validation before an execution attempt. The system records observed outcomes. Refusal or invalidation prevents the attempt; an attempted effect can still fail or remain uncertain." width="296" height="687" loading="lazy">
+  </div>
+  <figcaption><strong>Figure 7. An approved intention still needs a checked execution</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-07.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-07.mmd">Mermaid source</a></span></figcaption>
+</figure>
+<p>The approval step must be satisfied before proceeding: a required
+decision that is pending or denied does not allow execution. “Attempt”
+is deliberate wording—the action can succeed, fail, or leave an outcome
+that still needs investigation.</p>
 <h3 id="agents-can-act-but-not-define-their-own-authority">6.2 Agents
 can act, but not define their own authority</h3>
 <p>“The agent proposes, the system applies” is a useful description of a
@@ -475,12 +546,19 @@ the checks. A signature can establish origin and integrity relative to a
 trusted key; it cannot establish that an answer is correct or that a
 test was adequate. Receipts support scrutiny rather than eliminating the
 need for it.</p>
-<p>For external effects, recording and execution may fail separately. A
-remote service may accept a request just before the local connection
-drops. The outcome is then uncertain, not necessarily failed. Safe
-recovery may require an idempotency key, a reconciliation query, or
-human investigation. Repeating the action blindly can duplicate the
+<p>For external effects, recording and execution may fail separately.
+Suppose a remote service accepts a request just before the connection
+drops. The local system cannot yet tell whether it succeeded. The
+outcome is <strong>uncertain</strong>, not necessarily failed. Recovery
+may use a request identifier that prevents duplicates, query the remote
+service, or require human investigation. Retrying blindly can repeat the
 effect.</p>
+<figure class="paper-diagram" id="figure-8" data-mermaid-id="stateware-whitepaper-public-v1-1-08">
+  <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 8: A missing reply is not proof of failure">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-08.svg" alt="A remote request may have been accepted when its reply is lost. The local outcome remains uncertain until checking the remote result or human investigation establishes what happened. Retry decisions come after reconciliation." width="263" height="404" loading="lazy">
+  </div>
+  <figcaption><strong>Figure 8. A missing reply is not proof of failure</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-08.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-08.mmd">Mermaid source</a></span></figcaption>
+</figure>
 <h3 id="local-transactions-do-not-make-the-world-transactional">6.4
 Local transactions do not make the world transactional</h3>
 <p>A validated file change can often be applied atomically within a
@@ -494,20 +572,20 @@ already attempted effect never happened. Uncertain outcomes must remain
 visible, with enough evidence to reconcile them safely.</p>
 <h2 id="lifecycle-portability-and-recovery">7. Lifecycle, portability,
 and recovery</h2>
-<p>The lifecycle gives durable ownership practical meaning: resolve a
-definition, create an instance, use it, inspect its history, update it,
-back it up, and recover it. Each transition must preserve the
-distinctions between source content, private state, grants, and
-generated artifacts.</p>
+<p>The lifecycle is the application’s life over time: install a
+definition, create an instance, use it, review what happened, update it,
+back it up, and recover when needed. Throughout that life, the platform
+must distinguish template content from the owner’s private work,
+permissions, and disposable generated views.</p>
 <h3 id="install-and-update">7.1 Install and update</h3>
-<p>Installation resolves an identified source and records what was
-materialized. A mutable discovery label can help someone find a release;
-the installed instance still needs an exact identity. The template
-requests capabilities, and the operator determines the effective
-grant.</p>
-<p>An update compares the incoming definition with the instance’s
-existing content and ownership rules. Conflicts, schema changes, and
-altered capability requests are decisions to expose. Updating the
+<p>Installation selects and verifies an identified source, creates the
+instance from it, and records where that content came from. A mutable
+discovery label can help someone find a release; the installed instance
+still needs an exact identity. The template requests capabilities, and
+the operator determines the effective grant.</p>
+<p>An update compares the new definition with the instance’s existing
+content and the rules for who owns each part. Conflicts, schema changes,
+and altered capability requests are decisions to expose. Updating the
 platform, updating a template, and migrating private instance data are
 related but distinct operations; one successful package replacement does
 not prove all three succeeded.</p>
@@ -530,6 +608,15 @@ bundle.</p>
 what the owner can retain from what must be re-established, making the
 cost of moving visible rather than promising that moving has no
 cost.</p>
+<figure class="paper-diagram" id="figure-9" data-mermaid-id="stateware-whitepaper-public-v1-1-09">
+  <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 9: Moving the files is only the first question">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-09.svg" alt="Portability asks separate questions about retained data, preserved meaning, available execution, and comparable behavior. Passing one question does not prove the next." width="256" height="450" loading="lazy">
+  </div>
+  <figcaption><strong>Figure 9. Moving the files is only the first question</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-09.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-09.mmd">Mermaid source</a></span></figcaption>
+</figure>
+<p>A copied study plan may remain readable on a new machine while its
+chosen provider is unavailable. The work has moved; the ability to
+continue every action has not yet been established.</p>
 <h3 id="backup-is-a-consistency-problem">7.3 Backup is a consistency
 problem</h3>
 <p>A useful backup includes every authoritative record required to
@@ -542,15 +629,25 @@ re-establish identity and permissions, and reconcile interrupted work.
 Disposable projections can then be rebuilt. A restore rehearsal is
 stronger evidence of recoverability than the existence of an
 archive.</p>
+<figure class="paper-diagram" id="figure-10" data-mermaid-id="stateware-whitepaper-public-v1-1-10">
+  <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 10: Recovery restores a coherent working instance">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-10.svg" alt="Create a consistent snapshot of authoritative records. Recovery verifies the backup, restores compatible state, re-establishes identity and permissions, reconciles interrupted effects, and rebuilds derived views before resuming." width="256" height="532" loading="lazy">
+  </div>
+  <figcaption><strong>Figure 10. Recovery restores a coherent working instance</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-10.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v1-1-10.mmd">Mermaid source</a></span></figcaption>
+</figure>
+<p>This is the successful recovery path. If integrity, compatibility, or
+ownership cannot be established, stop at that step and retain the
+evidence. Rebuilding a dashboard cannot repair a missing decision or an
+unknown external effect.</p>
 <p>The owner can still lose data through an incomplete backup, an
 unrecorded effect, a compromised host, or a mistaken deletion. Stateware
 makes the required boundaries explicit; durability remains an
 engineering property to test.</p>
 <h2 id="tradeoffs-and-questions-for-evaluation">8. Tradeoffs and
 questions for evaluation</h2>
-<p>Explicit state and governance have costs. Schemas evolve. Adapters
-need maintenance. Receipts consume storage. Context preparation can omit
-relevant material. Isolation can prevent useful work when its
+<p>Explicit state and governance have costs. Data formats evolve.
+Adapters need maintenance. Receipts consume storage. Context preparation
+can omit relevant material. Isolation can prevent useful work when its
 permissions are too narrow. Excessive confirmations can train people to
 approve without reading.</p>
 <p>The design response should be proportionality. Keep canonical records

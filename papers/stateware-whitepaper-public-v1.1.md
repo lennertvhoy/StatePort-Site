@@ -31,6 +31,8 @@ Consider a study application. Its durable state includes the learner's objective
 
 The same pattern applies to software development: an agent can change a program without changing what the owner asked the program to achieve. Keeping those two kinds of change distinct is one of the model's most consequential decisions.
 
+Four names recur below. **Stateware** is the architectural idea. **StatePort** is the host for applications built around that idea. **ProjectState** supplies a template for project work; **StudyState** supplies one for study. An **instance** is the particular project or learner's working application, with its own state.
+
 # 2. Why the boundary matters
 
 The problem is not conversation itself. Chat is an effective interface, and systems can combine it with durable storage, versioning, and tool controls. The problem arises when the conversation becomes the implicit authority for work that needs a longer life.
@@ -52,7 +54,7 @@ This is an application of familiar software principles—explicit state, separat
 
 ## 3.1 Durable state and derived views
 
-Canonical state is the authoritative record for a defined responsibility: the accepted plan, the current artifact, the granted permission, or the recorded result. It need not be one file or one database. The requirement is one authority for each fact, with explicit relationships between records.
+**Canonical state** means the record the application treats as authoritative: the accepted plan, current artifact, granted permission, or recorded result. It need not be one file or database. The rule is that each fact has a clear home. If a dashboard disagrees with the accepted plan, the application knows which record to trust.
 
 A conversation view, dashboard, search index, preview, and model context are projections of that state. They can be optimized for different purposes without creating competing versions of the truth. A projection should identify its inputs and, where relevant, their revision or freshness.
 
@@ -60,44 +62,32 @@ This distinction does not make all operational data disposable. Original message
 
 ```mermaid
 flowchart TB
-    subgraph BOUNDARY["The application"]
-        S[(Canonical state<br/>user-owned, durable, readable)]
-        GOV[Governance<br/>capabilities · approvals · validation · receipts]
-    end
-
-    subgraph VIEWS["Projections — replaceable"]
-        C[Conversation]
-        F[Files & previews]
-        D[Dashboards]
-        N[Notifications]
-    end
-
-    subgraph ENGINES["Engines — replaceable"]
-        M1[Model / agent A]
-        M2[Model / agent B]
-    end
-
-    S --> C & F & D & N
-    ENGINES --> GOV
-    GOV -->|"governed transactions"| S
+    accTitle: The work stays; the tools can change
+    accDescr: Durable state supplies views and task context. The selected context informs a model or agent, which proposes a change. Authority and validation checks govern whether that change becomes the next revision of the same durable state.
+    stateStore[("Durable application state")]
+    stateStore -->|"derive"| projections["Views and task context"]
+    projections -->|"selected context"| engine["Model or agent"]
+    engine -->|"proposed change"| control["Authority and validation"]
+    control -->|"permitted change"| updated[("Next state revision")]
 ```
 
-*Conceptual boundary.* Views and engines are replaceable roles. The governance layer represents the required control of mutations; the diagram is not a claim that all implementation paths have been independently verified.
+The arrows show two different activities: reading state to prepare a view or task, and changing state through the appropriate controls. Replacing the model or rebuilding a dashboard should preserve the accepted work. This is the conceptual boundary, not a diagram of every implementation path.
 
-The same discipline applies to context. Context is a bounded selection prepared for a task, not an accumulation that becomes authoritative by surviving in a model session. Its omissions matter. When a task needs evidence outside that selection, the engine should request or retrieve it through the permitted interface rather than invent a missing fact.
+**Context** is the material selected for a particular model task. For a study-plan revision, that might be the current plan, recent exercise results, and the learner's available time. It need not include every past conversation. When the task needs missing evidence, the engine should retrieve or request it through the permitted interface. What happens to remain in a model session does not become authoritative by default.
 
 ## 3.2 Definition and instance
 
-An application definition describes reusable behavior, state structure, views, and requested capabilities. An instance is one owner's working realization of that definition, with private content, history, configuration, and grants.
+An **application definition**, supplied by a template, describes reusable behavior, state structure, views, and requested capabilities. An **instance** is one owner's working application created from that definition. Two learners can use the same study template while keeping separate plans, histories, settings, and permissions.
 
 ```mermaid
-flowchart LR
-    APP[Application<br/>reusable definition] -->|install| I1[Instance<br/>Amira's study coach]
-    APP -->|install| I2[Instance<br/>Ben's study coach]
-    APP -->|install| I3[Instance<br/>Class 3B]
-    I1 -.->|private state| S1[(owned state)]
-    I2 -.->|private state| S2[(owned state)]
-    I3 -.->|private state| S3[(owned state)]
+flowchart TB
+    accTitle: One definition, separate owned instances
+    accDescr: A shared StudyState definition creates Amira and Ben instances. Each instance contains its own plan, progress, and decisions; neither learner shares private state merely by using the same template.
+    template["Shared StudyState template"]
+    template -->|"create"| amira["Amira's app"]
+    template -->|"create"| ben["Ben's app"]
+    amira --> aState[("Her private state")]
+    ben --> bState[("His private state")]
 ```
 
 The template author owns the reusable definition. The instance owner owns their working content and decisions. StatePort owns the mechanics by which a source is resolved, materialized, registered, inspected, and operated. Consuming or adapting a template does not transfer authorship of its content to the platform.
@@ -108,13 +98,27 @@ This separation makes updates intelligible. A new template release may change a 
 
 StateSpec names the portable template contract used within the StatePort architecture. A contract describes the structure and capabilities a host can recognize; it is not a universal promise that any agent can run any repository. Compatibility requires agreement on schemas, action semantics, authority, and runtime prerequisites.
 
-StatePort's adapter model also accommodates existing domain formats, including ProjectState and StudyState. An adapter recognizes and validates a supported format, translates it into the host's lifecycle model, and exposes a bounded set of host-owned actions. Recognition of a template does not authorize execution of arbitrary commands found inside it.
+StatePort uses **adapters** to work with supported formats such as ProjectState and StudyState. An adapter acts as a translator: it recognizes the template's structure, checks that it is valid, and exposes the operations the host knows how to handle. Reading a template successfully does not give its contents permission to run arbitrary commands.
 
 The distinction matters for extensibility. A platform should be able to support a new domain without requiring every domain to adopt the same internal files. It still needs an explicit compatibility boundary: an unsupported operation remains unsupported, even when an agent can describe how it might work.
 
 # 4. StatePort: hosting the lifecycle
 
 StatePort gives the model a concrete division of responsibilities. These are logical roles, not a requirement to create a separate service for every concern.
+
+```mermaid
+flowchart TB
+    accTitle: How a work request moves through StatePort
+    accDescr: The interface submits a request to control checks. Admitted work is coordinated and executed; observed results are recorded in durable state and become visible through the interface. This is a conceptual permitted-work path, not a service topology.
+    view["Application interface"]
+    view -->|"request work"| api["Control and policy checks"]
+    api -->|"admit"| worker["Work coordination"]
+    worker -->|"dispatch"| host["Execution host"]
+    host -->|"report observations"| records[("Durable work records")]
+    records -->|"refresh"| updated["Updated application view"]
+```
+
+The interface asks; the control layer checks permission; coordination follows the work; the execution host performs it. The result must be recorded before a later session can reliably continue from it. A response in the interface alone is not that durable record.
 
 | Responsibility | Architectural role | Boundary |
 | --- | --- | --- |
@@ -127,7 +131,19 @@ StatePort gives the model a concrete division of responsibilities. These are log
 
 ## 4.1 Capability is an intersection
 
-A template can request a terminal, file access, provider execution, or an external operation. A request is descriptive, not a grant. Effective authority is the intersection of the template's request, the operator's explicit grant, and the host's policy and available capabilities.
+A template can request a terminal, file access, provider execution, or an external operation. That request describes what the application would like to do. The operator decides what to grant, and the host must be able and permitted to provide it. An operation is eligible only where all three agree.
+
+```mermaid
+flowchart TB
+    accTitle: A request alone gives no permission
+    accDescr: Effective authority is the shared scope of the template request, the operator grant, and host support and policy. Each restricts the request; if no shared permission remains, the operation is unavailable. Action-specific checks still apply.
+    request["Template's requested scope"]
+    request -->|"restricted by"| grant["Operator's granted scope"]
+    grant -->|"restricted by"| host["Host support and policy"]
+    host --> result["Only the shared scope is eligible"]
+```
+
+For example, a study template might request file access. The owner can grant access to one study folder; that does not grant access to the rest of the machine. The host must enforce that boundary when the action runs.
 
 The execution environment supplies enforcement: restricted identities, filesystem access, network policy, and mediated interfaces where applicable. A browser must not receive the host control socket. A provider adapter must not turn subscription credentials into portable application state. Rootless execution and least privilege reduce exposure, but their presence is not proof that isolation is complete.
 
@@ -138,6 +154,8 @@ Useful interfaces make this distinction visible. “Declared,” “available,�
 Longer work needs more than a request and a response. The system must know what was admitted, what began, what remains outstanding, and what evidence supports its current status. After interruption, it must recover from durable records rather than from an agent's recollection.
 
 Cancellation illustrates the requirement. A cancellation request is an intention; a stopped process is an observation; preserved results and reconciled external effects are further facts. The interface should not collapse them into a single reassuring label.
+
+For example, “cancel requested” should remain distinct from “execution stopped.” If a report was already written or a remote request already sent, cancellation must also account for that effect. A worker restart should recover those facts from the work record.
 
 Recovery has an ownership boundary too. Discovering a container or directory does not establish permission to delete it. A host must distinguish resources it can attribute to the recovering instance from resources whose ownership is unknown. Uncertainty should lead to retention and an explicit recovery decision, not speculative cleanup.
 
@@ -170,6 +188,20 @@ The outcome checker reads the recorded contract and evidence. It does not execut
 
 The vocabulary follows that boundary: **implemented** means a change exists; **validated** means the named journey passed in the named environment; **published** requires separate delivery evidence; **accepted** requires the human's verdict.
 
+```mermaid
+flowchart TB
+    accTitle: From the intended outcome to observed evidence
+    accDescr: The human-owned outcome defines a bounded slice. The real user journey produces evidence. That evidence informs two separate questions: whether the outcome is satisfied and whether another work increment is justified.
+    outcome["Human-owned outcome"]
+    outcome --> slice["One bounded work increment"]
+    slice --> journey["Exercise the user journey"]
+    journey --> evidence[("Record what happened")]
+    evidence -->|"closure"| closure["Outcome met?"]
+    evidence -->|"continuation"| nextStep["Next step?"]
+```
+
+Imagine a change intended to let a learner reopen a saved study plan. A successful build shows that the program can be assembled. Closing and reopening the application, then finding the correct plan, checks the user's outcome. The evidence should say which of those was actually tested.
+
 ## 5.2 Continuing is a separate decision
 
 Closure asks whether the recorded outcome is satisfied. Continuation asks whether another unit of work is justified. A successful check does not, by itself, authorize more work.
@@ -188,6 +220,18 @@ In operating use, the instance remains the working home of the project: maintain
 
 StatePort can host a ProjectState instance in either use. ProjectState and StudyState supply the structure and behavior of their respective domains; StatePort supplies the application interface, lifecycle, and governed execution. The instance preserves the project's history as its work develops and continues in operation.
 
+```mermaid
+flowchart TB
+    accTitle: One ProjectState instance, two uses
+    accDescr: A ProjectState template creates a project instance that holds the actual goals, decisions, and history. The instance supports both development and operating work. These are uses of the instance, not mandatory stages or separate applications.
+    projectTemplate["ProjectState template"]
+    projectTemplate --> project[("A project's instance")]
+    project --> development["Develop"]
+    project --> operating["Operate"]
+```
+
+Both kinds of instance retain goals, decisions, and results across sessions. The branches describe uses of the instance; they do not require a separate application or a fresh start when the work changes.
+
 # 6. Change, authority, and evidence
 
 ## 6.1 From intent to a recorded result
@@ -197,6 +241,22 @@ A governed change has distinguishable stages: proposal, authority check, approva
 Approval should bind to the action and state actually reviewed. If the proposal changes, a grant expires, or relevant state has moved, the system must determine whether approval still applies before execution. Otherwise, an exact-looking approval interface can authorize something the owner never saw.
 
 A standing grant can cover a bounded class of routine work. A fresh confirmation is needed when the action falls outside that authority or policy requires a specific decision. Repeatedly asking for an already authorized, unchanged action adds friction without strengthening the boundary.
+
+```mermaid
+flowchart TB
+    accTitle: An approved intention still needs a checked execution
+    accDescr: A proposal is checked against authority. A permitted proposal uses existing authority or receives any required approval, then passes validation before an execution attempt. The system records observed outcomes. Refusal or invalidation prevents the attempt; an attempted effect can still fail or remain uncertain.
+    proposal["Exact proposal"]
+    proposal --> authority{"Authorized?"}
+    authority -->|"yes"| approval["Required approval"]
+    authority -->|"no"| stop["Refuse"]
+    approval --> validation{"Still valid?"}
+    validation -->|"yes"| execute["Attempt the effect"]
+    validation -->|"no"| stop
+    execute --> receipt[("Record outcome")]
+```
+
+The approval step must be satisfied before proceeding: a required decision that is pending or denied does not allow execution. “Attempt” is deliberate wording—the action can succeed, fail, or leave an outcome that still needs investigation.
 
 ## 6.2 Agents can act, but not define their own authority
 
@@ -210,7 +270,19 @@ A receipt records an operation: its identity, relevant inputs, authority, observ
 
 A receipt is still produced by software. Its value depends on the recorder's integrity, the evidence it references, and the coverage of the checks. A signature can establish origin and integrity relative to a trusted key; it cannot establish that an answer is correct or that a test was adequate. Receipts support scrutiny rather than eliminating the need for it.
 
-For external effects, recording and execution may fail separately. A remote service may accept a request just before the local connection drops. The outcome is then uncertain, not necessarily failed. Safe recovery may require an idempotency key, a reconciliation query, or human investigation. Repeating the action blindly can duplicate the effect.
+For external effects, recording and execution may fail separately. Suppose a remote service accepts a request just before the connection drops. The local system cannot yet tell whether it succeeded. The outcome is **uncertain**, not necessarily failed. Recovery may use a request identifier that prevents duplicates, query the remote service, or require human investigation. Retrying blindly can repeat the effect.
+
+```mermaid
+flowchart TB
+    accTitle: A missing reply is not proof of failure
+    accDescr: A remote request may have been accepted when its reply is lost. The local outcome remains uncertain until checking the remote result or human investigation establishes what happened. Retry decisions come after reconciliation.
+    request["Send a remote request"]
+    request --> lost["Reply is lost"]
+    lost --> unknown["Local outcome: uncertain"]
+    unknown --> inspect["Check the remote result"]
+    inspect -->|"established"| record[("Record result")]
+    inspect -->|"still unknown"| review["Investigate"]
+```
 
 ## 6.4 Local transactions do not make the world transactional
 
@@ -220,13 +292,13 @@ Failing closed means refusing new effects when required authority or preconditio
 
 # 7. Lifecycle, portability, and recovery
 
-The lifecycle gives durable ownership practical meaning: resolve a definition, create an instance, use it, inspect its history, update it, back it up, and recover it. Each transition must preserve the distinctions between source content, private state, grants, and generated artifacts.
+The lifecycle is the application's life over time: install a definition, create an instance, use it, review what happened, update it, back it up, and recover when needed. Throughout that life, the platform must distinguish template content from the owner's private work, permissions, and disposable generated views.
 
 ## 7.1 Install and update
 
-Installation resolves an identified source and records what was materialized. A mutable discovery label can help someone find a release; the installed instance still needs an exact identity. The template requests capabilities, and the operator determines the effective grant.
+Installation selects and verifies an identified source, creates the instance from it, and records where that content came from. A mutable discovery label can help someone find a release; the installed instance still needs an exact identity. The template requests capabilities, and the operator determines the effective grant.
 
-An update compares the incoming definition with the instance's existing content and ownership rules. Conflicts, schema changes, and altered capability requests are decisions to expose. Updating the platform, updating a template, and migrating private instance data are related but distinct operations; one successful package replacement does not prove all three succeeded.
+An update compares the new definition with the instance's existing content and the rules for who owns each part. Conflicts, schema changes, and altered capability requests are decisions to expose. Updating the platform, updating a template, and migrating private instance data are related but distinct operations; one successful package replacement does not prove all three succeeded.
 
 ## 7.2 Portability has several layers
 
@@ -236,17 +308,43 @@ The first layer does not imply the others. Copying a directory may preserve usef
 
 This qualified view of portability is still valuable. It separates what the owner can retain from what must be re-established, making the cost of moving visible rather than promising that moving has no cost.
 
+```mermaid
+flowchart TB
+    accTitle: Moving the files is only the first question
+    accDescr: Portability asks separate questions about retained data, preserved meaning, available execution, and comparable behavior. Passing one question does not prove the next.
+    data["Data: can I keep the records?"]
+    data -.->|"also check"| meaning["Meaning: can the new host read them?"]
+    meaning -.->|"also check"| execution["Execution: can it do the work?"]
+    execution -.->|"separate evaluation"| behavior["Behavior: are the results comparable?"]
+```
+
+A copied study plan may remain readable on a new machine while its chosen provider is unavailable. The work has moved; the ability to continue every action has not yet been established.
+
 ## 7.3 Backup is a consistency problem
 
 A useful backup includes every authoritative record required to recover the instance, at a mutually consistent point. Depending on the application, this may include files, database state, manifests, ownership metadata, and execution records. A copy made during active mutation is not automatically such a snapshot.
 
 Recovery must verify the backup, restore compatible state, re-establish identity and permissions, and reconcile interrupted work. Disposable projections can then be rebuilt. A restore rehearsal is stronger evidence of recoverability than the existence of an archive.
 
+```mermaid
+flowchart TB
+    accTitle: Recovery restores a coherent working instance
+    accDescr: Create a consistent snapshot of authoritative records. Recovery verifies the backup, restores compatible state, re-establishes identity and permissions, reconciles interrupted effects, and rebuilds derived views before resuming.
+    snapshot[("Consistent backup")]
+    snapshot --> verify["Verify backup and compatibility"]
+    verify --> restore["Restore authoritative records"]
+    restore --> access["Re-establish identity and permissions"]
+    access --> reconcile["Reconcile interrupted work"]
+    reconcile --> views["Rebuild views and resume"]
+```
+
+This is the successful recovery path. If integrity, compatibility, or ownership cannot be established, stop at that step and retain the evidence. Rebuilding a dashboard cannot repair a missing decision or an unknown external effect.
+
 The owner can still lose data through an incomplete backup, an unrecorded effect, a compromised host, or a mistaken deletion. Stateware makes the required boundaries explicit; durability remains an engineering property to test.
 
 # 8. Tradeoffs and questions for evaluation
 
-Explicit state and governance have costs. Schemas evolve. Adapters need maintenance. Receipts consume storage. Context preparation can omit relevant material. Isolation can prevent useful work when its permissions are too narrow. Excessive confirmations can train people to approve without reading.
+Explicit state and governance have costs. Data formats evolve. Adapters need maintenance. Receipts consume storage. Context preparation can omit relevant material. Isolation can prevent useful work when its permissions are too narrow. Excessive confirmations can train people to approve without reading.
 
 The design response should be proportionality. Keep canonical records small enough to understand, preserve detailed evidence where needed, and add controls for a concrete consequence. Routine safe work should fit within bounded grants. Additional services, ledgers, and mandatory process artifacts should earn their cost by resolving a real uncertainty.
 

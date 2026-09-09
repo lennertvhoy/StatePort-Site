@@ -1,0 +1,11 @@
+flowchart TB
+    accTitle: An approved intention still needs a checked execution
+    accDescr: A proposal is checked against authority. A permitted proposal uses existing authority or receives any required approval, then passes validation before an execution attempt. The system records observed outcomes. Refusal or invalidation prevents the attempt; an attempted effect can still fail or remain uncertain.
+    proposal["Exact proposal"]
+    proposal --> authority{"Authorized?"}
+    authority -->|"yes"| approval["Required approval"]
+    authority -->|"no"| stop["Refuse"]
+    approval --> validation{"Still valid?"}
+    validation -->|"yes"| execute["Attempt the effect"]
+    validation -->|"no"| stop
+    execute --> receipt[("Record outcome")]

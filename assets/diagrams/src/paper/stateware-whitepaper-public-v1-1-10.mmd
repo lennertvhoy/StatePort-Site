@@ -1,0 +1,9 @@
+flowchart TB
+    accTitle: Recovery restores a coherent working instance
+    accDescr: Create a consistent snapshot of authoritative records. Recovery verifies the backup, restores compatible state, re-establishes identity and permissions, reconciles interrupted effects, and rebuilds derived views before resuming.
+    snapshot[("Consistent backup")]
+    snapshot --> verify["Verify backup and compatibility"]
+    verify --> restore["Restore authoritative records"]
+    restore --> access["Re-establish identity and permissions"]
+    access --> reconcile["Reconcile interrupted work"]
+    reconcile --> views["Rebuild views and resume"]

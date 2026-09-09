@@ -1,5 +1,7 @@
-flowchart LR
-    SRC[Canonical source<br/>designated origin] --> REL[Release<br/>immutable, identified]
-    REL --> RES[Resolution<br/>fetch & verify exact content]
-    RES --> INS[Install<br/>new instance with recorded provenance]
-    REL -.->|later| UPG[Update<br/>existing instance, governed]
+flowchart TB
+    accTitle: A request alone gives no permission
+    accDescr: Effective authority is the shared scope of the template request, the operator grant, and host support and policy. Each restricts the request; if no shared permission remains, the operation is unavailable. Action-specific checks still apply.
+    request["Template's requested scope"]
+    request -->|"restricted by"| grant["Operator's granted scope"]
+    grant -->|"restricted by"| host["Host support and policy"]
+    host --> result["Only the shared scope is eligible"]

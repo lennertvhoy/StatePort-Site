@@ -1,0 +1,9 @@
+flowchart TB
+    accTitle: A missing reply is not proof of failure
+    accDescr: A remote request may have been accepted when its reply is lost. The local outcome remains uncertain until checking the remote result or human investigation establishes what happened. Retry decisions come after reconciliation.
+    request["Send a remote request"]
+    request --> lost["Reply is lost"]
+    lost --> unknown["Local outcome: uncertain"]
+    unknown --> inspect["Check the remote result"]
+    inspect -->|"established"| record[("Record result")]
+    inspect -->|"still unknown"| review["Investigate"]

@@ -1,0 +1,497 @@
+{
+  "results": [
+    {
+      "width": 360,
+      "js": false,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "broken": [],
+      "diagrams": [
+        {
+          "id": "figure-1",
+          "width": 222,
+          "height": 517,
+          "alt": "Durable state supplies views and task context. The selected context informs a model or agent, which proposes a change. Authority and validation checks govern whether that change becomes the next revision of the same durable state.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-2",
+          "width": 292,
+          "height": 284,
+          "alt": "A shared StudyState definition creates Amira and Ben instances. Each instance contains its own plan, progress, and decisions; neither learner shares private state merely by using the same template.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-3",
+          "width": 238,
+          "height": 582,
+          "alt": "The interface submits a request to control checks. Admitted work is coordinated and executed; observed results are recorded in durable state and become visible through the interface. This is a conceptual permitted-work path, not a service topology.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-4",
+          "width": 256,
+          "height": 354,
+          "alt": "Effective authority is the shared scope of the template request, the operator grant, and host support and policy. Each restricts the request; if no shared permission remains, the operation is unavailable. Action-specific checks still apply.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-5",
+          "width": 301,
+          "height": 438,
+          "alt": "The human-owned outcome defines a bounded slice. The real user journey produces evidence. That evidence informs two separate questions: whether the outcome is satisfied and whether another work increment is justified.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-6",
+          "width": 237,
+          "height": 239,
+          "alt": "A ProjectState template creates a project instance that holds the actual goals, decisions, and history. The instance supports both development and operating work. These are uses of the instance, not mandatory stages or separate applications.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-7",
+          "width": 296,
+          "height": 687,
+          "alt": "A proposal is checked against authority. A permitted proposal uses existing authority or receives any required approval, then passes validation before an execution attempt. The system records observed outcomes. Refusal or invalidation prevents the attempt; an attempted effect can still fail or remain uncertain.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-8",
+          "width": 263,
+          "height": 404,
+          "alt": "A remote request may have been accepted when its reply is lost. The local outcome remains uncertain until checking the remote result or human investigation establishes what happened. Retry decisions come after reconciliation.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-9",
+          "width": 256,
+          "height": 450,
+          "alt": "Portability asks separate questions about retained data, preserved meaning, available execution, and comparable behavior. Passing one question does not prove the next.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-10",
+          "width": 256,
+          "height": 532,
+          "alt": "Create a consistent snapshot of authoritative records. Recovery verifies the backup, restores compatible state, re-establishes identity and permissions, reconciles interrupted effects, and rebuilds derived views before resuming.",
+          "scrolls": false
+        }
+      ],
+      "invalidFragments": [],
+      "errors": []
+    },
+    {
+      "width": 360,
+      "js": true,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "broken": [],
+      "diagrams": [
+        {
+          "id": "figure-1",
+          "width": 222,
+          "height": 517,
+          "alt": "Durable state supplies views and task context. The selected context informs a model or agent, which proposes a change. Authority and validation checks govern whether that change becomes the next revision of the same durable state.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-2",
+          "width": 292,
+          "height": 284,
+          "alt": "A shared StudyState definition creates Amira and Ben instances. Each instance contains its own plan, progress, and decisions; neither learner shares private state merely by using the same template.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-3",
+          "width": 238,
+          "height": 582,
+          "alt": "The interface submits a request to control checks. Admitted work is coordinated and executed; observed results are recorded in durable state and become visible through the interface. This is a conceptual permitted-work path, not a service topology.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-4",
+          "width": 256,
+          "height": 354,
+          "alt": "Effective authority is the shared scope of the template request, the operator grant, and host support and policy. Each restricts the request; if no shared permission remains, the operation is unavailable. Action-specific checks still apply.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-5",
+          "width": 301,
+          "height": 438,
+          "alt": "The human-owned outcome defines a bounded slice. The real user journey produces evidence. That evidence informs two separate questions: whether the outcome is satisfied and whether another work increment is justified.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-6",
+          "width": 237,
+          "height": 239,
+          "alt": "A ProjectState template creates a project instance that holds the actual goals, decisions, and history. The instance supports both development and operating work. These are uses of the instance, not mandatory stages or separate applications.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-7",
+          "width": 296,
+          "height": 687,
+          "alt": "A proposal is checked against authority. A permitted proposal uses existing authority or receives any required approval, then passes validation before an execution attempt. The system records observed outcomes. Refusal or invalidation prevents the attempt; an attempted effect can still fail or remain uncertain.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-8",
+          "width": 263,
+          "height": 404,
+          "alt": "A remote request may have been accepted when its reply is lost. The local outcome remains uncertain until checking the remote result or human investigation establishes what happened. Retry decisions come after reconciliation.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-9",
+          "width": 256,
+          "height": 450,
+          "alt": "Portability asks separate questions about retained data, preserved meaning, available execution, and comparable behavior. Passing one question does not prove the next.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-10",
+          "width": 256,
+          "height": 532,
+          "alt": "Create a consistent snapshot of authoritative records. Recovery verifies the backup, restores compatible state, re-establishes identity and permissions, reconciles interrupted effects, and rebuilds derived views before resuming.",
+          "scrolls": false
+        }
+      ],
+      "invalidFragments": [],
+      "errors": []
+    },
+    {
+      "width": 768,
+      "js": false,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "broken": [],
+      "diagrams": [
+        {
+          "id": "figure-1",
+          "width": 222,
+          "height": 517,
+          "alt": "Durable state supplies views and task context. The selected context informs a model or agent, which proposes a change. Authority and validation checks govern whether that change becomes the next revision of the same durable state.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-2",
+          "width": 292,
+          "height": 284,
+          "alt": "A shared StudyState definition creates Amira and Ben instances. Each instance contains its own plan, progress, and decisions; neither learner shares private state merely by using the same template.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-3",
+          "width": 238,
+          "height": 582,
+          "alt": "The interface submits a request to control checks. Admitted work is coordinated and executed; observed results are recorded in durable state and become visible through the interface. This is a conceptual permitted-work path, not a service topology.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-4",
+          "width": 256,
+          "height": 354,
+          "alt": "Effective authority is the shared scope of the template request, the operator grant, and host support and policy. Each restricts the request; if no shared permission remains, the operation is unavailable. Action-specific checks still apply.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-5",
+          "width": 301,
+          "height": 438,
+          "alt": "The human-owned outcome defines a bounded slice. The real user journey produces evidence. That evidence informs two separate questions: whether the outcome is satisfied and whether another work increment is justified.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-6",
+          "width": 237,
+          "height": 239,
+          "alt": "A ProjectState template creates a project instance that holds the actual goals, decisions, and history. The instance supports both development and operating work. These are uses of the instance, not mandatory stages or separate applications.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-7",
+          "width": 296,
+          "height": 687,
+          "alt": "A proposal is checked against authority. A permitted proposal uses existing authority or receives any required approval, then passes validation before an execution attempt. The system records observed outcomes. Refusal or invalidation prevents the attempt; an attempted effect can still fail or remain uncertain.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-8",
+          "width": 263,
+          "height": 404,
+          "alt": "A remote request may have been accepted when its reply is lost. The local outcome remains uncertain until checking the remote result or human investigation establishes what happened. Retry decisions come after reconciliation.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-9",
+          "width": 256,
+          "height": 450,
+          "alt": "Portability asks separate questions about retained data, preserved meaning, available execution, and comparable behavior. Passing one question does not prove the next.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-10",
+          "width": 256,
+          "height": 532,
+          "alt": "Create a consistent snapshot of authoritative records. Recovery verifies the backup, restores compatible state, re-establishes identity and permissions, reconciles interrupted effects, and rebuilds derived views before resuming.",
+          "scrolls": false
+        }
+      ],
+      "invalidFragments": [],
+      "errors": []
+    },
+    {
+      "width": 768,
+      "js": true,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "broken": [],
+      "diagrams": [
+        {
+          "id": "figure-1",
+          "width": 222,
+          "height": 517,
+          "alt": "Durable state supplies views and task context. The selected context informs a model or agent, which proposes a change. Authority and validation checks govern whether that change becomes the next revision of the same durable state.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-2",
+          "width": 292,
+          "height": 284,
+          "alt": "A shared StudyState definition creates Amira and Ben instances. Each instance contains its own plan, progress, and decisions; neither learner shares private state merely by using the same template.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-3",
+          "width": 238,
+          "height": 582,
+          "alt": "The interface submits a request to control checks. Admitted work is coordinated and executed; observed results are recorded in durable state and become visible through the interface. This is a conceptual permitted-work path, not a service topology.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-4",
+          "width": 256,
+          "height": 354,
+          "alt": "Effective authority is the shared scope of the template request, the operator grant, and host support and policy. Each restricts the request; if no shared permission remains, the operation is unavailable. Action-specific checks still apply.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-5",
+          "width": 301,
+          "height": 438,
+          "alt": "The human-owned outcome defines a bounded slice. The real user journey produces evidence. That evidence informs two separate questions: whether the outcome is satisfied and whether another work increment is justified.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-6",
+          "width": 237,
+          "height": 239,
+          "alt": "A ProjectState template creates a project instance that holds the actual goals, decisions, and history. The instance supports both development and operating work. These are uses of the instance, not mandatory stages or separate applications.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-7",
+          "width": 296,
+          "height": 687,
+          "alt": "A proposal is checked against authority. A permitted proposal uses existing authority or receives any required approval, then passes validation before an execution attempt. The system records observed outcomes. Refusal or invalidation prevents the attempt; an attempted effect can still fail or remain uncertain.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-8",
+          "width": 263,
+          "height": 404,
+          "alt": "A remote request may have been accepted when its reply is lost. The local outcome remains uncertain until checking the remote result or human investigation establishes what happened. Retry decisions come after reconciliation.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-9",
+          "width": 256,
+          "height": 450,
+          "alt": "Portability asks separate questions about retained data, preserved meaning, available execution, and comparable behavior. Passing one question does not prove the next.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-10",
+          "width": 256,
+          "height": 532,
+          "alt": "Create a consistent snapshot of authoritative records. Recovery verifies the backup, restores compatible state, re-establishes identity and permissions, reconciles interrupted effects, and rebuilds derived views before resuming.",
+          "scrolls": false
+        }
+      ],
+      "invalidFragments": [],
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "js": false,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "broken": [],
+      "diagrams": [
+        {
+          "id": "figure-1",
+          "width": 222,
+          "height": 517,
+          "alt": "Durable state supplies views and task context. The selected context informs a model or agent, which proposes a change. Authority and validation checks govern whether that change becomes the next revision of the same durable state.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-2",
+          "width": 292,
+          "height": 284,
+          "alt": "A shared StudyState definition creates Amira and Ben instances. Each instance contains its own plan, progress, and decisions; neither learner shares private state merely by using the same template.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-3",
+          "width": 238,
+          "height": 582,
+          "alt": "The interface submits a request to control checks. Admitted work is coordinated and executed; observed results are recorded in durable state and become visible through the interface. This is a conceptual permitted-work path, not a service topology.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-4",
+          "width": 256,
+          "height": 354,
+          "alt": "Effective authority is the shared scope of the template request, the operator grant, and host support and policy. Each restricts the request; if no shared permission remains, the operation is unavailable. Action-specific checks still apply.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-5",
+          "width": 301,
+          "height": 438,
+          "alt": "The human-owned outcome defines a bounded slice. The real user journey produces evidence. That evidence informs two separate questions: whether the outcome is satisfied and whether another work increment is justified.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-6",
+          "width": 237,
+          "height": 239,
+          "alt": "A ProjectState template creates a project instance that holds the actual goals, decisions, and history. The instance supports both development and operating work. These are uses of the instance, not mandatory stages or separate applications.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-7",
+          "width": 296,
+          "height": 687,
+          "alt": "A proposal is checked against authority. A permitted proposal uses existing authority or receives any required approval, then passes validation before an execution attempt. The system records observed outcomes. Refusal or invalidation prevents the attempt; an attempted effect can still fail or remain uncertain.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-8",
+          "width": 263,
+          "height": 404,
+          "alt": "A remote request may have been accepted when its reply is lost. The local outcome remains uncertain until checking the remote result or human investigation establishes what happened. Retry decisions come after reconciliation.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-9",
+          "width": 256,
+          "height": 450,
+          "alt": "Portability asks separate questions about retained data, preserved meaning, available execution, and comparable behavior. Passing one question does not prove the next.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-10",
+          "width": 256,
+          "height": 532,
+          "alt": "Create a consistent snapshot of authoritative records. Recovery verifies the backup, restores compatible state, re-establishes identity and permissions, reconciles interrupted effects, and rebuilds derived views before resuming.",
+          "scrolls": false
+        }
+      ],
+      "invalidFragments": [],
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "js": true,
+      "status": 200,
+      "h1": 1,
+      "overflow": false,
+      "broken": [],
+      "diagrams": [
+        {
+          "id": "figure-1",
+          "width": 222,
+          "height": 517,
+          "alt": "Durable state supplies views and task context. The selected context informs a model or agent, which proposes a change. Authority and validation checks govern whether that change becomes the next revision of the same durable state.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-2",
+          "width": 292,
+          "height": 284,
+          "alt": "A shared StudyState definition creates Amira and Ben instances. Each instance contains its own plan, progress, and decisions; neither learner shares private state merely by using the same template.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-3",
+          "width": 238,
+          "height": 582,
+          "alt": "The interface submits a request to control checks. Admitted work is coordinated and executed; observed results are recorded in durable state and become visible through the interface. This is a conceptual permitted-work path, not a service topology.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-4",
+          "width": 256,
+          "height": 354,
+          "alt": "Effective authority is the shared scope of the template request, the operator grant, and host support and policy. Each restricts the request; if no shared permission remains, the operation is unavailable. Action-specific checks still apply.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-5",
+          "width": 301,
+          "height": 438,
+          "alt": "The human-owned outcome defines a bounded slice. The real user journey produces evidence. That evidence informs two separate questions: whether the outcome is satisfied and whether another work increment is justified.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-6",
+          "width": 237,
+          "height": 239,
+          "alt": "A ProjectState template creates a project instance that holds the actual goals, decisions, and history. The instance supports both development and operating work. These are uses of the instance, not mandatory stages or separate applications.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-7",
+          "width": 296,
+          "height": 687,
+          "alt": "A proposal is checked against authority. A permitted proposal uses existing authority or receives any required approval, then passes validation before an execution attempt. The system records observed outcomes. Refusal or invalidation prevents the attempt; an attempted effect can still fail or remain uncertain.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-8",
+          "width": 263,
+          "height": 404,
+          "alt": "A remote request may have been accepted when its reply is lost. The local outcome remains uncertain until checking the remote result or human investigation establishes what happened. Retry decisions come after reconciliation.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-9",
+          "width": 256,
+          "height": 450,
+          "alt": "Portability asks separate questions about retained data, preserved meaning, available execution, and comparable behavior. Passing one question does not prove the next.",
+          "scrolls": false
+        },
+        {
+          "id": "figure-10",
+          "width": 256,
+          "height": 532,
+          "alt": "Create a consistent snapshot of authoritative records. Recovery verifies the backup, restores compatible state, re-establishes identity and permissions, reconciles interrupted effects, and rebuilds derived views before resuming.",
+          "scrolls": false
+        }
+      ],
+      "invalidFragments": [],
+      "errors": []
+    }
+  ],
+  "defects": []
+}
