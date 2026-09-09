@@ -1,0 +1,80 @@
+[
+  {
+    "width": 360,
+    "js": false,
+    "status": 200,
+    "h1": 1,
+    "overflow": false,
+    "broken": [],
+    "diagrams": 2,
+    "sections": 10,
+    "text": 27511,
+    "invalidFragments": [],
+    "errors": []
+  },
+  {
+    "width": 360,
+    "js": true,
+    "status": 200,
+    "h1": 1,
+    "overflow": false,
+    "broken": [],
+    "diagrams": 2,
+    "sections": 10,
+    "text": 27524,
+    "invalidFragments": [],
+    "errors": []
+  },
+  {
+    "width": 768,
+    "js": false,
+    "status": 200,
+    "h1": 1,
+    "overflow": false,
+    "broken": [],
+    "diagrams": 2,
+    "sections": 10,
+    "text": 27511,
+    "invalidFragments": [],
+    "errors": []
+  },
+  {
+    "width": 768,
+    "js": true,
+    "status": 200,
+    "h1": 1,
+    "overflow": false,
+    "broken": [],
+    "diagrams": 2,
+    "sections": 10,
+    "text": 27524,
+    "invalidFragments": [],
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "js": false,
+    "status": 200,
+    "h1": 1,
+    "overflow": false,
+    "broken": [],
+    "diagrams": 2,
+    "sections": 10,
+    "text": 27511,
+    "invalidFragments": [],
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "js": true,
+    "status": 200,
+    "h1": 1,
+    "overflow": false,
+    "broken": [],
+    "diagrams": 2,
+    "sections": 10,
+    "text": 28485,
+    "invalidFragments": [],
+    "errors": []
+  }
+]

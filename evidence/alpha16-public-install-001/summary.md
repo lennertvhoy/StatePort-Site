@@ -1,5 +1,54 @@
 # Evidence: alpha16-public-install-001
 
+## Public whitepaper architectural revision — 2026-09-09
+
+Owner requests the public paper be aligned with current StatePort and ProjectState,
+then made live. Owner explicitly excludes development-status detail from the paper.
+The revised ~4,050-word text retains the stable v1.1 URL and labels its September
+revision; July v1.2 remains a historical draft. It explains the thesis, authoritative
+state versus projections, template/instance/host ownership, adapters and capabilities,
+durable execution, ProjectState v6 and runtime independence, continuation versus
+closure, receipts, external effects, portability, recovery, tradeoffs and evaluation.
+Release details remain on the release page. Historical screenshots and unsupported
+blanket claims were removed from the revised paper; original history is retained.
+
+Architecture sources: current StatePort template adapters, PROJECT.md, AGENTS.md,
+package boundaries and canonical-source ADR; current ProjectState README, initializer,
+upgrade guidance, plus the required 2026-09-06 core snapshot and outcome checker.
+Exact input digests are in `whitepaper-20260909-sources.json`. Local staged template
+amendments are not represented as a newly published template release.
+
+Queued coordination refresh: semantically added continuation guidance to Site
+AGENTS.md, preserved existing authority/acceptance/state and pending notices. Both
+Site and StatePort gates match the required core. The native primary remains blocked;
+no unchanged installer retry was admitted and migration completion is not claimed.
+Next event for native work: a qualified successor and its genuine intended environment.
+This independently authorized documentation increment addresses accurate public docs
+without consuming a runtime build slot or changing the release route.
+
+Reading journey: isolated headless Chromium at loopback port 4189, reading-room link
+→ revised paper → Markdown source passed. Six views (360/768/1440px, JavaScript on
+and off) passed: HTTP 200, one h1, complete sections, two diagrams, no broken images,
+invalid fragment links, document overflow or JavaScript exceptions. Mobile navigation
+passed. Screenshots of the title, ProjectState section and diagrams were inspected.
+The original diagram styles were blocked by CSP and arrow references were malformed;
+styles were extracted to a local stylesheet and references repaired, preserving the
+conceptual graphs and CSP. No new external runtime or tracking was added.
+
+Commands: `node output/whitepaper-20260909/browser.cjs`,
+`python3 scripts/validate_repo.py`, `python3 scripts/check_site_quality.py`,
+`PYTHONDONTWRITEBYTECODE=1 python3 -B -m unittest discover -s scripts -p 'test_*.py'`.
+Results: reading journey passed; repository/31-page quality checks passed; 30 tests
+passed. `python3 scripts/projectstate_gate.py` exits 1, retaining the blocked native
+complete-product outcome. No software qualification or human acceptance inferred.
+Browser proof: `whitepaper-20260909-browser.json`; screenshots and working artifacts
+in ignored `output/whitepaper-20260909/`. Original prose and rendered before-image
+are also retained there; Git preserves the previously published edition.
+
+Publication: local revision checked; guarded Pages push and anonymous byte comparison
+are the remaining actions. User authority to publish is explicit. Preserve unrelated
+pre-existing Site changes and the untracked Alpha.14 evidence directory.
+
 ## Current status
 
 On 2026-09-05, a fresh public Alpha.16 Ubuntu 24.04 QEMU/KVM rehearsal

@@ -1,0 +1,40 @@
+{
+  "date": "2026-09-09",
+  "sources": [
+    {
+      "path": "/home/ff/Projects/StatePort/packages/persistent-app/src/stateport_persistent_app/template_adapters.py",
+      "sha256": "5726dff7403b9d597949a87989ec108bf1413f4ac999d0950dc86d447d9006ca"
+    },
+    {
+      "path": "/home/ff/Projects/StatePort/PROJECT.md",
+      "sha256": "88417e705a18f23cebba8a8c31f3f73de2e5424741114e3635f7295c8178fd4d"
+    },
+    {
+      "path": "/home/ff/Projects/StatePort/AGENTS.md",
+      "sha256": "a0adfce29be41ed3670471555038f90f5744cdcaf963da36b1cd6150d75b3ac7"
+    },
+    {
+      "path": "/home/ff/Projects/ProjectState_Template/README.md",
+      "sha256": "e8d0e71c2e3fe45684bc231be27393fa3254405d3b4264cef191a425cd40b57d"
+    },
+    {
+      "path": "/home/ff/Projects/ProjectState_Template/scripts/init_template.py",
+      "sha256": "99c93bd6741233b0aad465ec638bffacfad20f86818e027a294a20203505c671"
+    },
+    {
+      "path": "/home/ff/Projects/ProjectState_Template/docs/UPGRADING.md",
+      "sha256": "3e4ce3b8c9767665e5c4c6300f48a16b78c0933c1809baa4b054c6bac064327e"
+    },
+    {
+      "path": "/home/ff/Projects/.projectstate-handoffs/long-run-control-2026-09-06/core/AGENTS.md",
+      "sha256": "f86466bcfed2ebd1a4a1c84f6bd5bd8afea46b8e6fcd5d3d83ff74dee62f42f5"
+    },
+    {
+      "path": "/home/ff/Projects/.projectstate-handoffs/long-run-control-2026-09-06/core/scripts/projectstate_gate.py",
+      "sha256": "66e7c9b32a10bf44e6478ce3cf91223c803a27a8cb7a92fb4dadd32ae18dbf37"
+    }
+  ],
+  "StatePortHEAD": "7442592003c976f15f3a816b485fb3d0643e09b9",
+  "ProjectStateHEAD": "7e4cb7c3397324d09f768eeb1d722316714c46e1",
+  "note": "Template staged amendments inspected as local current architecture; not represented as a new published template release."
+}
