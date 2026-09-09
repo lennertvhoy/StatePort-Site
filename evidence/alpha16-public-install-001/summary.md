@@ -45,9 +45,23 @@ Browser proof: `whitepaper-20260909-browser.json`; screenshots and working artif
 in ignored `output/whitepaper-20260909/`. Original prose and rendered before-image
 are also retained there; Git preserves the previously published edition.
 
-Publication: local revision checked; guarded Pages push and anonymous byte comparison
-are the remaining actions. User authority to publish is explicit. Preserve unrelated
-pre-existing Site changes and the untracked Alpha.14 evidence directory.
+Publication completed on 2026-09-09. Guarded push published Site `7d79a0d`;
+Pages reports built, and anonymous HTTP 200 responses match all six changed public
+files byte-for-byte: paper HTML and Markdown, reading room, historical-draft notice,
+diagram stylesheet and sitemap. Live six-view browser reading/source/navigation
+journey also passes with no recorded defects. Proof is in
+`whitepaper-20260909-public.json` and `whitepaper-20260909-live-browser.json`.
+
+The first governor run was stopped after the gh wrapper contaminated its Git
+credential-helper output and stalled. The second used the installed gh executable
+directly, completed with exit 0, and pushed successfully. Governor receipt:
+`/home/ff/.local/state/stateport/whitepaper-publication-20260909/governor-r2/background-safe-v1.json`.
+The earlier byte comparison occurred while Pages was building and served old bytes;
+it is retained as `output/whitepaper-20260909/public-building.json`, superseded by
+the successful comparison after Pages reported built. These observations do not
+represent installer attempts. Paper publication is complete; native installation,
+full-product acceptance and queued migration completion remain separate pending work.
+Unrelated pre-existing Site changes and untracked Alpha.14 evidence are preserved.
 
 ## Current status
 
