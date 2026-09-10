@@ -1,157 +1,134 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="StudyState is the first StatePort application: a study coach whose state survives sessions and whose changes you review, apply, and can undo.">
-    <meta name="theme-color" content="#0B132B">
-    <meta property="og:type" content="article">
-    <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="StudyState — a study coach that remembers">
-    <meta property="og:description" content="The first StatePort application: a study coach whose learning state survives sessions and whose changes you review, apply, and can undo.">
-    <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/study-state.html">
-    <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.16 status.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
-    <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/study-state.html">
-    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-    <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
-    <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
-    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
-    <title>StudyState — StatePort</title>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "TechArticle",
-        "headline": "StudyState: a study coach that remembers",
-        "description": "StudyState is the first StatePort application: a durable, user-owned study coach whose state survives sessions and whose changes you review, apply, and can undo.",
-        "url": "https://lennertvhoy.github.io/StatePort-Site/docs/study-state.html",
-        "dateModified": "2026-08-01",
-        "inLanguage": "en"
-      }
-    </script>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none">
+<meta name="description" content="StudyState is a durable study coach whose state survives sessions and whose changes are reviewable.">
+<meta name="theme-color" content="#0B132B">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="StatePort">
+<meta property="og:title" content="StudyState — StatePort">
+<meta property="og:description" content="Use StudyState as a plain-file study brain or an isolated StatePort application.">
+<meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/study-state.html">
+<meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
+<link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/study-state.html">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css?v=2026-09-10-1">
+<link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-10-1" data-site-enhancements>
+<title>StudyState — StatePort</title>
+<meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
   </head>
-  <body class="article-page">
-    <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header site-header--light">
-      <a class="brand" href="../" aria-label="StatePort home">
-        <img src="../assets/stateport-mascot-block-arch-light.svg" alt="">
-        <span>StatePort</span>
-      </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
-        <span class="sr-only">Toggle navigation</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
-      </button>
-      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
-        <a href="./" aria-current="page">Docs</a>
-        <a href="../tutorials/">Tutorials</a>
-        <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
-      <a href="../papers/">Papers</a>
-      </nav>
-    </header>
-
-    <main id="main">
-      <section class="article-hero" aria-labelledby="study-state-title">
-        <div class="article-hero-inner">
-          <p class="document-kicker">Documentation / Applications</p>
-          <h1 id="study-state-title">StudyState: a study coach that remembers.</h1>
-          <p>The first StatePort application shows the idea in practice: keep your learning goals and progress, then review changes before saving them.</p>
-        </div>
-      </section>
-
-      <div class="article-shell">
-        <aside class="doc-sidebar" aria-label="Documentation sections">
-          <h2>Documentation</h2>
-          <nav>
-            <a href="./">Overview</a>
-            <a href="foundations.html">Foundations</a>
-            <a href="model.html">Model</a>
-            <a href="lifecycle.html">Lifecycle</a>
-            <a href="governance.html">Review and control</a>
-            <a href="security-and-privacy.html">Security &amp; privacy</a>
-            <a href="hosts-and-portability.html">Hosts &amp; portability</a>
-            <a href="platform-support.html">Platform support</a>
-            <a href="evidence-and-roadmap.html">Roadmap</a>
-            <a href="reference.html">Reference &amp; FAQ</a>
-            <a href="getting-started.html">Getting started</a>
+<body class="article-page"><a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header site-header--light"><a class="brand" href="../" aria-label="StatePort home"><img src="../assets/stateport-mascot-block-arch-light.svg" alt=""><span>StatePort</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation"><span class="sr-only">Toggle navigation</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg></button>
+<nav class="site-nav" id="site-navigation" aria-label="Primary navigation"><a href="./" aria-current="page">Docs</a><a href="../tutorials/">Tutorials</a><a class="nav-download" href="../download/">Download</a><a class="nav-release" href="../releases/">Release status</a><a href="../papers/">Papers</a>
+</nav>
+</header>
+<main id="main">
+<section class="article-hero" aria-labelledby="study-state-title">
+<div class="article-hero-inner">
+<p class="document-kicker">Documentation / Applications</p>
+<h1 id="study-state-title">StudyState: a study coach that remembers.</h1>
+<p>StudyState keeps learner state, evidence, sources, and the next useful activity in plain files. StatePort can run a reviewed StudyState repository as an isolated managed application.</p>
+</div>
+</section>
+<div class="article-shell">
+<aside class="doc-sidebar" aria-label="Documentation sections">
+<h2>StudyState guide</h2>
+<nav>
+            <a href="./">Documentation home</a>
+            <a href="everyday-work.html">Your first session</a>
+            <a href="getting-started.html">Install and open</a>
+            <a href="templates.html">Import a template</a>
+            <a href="project-state.html">ProjectState</a>
             <a href="study-state.html" aria-current="page">StudyState</a>
-            <a href="deployments.html">Deployments</a>
-            <a href="limitations.html">Limitations</a>
-            <a href="updates.html">Updates</a>
-            <a href="../tutorials/">Tutorials</a>
-            <a href="../releases/">Release status</a>
+            <a href="troubleshooting.html">Troubleshooting</a>
+            <a href="lifecycle.html">Backup and recovery</a>
+            <a href="updates.html">Update and uninstall</a>
+            <a href="governance.html">Review and control</a>
+            <a href="hosts-and-portability.html">AI tools and readiness</a>
+            <a href="security-and-privacy.html">Security and privacy</a>
+            <a href="platform-support.html">Platform support</a>
+            <a href="foundations.html">Why StatePort exists</a>
+            <a href="model.html">Core model</a>
+            <a href="deployments.html">Container deployments</a>
+            <a href="reference.html">Reference and FAQ</a>
+            <a href="limitations.html">Current limitations</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
+            <a href="agent-kits.html">Agent Kits</a>
+            <a href="prototype-walkthrough.html">Product walkthrough</a>
           </nav>
-        </aside>
-
-        <article class="prose">
-          <p class="notice"><strong>Alpha.16 remains published, but fresh installation is blocked by a known signature-check failure.</strong> Anonymous image downloads also fail with HTTP 401 because the release image registry packages are private. Fixing the signature check alone will not complete installation. Wait for a corrected, qualified release; repeating this installer does not repair either failure. Published files remain available for inspection.</p>
-          <p class="notice notice--quiet"><strong>Available in Alpha.16.</strong> Install StatePort, then create the reviewed StudyState sample from Catalog or import your own committed StudyState template.</p>
-
-          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-studystate-is">What StudyState is</a></li><li data-level="2"><a href="#the-focus-default-what-to-do-next-and-why">The Focus default: what to do next, and why</a></li><li data-level="2"><a href="#lifecycle-you-control">Lifecycle you control</a></li><li data-level="2"><a href="#reflection-becomes-a-change-you-review">Reflection becomes a change you review</a></li><li data-level="2"><a href="#undo-and-change-history">Undo and change history</a></li><li data-level="2"><a href="#state-that-survives-restarts">State that survives restarts</a></li><li data-level="2"><a href="#what-studystate-deliberately-does-not-do">What StudyState deliberately does not do</a></li><li data-level="2"><a href="#use-studystate">Use StudyState</a></li></ol></details>
-          <h2 id="what-studystate-is">What StudyState is</h2>
-          <p>StudyState is a study coach built around your goals, activities, progress, and reflections. The conversation belongs to the application, and the useful facts live in files you can open.</p>
-          <p>Most of the time, you see the coach and your next task. History and change records are available when you need them.</p>
-
-          <h2 id="the-focus-default-what-to-do-next-and-why">The Focus default: what to do next, and why</h2>
-          <p>The default view answers one question: what should I do next, and why? StudyState plans the next learning activity from your durable learning state, so the suggestion is grounded in your goals and history rather than in whatever happened to be said last in a chat.</p>
-
-          <h2 id="lifecycle-you-control">Lifecycle you control</h2>
-          <p>The design lets you start, pause, resume, or change an activity. The coach suggests the next step. You stay in control of the plan.</p>
-
-          <h2 id="reflection-becomes-a-change-you-review">Reflection becomes a change you review</h2>
-          <p>When you reflect on what you learned, StudyState can turn that reflection into a proposed update. You review it before it changes your saved progress.</p>
-
-          <h2 id="undo-and-change-history">Undo and change history</h2>
-          <p>The preview shows the planned ability to undo an applied change and review its history. This work is still part of the product roadmap.</p>
-
-          <h2 id="state-that-survives-restarts">State that survives restarts</h2>
-          <p>Your goals, activities, and progress are designed to live in durable files on your machine, so a new session does not start from nothing.</p>
-
-          <h2 id="what-studystate-deliberately-does-not-do">What StudyState deliberately does not do</h2>
-          <ul>
-            <li>The current preview uses sample activity. It is not a live tutoring service.</li>
-            <li>It does not change your learning state silently. Mutations are proposed, reviewed, and explicitly applied.</li>
-            <li>Importing an existing learning history is not available yet.</li>
-            <li>StudyState is an early-alpha application, not a finished or independently evaluated tutoring service.</li>
-          </ul>
-
-          <h2 id="use-studystate">Use StudyState</h2>
-          <ol>
-            <li><a href="getting-started.html">Install and open StatePort</a>.</li>
-            <li>Open <strong>Catalog</strong> and install the reviewed StudyState sample, or put your StudyState Git repository below <code>/var/lib/stateport/imports</code>.</li>
-            <li>For your own repository, choose <strong>Import a local repository</strong>, review the exact commit and detected StudyState adapter, approve it, and create the isolated copy.</li>
-            <li>Open the application. Goals, activity, proposals, approvals, receipts, and history remain attached to that durable instance.</li>
-          </ol>
-          <p><a href="templates.html">Read the complete ProjectState, StudyState, and StateSpec template guide</a>.</p>
-
-          <div class="inline-actions">
-            <a class="button button--ink" href="model.html">How the model works</a>
-            <a class="button button--outlined" href="../releases/">Check availability</a>
-          </div>
-        </article>
-      </div>
-    </main>
-
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <div class="footer-mark">
-          <img src="../assets/stateport-mascot-block-arch-light.svg" alt="">
-          <p><strong>StatePort</strong>Durable AI-assisted work, kept in view.</p>
-        </div>
-        <nav class="footer-nav" aria-label="Footer navigation">
-          <a href="./">Docs</a>
-          <a href="../tutorials/">Tutorials</a>
-          <a href="../releases/">Release status</a>
-        </nav>
-        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
-      </div>
-    </footer>
-    <script src="../assets/site.js?v=2026-09-05-2"></script>
-  </body>
+</aside>
+<article class="prose">
+<p class="notice"><strong>Alpha.16 installation is currently blocked.</strong> The published release has a signature-check defect and its image packages are private. See <a href="../releases/">release status</a> before installing.</p>
+<p class="notice notice--quiet"><strong>Start with the StudyState Sample.</strong> Start its activity, review the exact change, apply it, write a reflection, review the reflection’s effect, save it as evidence, open its receipt, and reload. The expected result is the same activity and saved reflection still visible after reload. An imported StudyState repository is a separate source with its own identity and controls; see <a href="templates.html">the template guide</a>.</p>
+<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-studystate-is">What StudyState is</a></li><li data-level="2"><a href="#the-focus-default-what-to-do-next-and-why">The Focus default: what to do next, and why</a></li><li data-level="2"><a href="#lifecycle-you-control">Lifecycle you control</a></li><li data-level="2"><a href="#reflection-becomes-a-change-you-review">Reflection becomes a change you review</a></li><li data-level="2"><a href="#undo-and-change-history">Undo and change history</a></li><li data-level="2"><a href="#state-that-survives-restarts">State that survives restarts</a></li><li data-level="2"><a href="#what-studystate-deliberately-does-not-do">What StudyState deliberately does not do</a></li><li data-level="2"><a href="#use-studystate">Use StudyState</a></li></ol></details>
+<section>
+<h2 id="what-studystate-is">What StudyState is</h2>
+<p>StudyState is a study brain operated through a coding agent or through StatePort’s managed application. The small <strong>StudyState Sample</strong> is a worked application used to demonstrate the saved learning loop. An imported StudyState repository is a different application source; it may expose different views, files, activities, and controls according to its own contract.</p>
+<p>The sample loop is concrete: choose <strong>Start</strong> on the current activity, review the change from not started to in progress, and approve it. Write a reflection as a browser draft, review its exact effect, including marking the activity completed, then apply it as evidence. Open the receipt to inspect what StatePort recorded. Reload and reopen the same instance: the completed activity and reflection should remain saved.</p>
+<p>The broader repository contract keeps learner profile, study targets, skill map, sources, activities, sessions, reviews, next actions, and evidence in readable Markdown and YAML. A conversation can help you learn, but chat history is not the canonical record.</p>
+</section>
+<section>
+<h2 id="the-focus-default-what-to-do-next-and-why">The Focus default: what to do next, and why</h2>
+<p>In the StudyState model, a next-activity engine can choose a question, spaced review, paper exercise, lab, external resource, interview or presentation rehearsal, voice note, diagram, or upload-and-review task. Due reviews remain visible, and volatile subjects require fresh source metadata before an authoritative question.</p>
+<p>The installed StudyState Sample demonstrates a small, explicit activity and reflection flow. Do not assume that every imported template exposes the entire next-activity engine as a StatePort UI; inspect the imported application’s own views and contract.</p>
+</section>
+<section>
+<h2 id="lifecycle-you-control">Lifecycle you control</h2>
+<ol><li><strong>Template mode:</strong> the reusable public mold remains generic and contains no learner data.</li><li><strong>Bootstrap mode:</strong> a new repository records its origin while you initialize your learner profile and first target.</li><li><strong>Learner-instance mode:</strong> the repository contains your targets, evidence, sessions, reviews, and next action.</li>
+</ol>
+<p>Use the template’s instance creation flow or make a separate learner repository. Do not personalize the public template. Run its sanity gate after setup or state changes.</p>
+</section>
+<section>
+<h2 id="reflection-becomes-a-change-you-review">Reflection becomes a change you review</h2>
+<p>In the sample, the reflection starts as a browser draft. Before saving it, review the exact activity and evidence effect. Apply only when it matches what you meant to record. The saved reflection is self-reported learning evidence; it is not independently verified progress.</p>
+<p>The agent may suggest a change, but canonical state changes only after the reviewed action is applied. The receipt records what StatePort observed.</p>
+</section>
+<section>
+<h2 id="undo-and-change-history">Undo and change history</h2>
+<p>StudyState keeps session and activity history alongside current projections. Where the application exposes undo, the action restores the prior evidence-bearing state and remains tied to the reviewed change and its receipt. It does not erase the explanation of what happened.</p>
+<p>If you are working directly in a repository, inspect the diff and history before repairing state. Keep the evidence that explains why a correction was made.</p>
+</section>
+<section>
+<h2 id="state-that-survives-restarts">State that survives restarts</h2>
+<p>After the sample flow, reload the application and reopen the same instance, then return to the activity. The expected saved result is that the activity remains completed and the reflection remains present in evidence.</p>
+<p>In a repository instance, closing a session does not erase goals, target map, review queue, source registry, or next action because they live in files. Back up before upgrades or broad edits, and preserve learner state when applying generic template improvements.</p>
+</section>
+<section>
+<h2 id="what-studystate-deliberately-does-not-do">What StudyState deliberately does not do</h2>
+<ul><li>It does not treat source coverage or one easy answer as confirmed readiness.</li><li>It does not claim volatile information is current without fresh source metadata.</li><li>It does not install dependencies or change system settings without explicit consent.</li><li>It does not personalize the public template or hide private learner data in a public repository.</li><li>StatePort does not turn a StudyState file into an unrestricted agent. The adapter and installed permissions remain the authority.</li>
+</ul>
+</section>
+<section>
+<h2 id="use-studystate">Use StudyState</h2>
+<h3>Try the sample</h3>
+<ol><li>Open the StudyState Sample and choose <strong>Start</strong> on its current activity.</li><li>Review the exact change, then choose <strong>Approve Start</strong> so the activity becomes in progress.</li><li>Write a reflection, review its proposed effect, and choose <strong>Approve and apply</strong> to save it as evidence.</li><li>Open the receipt, reload the application, and confirm the activity and reflection remain present.</li>
+</ol>
+<h3>Import a template</h3>
+<p>Choose <strong>Import a repository</strong> for a public exact commit or local checkout. Review identity, source commit, and what the detected template exposes before creating an isolated copy. The imported repository is not guaranteed to have the sample’s screens or the complete next-activity engine.</p>
+<h3>Use the repository directly</h3>
+<p>Clone the public template into a new learner repository, initialize the profile and first target, then run its environment check, explicit-consent setup helper, sanity gate, and demo replay. Keep the public template separate from a learner instance.</p>
+<p>For exact source preparation, see <a href="templates.html">Use a template</a>. For the project-oriented companion, see <a href="project-state.html">ProjectState</a>. For availability, see <a href="../releases/">release status</a>.</p>
+</section>
+<div class="inline-actions"><a class="button button--ink" href="../tutorials/site-orientation.html">Watch the sample flow</a><a class="button button--outlined" href="templates.html">Import StudyState</a>
+</div>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-inner">
+<div class="footer-mark"><img src="../assets/stateport-mascot-block-arch-light.svg" alt="">
+<p><strong>StatePort</strong>Durable AI-assisted work, kept in view.</p>
+</div>
+<nav class="footer-nav" aria-label="Footer navigation"><a href="./">Docs</a><a href="../tutorials/">Tutorials</a><a href="../releases/">Release status</a>
+</nav>
+<p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
+</div>
+</footer><script src="../assets/site.js?v=2026-09-10-1"></script>
+</body>
 </html>

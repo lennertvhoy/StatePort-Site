@@ -14,16 +14,17 @@
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.16 status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-10-1">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-10-1" data-site-enhancements>
     <title>AI tools and portability - StatePort</title>
+  <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/hosts-and-portability.html">
   </head>
   <body class="article-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -58,38 +59,45 @@
         <aside class="doc-sidebar" aria-label="Documentation sections">
           <h2>Documentation</h2>
           <nav>
-            <a href="./">Overview</a>
-            <a href="foundations.html">Foundations</a>
-            <a href="model.html">Model</a>
-            <a href="lifecycle.html">Lifecycle</a>
-            <a href="governance.html">Review and control</a>
-            <a href="security-and-privacy.html">Security &amp; privacy</a>
-            <a href="hosts-and-portability.html" aria-current="page">Hosts &amp; portability</a>
-            <a href="platform-support.html">Platform support</a>
-            <a href="evidence-and-roadmap.html">Roadmap</a>
-            <a href="reference.html">Reference &amp; FAQ</a>
-            <a href="getting-started.html">Getting started</a>
+            <a href="./">Documentation home</a>
+            <a href="everyday-work.html">Your first session</a>
+            <a href="getting-started.html">Install and open</a>
+            <a href="templates.html">Import a template</a>
+            <a href="project-state.html">ProjectState</a>
             <a href="study-state.html">StudyState</a>
-            <a href="deployments.html">Deployments</a>
-            <a href="limitations.html">Limitations</a>
-            <a href="updates.html">Updates</a>
-            <a href="../tutorials/">Tutorials</a>
-            <a href="../releases/">Release status</a>
+            <a href="troubleshooting.html">Troubleshooting</a>
+            <a href="lifecycle.html">Backup and recovery</a>
+            <a href="updates.html">Update and uninstall</a>
+            <a href="governance.html">Review and control</a>
+            <a href="hosts-and-portability.html" aria-current="page">AI tools and readiness</a>
+            <a href="security-and-privacy.html">Security and privacy</a>
+            <a href="platform-support.html">Platform support</a>
+            <a href="foundations.html">Why StatePort exists</a>
+            <a href="model.html">Core model</a>
+            <a href="deployments.html">Container deployments</a>
+            <a href="reference.html">Reference and FAQ</a>
+            <a href="limitations.html">Current limitations</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
+            <a href="agent-kits.html">Agent Kits</a>
+            <a href="prototype-walkthrough.html">Product walkthrough</a>
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Design overview.</strong> Check the <a href="../releases/">release status</a> for current software availability.</p>
+          <p class="notice"><strong>Current support is conditional.</strong> The public Alpha.16 path targets fresh Windows 11 AMD64 with WSL2 Ubuntu 24.04. Provider and optional Workbench controls depend on the installed capability profile. Check <a href="../releases/">release status</a> before relying on a control.</p>
 
-          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#a-session-is-not-the-application">A session is not the application</a></li><li data-level="2"><a href="#tools-are-not-interchangeable">Tools are not interchangeable</a></li><li data-level="2"><a href="#current-tool-support">Current tool support</a></li><li data-level="2"><a href="#what-portability-should-preserve">What portability should preserve</a></li></ol></details>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#a-session-is-not-the-application">A session is not the application</a></li><li data-level="2"><a href="#tools-are-not-interchangeable">Tools are not interchangeable</a></li><li data-level="2"><a href="#provider-setup-and-readiness">Provider setup and readiness</a></li><li data-level="2"><a href="#what-portability-should-preserve">What portability should preserve</a></li><li data-level="2"><a href="#moving-or-recovering-a-workspace">Moving or recovering a workspace</a></li></ol></details>
           <h2 id="a-session-is-not-the-application">A session is not the application</h2>
           <p>A model session can help with current work, but it should not be the only place that holds your goals or progress. The application should remain understandable even when that session is gone.</p>
 
           <h2 id="tools-are-not-interchangeable">Tools are not interchangeable</h2>
           <p>One tool may support cancellation, safe file access, or detailed usage reporting while another does not. StatePort should check those abilities instead of assuming every provider works the same way.</p>
 
-          <h2 id="current-tool-support">Current tool support</h2>
-          <p>The Alpha.5 design uses a locally authenticated Codex command-line tool. OpenCode, direct API providers, and Pi are not supported by this release.</p>
-          <p>See <a href="platform-support.html">platform support</a> for the computer requirements and <a href="../releases/">release status</a> for availability.</p>
+          <span id="current-tool-support"></span>
+<h2 id="provider-setup-and-readiness">Provider setup and readiness</h2>
+          <p>Open <strong>Set up or verify provider</strong> from Workspace readiness or Platform. StatePort reports the selected provider, executable status, model configuration, StatePort connection, login presence, bounded-request result, and unavailable billing/quota information as separate observations. Installed does not mean authenticated; authenticated does not mean a request succeeded.</p>
+          <p>The supported settings surface can select <strong>Codex</strong> or <strong>OpenCode</strong> and save a model identifier. Saving is configuration only. For Codex, open <strong>Show installed login command</strong>, paste the displayed command into the Ubuntu WSL terminal, follow the one-time browser code flow, return to StatePort, refresh status, and choose <strong>Verify bounded request</strong>. The provider keeps credentials in its private directory, outside StatePort application backups and exports. The check sends one short request without application files or conversation. OpenCode selection is recorded, but execution is not available through this path. Direct API providers and other tools are not implied by a provider selector.</p>
+          <p>Use <strong>Disconnect StatePort</strong> to stop active provider work and cancel queued requests. Reconnecting permits future requests; earlier transcript content remains. Use <strong>Refresh status</strong> when an observation is unavailable.</p>
+          <p>See <a href="platform-support.html">platform support</a> for computer requirements and <a href="../releases/">release status</a> for the release boundary.</p>
 
           <h2 id="what-portability-should-preserve">What portability should preserve</h2>
           <ul>
@@ -98,6 +106,10 @@
             <li>A clear record of which tool did the work.</li>
             <li>An honest warning when a new tool lacks a needed feature.</li>
           </ul>
+
+          <h2 id="moving-or-recovering-a-workspace">Moving or recovering a workspace</h2>
+          <p>Portability means the durable application and its reviewed provenance can be inspected independently of one model session. A managed template copy has its own identity, history, and import receipt; the source repository stays untouched. Keep the source at a committed revision and import it again on another supported host when you want a new managed copy. Importing the template again does not move the existing instance’s saved state, activity history, receipts, or provider login.</p>
+          <p>To preserve an existing instance, use the lifecycle recovery path described in <a href="lifecycle.html">the lifecycle guide</a> and <a href="updates.html">updates and recovery</a>. The governed restore flow creates a different managed instance from an indexed backup and leaves the source unchanged; it is distinct from importing the template source again. This describes recovery within a supported installation, not a general cross-machine migration wizard. Keep the original machine and data until a documented migration path has been checked. For an interrupted execution workspace, use <strong>Recover application workspace</strong> when the execution host offers it. Recovery reuses the sealed profile and grant and reattaches preserved data; it does not overwrite existing or partially initialized data. A provider login is separate from application portability and may need to be re-established on the new host.</p>
 
           <div class="inline-actions">
             <a class="button button--ink" href="platform-support.html">View platform support</a>
@@ -121,6 +133,6 @@
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
-    <script src="../assets/site.js?v=2026-09-05-2"></script>
+    <script src="../assets/site.js?v=2026-09-10-1"></script>
   </body>
 </html>

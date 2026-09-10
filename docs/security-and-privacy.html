@@ -14,16 +14,17 @@
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.16 status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-10-1">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-10-1" data-site-enhancements>
     <title>Security and privacy — StatePort</title>
+  <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/security-and-privacy.html">
   </head>
   <body class="article-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -58,29 +59,33 @@
         <aside class="doc-sidebar" aria-label="Documentation sections">
           <h2>Documentation</h2>
           <nav>
-            <a href="./">Overview</a>
-            <a href="foundations.html">Foundations</a>
-            <a href="model.html">Model</a>
-            <a href="lifecycle.html">Lifecycle</a>
-            <a href="governance.html">Review and control</a>
-            <a href="security-and-privacy.html" aria-current="page">Security &amp; privacy</a>
-            <a href="hosts-and-portability.html">Hosts &amp; portability</a>
-            <a href="platform-support.html">Platform support</a>
-            <a href="evidence-and-roadmap.html">Roadmap</a>
-            <a href="reference.html">Reference &amp; FAQ</a>
-            <a href="getting-started.html">Getting started</a>
+            <a href="./">Documentation home</a>
+            <a href="everyday-work.html">Your first session</a>
+            <a href="getting-started.html">Install and open</a>
+            <a href="templates.html">Import a template</a>
+            <a href="project-state.html">ProjectState</a>
             <a href="study-state.html">StudyState</a>
-            <a href="deployments.html">Deployments</a>
-            <a href="limitations.html">Limitations</a>
-            <a href="updates.html">Updates</a>
-            <a href="../tutorials/">Tutorials</a>
-            <a href="../releases/">Release status</a>
+            <a href="troubleshooting.html">Troubleshooting</a>
+            <a href="lifecycle.html">Backup and recovery</a>
+            <a href="updates.html">Update and uninstall</a>
+            <a href="governance.html">Review and control</a>
+            <a href="hosts-and-portability.html">AI tools and readiness</a>
+            <a href="security-and-privacy.html" aria-current="page">Security and privacy</a>
+            <a href="platform-support.html">Platform support</a>
+            <a href="foundations.html">Why StatePort exists</a>
+            <a href="model.html">Core model</a>
+            <a href="deployments.html">Container deployments</a>
+            <a href="reference.html">Reference and FAQ</a>
+            <a href="limitations.html">Current limitations</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
+            <a href="agent-kits.html">Agent Kits</a>
+            <a href="prototype-walkthrough.html">Product walkthrough</a>
           </nav>
         </aside>
         <article class="prose">
           <p class="notice notice--quiet"><strong>Early alpha.</strong> StatePort has not had an independent security review. Do not use it for important data.</p>
 
-          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#main-risks">Main risks</a></li><li data-level="2"><a href="#how-the-design-reduces-risk">How the design reduces risk</a></li><li data-level="2"><a href="#privacy">Privacy</a></li><li data-level="2"><a href="#current-limits">Current limits</a></li><li data-level="2"><a href="#reporting-a-security-issue">Reporting a security issue</a></li></ol></details>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#main-risks">Main risks</a></li><li data-level="2"><a href="#how-the-design-reduces-risk">How the design reduces risk</a></li><li data-level="2"><a href="#privacy">Privacy</a></li><li data-level="3"><a href="#before-connecting-an-ai-tool">Before connecting an AI tool</a></li><li data-level="3"><a href="#sharing-diagnostics">Sharing diagnostics</a></li><li data-level="2"><a href="#current-limits">Current limits</a></li><li data-level="2"><a href="#reporting-a-security-issue">Reporting a security issue</a></li></ol></details>
           <h2 id="main-risks">Main risks</h2>
           <p>AI-assisted applications can read malicious content, follow unsafe instructions, use old permissions, expose secrets, or change the wrong files. A compromised computer can also bypass application-level controls.</p>
 
@@ -97,6 +102,13 @@
           <h2 id="privacy">Privacy</h2>
           <p>Application data stays on your machine by default. StatePort should send an AI model only the context needed for the current task. Private notes, conversations, identifiers, file paths, and credentials should not become analytics data.</p>
 
+          <h3 id="before-connecting-an-ai-tool">Before connecting an AI tool</h3>
+          <p>A local web interface does not make a remote AI provider local. A provider request may send task context to that provider. Check the selected tool and model, the information in the request, and your provider account settings before sending sensitive content. Read <a href="hosts-and-portability.html">AI setup and readiness</a> for the connection steps.</p>
+          <p>Keep provider login credentials separate from application content. Do not paste access tokens into a reflection, project evidence, a public issue, or a repository file. Disconnecting StatePort stops its active processing; it does not erase data already sent to a provider or replace that provider's account controls.</p>
+          <h3 id="sharing-diagnostics">Sharing diagnostics</h3>
+          <ul><li>Start with the release version, the visible error, and the action that triggered it.</li><li>Review receipts, logs, diffs, and screenshots before sharing: they may include prompts, paths, repository names, or personal content.</li><li>Share the smallest relevant excerpt and remove credentials and private data. Keep the original private record for your own investigation.</li>
+</ul>
+          <p>A backup is also a copy of private application data. Verification is an integrity check, not encryption. Keep backups protected and choose your own retention policy; follow <a href="lifecycle.html#back-up-and-recover">backup and recovery</a>.</p>
           <h2 id="current-limits">Current limits</h2>
           <p>StatePort has no security certification or penetration test. It does not claim GDPR, NIS2, or other legal compliance. Review the real setup, data, providers, and retention rules before using it.</p>
 
@@ -125,6 +137,6 @@
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
-    <script src="../assets/site.js?v=2026-09-05-2"></script>
+    <script src="../assets/site.js?v=2026-09-10-1"></script>
   </body>
 </html>

@@ -8,13 +8,13 @@
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="StatePort documentation">
+    <meta property="og:title" content="Documentation — StatePort">
     <meta property="og:description" content="Start with the product, then learn how StatePort stores work, controls changes, and stays portable.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.16 status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/">
@@ -23,8 +23,8 @@
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
     <link rel="manifest" href="../site.webmanifest">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-10-1">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-10-1" data-site-enhancements>
     <title>Documentation — StatePort</title>
     <script type="application/ld+json">
       {
@@ -61,8 +61,8 @@
       <section class="article-hero" aria-labelledby="docs-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation</p>
-          <h1 id="docs-title">Learn how StatePort works.</h1>
-          <p>Understand the product, explore a worked example, or find help with a specific task. Check release status before attempting installation.</p>
+          <h1 id="docs-title">Make progress with StatePort.</h1>
+          <p>Start your first application, review a proposed change, and pick up where you left off. These guides explain each task, the result to check, and where to go when something stops.</p>
         </div>
       </section>
 
@@ -71,14 +71,26 @@
           <h2>Recommended start</h2>
           <nav>
             <a href="./" aria-current="page">Documentation home</a>
-            <a href="prototype-walkthrough.html">Product walkthrough</a>
-            <a href="study-state.html">StudyState application</a>
-            <a href="deployments.html">Container deployments</a>
-            <a href="foundations.html">Why StatePort exists</a>
-            <a href="model.html">How the model works</a>
+            <a href="everyday-work.html">Your first session</a>
             <a href="getting-started.html">Install and open</a>
-            <a href="templates.html">Use a template</a>
-            <a href="../releases/">Release status</a>
+            <a href="templates.html">Import a template</a>
+            <a href="project-state.html">ProjectState</a>
+            <a href="study-state.html">StudyState</a>
+            <a href="troubleshooting.html">Troubleshooting</a>
+            <a href="lifecycle.html">Backup and recovery</a>
+            <a href="updates.html">Update and uninstall</a>
+            <a href="governance.html">Review and control</a>
+            <a href="hosts-and-portability.html">AI tools and readiness</a>
+            <a href="security-and-privacy.html">Security and privacy</a>
+            <a href="platform-support.html">Platform support</a>
+            <a href="foundations.html">Why StatePort exists</a>
+            <a href="model.html">Core model</a>
+            <a href="deployments.html">Container deployments</a>
+            <a href="reference.html">Reference and FAQ</a>
+            <a href="limitations.html">Current limitations</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
+            <a href="agent-kits.html">Agent Kits</a>
+            <a href="prototype-walkthrough.html">Product walkthrough</a>
           </nav>
         </aside>
 
@@ -92,6 +104,13 @@
             <a href="reference.html"><strong>Looking up a term?</strong><span>Open the reference →</span></a>
           </nav>
           <p><a href="../tutorials/site-orientation.html">Prefer a video? Watch the narrated 72-second field guide.</a></p>
+          <h2 id="choose-your-next-task">Choose your next task</h2>
+          <ol>
+            <li><strong>Understand the experience.</strong> Follow <a href="everyday-work.html">your first session</a>: open an application, ask for help, review a proposal, and check the saved result. You can read along before installing.</li>
+            <li><strong>Bring your work.</strong> <a href="templates.html">Import a template</a>, then use the <a href="project-state.html">ProjectState guide</a> for projects or the <a href="study-state.html">StudyState guide</a> for learning.</li>
+            <li><strong>Keep control.</strong> Learn <a href="governance.html">what to check before approving</a> and <a href="hosts-and-portability.html">what an AI connection needs</a>.</li>
+            <li><strong>Keep your work safe.</strong> Follow <a href="lifecycle.html">backup and recovery</a>, <a href="updates.html">update and uninstall guidance</a>, or diagnose a symptom in <a href="troubleshooting.html">troubleshooting</a>.</li>
+          </ol>
           <h2>What is StatePort?</h2>
           <p>StatePort gives AI-assisted applications a durable place to keep goals, progress, decisions, and history. That information lives in readable files on your machine instead of being trapped in one chat session.</p>
           <p>Applications can ask an AI tool to help with work, but the tool does not own your data or decide its own permissions. StatePort keeps the current state, shows important proposed changes, and records the result.</p>
@@ -113,6 +132,9 @@
               <section class="docs-group" aria-labelledby="docs-group-product">
                 <h3 id="docs-group-product">Start with the product</h3>
                 <div class="docs-index-links">
+<a class="docs-index-link" href="troubleshooting.html" data-doc-entry data-keywords="troubleshooting error failure 401 signature stale unavailable recovery"><span><strong>Troubleshooting</strong><small>Find the next safe step for installation, connection, import, approval, and recovery problems.</small></span><i aria-hidden="true">↗</i></a>
+<a class="docs-index-link" href="project-state.html" data-doc-entry data-keywords="projectstate project operating development outcome slice gate"><span><strong>Work with ProjectState</strong><small>Set a project outcome, work through one slice, and separate checks from your verdict.</small></span><i aria-hidden="true">↗</i></a>
+<a class="docs-index-link" href="everyday-work.html" data-doc-entry data-keywords="first session daily conversation proposal apply readiness"><span><strong>Your first session and everyday work</strong><small>Open an application, check readiness, request help, review changes, and resume work.</small></span><i aria-hidden="true">↗</i></a>
                   <a class="docs-index-link" href="getting-started.html" data-doc-entry data-keywords="install setup windows wsl ubuntu one line open first run">
                     <span><strong>Install and open StatePort</strong><small>Check the installation blockers and understand the intended WSL2 setup.</small></span><i aria-hidden="true">↗</i>
                   </a>
@@ -120,7 +142,7 @@
                     <span><strong>Use your template</strong><small>Import ProjectState, StudyState, or another supported StateSpec repository by exact commit.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="prototype-walkthrough.html" data-doc-entry data-keywords="product demo video transcript interface prototype evidence">
-                    <span><strong>Product walkthrough</strong><small>See the current interface in a 33-second video.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Product walkthrough</strong><small>See an overview of the interface and follow the longer field guide.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="study-state.html" data-doc-entry data-keywords="studystate study coach application focus lifecycle reflection undo receipts durable state restart">
                     <span><strong>StudyState</strong><small>Meet the first application: a study coach whose changes you review, apply, and can undo.</small></span><i aria-hidden="true">↗</i>
@@ -217,6 +239,6 @@
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
-    <script src="../assets/site.js?v=2026-09-05-2"></script>
+    <script src="../assets/site.js?v=2026-09-10-1"></script>
   </body>
 </html>

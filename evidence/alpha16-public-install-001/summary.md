@@ -1,5 +1,17 @@
 # Evidence: alpha16-public-install-001
 
+## Public documentation expansion — 10 September 2026
+
+Expanded the practical documentation with three Luna drafting/review agents; added
+first-session, ProjectState, and troubleshooting guides, rewrote key usage and
+operations pages, and connected every docs page through static navigation. Fixed
+the existing uninstall checksum against the exact Alpha.16 artifact and made the
+command fail closed. Source-backed distinctions separate the StudyState sample,
+imported templates, current conditional controls, and blocked public installation.
+See [documentation evidence](docs-expansion-20260910.md) for checks, source scope,
+review corrections, and the publication receipt location. Native journey, human
+acceptance, and migration-completion blockers remain unchanged.
+
 ## Whitepaper diagram text repair — 9 September 2026
 
 Executed the clipping handoff. A controlled wider-font substitution reproduced

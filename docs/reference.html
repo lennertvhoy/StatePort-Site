@@ -14,16 +14,17 @@
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.16 status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-10-1">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-10-1" data-site-enhancements>
     <title>Reference and FAQ — StatePort</title>
+  <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/reference.html">
   </head>
   <body class="article-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -58,29 +59,33 @@
         <aside class="doc-sidebar" aria-label="Documentation sections">
           <h2>Documentation</h2>
           <nav>
-            <a href="./">Overview</a>
-            <a href="foundations.html">Foundations</a>
-            <a href="model.html">Model</a>
-            <a href="lifecycle.html">Lifecycle</a>
-            <a href="governance.html">Review and control</a>
-            <a href="security-and-privacy.html">Security &amp; privacy</a>
-            <a href="hosts-and-portability.html">Hosts &amp; portability</a>
-            <a href="platform-support.html">Platform support</a>
-            <a href="evidence-and-roadmap.html">Roadmap</a>
-            <a href="reference.html" aria-current="page">Reference &amp; FAQ</a>
-            <a href="getting-started.html">Getting started</a>
+            <a href="./">Documentation home</a>
+            <a href="everyday-work.html">Your first session</a>
+            <a href="getting-started.html">Install and open</a>
+            <a href="templates.html">Import a template</a>
+            <a href="project-state.html">ProjectState</a>
             <a href="study-state.html">StudyState</a>
-            <a href="deployments.html">Deployments</a>
-            <a href="limitations.html">Limitations</a>
-            <a href="updates.html">Updates</a>
-            <a href="../tutorials/">Tutorials</a>
-            <a href="../releases/">Release status</a>
+            <a href="troubleshooting.html">Troubleshooting</a>
+            <a href="lifecycle.html">Backup and recovery</a>
+            <a href="updates.html">Update and uninstall</a>
+            <a href="governance.html">Review and control</a>
+            <a href="hosts-and-portability.html">AI tools and readiness</a>
+            <a href="security-and-privacy.html">Security and privacy</a>
+            <a href="platform-support.html">Platform support</a>
+            <a href="foundations.html">Why StatePort exists</a>
+            <a href="model.html">Core model</a>
+            <a href="deployments.html">Container deployments</a>
+            <a href="reference.html" aria-current="page">Reference and FAQ</a>
+            <a href="limitations.html">Current limitations</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
+            <a href="agent-kits.html">Agent Kits</a>
+            <a href="prototype-walkthrough.html">Product walkthrough</a>
           </nav>
         </aside>
         <article class="prose">
           <p class="notice notice--quiet"><strong>Looking for availability?</strong> Check the <a href="../releases/">release status</a>.</p>
 
-          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#glossary">Glossary</a></li><li data-level="3"><a href="#stateware">Stateware</a></li><li data-level="3"><a href="#statespec">StateSpec</a></li><li data-level="3"><a href="#canonical-state">Canonical state</a></li><li data-level="3"><a href="#instance">Instance</a></li><li data-level="3"><a href="#change-record">Change record</a></li><li data-level="2"><a href="#frequently-asked-questions">Frequently asked questions</a></li><li data-level="3"><a href="#where-can-i-check-availability">Where can I check availability?</a></li><li data-level="3"><a href="#is-a-conversation-the-applications-truth">Is a conversation the application’s truth?</a></li><li data-level="3"><a href="#does-portability-mean-identical-behavior-everywhere">Does portability mean identical behavior everywhere?</a></li><li data-level="3"><a href="#does-a-change-record-prove-a-decision-was-good">Does a change record prove a decision was good?</a></li><li data-level="3"><a href="#where-should-i-begin">Where should I begin?</a></li></ol></details>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#glossary">Glossary</a></li><li data-level="3"><a href="#stateware">Stateware</a></li><li data-level="3"><a href="#statespec">StateSpec</a></li><li data-level="3"><a href="#canonical-state">Canonical state</a></li><li data-level="3"><a href="#instance">Instance</a></li><li data-level="3"><a href="#change-record">Change record</a></li><li data-level="3"><a href="#template">Template</a></li><li data-level="3"><a href="#proposal">Proposal</a></li><li data-level="3"><a href="#readiness">Readiness</a></li><li data-level="3"><a href="#capability">Capability</a></li><li data-level="3"><a href="#validation">Validation</a></li><li data-level="3"><a href="#acceptance">Acceptance</a></li><li data-level="3"><a href="#source-revision">Source revision</a></li><li data-level="2"><a href="#frequently-asked-questions">Frequently asked questions</a></li><li data-level="3"><a href="#where-can-i-check-availability">Where can I check availability?</a></li><li data-level="3"><a href="#is-a-conversation-the-applications-truth">Is a conversation the application’s truth?</a></li><li data-level="3"><a href="#does-portability-mean-identical-behavior-everywhere">Does portability mean identical behavior everywhere?</a></li><li data-level="3"><a href="#does-a-change-record-prove-a-decision-was-good">Does a change record prove a decision was good?</a></li><li data-level="3"><a href="#where-should-i-begin">Where should I begin?</a></li><li data-level="3"><a href="#sample-or-template">Is the StudyState sample the same as my imported StudyState?</a></li><li data-level="3"><a href="#does-chat-save-state">Does asking in conversation save a change?</a></li><li data-level="3"><a href="#why-action-unavailable">Why is an action unavailable?</a></li><li data-level="3"><a href="#does-undo-reverse-everything">Does Undo reverse everything?</a></li><li data-level="3"><a href="#can-i-use-projectstate-for-operations">Can I use ProjectState after development?</a></li></ol></details>
           <h2 id="glossary">Glossary</h2>
           <h3 id="stateware">Stateware</h3>
           <p>Software that keeps its important state in a durable, inspectable form instead of depending on one AI session or provider.</p>
@@ -93,6 +98,21 @@
           <h3 id="change-record">Change record</h3>
           <p>A record of what was requested, approved, changed, and checked.</p>
 
+          <h3 id="template">Template</h3>
+<p>The reusable definition of an application: its starting files, rules, and supported operations. Importing creates a managed instance; it does not turn the source repository into your live application.</p>
+          <h3 id="proposal">Proposal</h3>
+<p>A specific suggested change that you can inspect before applying. Requesting a change, approving it, and saving its result are separate steps.</p>
+          <h3 id="readiness">Readiness</h3>
+<p>Whether the current application has the tools, services, and access required for an operation. A visible web page does not mean its AI execution path is ready.</p>
+          <h3 id="capability">Capability</h3>
+<p>A kind of operation an application requests and the host may permit. A request for access is not a grant, and a grant does not remove the need for an approval where one is required.</p>
+          <h3 id="validation">Validation</h3>
+<p>A named check against specific requirements. Passing the check supports that claim; it does not decide whether the result meets your needs.</p>
+          <h3 id="acceptance">Acceptance</h3>
+<p>Your verdict that the result meets the intended outcome. A receipt or passing test does not provide that verdict on your behalf.</p>
+          <h3 id="source-revision">Source revision</h3>
+<p>The exact Git commit used to identify imported template content. A branch name can move, while a commit identifies a particular snapshot.</p>
+
           <h2 id="frequently-asked-questions">Frequently asked questions</h2>
           <h3 id="where-can-i-check-availability">Where can I check availability?</h3>
           <p>Use the <a href="../releases/">release status</a> page.</p>
@@ -103,10 +123,21 @@
           <h3 id="does-a-change-record-prove-a-decision-was-good">Does a change record prove a decision was good?</h3>
           <p>No. It makes the decision and result easier to inspect. You still need to judge whether the choice was right.</p>
           <h3 id="where-should-i-begin">Where should I begin?</h3>
-          <p>Read the foundations page, then the model and lifecycle. The first-application tutorial turns those concepts into a small design exercise.</p>
+          <p>Start with <a href="everyday-work.html">your first session</a> for the user workflow, or <a href="getting-started.html">install and open</a> for the supported environment and release status. Use <a href="troubleshooting.html">troubleshooting</a> if a step has already stopped.</p>
+
+          <h3 id="sample-or-template">Is the StudyState sample the same as my imported StudyState?</h3>
+<p>No. The sample is a small worked example. An imported repository has its own source identity, contract, content, and available controls. Follow <a href="templates.html">the import guide</a> and inspect the resulting application.</p>
+          <h3 id="does-chat-save-state">Does asking in conversation save a change?</h3>
+<p>Do not assume it does. Look for the proposal, its applied result, and the updated state. The <a href="governance.html">review guide</a> explains the distinction.</p>
+          <h3 id="why-action-unavailable">Why is an action unavailable?</h3>
+<p>The template may not declare it, your session may lack access, or a required service may be unavailable. Read the stated reason; changing models or resubmitting the same request is not a general fix. See <a href="hosts-and-portability.html">AI tools and readiness</a>.</p>
+          <h3 id="does-undo-reverse-everything">Does Undo reverse everything?</h3>
+<p>No. An available Undo action has a defined local scope. It cannot automatically reverse an external effect such as a message or network request. Inspect what will change before approving it.</p>
+          <h3 id="can-i-use-projectstate-for-operations">Can I use ProjectState after development?</h3>
+<p>Yes. A ProjectState instance can track ongoing operations as well as development. Define the operating outcome and checks explicitly; this is a use of the template, not a separate UI mode. Read <a href="project-state.html">the ProjectState guide</a>.</p>
 
           <div class="inline-actions">
-            <a class="button button--ink" href="foundations.html">Start at the foundations</a>
+            <a class="button button--ink" href="everyday-work.html">Try your first session</a>
             <a class="button button--outlined" href="../tutorials/">Browse tutorials</a>
           </div>
         </article>
@@ -127,6 +158,6 @@
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
-    <script src="../assets/site.js?v=2026-09-05-2"></script>
+    <script src="../assets/site.js?v=2026-09-10-1"></script>
   </body>
 </html>

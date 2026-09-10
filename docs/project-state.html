@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+    <meta name="description" content="Use a ProjectState v6 repository in StatePort, from exact commit review through a durable managed application.">
+    <meta name="theme-color" content="#0B132B">
+    <meta property="og:type" content="article">
+<meta property="og:site_name" content="StatePort">
+<meta property="og:title" content="ProjectState — StatePort">
+<meta property="og:description" content="A practical guide to ProjectState v6 repositories, exact review, managed copies, development, and ongoing operation.">
+<meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/project-state.html">
+<meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer.">
+    <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
+    <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/project-state.html">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css?v=2026-09-10-1">
+<link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-10-1" data-site-enhancements>
+    <title>ProjectState — StatePort</title>
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light"><a class="brand" href="../" aria-label="StatePort home"><img src="../assets/stateport-mascot-block-arch-light.svg" alt=""><span>StatePort</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation"><span class="sr-only">Toggle navigation</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg></button>
+<nav class="site-nav" id="site-navigation" aria-label="Primary navigation"><a href="./" aria-current="page">Docs</a><a href="../tutorials/">Tutorials</a><a class="nav-download" href="../download/">Download</a><a class="nav-release" href="../releases/">Release status</a><a href="../papers/">Papers</a>
+</nav>
+</header>
+    <main id="main">
+<section class="article-hero" aria-labelledby="project-state-title">
+<div class="article-hero-inner">
+<p class="document-kicker">Documentation / Templates</p>
+<h1 id="project-state-title">ProjectState: make the work visible.</h1>
+<p>ProjectState is a reusable project operating contract. StatePort can inspect a committed ProjectState v6 repository and create an isolated application from the exact reviewed snapshot.</p>
+</div>
+</section>
+      <div class="article-shell">
+<aside class="doc-sidebar" aria-label="Documentation sections">
+<h2>ProjectState guide</h2>
+<nav>
+            <a href="./">Documentation home</a>
+            <a href="everyday-work.html">Your first session</a>
+            <a href="getting-started.html">Install and open</a>
+            <a href="templates.html">Import a template</a>
+            <a href="project-state.html" aria-current="page">ProjectState</a>
+            <a href="study-state.html">StudyState</a>
+            <a href="troubleshooting.html">Troubleshooting</a>
+            <a href="lifecycle.html">Backup and recovery</a>
+            <a href="updates.html">Update and uninstall</a>
+            <a href="governance.html">Review and control</a>
+            <a href="hosts-and-portability.html">AI tools and readiness</a>
+            <a href="security-and-privacy.html">Security and privacy</a>
+            <a href="platform-support.html">Platform support</a>
+            <a href="foundations.html">Why StatePort exists</a>
+            <a href="model.html">Core model</a>
+            <a href="deployments.html">Container deployments</a>
+            <a href="reference.html">Reference and FAQ</a>
+            <a href="limitations.html">Current limitations</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
+            <a href="agent-kits.html">Agent Kits</a>
+            <a href="prototype-walkthrough.html">Product walkthrough</a>
+          </nav>
+</aside>
+        <article class="prose">
+<p class="notice"><strong>Alpha.16 installation is currently blocked.</strong> The published release has a signature-check defect and its image packages are private. See <a href="../releases/">release status</a> before installing.</p>
+<p class="notice notice--quiet"><strong>Prerequisite:</strong> when StatePort is available, use <a href="templates.html">the template import guide</a> for source-folder and exact-commit review.</p>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-it-is">What ProjectState is</a></li><li data-level="2"><a href="#files">The ProjectState v6 files</a></li><li data-level="2"><a href="#import">Import and review in StatePort</a></li><li data-level="2"><a href="#development">Use it while developing</a></li><li data-level="2"><a href="#operation">Use it while operating the project</a></li><li data-level="2"><a href="#validation">Validation is evidence; acceptance is a decision</a></li><li data-level="2"><a href="#limits">Limits and recovery</a></li></ol></details>
+          <section>
+<h2 id="what-it-is">What ProjectState is</h2>
+<p>ProjectState keeps a project’s human-owned outcome, current slice, working rules, and evidence in ordinary files. It helps an agent or team answer: what are we trying to change, what is the one active unit of work, what did we actually observe, and what should happen next?</p>
+<p>An instance is a repository with its own project truth. A template is a reusable mold. StatePort supplies a managed application around the reviewed repository; it does not become the project’s authority and it does not replace the repository’s own checks.</p>
+</section>
+          <section>
+<h2 id="files">The ProjectState v6 files</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="ProjectState files">
+<table>
+<thead>
+<tr><th scope="col">File or folder</th><th scope="col">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr><th scope="row"><code>PROJECT.md</code></th><td>The outcome, scope, non-goals, and boundaries.</td>
+</tr>
+<tr><th scope="row"><code>STATE.yaml</code></th><td>One current slice, its journey, status, blockers, and next action.</td>
+</tr>
+<tr><th scope="row"><code>AGENTS.md</code></th><td>Rules for making changes and keeping them safe.</td>
+</tr>
+<tr><th scope="row"><code>evidence/&lt;slice-id&gt;/summary.md</code></th><td>Environment, command, result, artifacts, limitations, and what remains unrun.</td>
+</tr>
+<tr><th scope="row"><code>scripts/projectstate_gate.py</code></th><td>A consistency check over the recorded outcome.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The gate checks what the record says; the real journey supplies the observed result.</p>
+</section>
+          <section>
+<h2 id="import">Import and review in StatePort</h2>
+<ol><li>Open <strong>Catalog</strong>, then choose <strong>Import a repository</strong>.</li><li>For a local source, place the Git checkout in the configured import folder, including its <code>.git</code> directory. For a public source, enter its HTTPS URL and exact 40-character commit.</li><li>Choose the candidate and let StatePort perform a read-only inspection. Repository code is not executed during inspection.</li><li>Review the template detection, source identity, commit, working-tree findings, and any inspection errors. Commit the version you intend to use before this step.</li><li>Approve the unchanged inspection. A ProjectState template receives <strong>Create isolated copy</strong>; an ordinary unsupported repository can only be explicitly registered.</li><li>After StatePort reports success, open the application or its durable import receipt. The service rereads the application and receipt before presenting that success.</li>
+</ol>
+<p>If the source changes after inspection, the approval is stale and must be inspected again. This is the boundary that keeps the managed copy tied to what you reviewed.</p>
+</section>
+          <section>
+<h2 id="development">Use it while developing</h2>
+<p>Suppose you are adding a template import. Put the outcome in <code>PROJECT.md</code>: “a new user can import a committed repository and open its managed copy.” Set <code>STATE.yaml</code> to the one slice that implements that journey. After the change, record the exact environment, command, observed import result, receipt, and remaining gaps in <code>evidence/&lt;slice-id&gt;/summary.md</code>. The next action should name the smallest unresolved step.</p>
+<p>For a bug, the current slice might say “repair stale approval after the source commit changes.” The evidence should show the focused reproducer, the repair, and the rerun. A ProjectState instance can guide StatePort work while the managed application supplies the files, terminal, approvals, orchestration, and receipts that its adapter exposes.</p>
+</section>
+          <section>
+<h2 id="operation">Use it while operating the project</h2>
+<p>After release, the same instance can track an operating outcome such as “the public installer points to the signed artifact and the service recovers after restart.” The current slice can be “investigate a failed health check,” with the incident command, service logs, affected version, and recovery result in its evidence summary. The next action might be “reproduce on the supported environment,” “publish a corrected artifact,” or “monitor the external dependency.”</p>
+<p>Development and operation use the same files because both need a visible outcome, one current slice, observed evidence, and an explicit next action. The instance does not gain a separate UI mode; you define the operating outcome and checks in the project contract.</p>
+</section>
+          <section>
+<h2 id="validation">Validation is evidence; acceptance is a decision</h2>
+<p>Run the smallest representative journey first, then the affected integration, then installed or release proof when the change crosses that boundary. Record the exact environment and limitations. A test can show that a parser accepts a file; a real journey shows whether the user can complete the outcome. A receipt shows what StatePort observed at one boundary.</p>
+<p>The project owner still decides whether that evidence satisfies the outcome. Keep the observed result, the limitation, and the next action visible when the evidence is incomplete.</p>
+</section>
+          <section>
+<h2 id="limits">Limits and recovery</h2>
+<ul><li>A ZIP without Git history cannot establish the required exact commit identity for template import.</li><li>A dirty or changed source is not silently folded into an approved copy; commit and inspect again.</li><li>ProjectState does not make arbitrary repository commands safe, and a template cannot grant itself capabilities StatePort has not implemented.</li><li>Backups, restore plans, restart behavior, and receipts belong to the installed product journey. Do not infer them from this repository’s files alone.</li><li>If a StatePort operation becomes uncertain, reread Catalog, Applications, or Receipts before retrying a mutation. The UI is designed to retain uncertainty instead of claiming success.</li>
+</ul>
+<p>For the companion learning template, see <a href="study-state.html">StudyState</a>. For source preparation and generic StateSpec rules, see <a href="templates.html">Use a template</a>.</p>
+</section>
+          <div class="inline-actions"><a class="button button--ink" href="templates.html">Import a template</a><a class="button button--outlined" href="getting-started.html">Install and open</a>
+</div>
+        </article>
+</div>
+</main>
+    <footer class="site-footer">
+<div class="footer-inner">
+<div class="footer-mark"><img src="../assets/stateport-mascot-block-arch-light.svg" alt="">
+<p><strong>StatePort</strong>Durable AI-assisted work, kept in view.</p>
+</div>
+<nav class="footer-nav" aria-label="Footer navigation"><a href="./">Docs</a><a href="../tutorials/">Tutorials</a><a href="../releases/">Release status</a>
+</nav>
+<p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
+</div>
+</footer><script src="../assets/site.js?v=2026-09-10-1"></script>
+  </body>
+</html>

@@ -11,27 +11,9 @@
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   const routeLabels = {
-    "docs/": "Documentation",
-    "docs/foundations.html": "Why StatePort exists",
-    "docs/model.html": "Core model",
-    "docs/lifecycle.html": "Lifecycle",
-    "docs/governance.html": "Governed change",
-    "docs/security-and-privacy.html": "Security and privacy",
-    "docs/hosts-and-portability.html": "Hosts and portability",
-    "docs/platform-support.html": "Platform support",
-    "docs/evidence-and-roadmap.html": "Evidence and roadmap",
-    "docs/reference.html": "Reference and FAQ",
-    "docs/prototype-walkthrough.html": "Product walkthrough",
-    "docs/agent-kits.html": "Agent Kits roadmap",
-    "docs/templates.html": "Use a template",
-    "docs/study-state.html": "StudyState",
-    "docs/deployments.html": "Container deployments",
-    "docs/updates.html": "Updates",
-    "docs/limitations.html": "Current limitations",
     "papers/": "Reading room",
     "download/": "Download and installation status",
     "tutorials/site-orientation.html": "Video field guide",
-    "docs/getting-started.html": "Install and open",
     "tutorials/": "Tutorials",
     "tutorials/first-application.html": "First application",
     "tutorials/reading-a-receipt.html": "Read a receipt",
@@ -42,6 +24,9 @@
 
   const documentationSequence = [
     ["docs/", "Documentation home"],
+    ["docs/troubleshooting.html", "Troubleshooting"],
+    ["docs/project-state.html", "ProjectState"],
+    ["docs/everyday-work.html", "Your first session"],
     ["docs/prototype-walkthrough.html", "Product walkthrough"],
     ["docs/getting-started.html", "Install and open"],
     ["docs/templates.html", "Use a template"],
@@ -60,6 +45,8 @@
     ["docs/limitations.html", "Current limitations"],
     ["docs/agent-kits.html", "Agent Kits roadmap"],
   ];
+
+  Object.assign(routeLabels, Object.fromEntries(documentationSequence));
 
   const tutorialSequence = [
     ["tutorials/", "Tutorials home"],
@@ -356,9 +343,9 @@
 
   function classifyDocumentationLink(path) {
     const groups = [
-      ["Start", ["docs/", "docs/getting-started.html", "docs/templates.html", "docs/study-state.html", "docs/foundations.html", "docs/prototype-walkthrough.html"]],
+      ["Start", ["docs/everyday-work.html", "docs/project-state.html", "docs/", "docs/getting-started.html", "docs/templates.html", "docs/study-state.html", "docs/foundations.html", "docs/prototype-walkthrough.html"]],
       ["Design", ["docs/model.html", "tutorials/", "tutorials/first-application.html", "tutorials/reading-a-receipt.html"]],
-      ["Operate", ["docs/updates.html", "docs/deployments.html", "docs/limitations.html", "docs/lifecycle.html", "docs/governance.html", "docs/security-and-privacy.html", "docs/hosts-and-portability.html", "docs/platform-support.html"]],
+      ["Operate", ["docs/troubleshooting.html", "docs/updates.html", "docs/deployments.html", "docs/limitations.html", "docs/lifecycle.html", "docs/governance.html", "docs/security-and-privacy.html", "docs/hosts-and-portability.html", "docs/platform-support.html"]],
       ["Evidence", ["docs/evidence-and-roadmap.html", "docs/reference.html", "docs/agent-kits.html", "papers/stateware-whitepaper-public-v1.1.html", "releases/"]],
     ];
     return groups.find(([, paths]) => paths.includes(path))?.[0] || "More";

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+    <meta name="description" content="Read the known Alpha.16 installation failure before using the Ubuntu 24.04 WSL2 setup instructions.">
+    <meta name="theme-color" content="#0B132B">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="StatePort">
+    <meta property="og:title" content="Troubleshooting — StatePort">
+    <meta property="og:description" content="Check WSL2, run the one-line installer, open StatePort, and create a StudyState or template-backed application.">
+    <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/troubleshooting.html">
+    <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-10-1">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-10-1" data-site-enhancements>
+    <title>Troubleshooting — StatePort</title>
+  <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/troubleshooting.html">
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-block-arch-light.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="./" aria-current="page">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
+      <a href="../papers/">Papers</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="getting-started-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Documentation / Troubleshooting</p>
+          <h1 id="getting-started-title">Read the refusal, then choose the smallest safe recovery.</h1>
+          <p>New to StatePort? <a href="../index.html#journey">Follow one study example</a>: review an activity, save a reflection, and return to saved progress. The example uses StudyState Sample.</p>
+          <p>Check current blockers and the intended WSL2 setup. The steps below explain the installation path; Alpha.16 cannot complete a fresh installation.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+        <aside class="doc-sidebar" aria-label="Documentation sections">
+          <h2>Documentation</h2>
+          <nav>
+            <a href="./">Documentation home</a>
+            <a href="everyday-work.html">Your first session</a>
+            <a href="getting-started.html">Install and open</a>
+            <a href="templates.html">Import a template</a>
+            <a href="project-state.html">ProjectState</a>
+            <a href="study-state.html">StudyState</a>
+            <a href="troubleshooting.html" aria-current="page">Troubleshooting</a>
+            <a href="lifecycle.html">Backup and recovery</a>
+            <a href="updates.html">Update and uninstall</a>
+            <a href="governance.html">Review and control</a>
+            <a href="hosts-and-portability.html">AI tools and readiness</a>
+            <a href="security-and-privacy.html">Security and privacy</a>
+            <a href="platform-support.html">Platform support</a>
+            <a href="foundations.html">Why StatePort exists</a>
+            <a href="model.html">Core model</a>
+            <a href="deployments.html">Container deployments</a>
+            <a href="reference.html">Reference and FAQ</a>
+            <a href="limitations.html">Current limitations</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
+            <a href="agent-kits.html">Agent Kits</a>
+            <a href="prototype-walkthrough.html">Product walkthrough</a>
+          </nav>
+        </aside>
+
+        <article class="prose">
+          <p class="notice"><strong>Do not retry the unchanged Alpha.16 installer.</strong> The fresh public journey is blocked before product installation by a predecessor signature check. Even if that is repaired, anonymous pulls of the seven private GHCR packages fail with HTTP 401. Wait for a corrected release.</p>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#environment">Environment checks</a></li><li data-level="2"><a href="#refusals">Common refusal classes</a></li><li data-level="2"><a href="#product-symptoms">Product symptoms</a></li><li data-level="2"><a href="#url">The printed URL is unavailable</a></li><li data-level="2"><a href="#service">A service is unhealthy</a></li><li data-level="2"><a href="#recovery">Recovery boundaries</a></li><li data-level="2"><a href="#report">Report safely</a></li></ol></details>
+          <h2 id="environment">Environment checks</h2>
+          <p>Run these commands inside the supported Ubuntu distribution:</p>
+          <pre><code>uname -m
+grep '^VERSION_ID=' /etc/os-release
+ps -p 1 -o comm=
+command -v curl sudo dpkg-deb python3 sha256sum tar</code>
+</pre>
+          <p>Use <code>x86_64</code>, Ubuntu <code>24.04</code>, and <code>systemd</code> as PID 1. A missing command, unsupported distribution, WSL1, ARM64, or a root invocation is an environment boundary. Fix the environment or wait for a supported release; do not bypass the check.</p>
+          <h2 id="refusals">Common refusal classes</h2>
+          <p><strong>Missing predecessor signature or digest-slot error:</strong> this is Alpha.16's recorded release defect. Preserve the exact final output and stop. Do not create the missing directory, download an unpinned bundle, or weaken signature verification.</p>
+          <p><strong>Registry HTTP 401 / manifest download failed:</strong> the Alpha.16 GHCR packages are private to anonymous users. This is a publication/visibility blocker. Do not add credentials to the public command, use a personal token, or replace an image reference with a tag.</p>
+          <p><strong>Trust, digest, target, or signed-index mismatch:</strong> stop. These checks protect provenance. Never continue with <code>--skip</code>, a hand-edited index, or a different artifact.</p>
+          <p><strong><code>install-packages</code> or <code>install-exact</code> not accepted:</strong> the confirmation is intentionally exact. Read the plan, then enter the requested phrase only when the release is supported and the plan matches the named target.</p>
+          <p><strong>sudo or apt lock / package failure:</strong> save the output. Do not kill another package manager or remove lock files. Retry only after the underlying package operation has completed and only for a supported release.</p>
+          <h2 id="product-symptoms">Product symptoms</h2>
+          <p><strong>Imported repository is not in the catalog:</strong> confirm the repository is a supported StateSpec template, inspect its exact source and lock metadata, then refresh the catalog. If registration was interrupted, check Applications and Receipts before trying again. See <a href="templates.html#troubleshooting">import checks</a>.</p>
+          <p><strong>An approval is stale or missing:</strong> reopen the exact plan and compare its digest, instance, and requested effect with current state. A changed plan must be reviewed again; do not approve an old link or invent a generic approval route.</p>
+          <p><strong>Provider is not ready:</strong> inspect the selected provider and its declared capabilities, then follow <a href="hosts-and-portability.html#provider-setup-and-readiness">provider setup and readiness</a>. StatePort refuses a provider that cannot meet the request; do not silently substitute another provider or paste credentials into logs.</p>
+          <p><strong>A request appears saved but no result is visible:</strong> check the activity or receipt view for the request, run, and instance identity, then use the recorded status or reconciliation action. Do not submit a new destructive request merely because the browser lost its response.</p>
+          <p><strong>A receipt is missing or recovery says inspection required:</strong> preserve the state root and exact output, inspect the latest receipt and recovery status, and stop before deleting or replaying files. Recovery can complete an identified effect, but it refuses when target identity cannot be verified.</p>
+          <h2 id="url">The printed URL is unavailable</h2>
+          <p>Use the exact URL printed after a successful health check. For an existing installation, use its saved URL and receipt. If the service was running previously, confirm you reopened the same Ubuntu distribution. Do not guess a port or expose a service on a non-loopback address.</p>
+          <h2 id="service">A service is unhealthy</h2>
+          <p>Keep the terminal output, release identity, and receipt path. A health failure does not prove that the stack is safe to delete or that an update completed. On an existing install, inspect status with:</p>
+          <pre><code>~/.local/state/stateport-install/bin/stateport-update status</code>
+</pre>
+          <p>Use the documented lifecycle operation for the recorded state. Do not change image tags, edit generated units, remove volumes, or copy another installation's state.</p>
+          <h2 id="recovery">Recovery boundaries</h2>
+          <p>Back up application repositories before uninstall or any future update. Uninstall removes recorded runtime units and containers but preserves receipts and installer state. Purge removes retained installation state and is destructive; confirm the exact state root and export data first. Rollback is undeclared for Alpha.16 and must not be simulated by swapping Alpha.15 files.</p>
+          <h2 id="report">Report safely</h2>
+          <p>Record the release version, environment checks, exact final refusal code, last successful step, and whether a receipt was written. Remove access tokens, passwords, private repository URLs, personal paths, file contents, and secrets from logs and screenshots. Say whether installation finished or which step stopped.</p>
+          <p>See <a href="getting-started.html">Getting started</a>, <a href="updates.html">Updates</a>, and <a href="../releases/">Release status</a> for the current public boundary.</p>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-block-arch-light.svg" alt="">
+          <p><strong>StatePort</strong>Durable AI-assisted work, kept in view.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="./">Docs</a>
+          <a href="../tutorials/">Tutorials</a>
+          <a href="../releases/">Release status</a>
+        </nav>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
+      </div>
+    </footer>
+    <script src="../assets/site.js?v=2026-09-10-1"></script>
+  </body>
+</html>

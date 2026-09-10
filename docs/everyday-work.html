@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+    <meta name="description" content="A practical first-session and daily-use guide for choosing an application, checking readiness, reviewing work, and finding receipts in StatePort.">
+    <meta name="theme-color" content="#0B132B">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="StatePort">
+    <meta property="og:title" content="Everyday work - StatePort">
+    <meta property="og:description" content="Choose an application, check readiness, review proposed work, and use receipts to understand what happened.">
+    <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/everyday-work.html">
+    <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-10-1">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-10-1" data-site-enhancements>
+    <title>Everyday work - StatePort</title>
+  <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/everyday-work.html">
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-block-arch-light.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="./" aria-current="page">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
+      <a href="../papers/">Papers</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="page-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Documentation / Everyday work</p>
+          <h1 id="page-title">A calm first session, then a useful daily loop</h1>
+          <p>Choose an application, check what is ready, ask for one bounded piece of work, and keep the record you need to continue tomorrow.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+
+        <aside class="doc-sidebar" aria-label="Documentation sections">
+          <h2>Documentation</h2>
+          <nav>
+            <a href="./">Documentation home</a>
+            <a href="everyday-work.html" aria-current="page">Your first session</a>
+            <a href="getting-started.html">Install and open</a>
+            <a href="templates.html">Import a template</a>
+            <a href="project-state.html">ProjectState</a>
+            <a href="study-state.html">StudyState</a>
+            <a href="troubleshooting.html">Troubleshooting</a>
+            <a href="lifecycle.html">Backup and recovery</a>
+            <a href="updates.html">Update and uninstall</a>
+            <a href="governance.html">Review and control</a>
+            <a href="hosts-and-portability.html">AI tools and readiness</a>
+            <a href="security-and-privacy.html">Security and privacy</a>
+            <a href="platform-support.html">Platform support</a>
+            <a href="foundations.html">Why StatePort exists</a>
+            <a href="model.html">Core model</a>
+            <a href="deployments.html">Container deployments</a>
+            <a href="reference.html">Reference and FAQ</a>
+            <a href="limitations.html">Current limitations</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
+            <a href="agent-kits.html">Agent Kits</a>
+            <a href="prototype-walkthrough.html">Product walkthrough</a>
+          </nav>
+        </aside>
+        <article class="prose">
+          <p class="notice"><strong>Release context.</strong> These instructions describe the supported product surfaces. Availability of a particular application or control depends on the installed release and its capability profile; the <a href="../releases/">release status</a> page is the authority.</p>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#choose-an-application">Choose an application</a></li><li data-level="2"><a href="#a-small-daily-loop">A first session with the StudyState sample</a></li><li data-level="2"><a href="#check-readiness-before-you-ask">Check readiness before you ask</a></li><li data-level="2"><a href="#when-work-needs-review">When work needs review</a></li><li data-level="2"><a href="#receipts-and-recovery">Receipts and recovery</a></li></ol></details>
+          <h2 id="choose-an-application">Choose an application</h2>
+          <p>After installation, the application home shows installed applications and recent activity. To add one, open <strong>Catalog</strong>. A reviewed sample such as StudyState can be installed there, or choose <strong>Import a repository</strong> for a committed ProjectState, StudyState, or valid StateSpec template. Catalog is a reviewed shelf; it is not a marketplace.</p>
+          <p>For an import, StatePort inspects the repository without executing its code. Review the detected type, branch, exact commit, working-tree status, and findings. Approve that inspection, name the application, and choose <strong>Create isolated copy</strong>. If the source changes after inspection, inspect it again; a stale approval is refused. The source repository remains untouched.</p>
+
+          <h2 id="a-small-daily-loop">A first session with the StudyState sample</h2>
+          <p>Use the reviewed StudyState sample as a small, concrete loop. In <strong>Catalog</strong>, choose StudyState, review what it needs, and install the instance. Open it and begin the suggested activity. <strong>Start activity</strong> first opens a review showing the activity and the exact change from <em>not started</em> to <em>in progress</em>. Choose <strong>Approve Start</strong> only when it matches your intention.</p>
+          <p>After the apply succeeds, the activity is in progress. Pause it, choose another activity, or write a reflection. A reflection begins as a browser draft. Review its exact effect before saving it as evidence: the sample marks the activity completed and saves the reflection when you choose <strong>Approve and apply</strong>. The saved facts you should expect are the activity status and the reflection associated with this StudyState application; the reflection remains self-reported and is not independently verified learning.</p>
+          <p>Open <strong>Receipts</strong> and inspect the applied change. Then reload the page and reopen the same StudyState instance. The activity status and reflection should still be present because they belong to the durable application state. If the result is absent, stop and inspect the receipt and recovery status before retrying.</p>
+          <p>For a normal daily session, use this same loop: read the current goal or next activity, request one bounded change, review it, apply it, inspect the receipt, and continue from the saved state next time. Some applications expose conversation proposals, while the optional development Workbench exposes a governed run path. Controls are capability-gated: a missing control means that application or release does not provide that operation.</p>
+
+          <h2 id="check-readiness-before-you-ask">Check readiness before you ask</h2>
+          <p>Use <strong>Workspace readiness</strong> as a set of observations, not as a single green light. It separates <strong>Local service</strong>, <strong>Execution runtime</strong>, <strong>Worker execution</strong>, <strong>Provider</strong>, and <strong>Applications</strong>. A connected service does not prove that a provider is authenticated or that a request can succeed.</p>
+          <p>Open <strong>Set up or verify provider</strong> when the provider row needs attention. Current controls can show the selected provider, executable status, model configuration, StatePort connection, login presence, bounded-request result, and unavailable billing/quota information. A platform operator can select <strong>Codex</strong> or <strong>OpenCode</strong> and save a model identifier. Saving configuration is not authentication. For Codex, open <strong>Show installed login command</strong>, paste the displayed command into the Ubuntu WSL terminal, follow the one-time browser code flow, return to StatePort, refresh status, and choose <strong>Verify bounded request</strong>. The check is short and may use account quota; it does not send an application conversation or files. OpenCode selection is recorded, but execution is not available through this path.</p>
+
+          <h2 id="when-work-needs-review">When work needs review</h2>
+          <p>StatePort keeps <strong>request</strong>, <strong>review</strong>, <strong>approval</strong>, <strong>apply</strong>, <strong>validation</strong>, and <strong>receipt</strong> distinct. A proposal may be useful even when you reject it. Approval grants only the reviewed operation and is rechecked against the current base, policy, permissions, side-effect class, and budget.</p>
+          <p>For running work, <strong>Cancel</strong> asks to interrupt the selected operation; in-progress output may be incomplete and cancelled work is not automatically resumed. For an execution workspace, stopping preserves a reusable workspace while cancellation can leave the workload terminal. Read the confirmation text and the listed reversibility before confirming.</p>
+
+          <h2 id="receipts-and-recovery">Receipts and recovery</h2>
+          <p>Open <strong>Receipts</strong> from the application or the application overview to search and inspect durable operation records. A receipt answers what was requested, which actor acted, what changed, which checks ran, and what remains uncertain. It is evidence of an operation, not proof that the result is correct. Receipt details may include a diff, exact record, verification status, and raw JSON; export is available where the installed surface exposes it.</p>
+          <p>If an application workspace is missing or interrupted, open the execution host details and choose <strong>Recover application workspace</strong> when it is offered. Recovery reuses the sealed profile and grant and reattaches preserved data; it does not overwrite existing or partially initialized data. If provider work is stuck, <strong>Disconnect StatePort</strong> stops the active assistant processor and cancels queued requests while keeping the transcript; reconnect only after reviewing readiness.</p>
+          <div class="inline-actions"><a class="button button--ink" href="../tutorials/reading-a-receipt.html">Read a receipt walkthrough</a><a class="button button--outlined" href="templates.html">Use a template</a>
+</div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-block-arch-light.svg" alt="">
+          <p><strong>StatePort</strong>Durable AI-assisted work, kept in view.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="./">Docs</a>
+          <a href="../tutorials/">Tutorials</a>
+          <a href="../releases/">Release status</a>
+        </nav>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
+      </div>
+    </footer>
+    <script src="../assets/site.js?v=2026-09-10-1"></script>
+  </body>
+</html>

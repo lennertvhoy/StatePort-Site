@@ -14,16 +14,17 @@
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.16 status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-10-1">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-10-1" data-site-enhancements>
     <title>Review and control - StatePort</title>
+  <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/governance.html">
   </head>
   <body class="article-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -58,38 +59,51 @@
         <aside class="doc-sidebar" aria-label="Documentation sections">
           <h2>Documentation</h2>
           <nav>
-            <a href="./">Overview</a>
-            <a href="foundations.html">Foundations</a>
-            <a href="model.html">Model</a>
-            <a href="lifecycle.html">Lifecycle</a>
-            <a href="governance.html" aria-current="page">Review and control</a>
-            <a href="security-and-privacy.html">Security &amp; privacy</a>
-            <a href="hosts-and-portability.html">Hosts &amp; portability</a>
-            <a href="platform-support.html">Platform support</a>
-            <a href="evidence-and-roadmap.html">Roadmap</a>
-            <a href="reference.html">Reference &amp; FAQ</a>
-            <a href="getting-started.html">Getting started</a>
+            <a href="./">Documentation home</a>
+            <a href="everyday-work.html">Your first session</a>
+            <a href="getting-started.html">Install and open</a>
+            <a href="templates.html">Import a template</a>
+            <a href="project-state.html">ProjectState</a>
             <a href="study-state.html">StudyState</a>
-            <a href="deployments.html">Deployments</a>
-            <a href="limitations.html">Limitations</a>
-            <a href="updates.html">Updates</a>
-            <a href="../tutorials/">Tutorials</a>
-            <a href="../releases/">Release status</a>
+            <a href="troubleshooting.html">Troubleshooting</a>
+            <a href="lifecycle.html">Backup and recovery</a>
+            <a href="updates.html">Update and uninstall</a>
+            <a href="governance.html" aria-current="page">Review and control</a>
+            <a href="hosts-and-portability.html">AI tools and readiness</a>
+            <a href="security-and-privacy.html">Security and privacy</a>
+            <a href="platform-support.html">Platform support</a>
+            <a href="foundations.html">Why StatePort exists</a>
+            <a href="model.html">Core model</a>
+            <a href="deployments.html">Container deployments</a>
+            <a href="reference.html">Reference and FAQ</a>
+            <a href="limitations.html">Current limitations</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
+            <a href="agent-kits.html">Agent Kits</a>
+            <a href="prototype-walkthrough.html">Product walkthrough</a>
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Design overview.</strong> Check the <a href="../releases/">release status</a> for current software availability.</p>
+          <p class="notice"><strong>Use this page with an installed application.</strong> The exact controls depend on the application capability profile and release. Check <a href="../releases/">release status</a> for availability.</p>
 
-          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#one-change-four-clear-steps">One change, four clear steps</a></li><li data-level="2"><a href="#permissions-should-be-specific">Permissions should be specific</a></li><li data-level="2"><a href="#stay-in-control-without-watching-every-step">Stay in control without watching every step</a></li><li data-level="2"><a href="#change-records-answer-simple-questions">Change records answer simple questions</a></li><li data-level="2"><a href="#blocked-work-should-be-clear">Blocked work should be clear</a></li></ol></details>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#one-change-four-clear-steps">One change, four clear steps</a></li><li data-level="2"><a href="#read-the-proposal">Read the proposal</a></li><li data-level="2"><a href="#permissions-should-be-specific">Permissions should be specific</a></li><li data-level="2"><a href="#cancel-and-recover">Cancel and recover deliberately</a></li><li data-level="2"><a href="#stay-in-control-without-watching-every-step">Stay in control without watching every step</a></li><li data-level="2"><a href="#change-records-answer-simple-questions">Change records answer simple questions</a></li><li data-level="2"><a href="#blocked-work-should-be-clear">Blocked work should be clear</a></li></ol></details>
           <h2 id="one-change-four-clear-steps">One change, four clear steps</h2>
           <div class="code-panel" data-label="A reviewed change"><code>request
 → review and approval
 → change
-→ check and record</code></div>
+→ check and record</code>
+</div>
           <p>The order matters. An application can suggest work without gaining permission to do it. A change can also fail its checks. StatePort keeps both outcomes visible.</p>
+
+          <h2 id="read-the-proposal">Read the proposal</h2>
+          <p>Before approval, check the requested outcome, current base revision, files or operations in scope, side-effect class, authority, and budget. A proposal is an exact review object. If its base or content changes, the old approval should no longer apply.</p>
+          <p>For a template import, review the detected adapter, exact commit, working-tree status, and inspection findings before choosing <strong>Create isolated copy</strong>. For a run, review the operation list and validation plan. A receipt is created after the operation; it does not turn an unreviewed action into a reviewed one.</p>
 
           <h2 id="permissions-should-be-specific">Permissions should be specific</h2>
           <p>You can allow routine, reversible work without approving every small step. Deleting data, spending money, publishing content, or contacting another service should stop for a fresh decision. An application cannot give itself more access.</p>
+
+          <h2 id="cancel-and-recover">Cancel and recover deliberately</h2>
+          <p>Use <strong>Cancel</strong> on the selected workload when you need to interrupt it. Read the confirmation: in-progress output may be incomplete, and cancelled work is not automatically resumed. A stopped workspace can usually be started again; a cancelled operation needs a fresh request.</p>
+          <p>When the execution host offers <strong>Recover application workspace</strong>, recovery reuses the sealed profile and reattaches preserved data. It refuses to overwrite existing or partially initialized data. If provider work must stop, <strong>Disconnect StatePort</strong> stops active assistant processing and cancels queued requests while leaving the transcript available.</p>
 
           <h2 id="stay-in-control-without-watching-every-step">Stay in control without watching every step</h2>
           <p>Routine work can continue while you supervise it. You should be able to pause, redirect, or stop the application. StatePort asks for approval when the consequences justify it.</p>
@@ -130,6 +144,6 @@
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
-    <script src="../assets/site.js?v=2026-09-05-2"></script>
+    <script src="../assets/site.js?v=2026-09-10-1"></script>
   </body>
 </html>

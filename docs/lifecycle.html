@@ -14,16 +14,17 @@
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.16 status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="../assets/site.css?v=2026-09-05-2">
-    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-05-2" data-site-enhancements>
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-10-1">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-10-1" data-site-enhancements>
     <title>Application lifecycle - StatePort</title>
+  <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/lifecycle.html">
   </head>
   <body class="article-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -58,43 +59,72 @@
         <aside class="doc-sidebar" aria-label="Documentation sections">
           <h2>Documentation</h2>
           <nav>
-            <a href="./">Overview</a>
-            <a href="foundations.html">Foundations</a>
-            <a href="model.html">Model</a>
-            <a href="lifecycle.html" aria-current="page">Lifecycle</a>
-            <a href="governance.html">Review and control</a>
-            <a href="security-and-privacy.html">Security &amp; privacy</a>
-            <a href="hosts-and-portability.html">Hosts &amp; portability</a>
-            <a href="platform-support.html">Platform support</a>
-            <a href="evidence-and-roadmap.html">Roadmap</a>
-            <a href="reference.html">Reference &amp; FAQ</a>
-            <a href="getting-started.html">Getting started</a>
+            <a href="./">Documentation home</a>
+            <a href="everyday-work.html">Your first session</a>
+            <a href="getting-started.html">Install and open</a>
+            <a href="templates.html">Import a template</a>
+            <a href="project-state.html">ProjectState</a>
             <a href="study-state.html">StudyState</a>
-            <a href="deployments.html">Deployments</a>
-            <a href="limitations.html">Limitations</a>
-            <a href="updates.html">Updates</a>
-            <a href="../tutorials/">Tutorials</a>
-            <a href="../releases/">Release status</a>
+            <a href="troubleshooting.html">Troubleshooting</a>
+            <a href="lifecycle.html" aria-current="page">Backup and recovery</a>
+            <a href="updates.html">Update and uninstall</a>
+            <a href="governance.html">Review and control</a>
+            <a href="hosts-and-portability.html">AI tools and readiness</a>
+            <a href="security-and-privacy.html">Security and privacy</a>
+            <a href="platform-support.html">Platform support</a>
+            <a href="foundations.html">Why StatePort exists</a>
+            <a href="model.html">Core model</a>
+            <a href="deployments.html">Container deployments</a>
+            <a href="reference.html">Reference and FAQ</a>
+            <a href="limitations.html">Current limitations</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
+            <a href="agent-kits.html">Agent Kits</a>
+            <a href="prototype-walkthrough.html">Product walkthrough</a>
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Design overview.</strong> Check the <a href="../releases/">release status</a> for current software availability.</p>
+          <p class="notice notice--quiet"><strong>Preserve your work.</strong> Check the <a href="../releases/">release status</a> for current software availability.</p>
 
-          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#set-up-a-known-release">Set up a known release</a></li><li data-level="2"><a href="#use-the-application">Use the application</a></li><li data-level="2"><a href="#update-or-move">Update or move</a></li><li data-level="2"><a href="#back-up-and-recover">Back up and recover</a></li><li data-level="2"><a href="#current-availability">Current availability</a></li></ol></details>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#set-up-a-known-release">Set up a known release</a></li><li data-level="2"><a href="#use-the-application">Use the application</a></li><li data-level="2"><a href="#update-or-move">Update or move</a></li><li data-level="2"><a href="#back-up-and-recover">Back up and recover</a></li><li data-level="3"><a href="#before-a-backup">Before a backup</a></li><li data-level="3"><a href="#restore-a-separate-instance">Restore a separate instance</a></li><li data-level="3"><a href="#what-recovery-does-not-undo">What recovery does not undo</a></li><li data-level="2"><a href="#current-availability">Current availability</a></li></ol></details>
           <h2 id="set-up-a-known-release">Set up a known release</h2>
-          <p>StatePort should install a specific release that can be checked, not whichever files happen to be newest.</p>
-
+          <p>There are three things to keep distinct: StatePort itself, the template that defines an application, and your instance containing the actual work. Replacing the runtime is not a backup of your instance, and importing a newer template is not an update of your existing work.</p>
+          <p>Check <a href="../releases/">release status</a> before installing. Alpha.16's fresh installation is blocked. For an existing installation, retain its installer receipt and the URL it printed; follow <a href="updates.html">update and uninstall guidance</a> for its recorded resources.</p>
           <h2 id="use-the-application">Use the application</h2>
-          <p>You start with the application's conversation, next action, and progress. Permissions, history, and technical details stay available without taking over the main screen.</p>
-
+          <ol>
+            <li>Open the intended application and read its current state before issuing another request. Two instances from the same template hold different work.</li>
+            <li>Choose one concrete task. Readiness indicates whether the application can perform it with the currently configured tools and permissions.</li>
+            <li>Review a proposed change before applying it. Check the target, affected files or facts, and requested access.</li>
+            <li>After applying, inspect the receipt and the updated application state. A successful conversation response alone does not establish that a change was saved.</li>
+            <li>When returning later, reload the application and confirm the last result is still present. Use Activity and Receipts to resolve uncertainty before repeating a request.</li>
+          </ol>
+          <p>The <a href="everyday-work.html">everyday-work guide</a> walks through this cycle; <a href="study-state.html">StudyState</a> provides a concrete reflection example.</p>
           <h2 id="update-or-move">Update or move</h2>
-          <p>Before an update, StatePort should show what will change and protect your personal files. Moving to another computer should copy the application state and check it before you depend on the new copy.</p>
-
+          <p>Before changing an installation, record the installed release, the application identity, and the template source revision. Keep a verified backup outside the runtime resources being replaced. Do not treat a template checkout, container image, or conversation export as a complete instance backup.</p>
+          <p>In-place platform update is not a supported recovery shortcut in this alpha. Read <a href="updates.html">the update boundary</a> before rerunning an installer. An imported template is an isolated managed copy; editing its original repository does not synchronize your instance.</p>
+          <p>Moving to a different machine also changes the host environment. Tool availability, permission grants, credentials, and reachable services need checking again. The <a href="hosts-and-portability.html">portability guide</a> explains what can travel with your work and what needs new setup.</p>
           <h2 id="back-up-and-recover">Back up and recover</h2>
-          <p>A backup should include the application data you need and a way to check it. Recovery should be tested in a separate location before replacing your working copy.</p>
-
+          <p><strong>Availability:</strong> use the backup and recovery controls only when your installed application exposes them. They depend on the application, permissions, and installed version. This is not a workaround for the blocked Alpha.16 installer.</p>
+          <h3 id="before-a-backup">Before a backup</h3>
+          <ul>
+            <li>Finish or inspect outstanding changes so you know the state you are preserving.</li>
+            <li>Record the application identity and a few facts you expect to recover: for example, the current project slice or your last study reflection.</li>
+            <li>Where available, use <strong>Back up now</strong> and inspect the resulting backup status and receipt. A backup attempt is not the same as a verified archive.</li>
+            <li>Keep backups private. Archive verification checks integrity; it does not imply encryption, automatic scheduling, or a retention policy.</li>
+          </ul>
+          <h3 id="restore-a-separate-instance">Restore a separate instance</h3>
+          <p>The supported recovery model creates a new managed instance. It does not overwrite the source application. In versions exposing <strong>Settings → Backup &amp; recovery</strong>, an operator selects an indexed backup, reviews the restore plan and destination identity, approves that exact plan, then applies it.</p>
+          <ol>
+            <li>Select the intended verified backup. Check which application and point in its history it represents.</li>
+            <li>Review the proposed new identity and any source-access details. Do not assume previous consent silently transfers to a new instance.</li>
+            <li>Apply only the plan you reviewed. If it expires or the backup, source, or destination changes, prepare and review a fresh plan.</li>
+            <li>Inspect the restore receipt and open the new application. Compare the facts you recorded before the backup.</li>
+            <li>Check tool readiness and permissions separately. Keep the original instance until you have checked the recovered work and chosen which copy to use.</li>
+          </ol>
+          <p>If recovery stops with an uncertain result, preserve the receipt and both instances for inspection. Do not remove the destination or repeatedly apply the restore to make an error disappear. See <a href="troubleshooting.html">troubleshooting</a>.</p>
+          <h3 id="what-recovery-does-not-undo">What recovery does not undo</h3>
+          <p>Filesystem recovery does not recall a sent message, reverse a payment, remove a remote deployment, or undo a provider request. Inspect external effects independently before continuing work. A restored file saying “not sent” cannot prove that a message was never sent.</p>
           <h2 id="current-availability">Current availability</h2>
-          <p>These lifecycle features are the product direction. Alpha.16 is the current public-test candidate, but this page is not setup instructions. Check the <a href="../releases/">release status</a>.</p>
+          <p>The public release page determines installation availability. Controls described here may be absent in an older installation or unavailable for a particular template. Do not use developer commands or manual file replacement to bypass a missing recovery control. Preserve the original work and report the missing capability.</p>
 
           <div class="inline-actions">
             <a class="button button--ink" href="governance.html">Review and control changes</a>
@@ -118,6 +148,6 @@
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
     </footer>
-    <script src="../assets/site.js?v=2026-09-05-2"></script>
+    <script src="../assets/site.js?v=2026-09-10-1"></script>
   </body>
 </html>
