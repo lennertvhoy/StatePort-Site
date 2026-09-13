@@ -1,9 +1,9 @@
 #!/bin/sh
-# StatePort v0.1.0-alpha.16 Windows 11 + WSL2 + Ubuntu 24.04 bootstrap.
+# StatePort v0.1.0-alpha.17 Windows 11 + WSL2 + Ubuntu 24.04 bootstrap.
 set -eu
-STATEPORT_VERSION="0.1.0-alpha.16"
-RELEASE_ROOT="https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.16"
-PROBE_ROOT="https://lennertvhoy.github.io/StatePort-Site/download/alpha16-manifests"
+STATEPORT_VERSION="0.1.0-alpha.17"
+RELEASE_ROOT="https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.17"
+PROBE_ROOT="https://lennertvhoy.github.io/StatePort-Site/download/alpha17-manifests"
 TARGET="wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet"
 STATE_ROOT="${STATEPORT_STATE_ROOT:-$HOME/.local/state/stateport-install}"
 RECEIPT="/var/lib/stateport-provisioning/receipts/execution-host-provisioning-receipt.json"
@@ -56,26 +56,26 @@ if [ "$mode" = probe ]; then
   command -v curl >/dev/null 2>&1 || fail "curl is required for the transport probe."
   command -v sha256sum >/dev/null 2>&1 || fail "sha256sum is required for the transport probe."
   umask 077
-  tmp=$(mktemp -d "${TMPDIR:-/tmp}/stateport-alpha16-probe.XXXXXX") || fail "Cannot create a private probe directory."
+  tmp=$(mktemp -d "${TMPDIR:-/tmp}/stateport-alpha17-probe.XXXXXX") || fail "Cannot create a private probe directory."
   trap 'rm -rf "$tmp"' EXIT
   trap 'exit 129' HUP
   trap 'exit 130' INT
   trap 'exit 143' TERM
   get "$PROBE_ROOT/stateport-api.json" "$tmp/stateport-api.manifest.json" "image manifest: stateport-api"
-  check "95c3adccacfaabfb70430d299a578c33ebafa2f0fb16ab129d0ac271847a3c73" "$tmp/stateport-api.manifest.json"
+  check "63d7c8f4eaa5e6742db8d73a9dd5f93594511c4e6010c06aa09e09c5bef31c57" "$tmp/stateport-api.manifest.json"
   get "$PROBE_ROOT/stateport-dev-workspace.json" "$tmp/stateport-dev-workspace.manifest.json" "image manifest: stateport-dev-workspace"
-  check "fee3e363718c71222fdcacfd63fa61088ecae66da727c617a92ca9fc3e635e43" "$tmp/stateport-dev-workspace.manifest.json"
+  check "e1d054da25bcf404fbf7ee57f8686901dbc31bd3d244162a2b401d8157bfdd02" "$tmp/stateport-dev-workspace.manifest.json"
   get "$PROBE_ROOT/stateport-execution-host.json" "$tmp/stateport-execution-host.manifest.json" "image manifest: stateport-execution-host"
-  check "221ddc06dd59cd3c5810b2d38a0eb5c44aaaa4bb522abcdc8b5ed0e4d2b3793e" "$tmp/stateport-execution-host.manifest.json"
+  check "27b70d981709099a5ce8a7999a9160f8aad96c43edf2b1a5b4b8b0c96a858def" "$tmp/stateport-execution-host.manifest.json"
   get "$PROBE_ROOT/stateport-playwright.json" "$tmp/stateport-playwright.manifest.json" "image manifest: stateport-playwright"
-  check "885f078be50869a958f7867c74b75760dc7bafef33579877ef769d4cc2e182fe" "$tmp/stateport-playwright.manifest.json"
+  check "307892a7e0d5b46803b00a74b8ecc3ee96e3fd6a4829be237328b99df78c1a24" "$tmp/stateport-playwright.manifest.json"
   get "$PROBE_ROOT/stateport-runner.json" "$tmp/stateport-runner.manifest.json" "image manifest: stateport-runner"
-  check "38086218681ba5b64adece703cda8eed817a692c7f0436faccbe6bfae4143885" "$tmp/stateport-runner.manifest.json"
+  check "5782579c7ee235ca27b0002a03ba064b14f1654bcf1b0153c60275bfd5872a0c" "$tmp/stateport-runner.manifest.json"
   get "$PROBE_ROOT/stateport-web.json" "$tmp/stateport-web.manifest.json" "image manifest: stateport-web"
-  check "bbb120242e44e77b79de85d924021b3a2950ed6ff304061c6a6f8482f98b486d" "$tmp/stateport-web.manifest.json"
+  check "a0288e7eff247655c9e0ccbf71fc9652caad3c1fdba640c69b35cb85f8e10289" "$tmp/stateport-web.manifest.json"
   get "$PROBE_ROOT/stateport-worker.json" "$tmp/stateport-worker.manifest.json" "image manifest: stateport-worker"
-  check "a4367aa99b222a80fe420afa1e48c937bda2a5c38bc2d6d5a202167a2d30fad3" "$tmp/stateport-worker.manifest.json"
-  printf "StatePort Alpha.16 transport probe passed: bootstrap syntax and 7 exact image manifests verified; installer was not executed.\n"
+  check "38e90db24ccc31d6a7368d577eafe3872ebf11b2db7a814e95e0d22fb3fd1637" "$tmp/stateport-worker.manifest.json"
+  printf "StatePort Alpha.17 transport probe passed: bootstrap syntax and 7 exact image manifests verified; installer was not executed.\n"
   exit 0
 fi
 if [ "$mode" = materialization-preflight ]; then
@@ -85,7 +85,7 @@ if [ "$mode" = materialization-preflight ]; then
   command -v stat >/dev/null 2>&1 || fail "stat is required for the materialization preflight."
   ensure_root_helper_parent / 0 0 check
   umask 077
-  tmp=$(mktemp -d "${TMPDIR:-/tmp}/stateport-alpha16-materialization.XXXXXX") || fail "Cannot create a private preflight directory."
+  tmp=$(mktemp -d "${TMPDIR:-/tmp}/stateport-alpha17-materialization.XXXXXX") || fail "Cannot create a private preflight directory."
   trap 'rm -rf "$tmp"' EXIT
   trap 'exit 129' HUP
   trap 'exit 130' INT
@@ -93,10 +93,10 @@ if [ "$mode" = materialization-preflight ]; then
   mkdir -m 755 "$tmp/root" "$tmp/root/usr" "$tmp/root/usr/local"
   ensure_root_helper_parent "$tmp/root" "$(id -u)" "$(id -g)" local
   get "$RELEASE_ROOT/stateport-execution-host-provision" "$tmp/provisioner" "execution-host provisioner"
-  check "312ef592fb05bb45458b8f58e5551f0e5594bde2111d90555267494785da6d32" "$tmp/provisioner"
+  check "3545e3216fded144b4dc783bf38ad1622b808c1e3e821ec729112bc875011d1e" "$tmp/provisioner"
   install -m 0555 -- "$tmp/provisioner" "$tmp/root/usr/local/libexec/stateport-execution-host-provision"
-  check "312ef592fb05bb45458b8f58e5551f0e5594bde2111d90555267494785da6d32" "$tmp/root/usr/local/libexec/stateport-execution-host-provision"
-  printf "StatePort Alpha.16 materialization preflight passed: target, pinned helper transport, and absent-parent creation order verified; packages, root files, images, and installer were not changed or executed.\n"
+  check "3545e3216fded144b4dc783bf38ad1622b808c1e3e821ec729112bc875011d1e" "$tmp/root/usr/local/libexec/stateport-execution-host-provision"
+  printf "StatePort Alpha.17 materialization preflight passed: target, pinned helper transport, and absent-parent creation order verified; packages, root files, images, and installer were not changed or executed.\n"
   exit 0
 fi
 command -v sudo >/dev/null 2>&1 || fail "sudo is required."
@@ -128,15 +128,15 @@ manifest_carrier() {
   tar -cf "$tmp/image-archives/$image_id.oci.tar" --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -C "$carrier" index.json "blobs/sha256/$digest_hex"
 }
 get "$RELEASE_ROOT/stateport-installer" "$tmp/installer" "signed installer"
-check "b49dbcde86b99a1fa06210d0c2f625e52b82c135d5f76adcc0f903eceeb84d8d" "$tmp/installer"
+check "0b35b3b4b40d4e32483e9fd884985a7731a3c763f52f62c8e55f4a5b0be8bc18" "$tmp/installer"
 get "$RELEASE_ROOT/stateport-execution-host-provision" "$tmp/provisioner" "execution-host provisioner"
-check "312ef592fb05bb45458b8f58e5551f0e5594bde2111d90555267494785da6d32" "$tmp/provisioner"
+check "3545e3216fded144b4dc783bf38ad1622b808c1e3e821ec729112bc875011d1e" "$tmp/provisioner"
 get "$RELEASE_ROOT/stateport-updater" "$tmp/updater" "signed updater"
-check "706120f5ec0e8b93619bf391ce3be59879587527427f977adec52e62165ad0ba" "$tmp/updater"
+check "3c74e81f0f2902334f6e410d8f5c4698353b150751db29d360c2c5c60ae6078e" "$tmp/updater"
 get "$RELEASE_ROOT/release-index.json" "$tmp/release-index.json" "signed release index"
-check "8dad6399e66956d1dcb5aebb5a5119c6001617b3279902f0746857b5e6bfac47" "$tmp/release-index.json"
+check "e2391732872e05402c2ae8bdb018b1b64b284c2490d88197a37cf011b6f8b809" "$tmp/release-index.json"
 get "$RELEASE_ROOT/release-index.sigstore.json" "$tmp/release-index.sigstore.json" "release index signature"
-check "ff36ca75c5139d58a92e7d9b78a53f120aa4e4f42cdf9be35603eef3e682b557" "$tmp/release-index.sigstore.json"
+check "810a9a5e27e03063f155cf71481f861bf0b16855b8a74a463d3e02d8225b00e4" "$tmp/release-index.sigstore.json"
 get "$RELEASE_ROOT/stateport-alpha-2026-08-cosign.pub" "$tmp/release.pub" "release trust key"
 check "798d6ea6e2703993758f0fb45618b1f05b40f6ef116e7d286fd5a6867859b8ad" "$tmp/release.pub"
 get "$COSIGN_URL" "$tmp/cosign" "Cosign executable"
@@ -144,74 +144,76 @@ check "4629c757b7618056f8ddd7e2625ae9fdd94c0372a65049520bc7d9df9efc7f71" "$tmp/c
 chmod 700 "$tmp/installer" "$tmp/cosign"
 mkdir -m 700 "$tmp/predecessor-bundle"
 get "$RELEASE_ROOT/predecessor-bundle/release-index.sigstore.json" "$tmp/predecessor-bundle/release-index.sigstore.json" "predecessor signature bundle"
-check "56d8761f1bcc23109cef0b20cdbd6adf3b9844cc7c2afb181bd48a16fa9802a7" "$tmp/predecessor-bundle/release-index.sigstore.json"
+check "ff36ca75c5139d58a92e7d9b78a53f120aa4e4f42cdf9be35603eef3e682b557" "$tmp/predecessor-bundle/release-index.sigstore.json"
+mkdir -p -m 700 "$tmp/ff36ca75c5139d58a92e7d9b78a53f120aa4e4f42cdf9be35603eef3e682b557"
+install -m 600 "$tmp/predecessor-bundle/release-index.sigstore.json" "$tmp/ff36ca75c5139d58a92e7d9b78a53f120aa4e4f42cdf9be35603eef3e682b557/release-index.sigstore.json"
 get "$RELEASE_ROOT/signatures/stateport-api.sigstore.json" "$tmp/image-bundles/stateport-api.sigstore.json" "image signature: stateport-api"
-check "0419238941ed13ab2143bc7bdad4f66fdc623503ca8ea2f83fd226458e9e8237" "$tmp/image-bundles/stateport-api.sigstore.json"
+check "5e5ee079c1de11dba0e285586eb154332334d09e649fcafd1de779bbcce3756d" "$tmp/image-bundles/stateport-api.sigstore.json"
 get "$RELEASE_ROOT/signatures/stateport-dev-workspace.sigstore.json" "$tmp/image-bundles/stateport-dev-workspace.sigstore.json" "image signature: stateport-dev-workspace"
-check "c1285f39e9ece52d33fa4113cfaeaeb905b33d2fd21601f2b0d2f7e07a31e2c7" "$tmp/image-bundles/stateport-dev-workspace.sigstore.json"
+check "9d8abecb5104e75e23e8a57704f5201ad7aad7bb9dfd38d92be154a17531ea30" "$tmp/image-bundles/stateport-dev-workspace.sigstore.json"
 get "$RELEASE_ROOT/signatures/stateport-execution-host.sigstore.json" "$tmp/image-bundles/stateport-execution-host.sigstore.json" "image signature: stateport-execution-host"
-check "9f7b6b4f08b0cb601999271cbf76c478b0f97bf39b777b1f02071837ba3d2331" "$tmp/image-bundles/stateport-execution-host.sigstore.json"
+check "2ee39ad4efdf33b20e5447b3a7f0230c62fbe8e6e0eb6eca668b89f2d2762455" "$tmp/image-bundles/stateport-execution-host.sigstore.json"
 get "$RELEASE_ROOT/signatures/stateport-playwright.sigstore.json" "$tmp/image-bundles/stateport-playwright.sigstore.json" "image signature: stateport-playwright"
-check "d658dea207fb455bde30573ad22f829a72adc03247076b84f5ef96e081d45906" "$tmp/image-bundles/stateport-playwright.sigstore.json"
+check "f63a1907af6d73e5b0c581e129da5cfd66383f2c6b38496419a0f2ead7b2d576" "$tmp/image-bundles/stateport-playwright.sigstore.json"
 get "$RELEASE_ROOT/signatures/stateport-runner.sigstore.json" "$tmp/image-bundles/stateport-runner.sigstore.json" "image signature: stateport-runner"
-check "6a9b00caa9d38132ff6c392b14234be9e9fa5f190b7b3ded045db43d7e7e28a4" "$tmp/image-bundles/stateport-runner.sigstore.json"
+check "ed173cd9ad511ef9c0dfb2092eeb42afa1ca941a07f6f31133ecfc38cdd4f08a" "$tmp/image-bundles/stateport-runner.sigstore.json"
 get "$RELEASE_ROOT/signatures/stateport-web.sigstore.json" "$tmp/image-bundles/stateport-web.sigstore.json" "image signature: stateport-web"
-check "4c43ccb1b99b667d276c4a4f9281830552139c04da089065b6b8c33fd53bea18" "$tmp/image-bundles/stateport-web.sigstore.json"
+check "d495486a15034420ad359ab0edfe29d69882e409ab070d5fd537536a1de190b4" "$tmp/image-bundles/stateport-web.sigstore.json"
 get "$RELEASE_ROOT/signatures/stateport-worker.sigstore.json" "$tmp/image-bundles/stateport-worker.sigstore.json" "image signature: stateport-worker"
-check "bc3e73c56ffceb9d022916349b7bc9af664ca9691fbe803f8613bbddfcaf6155" "$tmp/image-bundles/stateport-worker.sigstore.json"
+check "e5f3acf9544b7fac74873193a1fc7a7e6e8953406f320e03a581388916d7a1a1" "$tmp/image-bundles/stateport-worker.sigstore.json"
 get "$RELEASE_ROOT/stateport-podman-package-bundle.tar" "$tmp/podman-package-bundle.tar" "signed Podman package bundle"
 check "a472bd4a28dacc2ccfc286ed35ba76d3bfaa71fc765a5b51d09b84cbc0c9ea2f" "$tmp/podman-package-bundle.tar"
 get "$PROBE_ROOT/stateport-api.json" "$tmp/image-manifests/stateport-api" "image manifest: stateport-api"
-check "95c3adccacfaabfb70430d299a578c33ebafa2f0fb16ab129d0ac271847a3c73" "$tmp/image-manifests/stateport-api"
+check "63d7c8f4eaa5e6742db8d73a9dd5f93594511c4e6010c06aa09e09c5bef31c57" "$tmp/image-manifests/stateport-api"
 mkdir -m 700 "$tmp/image-carriers/stateport-api" "$tmp/image-carriers/stateport-api/blobs" "$tmp/image-carriers/stateport-api/blobs/sha256"
-cp "$tmp/image-manifests/stateport-api" "$tmp/image-carriers/stateport-api/blobs/sha256/95c3adccacfaabfb70430d299a578c33ebafa2f0fb16ab129d0ac271847a3c73"
-printf '{"schemaVersion":2,"manifests":[{"digest":"sha256:95c3adccacfaabfb70430d299a578c33ebafa2f0fb16ab129d0ac271847a3c73"}]}\n' > "$tmp/image-carriers/stateport-api/index.json"
-tar -cf "$tmp/image-archives/stateport-api.oci.tar" --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -C "$tmp/image-carriers/stateport-api" index.json "blobs/sha256/95c3adccacfaabfb70430d299a578c33ebafa2f0fb16ab129d0ac271847a3c73"
+cp "$tmp/image-manifests/stateport-api" "$tmp/image-carriers/stateport-api/blobs/sha256/63d7c8f4eaa5e6742db8d73a9dd5f93594511c4e6010c06aa09e09c5bef31c57"
+printf '{"schemaVersion":2,"manifests":[{"digest":"sha256:63d7c8f4eaa5e6742db8d73a9dd5f93594511c4e6010c06aa09e09c5bef31c57"}]}\n' > "$tmp/image-carriers/stateport-api/index.json"
+tar -cf "$tmp/image-archives/stateport-api.oci.tar" --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -C "$tmp/image-carriers/stateport-api" index.json "blobs/sha256/63d7c8f4eaa5e6742db8d73a9dd5f93594511c4e6010c06aa09e09c5bef31c57"
 get "$PROBE_ROOT/stateport-dev-workspace.json" "$tmp/image-manifests/stateport-dev-workspace" "image manifest: stateport-dev-workspace"
-check "fee3e363718c71222fdcacfd63fa61088ecae66da727c617a92ca9fc3e635e43" "$tmp/image-manifests/stateport-dev-workspace"
+check "e1d054da25bcf404fbf7ee57f8686901dbc31bd3d244162a2b401d8157bfdd02" "$tmp/image-manifests/stateport-dev-workspace"
 mkdir -m 700 "$tmp/image-carriers/stateport-dev-workspace" "$tmp/image-carriers/stateport-dev-workspace/blobs" "$tmp/image-carriers/stateport-dev-workspace/blobs/sha256"
-cp "$tmp/image-manifests/stateport-dev-workspace" "$tmp/image-carriers/stateport-dev-workspace/blobs/sha256/fee3e363718c71222fdcacfd63fa61088ecae66da727c617a92ca9fc3e635e43"
-printf '{"schemaVersion":2,"manifests":[{"digest":"sha256:fee3e363718c71222fdcacfd63fa61088ecae66da727c617a92ca9fc3e635e43"}]}\n' > "$tmp/image-carriers/stateport-dev-workspace/index.json"
-tar -cf "$tmp/image-archives/stateport-dev-workspace.oci.tar" --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -C "$tmp/image-carriers/stateport-dev-workspace" index.json "blobs/sha256/fee3e363718c71222fdcacfd63fa61088ecae66da727c617a92ca9fc3e635e43"
+cp "$tmp/image-manifests/stateport-dev-workspace" "$tmp/image-carriers/stateport-dev-workspace/blobs/sha256/e1d054da25bcf404fbf7ee57f8686901dbc31bd3d244162a2b401d8157bfdd02"
+printf '{"schemaVersion":2,"manifests":[{"digest":"sha256:e1d054da25bcf404fbf7ee57f8686901dbc31bd3d244162a2b401d8157bfdd02"}]}\n' > "$tmp/image-carriers/stateport-dev-workspace/index.json"
+tar -cf "$tmp/image-archives/stateport-dev-workspace.oci.tar" --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -C "$tmp/image-carriers/stateport-dev-workspace" index.json "blobs/sha256/e1d054da25bcf404fbf7ee57f8686901dbc31bd3d244162a2b401d8157bfdd02"
 get "$PROBE_ROOT/stateport-execution-host.json" "$tmp/image-manifests/stateport-execution-host" "image manifest: stateport-execution-host"
-check "221ddc06dd59cd3c5810b2d38a0eb5c44aaaa4bb522abcdc8b5ed0e4d2b3793e" "$tmp/image-manifests/stateport-execution-host"
+check "27b70d981709099a5ce8a7999a9160f8aad96c43edf2b1a5b4b8b0c96a858def" "$tmp/image-manifests/stateport-execution-host"
 mkdir -m 700 "$tmp/image-carriers/stateport-execution-host" "$tmp/image-carriers/stateport-execution-host/blobs" "$tmp/image-carriers/stateport-execution-host/blobs/sha256"
-cp "$tmp/image-manifests/stateport-execution-host" "$tmp/image-carriers/stateport-execution-host/blobs/sha256/221ddc06dd59cd3c5810b2d38a0eb5c44aaaa4bb522abcdc8b5ed0e4d2b3793e"
-printf '{"schemaVersion":2,"manifests":[{"digest":"sha256:221ddc06dd59cd3c5810b2d38a0eb5c44aaaa4bb522abcdc8b5ed0e4d2b3793e"}]}\n' > "$tmp/image-carriers/stateport-execution-host/index.json"
-tar -cf "$tmp/image-archives/stateport-execution-host.oci.tar" --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -C "$tmp/image-carriers/stateport-execution-host" index.json "blobs/sha256/221ddc06dd59cd3c5810b2d38a0eb5c44aaaa4bb522abcdc8b5ed0e4d2b3793e"
+cp "$tmp/image-manifests/stateport-execution-host" "$tmp/image-carriers/stateport-execution-host/blobs/sha256/27b70d981709099a5ce8a7999a9160f8aad96c43edf2b1a5b4b8b0c96a858def"
+printf '{"schemaVersion":2,"manifests":[{"digest":"sha256:27b70d981709099a5ce8a7999a9160f8aad96c43edf2b1a5b4b8b0c96a858def"}]}\n' > "$tmp/image-carriers/stateport-execution-host/index.json"
+tar -cf "$tmp/image-archives/stateport-execution-host.oci.tar" --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -C "$tmp/image-carriers/stateport-execution-host" index.json "blobs/sha256/27b70d981709099a5ce8a7999a9160f8aad96c43edf2b1a5b4b8b0c96a858def"
 get "$PROBE_ROOT/stateport-playwright.json" "$tmp/image-manifests/stateport-playwright" "image manifest: stateport-playwright"
-check "885f078be50869a958f7867c74b75760dc7bafef33579877ef769d4cc2e182fe" "$tmp/image-manifests/stateport-playwright"
+check "307892a7e0d5b46803b00a74b8ecc3ee96e3fd6a4829be237328b99df78c1a24" "$tmp/image-manifests/stateport-playwright"
 mkdir -m 700 "$tmp/image-carriers/stateport-playwright" "$tmp/image-carriers/stateport-playwright/blobs" "$tmp/image-carriers/stateport-playwright/blobs/sha256"
-cp "$tmp/image-manifests/stateport-playwright" "$tmp/image-carriers/stateport-playwright/blobs/sha256/885f078be50869a958f7867c74b75760dc7bafef33579877ef769d4cc2e182fe"
-printf '{"schemaVersion":2,"manifests":[{"digest":"sha256:885f078be50869a958f7867c74b75760dc7bafef33579877ef769d4cc2e182fe"}]}\n' > "$tmp/image-carriers/stateport-playwright/index.json"
-tar -cf "$tmp/image-archives/stateport-playwright.oci.tar" --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -C "$tmp/image-carriers/stateport-playwright" index.json "blobs/sha256/885f078be50869a958f7867c74b75760dc7bafef33579877ef769d4cc2e182fe"
+cp "$tmp/image-manifests/stateport-playwright" "$tmp/image-carriers/stateport-playwright/blobs/sha256/307892a7e0d5b46803b00a74b8ecc3ee96e3fd6a4829be237328b99df78c1a24"
+printf '{"schemaVersion":2,"manifests":[{"digest":"sha256:307892a7e0d5b46803b00a74b8ecc3ee96e3fd6a4829be237328b99df78c1a24"}]}\n' > "$tmp/image-carriers/stateport-playwright/index.json"
+tar -cf "$tmp/image-archives/stateport-playwright.oci.tar" --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -C "$tmp/image-carriers/stateport-playwright" index.json "blobs/sha256/307892a7e0d5b46803b00a74b8ecc3ee96e3fd6a4829be237328b99df78c1a24"
 get "$PROBE_ROOT/stateport-runner.json" "$tmp/image-manifests/stateport-runner" "image manifest: stateport-runner"
-check "38086218681ba5b64adece703cda8eed817a692c7f0436faccbe6bfae4143885" "$tmp/image-manifests/stateport-runner"
+check "5782579c7ee235ca27b0002a03ba064b14f1654bcf1b0153c60275bfd5872a0c" "$tmp/image-manifests/stateport-runner"
 mkdir -m 700 "$tmp/image-carriers/stateport-runner" "$tmp/image-carriers/stateport-runner/blobs" "$tmp/image-carriers/stateport-runner/blobs/sha256"
-cp "$tmp/image-manifests/stateport-runner" "$tmp/image-carriers/stateport-runner/blobs/sha256/38086218681ba5b64adece703cda8eed817a692c7f0436faccbe6bfae4143885"
-printf '{"schemaVersion":2,"manifests":[{"digest":"sha256:38086218681ba5b64adece703cda8eed817a692c7f0436faccbe6bfae4143885"}]}\n' > "$tmp/image-carriers/stateport-runner/index.json"
-tar -cf "$tmp/image-archives/stateport-runner.oci.tar" --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -C "$tmp/image-carriers/stateport-runner" index.json "blobs/sha256/38086218681ba5b64adece703cda8eed817a692c7f0436faccbe6bfae4143885"
+cp "$tmp/image-manifests/stateport-runner" "$tmp/image-carriers/stateport-runner/blobs/sha256/5782579c7ee235ca27b0002a03ba064b14f1654bcf1b0153c60275bfd5872a0c"
+printf '{"schemaVersion":2,"manifests":[{"digest":"sha256:5782579c7ee235ca27b0002a03ba064b14f1654bcf1b0153c60275bfd5872a0c"}]}\n' > "$tmp/image-carriers/stateport-runner/index.json"
+tar -cf "$tmp/image-archives/stateport-runner.oci.tar" --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -C "$tmp/image-carriers/stateport-runner" index.json "blobs/sha256/5782579c7ee235ca27b0002a03ba064b14f1654bcf1b0153c60275bfd5872a0c"
 get "$PROBE_ROOT/stateport-web.json" "$tmp/image-manifests/stateport-web" "image manifest: stateport-web"
-check "bbb120242e44e77b79de85d924021b3a2950ed6ff304061c6a6f8482f98b486d" "$tmp/image-manifests/stateport-web"
+check "a0288e7eff247655c9e0ccbf71fc9652caad3c1fdba640c69b35cb85f8e10289" "$tmp/image-manifests/stateport-web"
 mkdir -m 700 "$tmp/image-carriers/stateport-web" "$tmp/image-carriers/stateport-web/blobs" "$tmp/image-carriers/stateport-web/blobs/sha256"
-cp "$tmp/image-manifests/stateport-web" "$tmp/image-carriers/stateport-web/blobs/sha256/bbb120242e44e77b79de85d924021b3a2950ed6ff304061c6a6f8482f98b486d"
-printf '{"schemaVersion":2,"manifests":[{"digest":"sha256:bbb120242e44e77b79de85d924021b3a2950ed6ff304061c6a6f8482f98b486d"}]}\n' > "$tmp/image-carriers/stateport-web/index.json"
-tar -cf "$tmp/image-archives/stateport-web.oci.tar" --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -C "$tmp/image-carriers/stateport-web" index.json "blobs/sha256/bbb120242e44e77b79de85d924021b3a2950ed6ff304061c6a6f8482f98b486d"
+cp "$tmp/image-manifests/stateport-web" "$tmp/image-carriers/stateport-web/blobs/sha256/a0288e7eff247655c9e0ccbf71fc9652caad3c1fdba640c69b35cb85f8e10289"
+printf '{"schemaVersion":2,"manifests":[{"digest":"sha256:a0288e7eff247655c9e0ccbf71fc9652caad3c1fdba640c69b35cb85f8e10289"}]}\n' > "$tmp/image-carriers/stateport-web/index.json"
+tar -cf "$tmp/image-archives/stateport-web.oci.tar" --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -C "$tmp/image-carriers/stateport-web" index.json "blobs/sha256/a0288e7eff247655c9e0ccbf71fc9652caad3c1fdba640c69b35cb85f8e10289"
 get "$PROBE_ROOT/stateport-worker.json" "$tmp/image-manifests/stateport-worker" "image manifest: stateport-worker"
-check "a4367aa99b222a80fe420afa1e48c937bda2a5c38bc2d6d5a202167a2d30fad3" "$tmp/image-manifests/stateport-worker"
+check "38e90db24ccc31d6a7368d577eafe3872ebf11b2db7a814e95e0d22fb3fd1637" "$tmp/image-manifests/stateport-worker"
 mkdir -m 700 "$tmp/image-carriers/stateport-worker" "$tmp/image-carriers/stateport-worker/blobs" "$tmp/image-carriers/stateport-worker/blobs/sha256"
-cp "$tmp/image-manifests/stateport-worker" "$tmp/image-carriers/stateport-worker/blobs/sha256/a4367aa99b222a80fe420afa1e48c937bda2a5c38bc2d6d5a202167a2d30fad3"
-printf '{"schemaVersion":2,"manifests":[{"digest":"sha256:a4367aa99b222a80fe420afa1e48c937bda2a5c38bc2d6d5a202167a2d30fad3"}]}\n' > "$tmp/image-carriers/stateport-worker/index.json"
-tar -cf "$tmp/image-archives/stateport-worker.oci.tar" --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -C "$tmp/image-carriers/stateport-worker" index.json "blobs/sha256/a4367aa99b222a80fe420afa1e48c937bda2a5c38bc2d6d5a202167a2d30fad3"
+cp "$tmp/image-manifests/stateport-worker" "$tmp/image-carriers/stateport-worker/blobs/sha256/38e90db24ccc31d6a7368d577eafe3872ebf11b2db7a814e95e0d22fb3fd1637"
+printf '{"schemaVersion":2,"manifests":[{"digest":"sha256:38e90db24ccc31d6a7368d577eafe3872ebf11b2db7a814e95e0d22fb3fd1637"}]}\n' > "$tmp/image-carriers/stateport-worker/index.json"
+tar -cf "$tmp/image-archives/stateport-worker.oci.tar" --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -C "$tmp/image-carriers/stateport-worker" index.json "blobs/sha256/38e90db24ccc31d6a7368d577eafe3872ebf11b2db7a814e95e0d22fb3fd1637"
 retain_slot() { mkdir -p -m 700 "$1"; install -m 600 "$2" "$1/$3"; }
-retain_slot "$tmp/ff36ca75c5139d58a92e7d9b78a53f120aa4e4f42cdf9be35603eef3e682b557" "$tmp/release-index.sigstore.json" "release-index.sigstore.json"
-retain_slot "$tmp/0419238941ed13ab2143bc7bdad4f66fdc623503ca8ea2f83fd226458e9e8237" "$tmp/image-bundles/stateport-api.sigstore.json" "stateport-api.sigstore.json"
-retain_slot "$tmp/c1285f39e9ece52d33fa4113cfaeaeb905b33d2fd21601f2b0d2f7e07a31e2c7" "$tmp/image-bundles/stateport-dev-workspace.sigstore.json" "stateport-dev-workspace.sigstore.json"
-retain_slot "$tmp/9f7b6b4f08b0cb601999271cbf76c478b0f97bf39b777b1f02071837ba3d2331" "$tmp/image-bundles/stateport-execution-host.sigstore.json" "stateport-execution-host.sigstore.json"
-retain_slot "$tmp/d658dea207fb455bde30573ad22f829a72adc03247076b84f5ef96e081d45906" "$tmp/image-bundles/stateport-playwright.sigstore.json" "stateport-playwright.sigstore.json"
-retain_slot "$tmp/6a9b00caa9d38132ff6c392b14234be9e9fa5f190b7b3ded045db43d7e7e28a4" "$tmp/image-bundles/stateport-runner.sigstore.json" "stateport-runner.sigstore.json"
-retain_slot "$tmp/4c43ccb1b99b667d276c4a4f9281830552139c04da089065b6b8c33fd53bea18" "$tmp/image-bundles/stateport-web.sigstore.json" "stateport-web.sigstore.json"
-retain_slot "$tmp/bc3e73c56ffceb9d022916349b7bc9af664ca9691fbe803f8613bbddfcaf6155" "$tmp/image-bundles/stateport-worker.sigstore.json" "stateport-worker.sigstore.json"
+retain_slot "$tmp/810a9a5e27e03063f155cf71481f861bf0b16855b8a74a463d3e02d8225b00e4" "$tmp/release-index.sigstore.json" "release-index.sigstore.json"
+retain_slot "$tmp/5e5ee079c1de11dba0e285586eb154332334d09e649fcafd1de779bbcce3756d" "$tmp/image-bundles/stateport-api.sigstore.json" "stateport-api.sigstore.json"
+retain_slot "$tmp/9d8abecb5104e75e23e8a57704f5201ad7aad7bb9dfd38d92be154a17531ea30" "$tmp/image-bundles/stateport-dev-workspace.sigstore.json" "stateport-dev-workspace.sigstore.json"
+retain_slot "$tmp/2ee39ad4efdf33b20e5447b3a7f0230c62fbe8e6e0eb6eca668b89f2d2762455" "$tmp/image-bundles/stateport-execution-host.sigstore.json" "stateport-execution-host.sigstore.json"
+retain_slot "$tmp/f63a1907af6d73e5b0c581e129da5cfd66383f2c6b38496419a0f2ead7b2d576" "$tmp/image-bundles/stateport-playwright.sigstore.json" "stateport-playwright.sigstore.json"
+retain_slot "$tmp/ed173cd9ad511ef9c0dfb2092eeb42afa1ca941a07f6f31133ecfc38cdd4f08a" "$tmp/image-bundles/stateport-runner.sigstore.json" "stateport-runner.sigstore.json"
+retain_slot "$tmp/d495486a15034420ad359ab0edfe29d69882e409ab070d5fd537536a1de190b4" "$tmp/image-bundles/stateport-web.sigstore.json" "stateport-web.sigstore.json"
+retain_slot "$tmp/e5f3acf9544b7fac74873193a1fc7a7e6e8953406f320e03a581388916d7a1a1" "$tmp/image-bundles/stateport-worker.sigstore.json" "stateport-worker.sigstore.json"
 sudo -v
 sudo apt-get update -o DPkg::Lock::Timeout=300 || { printf "StatePort apt update retry after lock contention\n" >&2; sleep 10; sudo apt-get update -o DPkg::Lock::Timeout=300; }
 sudo apt-get install -y --no-install-recommends -o DPkg::Lock::Timeout=300 ca-certificates fuse3 nftables libglib2.0-0t64 libgpgme11t64 libdevmapper1.02.1 libfuse3-3 libseccomp2 libsqlite3-0 libaudit1 libselinux1 dbus-broker dbus-session-bus-common libpam-systemd systemd python3 python3-venv
@@ -258,10 +260,10 @@ sudo -n install -o root -g root -m 0400 "$tmp/release-index.json" "$root_stage/r
 sudo -n install -o root -g root -m 0400 "$tmp/release-index.sigstore.json" "$root_stage/release-index.sigstore.json"
 sudo -n install -o root -g root -m 0400 "$tmp/release.pub" "$root_stage/release.pub"
 sudo -n install -o root -g root -m 0400 "$tmp/podman-package-bundle.tar" "$root_stage/podman-package-bundle.tar"
-sudo -n sh -c 'printf "%s  %s\n" "$1" "$2" | sha256sum -c --status' sh "b49dbcde86b99a1fa06210d0c2f625e52b82c135d5f76adcc0f903eceeb84d8d" "$root_stage/installer" || fail "Sealed installer copy changed."
+sudo -n sh -c 'printf "%s  %s\n" "$1" "$2" | sha256sum -c --status' sh "0b35b3b4b40d4e32483e9fd884985a7731a3c763f52f62c8e55f4a5b0be8bc18" "$root_stage/installer" || fail "Sealed installer copy changed."
 sudo -n sh -c 'printf "%s  %s\n" "$1" "$2" | sha256sum -c --status' sh "4629c757b7618056f8ddd7e2625ae9fdd94c0372a65049520bc7d9df9efc7f71" "$root_stage/cosign" || fail "Sealed Cosign copy changed."
-sudo -n sh -c 'printf "%s  %s\n" "$1" "$2" | sha256sum -c --status' sh "8dad6399e66956d1dcb5aebb5a5119c6001617b3279902f0746857b5e6bfac47" "$root_stage/release-index.json" || fail "Sealed release index changed."
-sudo -n sh -c 'printf "%s  %s\n" "$1" "$2" | sha256sum -c --status' sh "ff36ca75c5139d58a92e7d9b78a53f120aa4e4f42cdf9be35603eef3e682b557" "$root_stage/release-index.sigstore.json" || fail "Sealed release signature changed."
+sudo -n sh -c 'printf "%s  %s\n" "$1" "$2" | sha256sum -c --status' sh "e2391732872e05402c2ae8bdb018b1b64b284c2490d88197a37cf011b6f8b809" "$root_stage/release-index.json" || fail "Sealed release index changed."
+sudo -n sh -c 'printf "%s  %s\n" "$1" "$2" | sha256sum -c --status' sh "810a9a5e27e03063f155cf71481f861bf0b16855b8a74a463d3e02d8225b00e4" "$root_stage/release-index.sigstore.json" || fail "Sealed release signature changed."
 sudo -n sh -c 'printf "%s  %s\n" "$1" "$2" | sha256sum -c --status' sh "798d6ea6e2703993758f0fb45618b1f05b40f6ef116e7d286fd5a6867859b8ad" "$root_stage/release.pub" || fail "Sealed trust key changed."
 sudo -n sh -c 'printf "%s  %s\n" "$1" "$2" | sha256sum -c --status' sh "a472bd4a28dacc2ccfc286ed35ba76d3bfaa71fc765a5b51d09b84cbc0c9ea2f" "$root_stage/podman-package-bundle.tar" || fail "Sealed package bundle changed."
 sudo -n "$root_stage/installer" --verify-sealed-podman-package-bundle \
@@ -331,9 +333,9 @@ ensure_root_helper_parent / 0 0 sudo
 sudo -n install -o root -g root -m 0555 "$tmp/provisioner" /usr/local/libexec/stateport-execution-host-provision
 sudo -n /usr/local/libexec/stateport-execution-host-provision materialize \
   --execution-host-provisioner /usr/local/libexec/stateport-execution-host-provision \
-  --execution-host-provisioner-digest "sha256:312ef592fb05bb45458b8f58e5551f0e5594bde2111d90555267494785da6d32" \
-  --execution-host-provisioner-bytes "35615" \
-  --updater-wheel "$tmp/updater" --updater-wheel-digest "sha256:706120f5ec0e8b93619bf391ce3be59879587527427f977adec52e62165ad0ba" \
+  --execution-host-provisioner-digest "sha256:3545e3216fded144b4dc783bf38ad1622b808c1e3e821ec729112bc875011d1e" \
+  --execution-host-provisioner-bytes "35799" \
+  --updater-wheel "$tmp/updater" --updater-wheel-digest "sha256:3c74e81f0f2902334f6e410d8f5c4698353b150751db29d360c2c5c60ae6078e" \
   --release-index "$tmp/release-index.json" --bundle-root "$tmp" \
   --cosign "$tmp/cosign" --cosign-digest "sha256:4629c757b7618056f8ddd7e2625ae9fdd94c0372a65049520bc7d9df9efc7f71" \
   --trust-public-key "$tmp/release.pub" --trust-public-key-digest "sha256:798d6ea6e2703993758f0fb45618b1f05b40f6ef116e7d286fd5a6867859b8ad" \
@@ -366,4 +368,10 @@ python3 "$tmp/installer" \
   --podman-package-preflight "$tmp/podman-package-preflight.json" \
   --confirmed-package-plan-digest "$package_plan_digest" \
   --yes --confirmed-plan-digest "$install_plan_digest"
+sudo -n /usr/local/libexec/stateport-execution-host-provision initialize-updater \
+  --release-index "$tmp/release-index.json" --bundle-root "$tmp" \
+  --cosign /usr/local/lib/stateport/tools/cosign \
+  --trust-public-key /etc/stateport/alpha-2026-08-cosign.pub \
+  --trust-key-id "stateport-alpha-private-2026-08" --trust-key-fingerprint "sha256:df24c1ccdcf1ecf72da6d8d81ae8b0ffaca8d399826091b107cc4d6905915ea5" \
+  --channel alpha --actor-id "local-owner-$(id -un)"
 printf "StatePort %s installed successfully for %s.\n" "$STATEPORT_VERSION" "$TARGET"
