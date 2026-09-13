@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="StatePort Alpha.16 files remain available, but its fresh installer has a known signature-check failure. Wait for a corrected release.">
+    <meta name="description" content="Alpha.17 is the current signed candidate; its rehearsal passed in simulation and native qualification is pending. The Alpha.16 installer remains available but blocked.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="StatePort release status">
-    <meta property="og:description" content="Alpha.16 is published; fresh installation is blocked by a known signature-check failure.">
+    <meta property="og:description" content="Alpha.17 is the current signed candidate; its rehearsal passed in isolated simulation and native qualification is pending. Alpha.16 fresh installation remains blocked.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/releases/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -31,7 +31,7 @@
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "StatePort release status",
-        "description": "Alpha.16 is the current signed public-test release for Windows 11, WSL2, and Ubuntu 24.04.",
+        "description": "StatePort 0.1.0-alpha.17 is the current signed candidate for Windows 11, WSL2, and Ubuntu 24.04; native qualification remains pending.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/releases/",
         "dateModified": "2026-09-04",
         "inLanguage": "en"
@@ -80,12 +80,12 @@
         </aside>
 
         <article class="prose release-overview" data-no-toc>
-          <p class="notice"><strong>Alpha.16 remains published, but fresh installation is blocked by a known signature-check failure.</strong> Anonymous image downloads also fail with HTTP 401 because the release image registry packages are private. Fixing the signature check alone will not complete installation. Wait for a corrected, qualified release; repeating this installer does not repair either failure. Published files remain available for inspection.</p>
+          <p class="notice"><strong>StatePort 0.1.0-alpha.17 is the current signed candidate; its complete installed-product rehearsal passed in an isolated simulation environment and native Windows 11/WSL2 qualification remains pending. Alpha.16 remains published, but fresh installation is blocked by a known signature-check failure.</strong> Anonymous image downloads also fail with HTTP 401 because the release image registry packages are private. Fixing the signature check alone will not complete installation. Wait for a corrected, qualified release; repeating this installer does not repair either failure. Published files remain available for inspection.</p>
           <div class="release-summary" id="current-status">
             <div>
               <p class="release-summary-label">Current software status</p>
-              <h2>Alpha.16 fresh installation is blocked</h2>
-              <p>Alpha.16 is the current signed public-test candidate for Windows 11 with WSL2 and Ubuntu 24.04. Its signed package contains the web interface, API, worker, persistent application service, rootless Podman stack, and isolated execution host; the fresh installer currently fails before completing this setup. ProjectState, StudyState, and portable StateSpec repositories can be reviewed and copied into managed applications.</p>
+              <h2>Alpha.17 is the current signed candidate</h2>
+              <p>StatePort 0.1.0-alpha.17 is the current signed candidate; its complete installed-product rehearsal passed in an isolated simulation environment and native Windows 11/WSL2 qualification remains pending. The published Alpha.16 package contains the web interface, API, worker, persistent application service, rootless Podman stack, and isolated execution host; its fresh installer currently fails before completing this setup. ProjectState, StudyState, and portable StateSpec repositories can be reviewed and copied into managed applications.</p>
               <p><a class="button button--ink" href="../download/">Open download page <span aria-hidden="true">↗</span></a></p>
             </div>
             <p class="release-review-date">Status reviewed<br><time datetime="2026-09-05">5 September 2026</time></p>
@@ -101,8 +101,9 @@
                   <tr><th scope="row">Website</th><td>Live</td></tr>
                   <tr><th scope="row">Product preview</th><td>Available</td></tr>
                   <tr><th scope="row">Documentation</th><td>Available</td></tr>
-                  <tr><th scope="row">Alpha.16 signed release files</th><td>Available</td></tr>
-                  <tr><th scope="row">Alpha.16 one-line installer</th><td>Fresh installation blocked; correction pending</td></tr>
+                  <tr><th scope="row">Alpha.17 signed candidate files</th><td>Available; native qualification pending</td></tr>
+                  <tr><th scope="row">Alpha.17 one-line installer</th><td>Complete installed-product rehearsal passed in an isolated simulation; native Windows 11/WSL2 qualification pending</td></tr>
+                  <tr><th scope="row">Alpha.16 signed release files</th><td>Available; fresh installation blocked</td></tr>
                   <tr><th scope="row">Seven release images</th><td>Exact signed GHCR digests; anonymous downloads blocked (HTTP 401)</td></tr>
                   <tr><th scope="row">Clean isolated Ubuntu 24.04 rehearsal</th><td>Fresh public install failed its package signature check; service and rerun steps did not pass</td></tr>
                   <tr><th scope="row">Native Windows/WSL owner acceptance</th><td>Not yet recorded</td></tr>
@@ -116,7 +117,8 @@
           <section id="release-evidence" aria-labelledby="release-evidence-heading">
             <h2 id="release-evidence-heading">Before you use StatePort</h2>
             <p>StatePort is in early alpha. Do not use it for important data.</p>
-            <p><strong>Alpha.16 remains published, but fresh installation is blocked by a known signature-check failure.</strong> Its signed index binds the corrected installer source identity, runtime package bundle, seven image digests, and image signatures. Anonymous public-byte verification passed for the published files; native Windows/WSL acceptance remains a separate gate.</p>
+            <p><strong>StatePort 0.1.0-alpha.17 is the current signed candidate; its complete installed-product rehearsal passed in an isolated simulation environment and native Windows 11/WSL2 qualification remains pending.</strong> Its signed release index passed independent verifier review, and its complete installed-product rehearsal passed in an isolated simulation environment. Alpha.16 remains published, but fresh installation is blocked by a known signature-check failure; its signed index binds the corrected installer source identity, runtime package bundle, seven image digests, and image signatures. Anonymous public-byte verification passed for the published files; native Windows/WSL acceptance remains a separate gate.</p>
+            <p>The Alpha.17 evidence entry is recorded at <code>evidence/alpha17-public-install-001/summary.md</code> in this repository.</p>
             <p><a href="../download/technical-release-files.html">Technical release files</a> remain available for developers and reviewers.</p>
           </section>
 
