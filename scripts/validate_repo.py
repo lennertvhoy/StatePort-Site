@@ -17,6 +17,7 @@ from install_transport import (
     MANIFEST_DIGESTS,
     MUTABLE_BOOTSTRAP_SHA256,
     MUTABLE_BOOTSTRAP_SIZE,
+    MUTABLE_BOOTSTRAP_URL,
     RETAINED_ALPHA10_BOOTSTRAP_SHA256,
     RETAINED_ALPHA10_BOOTSTRAP_SIZE,
     RETAINED_ALPHA10_MANIFEST_DIGESTS,
@@ -911,6 +912,8 @@ def validate_current_release() -> None:
         raise AssertionError("Alpha.16 rollback must remain explicitly unsupported")
 
     versioned = require(f"{release_root}/bootstrap.sh")
+    mutable_root = "download/0.1.0-alpha.17"
+    mutable_versioned = require(f"{mutable_root}/bootstrap.sh")
     mutable = require("download/install.sh")
     for path in (versioned, mutable):
         if stat.S_IMODE(path.stat().st_mode) != 0o755:
@@ -919,11 +922,13 @@ def validate_current_release() -> None:
         raise AssertionError("Immutable Alpha.16 bootstrap size changed")
     if VERSIONED_BOOTSTRAP_URL != f"https://lennertvhoy.github.io/StatePort-Site/{release_root}/bootstrap.sh":
         raise AssertionError("Immutable Alpha.16 bootstrap URL is stale")
-    if mutable.stat().st_size != MUTABLE_BOOTSTRAP_SIZE or mutable.read_bytes() != versioned.read_bytes():
-        raise AssertionError("Mutable Alpha.16 bootstrap must equal the versioned bytes")
+    if mutable.stat().st_size != MUTABLE_BOOTSTRAP_SIZE or mutable.read_bytes() != mutable_versioned.read_bytes():
+        raise AssertionError("Mutable bootstrap must equal the versioned Alpha.17 bytes")
     if hashlib.sha256(mutable.read_bytes()).hexdigest() != MUTABLE_BOOTSTRAP_SHA256:
-        raise AssertionError("Mutable Alpha.16 bootstrap digest is stale")
-    bootstrap = mutable.read_text(encoding="utf-8")
+        raise AssertionError("Mutable Alpha.17 bootstrap digest is stale")
+    if MUTABLE_BOOTSTRAP_URL != f"https://lennertvhoy.github.io/StatePort-Site/{mutable_root}/bootstrap.sh":
+        raise AssertionError("Mutable Alpha.17 bootstrap URL is stale")
+    bootstrap = versioned.read_text(encoding="utf-8")
     for fragment in (
         CURRENT_TARGET_ID,
         "RELEASE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.16\"",
@@ -936,6 +941,30 @@ def validate_current_release() -> None:
     ):
         if fragment not in bootstrap:
             raise AssertionError(f"Alpha.16 bootstrap lacks required contract: {fragment}")
+    mutable_bootstrap = mutable.read_text(encoding="utf-8")
+    for fragment in (
+        CURRENT_TARGET_ID,
+        "RELEASE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.17\"",
+        "PROBE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/alpha17-manifests\"",
+        "Windows 11 build 22000 or newer is required.",
+        "Ubuntu 24.04 for WSL is required.",
+        "WSL2 is required; WSL1 and native Linux are not this release target.",
+        "Type install-packages to authorize",
+        "Type install-exact to authorize",
+    ):
+        if fragment not in mutable_bootstrap:
+            raise AssertionError(f"Alpha.17 mutable bootstrap lacks required contract: {fragment}")
+    alpha17_index = json.loads(require(f"{mutable_root}/release-index.json").read_text(encoding="utf-8"))
+    alpha17_images = {
+        image.get("imageId"): image.get("digest")
+        for image in alpha17_index.get("signed", {}).get("images", [])
+    }
+    if not alpha17_images:
+        raise AssertionError("Alpha.17 signed index must declare its seven images")
+    for image_id, digest in alpha17_images.items():
+        manifest = require(f"download/alpha17-manifests/{image_id}.json")
+        if hashlib.sha256(manifest.read_bytes()).hexdigest() != str(digest).removeprefix("sha256:"):
+            raise AssertionError(f"Alpha.17 manifest does not match the signed index: {image_id}")
     for image_id, expected in MANIFEST_DIGESTS.items():
         manifest = require(f"{CURRENT_MANIFEST_ROOT}/{image_id}.json")
         if hashlib.sha256(manifest.read_bytes()).hexdigest() != expected:

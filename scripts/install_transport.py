@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bind immutable Alpha.16 bytes and its exact install-enabled mutable route."""
+"""Bind immutable Alpha.16 bytes and the exact Alpha.17 mutable install route."""
 
 from __future__ import annotations
 
@@ -12,11 +12,16 @@ VERSIONED_BOOTSTRAP_URL = (
 )
 VERSIONED_BOOTSTRAP_SHA256 = "6feedf5273547f4a98f5d8edb6fe24e729104ad822c4d58da70cb1f0fdad417a"
 VERSIONED_BOOTSTRAP_SIZE = 32_081
-# Alpha.16 deliberately serves identical bootstrap bytes at the mutable
-# one-command route and the immutable versioned route. Every release input is
-# digest-pinned inside the bootstrap; no mutable repair layer is applied.
-MUTABLE_BOOTSTRAP_SHA256 = VERSIONED_BOOTSTRAP_SHA256
-MUTABLE_BOOTSTRAP_SIZE = VERSIONED_BOOTSTRAP_SIZE
+# The mutable one-command route now serves the Alpha.17 signed candidate. Its
+# bytes must equal the versioned Alpha.17 bootstrap; Alpha.16 remains an
+# immutable pinned predecessor. Every release input is digest-pinned inside
+# the bootstrap; no mutable repair layer is applied.
+MUTABLE_BOOTSTRAP_URL = (
+    "https://lennertvhoy.github.io/StatePort-Site/"
+    "download/0.1.0-alpha.17/bootstrap.sh"
+)
+MUTABLE_BOOTSTRAP_SHA256 = "2278267220fdb069180723ac2982db7a4f4de3309167ec2fe5e95e6da2741b98"
+MUTABLE_BOOTSTRAP_SIZE = 32_806
 RETAINED_ALPHA11_BOOTSTRAP_SHA256 = "9aaea4790059579d22db4e5537485a84cc094d9f2b8b0bafc04c618b5e0052df"
 RETAINED_ALPHA11_BOOTSTRAP_SIZE = 31_576
 RETAINED_ALPHA11_INDEX_SHA256 = "8a26f7d36b5c6883c314db7323c4a79a497e0973e0ec671c02c6b38f0f533f2c"
