@@ -60,7 +60,7 @@ sources of current truth.
 - The human owns the user, outcome, scope, non-goals, acceptance criteria,
   governance, risk exceptions, and product acceptance.
 - The 2026-09-04 owner directive authorizes the bounded work required to make
-  the documented Alpha.16 one-line installer and complete product work. For
+  the documented Alpha.17 one-line installer and complete product work. For
   this repository that includes additive release materialization, documentation
   changes, validated commits, push to `main`, Pages deployment, anonymous byte
   verification, and cleanup of artifacts created by this work.
