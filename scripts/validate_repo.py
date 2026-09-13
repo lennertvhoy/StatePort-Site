@@ -35,15 +35,15 @@ from projectstate_gate import validate as validate_projectstate
 
 ROOT = Path(__file__).resolve().parents[1]
 
-CURRENT_RELEASE_VERSION = "0.1.0-alpha.16"
-CURRENT_RELEASE_LABEL = "Alpha.16"
-CURRENT_RELEASE_ROOT = "download/0.1.0-alpha.16"
-CURRENT_MANIFEST_ROOT = "download/alpha16-manifests"
-CURRENT_RELEASE_INDEX_SHA256 = "8dad6399e66956d1dcb5aebb5a5119c6001617b3279902f0746857b5e6bfac47"
-CURRENT_RELEASE_INDEX_SIGSTORE_SHA256 = "ff36ca75c5139d58a92e7d9b78a53f120aa4e4f42cdf9be35603eef3e682b557"
-CURRENT_SIGNED_PAYLOAD_SHA256 = "5594dc7dc3711ffdfbd74da271012c02dc23e5fa626d12f59d41a768058b2bac"
+CURRENT_RELEASE_VERSION = "0.1.0-alpha.17"
+CURRENT_RELEASE_LABEL = "Alpha.17"
+CURRENT_RELEASE_ROOT = "download/0.1.0-alpha.17"
+CURRENT_MANIFEST_ROOT = "download/alpha17-manifests"
+CURRENT_RELEASE_INDEX_SHA256 = "e2391732872e05402c2ae8bdb018b1b64b284c2490d88197a37cf011b6f8b809"
+CURRENT_RELEASE_INDEX_SIGSTORE_SHA256 = "810a9a5e27e03063f155cf71481f861bf0b16855b8a74a463d3e02d8225b00e4"
+CURRENT_SIGNED_PAYLOAD_SHA256 = "f5bebd221a33e787c1d61ebb59e3fd39c318faca2bafe63a2211c1f76e1168e8"
 CURRENT_TRUST_PUBLIC_KEY_SHA256 = "798d6ea6e2703993758f0fb45618b1f05b40f6ef116e7d286fd5a6867859b8ad"
-INSTALLER_STATUS = "Alpha.16 remains published, but fresh installation is blocked by a known signature-check failure."
+INSTALLER_STATUS = "StatePort 0.1.0-alpha.17 is the current signed candidate; its complete installed-product rehearsal passed in an isolated simulation environment and native Windows 11/WSL2 qualification remains pending."
 
 # These publication anchors are intentionally duplicated here instead of being
 # imported from build_immutable_manifest.py. The validator is an independent
@@ -70,19 +70,30 @@ ALPHA3_CURATED_SOURCE_ARCHIVE = {
     "sha256": "17f5680c30841b1e831b37df02dca8f03c2c03d265a42633dd525f99bd613398",
 }
 CURRENT_CANONICAL_SOURCE_IDENTITY = {
+    "commit": "adb2f7b1038b714a64e2ddbac347b95113c0ec92",
+    "tree": "ea03b38a6cc00cdeb953616304aa112bf71ae803",
+}
+# Retained immutable Alpha.16 canonical identity (byte-anchored also by
+# config/immutable-release-trees.json; per-field identity retained here).
+RETAINED_ALPHA16_IDENTITY = {
     "commit": "0807b68edca8a1ae6fc1c1f16ddba9740783a951",
     "tree": "126587c310cf195e1ac06a59d76134ab6f8cc975",
 }
 CURRENT_PUBLIC_SNAPSHOT_IDENTITY = {
+    "commit": "f8cca58a511a31353a7c70e40e9b3a20d3cdad1d",
+    "tree": "8d9fbbd3060d5a632687770ea7e2866e87b82ffe",
+}
+RETAINED_ALPHA16_PUBLIC_SNAPSHOT_IDENTITY = {
     "commit": "05c2ace3b07233c1a84bd2a4b006c7ec6d2a918f",
     "tree": "cdc5769ff933599fba8c74d95842eb7cae0b0bd5",
 }
 CURRENT_CURATED_SOURCE_ARCHIVE = {
-    "bytes": 24_463_360,
-    "sha256": "7e106b4d72895f5d77593d0111d4d53bdb02a2318d2c63e0a364630c31e1d47c",
+    "bytes": 27_392_000,
+    "sha256": "58c6d4fe9fdf0113a3815d71c10c99aff7a9d0eb2f40a8e0e3b95e95db21b681",
 }
 CURRENT_PUBLIC_SOURCE_URL = "https://github.com/lennertvhoy/StatePort-Source.git"
 CURRENT_TARGET_ID = "wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet"
+RETAINED_ALPHA16_PREDECESSOR_VERSION = "0.1.0-alpha.16"
 RETAINED_ALPHA11_IDENTITY = {
     "commit": "57dae10ff94c5b6aa37cc5d23509a89d91887cac",
     "tree": "c17f0ba7b44cfbf3f30ebe1938d92e640434a640",
@@ -819,34 +830,34 @@ def validate_current_release() -> None:
     signed = index.get("signed", {})
     release = signed.get("release", {})
     if release.get("version") != CURRENT_RELEASE_VERSION or release.get("qualification") != "candidate":
-        raise AssertionError("Alpha.16 must remain an explicitly unqualified candidate")
+        raise AssertionError("the current release must remain an explicitly unqualified candidate")
 
     signatures = index.get("signatures", [])
     if len(signatures) != 1:
-        raise AssertionError("Alpha.16 release index must carry exactly one index signature")
+        raise AssertionError("the current release index must carry exactly one index signature")
     signature = signatures[0]
     if signature.get("subjectDigest") != f"sha256:{CURRENT_SIGNED_PAYLOAD_SHA256}":
-        raise AssertionError("Alpha.16 signed payload digest is stale")
+        raise AssertionError("current signed payload digest is stale")
     if signature.get("bundle", {}).get("digest") != f"sha256:{CURRENT_RELEASE_INDEX_SIGSTORE_SHA256}":
-        raise AssertionError("Alpha.16 release-index signature descriptor is stale")
+        raise AssertionError("current release-index signature descriptor is stale")
     if signature.get("publicKeyFingerprint") != "sha256:df24c1ccdcf1ecf72da6d8d81ae8b0ffaca8d399826091b107cc4d6905915ea5":
-        raise AssertionError("Alpha.16 trust-key fingerprint is stale")
+        raise AssertionError("current trust-key fingerprint is stale")
 
     source = signed.get("source", {})
     for field, expected in CURRENT_CANONICAL_SOURCE_IDENTITY.items():
         if source.get(field) != expected:
-            raise AssertionError(f"Alpha.16 release index has the wrong canonical source {field}")
+            raise AssertionError(f"current release index has the wrong canonical source {field}")
     public_snapshot = source.get("publicSnapshot", {})
     for field, expected in CURRENT_PUBLIC_SNAPSHOT_IDENTITY.items():
         if public_snapshot.get(field) != expected:
-            raise AssertionError(f"Alpha.16 release index has the wrong public snapshot {field}")
+            raise AssertionError(f"current release index has the wrong public snapshot {field}")
     for field in ("authorityUrl", "repository"):
         if public_snapshot.get(field) != CURRENT_PUBLIC_SOURCE_URL:
-            raise AssertionError(f"Alpha.16 public snapshot {field} is not remotely resolvable")
+            raise AssertionError(f"current public snapshot {field} is not remotely resolvable")
 
     targets = signed.get("targets", [])
     if len(targets) != 1 or targets[0].get("targetId") != CURRENT_TARGET_ID:
-        raise AssertionError("Alpha.16 must name only the exact WSL2 Ubuntu 24.04 target")
+        raise AssertionError("the current release must name only the exact WSL2 Ubuntu 24.04 target")
 
     artifact_paths = {
         "compose": "compose.yaml",
@@ -864,10 +875,10 @@ def validate_current_release() -> None:
         path = require(f"{release_root}/{name}")
         observed = hashlib.sha256(path.read_bytes()).hexdigest()
         if descriptor.get("digest") != f"sha256:{observed}" or descriptor.get("size") != path.stat().st_size:
-            raise AssertionError(f"Alpha.16 artifact descriptor mismatch: {artifact_id}")
+            raise AssertionError(f"current artifact descriptor mismatch: {artifact_id}")
     source_archive = artifacts.get("sourceArchive", {})
     if source_archive.get("digest") != f"sha256:{CURRENT_CURATED_SOURCE_ARCHIVE['sha256']}" or source_archive.get("size") != CURRENT_CURATED_SOURCE_ARCHIVE["bytes"]:
-        raise AssertionError("Alpha.16 curated source archive identity is stale")
+        raise AssertionError("current curated source archive identity is stale")
 
     expected_images = {image_id: f"sha256:{digest}" for image_id, digest in MANIFEST_DIGESTS.items()}
     images = signed.get("images", [])
@@ -876,13 +887,13 @@ def validate_current_release() -> None:
     for image in images:
         image_id = image["imageId"]
         digest = expected_images[image_id]
-        if image.get("reference") != f"ghcr.io/lennertvhoy/stateport/{image_id}@{digest}":
-            raise AssertionError(f"Alpha.16 image reference is not public and digest-pinned: {image_id}")
+        if image.get("reference") != f"ghcr.io/lennertvhoy/{image_id}@{digest}":
+            raise AssertionError(f"current image reference is not public and digest-pinned: {image_id}")
         bundle = image.get("signature", {}).get("bundle", {})
         bundle_path = require(f"{release_root}/signatures/{image_id}.sigstore.json")
         observed = hashlib.sha256(bundle_path.read_bytes()).hexdigest()
         if bundle.get("digest") != f"sha256:{observed}" or bundle.get("size") != bundle_path.stat().st_size:
-            raise AssertionError(f"Alpha.16 image signature descriptor mismatch: {image_id}")
+            raise AssertionError(f"current image signature descriptor mismatch: {image_id}")
 
     supply_chain_paths = {
         "doubleBuildComparison": "double-build-comparison.json",
@@ -903,13 +914,13 @@ def validate_current_release() -> None:
     compatibility = signed.get("compatibility", {})
     predecessor = successor.get("predecessor", {})
     if predecessor.get("formatVersion") != "stateport.release-predecessor/v1":
-        raise AssertionError("Alpha.16 successor contract must identify its authenticated predecessor")
-    if compatibility.get("predecessor", {}).get("version") != "0.1.0-alpha.15":
-        raise AssertionError("Alpha.16 compatibility must identify Alpha.15 as its predecessor")
-    if compatibility.get("predecessor", {}).get("signedPayloadDigest") != "sha256:66483f166570dea5135b732bd3c31a05d52691d48a3e8ddd94ae793d3654a47d":
-        raise AssertionError("Alpha.16 compatibility predecessor payload is stale")
+        raise AssertionError("the current successor contract must identify its authenticated predecessor")
+    if compatibility.get("predecessor", {}).get("version") != RETAINED_ALPHA16_PREDECESSOR_VERSION:
+        raise AssertionError("current compatibility must identify its authenticated predecessor")
+    if compatibility.get("predecessor", {}).get("signedPayloadDigest") != "sha256:5594dc7dc3711ffdfbd74da271012c02dc23e5fa626d12f59d41a768058b2bac":
+        raise AssertionError("current compatibility predecessor payload is stale")
     if compatibility.get("rollback", {}).get("supported") is not False:
-        raise AssertionError("Alpha.16 rollback must remain explicitly unsupported")
+        raise AssertionError("current rollback must remain explicitly unsupported")
 
     versioned = require(f"{release_root}/bootstrap.sh")
     mutable_root = "download/0.1.0-alpha.17"
@@ -917,7 +928,7 @@ def validate_current_release() -> None:
     mutable = require("download/install.sh")
     for path in (versioned, mutable):
         if stat.S_IMODE(path.stat().st_mode) != 0o755:
-            raise AssertionError(f"Alpha.16 bootstrap route mode must be exactly 0755: {path}")
+            raise AssertionError(f"bootstrap route mode must be exactly 0755: {path}")
     if versioned.stat().st_size != VERSIONED_BOOTSTRAP_SIZE:
         raise AssertionError("Immutable Alpha.16 bootstrap size changed")
     if VERSIONED_BOOTSTRAP_URL != f"https://lennertvhoy.github.io/StatePort-Site/{release_root}/bootstrap.sh":
@@ -931,8 +942,8 @@ def validate_current_release() -> None:
     bootstrap = versioned.read_text(encoding="utf-8")
     for fragment in (
         CURRENT_TARGET_ID,
-        "RELEASE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.16\"",
-        "PROBE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/alpha16-manifests\"",
+        "RELEASE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.17\"",
+        "PROBE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/alpha17-manifests\"",
         "Windows 11 build 22000 or newer is required.",
         "Ubuntu 24.04 for WSL is required.",
         "WSL2 is required; WSL1 and native Linux are not this release target.",
@@ -940,7 +951,7 @@ def validate_current_release() -> None:
         "Type install-exact to authorize",
     ):
         if fragment not in bootstrap:
-            raise AssertionError(f"Alpha.16 bootstrap lacks required contract: {fragment}")
+            raise AssertionError(f"versioned bootstrap lacks required contract: {fragment}")
     mutable_bootstrap = mutable.read_text(encoding="utf-8")
     for fragment in (
         CURRENT_TARGET_ID,
@@ -968,7 +979,7 @@ def validate_current_release() -> None:
     for image_id, expected in MANIFEST_DIGESTS.items():
         manifest = require(f"{CURRENT_MANIFEST_ROOT}/{image_id}.json")
         if hashlib.sha256(manifest.read_bytes()).hexdigest() != expected:
-            raise AssertionError(f"Alpha.16 manifest is stale: {image_id}")
+            raise AssertionError(f"current manifest is stale: {image_id}")
 
 
 def validate_retained_alpha15() -> None:

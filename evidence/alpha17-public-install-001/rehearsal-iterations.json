@@ -1,0 +1,36 @@
+{
+  "schema": "stateport.site-failed-attempts/v1",
+  "releaseId": "stateport-alpha-0.1.0-alpha.17",
+  "attempts": [
+    {
+      "attempt": 1,
+      "boundary": "installed-rehearsal-qemu-r1 (2026-09-13 09:10Z)",
+      "failure": "installer exit 77: control-account updater initialization refused",
+      "rootCause": "updater genesis unconditionally required /etc/stateport/workspace-issuer-context.json, which is published only when the topology ships a workspace-authority web unit; requirement introduced 2026-09-09 and never exercisable before this rehearsal",
+      "fix": "receipt-backed operator context (source commit c419a6da); re-signed as run r4",
+      "receipts": [
+        "installed-rehearsal-qemu-r1/rehearsal-receipt.json",
+        "phase4-signing-prep-r1/phase4-signing-terminal-r4.json"
+      ]
+    },
+    {
+      "attempt": 2,
+      "boundary": "installed-rehearsal-qemu-r2 (2026-09-13 11:07Z)",
+      "failure": "web proxy execution host status grantBound=false after install",
+      "rootCause": "STATEPORT_EXECUTION_GRANT_DIGEST injection matched the unit template filename (stateport-web in path); materialized control-plane unit filenames are content-addressed hashes without the service name, so the env was never injected on installed guests",
+      "fix": "inject by the signed Label=io.stateport.service.id line (source commit 8d413c99); re-signed as run r5",
+      "receipts": [
+        "installed-rehearsal-qemu-r2/rehearsal-receipt.json",
+        "phase4-signing-prep-r1/phase4-signing-terminal-r5.json"
+      ]
+    },
+    {
+      "attempt": 3,
+      "boundary": "installed-rehearsal-qemu-r3 (2026-09-13 17:15Z)",
+      "failure": "harness assertion: fresh GET /v1/provider/status expected executableInstalled=true",
+      "rootCause": "hardcoded harness expectation contradicted the product contract that GET executes nothing (status reports unverified until the provider sandbox actually runs the CLI); the sandbox probe executing the real codex CLI passed",
+      "fix": "harness expectation corrected to the designed no-exec-on-GET observation (site-independent product repo commit 03e7bccc); candidate bytes unchanged",
+    }
+  ],
+  "resolvedBy": "installed-rehearsal-qemu-r4/rehearsal-receipt.json result=passed (simulation_only evidence class), binding releaseIndexDigest sha256:e2391732872e05402c2ae8bdb018b1b64b284c2490d88197a37cf011b6f8b809"
+}

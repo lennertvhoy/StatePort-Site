@@ -230,10 +230,10 @@ class CurrentBootstrapTests(unittest.TestCase):
         versioned = ROOT / "download/0.1.0-alpha.16/bootstrap.sh"
         self.assertEqual(
             hashlib.sha256(versioned.read_bytes()).hexdigest(),
-            install_transport.VERSIONED_BOOTSTRAP_SHA256,
+            install_transport.RETAINED_ALPHA16_BOOTSTRAP_SHA256,
         )
-        self.assertEqual(len(versioned.read_bytes()), install_transport.VERSIONED_BOOTSTRAP_SIZE)
-        for image_id, digest in install_transport.MANIFEST_DIGESTS.items():
+        self.assertEqual(len(versioned.read_bytes()), install_transport.RETAINED_ALPHA16_BOOTSTRAP_SIZE)
+        for image_id, digest in install_transport.RETAINED_ALPHA16_MANIFEST_DIGESTS.items():
             manifest = ROOT / "download/alpha16-manifests" / f"{image_id}.json"
             self.assertEqual(hashlib.sha256(manifest.read_bytes()).hexdigest(), digest)
 
