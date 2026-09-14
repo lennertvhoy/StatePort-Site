@@ -43,7 +43,7 @@ CURRENT_RELEASE_INDEX_SHA256 = "e2391732872e05402c2ae8bdb018b1b64b284c2490d88197
 CURRENT_RELEASE_INDEX_SIGSTORE_SHA256 = "810a9a5e27e03063f155cf71481f861bf0b16855b8a74a463d3e02d8225b00e4"
 CURRENT_SIGNED_PAYLOAD_SHA256 = "f5bebd221a33e787c1d61ebb59e3fd39c318faca2bafe63a2211c1f76e1168e8"
 CURRENT_TRUST_PUBLIC_KEY_SHA256 = "798d6ea6e2703993758f0fb45618b1f05b40f6ef116e7d286fd5a6867859b8ad"
-INSTALLER_STATUS = "StatePort 0.1.0-alpha.17 is the current signed candidate; its complete installed-product rehearsal passed in an isolated simulation environment and native Windows 11/WSL2 qualification remains pending."
+INSTALLER_STATUS = "StatePort 0.1.0-alpha.17 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment and its native Windows 11/WSL2 public-route installation passed for the service stack, execution host, provider sandbox and reinstall. Further lifecycle, template, UI and efficiency checks are in progress."
 
 # These publication anchors are intentionally duplicated here instead of being
 # imported from build_immutable_manifest.py. The validator is an independent

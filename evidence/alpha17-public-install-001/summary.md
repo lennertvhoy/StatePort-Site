@@ -14,7 +14,18 @@ From a genuinely fresh Windows 11 WSL2 Ubuntu 24.04 AMD64 environment, run the
 one anonymous public command (`curl -fsSL
 https://lennertvhoy.github.io/StatePort-Site/download/install.sh | sh`),
 receive the complete product, exercise it, reboot, uninstall, and reinstall.
-Status: **pending native execution.** The simulation-class rehearsal of the
+Status: **native installation qualified on the real public route
+(2026-09-14 14:07Z)** — from a retained Windows 11 (build 10.0.26200) VM with
+genuine WSL2 (no identity shims, `identityShims: []`), the anonymous public
+command installed and ran the complete service stack (web, control API,
+worker, execution host with `grantBound: true`), re-ran installation, and
+passed both runtime smokes and the provider sandbox executing the real codex
+CLI, all against the real public route (anonymous Pages + anonymous GHCR).
+Receipt `native-wsl2-qualification-r3/rehearsal-receipt.json` sha256
+`ea5b8468452af80cac96f9797123f2e8d112438b5aa8929ea30cfa4250fdf0f3`
+(byte-identical guest and host copies), substrate `native-wsl2`, binding
+`releaseIndexDigest sha256:e2391732…`. The earlier simulation-class
+rehearsal of the
 exact published bytes passed end-to-end (install, all services healthy,
 execution host bound, provider sandbox executing the real codex CLI with full
 boundary evidence, install-rerun, runtime smokes):
@@ -66,9 +77,9 @@ native evidence; the native journey receipt will be recorded here when run.
 
 ## Limitations
 
-- Native Windows 11/WSL2 qualification on the public route: pending (runs
-  after this publication; the native lane refuses staging seams by design).
-- No human acceptance; the release is not qualified and no such claim is made.
+- The reboot/uninstall/reinstall lifecycle cycle, three-template journeys,
+  installed UI audit rows and whole-stack efficiency measurement remain open.
+- Final owner review remains outstanding; no such claim is made.
 - Rollback to the Alpha.16 predecessor is unsupported by the signed index
   (no-rollback successor semantics, recorded at signing).
 - The installed UI audit rows, three-template journeys, whole-stack
