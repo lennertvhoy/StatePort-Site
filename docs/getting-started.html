@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Read the known Alpha.16 installation failure before using the Ubuntu 24.04 WSL2 setup instructions.">
+    <meta name="description" content="Install StatePort with the current Alpha.17 one-line installer on the supported Ubuntu 24.04 WSL2 setup, with recovery notes for the historical Alpha.16 route.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
@@ -51,7 +51,7 @@
           <p class="document-kicker">Documentation / Getting started</p>
           <h1 id="getting-started-title">Install StatePort on supported WSL2.</h1>
           <p>New to StatePort? <a href="../index.html#journey">Follow one study example</a>: review an activity, save a reflection, and return to saved progress. The example uses StudyState Sample.</p>
-          <p>Check current blockers and the intended WSL2 setup. The steps below explain the installation path; Alpha.16 cannot complete a fresh installation.</p>
+          <p>Check current status and the intended WSL2 setup. The steps below explain the installation path; the historical Alpha.16 route could not complete a fresh installation, and Alpha.17 is the current install path.</p>
         </div>
       </section>
 
@@ -84,7 +84,7 @@
         </aside>
 
         <article class="prose">
-          <p class="notice"><strong>StatePort 0.1.0-alpha.17 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment and its native Windows 11/WSL2 public-route installation passed for the service stack, execution host, provider sandbox and reinstall. Further lifecycle, template, UI and efficiency checks are in progress. Alpha.16 is published but currently blocked for fresh installation.</strong> A known signature-check failure prevents installation. The seven GHCR image packages are also private, so anonymous image downloads return HTTP 401. Do not retry this unchanged command as a repair; wait for a corrected release.</p>
+          <p class="notice"><strong>StatePort 0.1.0-alpha.17 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment and its native Windows 11/WSL2 public-route installation passed for the service stack, execution host, provider sandbox and reinstall. Further lifecycle, template, UI and efficiency checks are in progress.</strong> Alpha.16 is a superseded predecessor: its fresh installation was blocked by a signature-check defect and it is retained for history. The current Alpha.17 command installs through this public route and its images are anonymously downloadable; retry guidance for the historical Alpha.16 route no longer applies.</p>
           <p class="notice"><strong>This is an early local test.</strong> Use non-sensitive data, keep independent backups, and keep all services on loopback.</p>
           <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#supported-environment">Supported environment</a></li><li data-level="2"><a href="#before-installing">Before installing</a></li><li data-level="2"><a href="#installer">The one-line installer</a></li><li data-level="2"><a href="#after-install">After a successful install</a></li><li data-level="2"><a href="#templates">Use a template</a></li><li data-level="2"><a href="#receipts">Receipts and state</a></li><li data-level="2"><a href="#stops">If installation stops</a></li><li data-level="2"><a href="#report-a-problem">Report a problem</a></li><li data-level="2"><a href="#where-to-go-next">Try your first session</a></li></ol></details>
           <span id="1-confirm-the-supported-environment"></span>
@@ -102,8 +102,8 @@ ps -p 1 -o comm=</code>
           <p>The documented anonymous route is:</p>
           <pre><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)</code>
 </pre>
-          <p>When a supported release is available, the bootstrap checks the host, downloads signed metadata and pinned artifacts, verifies the pinned trust key and image manifests, asks for <code>install-packages</code> and <code>install-exact</code>, and requests sudo when installing system packages. It should finish with <strong>StatePort is installed and healthy</strong>, the loopback URL, and an install receipt path.</p>
-          <p>Alpha.16 does not reach that outcome on a fresh anonymous host. The published version is <code>0.1.0-alpha.16</code>.</p>
+          <p>The Alpha.17 bootstrap checks the host, downloads signed metadata and pinned artifacts, verifies the pinned trust key and image manifests, asks for <code>install-packages</code> and <code>install-exact</code>, and requests sudo when installing system packages. It should finish with <strong>StatePort is installed and healthy</strong>, the loopback URL, and an install receipt path.</p>
+          <p>The historical Alpha.16 route did not reach that outcome on a fresh anonymous host; the current Alpha.17 command installs through this public route.</p>
           <span id="3-open-the-complete-product"></span>
 <h2 id="after-install">After a successful install</h2>
           <p>Open the printed <code>http://127.0.0.1:&lt;port&gt;/</code> URL in a Windows browser. The web UI, API, worker, persistence, and execution host are local services. Use the printed reconciled port rather than guessing.</p>
@@ -115,7 +115,7 @@ ps -p 1 -o comm=</code>
           <p>Install receipt and updater state live below <code>~/.local/state/stateport-install</code>, including <code>bin/stateport-update</code>. Application repositories and managed template copies are separate from replaceable images. Never share tokens, passwords, private URLs, or complete home directories.</p>
           <span id="if-installation-stops"></span>
 <h2 id="stops">If installation stops</h2>
-          <p>Save the final refusal code, release version, and step. Alpha.16's missing predecessor signature slot is a release defect; an anonymous registry <code>HTTP 401</code> is a package visibility blocker. Neither is fixed by rerunning, changing image tags, bypassing verification, or copying files into the state directory. Read <a href="troubleshooting.html">Troubleshooting</a> and <a href="../releases/">Release status</a> for a supported successor.</p>
+          <p>Save the final refusal code, release version, and step. If you attempted the historical Alpha.16 route: its missing predecessor signature slot was a release defect and its anonymous registry <code>HTTP 401</code> was a package visibility blocker. Neither was fixed by rerunning, changing image tags, bypassing verification, or copying files into the state directory. Read <a href="troubleshooting.html">Troubleshooting</a> and <a href="../releases/">Release status</a> for the current supported release.</p>
           <h2 id="report-a-problem">Report a problem</h2>
 <p>When reporting a problem, include the release version, final refusal code, environment checks, and last successful step. Remove tokens, passwords, private URLs, and personal file contents. <a href="updates.html">Updates, backup boundaries, and uninstall</a> explain lifecycle operations.</p>
           <h2 id="where-to-go-next">Try your first session</h2>

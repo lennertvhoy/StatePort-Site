@@ -88,7 +88,7 @@
           <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#set-up-a-known-release">Set up a known release</a></li><li data-level="2"><a href="#use-the-application">Use the application</a></li><li data-level="2"><a href="#update-or-move">Update or move</a></li><li data-level="2"><a href="#back-up-and-recover">Back up and recover</a></li><li data-level="3"><a href="#before-a-backup">Before a backup</a></li><li data-level="3"><a href="#restore-a-separate-instance">Restore a separate instance</a></li><li data-level="3"><a href="#what-recovery-does-not-undo">What recovery does not undo</a></li><li data-level="2"><a href="#current-availability">Current availability</a></li></ol></details>
           <h2 id="set-up-a-known-release">Set up a known release</h2>
           <p>There are three things to keep distinct: StatePort itself, the template that defines an application, and your instance containing the actual work. Replacing the runtime is not a backup of your instance, and importing a newer template is not an update of your existing work.</p>
-          <p>Check <a href="../releases/">release status</a> before installing. Alpha.16's fresh installation is blocked. For an existing installation, retain its installer receipt and the URL it printed; follow <a href="updates.html">update and uninstall guidance</a> for its recorded resources.</p>
+          <p>Check <a href="../releases/">release status</a> before installing. The historical Alpha.16 route is blocked; Alpha.17 is the current install path. For an existing installation, retain its installer receipt and the URL it printed; follow <a href="updates.html">update and uninstall guidance</a> for its recorded resources.</p>
           <h2 id="use-the-application">Use the application</h2>
           <ol>
             <li>Open the intended application and read its current state before issuing another request. Two instances from the same template hold different work.</li>
@@ -103,7 +103,7 @@
           <p>In-place platform update is not a supported recovery shortcut in this alpha. Read <a href="updates.html">the update boundary</a> before rerunning an installer. An imported template is an isolated managed copy; editing its original repository does not synchronize your instance.</p>
           <p>Moving to a different machine also changes the host environment. Tool availability, permission grants, credentials, and reachable services need checking again. The <a href="hosts-and-portability.html">portability guide</a> explains what can travel with your work and what needs new setup.</p>
           <h2 id="back-up-and-recover">Back up and recover</h2>
-          <p><strong>Availability:</strong> use the backup and recovery controls only when your installed application exposes them. They depend on the application, permissions, and installed version. This is not a workaround for the blocked Alpha.16 installer.</p>
+          <p><strong>Availability:</strong> use the backup and recovery controls only when your installed application exposes them. They depend on the application, permissions, and installed version. This is not a workaround for the historical Alpha.16 installer.</p>
           <h3 id="before-a-backup">Before a backup</h3>
           <ul>
             <li>Finish or inspect outstanding changes so you know the state you are preserving.</li>

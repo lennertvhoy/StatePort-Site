@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Read the known Alpha.16 installation failure before using the Ubuntu 24.04 WSL2 setup instructions.">
+    <meta name="description" content="Recovery guidance for the Ubuntu 24.04 WSL2 setup, covering the current Alpha.17 install path and the historical Alpha.16 installation failure.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
@@ -51,7 +51,7 @@
           <p class="document-kicker">Documentation / Troubleshooting</p>
           <h1 id="getting-started-title">Read the refusal, then choose the smallest safe recovery.</h1>
           <p>New to StatePort? <a href="../index.html#journey">Follow one study example</a>: review an activity, save a reflection, and return to saved progress. The example uses StudyState Sample.</p>
-          <p>Check current blockers and the intended WSL2 setup. The steps below explain the installation path; Alpha.16 cannot complete a fresh installation.</p>
+          <p>Check current status and the intended WSL2 setup. The steps below explain the installation path; the historical Alpha.16 route could not complete a fresh installation, and Alpha.17 is the current install path.</p>
         </div>
       </section>
 
@@ -84,7 +84,7 @@
         </aside>
 
         <article class="prose">
-          <p class="notice"><strong>StatePort 0.1.0-alpha.17 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment and its native Windows 11/WSL2 public-route installation passed for the service stack, execution host, provider sandbox and reinstall. Further lifecycle, template, UI and efficiency checks are in progress. Do not retry the unchanged Alpha.16 installer.</strong> The fresh public journey is blocked before product installation by a predecessor signature check. Even if that is repaired, anonymous pulls of the seven private GHCR packages fail with HTTP 401. Wait for a corrected release.</p>
+          <p class="notice"><strong>StatePort 0.1.0-alpha.17 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment and its native Windows 11/WSL2 public-route installation passed for the service stack, execution host, provider sandbox and reinstall. Further lifecycle, template, UI and efficiency checks are in progress.</strong> Alpha.16 is a superseded predecessor: its fresh installation was blocked by a signature-check defect and it is retained for history. The current Alpha.17 command installs through this public route and its images are anonymously downloadable; retry guidance for the historical Alpha.16 route no longer applies.</p>
           <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#environment">Environment checks</a></li><li data-level="2"><a href="#refusals">Common refusal classes</a></li><li data-level="2"><a href="#product-symptoms">Product symptoms</a></li><li data-level="2"><a href="#url">The printed URL is unavailable</a></li><li data-level="2"><a href="#service">A service is unhealthy</a></li><li data-level="2"><a href="#recovery">Recovery boundaries</a></li><li data-level="2"><a href="#report">Report safely</a></li></ol></details>
           <h2 id="environment">Environment checks</h2>
           <p>Run these commands inside the supported Ubuntu distribution:</p>
@@ -96,7 +96,7 @@ command -v curl sudo dpkg-deb python3 sha256sum tar</code>
           <p>Use <code>x86_64</code>, Ubuntu <code>24.04</code>, and <code>systemd</code> as PID 1. A missing command, unsupported distribution, WSL1, ARM64, or a root invocation is an environment boundary. Fix the environment or wait for a supported release; do not bypass the check.</p>
           <h2 id="refusals">Common refusal classes</h2>
           <p><strong>Missing predecessor signature or digest-slot error:</strong> this is Alpha.16's recorded release defect. Preserve the exact final output and stop. Do not create the missing directory, download an unpinned bundle, or weaken signature verification.</p>
-          <p><strong>Registry HTTP 401 / manifest download failed:</strong> the Alpha.16 GHCR packages are private to anonymous users. This is a publication/visibility blocker. Do not add credentials to the public command, use a personal token, or replace an image reference with a tag.</p>
+          <p><strong>Registry HTTP 401 / manifest download failed:</strong> if you attempted the historical Alpha.16 route: its GHCR packages were private to anonymous users. That visibility blocker is historical. Do not add credentials to the public command, use a personal token, or replace an image reference with a tag.</p>
           <p><strong>Trust, digest, target, or signed-index mismatch:</strong> stop. These checks protect provenance. Never continue with <code>--skip</code>, a hand-edited index, or a different artifact.</p>
           <p><strong><code>install-packages</code> or <code>install-exact</code> not accepted:</strong> the confirmation is intentionally exact. Read the plan, then enter the requested phrase only when the release is supported and the plan matches the named target.</p>
           <p><strong>sudo or apt lock / package failure:</strong> save the output. Do not kill another package manager or remove lock files. Retry only after the underlying package operation has completed and only for a supported release.</p>

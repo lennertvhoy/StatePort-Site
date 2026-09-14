@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Alpha.17 is the current signed candidate; its rehearsal passed in simulation and native qualification is pending. The Alpha.16 installer remains available but blocked.">
+    <meta name="description" content="Alpha.17 is the current signed candidate; its one-line installer is available and its native public-route installation is qualified. Alpha.16 is retained for history.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="StatePort release status">
-    <meta property="og:description" content="Alpha.17 is the current signed candidate; its rehearsal passed in isolated simulation and native qualification is pending. Alpha.16 fresh installation remains blocked.">
+    <meta property="og:description" content="Alpha.17 is the current signed candidate; its rehearsal passed in isolated simulation and its native public-route installation is qualified. Alpha.16 is retained for history.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/releases/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current Alpha.16 status.">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current release status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/releases/">
@@ -80,15 +80,15 @@
         </aside>
 
         <article class="prose release-overview" data-no-toc>
-          <p class="notice"><strong>StatePort 0.1.0-alpha.17 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment and its native Windows 11/WSL2 public-route installation passed for the service stack, execution host, provider sandbox and reinstall. Further lifecycle, template, UI and efficiency checks are in progress. Alpha.16 remains published, but fresh installation is blocked by a known signature-check failure.</strong> Anonymous image downloads also fail with HTTP 401 because the release image registry packages are private. Fixing the signature check alone will not complete installation. Wait for a corrected, qualified release; repeating this installer does not repair either failure. Published files remain available for inspection.</p>
+          <p class="notice"><strong>StatePort 0.1.0-alpha.17 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment and its native Windows 11/WSL2 public-route installation passed for the service stack, execution host, provider sandbox and reinstall. Further lifecycle, template, UI and efficiency checks are in progress. Alpha.16 is a superseded predecessor: its fresh installation was blocked by a signature-check defect and it is retained for history.</strong> The current Alpha.17 command installs through this public route and its images are anonymously downloadable; retry guidance for the historical Alpha.16 route no longer applies. Published files remain available for inspection.</p>
           <div class="release-summary" id="current-status">
             <div>
               <p class="release-summary-label">Current software status</p>
               <h2>Alpha.17 is the current signed candidate</h2>
-              <p>StatePort 0.1.0-alpha.17 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment and its native Windows 11/WSL2 public-route installation passed for the service stack, execution host, provider sandbox and reinstall. Further lifecycle, template, UI and efficiency checks are in progress. The published Alpha.16 package contains the web interface, API, worker, persistent application service, rootless Podman stack, and isolated execution host; its fresh installer currently fails before completing this setup. ProjectState, StudyState, and portable StateSpec repositories can be reviewed and copied into managed applications.</p>
+              <p>StatePort 0.1.0-alpha.17 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment and its native Windows 11/WSL2 public-route installation passed for the service stack, execution host, provider sandbox and reinstall. Further lifecycle, template, UI and efficiency checks are in progress. The published Alpha.16 package contains the web interface, API, worker, persistent application service, rootless Podman stack, and isolated execution host; its fresh installer failed before completing that setup. ProjectState, StudyState, and portable StateSpec repositories can be reviewed and copied into managed applications.</p>
               <p><a class="button button--ink" href="../download/">Open download page <span aria-hidden="true">↗</span></a></p>
             </div>
-            <p class="release-review-date">Status reviewed<br><time datetime="2026-09-13">13 September 2026</time></p>
+            <p class="release-review-date">Status reviewed<br><time datetime="2026-09-14">14 September 2026</time></p>
           </div>
 
           <section id="available-now" aria-labelledby="available-now-heading">
@@ -101,11 +101,11 @@
                   <tr><th scope="row">Website</th><td>Live</td></tr>
                   <tr><th scope="row">Product preview</th><td>Available</td></tr>
                   <tr><th scope="row">Documentation</th><td>Available</td></tr>
-                  <tr><th scope="row">Alpha.17 signed candidate files</th><td>Available; native qualification pending</td></tr>
-                  <tr><th scope="row">Alpha.17 one-line installer</th><td>Complete installed-product rehearsal passed in an isolated simulation; native Windows 11/WSL2 qualification pending</td></tr>
-                  <tr><th scope="row">Alpha.16 signed release files</th><td>Available; fresh installation blocked</td></tr>
-                  <tr><th scope="row">Seven release images</th><td>Exact signed GHCR digests; anonymous downloads blocked (HTTP 401)</td></tr>
-                  <tr><th scope="row">Clean isolated Ubuntu 24.04 rehearsal</th><td>Fresh public install failed its package signature check; service and rerun steps did not pass</td></tr>
+                  <tr><th scope="row">Alpha.17 signed candidate files</th><td>Available; native public-route installation qualified</td></tr>
+                  <tr><th scope="row">Alpha.17 one-line installer</th><td>Complete installed-product rehearsal passed in an isolated simulation; native Windows 11/WSL2 public-route installation qualified</td></tr>
+                  <tr><th scope="row">Alpha.16 signed release files</th><td>Available; superseded and retained for history (its fresh installation was blocked)</td></tr>
+                  <tr><th scope="row">Seven Alpha.17 release images</th><td>Exact signed GHCR digests; anonymous downloads verified</td></tr>
+                  <tr><th scope="row">Clean isolated Ubuntu 24.04 rehearsal</th><td>Passed for Alpha.17 in an isolated simulation; the historical Alpha.16 fresh public install failed its package signature check</td></tr>
                   <tr><th scope="row">Native Windows/WSL owner acceptance</th><td>Not yet recorded</td></tr>
                   <tr><th scope="row">Alpha.14, Alpha.13, and earlier</th><td>Superseded, rejected, or retained for inspection only; never a current install path</td></tr>
                   <tr><th scope="row">Older alphas</th><td>Do not install Alpha 2 or Alpha 3</td></tr>
@@ -117,7 +117,7 @@
           <section id="release-evidence" aria-labelledby="release-evidence-heading">
             <h2 id="release-evidence-heading">Before you use StatePort</h2>
             <p>StatePort is in early alpha. Do not use it for important data.</p>
-            <p><strong>StatePort 0.1.0-alpha.17 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment and its native Windows 11/WSL2 public-route installation passed for the service stack, execution host, provider sandbox and reinstall. Further lifecycle, template, UI and efficiency checks are in progress.</strong> Its signed release index passed independent verifier review, and its complete installed-product rehearsal passed in an isolated simulation environment. Alpha.16 remains published, but fresh installation is blocked by a known signature-check failure; its signed index binds the corrected installer source identity, runtime package bundle, seven image digests, and image signatures. Anonymous public-byte verification passed for the published files; native Windows/WSL acceptance remains a separate gate.</p>
+            <p><strong>StatePort 0.1.0-alpha.17 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment and its native Windows 11/WSL2 public-route installation passed for the service stack, execution host, provider sandbox and reinstall. Further lifecycle, template, UI and efficiency checks are in progress.</strong> Its signed release index passed independent verifier review, and its complete installed-product rehearsal passed in an isolated simulation environment. Alpha.16 is a superseded predecessor: its fresh installation was blocked by a signature-check defect, and it is retained for history; its signed index binds the corrected installer source identity, runtime package bundle, seven image digests, and image signatures. Anonymous public-byte verification passed for the published files; native Windows/WSL owner acceptance remains a separate gate.</p>
             <p>The Alpha.17 evidence entry is recorded at <code>evidence/alpha17-public-install-001/summary.md</code> in this repository.</p>
             <p><a href="../download/technical-release-files.html">Technical release files</a> remain available for developers and reviewers.</p>
           </section>

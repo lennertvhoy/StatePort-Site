@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Check an installed StatePort Alpha.16 release, understand the blocked fresh installer, exact signed updates, or uninstall while preserving state.">
+    <meta name="description" content="Check an installed StatePort Alpha.16 release, apply the current Alpha.17 successor, or uninstall while preserving state.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
@@ -94,8 +94,8 @@
         </aside>
 
         <article class="prose">
-          <p class="notice"><strong>StatePort 0.1.0-alpha.17 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment and its native Windows 11/WSL2 public-route installation passed for the service stack, execution host, provider sandbox and reinstall. Further lifecycle, template, UI and efficiency checks are in progress. Alpha.16 fresh installation is blocked.</strong> The published candidate fails its predecessor signature check, and its private GHCR packages return HTTP 401 anonymously. Do not retry the installer, swap tags, or bypass verification.</p>
-          <p class="notice"><strong>Rollback is not supported for this public candidate.</strong> Alpha.15 remains immutable, but the Alpha.16 release index declares no authenticated rollback path.</p>
+          <p class="notice"><strong>StatePort 0.1.0-alpha.17 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment and its native Windows 11/WSL2 public-route installation passed for the service stack, execution host, provider sandbox and reinstall. Further lifecycle, template, UI and efficiency checks are in progress. Alpha.16 is a superseded predecessor: its fresh installation was blocked by a signature-check defect and it is retained for history.</strong> The current Alpha.17 command installs through this public route and its images are anonymously downloadable; retry guidance for the historical Alpha.16 route no longer applies.</p>
+          <p class="notice"><strong>Rollback is not supported for the Alpha.16 public candidate.</strong> Alpha.15 remains immutable, and the Alpha.16 release index declares no authenticated rollback path.</p>
           <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#identity">Check installed identity</a></li><li data-level="2"><a href="#successor">Apply a successor</a></li><li data-level="2"><a href="#backup">Back up before lifecycle work</a></li><li data-level="2"><a href="#uninstall">Uninstall and preserve receipts</a></li><li data-level="2"><a href="#purge">Purge boundary</a></li></ol></details>
           <span id="check-the-installed-identity"></span>
 <h2 id="identity">Check installed identity</h2>
@@ -105,7 +105,7 @@
           <p>The state root is installation-specific. Do not copy it to another machine or combine receipts from different installations; the installed authority binds the state directory identity.</p>
           <span id="historical-alpha16-rerun-command"></span><span id="check-the-release"></span>
 <h2 id="successor">Apply a successor</h2>
-          <p>Only use a specifically named, signed successor whose release index, source identity, target, images, and trust information agree. The updater's intended flow is <code>check</code>, <code>plan</code>, explicit authorization, then <code>apply</code>; each step leaves a receipt. A supported release should document the exact command. Alpha.16 has no corrected successor here, so there is no safe copy-paste update command.</p>
+          <p>Only use a specifically named, signed successor whose release index, source identity, target, images, and trust information agree. The updater's intended flow is <code>check</code>, <code>plan</code>, explicit authorization, then <code>apply</code>; each step leaves a receipt. A supported release should document the exact command. Alpha.17 is that successor and documents its one-line install command for a fresh supported host; there is no safe copy-paste in-place update command.</p>
           <p>The release index keeps trust-root changes separate from ordinary updates. Do not replace the pinned key, edit the compose file, or pull mutable image tags. If an update fails or its external effect is unknown, stop and inspect the recorded recovery instructions; do not infer success from a running container.</p>
           <span id="keep-trust-changes-separate"></span><span id="review-before-updating"></span>
 <h2 id="backup">Back up before lifecycle work</h2>

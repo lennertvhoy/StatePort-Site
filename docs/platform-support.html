@@ -83,8 +83,8 @@
         </aside>
 
         <article class="prose">
-          <p class="notice"><strong>StatePort 0.1.0-alpha.17 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment and its native Windows 11/WSL2 public-route installation passed for the service stack, execution host, provider sandbox and reinstall. Further lifecycle, template, UI and efficiency checks are in progress. Alpha.16 remains published, but fresh installation is blocked by a known signature-check failure.</strong> Anonymous image downloads also fail with HTTP 401 because the release image registry packages are private. Fixing the signature check alone will not complete installation. Wait for a corrected, qualified release; repeating this installer does not repair either failure. Published files remain available for inspection.</p>
-          <p class="notice notice--quiet"><strong>StatePort 0.1.0-alpha.17 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment and its native Windows 11/WSL2 public-route installation passed for the service stack, execution host, provider sandbox and reinstall. Further lifecycle, template, UI and efficiency checks are in progress.</strong> The published Alpha.16 package declares an exact Podman stack and crun runtime plus the control plane and isolated execution host; its fresh installation is currently blocked before completing that setup.</p>
+          <p class="notice"><strong>StatePort 0.1.0-alpha.17 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment and its native Windows 11/WSL2 public-route installation passed for the service stack, execution host, provider sandbox and reinstall. Further lifecycle, template, UI and efficiency checks are in progress. Alpha.16 is a superseded predecessor: its fresh installation was blocked by a signature-check defect and it is retained for history.</strong> The current Alpha.17 command installs through this public route and its images are anonymously downloadable; retry guidance for the historical Alpha.16 route no longer applies. Published files remain available for inspection.</p>
+          <p class="notice notice--quiet"><strong>StatePort 0.1.0-alpha.17 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment and its native Windows 11/WSL2 public-route installation passed for the service stack, execution host, provider sandbox and reinstall. Further lifecycle, template, UI and efficiency checks are in progress.</strong> The published Alpha.16 package declared an exact Podman stack and crun runtime plus the control plane and isolated execution host; its fresh installation was blocked before completing that setup. The current Alpha.17 command installs through this public route.</p>
 
           <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#alpha16-requirements">Alpha.16 requirements</a></li><li data-level="2"><a href="#quick-preflight">Quick preflight</a></li><li data-level="2"><a href="#why-support-is-narrow">Why support is narrow</a></li><li data-level="2"><a href="#check-before-you-start">Check before you start</a></li></ol></details>
           <h2 id="alpha16-requirements">Alpha.16 requirements</h2>
@@ -110,15 +110,15 @@ ps -p 1 -o comm=</code>
               <thead>
                 <tr>
                   <th scope="col">Environment</th>
-                  <th scope="col">Alpha.16 status</th>
+                  <th scope="col">Status</th>
                   <th scope="col">What to know</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th scope="row">Windows 11 + WSL2 + Ubuntu 24.04 AMD64</th>
-                  <td>Intended platform; installation currently blocked</td>
-                  <td>Fresh installation is currently blocked. See the <a href="../download/">download page</a> for known issues and availability.</td>
+                  <td>Supported platform; installation qualified</td>
+                  <td>This is the supported install path; the native public-route installation is qualified. See the <a href="../download/">download page</a> for the install command.</td>
                 </tr>
                 <tr>
                   <th scope="row">WSL1</th>
