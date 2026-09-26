@@ -3,6 +3,12 @@ name: Validate StatePort Site
 on:
   pull_request:
     branches: [main]
+  # Direct pushes to main bypassed the contract entirely, which is how ten
+  # false "installation qualified" claims reached the published site. The push
+  # trigger reports rather than blocks, so it is a detector on the very commit
+  # that introduced the problem, not a substitute for review.
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:

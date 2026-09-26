@@ -730,6 +730,20 @@ QUALIFIED_INSTALL_CLAIM = re.compile(r"\binstallation\s+(?:is\s+)?qualified\b", 
 QUALIFICATION_NEGATIONS = ("not yet", "not ", "never ")
 
 
+def qualification_claim_violation(text: str) -> str | None:
+    """Return the first affirmative qualification claim, or None when honest.
+
+    Split out from the validator so the decision can be unit tested directly:
+    a guard that has only ever passed proves nothing.
+    """
+    for match in QUALIFIED_INSTALL_CLAIM.finditer(text):
+        window = text[max(0, match.start() - 40) : match.start()].lower()
+        if any(negation in window for negation in QUALIFICATION_NEGATIONS):
+            continue
+        return match.group(0)
+    return None
+
+
 def validate_qualification_claims(documents: dict[Path, DocumentFacts]) -> None:
     """Public prose may never assert that the native installation is qualified.
 
@@ -752,16 +766,16 @@ def validate_qualification_claims(documents: dict[Path, DocumentFacts]) -> None:
         for path in sorted(linked_public_markdown_pages())
     )
     for name, text in surfaces:
-        for match in QUALIFIED_INSTALL_CLAIM.finditer(text):
-            window = text[max(0, match.start() - 40) : match.start()].lower()
-            if any(negation in window for negation in QUALIFICATION_NEGATIONS):
-                continue
-            line = text.count("\n", 0, match.start()) + 1
-            raise AssertionError(
-                f"Unqualified readiness claim in {name}:{line}: {match.group(0)!r}. "
-                "Native qualification is pending; say 'not yet qualified' or "
-                "'qualification remains pending'."
-            )
+        violation = qualification_claim_violation(text)
+        if violation is None:
+            continue
+        offset = QUALIFIED_INSTALL_CLAIM.search(text)
+        line = text.count("\n", 0, offset.start()) + 1 if offset else 1
+        raise AssertionError(
+            f"Unqualified readiness claim in {name}:{line}: {violation!r}. "
+            "Native qualification is pending; say 'not yet qualified' or "
+            "'qualification remains pending'."
+        )
 
 def validate_video_embeds(documents: dict[Path, DocumentFacts]) -> None:
     """Frozen embed contract: controllable, lazy, captioned, transcribed video."""

@@ -13,6 +13,38 @@ import check_site_quality
 import validate_repo
 
 
+class QualificationClaimTests(unittest.TestCase):
+    """The ten live claims this guard exists to refuse."""
+
+    def test_affirmative_qualification_claims_are_refused(self) -> None:
+        for claim in (
+            "the native public-route installation is qualified.",
+            "Supported platform; installation qualified",
+            "Available; native public-route installation qualified",
+            "Early alpha · Native public-route installation qualified.",
+            "its native public-route installation is qualified.",
+        ):
+            with self.subTest(claim=claim):
+                self.assertIsNotNone(check_site_quality.qualification_claim_violation(claim))
+
+    def test_honest_phrasings_pass(self) -> None:
+        for honest in (
+            "the native public-route installation is not yet qualified.",
+            "Supported platform; native qualification pending",
+            "native qualification remains pending",
+            "This qualified view of portability is still valuable.",
+            "Alpha.16 is a superseded predecessor retained for history.",
+        ):
+            with self.subTest(honest=honest):
+                self.assertIsNone(check_site_quality.qualification_claim_violation(honest))
+
+    def test_every_public_page_is_honest_today(self) -> None:
+        documents = check_site_quality.parse_documents()
+        for path, _ in documents.items():
+            text = (check_site_quality.ROOT / path).read_text(encoding="utf-8")
+            with self.subTest(page=str(path)):
+                self.assertIsNone(check_site_quality.qualification_claim_violation(text))
+
 class SiteRuntimeContractTests(unittest.TestCase):
     def test_every_public_page_has_the_three_keyed_shared_assets(self) -> None:
         validate_repo.validate_asset_cache_keys()
