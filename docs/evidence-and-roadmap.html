@@ -92,7 +92,7 @@
             <li>A one-line installer for Windows 11, WSL2, Ubuntu 24.04, and AMD64.</li>
             <li>The web interface, API, worker, persistence service, rootless Podman runtime, and isolated execution host.</li>
             <li>Reviewed StudyState sample installation and governed import of ProjectState, StudyState, and portable StateSpec Git repositories.</li>
-            <li>A signed Alpha.16 index, seven image signatures, exact-digest images whose registry was private to anonymous users at the time, reproducible builds, and vulnerability-scan evidence.</li>
+            <li>A signed Alpha.16 index and a published double-build comparison. Most of what the Alpha.16 signed index references is not published on the Alpha.16 route: 57 of its 71 references return HTTP 404 — the per-image signature bundles, SBOMs, license inventories, vulnerability-scan results, provenance attestations and health-probe results, plus the Quadlet bundle — so those cannot be obtained or verified from that route. Exact-digest Alpha.16 images were published to a registry that was private to anonymous users at the time.</li>
             <li>A clean isolated Ubuntu 24.04 guest installation, health gates, and identical rerun for the exact candidate bytes.</li>
           </ul>
 
