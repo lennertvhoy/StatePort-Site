@@ -726,6 +726,43 @@ def validate_stale_release_language(documents: dict[Path, DocumentFacts]) -> Non
                 )
 
 
+QUALIFIED_INSTALL_CLAIM = re.compile(r"\binstallation\s+(?:is\s+)?qualified\b", re.IGNORECASE)
+QUALIFICATION_NEGATIONS = ("not yet", "not ", "never ")
+
+
+def validate_qualification_claims(documents: dict[Path, DocumentFacts]) -> None:
+    """Public prose may never assert that the native installation is qualified.
+
+    Ten such statements were once live across four pages, including the
+    homepage hero and a machine-readable JSON-LD description that tooling
+    consumes, and the download page contradicted its own meta description
+    while doing it. Native qualification is still pending, so an affirmative
+    claim is false by construction and cannot be repaired by a later commit
+    alone: it has to be refused here.
+    """
+    surfaces: list[tuple[str, str]] = [
+        (str(path), (ROOT / path).read_text(encoding="utf-8")) for path in documents
+    ]
+    surfaces.extend(
+        (str(vtt.relative_to(ROOT)), vtt.read_text(encoding="utf-8"))
+        for vtt in sorted((ROOT / MEDIA_ROOT).glob("*.vtt"))
+    )
+    surfaces.extend(
+        (str(path.relative_to(ROOT)), path.read_text(encoding="utf-8"))
+        for path in sorted(linked_public_markdown_pages())
+    )
+    for name, text in surfaces:
+        for match in QUALIFIED_INSTALL_CLAIM.finditer(text):
+            window = text[max(0, match.start() - 40) : match.start()].lower()
+            if any(negation in window for negation in QUALIFICATION_NEGATIONS):
+                continue
+            line = text.count("\n", 0, match.start()) + 1
+            raise AssertionError(
+                f"Unqualified readiness claim in {name}:{line}: {match.group(0)!r}. "
+                "Native qualification is pending; say 'not yet qualified' or "
+                "'qualification remains pending'."
+            )
+
 def validate_video_embeds(documents: dict[Path, DocumentFacts]) -> None:
     """Frozen embed contract: controllable, lazy, captioned, transcribed video."""
     for path, facts in documents.items():
@@ -1018,6 +1055,7 @@ def main() -> None:
     validate_video_caption_duration_consistency(documents)
     validate_media_asset_integrity(documents)
     validate_stale_release_language(documents)
+    validate_qualification_claims(documents)
     validate_fragments(documents)
     validate_sitemap(documents)
     validate_manifest()
