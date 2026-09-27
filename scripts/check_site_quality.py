@@ -849,9 +849,19 @@ ENUMERATION_FINITE_VERB = re.compile(
 # hard-wraps prose, and treating a wrap as a sentence end severed the negation
 # from its enumeration on a live page.
 CLAUSE_SENTENCE_BOUNDARY = re.compile(r"[.!?](?!\d)|\s·\s|\s\|\s")
-# An explicit agent after the qualification participle: the word then says who
-# vetted something rather than asserting the qualification of the subject.
-AGENTED_PARTICIPLE = re.compile(r"\bqualif(?:ied|ies|y)\s+by\b", re.IGNORECASE)
+# A passive "qualified by <agent>" modifies whatever it attaches to: it says
+# who vetted something, not that the subject is qualified. The exemption below
+# is released on a POSITIVE list of the publication and description statements
+# that are not readiness claims, never on the absence of a known predicate word.
+# The predicate vocabulary is closed, so "is ready", "is released" and "is
+# endorsed" are readiness claims that carry none of its words, and releasing on
+# their absence is how a vetting sentence smuggles a readiness claim back in.
+AGENTED_PARTICIPLE = re.compile(r"\bqualified\s+by\b", re.IGNORECASE)
+NON_READINESS_ASSERTION = re.compile(
+    r"\b(?:is|are|was|were)\s+(?:now\s+)?(?:public|published|listed|documented|"
+    r"described|mirrored|reproducible|reproduced)\b",
+    re.IGNORECASE,
+)
 
 CLAUSE_SOFT_BOUNDARY = re.compile(r"(?<=\w),\s|\n\s*(?=(?:or|and|nor)\b)")
 
@@ -967,16 +977,18 @@ def _predicate_carries_this_subject(span: str, subject: re.Match[str], predicate
     between = span[subject.end():predicate.start()]
     if CLAUSE_ASIDE.search(between):
         return False
-    # An AGENTED participle is a statement about WHO vetted something, and what
-    # the sentence asserts after it decides whether the sentence is a claim:
-    # "the product tour, qualified by the reviewer, is public" asserts
-    # publication, while "the product, qualified by the reviewer, is complete"
-    # asserts readiness and stays one. This decides only the CROSS-CLAUSE
-    # attachment; the unscoped single-clause form is still refused by the clause
-    # pass, so "The native installation is qualified by our own tests" remains a
-    # claim and the guard keeps no new bypass.
+    # An AGENTED participle is a statement about WHO vetted something, and the
+    # sentence's own assertion afterwards decides whether the sentence is a
+    # claim: "the product tour, qualified by the reviewer, is public" asserts
+    # publication, while "the native installation, qualified by the reviewer, is
+    # ready" asserts readiness. The test is a positive list rather than the
+    # absence of a known predicate word, because the predicate vocabulary is
+    # closed and a readiness claim need not use any of its words. This decides
+    # only the CROSS-CLAUSE attachment; the unscoped single-clause form is still
+    # refused by the clause pass, so "The native installation is qualified by
+    # our own tests" remains a claim and the guard keeps no new bypass.
     if AGENTED_PARTICIPLE.match(span, predicate.start()) and (
-        QUALIFICATION_PREDICATE.search(span, predicate.end()) is None
+        NON_READINESS_ASSERTION.search(span, predicate.end()) is not None
     ):
         return False
     # Only the material past the subject's own noun phrase can name a SECOND

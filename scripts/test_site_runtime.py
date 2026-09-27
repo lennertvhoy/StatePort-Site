@@ -329,16 +329,30 @@ class QualificationClaimTests(unittest.TestCase):
             "the build, qualified by CI, is reproducible.",
             "the release notes, qualified by the reviewer, are public",
             "the installer, qualified by the reviewer, is public",
+            "the alpha channel, qualified by the reviewer, is documented",
+            "the one-line command, qualified by the reviewer, is listed",
+            "the release, qualified by the reviewer, is published today",
+            "the product tour, qualified by our own tests, is public",
+            "the build, qualified by the reviewer, is reproducible and public",
         ):
             with self.subTest(honest=honest):
                 self.assertIsNone(check_site_quality.qualification_claim_violation(honest))
         for claim in (
             "the product, qualified by the reviewer, is complete",
-            "The native installation, reduced to a QEMU simulation, qualifies.",
+            "The native installation, qualified by the reviewer, is ready",
+            "The native installation, qualified by our own tests, is production-ready",
+            "The native installation, qualified by CI, is fit for production",
+            "The release, qualified by the reviewer, is released",
             "The native installation is qualified by our own tests",
+            "The native installation, reduced to a QEMU simulation, qualifies.",
         ):
             with self.subTest(claim=claim):
                 self.assertIsNotNone(check_site_quality.qualification_claim_violation(claim))
+        # The exemption is released on a POSITIVE list, not on the absence of a
+        # known predicate word. These are the exact strings that a negative
+        # release condition accepted, and the predicate vocabulary is closed, so
+        # "is ready" and "is released" carry none of its words. An independent
+        # verifier found this by reading the previous revision of this fix.
 
     def test_a_predicate_may_borrow_a_subject_only_where_nothing_else_claims_it(self) -> None:
         """The three ways this rule would over-refuse, each a real site shape.
