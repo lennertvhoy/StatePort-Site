@@ -834,6 +834,16 @@ def _document_subject_exempts(span: str) -> bool:
     return not CLAUSE_SEVERING_BREAK.search(window)
 
 
+# A present-tense qualification verb is finite, and the enumeration list above
+# does not carry one. The sentence pass is gated on the predicate sitting in a
+# clause that has a finite verb, so reusing that list left a trailing clause
+# holding only "qualifies" with no subject for the clause pass and no finite
+# verb for the sentence pass: the claim was seen by neither. Only the finite
+# present forms belong here. "qualified" is a participle or an adjective, and
+# admitting it is what would let a participial fragment in an aside borrow the
+# subject of an unrelated clause.
+QUALIFICATION_PREDICATE_FINITE = re.compile(r"qualif(?:y|ies)", re.IGNORECASE)
+
 ENUMERATION_CONTINUATION = re.compile(r"^\s*(?:or|and|nor)\s+", re.IGNORECASE)
 # An enumeration member inherits the governing negation only when it is a noun
 # phrase completing a list. If it carries its own finite verb it is an
@@ -925,52 +935,6 @@ def _predicate_clause_is_finite(text: str, predicate_start: int) -> bool:
     return False
 
 
-def _predicate_carries_this_subject(span: str, subject: re.Match[str], predicate: re.Match[str]) -> bool:
-    """Whether a predicate in another clause provably carries THIS subject.
-
-    The finite-verb test answers "does this clause assert something of its own",
-    which is a statement about the clause. What the sentence pass actually needs
-    to know is whether the predicate is the same subject's predicate, and a
-    reduced relative clause sitting between them does not change that: in "The
-    native installation, reduced in scope, qualifies" the material between the
-    subject and the predicate is an adjunct, not a second subject, so the
-    predicate is still the installation's.
-
-    The subject is one word, so its own noun phrase may complete it before the
-    first comma: "The native installation" matches "native" first and names
-    "installation" second, and that is one subject, not two. Only a subject word
-    AFTER that comma introduces another clause and another subject, and only
-    then does the predicate stop being provably this subject's.
-
-    Three things disqualify the attachment, and each is a case where the
-    predicate belongs to something else and borrowing this sentence's subject
-    would be a false refusal:
-
-    * The predicate comes FIRST. "the alpha delivers" following "multiple
-      qualified providers" is a fragment whose own subject is a noun inside a
-      list, and a later subject word cannot be its predicate's subject.
-    * A CLAUSE_ASIDE intervenes. A parenthetical or dash aside, or a
-      subordinating conjunction, is where a participial fragment lives: the
-      whitepaper's "The wider architecture this paper describes -- catalogues of
-      community applications, multiple qualified providers, team deployments --
-      is a direction" has its predicate inside the aside.
-    * A SECOND subject word intervenes after the first comma. "The native
-      install page, next to the product tour, lists qualified providers" names a
-      subject twice, and the predicate modifies the noun in its own clause.
-    """
-    if subject.start() >= predicate.start():
-        return False
-    between = span[subject.end():predicate.start()]
-    if CLAUSE_ASIDE.search(between):
-        return False
-    # Only the material past the subject's own noun phrase can name a SECOND
-    # subject: "The native installation" matches "native" first and names
-    # "installation" second, and that is one subject, not two. Only a subject
-    # word AFTER that comma introduces another clause and another subject.
-    head = CLAUSE_SOFT_BOUNDARY.search(between)
-    return head is None or QUALIFICATION_SUBJECT.search(between[head.end():]) is None
-
-
 def _affirmative_claim_in_span(
     text: str,
     span: str,
@@ -979,14 +943,13 @@ def _affirmative_claim_in_span(
     require_finite_predicate_clause: bool = False,
 ) -> tuple[str, int] | None:
     """The claim this one span makes, or None when it makes none."""
-    subject = QUALIFICATION_SUBJECT.search(span)
-    if subject is None:
+    if not QUALIFICATION_SUBJECT.search(span):
         return None
     predicate = QUALIFICATION_PREDICATE.search(span)
     if predicate is None:
         return None
     if require_finite_predicate_clause and not (
-        _predicate_carries_this_subject(span, subject, predicate)
+        QUALIFICATION_PREDICATE_FINITE.fullmatch(predicate.group(0))
         or _predicate_clause_is_finite(text, start + predicate.start())
     ):
         return None
@@ -1052,18 +1015,11 @@ def qualification_claim_violation_span(text: str) -> tuple[str, int] | None:
     a claim made in that sentence. The sentence pass cannot over-refuse the
     enumeration prose the clause pass exists for, because the same governance
     test is applied to the whole sentence: a negation two commas back still
-    governs. It is further limited to a predicate that either sits in a clause
-    with a finite verb, so a participial fragment in an aside cannot borrow the
-    subject of an unrelated clause, or is carried by the sentence's own subject
-    across a comma with nothing between them that could be another subject.
-    That second limit closes the recorded residual, in which a subject and a
-    predicate were each absent from every clause and no finite verb sat between
-    them: "The native installation, reduced in scope, qualifies" was seen by
-    neither pass. It stays narrow, because the predicate must still be this
-    subject's: it must follow the subject, no clause aside may intervene, and no
-    second subject word may. The negation, pending and retrospective tests in
-    _affirmative_claim_in_span still decide whether a span is a claim at all,
-    so the reduced-clause shape is refused only when the claim is affirmative.
+    governs. It is further limited to a predicate carried by a clause that has
+    a finite verb, so a participial fragment in an aside cannot borrow the
+    subject of an unrelated clause. That limit is the residual class: a
+    subject and a predicate that are both absent from every clause, with no
+    finite verb anywhere between them, is still not caught here.
     """
     candidates = [
         _affirmative_claim_in_span(text, span, start)
@@ -1449,3 +1405,12 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+# PRESERVED COPY — a concurrent lane's uncommitted attempt at the same fix.
+# This file is NOT part of the guard and must never be executed or imported. It is
+# kept verbatim so that lane's uncommitted work is not lost when its
+# QUALIFICATION_PREDICATE_FINITE rule was replaced by the narrower directional
+# attachment rule that shipped instead. sha256 of the original working-tree file at
+# the moment it was copied: 9c71e54e1697d4510515e108a52ac564804fc3ecc740a23ac6b4831a21927dcb
+# The attempt reached 3 of the 5 residual shapes: a verb-form rule cannot reach a bare
+# participle ("qualified") or a nominal ("qualification complete").

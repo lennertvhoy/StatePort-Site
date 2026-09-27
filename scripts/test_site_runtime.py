@@ -226,6 +226,152 @@ class QualificationClaimTests(unittest.TestCase):
             with self.subTest(claim=claim):
                 self.assertIsNotNone(check_site_quality.qualification_claim_violation(claim))
 
+    def test_a_finite_predicate_verb_is_not_treated_as_a_participial_fragment(self) -> None:
+        """The recorded reduced-clause residual, now a refusal.
+
+        The sentence pass is gated on the predicate sitting in a clause that has
+        a finite verb, and that test reused the enumeration member list, which
+        carries no present-tense qualification verb. A trailing clause holding
+        only "qualifies" therefore had no subject for the clause pass and was
+        switched off for the sentence pass, so the claim was seen by NEITHER
+        pass. The first string is the exact wording that passed; the rest are
+        the same defect in other wordings.
+        """
+        for claim in (
+            "The native installation, reduced to a QEMU simulation, qualifies.",
+            "The native installation, reduced, qualifies.",
+            "The native installation, reduced to a simulation, qualifies for the journeys only.",
+            "The one-line command, reduced to the developer's checkout, qualifies.",
+        ):
+            with self.subTest(claim=claim):
+                self.assertIsNotNone(check_site_quality.qualification_claim_violation(claim))
+        # The limit is the verb form, not the sentence: a participial or nominal
+        # predicate in an aside still borrows no subject, and the live
+        # enumeration sentence must stay accepted.
+        for honest in (
+            "The candidate has not received human acceptance, independent security "
+            "review, or production qualification.",
+            "The wider architecture this paper describes — catalogues of community "
+            "applications, multiple qualified providers, team deployments — is a "
+            "direction, not a description of what the alpha delivers",
+        ):
+            with self.subTest(honest=honest):
+                self.assertIsNone(check_site_quality.qualification_claim_violation(honest))
+
+    def test_a_reduced_relative_clause_does_not_hide_the_claim(self) -> None:
+        """The five recorded false negatives, now refusals.
+
+        Each of these was ACCEPTED: the comma split the sentence so that the
+        clause holding the subject had no predicate and the clause holding the
+        predicate had no subject, and the sentence pass was switched off because
+        neither trailing clause has a finite verb. The claim was therefore seen
+        by NEITHER pass. They are five wordings of one shape, and the shape is
+        what the rule is about: a reduced relative clause between the subject
+        and the predicate is an adjunct to the subject, not a new subject, so
+        the predicate is still the installation's. Three of the five carry a
+        bare participle or a nominal rather than a present-tense verb, which is
+        why a verb-form rule alone does not reach them.
+        """
+        for claim in (
+            "The native installation, reduced in scope, qualifies",
+            "The native installation, reduced scope, qualified",
+            "The native installation, reduced to one path, qualification complete",
+            "The native installation, scope reduced, qualifies",
+            "The native installation, reduced, qualifies",
+        ):
+            with self.subTest(claim=claim):
+                self.assertIsNotNone(check_site_quality.qualification_claim_violation(claim))
+
+    def test_a_reduced_clause_claim_is_still_judged_by_its_governance(self) -> None:
+        """The same shape, with a negation, a pending label or a document subject.
+
+        Reaching this shape is not a licence to refuse it. The rule decides
+        WHERE a predicate belongs to a subject; _affirmative_claim_in_span still
+        decides WHETHER the span is a claim, and a fix that returned a violation
+        the moment the shape matched would refuse all of these while looking
+        correct on the five above.
+        """
+        for honest in (
+            # The negation sits in the same reduced-clause shape and governs it.
+            "The native installation, reduced in scope, is not qualified",
+            "The native installation, reduced in scope, is not yet qualified",
+            "The native installation, reduced to one path, is not qualified",
+            "The native installation, reduced to one path, remains unqualified",
+            # Pending language outranks the shape.
+            "The native installation, reduced in scope, is pending qualification",
+            "The native installation, reduced in scope, is awaiting qualification",
+            # The documentation-subject exemption outranks it too, and it needs
+            # no comma here on purpose: a comma between the documentation noun
+            # and the qualification deliberately does NOT exempt, which
+            # test_a_documentation_noun_far_from_the_claim_does_not_excuse_it
+            # pins, so a comma here would be testing a refusal, not an
+            # exemption.
+            "The installation instructions in reduced scope are qualified by the reviewer",
+        ):
+            with self.subTest(honest=honest):
+                self.assertIsNone(check_site_quality.qualification_claim_violation(honest))
+
+    def test_a_predicate_may_borrow_a_subject_only_where_nothing_else_claims_it(self) -> None:
+        """The three ways this rule would over-refuse, each a real site shape.
+
+        The reduced-clause shape is common in prose, so relaxing the finite-verb
+        requirement without these three limits refuses truthful text: the
+        predicate in each string below belongs to a noun that is not this
+        sentence's subject. Dropping any one of the three limits leaves every
+        other test in this file green while opening exactly one of these.
+        """
+        for honest in (
+            # A dash aside, and the subject word sits BEFORE it: the predicate
+            # is inside the aside, where a participial fragment lives. Same list
+            # of community "qualified providers" the whitepaper names.
+            "The product's wider architecture — catalogues of community applications, "
+            "multiple qualified providers, team deployments — is a direction, not a "
+            "description of what the alpha delivers",
+            # A second subject word after the first comma, so the predicate
+            # modifies the noun in its own clause. "The native installation"
+            # also holds two subject words, and those are ONE subject: the
+            # second-subject test therefore only applies past the first comma.
+            "The native install page, next to the product tour, lists qualified providers",
+            # The predicate comes FIRST and the only subject word follows it, so
+            # this is a noun inside a list and not a subject-predicate pair.
+            "The wider architecture this paper describes — catalogues of community "
+            "applications, multiple qualified providers, team deployments — is a "
+            "direction, not a description of what the alpha delivers",
+        ):
+            with self.subTest(honest=honest):
+                self.assertIsNone(check_site_quality.qualification_claim_violation(honest))
+        # A finite clause in the same aside position IS a claim, so the limits
+        # are structural and not an exemption for this sentence.
+        self.assertIsNotNone(
+            check_site_quality.qualification_claim_violation(
+                "The product's wider architecture — the native installation is "
+                "qualified — is a direction, not a description of what the alpha "
+                "delivers"
+            )
+        )
+
+    def test_the_honest_enumeration_sentence_stays_accepted(self) -> None:
+        """Regression pin for the live sentence the clause-splitting was for.
+
+        download/0.1.0-alpha.3/known-limitations.md: the negation governs an
+        enumeration, and "production qualification" is the predicate with a
+        subject word of its own immediately in front of it. Any fix that reaches
+        a predicate across commas must leave the "not" governing all of it.
+        """
+        honest = (
+            "The candidate has not received human acceptance, independent "
+            "security review, or production qualification."
+        )
+        self.assertIsNone(check_site_quality.qualification_claim_violation(honest))
+        # The comma split itself must not be what saves it: the same sentence
+        # with the enumeration's final member removed is a real claim.
+        self.assertIsNotNone(
+            check_site_quality.qualification_claim_violation(
+                "The candidate has not received human acceptance, and the native "
+                "installation has production qualification"
+            )
+        )
+
     def test_a_pendingly_subordinated_clause_does_not_excuse_the_claim(self) -> None:
         # The mirror of the bypass: a pending or negated predicate in the main
         # clause governs, and the subordinate clause does not turn it back into
