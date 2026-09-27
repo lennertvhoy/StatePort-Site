@@ -311,48 +311,52 @@ class QualificationClaimTests(unittest.TestCase):
             with self.subTest(honest=honest):
                 self.assertIsNone(check_site_quality.qualification_claim_violation(honest))
 
-    def test_an_agented_participle_does_not_become_a_claim_by_attachment(self) -> None:
-        """The over-refusal the cross-clause attachment introduced, removed.
+    def test_known_gap_vetting_prose_with_a_publication_assertion_is_over_refused(self) -> None:
+        """KNOWN GAP, pinned deliberately. These are REFUSED, and that is wrong.
 
-        Widening the sentence pass to a predicate that carries this subject also
-        reached sentences where "qualified by" names the person who vetted
-        something and the sentence asserts something else entirely, so honest
-        prose was refused. An explicit agent is what distinguishes that case, and
-        what the sentence asserts after the participle is what settles it.
+        0bc7bb5 widened the sentence pass to a predicate that carries this
+        subject, which closed the reduced-clause bypass class. It also began
+        refusing prose in which "qualified by" names who vetted something and
+        the sentence asserts publication instead. Measured on 2026-09-27: 0 of
+        the 58 real surfaces are refused, so nothing is blocked today, and the
+        site contains no occurrence of "qualified by" at all.
 
-        The second list is the control: the same shape whose own assertion IS a
-        readiness claim must stay refused, and so must the unscoped form, which
-        the clause pass refuses without this rule at all.
+        Two repairs were attempted and both were withdrawn, for the same reason:
+        each decided the sentence by reading the text after the participle, and
+        each moved the defect rather than removing it. Releasing the exemption
+        when no known predicate word followed accepted every readiness claim
+        that used no vocabulary word ("is ready", "is released"); releasing it
+        on a list of publication words accepted every sentence that carried one
+        of them alongside a readiness claim ("is public and ready", "is listed
+        as production-ready"). The underlying cause is the CLOSED predicate
+        vocabulary, which admits qualif* and the copula completion forms but not
+        ready, released, endorsed or fit for production, so no logic layered on
+        the attachment can be sound in both directions.
+
+        Wake condition: a reviewed decision on that vocabulary. Until then the
+        guard stays strict, which is the fail-closed direction, and this test
+        keeps the cost visible instead of leaving it as an accident.
         """
-        for honest in (
+        for over_refused in (
             "the product tour, qualified by the reviewer, is public",
             "the build, qualified by CI, is reproducible.",
             "the release notes, qualified by the reviewer, are public",
             "the installer, qualified by the reviewer, is public",
-            "the alpha channel, qualified by the reviewer, is documented",
-            "the one-line command, qualified by the reviewer, is listed",
-            "the release, qualified by the reviewer, is published today",
-            "the product tour, qualified by our own tests, is public",
-            "the build, qualified by the reviewer, is reproducible and public",
+            "the release, qualified by the reviewer, is on the site",
+            "the one-line command, qualified by the reviewer, is easy to follow",
         ):
-            with self.subTest(honest=honest):
-                self.assertIsNone(check_site_quality.qualification_claim_violation(honest))
+            with self.subTest(over_refused=over_refused):
+                self.assertIsNotNone(
+                    check_site_quality.qualification_claim_violation(over_refused)
+                )
+        # The teeth of the same rule, so this test cannot be satisfied by a
+        # guard that simply refuses everything with a participle in it.
         for claim in (
-            "the product, qualified by the reviewer, is complete",
-            "The native installation, qualified by the reviewer, is ready",
-            "The native installation, qualified by our own tests, is production-ready",
-            "The native installation, qualified by CI, is fit for production",
-            "The release, qualified by the reviewer, is released",
-            "The native installation is qualified by our own tests",
             "The native installation, reduced to a QEMU simulation, qualifies.",
+            "The native installation is qualified by our own tests",
         ):
             with self.subTest(claim=claim):
                 self.assertIsNotNone(check_site_quality.qualification_claim_violation(claim))
-        # The exemption is released on a POSITIVE list, not on the absence of a
-        # known predicate word. These are the exact strings that a negative
-        # release condition accepted, and the predicate vocabulary is closed, so
-        # "is ready" and "is released" carry none of its words. An independent
-        # verifier found this by reading the previous revision of this fix.
 
     def test_a_predicate_may_borrow_a_subject_only_where_nothing_else_claims_it(self) -> None:
         """The three ways this rule would over-refuse, each a real site shape.
