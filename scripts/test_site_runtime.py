@@ -200,25 +200,66 @@ class QualificationClaimTests(unittest.TestCase):
             with self.subTest(claim=claim):
                 self.assertIsNotNone(check_site_quality.qualification_claim_violation(claim))
 
-    def test_known_unfixed_bypass_a_comma_separates_subject_from_predicate(self) -> None:
-        """KNOWN GAP, asserted so it stays visible rather than silently absent.
+    def test_a_clause_boundary_cannot_separate_subject_from_predicate(self) -> None:
+        """The recorded bypass, now a refusal.
 
-        Both strings below are affirmative claims that the guard does NOT
-        refuse, because the comma splits the subject from the predicate and each
-        half is then missing one of the two. Closing this needs the comma to stop
-        being a clause boundary, which is where the over-refusals come from:
-        every honest string of the form "native qualification pending" also
-        depends on that split. It is recorded rather than fixed because the
-        trade is a real judgement about the public readiness contract, not a
-        local repair. If this test ever starts failing, the gap was closed and
-        this expectation must be updated to assertIsNotNone.
+        A subordinate clause introduces no new subject, so a comma must not be
+        able to move the subject of a claim away from its predicate and leave
+        each half holding only one of the two. The first string is the exact
+        recorded finding; the rest are the same defect in other wordings, and
+        are here to show the rule is structural rather than a pinned sentence.
+        The controls in the next two tests are what stop this from being a
+        rule that refuses everything containing a comma.
         """
         for claim in (
+            # The recorded finding, uncaught until now.
+            "The native installation, while the docs are unreviewed, is qualified.",
+            # The two strings the KNOWN GAP sentinel used to assert as passing.
             "is qualified, the native installation",
             "For the native installation, the status is qualified.",
+            # Same defect, other subordinating conjunctions and other orders.
+            "Although the reviewer is unavailable, the native installation is fully qualified.",
+            "Whereas no reviewer has signed off, the one-line command is qualified.",
+            "Because the release history is thin, the native build is qualified.",
+            "The native installation, insofar as anyone can tell, is qualified.",
+        ):
+            with self.subTest(claim=claim):
+                self.assertIsNotNone(check_site_quality.qualification_claim_violation(claim))
+
+    def test_a_pendingly_subordinated_clause_does_not_excuse_the_claim(self) -> None:
+        # The mirror of the bypass: a pending or negated predicate in the main
+        # clause governs, and the subordinate clause does not turn it back into
+        # a claim.
+        for claim in (
+            "The native installation, while the docs are unreviewed, is not yet qualified.",
+            "The native installation, while the docs are unreviewed, is not qualified.",
+            "The native installation, though the docs are unreviewed, remains pending.",
+            "The native installation, because the review is outstanding, is still unqualified.",
         ):
             with self.subTest(claim=claim):
                 self.assertIsNone(check_site_quality.qualification_claim_violation(claim))
+
+    def test_a_participial_fragment_in_an_aside_is_not_a_predicate(self) -> None:
+        # The over-refusal the sentence pass had to be limited to avoid. Taken
+        # from papers/stateware-whitepaper-candidate-v1.2.md: "qualified" here
+        # modifies "providers" inside a dash aside, the subject of the sentence
+        # is "architecture", and the sentence's own predicate is negated. The
+        # fragment has no finite verb, so the sentence pass must not hand it the
+        # subject of an unrelated clause.
+        honest = (
+            "The wider\narchitecture this paper describes — catalogues of community applications,\n"
+            "multiple qualified providers, team deployments — is a direction, not a\n"
+            "description of what the alpha delivers"
+        )
+        self.assertIsNone(check_site_quality.qualification_claim_violation(honest))
+        # A finite clause in the same position is a claim, so the gate is the
+        # finite verb and not a special case for this sentence.
+        self.assertIsNotNone(
+            check_site_quality.qualification_claim_violation(
+                "The wider architecture this paper describes — the native installation is "
+                "qualified — is a direction, not a description of what the alpha delivers"
+            )
+        )
 
     def test_a_documentation_noun_far_from_the_claim_does_not_excuse_it(self) -> None:
         # Pins the adjacency constraint. Widening the adjacency window left

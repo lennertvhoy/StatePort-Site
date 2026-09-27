@@ -796,10 +796,14 @@ CLAUSE_ASIDE = re.compile(
 # installation is ready. Keyed on the documentation noun governing the
 # qualification rather than on "qualified by", which would open a bypass:
 # "the installation is qualified by our own tests" is still a real claim.
+# The window is captured so that the noun and the qualification can be
+# required to sit in the SAME clause: judged across a clause boundary, a
+# documentation noun in a subordinate clause ("The native installation, while
+# the docs are unreviewed, is qualified") silently certified the product.
 QUALIFICATION_DOCUMENT_SUBJECT = re.compile(
-    r"\b(?:instruction|instructions|documentation|docs|doc|guide|manual|step|steps|"
-    r"snippet|checklist|walkthrough|tutorial|page|post|article|example)\b"
-    r"[^.;]{0,60}\bqualif"
+    r"\b(?P<noun_first>instruction|instructions|documentation|docs|doc|guide|"
+    r"manual|step|steps|snippet|checklist|walkthrough|tutorial|page|post|"
+    r"article|example)\b(?P<window>[^.;]{0,60})\bqualif"
     # The reverse order too, because the site is documentation-heavy. The
     # documentation noun must be ADJACENT to the qualification, at most two words
     # away: a wide window would exempt "the installation is qualified; see the
@@ -808,6 +812,26 @@ QUALIFICATION_DOCUMENT_SUBJECT = re.compile(
     r"docs|doc|guide|manual|step|steps|snippet|checklist|walkthrough|tutorial)\b",
     re.IGNORECASE,
 )
+# What severs a documentation noun from the qualification it is meant to
+# govern: a clause boundary of the same kind CLAUSE_ASIDE already recognises,
+# plus the comma that separates a subordinate clause from the main clause.
+CLAUSE_SEVERING_BREAK = re.compile(
+    r",|\b(?:although|though|while|whereas|since|because)\b",
+    re.IGNORECASE,
+)
+
+
+def _document_subject_exempts(span: str) -> bool:
+    """Whether the documentation, and not the product, is what is qualified."""
+    match = QUALIFICATION_DOCUMENT_SUBJECT.search(span)
+    if match is None:
+        return False
+    window = match.group("window")
+    if window is None:
+        # The qualification comes first and the noun is at most two words
+        # behind it, so no clause boundary can sit between the two.
+        return True
+    return not CLAUSE_SEVERING_BREAK.search(window)
 
 
 ENUMERATION_CONTINUATION = re.compile(r"^\s*(?:or|and|nor)\s+", re.IGNORECASE)
@@ -845,30 +869,120 @@ def _logical_clauses(text: str) -> list[tuple[str, int]]:
     refuses "Not verified, the native installation is qualified".
     """
     logical: list[tuple[str, int]] = []
-    sentence_start = 0
-    for sentence_boundary in list(CLAUSE_SENTENCE_BOUNDARY.finditer(text)) + [None]:
-        sentence_end = sentence_boundary.start() if sentence_boundary else len(text)
+    for sentence, sentence_start in _sentences(text):
         soft_start = sentence_start
-        for soft_boundary in list(CLAUSE_SOFT_BOUNDARY.finditer(text, sentence_start, sentence_end)) + [None]:
-            soft_end = soft_boundary.start() if soft_boundary else sentence_end
+        for soft_boundary in list(CLAUSE_SOFT_BOUNDARY.finditer(text, sentence_start, sentence_start + len(sentence))) + [None]:
+            soft_end = soft_boundary.start() if soft_boundary else sentence_start + len(sentence)
             chunk = text[soft_start:soft_end]
             if ENUMERATION_CONTINUATION.match(chunk) and not ENUMERATION_FINITE_VERB.search(chunk):
-                whole = text[sentence_start:sentence_end]
-                logical.append((whole, sentence_start + (len(whole) - len(whole.lstrip()))))
+                logical.append((sentence, _span_start(sentence, sentence_start)))
             else:
                 # The span opens on the whitespace that followed the previous
                 # boundary, so the offset must skip it or the reported line is
                 # the line of the boundary rather than the line of the claim.
-                logical.append((chunk, soft_start + (len(chunk) - len(chunk.lstrip()))))
-            soft_start = soft_boundary.end() if soft_boundary else sentence_end
-        sentence_start = sentence_boundary.end() if sentence_boundary else len(text)
+                logical.append((chunk, _span_start(chunk, soft_start)))
+            soft_start = soft_boundary.end() if soft_boundary else sentence_start + len(sentence)
     return logical
+
+
+def _span_start(span: str, base: int) -> int:
+    """Offset of a span's first non-space character within the whole text."""
+    return base + (len(span) - len(span.lstrip()))
+
+
+def _sentences(text: str) -> list[tuple[str, int]]:
+    """Sentence spans, the outer unit in which a claim must cohere.
+
+    A clause boundary is punctuation, not grammar: a comma or a subordinating
+    conjunction can sit between a subject and its predicate without any change
+    of meaning. Judging only the clause therefore refuses a claim whose two
+    halves each lost one of the subject and the predicate, so the sentence is
+    also judged as one unit.
+    """
+    sentences: list[tuple[str, int]] = []
+    start = 0
+    for boundary in list(CLAUSE_SENTENCE_BOUNDARY.finditer(text)) + [None]:
+        end = boundary.start() if boundary else len(text)
+        span = text[start:end]
+        sentences.append((span, _span_start(span, start)))
+        start = boundary.end() if boundary else len(text)
+    return sentences
+
+
+def _predicate_clause_is_finite(text: str, predicate_start: int) -> bool:
+    """Whether the clause holding a predicate is a clause that asserts.
+
+    A participial fragment inside an aside names no subject and asserts
+    nothing on its own: "multiple qualified providers" in a list of directions
+    the paper is not claiming. Judging such a fragment against the subject of
+    an unrelated clause is the over-refusal that the sentence pass is not
+    allowed to cause, so the sentence pass is limited to predicates carried by
+    a clause that has a finite verb.
+    """
+    for span, start in _logical_clauses(text):
+        if start <= predicate_start < start + len(span):
+            return bool(ENUMERATION_FINITE_VERB.search(span))
+    return False
+
+
+def _affirmative_claim_in_span(
+    text: str,
+    span: str,
+    start: int,
+    *,
+    require_finite_predicate_clause: bool = False,
+) -> tuple[str, int] | None:
+    """The claim this one span makes, or None when it makes none."""
+    if not QUALIFICATION_SUBJECT.search(span):
+        return None
+    predicate = QUALIFICATION_PREDICATE.search(span)
+    if predicate is None:
+        return None
+    if require_finite_predicate_clause and not _predicate_clause_is_finite(
+        text, start + predicate.start()
+    ):
+        return None
+    if _document_subject_exempts(span):
+        return None
+    # A negation or pending word GOVERNS the claim only when nothing
+    # parenthetical or dash-introduced separates it from the claim. Scoped
+    # to the whole clause, "The native installation is qualified (unqualified
+    # elsewhere)" was read as honest because the aside happened to contain a
+    # negation, which is the bypass this closes.
+    governs = False
+    for marker in (*QUALIFICATION_NEGATIONS.finditer(span),
+                   *QUALIFICATION_PENDING.finditer(span)):
+        between = span[marker.start():predicate.start()] if marker.start() < predicate.start() \
+            else span[predicate.end():marker.start()]
+        if not CLAUSE_ASIDE.search(between):
+            governs = True
+            break
+    if governs:
+        return None
+    # A retraction may sit in the next clause of the same sentence, as in
+    # "was once qualified, then replaced after review", so the window runs
+    # past the span end but stops at the next sentence boundary.
+    after = text[start + predicate.end():]
+    stop = CLAUSE_SENTENCE_BOUNDARY.search(after)
+    if stop is not None:
+        after = after[: stop.start()]
+    # Whole span, plus the rest of the sentence: a retraction may precede the
+    # claim ("was previously qualified") or follow it in the next clause
+    # ("was once qualified, then replaced after review").
+    if QUALIFICATION_RETROSPECTIVE.search(span) and (
+        QUALIFICATION_RETRACTION.search(span)
+        or QUALIFICATION_RETRACTION.search(after)
+    ):
+        return None
+    # Offset of the PREDICATE, not of the span: a span can open on markup,
+    # which reported the line of the preceding boundary in most HTML.
+    return span.strip(), start + predicate.start()
 
 
 def qualification_claim_violation_span(text: str) -> tuple[str, int] | None:
     """Return the first affirmative readiness claim and its offset, else None.
 
-    The decision is clause-scoped rather than pattern-scoped. The previous rule
+    The decision is scope-scoped rather than pattern-scoped. The previous rule
     matched one literal spelling and looked back a fixed 40 characters for a
     negation, so it refused the two strings it had been shown and passed
     "is fully qualified", "Native qualification is complete",
@@ -876,51 +990,38 @@ def qualification_claim_violation_span(text: str) -> tuple[str, int] | None:
     "Not verified, the native installation is qualified", where a negation
     about something else masked a genuinely affirmative claim.
 
-    A clause is a violation when it names what is qualified, asserts a
+    A scope is a violation when it names what is qualified, asserts a
     qualification, and carries neither a negation nor pending language.
+
+    Two scopes are judged, and the earlier offset wins. The clause pass is
+    what keeps honest enumeration prose legal: a negation or a pending label
+    governs the members of the list it introduces. The SENTENCE pass is what
+    closes the recorded gap in which the comma was treated as a clause
+    boundary, so "The native installation, while the docs are unreviewed, is
+    qualified" left one clause holding the subject and the next holding the
+    predicate, and each half was then missing one of the two. A subordinate
+    clause introduces no new subject, so nothing inside one sentence excuses
+    a claim made in that sentence. The sentence pass cannot over-refuse the
+    enumeration prose the clause pass exists for, because the same governance
+    test is applied to the whole sentence: a negation two commas back still
+    governs. It is further limited to a predicate carried by a clause that has
+    a finite verb, so a participial fragment in an aside cannot borrow the
+    subject of an unrelated clause. That limit is the residual class: a
+    subject and a predicate that are both absent from every clause, with no
+    finite verb anywhere between them, is still not caught here.
     """
-    for clause_match, start in _logical_clauses(text):
-        if not QUALIFICATION_SUBJECT.search(clause_match):
-            continue
-        predicate = QUALIFICATION_PREDICATE.search(clause_match)
-        if predicate is None:
-            continue
-        if QUALIFICATION_DOCUMENT_SUBJECT.search(clause_match):
-            continue
-        # A negation or pending word GOVERNS the claim only when nothing
-        # parenthetical or dash-introduced separates it from the claim. Scoped
-        # to the whole clause, "The native installation is qualified (unqualified
-        # elsewhere)" was read as honest because the aside happened to contain a
-        # negation, which is the bypass this closes.
-        governs = False
-        for marker in (*QUALIFICATION_NEGATIONS.finditer(clause_match),
-                       *QUALIFICATION_PENDING.finditer(clause_match)):
-            between = clause_match[marker.start():predicate.start()] if marker.start() < predicate.start() \
-                else clause_match[predicate.end():marker.start()]
-            if not CLAUSE_ASIDE.search(between):
-                governs = True
-                break
-        if governs:
-            continue
-        # A retraction may sit in the next clause of the same sentence, as in
-        # "was once qualified, then replaced after review", so the window runs
-        # past the clause end but stops at the next sentence boundary.
-        after = text[start + predicate.end():]
-        stop = CLAUSE_SENTENCE_BOUNDARY.search(after)
-        if stop is not None:
-            after = after[: stop.start()]
-        # Whole clause, plus the rest of the sentence: a retraction may precede
-        # the claim ("was previously qualified") or follow it in the next clause
-        # ("was once qualified, then replaced after review").
-        if QUALIFICATION_RETROSPECTIVE.search(clause_match) and (
-            QUALIFICATION_RETRACTION.search(clause_match)
-            or QUALIFICATION_RETRACTION.search(after)
-        ):
-            continue
-        # Offset of the PREDICATE, not of the clause: a clause can open on markup,
-        # which reported the line of the preceding boundary in most HTML.
-        return clause_match.strip(), start + predicate.start()
-    return None
+    candidates = [
+        _affirmative_claim_in_span(text, span, start)
+        for span, start in _logical_clauses(text)
+    ]
+    candidates.extend(
+        _affirmative_claim_in_span(text, span, start, require_finite_predicate_clause=True)
+        for span, start in _sentences(text)
+    )
+    found = [candidate for candidate in candidates if candidate is not None]
+    if not found:
+        return None
+    return min(found, key=lambda candidate: candidate[1])
 
 
 def qualification_claim_violation(text: str) -> str | None:
