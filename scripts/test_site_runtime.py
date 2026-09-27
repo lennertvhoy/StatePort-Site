@@ -14,7 +14,15 @@ import validate_repo
 
 
 class QualificationClaimTests(unittest.TestCase):
-    """The ten live claims this guard exists to refuse."""
+    """Both directions, because a guard tested only on what it already refused
+    pins instances rather than the rule.
+
+    The affirmative side once held only the five strings that had been live on
+    the site, so the rule could be rewritten to anything that still refused
+    those five. The bypasses below were each measured passing against the
+    previous single-literal pattern, and the last of them is a false negative:
+    a negation about a different subject used to excuse a real claim.
+    """
 
     def test_affirmative_qualification_claims_are_refused(self) -> None:
         for claim in (
@@ -27,6 +35,32 @@ class QualificationClaimTests(unittest.TestCase):
             with self.subTest(claim=claim):
                 self.assertIsNotNone(check_site_quality.qualification_claim_violation(claim))
 
+    def test_word_order_and_adverb_variants_are_refused(self) -> None:
+        # Each of these passed against the previous literal pattern.
+        for claim in (
+            "The native installation is fully qualified.",
+            "Native qualification is complete.",
+            "a qualified native installation",
+            "The release is now qualified.",
+            "Our product has been qualified.",
+            # \bproduct\b cannot match "production", so this phrasing needed the
+            # subject term added explicitly rather than arriving for free.
+            "The native installation is production qualified.",
+            "production ready: the installer is qualified",
+        ):
+            with self.subTest(claim=claim):
+                self.assertIsNotNone(check_site_quality.qualification_claim_violation(claim))
+
+    def test_negation_about_another_subject_does_not_excuse_a_claim(self) -> None:
+        # False negative: "Not verified" is about something else entirely, and
+        # the fixed-width lookback used to treat it as governing the claim.
+        for claim in (
+            "Not verified, the native installation is qualified",
+            "No blockers, so the installation is qualified",
+        ):
+            with self.subTest(claim=claim):
+                self.assertIsNotNone(check_site_quality.qualification_claim_violation(claim))
+
     def test_honest_phrasings_pass(self) -> None:
         for honest in (
             "the native public-route installation is not yet qualified.",
@@ -34,9 +68,29 @@ class QualificationClaimTests(unittest.TestCase):
             "native qualification remains pending",
             "This qualified view of portability is still valuable.",
             "Alpha.16 is a superseded predecessor retained for history.",
+            # Over-refusing honest prose would block the site, so the honest side
+            # is exercised as deliberately as the failing side.
+            "Qualification is still pending for the native installation.",
+            "The qualified electrician inspected the panel.",
+            "Installation instructions are qualified by the reviewer.",
+            "This release candidate is pending review.",
+            "The native build has not been qualified yet.",
         ):
             with self.subTest(honest=honest):
                 self.assertIsNone(check_site_quality.qualification_claim_violation(honest))
+
+    def test_violation_reports_the_offending_offset_not_the_first_match(self) -> None:
+        text = (
+            "the native public-route installation is not yet qualified.\n"
+            "an honest sentence with no claim at all.\n"
+            "Native qualification is complete.\n"
+        )
+        found = check_site_quality.qualification_claim_violation_span(text)
+        self.assertIsNotNone(found)
+        _, offset = found  # type: ignore[misc]
+        self.assertEqual(text.count("\n", 0, offset) + 1, 3)
+        # The reported span is the offending clause, not the first pattern hit.
+        self.assertIn("Native qualification is complete", found[0])  # type: ignore[index]
 
     def test_every_public_page_is_honest_today(self) -> None:
         documents = check_site_quality.parse_documents()
@@ -44,6 +98,34 @@ class QualificationClaimTests(unittest.TestCase):
             text = (check_site_quality.ROOT / path).read_text(encoding="utf-8")
             with self.subTest(page=str(path)):
                 self.assertIsNone(check_site_quality.qualification_claim_violation(text))
+
+    def test_every_surface_the_validator_scans_is_honest_today(self) -> None:
+        # Covers exactly the set validate_qualification_claims reads, which is
+        # wider than parse_documents(): subtitles and linked public markdown.
+        # A test that covered only the documents passed while the validator
+        # failed on download/0.1.0-alpha.17/release-notes.md.
+        surfaces = check_site_quality.qualification_claim_surfaces(
+            check_site_quality.parse_documents()
+        )
+        self.assertGreater(len(surfaces), len(check_site_quality.parse_documents()))
+        for name, text in surfaces:
+            with self.subTest(surface=name):
+                self.assertIsNone(check_site_quality.qualification_claim_violation(text))
+
+    def test_obligation_language_is_not_an_affirmative_claim(self) -> None:
+        # Taken from a real page: "requires ... qualification" states that
+        # qualification has not happened.
+        for honest in (
+            "This candidate requires agent-owned installed qualification before product acceptance",
+            "The installation must be qualified before release.",
+            "Qualification is required for acceptance.",
+            # From download/0.1.0-alpha.3/known-limitations.md. The negation
+            # governs an enumeration, so a comma split must not separate them
+            # and turn honest prose into a refusal.
+            "The candidate has not received human acceptance, independent security review, or production qualification.",
+        ):
+            with self.subTest(honest=honest):
+                self.assertIsNone(check_site_quality.qualification_claim_violation(honest))
 
 class SiteRuntimeContractTests(unittest.TestCase):
     def test_every_public_page_has_the_three_keyed_shared_assets(self) -> None:

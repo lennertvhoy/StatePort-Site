@@ -726,8 +726,114 @@ def validate_stale_release_language(documents: dict[Path, DocumentFacts]) -> Non
                 )
 
 
-QUALIFIED_INSTALL_CLAIM = re.compile(r"\binstallation\s+(?:is\s+)?qualified\b", re.IGNORECASE)
-QUALIFICATION_NEGATIONS = ("not yet", "not ", "never ")
+# The subject of a readiness claim: what is being called qualified.
+QUALIFICATION_SUBJECT = re.compile(
+    r"\b(?:installation|installed|native|release|releases|product|production|prod|"
+    r"build|alpha|installer|channel|one-line|command)\b",
+    re.IGNORECASE,
+)
+# The predicate: any way of asserting the qualification, in any word order.
+QUALIFICATION_PREDICATE = re.compile(
+    r"\bqualif(?:y|ies|ied|ication|ications)\b"
+    r"|\b(?:is|are|was|were)\s+(?:now\s+)?(?:complete|completed|done|finished|achieved|passed|successful)\b",
+    re.IGNORECASE,
+)
+# A negation that governs the claim inside its own clause.
+QUALIFICATION_NEGATIONS = re.compile(
+    r"\b(?:not|never|no|without|cannot|can't|isn't|is not|aren't|un\w+)\b", re.IGNORECASE
+)
+# Language that makes the claim explicitly incomplete rather than affirmative,
+# including obligation language: "requires qualification" states that
+# qualification has NOT happened, and that phrasing is live on the site.
+QUALIFICATION_PENDING = re.compile(
+    r"\b(?:pending|awaiting|in\s+progress|outstanding|blocked|deferred|"
+    r"unqualified|not\s+yet|remains?|requires?|required|require|must|needs?|"
+    r"needed|before|prior\s+to|until|unless|subject\s+to|conditional)\b",
+    re.IGNORECASE,
+)
+# A documentation subject is not the product. "Installation instructions are
+# qualified by the reviewer" certifies a document; it does not assert that the
+# installation is ready. Keyed on the documentation noun governing the
+# qualification rather than on "qualified by", which would open a bypass:
+# "the installation is qualified by our own tests" is still a real claim.
+QUALIFICATION_DOCUMENT_SUBJECT = re.compile(
+    r"\b(?:instruction|instructions|documentation|docs|doc|guide|manual|step|steps|"
+    r"snippet|checklist|walkthrough|tutorial|page|post|article|example)\b"
+    r"[^.;]{0,60}\bqualif",
+    re.IGNORECASE,
+)
+
+
+ENUMERATION_CONTINUATION = re.compile(r"^\s*(?:or|and|nor)\s+", re.IGNORECASE)
+# A hard boundary ends a sentence; a comma only separates clauses inside one.
+# A hard boundary ends a sentence. A newline is deliberately NOT one: markdown
+# hard-wraps prose, and treating a wrap as a sentence end severed the negation
+# from its enumeration on a live page.
+CLAUSE_SENTENCE_BOUNDARY = re.compile(r"[.;:!?]|\s·\s|\s\|\s")
+CLAUSE_SOFT_BOUNDARY = re.compile(r"(?<=\w),\s|\n+")
+
+
+def _logical_clauses(text: str) -> list[tuple[str, int]]:
+    """Clause spans, with enumeration members judged against their sentence.
+
+    Splitting on every comma severed a negation from the list it governs: on the
+    live page download/0.1.0-alpha.3/known-limitations.md the sentence "The
+    candidate has not received human acceptance, independent security review,
+    or production qualification" left a trailing clause "or production
+    qualification" carrying no negation, so honest prose was refused. That is
+    the mirror of the original false negative.
+
+    Folding a member into the clause before it was not enough, because the
+    negation sits two commas back. An enumeration member is therefore judged
+    against the whole sentence that governs it. A clause that does NOT open
+    with a coordinating conjunction keeps its own scope, which is what still
+    refuses "Not verified, the native installation is qualified".
+    """
+    logical: list[tuple[str, int]] = []
+    sentence_start = 0
+    for sentence_boundary in list(CLAUSE_SENTENCE_BOUNDARY.finditer(text)) + [None]:
+        sentence_end = sentence_boundary.start() if sentence_boundary else len(text)
+        soft_start = sentence_start
+        for soft_boundary in list(CLAUSE_SOFT_BOUNDARY.finditer(text, sentence_start, sentence_end)) + [None]:
+            soft_end = soft_boundary.start() if soft_boundary else sentence_end
+            chunk = text[soft_start:soft_end]
+            if ENUMERATION_CONTINUATION.match(chunk):
+                logical.append((text[sentence_start:sentence_end], sentence_start))
+            else:
+                logical.append((chunk, soft_start))
+            soft_start = soft_boundary.end() if soft_boundary else sentence_end
+        sentence_start = sentence_boundary.end() if sentence_boundary else len(text)
+    return logical
+
+
+def qualification_claim_violation_span(text: str) -> tuple[str, int] | None:
+    """Return the first affirmative readiness claim and its offset, else None.
+
+    The decision is clause-scoped rather than pattern-scoped. The previous rule
+    matched one literal spelling and looked back a fixed 40 characters for a
+    negation, so it refused the two strings it had been shown and passed
+    "is fully qualified", "Native qualification is complete",
+    "a qualified native installation", and even the false negative
+    "Not verified, the native installation is qualified", where a negation
+    about something else masked a genuinely affirmative claim.
+
+    A clause is a violation when it names what is qualified, asserts a
+    qualification, and carries neither a negation nor pending language.
+    """
+    for clause_match, start in _logical_clauses(text):
+        if not QUALIFICATION_SUBJECT.search(clause_match):
+            continue
+        predicate = QUALIFICATION_PREDICATE.search(clause_match)
+        if predicate is None:
+            continue
+        if QUALIFICATION_NEGATIONS.search(clause_match):
+            continue
+        if QUALIFICATION_PENDING.search(clause_match):
+            continue
+        if QUALIFICATION_DOCUMENT_SUBJECT.search(clause_match):
+            continue
+        return clause_match.strip(), start
+    return None
 
 
 def qualification_claim_violation(text: str) -> str | None:
@@ -736,23 +842,19 @@ def qualification_claim_violation(text: str) -> str | None:
     Split out from the validator so the decision can be unit tested directly:
     a guard that has only ever passed proves nothing.
     """
-    for match in QUALIFIED_INSTALL_CLAIM.finditer(text):
-        window = text[max(0, match.start() - 40) : match.start()].lower()
-        if any(negation in window for negation in QUALIFICATION_NEGATIONS):
-            continue
-        return match.group(0)
-    return None
+    found = qualification_claim_violation_span(text)
+    return None if found is None else found[0]
 
 
-def validate_qualification_claims(documents: dict[Path, DocumentFacts]) -> None:
-    """Public prose may never assert that the native installation is qualified.
+def qualification_claim_surfaces(
+    documents: dict[Path, DocumentFacts],
+) -> list[tuple[str, str]]:
+    """Every text surface the readiness guard is answerable about.
 
-    Ten such statements were once live across four pages, including the
-    homepage hero and a machine-readable JSON-LD description that tooling
-    consumes, and the download page contradicted its own meta description
-    while doing it. Native qualification is still pending, so an affirmative
-    claim is false by construction and cannot be repaired by a later commit
-    alone: it has to be refused here.
+    Extracted so the tests can cover exactly the set the validator scans. The
+    validator also reads subtitles and linked public markdown, and a test that
+    covered only parse_documents() passed while the validator failed on a real
+    release-notes page.
     """
     surfaces: list[tuple[str, str]] = [
         (str(path), (ROOT / path).read_text(encoding="utf-8")) for path in documents
@@ -765,12 +867,28 @@ def validate_qualification_claims(documents: dict[Path, DocumentFacts]) -> None:
         (str(path.relative_to(ROOT)), path.read_text(encoding="utf-8"))
         for path in sorted(linked_public_markdown_pages())
     )
-    for name, text in surfaces:
-        violation = qualification_claim_violation(text)
-        if violation is None:
+    return surfaces
+
+
+def validate_qualification_claims(documents: dict[Path, DocumentFacts]) -> None:
+    """Public prose may never assert that the native installation is qualified.
+
+    Ten such statements were once live across four pages, including the
+    homepage hero and a machine-readable JSON-LD description that tooling
+    consumes, and the download page contradicted its own meta description
+    while doing it. Native qualification is still pending, so an affirmative
+    claim is false by construction and cannot be repaired by a later commit
+    alone: it has to be refused here.
+    """
+    for name, text in qualification_claim_surfaces(documents):
+        found = qualification_claim_violation_span(text)
+        if found is None:
             continue
-        offset = QUALIFIED_INSTALL_CLAIM.search(text)
-        line = text.count("\n", 0, offset.start()) + 1 if offset else 1
+        violation, offset = found
+        # Locate the claim from its own offset. Searching the document from the
+        # start reported the line of the FIRST match on the page rather than the
+        # offending one, which points a maintainer at the wrong line.
+        line = text.count("\n", 0, offset) + 1
         raise AssertionError(
             f"Unqualified readiness claim in {name}:{line}: {violation!r}. "
             "Native qualification is pending; say 'not yet qualified' or "
