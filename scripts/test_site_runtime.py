@@ -92,6 +92,92 @@ class QualificationClaimTests(unittest.TestCase):
         # The reported span is the offending clause, not the first pattern hit.
         self.assertIn("Native qualification is complete", found[0])  # type: ignore[index]
 
+    def test_release_version_vocabulary_is_not_a_sentence_boundary(self) -> None:
+        # Alpha.N and 0.1.0-alpha.N are this site's own release vocabulary, and
+        # a period inside one of those tokens is not the end of a sentence.
+        for claim in (
+            "Alpha.17 is fully qualified.",
+            "Release 0.1.0-alpha.16 is fully qualified.",
+            "stateport 0.1.0-alpha.19 is qualified",
+        ):
+            with self.subTest(claim=claim):
+                self.assertIsNotNone(check_site_quality.qualification_claim_violation(claim))
+
+    def test_a_list_member_with_its_own_verb_does_not_inherit_a_foreign_negation(self) -> None:
+        # The dangerous shape: swapping a connective restores the false negative
+        # the rule exists to catch. "No blockers" negates a different conjunct.
+        for claim in (
+            "No blockers, and the installation is qualified",
+            "Not verified, or the native installation is qualified",
+            "Nothing pending, and the native installation is fully qualified",
+        ):
+            with self.subTest(claim=claim):
+                self.assertIsNotNone(check_site_quality.qualification_claim_violation(claim))
+
+    def test_wrapping_does_not_sever_subject_from_predicate(self) -> None:
+        # Markdown hard-wraps prose, and the site has thousands of such joins.
+        for claim in (
+            "The installation\nis qualified",
+            "The native installation is\nnow\nqualified.",
+            "The native installation\nis fully qualified.",
+        ):
+            with self.subTest(claim=claim):
+                self.assertIsNotNone(check_site_quality.qualification_claim_violation(claim))
+
+    def test_a_wrapped_continuation_line_does_not_inherit_a_pending_label(self) -> None:
+        self.assertIsNotNone(
+            check_site_quality.qualification_claim_violation(
+                "Human acceptance is pending\nand the native installation is fully qualified."
+            )
+        )
+
+    def test_un_prefixed_words_are_not_negations(self) -> None:
+        # A general un\\w+ negation pattern matched "unique", "uninstall", "unit".
+        for claim in (
+            "The unique native installation is qualified",
+            # Subject descriptors must not exempt a claim about that subject.
+            "An unverified native installation is qualified",
+        ):
+            with self.subTest(claim=claim):
+                self.assertIsNotNone(check_site_quality.qualification_claim_violation(claim))
+
+    def test_completion_predicate_branch_is_load_bearing(self) -> None:
+        # These match only the completion branch, not the qualif* vocabulary.
+        # Deleting that branch used to leave every test green.
+        for claim in (
+            "The native installation is complete.",
+            "The installation is done.",
+            "The native installation is finished.",
+            "Native qualification achieved.",
+        ):
+            with self.subTest(claim=claim):
+                self.assertIsNotNone(check_site_quality.qualification_claim_violation(claim))
+
+    def test_a_pending_label_governs_the_list_it_introduces(self) -> None:
+        # The site writes pending lists in exactly this style.
+        for honest in (
+            "Pending: native qualification",
+            "Pending items: native qualification, independent security review, human acceptance.",
+            "Still pending: native qualification",
+        ):
+            with self.subTest(honest=honest):
+                self.assertIsNone(check_site_quality.qualification_claim_violation(honest))
+
+    def test_a_documentation_subject_is_exempt_in_either_word_order(self) -> None:
+        for honest in (
+            "The qualified installation guide covers WSL2.",
+            "See the qualified installation checklist in the docs.",
+        ):
+            with self.subTest(honest=honest):
+                self.assertIsNone(check_site_quality.qualification_claim_violation(honest))
+        # Adjacency is what makes this safe: a documentation noun mentioned
+        # later in the clause must not exempt a real claim.
+        self.assertIsNotNone(
+            check_site_quality.qualification_claim_violation(
+                "The installation is qualified; see the guide for details."
+            )
+        )
+
     def test_every_public_page_is_honest_today(self) -> None:
         documents = check_site_quality.parse_documents()
         for path, _ in documents.items():

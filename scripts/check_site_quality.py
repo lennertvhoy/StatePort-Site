@@ -740,7 +740,9 @@ QUALIFICATION_PREDICATE = re.compile(
 )
 # A negation that governs the claim inside its own clause.
 QUALIFICATION_NEGATIONS = re.compile(
-    r"\b(?:not|never|no|without|cannot|can't|isn't|is not|aren't|un\w+)\b", re.IGNORECASE
+    r"\b(?:not|never|no|without|cannot|can't|isn't|aren't|wasn't|weren't|"
+    r"unqualified)\b",
+    re.IGNORECASE,
 )
 # Language that makes the claim explicitly incomplete rather than affirmative,
 # including obligation language: "requires qualification" states that
@@ -759,18 +761,33 @@ QUALIFICATION_PENDING = re.compile(
 QUALIFICATION_DOCUMENT_SUBJECT = re.compile(
     r"\b(?:instruction|instructions|documentation|docs|doc|guide|manual|step|steps|"
     r"snippet|checklist|walkthrough|tutorial|page|post|article|example)\b"
-    r"[^.;]{0,60}\bqualif",
+    r"[^.;]{0,60}\bqualif"
+    # The reverse order too, because the site is documentation-heavy. The
+    # documentation noun must be ADJACENT to the qualification, at most two words
+    # away: a wide window would exempt "the installation is qualified; see the
+    # guide", which is a real claim.
+    r"|\bqualif\w*\s+(?:\w+\s+){0,2}(?:instruction|instructions|documentation|"
+    r"docs|doc|guide|manual|step|steps|snippet|checklist|walkthrough|tutorial)\b",
     re.IGNORECASE,
 )
 
 
 ENUMERATION_CONTINUATION = re.compile(r"^\s*(?:or|and|nor)\s+", re.IGNORECASE)
-# A hard boundary ends a sentence; a comma only separates clauses inside one.
+# An enumeration member inherits the governing negation only when it is a noun
+# phrase completing a list. If it carries its own finite verb it is an
+# independent assertion, and letting it inherit re-opened the very false
+# negative this rule exists to catch: "No blockers, and the installation is
+# qualified" was excused by the "No" of a different conjunct.
+ENUMERATION_FINITE_VERB = re.compile(
+    r"\b(?:is|are|was|were|has|have|had|will|would|can|could|should|shall|must|"
+    r"does|did|remains?|stays?|becomes?|passed)\b",
+    re.IGNORECASE,
+)
 # A hard boundary ends a sentence. A newline is deliberately NOT one: markdown
 # hard-wraps prose, and treating a wrap as a sentence end severed the negation
 # from its enumeration on a live page.
-CLAUSE_SENTENCE_BOUNDARY = re.compile(r"[.;:!?]|\s·\s|\s\|\s")
-CLAUSE_SOFT_BOUNDARY = re.compile(r"(?<=\w),\s|\n+")
+CLAUSE_SENTENCE_BOUNDARY = re.compile(r"[.!?](?!\d)|\s·\s|\s\|\s")
+CLAUSE_SOFT_BOUNDARY = re.compile(r"(?<=\w),\s|\n\s*(?=(?:or|and|nor)\b)")
 
 
 def _logical_clauses(text: str) -> list[tuple[str, int]]:
@@ -797,10 +814,14 @@ def _logical_clauses(text: str) -> list[tuple[str, int]]:
         for soft_boundary in list(CLAUSE_SOFT_BOUNDARY.finditer(text, sentence_start, sentence_end)) + [None]:
             soft_end = soft_boundary.start() if soft_boundary else sentence_end
             chunk = text[soft_start:soft_end]
-            if ENUMERATION_CONTINUATION.match(chunk):
-                logical.append((text[sentence_start:sentence_end], sentence_start))
+            if ENUMERATION_CONTINUATION.match(chunk) and not ENUMERATION_FINITE_VERB.search(chunk):
+                whole = text[sentence_start:sentence_end]
+                logical.append((whole, sentence_start + (len(whole) - len(whole.lstrip()))))
             else:
-                logical.append((chunk, soft_start))
+                # The span opens on the whitespace that followed the previous
+                # boundary, so the offset must skip it or the reported line is
+                # the line of the boundary rather than the line of the claim.
+                logical.append((chunk, soft_start + (len(chunk) - len(chunk.lstrip()))))
             soft_start = soft_boundary.end() if soft_boundary else sentence_end
         sentence_start = sentence_boundary.end() if sentence_boundary else len(text)
     return logical
