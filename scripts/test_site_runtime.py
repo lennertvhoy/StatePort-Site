@@ -311,6 +311,35 @@ class QualificationClaimTests(unittest.TestCase):
             with self.subTest(honest=honest):
                 self.assertIsNone(check_site_quality.qualification_claim_violation(honest))
 
+    def test_an_agented_participle_does_not_become_a_claim_by_attachment(self) -> None:
+        """The over-refusal the cross-clause attachment introduced, removed.
+
+        Widening the sentence pass to a predicate that carries this subject also
+        reached sentences where "qualified by" names the person who vetted
+        something and the sentence asserts something else entirely, so honest
+        prose was refused. An explicit agent is what distinguishes that case, and
+        what the sentence asserts after the participle is what settles it.
+
+        The second list is the control: the same shape whose own assertion IS a
+        readiness claim must stay refused, and so must the unscoped form, which
+        the clause pass refuses without this rule at all.
+        """
+        for honest in (
+            "the product tour, qualified by the reviewer, is public",
+            "the build, qualified by CI, is reproducible.",
+            "the release notes, qualified by the reviewer, are public",
+            "the installer, qualified by the reviewer, is public",
+        ):
+            with self.subTest(honest=honest):
+                self.assertIsNone(check_site_quality.qualification_claim_violation(honest))
+        for claim in (
+            "the product, qualified by the reviewer, is complete",
+            "The native installation, reduced to a QEMU simulation, qualifies.",
+            "The native installation is qualified by our own tests",
+        ):
+            with self.subTest(claim=claim):
+                self.assertIsNotNone(check_site_quality.qualification_claim_violation(claim))
+
     def test_a_predicate_may_borrow_a_subject_only_where_nothing_else_claims_it(self) -> None:
         """The three ways this rule would over-refuse, each a real site shape.
 

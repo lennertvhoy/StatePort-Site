@@ -849,6 +849,10 @@ ENUMERATION_FINITE_VERB = re.compile(
 # hard-wraps prose, and treating a wrap as a sentence end severed the negation
 # from its enumeration on a live page.
 CLAUSE_SENTENCE_BOUNDARY = re.compile(r"[.!?](?!\d)|\s·\s|\s\|\s")
+# An explicit agent after the qualification participle: the word then says who
+# vetted something rather than asserting the qualification of the subject.
+AGENTED_PARTICIPLE = re.compile(r"\bqualif(?:ied|ies|y)\s+by\b", re.IGNORECASE)
+
 CLAUSE_SOFT_BOUNDARY = re.compile(r"(?<=\w),\s|\n\s*(?=(?:or|and|nor)\b)")
 
 
@@ -962,6 +966,18 @@ def _predicate_carries_this_subject(span: str, subject: re.Match[str], predicate
         return False
     between = span[subject.end():predicate.start()]
     if CLAUSE_ASIDE.search(between):
+        return False
+    # An AGENTED participle is a statement about WHO vetted something, and what
+    # the sentence asserts after it decides whether the sentence is a claim:
+    # "the product tour, qualified by the reviewer, is public" asserts
+    # publication, while "the product, qualified by the reviewer, is complete"
+    # asserts readiness and stays one. This decides only the CROSS-CLAUSE
+    # attachment; the unscoped single-clause form is still refused by the clause
+    # pass, so "The native installation is qualified by our own tests" remains a
+    # claim and the guard keeps no new bypass.
+    if AGENTED_PARTICIPLE.match(span, predicate.start()) and (
+        QUALIFICATION_PREDICATE.search(span, predicate.end()) is None
+    ):
         return False
     # Only the material past the subject's own noun phrase can name a SECOND
     # subject: "The native installation" matches "native" first and names
