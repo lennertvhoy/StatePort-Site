@@ -739,9 +739,12 @@ QUALIFICATION_PREDICATE = re.compile(
     re.IGNORECASE,
 )
 # A negation that governs the claim inside its own clause.
+# "nothing is qualified" negates the predicate itself. Scoped to the copula form
+# so that a bare "nothing" elsewhere in the sentence cannot become a general
+# exemption, which is the failure mode every list in this rule has.
 QUALIFICATION_NEGATIONS = re.compile(
     r"\b(?:not|never|no|without|cannot|can't|isn't|aren't|wasn't|weren't|"
-    r"unqualified)\b",
+    r"unqualified|nothing\s+(?:is|was|are|were))\b",
     re.IGNORECASE,
 )
 # Language that makes the claim explicitly incomplete rather than affirmative,
@@ -757,9 +760,19 @@ QUALIFICATION_PENDING = re.compile(
     r"|\bremains?\s+(?:pending|incomplete|open|unresolved|unverified|outstanding)\b",
     re.IGNORECASE,
 )
-# A historical or retracted claim is not a readiness claim. The site is
-# release-history heavy and must be able to record that a route was once
-# qualified and then withdrawn.
+# A historical claim is not a readiness claim, and the site is release-history
+# heavy so it must be able to record that a route was once qualified and then
+# withdrawn. The claim must be RETROSPECTIVE: this exemption once accepted a
+# retraction word anywhere in the clause, which made "The native installation is
+# qualified, retired." pass, undoing the guard for six shapes that every earlier
+# revision refused. A current-tense assertion is a readiness claim whatever else
+# the sentence mentions.
+QUALIFICATION_RETROSPECTIVE = re.compile(
+    r"\b(?:was|were)\b[^.;]{0,40}\bqualif\w*"
+    r"|\bqualif\w*\b[^.;]{0,15}\b(?:previously|once|historically|formerly|earlier)\b"
+    r"|\b(?:previously|historically|formerly)\b[^.;]{0,25}\bqualif\w*",
+    re.IGNORECASE,
+)
 QUALIFICATION_RETRACTION = re.compile(
     r"\b(?:withdrawn|withdrew|retracted|revoked|superseded|retired|replaced|"
     r"discontinued|no\s+longer|former|previously|once\s+was|historically)\b",
@@ -769,7 +782,15 @@ QUALIFICATION_RETRACTION = re.compile(
 # not GOVERN the claim; it contradicts it. "The native installation is qualified
 # (unqualified elsewhere)" is a claim, and a clause-wide scan read the aside as
 # an exemption.
-CLAUSE_ASIDE = re.compile(r"[()\[\]]|(?:--|\u2014|\u2013)")
+# Text that severs a marker from the claim it appears to govern: a parenthetical
+# or dash aside, or a subordinating conjunction. "The native installation is
+# qualified although CI is no longer red" carries a negation after the claim that
+# governs "longer red", not the claim, and a bare scan of the whole clause read it
+# as excusing the claim.
+CLAUSE_ASIDE = re.compile(
+    r"[()\[\]]|(?:--|\u2014|\u2013)|\b(?:although|though|while|whereas|since|because)\b",
+    re.IGNORECASE,
+)
 # A documentation subject is not the product. "Installation instructions are
 # qualified by the reviewer" certifies a document; it does not assert that the
 # installation is ready. Keyed on the documentation noun governing the
@@ -891,7 +912,7 @@ def qualification_claim_violation_span(text: str) -> tuple[str, int] | None:
         # Whole clause, plus the rest of the sentence: a retraction may precede
         # the claim ("was previously qualified") or follow it in the next clause
         # ("was once qualified, then replaced after review").
-        if (
+        if QUALIFICATION_RETROSPECTIVE.search(clause_match) and (
             QUALIFICATION_RETRACTION.search(clause_match)
             or QUALIFICATION_RETRACTION.search(after)
         ):

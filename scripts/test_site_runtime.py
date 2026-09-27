@@ -250,6 +250,43 @@ class QualificationClaimTests(unittest.TestCase):
             with self.subTest(honest=honest):
                 self.assertIsNone(check_site_quality.qualification_claim_violation(honest))
 
+    def test_a_retraction_word_elsewhere_does_not_excuse_a_current_claim(self) -> None:
+        # A retraction exemption that accepted any retraction word anywhere in
+        # the sentence made the guard a rubber stamp: "The native installation is
+        # qualified, retired." passed, undoing six shapes that every earlier
+        # revision refused. Only a RETROSPECTIVE claim is history.
+        for claim in (
+            "The native installation is qualified, retired.",
+            "The native installation is qualified; the Alpha.13 route was withdrawn.",
+            "The native installation is qualified, and the old route is superseded.",
+            "The native installation is qualified, as previously noted.",
+            "The native installation is qualified; a retired route is unaffected.",
+            "The native installation is qualified and replaced nothing.",
+            "The native installation is qualified although CI is no longer red.",
+        ):
+            with self.subTest(claim=claim):
+                self.assertIsNotNone(check_site_quality.qualification_claim_violation(claim))
+
+    def test_nothing_qualified_is_honest(self) -> None:
+        for honest in (
+            "The Alpha.13 route was withdrawn; nothing is qualified today.",
+            "Nothing is qualified on this route.",
+        ):
+            with self.subTest(honest=honest):
+                self.assertIsNone(check_site_quality.qualification_claim_violation(honest))
+
+    def test_the_offset_is_the_predicate_line_not_the_clause_line(self) -> None:
+        # Pins the predicate offset, which the previous test could not: both the
+        # clause start and the predicate sit on the same line there, so reverting
+        # to the clause offset left every test green while the validator named
+        # the wrong line. Here the clause opens on line 1 and the predicate is on
+        # line 2, so the two offsets differ.
+        text = "Native installation is\nqualified.\n"
+        found = check_site_quality.qualification_claim_violation_span(text)
+        self.assertIsNotNone(found)
+        _, offset = found  # type: ignore[misc]
+        self.assertEqual(text.count("\n", 0, offset) + 1, 2)
+
     def test_every_public_page_is_honest_today(self) -> None:
         documents = check_site_quality.parse_documents()
         for path, _ in documents.items():
