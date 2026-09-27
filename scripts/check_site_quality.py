@@ -749,10 +749,27 @@ QUALIFICATION_NEGATIONS = re.compile(
 # qualification has NOT happened, and that phrasing is live on the site.
 QUALIFICATION_PENDING = re.compile(
     r"\b(?:pending|awaiting|in\s+progress|outstanding|blocked|deferred|"
-    r"unqualified|not\s+yet|remains?|requires?|required|require|must|needs?|"
-    r"needed|before|prior\s+to|until|unless|subject\s+to|conditional)\b",
+    r"unqualified|not\s+yet|requires?|required|require|must|needs?|"
+    r"needed|before|prior\s+to|until|unless|subject\s+to|conditional)\b"
+    # "remains" is a PENDING marker only when a pending word follows it, so
+    # "qualification remains pending" is exempt while "the installation remains
+    # qualified" stays a claim. Bare "remains" let a synonym defeat the guard.
+    r"|\bremains?\s+(?:pending|incomplete|open|unresolved|unverified|outstanding)\b",
     re.IGNORECASE,
 )
+# A historical or retracted claim is not a readiness claim. The site is
+# release-history heavy and must be able to record that a route was once
+# qualified and then withdrawn.
+QUALIFICATION_RETRACTION = re.compile(
+    r"\b(?:withdrawn|withdrew|retracted|revoked|superseded|retired|replaced|"
+    r"discontinued|no\s+longer|former|previously|once\s+was|historically)\b",
+    re.IGNORECASE,
+)
+# A parenthetical or dash aside that mentions a negation or pending word does
+# not GOVERN the claim; it contradicts it. "The native installation is qualified
+# (unqualified elsewhere)" is a claim, and a clause-wide scan read the aside as
+# an exemption.
+CLAUSE_ASIDE = re.compile(r"[()\[\]]|(?:--|\u2014|\u2013)")
 # A documentation subject is not the product. "Installation instructions are
 # qualified by the reviewer" certifies a document; it does not assert that the
 # installation is ready. Keyed on the documentation noun governing the
@@ -847,13 +864,41 @@ def qualification_claim_violation_span(text: str) -> tuple[str, int] | None:
         predicate = QUALIFICATION_PREDICATE.search(clause_match)
         if predicate is None:
             continue
-        if QUALIFICATION_NEGATIONS.search(clause_match):
-            continue
-        if QUALIFICATION_PENDING.search(clause_match):
-            continue
         if QUALIFICATION_DOCUMENT_SUBJECT.search(clause_match):
             continue
-        return clause_match.strip(), start
+        # A negation or pending word GOVERNS the claim only when nothing
+        # parenthetical or dash-introduced separates it from the claim. Scoped
+        # to the whole clause, "The native installation is qualified (unqualified
+        # elsewhere)" was read as honest because the aside happened to contain a
+        # negation, which is the bypass this closes.
+        governs = False
+        for marker in (*QUALIFICATION_NEGATIONS.finditer(clause_match),
+                       *QUALIFICATION_PENDING.finditer(clause_match)):
+            between = clause_match[marker.start():predicate.start()] if marker.start() < predicate.start() \
+                else clause_match[predicate.end():marker.start()]
+            if not CLAUSE_ASIDE.search(between):
+                governs = True
+                break
+        if governs:
+            continue
+        # A retraction may sit in the next clause of the same sentence, as in
+        # "was once qualified, then replaced after review", so the window runs
+        # past the clause end but stops at the next sentence boundary.
+        after = text[start + predicate.end():]
+        stop = CLAUSE_SENTENCE_BOUNDARY.search(after)
+        if stop is not None:
+            after = after[: stop.start()]
+        # Whole clause, plus the rest of the sentence: a retraction may precede
+        # the claim ("was previously qualified") or follow it in the next clause
+        # ("was once qualified, then replaced after review").
+        if (
+            QUALIFICATION_RETRACTION.search(clause_match)
+            or QUALIFICATION_RETRACTION.search(after)
+        ):
+            continue
+        # Offset of the PREDICATE, not of the clause: a clause can open on markup,
+        # which reported the line of the preceding boundary in most HTML.
+        return clause_match.strip(), start + predicate.start()
     return None
 
 

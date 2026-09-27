@@ -178,6 +178,78 @@ class QualificationClaimTests(unittest.TestCase):
             )
         )
 
+    def test_an_aside_mentioning_a_negation_does_not_excuse_a_claim(self) -> None:
+        # The bypass a lexical clause-wide scan cannot see: a parenthetical that
+        # CONTRADICTS the claim still mentions a negation or pending word.
+        for claim in (
+            "The native installation is qualified (nothing pending)",
+            "The native installation is qualified (no blockers remain)",
+            "The native installation is qualified (not verified anywhere)",
+            "The native installation is qualified (unqualified elsewhere)",
+        ):
+            with self.subTest(claim=claim):
+                self.assertIsNotNone(check_site_quality.qualification_claim_violation(claim))
+
+    def test_remains_qualified_is_a_claim_not_a_pending_marker(self) -> None:
+        # "remains" is pending only before a pending word, so a synonym could
+        # not defeat the guard that the enumeration fix introduced.
+        for claim in (
+            "No blockers, and the installation remains qualified",
+            "No blockers, and the installation is qualified",
+        ):
+            with self.subTest(claim=claim):
+                self.assertIsNotNone(check_site_quality.qualification_claim_violation(claim))
+
+    def test_known_unfixed_bypass_a_comma_separates_subject_from_predicate(self) -> None:
+        """KNOWN GAP, asserted so it stays visible rather than silently absent.
+
+        Both strings below are affirmative claims that the guard does NOT
+        refuse, because the comma splits the subject from the predicate and each
+        half is then missing one of the two. Closing this needs the comma to stop
+        being a clause boundary, which is where the over-refusals come from:
+        every honest string of the form "native qualification pending" also
+        depends on that split. It is recorded rather than fixed because the
+        trade is a real judgement about the public readiness contract, not a
+        local repair. If this test ever starts failing, the gap was closed and
+        this expectation must be updated to assertIsNotNone.
+        """
+        for claim in (
+            "is qualified, the native installation",
+            "For the native installation, the status is qualified.",
+        ):
+            with self.subTest(claim=claim):
+                self.assertIsNone(check_site_quality.qualification_claim_violation(claim))
+
+    def test_a_documentation_noun_far_from_the_claim_does_not_excuse_it(self) -> None:
+        # Pins the adjacency constraint. Widening the adjacency window left
+        # every test green while opening this bypass.
+        for claim in (
+            "No blockers, and the native installation is qualified according to the guide for Windows",
+            "The native installation is qualified, as explained in the installation checklist",
+        ):
+            with self.subTest(claim=claim):
+                self.assertIsNotNone(check_site_quality.qualification_claim_violation(claim))
+
+    def test_unqualified_is_honest(self) -> None:
+        # Pins the unqualified entry in the pending list; removing it left
+        # every test green.
+        for honest in (
+            "The installation is unqualified",
+            "This release is unqualified and still early alpha",
+        ):
+            with self.subTest(honest=honest):
+                self.assertIsNone(check_site_quality.qualification_claim_violation(honest))
+
+    def test_release_history_may_state_that_a_route_was_qualified(self) -> None:
+        # The site is release-history heavy and must be able to record this.
+        for honest in (
+            "Alpha.13 was qualified for its signed payload and later withdrawn.",
+            "The Alpha.13 route was once qualified, then replaced after review.",
+            "The Alpha.13 route was previously qualified.",
+        ):
+            with self.subTest(honest=honest):
+                self.assertIsNone(check_site_quality.qualification_claim_violation(honest))
+
     def test_every_public_page_is_honest_today(self) -> None:
         documents = check_site_quality.parse_documents()
         for path, _ in documents.items():
