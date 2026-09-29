@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 import re
+import tempfile
 from pathlib import Path
 import sys
 import unittest
+from unittest.mock import patch
 
 SCRIPTS = Path(__file__).resolve().parent
 ROOT = SCRIPTS.parent
@@ -11,6 +13,49 @@ sys.path.insert(0, str(SCRIPTS))
 
 import check_site_quality
 import validate_repo
+
+
+class SupersededClauseTests(unittest.TestCase):
+    """The public-boundary guard must keep refusing the clause it was added for.
+
+    forbid_text was added to refuse the native-passed clause across every page,
+    because requiring the corrected INSTALLER_STATUS text could not see a second
+    superseded copy elsewhere on a page -- which is exactly how the validator
+    reported OK while two occurrences remained in releases/index.html. Until this
+    test, that guard was exercised only by a manual tamper run, which no later
+    session reproduces.
+    """
+
+    def test_the_clause_is_forbidden_and_the_clean_tree_is_not(self) -> None:
+        clause = validate_repo.SUPERSEDED_NATIVE_PASSAGE_CLAUSE
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "clean.html").write_text("<p>native qualification is pending.</p>")
+            with patch.object(validate_repo, "ROOT", root):
+                validate_repo.forbid_text(clause)
+            (root / "dirty.html").write_text(
+                f"<p>the installation {clause} for every page.</p>"
+            )
+            with patch.object(validate_repo, "ROOT", root):
+                with self.assertRaises(AssertionError) as caught:
+                    validate_repo.forbid_text(clause)
+        # The message must NAME the offending file, not merely fail: a count-free
+        # refusal is the shape that let a partial repair read as a clean run.
+        self.assertIn("dirty.html", str(caught.exception))
+        self.assertNotIn("clean.html", str(caught.exception))
+
+    def test_the_validator_still_calls_the_guard(self) -> None:
+        """A correct helper is worthless once its call site is deleted.
+
+        This is the higher-value half: nothing else in the suite would notice the
+        one line in main() that makes the guard apply to the real site at all.
+        """
+        source = Path(validate_repo.__file__).read_text(encoding="utf-8")
+        self.assertIn(
+            "forbid_text(SUPERSEDED_NATIVE_PASSAGE_CLAUSE)",
+            source,
+            "validate_repo.main() no longer calls forbid_text; the guard is dead code",
+        )
 
 
 class QualificationClaimTests(unittest.TestCase):
