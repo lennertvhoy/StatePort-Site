@@ -35,15 +35,15 @@ from projectstate_gate import validate as validate_projectstate
 
 ROOT = Path(__file__).resolve().parents[1]
 
-CURRENT_RELEASE_VERSION = "0.1.0-alpha.17"
-CURRENT_RELEASE_LABEL = "Alpha.17"
-CURRENT_RELEASE_ROOT = "download/0.1.0-alpha.17"
-CURRENT_MANIFEST_ROOT = "download/alpha17-manifests"
-CURRENT_RELEASE_INDEX_SHA256 = "e2391732872e05402c2ae8bdb018b1b64b284c2490d88197a37cf011b6f8b809"
-CURRENT_RELEASE_INDEX_SIGSTORE_SHA256 = "810a9a5e27e03063f155cf71481f861bf0b16855b8a74a463d3e02d8225b00e4"
-CURRENT_SIGNED_PAYLOAD_SHA256 = "f5bebd221a33e787c1d61ebb59e3fd39c318faca2bafe63a2211c1f76e1168e8"
+CURRENT_RELEASE_VERSION = "0.1.0-alpha.20"
+CURRENT_RELEASE_LABEL = "Alpha.20"
+CURRENT_RELEASE_ROOT = "download/0.1.0-alpha.20"
+CURRENT_MANIFEST_ROOT = "download/alpha20-manifests"
+CURRENT_RELEASE_INDEX_SHA256 = "9401202ca4bb957b7c9549afefb1c8ef712b6bbb1179625b9369833f39d6e5be"
+CURRENT_RELEASE_INDEX_SIGSTORE_SHA256 = "013abb5e1bb8ac3ac6d1a9f5230c1078d0fcfa8b609a2bd0aebaabb956cb1720"
+CURRENT_SIGNED_PAYLOAD_SHA256 = "ccb324493ca528f060ea04eb0b2b808e6ed3fafeedacb8a483076c723ebc6189"
 CURRENT_TRUST_PUBLIC_KEY_SHA256 = "798d6ea6e2703993758f0fb45618b1f05b40f6ef116e7d286fd5a6867859b8ad"
-INSTALLER_STATUS = "StatePort 0.1.0-alpha.17 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment and its public-route installation completed on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. Native qualification is not yet complete: the installed product stopped being reachable once the last WSL session closed, and a per-user Windows logon task is planned for the next signed candidate. Further lifecycle, template, UI and efficiency checks are in progress."
+INSTALLER_STATUS = "StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress."
 
 # These publication anchors are intentionally duplicated here instead of being
 # imported from build_immutable_manifest.py. The validator is an independent
@@ -70,8 +70,8 @@ ALPHA3_CURATED_SOURCE_ARCHIVE = {
     "sha256": "17f5680c30841b1e831b37df02dca8f03c2c03d265a42633dd525f99bd613398",
 }
 CURRENT_CANONICAL_SOURCE_IDENTITY = {
-    "commit": "adb2f7b1038b714a64e2ddbac347b95113c0ec92",
-    "tree": "ea03b38a6cc00cdeb953616304aa112bf71ae803",
+    "commit": "65e42e8daf68ddbdc9696f7f56ae2365b4023b0e",
+    "tree": "7fcc41327625a83fc12213907f84364b232332b7",
 }
 # Retained immutable Alpha.16 canonical identity (byte-anchored also by
 # config/immutable-release-trees.json; per-field identity retained here).
@@ -80,20 +80,20 @@ RETAINED_ALPHA16_IDENTITY = {
     "tree": "126587c310cf195e1ac06a59d76134ab6f8cc975",
 }
 CURRENT_PUBLIC_SNAPSHOT_IDENTITY = {
-    "commit": "f8cca58a511a31353a7c70e40e9b3a20d3cdad1d",
-    "tree": "8d9fbbd3060d5a632687770ea7e2866e87b82ffe",
+    "commit": "46f683299fefd958dd8211b07a87ca04d03172dd",
+    "tree": "9f858ce8e8d0574e50138036b237620eeb4c4903",
 }
 RETAINED_ALPHA16_PUBLIC_SNAPSHOT_IDENTITY = {
     "commit": "05c2ace3b07233c1a84bd2a4b006c7ec6d2a918f",
     "tree": "cdc5769ff933599fba8c74d95842eb7cae0b0bd5",
 }
 CURRENT_CURATED_SOURCE_ARCHIVE = {
-    "bytes": 27_392_000,
-    "sha256": "58c6d4fe9fdf0113a3815d71c10c99aff7a9d0eb2f40a8e0e3b95e95db21b681",
+    "bytes": 27_658_240,
+    "sha256": "7250853bc9b73e608796d433ece44afbc014daefdc63bea4a00e5cdec4dc42b5",
 }
 CURRENT_PUBLIC_SOURCE_URL = "https://github.com/lennertvhoy/StatePort-Source.git"
 CURRENT_TARGET_ID = "wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet"
-RETAINED_ALPHA16_PREDECESSOR_VERSION = "0.1.0-alpha.16"
+RETAINED_ALPHA16_PREDECESSOR_VERSION = "0.1.0-alpha.17"
 RETAINED_ALPHA11_IDENTITY = {
     "commit": "57dae10ff94c5b6aa37cc5d23509a89d91887cac",
     "tree": "c17f0ba7b44cfbf3f30ebe1938d92e640434a640",
@@ -917,13 +917,13 @@ def validate_current_release() -> None:
         raise AssertionError("the current successor contract must identify its authenticated predecessor")
     if compatibility.get("predecessor", {}).get("version") != RETAINED_ALPHA16_PREDECESSOR_VERSION:
         raise AssertionError("current compatibility must identify its authenticated predecessor")
-    if compatibility.get("predecessor", {}).get("signedPayloadDigest") != "sha256:5594dc7dc3711ffdfbd74da271012c02dc23e5fa626d12f59d41a768058b2bac":
+    if compatibility.get("predecessor", {}).get("signedPayloadDigest") != "sha256:f5bebd221a33e787c1d61ebb59e3fd39c318faca2bafe63a2211c1f76e1168e8":
         raise AssertionError("current compatibility predecessor payload is stale")
     if compatibility.get("rollback", {}).get("supported") is not False:
         raise AssertionError("current rollback must remain explicitly unsupported")
 
     versioned = require(f"{release_root}/bootstrap.sh")
-    mutable_root = "download/0.1.0-alpha.17"
+    mutable_root = "download/0.1.0-alpha.20"
     mutable_versioned = require(f"{mutable_root}/bootstrap.sh")
     mutable = require("download/install.sh")
     for path in (versioned, mutable):
@@ -934,16 +934,16 @@ def validate_current_release() -> None:
     if VERSIONED_BOOTSTRAP_URL != f"https://lennertvhoy.github.io/StatePort-Site/{release_root}/bootstrap.sh":
         raise AssertionError("Immutable Alpha.16 bootstrap URL is stale")
     if mutable.stat().st_size != MUTABLE_BOOTSTRAP_SIZE or mutable.read_bytes() != mutable_versioned.read_bytes():
-        raise AssertionError("Mutable bootstrap must equal the versioned Alpha.17 bytes")
+        raise AssertionError("Mutable bootstrap must equal the versioned Alpha.20 bytes")
     if hashlib.sha256(mutable.read_bytes()).hexdigest() != MUTABLE_BOOTSTRAP_SHA256:
-        raise AssertionError("Mutable Alpha.17 bootstrap digest is stale")
+        raise AssertionError("Mutable Alpha.20 bootstrap digest is stale")
     if MUTABLE_BOOTSTRAP_URL != f"https://lennertvhoy.github.io/StatePort-Site/{mutable_root}/bootstrap.sh":
-        raise AssertionError("Mutable Alpha.17 bootstrap URL is stale")
+        raise AssertionError("Mutable Alpha.20 bootstrap URL is stale")
     bootstrap = versioned.read_text(encoding="utf-8")
     for fragment in (
         CURRENT_TARGET_ID,
-        "RELEASE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.17\"",
-        "PROBE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/alpha17-manifests\"",
+        "RELEASE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.20\"",
+        "PROBE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/alpha20-manifests\"",
         "Windows 11 build 22000 or newer is required.",
         "Ubuntu 24.04 for WSL is required.",
         "WSL2 is required; WSL1 and native Linux are not this release target.",
@@ -955,8 +955,8 @@ def validate_current_release() -> None:
     mutable_bootstrap = mutable.read_text(encoding="utf-8")
     for fragment in (
         CURRENT_TARGET_ID,
-        "RELEASE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.17\"",
-        "PROBE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/alpha17-manifests\"",
+        "RELEASE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.20\"",
+        "PROBE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/alpha20-manifests\"",
         "Windows 11 build 22000 or newer is required.",
         "Ubuntu 24.04 for WSL is required.",
         "WSL2 is required; WSL1 and native Linux are not this release target.",
@@ -964,18 +964,18 @@ def validate_current_release() -> None:
         "Type install-exact to authorize",
     ):
         if fragment not in mutable_bootstrap:
-            raise AssertionError(f"Alpha.17 mutable bootstrap lacks required contract: {fragment}")
-    alpha17_index = json.loads(require(f"{mutable_root}/release-index.json").read_text(encoding="utf-8"))
-    alpha17_images = {
+            raise AssertionError(f"Alpha.20 mutable bootstrap lacks required contract: {fragment}")
+    alpha20_index = json.loads(require(f"{mutable_root}/release-index.json").read_text(encoding="utf-8"))
+    alpha20_images = {
         image.get("imageId"): image.get("digest")
-        for image in alpha17_index.get("signed", {}).get("images", [])
+        for image in alpha20_index.get("signed", {}).get("images", [])
     }
-    if not alpha17_images:
-        raise AssertionError("Alpha.17 signed index must declare its seven images")
-    for image_id, digest in alpha17_images.items():
-        manifest = require(f"download/alpha17-manifests/{image_id}.json")
+    if not alpha20_images:
+        raise AssertionError("Alpha.20 signed index must declare its seven images")
+    for image_id, digest in alpha20_images.items():
+        manifest = require(f"download/alpha20-manifests/{image_id}.json")
         if hashlib.sha256(manifest.read_bytes()).hexdigest() != str(digest).removeprefix("sha256:"):
-            raise AssertionError(f"Alpha.17 manifest does not match the signed index: {image_id}")
+            raise AssertionError(f"Alpha.20 manifest does not match the signed index: {image_id}")
     for image_id, expected in MANIFEST_DIGESTS.items():
         manifest = require(f"{CURRENT_MANIFEST_ROOT}/{image_id}.json")
         if hashlib.sha256(manifest.read_bytes()).hexdigest() != expected:

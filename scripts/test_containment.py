@@ -278,11 +278,11 @@ class CurrentBootstrapTests(unittest.TestCase):
             manifest = ROOT / "download/alpha10-manifests" / f"{image_id}.json"
             self.assertEqual(hashlib.sha256(manifest.read_bytes()).hexdigest(), digest)
 
-    def test_mutable_route_serves_exact_alpha17_candidate_and_is_install_enabled(self) -> None:
+    def test_mutable_route_serves_exact_alpha20_candidate_and_is_install_enabled(self) -> None:
         installer = ROOT / "download/install.sh"
-        versioned = ROOT / "download/0.1.0-alpha.17/bootstrap.sh"
+        versioned = ROOT / "download/0.1.0-alpha.20/bootstrap.sh"
         bootstrap = installer.read_bytes()
-        # The mutable route is byte-identical to the versioned Alpha.17
+        # The mutable route is byte-identical to the versioned Alpha.20
         # candidate bootstrap, so the public command cannot drift from the
         # staged bytes. Alpha.16 remains an immutable pinned predecessor.
         self.assertEqual(len(bootstrap), install_transport.MUTABLE_BOOTSTRAP_SIZE)

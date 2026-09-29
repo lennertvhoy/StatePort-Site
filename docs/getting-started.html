@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Install StatePort with the current Alpha.17 one-line installer on the supported Ubuntu 24.04 WSL2 setup, with recovery notes for the historical Alpha.16 route.">
+    <meta name="description" content="Install StatePort with the current Alpha.20 one-line installer on the supported Ubuntu 24.04 WSL2 setup, with recovery notes for the historical routes.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
@@ -51,7 +51,7 @@
           <p class="document-kicker">Documentation / Getting started</p>
           <h1 id="getting-started-title">Install StatePort on supported WSL2.</h1>
           <p>New to StatePort? <a href="../index.html#journey">Follow one study example</a>: review an activity, save a reflection, and return to saved progress. The example uses StudyState Sample.</p>
-          <p>Check current status and the intended WSL2 setup. The steps below explain the installation path; the historical Alpha.16 route could not complete a fresh installation, and Alpha.17 is the current install path.</p>
+          <p>Check current status and the intended WSL2 setup. The steps below explain the installation path; the historical Alpha.16 route could not complete a fresh installation, and Alpha.20 is the current install path.</p>
         </div>
       </section>
 
@@ -84,7 +84,7 @@
         </aside>
 
         <article class="prose">
-          <p class="notice"><strong>StatePort 0.1.0-alpha.17 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment and its public-route installation completed on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. Native qualification is not yet complete: the installed product stopped being reachable once the last WSL session closed, and a per-user Windows logon task is planned for the next signed candidate. Further lifecycle, template, UI and efficiency checks are in progress.</strong> Alpha.16 is a superseded predecessor: its fresh installation was blocked by a signature-check defect and it is retained for history. The current Alpha.17 command installs through this public route and its images are anonymously downloadable; retry guidance for the historical Alpha.16 route no longer applies.</p>
+          <p class="notice"><strong>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress.</strong> Alpha.16 is a superseded predecessor: its fresh installation was blocked by a signature-check defect and it is retained for history. The current Alpha.20 command installs through this public route and its images are anonymously downloadable; retry guidance for the historical Alpha.16 route no longer applies.</p>
           <p class="notice"><strong>This is an early local test.</strong> Use non-sensitive data, keep independent backups, and keep all services on loopback.</p>
           <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#supported-environment">Supported environment</a></li><li data-level="2"><a href="#before-installing">Before installing</a></li><li data-level="2"><a href="#installer">The one-line installer</a></li><li data-level="2"><a href="#after-install">After a successful install</a></li><li data-level="2"><a href="#templates">Use a template</a></li><li data-level="2"><a href="#receipts">Receipts and state</a></li><li data-level="2"><a href="#stops">If installation stops</a></li><li data-level="2"><a href="#report-a-problem">Report a problem</a></li><li data-level="2"><a href="#where-to-go-next">Try your first session</a></li></ol></details>
           <span id="1-confirm-the-supported-environment"></span>
@@ -102,8 +102,8 @@ ps -p 1 -o comm=</code>
           <p>The documented anonymous route is:</p>
           <pre><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)</code>
 </pre>
-          <p>The Alpha.17 bootstrap checks the host, downloads signed metadata and pinned artifacts, verifies the pinned trust key and image manifests, asks for <code>install-packages</code> and <code>install-exact</code>, and requests sudo when installing system packages. It should finish with <strong>StatePort is installed and healthy</strong>, the loopback URL, and an install receipt path.</p>
-          <p>The historical Alpha.16 route did not reach that outcome on a fresh anonymous host; the current Alpha.17 command installs through this public route.</p>
+          <p>The Alpha.20 bootstrap checks the host, downloads signed metadata and pinned artifacts, verifies the pinned trust key and image manifests, asks for <code>install-packages</code> and <code>install-exact</code>, and requests sudo when installing system packages. It should finish with <strong>StatePort is installed and healthy</strong>, the loopback URL, and an install receipt path.</p>
+          <p>The historical Alpha.16 route did not reach that outcome on a fresh anonymous host; the current Alpha.20 command installs through this public route.</p>
           <span id="3-open-the-complete-product"></span>
 <h2 id="after-install">After a successful install</h2>
           <p>Open the printed <code>http://127.0.0.1:&lt;port&gt;/</code> URL in a Windows browser. The web UI, API, worker, persistence, and execution host are local services. Use the printed reconciled port rather than guessing.</p>
