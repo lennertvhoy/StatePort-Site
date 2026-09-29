@@ -311,6 +311,70 @@ class QualificationClaimTests(unittest.TestCase):
             with self.subTest(honest=honest):
                 self.assertIsNone(check_site_quality.qualification_claim_violation(honest))
 
+    def test_plain_english_readiness_claims_are_refused(self) -> None:
+        """A readiness claim must not escape by using English instead of the vocabulary.
+
+        Measured on 2026-09-28 against the unmodified guard: all three were ACCEPTED
+        while asserting exactly what "is qualified" asserts, because QUALIFICATION_
+        PREDICATE listed complete/done/passed/successful and nothing for "ready".
+        This is a FALSE NEGATIVE, so the risk here is under-refusal, not the
+        over-refusal this guard has been repeatedly tightened against.
+        """
+        for sentence in (
+            "The native installation is ready for production use.",
+            "The native installation passed and is production ready.",
+            "The native installation cleared every check we ran.",
+        ):
+            with self.subTest(sentence=sentence):
+                self.assertIsNotNone(check_site_quality.qualification_claim_violation(sentence))
+
+    def test_plain_english_readiness_claim_is_still_a_claim_when_negated_or_pending(self) -> None:
+        """The new predicates must not make every mention of readiness a violation."""
+        for sentence in (
+            "The native installation is not ready for production.",
+            "Readiness for production remains pending.",
+            "The native installation is not production ready.",
+        ):
+            with self.subTest(sentence=sentence):
+                self.assertIsNone(check_site_quality.qualification_claim_violation(sentence))
+
+    def test_readiness_word_outside_a_product_subject_is_not_a_claim(self) -> None:
+        """The readiness word must not supply its OWN subject.
+
+        "production" is itself listed in QUALIFICATION_SUBJECT, and the subject and
+        predicate searches are independent over the same span, so a readiness
+        predicate that contained a subject word would make every document sentence
+        a claim. The subject match that overlaps the predicate match is discarded,
+        which is why these stay accepted.
+        """
+        for sentence in (
+            "The page is production ready.",
+            "The instructions are ready for production.",
+            "The guide is production ready.",
+        ):
+            with self.subTest(sentence=sentence):
+                self.assertIsNone(check_site_quality.qualification_claim_violation(sentence))
+
+    def test_honest_documentation_qualification_idioms_stay_accepted(self) -> None:
+        """The documented qualified-by bypass must stay shut after widening the vocabulary.
+
+        These eight were the honest forms measured on 2026-09-28, when the
+        over-refusal claim was disproved. They are pinned here so a future widening
+        cannot re-open the bypass the guard's own comment describes.
+        """
+        for sentence in (
+            "The instructions are qualified by the reviewer.",
+            "The instruction is qualified by the reviewer.",
+            "The documentation is qualified by the reviewer.",
+            "The docs are qualified by the reviewer.",
+            "The install instructions are qualified by the reviewer.",
+            "The instructions were qualified by the reviewer.",
+            "The instructions, reviewed in full, are qualified by the reviewer.",
+            "Qualification of the instructions was done by the reviewer.",
+        ):
+            with self.subTest(sentence=sentence):
+                self.assertIsNone(check_site_quality.qualification_claim_violation(sentence))
+
     def test_known_gap_vetting_prose_with_a_publication_assertion_is_over_refused(self) -> None:
         """KNOWN GAP, pinned deliberately. These are REFUSED, and that is wrong.
 

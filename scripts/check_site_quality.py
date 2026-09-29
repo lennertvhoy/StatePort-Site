@@ -735,7 +735,29 @@ QUALIFICATION_SUBJECT = re.compile(
 # The predicate: any way of asserting the qualification, in any word order.
 QUALIFICATION_PREDICATE = re.compile(
     r"\bqualif(?:y|ies|ied|ication|ications)\b"
-    r"|\b(?:is|are|was|were)\s+(?:now\s+)?(?:complete|completed|done|finished|achieved|passed|successful)\b",
+    r"|\b(?:is|are|was|were)\s+(?:now\s+)?(?:complete|completed|done|finished|achieved|passed|successful)\b"
+    # Plain-English readiness, which asserted the same thing while escaping the
+    # list above: "the native installation is ready for production use" and "is
+    # production ready" were ACCEPTED, because "ready" and "production ready" are
+    # not spellings of complete/done/passed. This closes a FALSE NEGATIVE, so the
+    # risk here is under-refusal, not the over-refusal this guard has been
+    # repeatedly tightened against.
+    #
+    # It is deliberately adjectival as well as copular, because the readiness word
+    # can carry the claim with no finite verb at all: "a production-ready image" is
+    # the same assertion. The adjectival branch cannot over-refuse on its own,
+    # because a claim still needs a subject from QUALIFICATION_SUBJECT, so "the
+    # page is production ready" and "the instructions are ready for production"
+    # stay accepted exactly as the documentation-subject rule intends.
+    r"|\b(?:is|are|was|were)\s+(?:now\s+)?(?:ready\s+for\s+production"
+    r"|production[-\s]?ready|ready\s+to\s+ship)\b"
+    r"|\bready\s+for\s+production\b"
+    r"|\bproduction[-\s]?ready\b"
+    # "cleared every check we ran" asserts the same completeness the list already
+    # spells as "passed", in one more synonym. Scoped to check/verification nouns
+    # so it cannot grow into a general claim about any test.
+    r"|\bcleared\s+(?:every|all)\s+(?:of\s+)?(?:the\s+|our\s+|its\s+)?"
+    r"(?:checks?|verifications?|tests?)\b",
     re.IGNORECASE,
 )
 # A negation that governs the claim inside its own clause.
@@ -979,11 +1001,30 @@ def _affirmative_claim_in_span(
     require_finite_predicate_clause: bool = False,
 ) -> tuple[str, int] | None:
     """The claim this one span makes, or None when it makes none."""
-    subject = QUALIFICATION_SUBJECT.search(span)
-    if subject is None:
-        return None
     predicate = QUALIFICATION_PREDICATE.search(span)
     if predicate is None:
+        return None
+    # The subject must be a subject, not a word the PREDICATE itself contains.
+    # The two searches are independent over the same span, so a predicate whose
+    # own text includes a subject word supplied its own subject: "the page is
+    # production ready" and "the instructions are ready for production" were
+    # refused only because "production" is listed in QUALIFICATION_SUBJECT and
+    # sits inside the predicate match. A readiness word that names the thing
+    # being called ready is not a separate subject, so an overlapping subject
+    # match is discarded. This tightens the pairing, and the residual refusals it
+    # leaves are the subject list's business, not this rule's -- see the evidence
+    # note on "the release notes are ready for production".
+    subject = next(
+        (
+            candidate
+            for candidate in QUALIFICATION_SUBJECT.finditer(span)
+            if not (
+                candidate.start() < predicate.end() and candidate.end() > predicate.start()
+            )
+        ),
+        None,
+    )
+    if subject is None:
         return None
     if require_finite_predicate_clause and not (
         _predicate_carries_this_subject(span, subject, predicate)
