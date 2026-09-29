@@ -43,7 +43,7 @@ CURRENT_RELEASE_INDEX_SHA256 = "e2391732872e05402c2ae8bdb018b1b64b284c2490d88197
 CURRENT_RELEASE_INDEX_SIGSTORE_SHA256 = "810a9a5e27e03063f155cf71481f861bf0b16855b8a74a463d3e02d8225b00e4"
 CURRENT_SIGNED_PAYLOAD_SHA256 = "f5bebd221a33e787c1d61ebb59e3fd39c318faca2bafe63a2211c1f76e1168e8"
 CURRENT_TRUST_PUBLIC_KEY_SHA256 = "798d6ea6e2703993758f0fb45618b1f05b40f6ef116e7d286fd5a6867859b8ad"
-INSTALLER_STATUS = "StatePort 0.1.0-alpha.17 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment and its native Windows 11/WSL2 public-route installation passed for the service stack, execution host, provider sandbox and reinstall. Further lifecycle, template, UI and efficiency checks are in progress."
+INSTALLER_STATUS = "StatePort 0.1.0-alpha.17 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment and its public-route installation completed on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. Native qualification is not yet complete: the installed product stopped being reachable once the last WSL session closed, and a per-user Windows logon task is planned for the next signed candidate. Further lifecycle, template, UI and efficiency checks are in progress. Alpha.16 is a superseded predecessor: its fresh installation was blocked by a signature-check defect and it is retained for history."
 
 # These publication anchors are intentionally duplicated here instead of being
 # imported from build_immutable_manifest.py. The validator is an independent
@@ -343,6 +343,35 @@ def require(path: str) -> Path:
     if not candidate.is_file():
         raise AssertionError(f"Missing required file: {path}")
     return candidate
+
+
+# The clause the campaign ruled FALSE. It was once the validator's own INSTALLER_STATUS,
+# so the validator asserted a native passage while the release tree had corrected the
+# claim; and because a positive "this text must appear" check cannot see a second
+# superseded copy elsewhere on a page, the validator reported OK while two occurrences
+# of it remained in releases/index.html. Requiring the corrected text is not enough --
+# the superseded clause is now forbidden outright, across every page.
+SUPERSEDED_NATIVE_PASSAGE_CLAUSE = (
+    "its native Windows 11/WSL2 public-route installation passed"
+)
+
+
+def forbid_text(clause: str) -> None:
+    """Refuse the clause in ANY html/json page of the site.
+
+    Every occurrence is reported with its path, so a partial repair cannot read as a
+    clean run the way a count-free check does.
+    """
+    offenders = [
+        page.relative_to(ROOT).as_posix()
+        for page in sorted(ROOT.rglob("*.html")) + sorted(ROOT.rglob("*.json"))
+        if clause in page.read_text(encoding="utf-8", errors="replace")
+    ]
+    if offenders:
+        raise AssertionError(
+            f"Superseded claim {clause!r} still present in {len(offenders)} file(s): "
+            + ", ".join(offenders)
+        )
 
 
 def require_text(path: str, fragment: str) -> None:
@@ -1603,6 +1632,7 @@ def main() -> None:
     require_text("releases/index.html", INSTALLER_STATUS)
     require_text("releases/index.html", "Do not install Alpha 2 or Alpha 3")
     require_text("docs/limitations.html", INSTALLER_STATUS)
+    forbid_text(SUPERSEDED_NATIVE_PASSAGE_CLAUSE)
     require_text(".github/workflows/deploy-pages.yml", "actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e")
 
     public_copy = "\n".join(
