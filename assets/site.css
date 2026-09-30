@@ -1795,7 +1795,7 @@ select {
 
 .try-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr) minmax(0, 1fr);
   gap: 1rem;
   margin-top: clamp(2rem, 4vw, 3rem);
 }
@@ -1905,6 +1905,7 @@ select {
   padding-top: 0;
 }
 
-.try-section .section-heading {
-  max-width: 22ch;
+.home-page .try-section .audience-intro .section-heading,
+.home-page .about-section .audience-intro .section-heading {
+  max-width: 16ch;
 }
