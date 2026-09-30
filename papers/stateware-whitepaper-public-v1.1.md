@@ -17,13 +17,15 @@ AI-assisted work increasingly extends beyond a single exchange: a student follow
 
 **Stateware** proposes an application boundary around durable state and the rules for changing it. The application retains its identity and useful work across sessions; interfaces present views of that work; models and agents act as replaceable processors within explicit authority. Governance supports continuity by making consequential changes attributable and reviewable. It is a means of sustaining useful work, not the purpose of the application.
 
-This paper develops that model through StatePort, a platform for managing stateful AI applications, and ProjectState, a template for developing and operating projects around a human-owned outcome. A ProjectState instance carries the goals, decisions, work, and evidence of a particular project. StatePort itself was developed using such an instance; StatePort can also host ProjectState and StudyState instances as applications for ongoing project work and study.
+This paper develops that model through StatePort, a platform for managing stateful AI applications, and ProjectState, a template for developing and operating projects around a human-owned outcome. A ProjectState instance carries the goals, decisions, work, and evidence of a particular project. StatePort itself was developed using such an instance; StatePort is designed to host ProjectState and StudyState instances as applications for ongoing project work and study.
 
 The central claim is architectural: **the durable identity of an AI application should reside in its state and contracts, rather than in the session or engine currently acting on them.** This does not make model behavior deterministic, make every operation reversible, or establish that every implementation satisfies the model. It creates boundaries against which those properties can be examined.
 
 ## Scope
 
 This is an architectural whitepaper, not a product manual or a comparative evaluation. “Should” and “must” describe requirements of the proposed model; they do not certify every StatePort code path. StatePort is an evolving reference implementation. Current availability and supported environments are maintained separately on the [release page](../releases/).
+
+**Status of the software (30 September 2026).** StatePort is an early alpha, and what has been measured so far is narrow. The Alpha.20 release installs from one command on Windows 11 with WSL2 and Ubuntu 24.04, and, after an interactive Windows logon, a keep-alive task keeps it running after the last WSL window closes. Surviving a reboot, templates, uninstall and reinstall, the full interface, and resource efficiency have not yet been measured. Unless the release page says otherwise, descriptions of how StatePort works in this paper are design intent, not measured behavior. Do not rely on StatePort for important data.
 
 ## A concrete example
 
@@ -73,7 +75,7 @@ flowchart TB
 
 The arrows show two different activities: reading state to prepare a view or task, and changing state through the appropriate controls. Replacing the model or rebuilding a dashboard should preserve the accepted work. This is the conceptual boundary, not a diagram of every implementation path.
 
-**Context** is the material selected for a particular model task. For a study-plan revision, that might be the current plan, recent exercise results, and the learner's available time. It need not include every past conversation. When the task needs missing evidence, the engine should retrieve or request it through the permitted interface. What happens to remain in a model session does not become authoritative by default.
+**Context** is the material selected for a particular model task. For a study-plan revision, that might be the current plan, recent exercise results, and the learner's available time. It need not include every past conversation. When the task needs missing evidence, the engine should retrieve or request it through the permitted interface. Whatever happens to remain in a model session does not become authoritative by default.
 
 ## 3.2 Definition and instance
 
@@ -104,7 +106,7 @@ The distinction matters for extensibility. A platform should be able to support 
 
 # 4. StatePort: hosting the lifecycle
 
-StatePort gives the model a concrete division of responsibilities. These are logical roles, not a requirement to create a separate service for every concern.
+StatePort's design gives the model a concrete division of responsibilities. These are logical roles, not a requirement to create a separate service for every concern, and this section describes design intent rather than measured behavior of the current alpha.
 
 ```mermaid
 flowchart TB
@@ -145,7 +147,7 @@ flowchart TB
 
 For example, a study template might request file access. The owner can grant access to one study folder; that does not grant access to the rest of the machine. The host must enforce that boundary when the action runs.
 
-The execution environment supplies enforcement: restricted identities, filesystem access, network policy, and mediated interfaces where applicable. A browser must not receive the host control socket. A provider adapter must not turn subscription credentials into portable application state. Rootless execution and least privilege reduce exposure, but their presence is not proof that isolation is complete.
+The execution environment is meant to supply enforcement: restricted identities, filesystem access, network policy, and mediated interfaces where applicable. A browser must not receive the host control socket. A provider adapter must not turn subscription credentials into portable application state. Rootless execution and least privilege reduce exposure, but their presence is not proof that isolation is complete.
 
 Useful interfaces make this distinction visible. “Declared,” “available,” “authorized,” and “successfully executed” describe different facts. A visible control or a selected provider cannot establish the last of them.
 
@@ -218,7 +220,7 @@ A ProjectState instance can support both the development of a product and the on
 
 In operating use, the instance remains the working home of the project: maintaining its goals, planning and carrying out work, reviewing results, and deciding what comes next. Its purpose extends beyond producing software. Just as a StudyState instance supports a learner's ongoing study, a ProjectState instance supports ongoing project work, with continuity across sessions and agents.
 
-StatePort can host a ProjectState instance in either use. ProjectState and StudyState supply the structure and behavior of their respective domains; StatePort supplies the application interface, lifecycle, and governed execution. The instance preserves the project's history as its work develops and continues in operation.
+StatePort is designed to host a ProjectState instance in either use. ProjectState and StudyState supply the structure and behavior of their respective domains; StatePort is meant to supply the application interface, lifecycle, and governed execution. The instance preserves the project's history as its work develops and continues in operation.
 
 ```mermaid
 flowchart TB
@@ -376,7 +378,7 @@ The proposal is not that state removes uncertainty. It is that uncertainty, auth
 
 # Reading and provenance
 
-This revision reflects the StatePort architecture and ProjectState v6 core reviewed on 9 September 2026. It supersedes the earlier text at this public URL; the separate July v1.2 candidate is a historical draft, not a newer architectural reference. The filename is retained so existing links continue to work.
+This revision reflects the StatePort architecture and ProjectState v6 core reviewed on 9 September 2026. It supersedes the earlier text at this public URL; the separate July draft, numbered 1.2, is an older unpublished text and not a newer architectural reference. The filename is retained so existing links continue to work. The status paragraph in Section 1 was updated on 30 September 2026 to reflect what has been measured in the Alpha.20 release; the argument is unchanged.
 
 The architectural account is grounded in StatePort's template adapter, persistent application, execution-host, and lifecycle code, and in ProjectState's core contract, initializer, outcome checker, and upgrade guidance. The editorial review record is maintained with the site's evidence. These sources establish the design and implementation vocabulary; they do not substitute for qualification of every described behavior.
 

@@ -1,0 +1,138 @@
+/* Papers reading room: styles for papers/index.html and the paper pages.
+   Loaded after the shared site styles; adds no scripts and no remote resources. */
+
+/* Featured paper card on the index */
+.paper-edition--primary {
+  margin: 1.5rem 0 2rem;
+  padding: clamp(1.4rem, 3vw, 2.1rem);
+  border: 2px solid var(--ink);
+  background: #fffdf7;
+}
+.paper-edition--primary h3 {
+  max-width: 24ch;
+  font-size: clamp(1.7rem, 3.6vw, 2.3rem);
+  line-height: 1.08;
+}
+.paper-edition--primary .paper-summary {
+  max-width: 38rem;
+  font-size: 1.08rem;
+}
+.prose .paper-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.3rem;
+  margin: 1.1rem 0;
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.prose .paper-facts li {
+  margin: 0;
+  padding: 0;
+}
+.prose .paper-facts li::before {
+  content: none;
+}
+.paper-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+}
+.paper-actions .button {
+  margin: 0;
+}
+
+/* Reading-time line under the paper title */
+.article-hero .paper-hero-meta {
+  margin-top: 1rem;
+  color: #c8d3e7;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.article-hero .paper-hero-meta a {
+  color: inherit;
+}
+
+/* On a phone, lead with the paper: the header menu already covers navigation */
+@media (max-width: 800px) {
+  .doc-sidebar--wide-only {
+    display: none;
+  }
+}
+
+/* Tables in the papers: stack into readable rows on a phone */
+@media (max-width: 560px) {
+  .paper-prose table,
+  .paper-prose tbody,
+  .paper-prose tr,
+  .paper-prose td {
+    display: block;
+    width: 100%;
+  }
+  .paper-prose thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .paper-prose tr {
+    margin: 0 0 1rem;
+    padding: 0.9rem 0;
+    border-top: 1px solid var(--line);
+  }
+  .paper-prose td {
+    padding: 0.15rem 0;
+    border: 0;
+  }
+  .paper-prose td:first-child {
+    font-weight: 700;
+  }
+  /* Three-column tables lose their header row on a phone; name the columns inline. */
+  .paper-prose table:has(th:nth-child(3)) td:nth-child(2)::before {
+    content: "Role: ";
+    font-weight: 700;
+  }
+  .paper-prose table:has(th:nth-child(3)) td:nth-child(3)::before {
+    content: "Boundary: ";
+    font-weight: 700;
+  }
+}
+
+@media print {
+  .skip-link {
+    display: none !important;
+  }
+  .breadcrumbs,
+  .breadcrumbs a,
+  .breadcrumbs [aria-current="page"],
+  .breadcrumbs li + li::before,
+  .article-hero .paper-hero-meta,
+  .article-hero .paper-hero-meta a {
+    color: #000;
+  }
+  .paper-edition--primary {
+    border-width: 1px;
+  }
+  .paper-actions,
+  .inline-actions {
+    display: none;
+  }
+  .paper-prose h2,
+  .paper-prose h3 {
+    break-after: avoid;
+  }
+  .paper-prose figure,
+  .paper-prose table,
+  .paper-prose tr {
+    break-inside: avoid;
+  }
+}

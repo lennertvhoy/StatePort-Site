@@ -1,9 +1,10 @@
 flowchart TB
-    S[(Canonical state<br/>the only truth)]
-    S --> CV[Conversation view]
-    S --> FV[File & preview views]
-    S --> TV[Terminal view]
-    S --> DV[Dashboards & notifications]
-    S --> CX[Compiled model context<br/>bounded, task-scoped, disposable]
-    CX -.->|consumed once, then discarded| OUT[Model output]
-    OUT -.->|never writes state directly| S
+    accTitle: Canonical state is the only truth; everything else is a projection
+    accDescr: Canonical state is the only truth. The conversation, file and preview, terminal, and dashboard views, and a compiled model context, are all derived from it. The model context is bounded, task-scoped, and disposable; it is consumed once and discarded. Model output never writes state directly.
+    S[("Canonical state<br/>the only truth")]
+    VIEWS["Views, all rebuildable<br/>conversation<br/>files and previews<br/>terminal<br/>dashboards, notifications"]
+    CX["Compiled model context<br/>bounded, task-scoped,<br/>disposable"]
+    OUT["Model output<br/>never writes state<br/>directly"]
+    S --> VIEWS
+    S --> CX
+    CX -.->|"used once"| OUT

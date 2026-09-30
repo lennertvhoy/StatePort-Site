@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Stateware places durable state and explicit authority at the application boundary. Explore StatePort architecture, ProjectState v6, portability, and evidence.">
+    <meta name="description" content="The idea paper behind StatePort: why the lasting record of your work, not the chat, should be the application. Version 1.1, about 20 minutes.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="Stateware: State as the Application Boundary — StatePort">
-    <meta property="og:description" content="Durable AI applications, replaceable engines, and explicit authority. Revised September 2026 with StatePort and ProjectState v6 architecture.">
+    <meta property="og:description" content="AI chats forget. Your work shouldn't. The idea paper behind StatePort: why the lasting record of your work, not the chat, should be the application.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/papers/stateware-whitepaper-public-v1.1.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -17,15 +17,31 @@
     <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current release status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
+    <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/papers/stateware-whitepaper-public-v1.1.html">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+    <link rel="manifest" href="../site.webmanifest">
     <link rel="stylesheet" href="../assets/site.css?v=2026-09-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-10-1" data-site-enhancements>
-    <title>Stateware: State as the Application
-Boundary — StatePort</title>
-      <link rel="stylesheet" href="../assets/whitepaper-diagrams.css?v=2026-09-09-svg-text">
+    <title>Stateware: State as the Application Boundary — StatePort</title>
+    <link rel="stylesheet" href="../assets/whitepaper-diagrams.css?v=2026-09-09-svg-text">
+    <link rel="stylesheet" href="assets/papers.css?v=2026-09-30-1">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Stateware: State as the Application Boundary",
+        "description": "The idea paper behind StatePort: why the lasting record of AI-assisted work, not the chat, should be the application.",
+        "url": "https://lennertvhoy.github.io/StatePort-Site/papers/stateware-whitepaper-public-v1.1.html",
+        "author": {"@type": "Person", "name": "Lennert Van Hoyweghen"},
+        "version": "1.1",
+        "datePublished": "2026-09-09",
+        "dateModified": "2026-09-30",
+        "inLanguage": "en"
+      }
+    </script>
   </head>
   <body class="article-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -49,27 +65,30 @@ Boundary — StatePort</title>
     <main id="main">
       <section class="article-hero" aria-labelledby="paper-title">
         <div class="article-hero-inner">
-          <p class="document-kicker">Public whitepaper / September 2026 revision</p>
-          <h1 id="paper-title">Stateware: State as the Application
-Boundary</h1>
-          <p>Durable AI applications, replaceable engines, and explicit authority.</p>
+          <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="../">Home</a></li><li><a href="./">Papers</a></li><li><span aria-current="page">Stateware paper</span></li></ol></nav>
+          <p class="document-kicker">Idea paper · Version 1.1 · Revised 9 September 2026</p>
+          <h1 id="paper-title">Stateware: State as the Application Boundary</h1>
+          <p>Durable AI applications, replaceable engines, and explicit authority: why the lasting record of your work, not the chat, should be the application.</p>
+          <p class="paper-hero-meta">About 20 minutes · 10 diagrams · <a href="./">All papers</a></p>
         </div>
       </section>
 
       <div class="article-shell">
-        <aside class="doc-sidebar" aria-label="Paper navigation">
+        <aside class="doc-sidebar doc-sidebar--wide-only" aria-label="Paper navigation">
           <h2>Stateware paper</h2>
           <nav>
             <a href="./stateware-whitepaper-public-v1.1.html" aria-current="page">Read online</a>
+            <a href="./">All papers</a>
             <a href="./stateware-whitepaper-public-v1.1.md">Source Markdown</a>
             <a href="../docs/">Documentation</a>
             <a href="../docs/prototype-walkthrough.html">Prototype walkthrough</a>
             <a href="../docs/agent-kits.html">Agent Kits roadmap</a>
+            <a href="../download/">Download</a>
             <a href="../releases/">Release status</a>
           </nav>
         </aside>
         <article class="prose paper-prose">
-<p class="notice notice--quiet"><strong>Publication note</strong> Public whitepaper, revised 9 September 2026. Architecture and tradeoffs are discussed here; <a href="../releases/">release status</a> is maintained separately.</p>
+<p class="notice notice--quiet"><strong>Publication note</strong> The idea behind StatePort: version 1.1, revised 9 September 2026. It explains a design and is not a product manual. StatePort is early alpha software; the <a href="../releases/">release status page</a> says what is available and what has been measured. Short on time? Read <a href="#abstract-and-thesis">Section 1</a> and <a href="#the-bet">Section 9</a> (about 3 minutes).</p>
 <h2 id="abstract-and-thesis">1. Abstract and thesis</h2>
 <h3 id="abstract">Abstract</h3>
 <p>AI-assisted work increasingly extends beyond a single exchange: a
@@ -90,8 +109,8 @@ managing stateful AI applications, and ProjectState, a template for
 developing and operating projects around a human-owned outcome. A
 ProjectState instance carries the goals, decisions, work, and evidence
 of a particular project. StatePort itself was developed using such an
-instance; StatePort can also host ProjectState and StudyState instances
-as applications for ongoing project work and study.</p>
+instance; StatePort is designed to host ProjectState and StudyState
+instances as applications for ongoing project work and study.</p>
 <p>The central claim is architectural: <strong>the durable identity of
 an AI application should reside in its state and contracts, rather than
 in the session or engine currently acting on them.</strong> This does
@@ -105,6 +124,16 @@ proposed model; they do not certify every StatePort code path. StatePort
 is an evolving reference implementation. Current availability and
 supported environments are maintained separately on the <a
 href="../releases/">release page</a>.</p>
+<p><strong>Status of the software (30 September 2026).</strong>
+StatePort is an early alpha, and what has been measured so far is
+narrow. The Alpha.20 release installs from one command on Windows 11
+with WSL2 and Ubuntu 24.04, and, after an interactive Windows logon, a
+keep-alive task keeps it running after the last WSL window closes.
+Surviving a reboot, templates, uninstall and reinstall, the full
+interface, and resource efficiency have not yet been measured. Unless
+the release page says otherwise, descriptions of how StatePort works in
+this paper are design intent, not measured behavior. Do not rely on
+StatePort for important data.</p>
 <h3 id="a-concrete-example">A concrete example</h3>
 <p>Consider a study application. Its durable state includes the
 learner’s objectives, agreed plan, completed exercises, reflections, and
@@ -188,7 +217,7 @@ model task. For a study-plan revision, that might be the current plan,
 recent exercise results, and the learner’s available time. It need not
 include every past conversation. When the task needs missing evidence,
 the engine should retrieve or request it through the permitted
-interface. What happens to remain in a model session does not become
+interface. Whatever happens to remain in a model session does not become
 authoritative by default.</p>
 <h3 id="definition-and-instance">3.2 Definition and instance</h3>
 <p>An <strong>application definition</strong>, supplied by a template,
@@ -232,9 +261,10 @@ unsupported operation remains unsupported, even when an agent can
 describe how it might work.</p>
 <h2 id="stateport-hosting-the-lifecycle">4. StatePort: hosting the
 lifecycle</h2>
-<p>StatePort gives the model a concrete division of responsibilities.
-These are logical roles, not a requirement to create a separate service
-for every concern.</p>
+<p>StatePort’s design gives the model a concrete division of
+responsibilities. These are logical roles, not a requirement to create a
+separate service for every concern, and this section describes design
+intent rather than measured behavior of the current alpha.</p>
 <figure class="paper-diagram" id="figure-3" data-mermaid-id="stateware-whitepaper-public-v1-1-03">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 3: How a work request moves through StatePort">
     <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-03.svg" alt="The interface submits a request to control checks. Admitted work is coordinated and executed; observed results are recorded in durable state and become visible through the interface. This is a conceptual permitted-work path, not a service topology." width="262" height="592" loading="lazy">
@@ -315,7 +345,7 @@ all three agree.</p>
 can grant access to one study folder; that does not grant access to the
 rest of the machine. The host must enforce that boundary when the action
 runs.</p>
-<p>The execution environment supplies enforcement: restricted
+<p>The execution environment is meant to supply enforcement: restricted
 identities, filesystem access, network policy, and mediated interfaces
 where applicable. A browser must not receive the host control socket. A
 provider adapter must not turn subscription credentials into portable
@@ -476,11 +506,11 @@ reviewing results, and deciding what comes next. Its purpose extends
 beyond producing software. Just as a StudyState instance supports a
 learner’s ongoing study, a ProjectState instance supports ongoing
 project work, with continuity across sessions and agents.</p>
-<p>StatePort can host a ProjectState instance in either use.
+<p>StatePort is designed to host a ProjectState instance in either use.
 ProjectState and StudyState supply the structure and behavior of their
-respective domains; StatePort supplies the application interface,
-lifecycle, and governed execution. The instance preserves the project’s
-history as its work develops and continues in operation.</p>
+respective domains; StatePort is meant to supply the application
+interface, lifecycle, and governed execution. The instance preserves the
+project’s history as its work develops and continues in operation.</p>
 <figure class="paper-diagram" id="figure-6" data-mermaid-id="stateware-whitepaper-public-v1-1-06">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 6: One ProjectState instance, two uses">
     <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-06.svg" alt="A ProjectState template creates a project instance that holds the actual goals, decisions, and history. The instance supports both development and operating work. These are uses of the instance, not mandatory stages or separate applications." width="285" height="248" loading="lazy">
@@ -710,9 +740,11 @@ keep.</p>
 <h2 id="reading-and-provenance">Reading and provenance</h2>
 <p>This revision reflects the StatePort architecture and ProjectState v6
 core reviewed on 9 September 2026. It supersedes the earlier text at
-this public URL; the separate July v1.2 candidate is a historical draft,
-not a newer architectural reference. The filename is retained so
-existing links continue to work.</p>
+this public URL; the separate July draft, numbered 1.2, is an older
+unpublished text and not a newer architectural reference. The filename
+is retained so existing links continue to work. The status paragraph in
+Section 1 was updated on 30 September 2026 to reflect what has been
+measured in the Alpha.20 release; the argument is unchanged.</p>
 <p>The architectural account is grounded in StatePort’s template
 adapter, persistent application, execution-host, and lifecycle code, and
 in ProjectState’s core contract, initializer, outcome checker, and

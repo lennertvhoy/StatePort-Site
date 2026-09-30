@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Read the Stateware whitepapers and learn the ideas behind durable, user-owned AI applications.">
+    <meta name="description" content="Read the idea behind StatePort: Stateware, a 20-minute paper on keeping AI-assisted work durable, reviewable, and on your own computer.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="StatePort papers and reading room">
-    <meta property="og:description" content="Start with the product, then learn how StatePort stores work, controls changes, and stays portable.">
+    <meta property="og:title" content="The idea behind StatePort — papers">
+    <meta property="og:description" content="AI chats forget. Your work shouldn't. Read Stateware, the 20-minute idea paper behind StatePort, a durable home for AI-assisted work on your own computer.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/papers/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -25,15 +25,16 @@
     <link rel="manifest" href="../site.webmanifest">
     <link rel="stylesheet" href="../assets/site.css?v=2026-09-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-10-1" data-site-enhancements>
+    <link rel="stylesheet" href="assets/papers.css?v=2026-09-30-1">
     <title>Papers — StatePort</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "TechArticle",
-        "headline": "StatePort papers and reading room",
-        "description": "A practical introduction to StatePort, from the product preview to storage, control, updates, and portability.",
+        "headline": "The idea behind StatePort",
+        "description": "Stateware is the idea paper behind StatePort: why the durable record of AI-assisted work, not the chat, should be the application.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/papers/",
-        "dateModified": "2026-09-09",
+        "dateModified": "2026-09-30",
         "inLanguage": "en"
       }
     </script>
@@ -59,25 +60,43 @@
 
     <main id="main">
       <section class="article-hero" aria-labelledby="papers-title"><div class="article-hero-inner">
-        <p class="document-kicker">The reading room</p><h1 id="papers-title">The work should outlast the tool.</h1>
-        <p>Start with a practical question: how can a study plan keep your progress and reflection for the next session? <a href="../index.html#journey">See the StatePort sample</a>, then explore the reasoning here. Stateware names the broader idea; StatePort is the product exploring it.</p>
+        <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="../">Home</a></li><li><span aria-current="page">Papers</span></li></ol></nav>
+        <p class="document-kicker">Papers</p><h1 id="papers-title">The idea behind StatePort.</h1>
+        <p>AI chats forget. Your work shouldn't. Stateware is the idea behind StatePort: a durable home for AI-assisted work on your own computer, where the record of your work, not the chat, is the application.</p>
+        <div class="inline-actions"><a class="button" href="stateware-whitepaper-public-v1.1.html">Read the idea behind StatePort</a><a class="button button--quiet" href="../">Back to the home page</a></div>
       </div></section>
       <div class="article-shell article-shell--docs-overview">
-        <aside class="doc-sidebar" aria-label="Reading room sections"><h2>In this collection</h2><nav><a href="#start">Start here</a><a href="#papers">Whitepapers</a><a href="#terms">Three useful distinctions</a><a href="../docs/">Practical documentation</a><a href="../releases/">Current product status</a></nav></aside>
+        <aside class="doc-sidebar doc-sidebar--wide-only" aria-label="Reading room sections"><h2>In this collection</h2><nav><a href="#start">Read this first</a><a href="#short-on-time">Short on time?</a><a href="#try-it">Try StatePort</a><a href="#terms">Three useful distinctions</a><a href="#earlier-draft">Earlier draft</a><a href="../">Home</a><a href="../download/">Download</a><a href="../releases/">Release status</a></nav></aside>
         <article class="prose" data-no-toc>
-          <p class="notice notice--quiet"><strong>An idea is not a release guarantee.</strong> These papers explain the model. The <a href="../releases/">release page</a> is the current source for product availability and installation limits.</p>
-          <h2 id="start">Start with one question.</h2>
+          <p class="notice notice--quiet"><strong>An idea is not a release guarantee.</strong> These papers explain the idea behind StatePort. StatePort itself is an early alpha, and the <a href="../releases/">release status page</a> says what is available today and what has been measured.</p>
+          <h2 id="start">Read this first.</h2>
           <p>When an AI session ends, where does the work live? Stateware puts goals, decisions, progress, and history in a durable application state that you can inspect. Models and interfaces work with that state under explicit rules.</p>
+          <section class="paper-edition paper-edition--primary" aria-labelledby="paper-title-main">
+            <p class="section-kicker">Start here · Current public paper</p>
+            <h3 id="paper-title-main">Stateware: State as the Application Boundary</h3>
+            <p class="paper-summary">Why the lasting record of your work, not the chat, should be the application: keep your work on your own computer, review changes before they count, and change the AI tool without losing the work.</p>
+            <ul class="paper-facts" aria-label="About this paper">
+              <li>About 20 minutes</li>
+              <li>10 diagrams</li>
+              <li>Version 1.1</li>
+              <li>Revised 9 September 2026</li>
+            </ul>
+            <p class="paper-actions"><a class="button button--ink" href="stateware-whitepaper-public-v1.1.html">Read the paper</a> <a class="button button--outlined" href="stateware-whitepaper-public-v1.1.md">Markdown source</a></p>
+            <p class="edition-note">The page prints cleanly without menus, so your browser's Print command can also save it as a PDF.</p>
+          </section>
+          <h2 id="short-on-time">Short on time?</h2>
+          <p>Read <a href="stateware-whitepaper-public-v1.1.html#abstract-and-thesis">Section 1, the abstract and thesis</a> (about 2 minutes) and <a href="stateware-whitepaper-public-v1.1.html#the-bet">Section 9, the bet</a> (about 1 minute). Or start with a shorter guide:</p>
           <div class="quick-routes"><a href="../docs/foundations.html"><strong>The idea in plain language</strong><span>A short introduction to why StatePort exists →</span></a><a href="../docs/model.html"><strong>From idea to working model</strong><span>Templates, instances, state, and change records →</span></a></div>
-          <h2 id="papers">Choose an edition.</h2>
-          <div class="paper-editions">
-            <section class="paper-edition"><p class="section-kicker">Public edition · revised September 2026</p><h3>State as the Application Boundary</h3><p>The architectural argument: durable state, StatePort lifecycle and execution, ProjectState v6, authority, portability, and the tradeoffs to evaluate.</p><p class="edition-note">Revised 9 September 2026. The existing public URL is retained.</p><p><a class="button button--ink" href="stateware-whitepaper-public-v1.1.html">Read the public paper</a></p><p><a href="stateware-whitepaper-public-v1.1.md">Markdown source</a></p></section>
-            <section class="paper-edition"><p class="section-kicker">Historical draft · July 2026</p><h3>The model, refined through implementation</h3><p>A candidate revision that clarifies the role of governance, ongoing work, and the gap between current delivery and future architecture.</p><p class="edition-note">Retained for comparison. The September revision of the public paper is the current architectural reference.</p><p><a class="button button--outlined" href="stateware-whitepaper-candidate-v1.2.html">Read the historical draft</a></p><p><a href="stateware-whitepaper-candidate-v1.2.md">Markdown source</a></p></section>
-          </div>
+          <h2 id="try-it">Then try StatePort.</h2>
+          <p>StatePort is early alpha software. The Alpha.20 release installs from one command on Windows 11 with WSL2 and Ubuntu 24.04. Reboot survival, templates, and uninstall and reinstall have not been measured yet, so please do not trust it with important data.</p>
+          <p class="paper-actions"><a class="button button--ink" href="../download/">Get the install command</a> <a class="button button--outlined" href="../releases/">Read the known limits</a> <a class="button button--outlined" href="../index.html#journey">See the study example</a></p>
           <h2 id="terms">Three useful distinctions</h2>
           <dl class="plain-definitions"><dt>Stateware / StatePort</dt><dd>Stateware names the proposed model. StatePort is an implementation exploring it.</dd><dt>Template / instance</dt><dd>A template defines an application. An instance is your own working copy, with its own state and history.</dd><dt>Recorded / verified</dt><dd>A receipt records an operation. Verification checks a specific result. Neither alone establishes that an answer is correct or that a person accepted it.</dd></dl>
-          <h2>Read critically. Follow the evidence.</h2><p>Readable files are not automatically portable execution. Local storage does not mean an external AI provider receives no data. A recorded change is not necessarily reversible. The practical guides explain these boundaries.</p>
+          <h2 id="read-critically">Read critically. Follow the evidence.</h2><p>Readable files are not automatically portable execution. Local storage does not mean an external AI provider receives no data. A recorded change is not necessarily reversible. The practical guides explain these boundaries.</p>
           <p><a href="../docs/security-and-privacy.html">Security and privacy</a> · <a href="../docs/lifecycle.html">Recovery and lifecycle</a> · <a href="../docs/evidence-and-roadmap.html">Evidence and roadmap</a></p>
+          <h2 id="earlier-draft">An earlier draft</h2>
+          <p class="edition-note">An earlier, longer draft of the same idea, dated July 2026, is kept for comparison. Its number (1.2) is higher, but it is the older text: it was never published, it was written when Alpha.5 was the current release, and the paper above replaces it. Some of its statements about the product are out of date.</p>
+          <p><a href="stateware-whitepaper-candidate-v1.2.html">Read the earlier draft</a> · <a href="stateware-whitepaper-candidate-v1.2.md">Markdown source</a></p>
         </article>
       </div>
     </main>

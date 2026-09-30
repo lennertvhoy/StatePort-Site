@@ -5,15 +5,18 @@ kicker: "STATEWARE"
 version: "1.2"
 date: "2026-07-26"
 author: "Lennert Van Hoyweghen"
-status: "Candidate whitepaper — not yet published"
+status: "Earlier draft, July 2026 — not published; superseded by version 1.1 (revised September 2026)"
 lang: en
 ---
 
-> **Candidate status.** Version 1.2 is an unpublished candidate prepared for
-> owner review. Version 1.1 remains the current public whitepaper. This
-> candidate applies eleven conceptual corrections learned from building the
-> reference implementation since 1.1; they are summarized in the revision
-> note at the end of Section 1.
+> **Earlier draft, July 2026.** This is an unpublished draft numbered 1.2. Its
+> number is higher than the public paper's, but it is the older text: the
+> public paper (version 1.1, revised 9 September 2026) is the current one and
+> replaces this draft. This draft was written when StatePort v0.1.0-alpha.5 was
+> the current release, so its statements about the product are dated. It applies
+> eleven conceptual corrections learned from building the reference
+> implementation since 1.1 was first published; they are summarized in the
+> revision note at the end of Section 1.
 
 # 1. Abstract and thesis
 
@@ -43,24 +46,33 @@ not the product's center of gravity.
 
 The model is presented here on its own terms, as a thesis about where the
 application boundary should sit in AI software. It is illustrated by
-StatePort, a working local reference implementation built on these
-principles; the screenshots in this paper show it. The paper makes no
+StatePort, an early-alpha local reference implementation built on these
+principles; the screenshots in this paper come from a development build and
+may show features that the current alpha does not include. The paper makes no
 comparative claims. It argues a single idea: **state is the application
 boundary** — and that moving the boundary there changes what an assistant can
 be.
 
-**Status of the reference implementation.** The public walkthrough is a local
-development preview with sample data. Alpha.5 release files are public, and the
-installer is available for a first test.
+**Status of the reference implementation in July 2026.** When this draft was
+written, the current release was StatePort v0.1.0-alpha.5, an early alpha
+prepared for Windows 11, WSL2, and Ubuntu 24.04 on x86-64, with local
+single-user operation. The public walkthrough was a local development preview
+with sample data. Do not use StatePort for important data.
 
-**Current delivery versus future architecture.** The current reference
-implementation is StatePort v0.1.0-alpha.5. StatePort is in early alpha. Do not
-use it for important data. Alpha.5 was prepared for Windows 11, WSL2, and Ubuntu
-24.04 on x86-64, with local single-user operation. The wider
+**Status today (30 September 2026).** The current release is Alpha.20, and what
+has been measured is narrow: it installs from one command on Windows 11 with
+WSL2 and Ubuntu 24.04, and, after an interactive Windows logon, a keep-alive
+task keeps it running after the last WSL window closes. Surviving a reboot,
+templates, uninstall and reinstall, the full interface, and resource efficiency
+have not yet been measured. The [release page](../releases/) is the source for
+current status.
+
+**Current delivery versus future architecture.** The wider
 architecture this paper describes — catalogues of community applications,
 multiple qualified providers, team deployments — is a direction, not a
-description of what the alpha delivers. Where the two differ, this paper now
-says so explicitly.
+description of what the alpha delivers. Unless the release page says otherwise,
+statements in this paper about how StatePort behaves are design intent, not
+measured behavior. Where the two differ, this paper says so explicitly.
 
 ## Scope and standing of this paper
 
@@ -134,23 +146,24 @@ emphasis and accuracy learned from building the reference implementation:
    permissions, isolation, cancellation, and evidence). Neither replaces
    the other.
 5. **Providers are opinionated.** "Replaceable processor" overstated the
-   case: execution providers differ in capabilities and behaviour, and
+   case: execution providers differ in capabilities and behavior, and
    those differences are explicitly profiled rather than assumed away.
 6. **Portability is not equivalence.** Preserving canonical state across
-   providers does not promise identical behaviour, security posture, or
+   providers does not promise identical behavior, security posture, or
    evidence on each provider; portability preserves the declared boundary.
 7. **The ownership seam is explicit.** StatePort owns intent, authority,
    state, evidence, and acceptance; the execution harness owns execution
-   behaviour and must never silently become the source of truth.
+   behavior and must never silently become the source of truth.
 8. **Definition, instance, and runtime realization are separated.** An
    application definition, an installed instance, and a particular runtime
    realization of that instance are three different things.
-9. **Canonical state is the durable boundary, not the whole behaviour.** It
+9. **Canonical state is the durable boundary, not the whole behavior.** It
    anchors the instance's truth; it is not a complete definition of how the
    application behaves at runtime.
-10. **Pi is a reference direction.** It is not a delivered adapter; Codex
-    CLI is the only qualified provider today, OpenCode is unqualified, and
-    there is no direct-API provider.
+10. **Pi is a reference direction.** It is not a delivered adapter. As of
+    July 2026, Codex CLI was the only provider the project had qualified,
+    OpenCode was unqualified, and there was no direct-API provider; those
+    statements are dated.
 11. **Current delivery and future architecture are separated.** The alpha
     facts above describe what exists; the rest of the paper describes what
     the model argues for.
@@ -308,26 +321,15 @@ improvise.
 
 ```mermaid
 flowchart TB
-    subgraph BOUNDARY["The application"]
-        S[(Canonical state<br/>user-owned, durable, readable)]
-        GOV[Governance<br/>capabilities · approvals · validation · receipts]
-    end
-
-    subgraph VIEWS["Projections — replaceable"]
-        C[Conversation]
-        F[Files & previews]
-        D[Dashboards]
-        N[Notifications]
-    end
-
-    subgraph ENGINES["Engines — profiled"]
-        M1[Model / agent A]
-        M2[Model / agent B]
-    end
-
-    S --> C & F & D & N
-    ENGINES --> GOV
+    accTitle: The application is its state; everything else attaches at the edges
+    accDescr: Canonical state and governance form the application. Conversation, files and previews, dashboards, and notifications are replaceable projections derived from the state. Models and agents are profiled engines whose proposals reach the state only through governance.
+    ENGINES["Engines, profiled<br/>model or agent A<br/>model or agent B"]
+    GOV["Governance<br/>capabilities · approvals<br/>validation · receipts"]
+    S[("Canonical state<br/>the application itself:<br/>user-owned, durable, readable")]
+    VIEWS["Projections, replaceable<br/>conversation<br/>files and previews<br/>dashboards · notifications"]
+    ENGINES -->|"propose"| GOV
     GOV -->|"governed transactions"| S
+    S -->|"derive"| VIEWS
 ```
 
 The figure states the whole architecture in one shape: the state sits at the
@@ -366,7 +368,7 @@ A few names recur in this paper. **Stateware** is the category: software
 whose durable application boundary is canonical state plus a governed
 lifecycle. **State-Centric Engineering** is the method: designing around
 canonical state, explicit authority, profiled execution, and
-evidence-backed closure. **StatePort** is a working local reference
+evidence-backed closure. **StatePort** is an early-alpha local reference
 implementation of the model, and the source of every screenshot in this
 paper. The underlying portable specification — the contract that lets a
 state object travel between hosts and engines — is called **StateSpec**.
@@ -385,8 +387,8 @@ and evidence. The planes cooperate — the execution plane does work that
 lands, governed, in the application plane — but neither replaces the
 other. A platform that only manages agents has built no home for the work;
 a platform that only stores state has built no way to act on it. StatePort,
-the reference implementation, implements both, and this paper's claims
-about durability belong to the application plane while its claims about
+the reference implementation, is designed to implement both, and this paper's
+claims about durability belong to the application plane while its claims about
 supervision belong to the execution plane.
 
 # 4. The core abstractions
@@ -426,13 +428,16 @@ are not: lose the container and the instance can be re-realized elsewhere
 from its canonical state.
 
 ```mermaid
-flowchart LR
-    APP[Application<br/>reusable definition] -->|install| I1[Instance<br/>Amira's study coach]
-    APP -->|install| I2[Instance<br/>Ben's study coach]
-    APP -->|install| I3[Instance<br/>Class 3B]
-    I1 -.->|private state| S1[(owned state)]
-    I2 -.->|private state| S2[(owned state)]
-    I3 -.->|private state| S3[(owned state)]
+flowchart TB
+    accTitle: One reusable application, many separately owned instances
+    accDescr: One reusable application definition is installed as three instances, Amira's study coach, Ben's study coach, and Class 3B. Each instance keeps its own private, owned state.
+    APP["Application<br/>reusable definition"]
+    APP -->|"install"| I1["Amira's<br/>study coach"]
+    APP -->|"install"| I2["Ben's<br/>study coach"]
+    APP -->|"install"| I3["Class 3B"]
+    I1 -.->|"private state"| S1[("owned<br/>state")]
+    I2 -.->|"private state"| S2[("owned<br/>state")]
+    I3 -.->|"private state"| S3[("owned<br/>state")]
 ```
 
 An instance is the unit of ownership. It is also the unit of everything
@@ -455,14 +460,15 @@ one task, then thrown away.
 
 ```mermaid
 flowchart TB
-    S[(Canonical state<br/>the only truth)]
-    S --> CV[Conversation view]
-    S --> FV[File & preview views]
-    S --> TV[Terminal view]
-    S --> DV[Dashboards & notifications]
-    S --> CX[Compiled model context<br/>bounded, task-scoped, disposable]
-    CX -.->|consumed once, then discarded| OUT[Model output]
-    OUT -.->|never writes state directly| S
+    accTitle: Canonical state is the only truth; everything else is a projection
+    accDescr: Canonical state is the only truth. The conversation, file and preview, terminal, and dashboard views, and a compiled model context, are all derived from it. The model context is bounded, task-scoped, and disposable; it is consumed once and discarded. Model output never writes state directly.
+    S[("Canonical state<br/>the only truth")]
+    VIEWS["Views, all rebuildable<br/>conversation<br/>files and previews<br/>terminal<br/>dashboards, notifications"]
+    CX["Compiled model context<br/>bounded, task-scoped,<br/>disposable"]
+    OUT["Model output<br/>never writes state<br/>directly"]
+    S --> VIEWS
+    S --> CX
+    CX -.->|"used once"| OUT
 ```
 
 The rule that makes this architecture work is asymmetric: projections may be
@@ -474,7 +480,7 @@ what it did last week.
 
 One boundary deserves to be stated precisely. Canonical state is the
 **durable boundary of the instance** — the anchor of its truth — not a
-complete definition of its behaviour. How the application behaves at runtime
+complete definition of its behavior. How the application behaves at runtime
 also depends on its definition version, the provider's capabilities, the
 model in use, and the owner's policy, all of which the state can reference
 but none of which it contains. State anchors identity and truth; it does not
@@ -624,11 +630,13 @@ of that source — not a moving pointer like "latest," but a pinned identity
 that two people can name and know they mean the same thing.
 
 ```mermaid
-flowchart LR
-    SRC[Canonical source<br/>designated origin] --> REL[Release<br/>immutable, identified]
-    REL --> RES[Resolution<br/>fetch & verify exact content]
-    RES --> INS[Install<br/>new instance with recorded provenance]
-    REL -.->|later| UPG[Update<br/>existing instance, governed]
+flowchart TB
+    accTitle: From a designated source to an installed instance
+    accDescr: A canonical source, the designated origin of an application, produces an immutable, identified release. Installation resolves that release by fetching and verifying its exact content and creates a new instance with recorded provenance. Later, the release can be used to update an existing instance under governance.
+    SRC["Canonical source<br/>designated origin"] --> REL["Release<br/>immutable, identified"]
+    REL --> RES["Resolution<br/>fetch and verify<br/>exact content"]
+    RES --> INS["Install<br/>new instance,<br/>provenance recorded"]
+    REL -.->|"later"| UPG["Update<br/>existing instance,<br/>governed"]
 ```
 
 The conceptual requirements are few and firm. Installation resolves an exact
@@ -653,21 +661,25 @@ when the day comes — recovered. It is written as a single story because that
 is the point: in Stateware these are not seven features but one continuous
 relationship with an owned thing.
 
-A note on the illustrations: every screenshot in this paper is taken from
-StatePort, the working local reference implementation described in Section
-1. They appear here as illustrations of the abstractions — what a projection
-looks like, what an approval feels like — not as a feature tour.
+A note on the illustrations: every screenshot in this paper is taken from a
+development build of StatePort, the early-alpha reference implementation
+described in Section 1, and may show features that the current alpha does not
+include. They appear here as illustrations of
+the abstractions — what a projection looks like, what an approval feels like —
+not as a feature tour. The lifecycle described in this section is design
+intent: catalogue installation, governed updates, moving between machines, and
+backup and recovery have not been measured in the current alpha.
 
 ```mermaid
-flowchart LR
-    IN[Install<br/>resolve an exact release] --> US[Use<br/>conversation as projection]
-    US --> UN[Understand<br/>read the state itself]
-    UN --> UP[Update<br/>governed, reviewable]
-    UP --> US
-    US --> MV[Move<br/>new machine, new engine]
-    MV --> US
-    US --> BK[Back up<br/>copy the state]
-    BK --> RC[Recover<br/>restore, rebuild projections, resume]
+flowchart TB
+    accTitle: The lifecycle is a loop that always returns to use
+    accDescr: An application is installed by resolving an exact release, then used. From use, the owner can understand the state, update it under governance, move it to a new machine or engine, or back it up and later recover it. Every stage returns to use.
+    IN["Install<br/>exact release"] --> US["Use<br/>conversation as<br/>a projection"]
+    US <--> UN["Understand"]
+    US <--> UP["Update"]
+    US <--> MV["Move"]
+    US --> BK["Back up"]
+    BK --> RC["Recover"]
     RC --> US
 ```
 
@@ -776,7 +788,7 @@ does not need to be rebuilt around it: the canonical state and its contracts
 are what an engine consumes, and any engine that honors the contract can run
 the application. But portability preserves the **declared boundary**, not
 identity of experience. Providers are opinionated: their capabilities,
-behaviour, security posture, and the evidence their runs produce differ,
+behavior, security posture, and the evidence their runs produce differ,
 and an honest platform profiles those differences instead of promising them
 away. What survives a provider change is the state, the authority structure,
 and the record — not a guarantee that the new provider will behave like the
@@ -784,9 +796,10 @@ old one. Loyalty to an assistant no longer requires loyalty to a vendor;
 neither does it require pretending all vendors are the same.
 
 Movement between *machines* has a practical form as well as a conceptual
-one. An application can run on the owner's laptop, in a container on the
-home server, or in one deployed to a cloud tenant — the same instance, the
-same rules, the same receipts. A container that hosts an application is just
+one. The design intends that an application can run on the owner's laptop, in a
+container on the home server, or in one deployed to a cloud tenant — the same
+instance, the same rules, the same receipts. Only the local case is in scope
+for the current alpha. A container that hosts an application is just
 a runtime: the tutor's container behaves like an appliance, and a
 development container is a place a developer opens a terminal into and
 treats like any machine they own. Where the application lives never changes
@@ -815,7 +828,8 @@ because nothing essential ever lived only in one.
 The deeper comfort is structural. Every layer of the system was built on the
 assumption that everything except the canonical state is disposable — so
 when something is lost, it is almost always something disposable. Durability
-is not a promise the platform makes; it is a shape the platform has.
+is not a promise the platform makes; it is a shape the platform is designed to
+have, and one it still has to demonstrate.
 
 # 6. Governance by design
 
@@ -828,14 +842,16 @@ draws out two consequences that define what Stateware feels like to trust.
 Every consequential change to canonical state travels one pipeline:
 
 ```mermaid
-flowchart LR
-    P[Propose<br/>exact, inspectable intent] --> G{Gate<br/>capability & policy check}
-    G -->|within standing authority| V[Validate<br/>against the application's rules]
-    G -->|consequential| A[Approve<br/>human decision, bound to the exact proposal]
+flowchart TB
+    accTitle: Every consequential change travels one pipeline
+    accDescr: The assistant proposes an exact, inspectable intent. A gate checks capability and policy. Changes within standing authority go straight to validation; consequential changes first need a human approval bound to the exact proposal. After validation, the system, not the agent, applies the change and records a receipt. A rejected or invalid proposal leaves state untouched.
+    P["Propose<br/>exact, inspectable intent"] --> G{"Gate<br/>capability and policy check"}
+    G -->|"within standing authority"| V["Validate<br/>against the application's rules"]
+    G -->|"consequential"| A["Approve<br/>human decision, bound to the exact proposal"]
     A --> V
-    V --> AP[Apply<br/>system executes, not the agent]
-    AP --> R[Record<br/>receipt & history]
-    P -.->|rejected or invalid| X[Nothing happens<br/>state untouched]
+    V --> AP["Apply<br/>system executes, not the agent"]
+    AP --> R["Record<br/>receipt and history"]
+    P -.->|"rejected or invalid"| X["Nothing happens<br/>state untouched"]
 ```
 
 **Propose**: the assistant prepares an exact intent. **Gate**: the system
@@ -845,7 +861,7 @@ consequential, a human decides, and the decision binds the exact proposal.
 **Validate**: the change is checked against the application's own rules.
 **Apply**: the system executes it. **Record**: a receipt enters the history.
 
-Two properties of the pipeline are load-bearing. It is *total*: there is no
+Two properties of the pipeline are load-bearing by design. It is *total*: there is no
 second path to canonical state — not a convenience shortcut, not an
 operator backdoor, not a channel adapter writing files directly. And it is
 *fail-closed*: when any stage cannot be completed with certainty — policy
@@ -878,7 +894,7 @@ This division draws an explicit **ownership seam**. The platform owns
 intent, authority, state, evidence, and acceptance: what was asked, what was
 permitted, what is true, what was recorded, and what the owner agreed to.
 The execution harness — the agent runtime, the provider adapter — owns
-execution behaviour: how a run is driven, streamed, sandboxed, and
+execution behavior: how a run is driven, streamed, sandboxed, and
 cancelled. The seam's one rule is directional: the harness must never
 silently become the source of truth. A harness observation can inform the
 record; it cannot outrank it.
@@ -887,8 +903,8 @@ record; it cannot outrank it.
 
 Governance you cannot see is governance you are asked to believe in. The
 model therefore treats degraded operation as something to show, not smooth
-over. When governed state cannot be loaded exactly, the governed controls
-declare themselves inactive. The interface says, in effect: *the rules
+over. In this design, when governed state cannot be loaded exactly, the governed
+controls declare themselves inactive. The interface says, in effect: *the rules
 cannot be verified right now, so the powerful buttons are off.*
 
 This is a small interface behavior and a large commitment. Systems that
@@ -960,8 +976,8 @@ engines is a configuration act, not a migration: today's frontier model,
 tomorrow's local model, a specialized model for a specialized task — each
 is a provider hired to run applications it does not own. The change is not
 free of consequences: providers are opinionated, their capabilities and
-behaviour differ, and an honest ecosystem profiles those differences rather
-than promising behavioural, security, or evidence equivalence. Competition
+behavior differ, and an honest ecosystem profiles those differences rather
+than promising behavioral, security, or evidence equivalence. Competition
 returns to the layer where it belongs, and no one's assistant is collateral.
 
 **Teams and classrooms of owned assistants.** Because instances are separate

@@ -8,8 +8,8 @@ back to their Mermaid sources. SVG-local styles and IDs do not enter the page.
   python3 scripts/render_paper_diagrams.py --paper stateware-whitepaper-public-v1.1
 
 Requires pandoc, mmdc, and a Chrome/Chromium executable (or MMDC_CHROME_BIN).
-Without --paper, both papers render; the historical candidate retains its legacy
-inline-SVG rendering path. Its content is not rebuilt from Markdown.
+Without --paper, only the public paper renders. The earlier draft (candidate v1.2) now
+carries hand-redrawn static SVGs; render it only with an explicit --paper.
 """
 from __future__ import annotations
 
@@ -288,7 +288,7 @@ def main() -> None:
         sys.exit(f"missing theme config: {THEME_CONFIG.relative_to(ROOT)}")
     work = Path(tempfile.mkdtemp(prefix="paper-diagrams-"))
     try:
-        for stem in args.paper or PAPERS_TO_RENDER:
+        for stem in args.paper or PAPERS_TO_RENDER[:1]:
             print(f"rendering {stem}")
             render_paper(stem, work)
     finally:
