@@ -50,7 +50,7 @@
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / Templates</p>
           <h1 id="templates-title">Templates: ProjectState and StudyState.</h1>
-          <p>A template is a reusable starting point for an application. StatePort is designed to take one from a Git repository, review it with you, and create a managed copy with its own history, leaving the original untouched.</p>
+          <p>A template is a reusable starting point for an app. StatePort is meant to take one from a Git repository, show it to you for review, and make a managed copy with its own history. The original stays untouched.</p>
         </div>
       </section>
 
@@ -85,61 +85,61 @@
 
         <article class="prose">
 <p class="notice"><strong>Early alpha, release 0.1.0-alpha.20.</strong> Do not use it for important data. I have measured it on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
-<p class="notice"><strong>Status of this page.</strong> Importing ProjectState and StudyState templates into an installed StatePort has not been measured yet on Alpha.20. Most of this page describes design intent, and it says so. <a href="#verified">What is verified and what is not</a> is listed below.</p>
-<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-a-template-is">What a template is</a></li><li data-level="2"><a href="#projectstate">ProjectState</a></li><li data-level="2"><a href="#studystate">StudyState</a></li><li data-level="2"><a href="#other-templates">Other templates</a></li><li data-level="2"><a href="#import-heading">How import is designed to work</a></li><li data-level="2"><a href="#verified">What is verified and what is not</a></li><li data-level="2"><a href="#safety-heading">What StatePort is designed to copy and run</a></li><li data-level="2"><a href="#troubleshooting-heading">If a repository does not appear</a></li></ol></details>
+<p class="notice"><strong>Status of this page.</strong> I have not measured importing ProjectState or StudyState templates into an installed StatePort on Alpha.20. Most of this page describes how import is meant to work, and it says so. <a href="#verified">What is verified and what is not</a> is listed below.</p>
+<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-a-template-is">What a template is</a></li><li data-level="2"><a href="#projectstate">ProjectState</a></li><li data-level="2"><a href="#studystate">StudyState</a></li><li data-level="2"><a href="#other-templates">Other templates</a></li><li data-level="2"><a href="#import-heading">How import is meant to work</a></li><li data-level="2"><a href="#verified">What is verified and what is not</a></li><li data-level="2"><a href="#safety-heading">What StatePort copies and runs</a></li><li data-level="2"><a href="#troubleshooting-heading">If a repository does not appear</a></li></ol></details>
 <h2 id="what-a-template-is">What a template is</h2>
-<p>An application in StatePort has two parts. The <strong>template</strong> is the reusable part: its starting files, its rules, and the operations it supports. The <strong>instance</strong> is your own copy, with your saved work, permissions, and history. Two people, or two projects, can start from the same template and end up with different instances. Independent instances from the same template are demonstrated in source-tree tests; not yet on an installed product. Importing a template creates a new instance from an exact snapshot; it does not turn the source repository into your live application, and later edits to the source do not change an instance you already have.</p>
-<p>Both templates below are ordinary Git repositories of readable files. The contract they define is useful without StatePort. StatePort's part is to validate a reviewed copy and store it as an isolated managed copy. For an imported ProjectState or StudyState that copy has an inspection action; the guided flows exist only in the StudyState Sample.</p>
+<p>An app in StatePort has two parts. The <strong>template</strong> is the reusable part: its starting files, its rules and the operations it supports. The <strong>instance</strong> is your own copy, with your saved work, permissions and history. Two people, or two projects, can start from the same template and end up with different instances. The project&rsquo;s automated tests on the source code show that instances made from the same template stay independent. That has not yet been shown on an installed product. Importing a template makes a new instance from an exact snapshot. It does not turn the source repository into your live app, and later edits to the source do not change an instance you already have.</p>
+<p>Both templates below are ordinary Git repositories of readable files. You can use them without StatePort. StatePort checks a reviewed copy and stores it as a separate managed copy. For an imported ProjectState or StudyState that copy has one inspection action. The step-by-step flows exist only in the StudyState sample.</p>
 
 <h2 id="projectstate">ProjectState</h2>
-<p><strong>In plain terms:</strong> ProjectState keeps a project's goal, its one current piece of work, its working rules, and the evidence of what actually happened in ordinary files, so that a person or an AI agent can pick up the project without replaying old conversations. It answers four questions: what are we trying to change, what is the one active step, what did we observe, and what should happen next?</p>
-<p>The files are <code>PROJECT.md</code> for the outcome and boundaries, <code>STATE.yaml</code> for the current step, <code>AGENTS.md</code> for the rules, an <code>evidence</code> folder for results, and a small check script. Read <a href="project-state.html">the ProjectState guide</a> for the details.</p>
+<p><strong>In plain terms:</strong> ProjectState is a template for tracking a project. It keeps the goal, the one piece of work in progress, the working rules and the evidence of what happened in ordinary files, so a person or an AI agent can pick the project up without replaying old conversations. It answers four questions: what are we trying to change, what is the one thing we are working on, what did we see, and what happens next?</p>
+<p>The files are <code>PROJECT.md</code> for the outcome and limits, <code>STATE.yaml</code> for the current work, <code>AGENTS.md</code> for the rules, an <code>evidence</code> folder for results, and a small check script. <a href="project-state.html">The ProjectState guide</a> has the details.</p>
 
 <h2 id="studystate">StudyState</h2>
-<p><strong>In plain terms:</strong> StudyState keeps a learner's targets, activities, sources, sessions, reviews, and evidence in readable files, so progress is kept outside a chat window. Its next-activity engine belongs to the StudyState template and is not surfaced in StatePort. In the StudyState Sample, changes to that record are proposals you review before they are saved.</p>
-<p>The <strong>StudyState Sample</strong> is a small worked example of that loop. You start an activity, review the exact change, approve it, write a reflection, review what saving it would do, apply it, open the receipt, and reload to see the result still there. The Sample offers a fixed set of activities, and its loop passes in the project's automated tests. That is the flow shown on the <a href="../index.html#journey">home page</a> and in the <a href="../tutorials/site-orientation.html">field guide video</a>. Read <a href="study-state.html">the StudyState guide</a> and <a href="everyday-work.html">your first session</a> for the steps.</p>
+<p><strong>In plain terms:</strong> StudyState is a template for a study plan. It keeps a learner&rsquo;s targets, activities, sources, sessions, reviews and evidence in readable files, so progress is kept outside a chat window. Its next-activity engine, the part that picks what to study next, belongs to the template and is not part of StatePort. In the StudyState sample, changes to the record are proposals you review before they are saved.</p>
+<p>The <strong>StudyState sample</strong> is a small worked example. You start an activity, review the exact change, approve it, write a reflection, review what saving it does, apply it, open the receipt, and reload to see the result still there. The sample offers a fixed set of activities, and its loop passes in the project&rsquo;s automated tests. The <a href="../index.html#journey">home page</a> and the <a href="../tutorials/site-orientation.html">field guide video</a> show this flow. <a href="study-state.html">The StudyState guide</a> and <a href="everyday-work.html">your first session</a> have the steps.</p>
 
 <h2 id="other-templates">Other templates</h2>
-<p>StatePort is designed to accept any repository that declares a valid template manifest and supported actions, called a portable StateSpec repository, and to run only the actions it has actually implemented. Declaring a capability in a repository does not grant it. Nothing on this page says that a third template has been tried on an installed Alpha.20.</p>
+<p>StatePort is meant to accept any repository that declares a valid template file and supported actions. That format is called a portable StateSpec repository. StatePort runs only the actions it has actually built, and a repository cannot give itself access by declaring it. I have not tried a third template on an installed Alpha.20.</p>
 
-<h2 id="import-heading">How import is designed to work</h2>
-<p>This is design intent. It comes from the product's design and has not been measured on an Alpha.20 install.</p>
+<h2 id="import-heading">How import is meant to work</h2>
+<p>This is the design. I have not measured it on an Alpha.20 install.</p>
 <ol>
-<li>Put a real Git checkout, including its <code>.git</code> folder, below the import folder the installer creates. The default is <code>/var/lib/stateport/imports</code>. A ZIP file without Git history cannot identify an exact commit. You may instead give a public HTTPS repository and its full 40-character commit.</li>
+<li>Put a real Git checkout, with its <code>.git</code> folder, in the import folder the installer creates. The default is <code>/var/lib/stateport/imports</code>. A ZIP file has no Git history, so it cannot give an exact commit. Or give a public HTTPS repository and its full 40-character commit.</li>
 <li>In StatePort, open <strong>Catalog</strong> and choose <strong>Import a repository</strong>.</li>
-<li>Choose <strong>Inspect</strong>. Inspection only reads. It reports the source, which template it detected, the commit, and whether the working tree has uncommitted changes.</li>
+<li>Choose <strong>Inspect</strong>. Inspection only reads. It reports the source, the template type it detected, the commit, and whether the working tree has uncommitted changes.</li>
 <li>Read the findings. If the repository is dirty or reports an error, fix it, commit, and inspect again.</li>
-<li>Name the application and approve that exact inspection.</li>
+<li>Name the app and approve that exact inspection.</li>
 <li>For a supported template, choose <strong>Create isolated copy</strong>. For an ordinary repository that is not a supported template, the action is <strong>Register repository</strong>.</li>
-<li>Open the new application or its install receipt.</li>
+<li>Open the new app or its install receipt.</li>
 </ol>
-<p>Your approval is tied to what was inspected. If the source changes afterwards, the approval is refused instead of silently importing a different version.</p>
+<p>Your approval is tied to what was inspected. If the source changes afterwards, StatePort refuses the approval instead of quietly importing a different version.</p>
 
 <h2 id="verified">What is verified and what is not</h2>
 <ul>
 <li><strong>The install itself:</strong> measured on Alpha.20. It installed and reported healthy on a fresh Windows 11 virtual machine with WSL2 and Ubuntu 24.04, five times. See <a href="limitations.html#measured">current limitations</a>.</li>
-<li><strong>The StudyState sample flow:</strong> implemented and passing in the project's automated tests, and shown in the product recordings on this site, made before Alpha.20. It has not yet been run end to end on an installed Alpha.20.</li>
+<li><strong>The StudyState sample flow:</strong> passes in the project&rsquo;s automated tests, and appears in the recordings on this site, made before Alpha.20. I have not yet run it end to end on an installed Alpha.20.</li>
 <li><strong>Importing a ProjectState or StudyState repository:</strong> not measured on the installed product.</li>
 <li><strong>A third, independent template:</strong> not measured.</li>
 </ul>
-<p>Not measured means we do not know yet, not that it fails. If you try it, <a href="troubleshooting.html#report">tell us what happened</a>.</p>
+<p>Not measured means I do not know yet, not that it fails. If you try it, <a href="troubleshooting.html#report">tell me what happened</a>.</p>
 
-<h2 id="safety-heading">What StatePort is designed to copy and run</h2>
+<h2 id="safety-heading">What StatePort copies and runs</h2>
 <ul>
-<li>The source repository is only read and stays untouched.</li>
-<li>The managed copy is made from the exact snapshot you reviewed, with its own identity and record of where it came from.</li>
-<li>Repository code is not executed while StatePort discovers or inspects a repository.</li>
-<li>Only actions that StatePort itself implements for the detected template are available, and application actions go through review, approval, and a receipt. For an imported ProjectState or StudyState the implemented action is an inspection.</li>
+<li>The source repository is only read. It stays untouched.</li>
+<li>The managed copy is made from the exact snapshot you reviewed, with its own identity and a record of where it came from.</li>
+<li>Repository code is not run while StatePort finds or inspects a repository.</li>
+<li>Only the actions StatePort has built for the detected template are available, and app actions go through review, approval and a receipt. For an imported ProjectState or StudyState, the action that exists is an inspection.</li>
 </ul>
 
 <h2 id="troubleshooting-heading">If a repository does not appear</h2>
-<p>These are design-based checks that have not been measured on Alpha.20 yet:</p>
+<p>These checks come from the design. I have not measured them on Alpha.20 yet.</p>
 <ul>
-<li>The checkout should be below the import folder, be a real directory rather than a symbolic link, and keep its <code>.git</code> folder.</li>
-<li>Refresh the list after copying a checkout in.</li>
+<li>The checkout should be in the import folder, be a real directory and not a symbolic link, and keep its <code>.git</code> folder.</li>
+<li>Refresh the list after you copy a checkout in.</li>
 <li>For a public source, use HTTPS and a full commit, not a branch name.</li>
 <li>If inspection reports uncommitted changes or an invalid template, make the smallest fix, commit it, and inspect again.</li>
-<li>If an import response is uncertain, reread Catalog and Receipts before you try again.</li>
+<li>If an import response is uncertain, read Catalog and Receipts again before you try again.</li>
 </ul>
 <p>See <a href="platform-support.html">platform support</a> for the supported setup, <a href="getting-started.html">getting started</a> to install, and <a href="limitations.html">current limitations</a> for what has not been measured.</p>
 <div class="inline-actions"><a class="button button--ink" href="getting-started.html">Install StatePort</a><a class="button button--outlined" href="project-state.html">ProjectState guide</a><a class="button button--outlined" href="study-state.html">StudyState guide</a>

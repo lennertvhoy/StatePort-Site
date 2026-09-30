@@ -33,8 +33,8 @@
 <section class="article-hero" aria-labelledby="project-state-title">
 <div class="article-hero-inner">
 <p class="document-kicker">Documentation / Templates</p>
-<h1 id="project-state-title">ProjectState: make the work visible.</h1>
-<p>ProjectState is a reusable project operating contract. StatePort can inspect a committed ProjectState v6 repository and store an isolated managed copy of the exact reviewed snapshot.</p>
+<h1 id="project-state-title">ProjectState: a template for tracking a project</h1>
+<p>ProjectState is a set of plain files that describe a project: its goal, the one piece of work in progress, the working rules and the evidence. StatePort can inspect a committed ProjectState repository and store a separate copy of the exact snapshot you reviewed.</p>
 </div>
 </section>
       <div class="article-shell">
@@ -67,15 +67,15 @@
 </aside>
         <article class="prose">
 <p class="notice"><strong>Early alpha, release 0.1.0-alpha.20.</strong> Do not use it for important data. I have measured it on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
-<p class="notice notice--quiet"><strong>Design guide.</strong> Importing a ProjectState repository into an installed StatePort has not been measured on Alpha.20 yet. Use <a href="templates.html">the template guide</a> for how import is designed to work. An imported ProjectState is validated and stored as an isolated managed copy with an inspection action; the guided flows exist only in the StudyState Sample.</p>
-          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-it-is">What ProjectState is</a></li><li data-level="2"><a href="#files">The ProjectState v6 files</a></li><li data-level="2"><a href="#import">Import and review in StatePort</a></li><li data-level="2"><a href="#development">Use it while developing</a></li><li data-level="2"><a href="#operation">Use it while operating the project</a></li><li data-level="2"><a href="#validation">Validation is evidence; acceptance is a decision</a></li><li data-level="2"><a href="#limits">Limits and recovery</a></li></ol></details>
+<p class="notice notice--quiet"><strong>Design guide.</strong> I have not measured importing a ProjectState repository into an installed StatePort on Alpha.20. <a href="templates.html">The template guide</a> shows how import is meant to work. An imported ProjectState is checked and stored as a separate copy with one inspection action. The step-by-step flows exist only in the StudyState sample.</p>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-it-is">What ProjectState is</a></li><li data-level="2"><a href="#files">The ProjectState files</a></li><li data-level="2"><a href="#import">Import and review in StatePort</a></li><li data-level="2"><a href="#development">Use it while developing</a></li><li data-level="2"><a href="#operation">Use it while operating the project</a></li><li data-level="2"><a href="#validation">Tests are evidence; acceptance is your decision</a></li><li data-level="2"><a href="#limits">Limits and recovery</a></li></ol></details>
           <section>
 <h2 id="what-it-is">What ProjectState is</h2>
-<p>ProjectState keeps a project’s human-owned outcome, current slice, working rules, and evidence in ordinary files. It helps an agent or team answer: what are we trying to change, what is the one active unit of work, what did we actually observe, and what should happen next?</p>
-<p>An instance is a repository with its own project truth. A template is a reusable mold. StatePort supplies a managed application around the reviewed repository; it does not become the project’s authority and it does not replace the repository’s own checks.</p>
+<p>ProjectState keeps a project&rsquo;s goal, the one piece of work in progress, the working rules and the evidence in ordinary files. It helps an agent or a team answer four questions: what are we trying to change, what is the one thing we are working on, what did we actually see, and what happens next? The template calls that one piece of work a &ldquo;slice&rdquo;.</p>
+<p>An instance is a repository with its own project truth. A template is a reusable starting copy. StatePort wraps a reviewed repository in a managed app. It does not become the authority for the project, and it does not replace the repository&rsquo;s own checks.</p>
 </section>
           <section>
-<h2 id="files">The ProjectState v6 files</h2>
+<h2 id="files">The ProjectState files</h2>
 <div class="table-scroll" tabindex="0" role="region" aria-label="ProjectState files">
 <table>
 <thead>
@@ -83,47 +83,47 @@
 </tr>
 </thead>
 <tbody>
-<tr><th scope="row"><code>PROJECT.md</code></th><td>The outcome, scope, non-goals, and boundaries.</td>
+<tr><th scope="row"><code>PROJECT.md</code></th><td>The outcome, scope, non-goals and limits.</td>
 </tr>
-<tr><th scope="row"><code>STATE.yaml</code></th><td>One current slice, its journey, status, blockers, and next action.</td>
+<tr><th scope="row"><code>STATE.yaml</code></th><td>The one piece of work in progress (the current slice), the user journey that tests it, its status, blockers and next action.</td>
 </tr>
 <tr><th scope="row"><code>AGENTS.md</code></th><td>Rules for making changes and keeping them safe.</td>
 </tr>
-<tr><th scope="row"><code>evidence/&lt;slice-id&gt;/summary.md</code></th><td>Environment, command, result, artifacts, limitations, and what remains unrun.</td>
+<tr><th scope="row"><code>evidence/&lt;slice-id&gt;/summary.md</code></th><td>Environment, command, result, artifacts, limits, and what was not run.</td>
 </tr>
-<tr><th scope="row"><code>scripts/projectstate_gate.py</code></th><td>A consistency check over the recorded outcome.</td>
+<tr><th scope="row"><code>scripts/projectstate_gate.py</code></th><td>A script that checks that the recorded outcome is consistent.</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>The gate checks what the record says; the real journey supplies the observed result.</p>
+<p>The check script reads what the record says. It does not run your project. A real run of the user journey supplies the observed result.</p>
 </section>
           <section>
 <h2 id="import">Import and review in StatePort</h2>
-<ol><li>Open <strong>Catalog</strong>, then choose <strong>Import a repository</strong>.</li><li>For a local source, place the Git checkout in the configured import folder, including its <code>.git</code> directory. For a public source, enter its HTTPS URL and exact 40-character commit.</li><li>Choose the candidate and let StatePort perform a read-only inspection. Repository code is not executed during inspection.</li><li>Review the template detection, source identity, commit, working-tree findings, and any inspection errors. Commit the version you intend to use before this step.</li><li>Approve the unchanged inspection. A ProjectState template receives <strong>Create isolated copy</strong>; an ordinary unsupported repository can only be explicitly registered.</li><li>After StatePort reports success, open the application or its durable import receipt. The service rereads the application and receipt before presenting that success.</li>
+<ol><li>Open <strong>Catalog</strong>, then choose <strong>Import a repository</strong>.</li><li>For a local source, put the Git checkout, with its <code>.git</code> folder, in the import folder. For a public source, enter its HTTPS URL and the exact 40-character commit.</li><li>Choose the repository and let StatePort inspect it. The inspection only reads. It does not run repository code.</li><li>Look at the detected template type, the source, the commit, any working-tree findings and any errors. Commit the version you want before this step.</li><li>Approve the unchanged inspection. A ProjectState template gets <strong>Create isolated copy</strong>. An ordinary repository that is not a template can only be registered.</li><li>When StatePort reports success, open the app or its import receipt. The service reads the app and the receipt again before it shows success.</li>
 </ol>
-<p>If the source changes after inspection, the approval is stale and must be inspected again. This is the boundary that keeps the managed copy tied to what you reviewed.</p>
+<p>If the source changes after the inspection, the approval is stale and you must inspect again. That keeps the managed copy tied to what you reviewed.</p>
 </section>
           <section>
 <h2 id="development">Use it while developing</h2>
-<p>Suppose you are adding a template import. Put the outcome in <code>PROJECT.md</code>: “a new user can import a committed repository and open its managed copy.” Set <code>STATE.yaml</code> to the one slice that implements that journey. After the change, record the exact environment, command, observed import result, receipt, and remaining gaps in <code>evidence/&lt;slice-id&gt;/summary.md</code>. The next action should name the smallest unresolved step.</p>
-<p>For a bug, the current slice might say “repair stale approval after the source commit changes.” The evidence should show the focused reproducer, the repair, and the rerun. A ProjectState instance can guide StatePort work. What the managed copy supplies is what its adapter exposes: today that is an inspection action, and the adapter also requests file workbench and terminal capabilities, which depend on the grants you give.</p>
+<p>Say you are adding a template import. In <code>PROJECT.md</code> you write the outcome: &ldquo;a new user can import a committed repository and open its managed copy.&rdquo; You set <code>STATE.yaml</code> to the one piece of work that delivers it. After the change, you record in <code>evidence/&lt;slice-id&gt;/summary.md</code> the exact environment, the command, the import result you saw, the receipt and what is still missing. The next action names the smallest step left.</p>
+<p>For a bug, the current work might be &ldquo;repair the stale approval after the source commit changes.&rdquo; The evidence should show a test that reproduces it, the repair and the rerun. A ProjectState instance can guide StatePort work. What the managed copy offers is what StatePort&rsquo;s ProjectState support provides. Today that is one inspection action. It also asks for file workbench and terminal access, which depend on the grants you give.</p>
 </section>
           <section>
 <h2 id="operation">Use it while operating the project</h2>
-<p>After release, the same instance can track an operating outcome such as “the public installer points to the signed artifact and the service recovers after restart.” The current slice can be “investigate a failed health check,” with the incident command, service logs, affected version, and recovery result in its evidence summary. The next action might be “reproduce on the supported environment,” “publish a corrected artifact,” or “monitor the external dependency.”</p>
-<p>Development and operation use the same files because both need a visible outcome, one current slice, observed evidence, and an explicit next action. The instance does not gain a separate UI mode; you define the operating outcome and checks in the project contract.</p>
+<p>After release, the same instance can track an operating outcome such as &ldquo;the public installer points to the signed release and the service recovers after a restart.&rdquo; The current work might be &ldquo;investigate a failed health check&rdquo;, with the incident command, service logs, affected version and recovery result in the evidence summary. The next action might be &ldquo;reproduce on the supported setup&rdquo;, &ldquo;publish a corrected release&rdquo; or &ldquo;watch the outside dependency&rdquo;.</p>
+<p>Development and operation use the same files. Both need a visible outcome, one current piece of work, observed evidence and an explicit next action. The instance has no separate operating mode in the UI. You define the operating outcome and its checks in the project files.</p>
 </section>
           <section>
-<h2 id="validation">Validation is evidence; acceptance is a decision</h2>
-<p>Run the smallest representative journey first, then the affected integration, then installed or release proof when the change crosses that boundary. Record the exact environment and limitations. A test can show that a parser accepts a file; a real journey shows whether the user can complete the outcome. A receipt shows what StatePort observed at one boundary.</p>
-<p>The project owner still decides whether that evidence satisfies the outcome. Keep the observed result, the limitation, and the next action visible when the evidence is incomplete.</p>
+<h2 id="validation">Tests are evidence; acceptance is your decision</h2>
+<p>Run the smallest realistic test of the user journey first, then wider tests, then a check on the installed or released product when the change reaches that boundary. Record the exact environment and the limits. A test can show that a parser accepts a file. A real journey shows whether a user can finish the task. A receipt shows what StatePort observed at one step.</p>
+<p>The project owner still decides whether the evidence meets the outcome. When the evidence is incomplete, keep the observed result, the limit and the next action in view.</p>
 </section>
           <section>
 <h2 id="limits">Limits and recovery</h2>
-<ul><li>A ZIP without Git history cannot establish the required exact commit identity for template import.</li><li>A dirty or changed source is not silently folded into an approved copy; commit and inspect again.</li><li>ProjectState does not make arbitrary repository commands safe, and a template cannot grant itself capabilities StatePort has not implemented.</li><li>Backups, restore plans, restart behavior, and receipts belong to the installed product journey. Do not infer them from this repository’s files alone.</li><li>If a StatePort operation becomes uncertain, reread Catalog, Applications, or Receipts before retrying a mutation. The UI is designed to retain uncertainty instead of claiming success.</li>
+<ul><li>A ZIP file has no Git history, so it cannot give the exact commit that import needs.</li><li>A dirty or changed source is not silently merged into an approved copy. Commit it and inspect again.</li><li>ProjectState does not make arbitrary repository commands safe, and a template cannot give itself access that StatePort has not built.</li><li>Backups, restore, restart behavior and receipts belong to the installed product. Do not infer them from a repository&rsquo;s files alone.</li><li>If a StatePort operation becomes uncertain, read Catalog, Applications or Receipts again before you retry a change. The UI is meant to show uncertainty instead of claiming success.</li>
 </ul>
-<p>For the companion learning template, see <a href="study-state.html">StudyState</a>. For source preparation and generic StateSpec rules, see <a href="templates.html">Use a template</a>.</p>
+<p>For the study-plan template, see <a href="study-state.html">StudyState</a>. For source preparation and the generic template format (StateSpec), see <a href="templates.html">Use a template</a>.</p>
 </section>
           <div class="inline-actions"><a class="button button--ink" href="templates.html">Import a template</a><a class="button button--outlined" href="getting-started.html">Install and open</a>
 </div>

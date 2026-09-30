@@ -32,8 +32,8 @@
 <section class="article-hero" aria-labelledby="study-state-title">
 <div class="article-hero-inner">
 <p class="document-kicker">Documentation / Applications</p>
-<h1 id="study-state-title">StudyState: a study coach that remembers.</h1>
-<p>StudyState keeps learner state, evidence, sources, and the next useful activity in plain files. StatePort can inspect a reviewed StudyState repository and store an isolated managed copy of it; the guided flows exist only in the StudyState Sample.</p>
+<h1 id="study-state-title">StudyState: a template for a study plan</h1>
+<p>StudyState keeps a learner's targets, evidence, sources and next activity in plain files. StatePort can inspect a StudyState repository and store a separate copy of it. The step-by-step flows exist only in the StudyState sample.</p>
 </div>
 </section>
 <div class="article-shell">
@@ -66,55 +66,56 @@
 </aside>
 <article class="prose">
 <p class="notice"><strong>Early alpha, release 0.1.0-alpha.20.</strong> Do not use it for important data. I have measured it on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
-<p class="notice notice--quiet"><strong>Start with the StudyState Sample.</strong> Start its activity, review the exact change, apply it, write a reflection, review the reflection’s effect, save it as evidence, open its receipt, and reload. The expected result is the same activity and saved reflection still visible after reload. In the StudyState Sample, this review-approve-reflect-receipt loop is implemented and passes in the project&rsquo;s automated tests; it has not yet been run end to end on an installed Alpha.20. It is shown in recordings made before Alpha.20. An imported StudyState repository is a separate source with its own identity and controls; see <a href="templates.html">the template guide</a>.</p>
-<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-studystate-is">What StudyState is</a></li><li data-level="2"><a href="#the-focus-default-what-to-do-next-and-why">The Focus default: what to do next, and why</a></li><li data-level="2"><a href="#lifecycle-you-control">Lifecycle you control</a></li><li data-level="2"><a href="#reflection-becomes-a-change-you-review">Reflection becomes a change you review</a></li><li data-level="2"><a href="#undo-and-change-history">Undo and change history</a></li><li data-level="2"><a href="#state-that-survives-restarts">Saved state and restarts</a></li><li data-level="2"><a href="#what-studystate-deliberately-does-not-do">What StudyState deliberately does not do</a></li><li data-level="2"><a href="#use-studystate">Use StudyState</a></li></ol></details>
+<p class="notice notice--quiet"><strong>Start with the sample.</strong> In the StudyState sample you start an activity, review the exact change, apply it, write a reflection, review what saving it does, save it as evidence, open the receipt and reload. You should see the same activity and reflection after the reload. This loop passes in the project&rsquo;s automated tests. I have not yet run it end to end on an installed Alpha.20. Recordings from before Alpha.20 show it. An imported StudyState repository is a different thing with its own controls; see <a href="templates.html">the template guide</a>.</p>
+<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-studystate-is">What StudyState is</a></li><li data-level="2"><a href="#the-focus-default-what-to-do-next-and-why">Choosing the next activity</a></li><li data-level="2"><a href="#lifecycle-you-control">Three modes of the template</a></li><li data-level="2"><a href="#reflection-becomes-a-change-you-review">Reflection becomes a change you review</a></li><li data-level="2"><a href="#undo-and-change-history">Undo and change history</a></li><li data-level="2"><a href="#state-that-survives-restarts">Saved state and restarts</a></li><li data-level="2"><a href="#what-studystate-deliberately-does-not-do">What StudyState does not do</a></li><li data-level="2"><a href="#use-studystate">Use StudyState</a></li></ol></details>
 <section>
 <h2 id="what-studystate-is">What StudyState is</h2>
-<p>StudyState is a study brain operated through a coding agent or through StatePort’s managed application. The small <strong>StudyState Sample</strong> is a worked application used to demonstrate the saved learning loop. An imported StudyState repository is a different application source. StatePort validates it and stores it as an isolated managed copy with an inspection action; the guided flows exist only in the StudyState Sample.</p>
-<p>The sample loop is concrete: choose <strong>Start</strong> on the current activity, review the change from not started to in progress, and approve it. Write a reflection as a browser draft, review its exact effect, including marking the activity completed, then apply it as evidence. Open the receipt to inspect what StatePort recorded. Reload and reopen the same instance: the completed activity and reflection should remain saved. In the sample, the proposed change comes from a deterministic script, not from a model.</p>
-<p>The broader repository contract keeps learner profile, study targets, skill map, sources, activities, sessions, reviews, next actions, and evidence in readable Markdown and YAML. A conversation can help you learn, but chat history is not the canonical record.</p>
+<p>StudyState is a template for a study plan. It keeps a learner&rsquo;s profile, targets, sources, activities, sessions, reviews and evidence as readable Markdown and YAML files. You can run it through a coding agent or through StatePort. The small <strong>StudyState sample</strong> is a worked app that shows the saved loop. An imported StudyState repository is a different source: StatePort checks it and stores it as a separate copy with one inspection action. The step-by-step flows exist only in the sample.</p>
+<p>The sample loop: choose <strong>Start</strong> on the current activity, review the change from not started to in progress, and approve it. Write a reflection as a draft in your browser, review its exact effect (it also marks the activity completed), then apply it as evidence. Open the receipt to see what StatePort recorded. Reload and reopen the same instance. The completed activity and the reflection should still be saved. A fixed script proposes the change in the sample, not an AI model.</p>
+<p>A chat can help you learn, but chat history is not the record. The files are.</p>
 </section>
 <section>
-<h2 id="the-focus-default-what-to-do-next-and-why">The Focus default: what to do next, and why</h2>
-<p>The next-activity engine belongs to the StudyState template and is not surfaced in StatePort. In the StudyState template’s own model, that engine can choose a question, spaced review, paper exercise, lab, external resource, interview or presentation rehearsal, voice note, diagram, or upload-and-review task. Due reviews remain visible, and volatile subjects require fresh source metadata before an authoritative question.</p>
-<p>The StudyState Sample offers a fixed set of activities and a small, explicit activity and reflection flow. An imported StudyState does not get the next-activity engine as a StatePort screen; inspect the imported application’s own files and contract.</p>
+<h2 id="the-focus-default-what-to-do-next-and-why">Choosing the next activity</h2>
+<p>The next-activity engine belongs to the StudyState template. StatePort does not show it. In the template&rsquo;s own design, the engine can pick a question, a spaced review, a paper exercise, a lab, an outside resource, an interview or presentation rehearsal, a voice note, a diagram, or an upload-and-review task. Due reviews stay visible. For subjects that change fast, it asks for fresh source information before it asks a question.</p>
+<p>The StudyState sample offers a fixed set of activities and one small activity-and-reflection flow. An imported StudyState does not get the engine as a StatePort screen. Look at the imported files and their own instructions.</p>
 </section>
 <section>
-<h2 id="lifecycle-you-control">Lifecycle you control</h2>
-<ol><li><strong>Template mode:</strong> the reusable public mold remains generic and contains no learner data.</li><li><strong>Bootstrap mode:</strong> a new repository records its origin while you initialize your learner profile and first target.</li><li><strong>Learner-instance mode:</strong> the repository contains your targets, evidence, sessions, reviews, and next action.</li>
+<h2 id="lifecycle-you-control">Three modes of the template</h2>
+<ol><li><strong>Template mode:</strong> the public copy stays generic and holds no learner data.</li><li><strong>Bootstrap mode:</strong> a new repository records where it came from while you set up your learner profile and first target.</li><li><strong>Learner mode:</strong> the repository holds your targets, evidence, sessions, reviews and next action.</li>
 </ol>
-<p>Use the template’s instance creation flow or make a separate learner repository. Do not personalize the public template. Run its sanity gate after setup or state changes.</p>
+<p>Use the template&rsquo;s own setup to create your instance, or make a separate learner repository. Do not put your own data in the public template. Run its sanity check script after setup and after you change state.</p>
 </section>
 <section>
 <h2 id="reflection-becomes-a-change-you-review">Reflection becomes a change you review</h2>
-<p>In the sample, the reflection starts as a browser draft. Before saving it, review the exact activity and evidence effect. Apply only when it matches what you meant to record. The saved reflection is self-reported learning evidence; it is not independently verified progress.</p>
-<p>The agent may suggest a change, but canonical state changes only after the reviewed action is applied. The receipt records what StatePort observed.</p>
+<p>In the sample, the reflection starts as a draft in your browser. Before it is saved, you see its exact effect on the activity and the evidence. Apply it only if it matches what you meant to record. The saved reflection is your own account. It is not independently verified progress.</p>
+<p>The agent may suggest a change, but the saved state only changes after you apply the reviewed action. The receipt records what StatePort observed.</p>
 </section>
 <section>
 <h2 id="undo-and-change-history">Undo and change history</h2>
-<p>One undo exists today: the StudyState Sample can undo its last evidence update. That undo is itself a reviewed change, it restores the prior evidence-bearing state, and it stays tied to the reviewed change and its receipt, so it does not erase the explanation of what happened. Most other changes have no undo, and platform rollback is not supported in Alpha.20.</p><p>StudyState keeps session and activity history alongside current projections.</p>
-<p>If you are working directly in a repository, inspect the diff and history before repairing state. Keep the evidence that explains why a correction was made.</p>
+<p>One undo exists today. The sample can undo its last evidence update. The undo is a reviewed change too: it restores the earlier evidence and stays tied to the original change and its receipt, so it does not erase the record of what happened. Most other changes cannot be undone, and Alpha.20 does not support rolling back the platform.</p>
+<p>StudyState keeps a history of sessions and activities next to the current state.</p>
+<p>If you work directly in a repository, look at the diff and the history before you repair anything. Keep the evidence that explains why you corrected it.</p>
 </section>
 <section>
 <h2 id="state-that-survives-restarts">Saved state and restarts</h2>
-<p>After the sample flow, reload the application and reopen the same instance, then return to the activity. The expected saved result is that the activity remains completed and the reflection remains present in evidence. The project’s automated test stops and restarts the service and re-reads the saved plan; that has not been run on an installed Alpha.20. On Alpha.20, reachability after the last WSL window closes is measured (after you sign in to Windows); a Windows reboot is not yet measured.</p>
-<p>In a repository instance, closing a session does not erase goals, target map, review queue, source registry, or next action because they live in files. Back up before upgrades or broad edits, and preserve learner state when applying generic template improvements.</p>
+<p>After the sample loop, reload and reopen the same instance and go back to the activity. It should still be completed, with the reflection in the evidence. The project&rsquo;s automated test restarts the service and reads the saved plan again. I have not run that on an installed Alpha.20. On Alpha.20, StatePort stayed reachable after the last WSL window closed (once you were signed in to Windows). I have not measured a Windows reboot.</p>
+<p>In a repository instance, closing a session does not erase your goals, target map, review queue, source list or next action, because they are files. Back up before upgrades or big edits, and keep your learner data when you apply template improvements.</p>
 </section>
 <section>
-<h2 id="what-studystate-deliberately-does-not-do">What StudyState deliberately does not do</h2>
-<ul><li>It does not treat source coverage or one easy answer as confirmed readiness.</li><li>It does not claim volatile information is current without fresh source metadata.</li><li>It does not install dependencies or change system settings without explicit consent.</li><li>It does not personalize the public template or hide private learner data in a public repository.</li><li>StatePort does not turn a StudyState file into an unrestricted agent. The adapter and installed permissions remain the authority.</li>
+<h2 id="what-studystate-deliberately-does-not-do">What StudyState does not do</h2>
+<ul><li>It does not treat source coverage or one easy answer as proof you are ready.</li><li>It does not call information current without fresh source information.</li><li>It does not install dependencies or change system settings without your consent.</li><li>It does not put your data in the public template or in a public repository.</li><li>StatePort does not give a StudyState file free rein as an agent. The installed permissions decide what it can do.</li>
 </ul>
 </section>
 <section>
 <h2 id="use-studystate">Use StudyState</h2>
 <h3>Try the sample</h3>
-<ol><li>Open the StudyState Sample and choose <strong>Start</strong> on its current activity.</li><li>Review the exact change, then choose <strong>Approve Start</strong> so the activity becomes in progress.</li><li>Write a reflection, review its proposed effect, and choose <strong>Approve and apply</strong> to save it as evidence.</li><li>Open the receipt, reload the application, and confirm the activity and reflection remain present.</li>
+<ol><li>Open the StudyState sample and choose <strong>Start</strong> on its current activity.</li><li>Review the exact change, then choose <strong>Approve Start</strong> so the activity becomes in progress.</li><li>Write a reflection, review its proposed effect, and choose <strong>Approve and apply</strong> to save it as evidence.</li><li>Open the receipt, reload the app, and check that the activity and reflection are still there.</li>
 </ol>
 <h3>Import a template</h3>
-<p>Choose <strong>Import a repository</strong> for a public exact commit or local checkout. Review identity, source commit, and what the detected template exposes before creating an isolated copy. The imported repository does not have the sample’s screens or the next-activity engine.</p>
+<p>Choose <strong>Import a repository</strong> and give a public exact commit or a local checkout. Check the identity, the source commit and what StatePort detected before you create the separate copy. The imported repository does not have the sample&rsquo;s screens or the next-activity engine.</p>
 <h3>Use the repository directly</h3>
-<p>Clone the public template into a new learner repository, initialize the profile and first target, then run its environment check, explicit-consent setup helper, sanity gate, and demo replay. Keep the public template separate from a learner instance.</p>
-<p>For exact source preparation, see <a href="templates.html">Use a template</a>. For the project-oriented companion, see <a href="project-state.html">ProjectState</a>. For availability, see <a href="../releases/">release status</a>.</p>
+<p>Clone the public template into a new learner repository, set up the profile and first target, then run its environment check, its setup helper (it asks for consent), its sanity check and its demo replay. Keep the public template separate from your learner repository.</p>
+<p>For how to prepare a source, see <a href="templates.html">Use a template</a>. For the project tracker template, see <a href="project-state.html">ProjectState</a>. For availability, see <a href="../releases/">release status</a>.</p>
 </section>
 <div class="inline-actions"><a class="button button--ink" href="../tutorials/site-orientation.html">Watch the sample flow</a><a class="button button--outlined" href="templates.html">Import StudyState</a>
 </div>
