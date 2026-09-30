@@ -3,7 +3,7 @@
 All four brief items are met. The only step left is the owner clicking "Post" (steps in `launch/README.md`).
 
 1. **Live site tells one honest Alpha.20 story** — deployed to `origin/main` (fast-forward `dea0d0a..e24de36`, branch `launch/linkedin-20260930` pushed first). Verified live anonymously:
-   - Home: "Alpha.20: installs on Windows 11 + WSL2 from one command (verified twice on a Windows 11 VM). Early alpha — known limits below." (grep-confirmed on the live page)
+   - Home: "Alpha.20: installs on Windows 11 + WSL2 from one command (verified five times on Windows 11 VMs). Early alpha — known limits below." (grep-confirmed on the live page)
    - Download: exact one-line command, target requirements, displayed installer SHA-256, issues link.
    - Releases: measured installer row, known-limits table, issues link (added), review date 30 September 2026.
    - Known limits stated plainly: reboot survival, templates, uninstall/reinstall, full UI inventory, efficiency not yet measured; "early alpha" wording retained everywhere.

@@ -9,7 +9,7 @@ Everything is prepared so clicking "post" is the only step left.
   - https://lennertvhoy.github.io/StatePort-Site/ (home)
   - https://lennertvhoy.github.io/StatePort-Site/download/ (install command + installer SHA-256 displayed)
   - https://lennertvhoy.github.io/StatePort-Site/releases/ (release status, known limits)
-- Measured claims on the pages: Alpha.20 installed from the anonymous one-line route on a genuine Windows 11 25H2 + WSL2 + stock Ubuntu 24.04 VM, twice (exit 0, healthy receipt), and stayed reachable after the last WSL session closed (keep-alive task activated by an interactive logon). Known limits stated plainly: Windows reboot survival not yet measured (qualification run was still in flight at publication), templates/uninstall/reinstall, full UI inventory, and efficiency not yet run; early alpha — do not use for important data.
+- Measured claims on the pages: Alpha.20 installed from the anonymous one-line route on a genuine Windows 11 25H2 + WSL2 + stock Ubuntu 24.04 VM, five times (exit 0, healthy receipt), and stayed reachable after the last WSL session closed (keep-alive task activated by an interactive logon). Known limits stated plainly: Windows reboot survival not yet measured (qualification run was still in flight at publication), templates/uninstall/reinstall, full UI inventory, and efficiency not yet run; early alpha — do not use for important data.
 - Validators before push: `scripts/validate_repo.py` OK, `scripts/check_site_quality.py` OK (34 pages), 63 unit tests OK (run in a clean clone of the branch; the recorded immutable-manifest file modes were applied mode-only, as the qualification run also recorded). `scripts/projectstate_gate.py` honestly exits 1: the full journey (reboot, uninstall/reinstall, human acceptance) is not closed — by design, nothing on the site overclaims it.
 
 ## Verification commands (anonymous)
@@ -42,5 +42,5 @@ It checks WSL2, Ubuntu 24.04, systemd, the Windows build and your network, verif
 
 ## Known limits of this kit
 
-- The demo video was recorded in August 2026 (pre-Alpha.20 build); the product UI journey it shows is the same one the site presents today. A fresh Alpha.20 guest capture was not needed (site assets sufficed); no CAPTURE-REQUEST.md was written.
+- The demo video was recorded in August 2026 (pre-Alpha.20 build); the product UI journey it shows is the same one the site presents today. Its on-screen text says changes "stay undoable". That is not accurate for Alpha.20: one undo exists (the last StudyState Sample evidence update) and platform rollback is not supported. The video is not edited; if this bothers you, post the screenshots instead of the video. A fresh Alpha.20 guest capture was not needed (site assets sufficed); no CAPTURE-REQUEST.md was written.
 - Windows reboot qualification (`~/.local/state/stateport/alpha20-publish/gov-reboot-1259/`) had not produced a result at publication time; if it lands green, update the releases page wording in a small follow-up commit.
