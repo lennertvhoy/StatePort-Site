@@ -507,8 +507,10 @@ def _validate_tree_records(
             raise AssertionError(f"Byte change in immutable tree {tree}: {relative}")
         if entry["bytes"] != current["bytes"]:
             raise AssertionError(f"Byte-count change in immutable tree {tree}: {relative}")
-        if entry["lstatMode"] != current["lstatMode"]:
-            raise AssertionError(f"lstat mode change in immutable tree {tree}: {relative}")
+        # A fresh checkout applies the local umask, so only the executable bit is comparable;
+        # content integrity is carried by the sha256, byte count and git mode checks.
+        if (int(entry["lstatMode"], 8) & 0o111 != 0) != (int(current["lstatMode"], 8) & 0o111 != 0):
+            raise AssertionError(f"executable-bit change in immutable tree {tree}: {relative}")
 
         publication = anchored[relative]
         for field in ("sha256", "bytes", "gitMode", "gitType"):
