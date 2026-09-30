@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Alpha.16 is the current public-test release; the versioned release files are linked from the download page. -->
-  <url><loc>https://lennertvhoy.github.io/StatePort-Site/</loc><lastmod>2026-08-15</lastmod></url>
+  <!-- Alpha.20 is the current early-alpha release; the install command and versioned release files are linked from the download page. -->
+  <url><loc>https://lennertvhoy.github.io/StatePort-Site/</loc><lastmod>2026-09-30</lastmod></url>
   <url><loc>https://lennertvhoy.github.io/StatePort-Site/docs/</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://lennertvhoy.github.io/StatePort-Site/docs/getting-started.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://lennertvhoy.github.io/StatePort-Site/docs/templates.html</loc><lastmod>2026-09-10</lastmod></url>
@@ -20,16 +20,16 @@
   <url><loc>https://lennertvhoy.github.io/StatePort-Site/docs/deployments.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://lennertvhoy.github.io/StatePort-Site/docs/limitations.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://lennertvhoy.github.io/StatePort-Site/docs/updates.html</loc><lastmod>2026-09-10</lastmod></url>
-  <url><loc>https://lennertvhoy.github.io/StatePort-Site/tutorials/</loc><lastmod>2026-08-15</lastmod></url>
-  <url><loc>https://lennertvhoy.github.io/StatePort-Site/tutorials/first-application.html</loc><lastmod>2026-08-15</lastmod></url>
-  <url><loc>https://lennertvhoy.github.io/StatePort-Site/tutorials/reading-a-receipt.html</loc><lastmod>2026-08-15</lastmod></url>
-  <url><loc>https://lennertvhoy.github.io/StatePort-Site/download/</loc><lastmod>2026-08-15</lastmod></url>
-  <url><loc>https://lennertvhoy.github.io/StatePort-Site/download/technical-release-files.html</loc><lastmod>2026-08-15</lastmod></url>
-  <url><loc>https://lennertvhoy.github.io/StatePort-Site/download/erratum-alpha3.html</loc><lastmod>2026-08-15</lastmod></url>
-  <url><loc>https://lennertvhoy.github.io/StatePort-Site/releases/</loc><lastmod>2026-08-15</lastmod></url>
+  <url><loc>https://lennertvhoy.github.io/StatePort-Site/tutorials/</loc><lastmod>2026-09-30</lastmod></url>
+  <url><loc>https://lennertvhoy.github.io/StatePort-Site/tutorials/first-application.html</loc><lastmod>2026-09-30</lastmod></url>
+  <url><loc>https://lennertvhoy.github.io/StatePort-Site/tutorials/reading-a-receipt.html</loc><lastmod>2026-09-30</lastmod></url>
+  <url><loc>https://lennertvhoy.github.io/StatePort-Site/download/</loc><lastmod>2026-09-30</lastmod></url>
+  <url><loc>https://lennertvhoy.github.io/StatePort-Site/download/technical-release-files.html</loc><lastmod>2026-09-30</lastmod></url>
+  <url><loc>https://lennertvhoy.github.io/StatePort-Site/download/erratum-alpha3.html</loc><lastmod>2026-09-30</lastmod></url>
+  <url><loc>https://lennertvhoy.github.io/StatePort-Site/releases/</loc><lastmod>2026-09-30</lastmod></url>
   <url><loc>https://lennertvhoy.github.io/StatePort-Site/papers/stateware-whitepaper-public-v1.1.html</loc><lastmod>2026-09-09</lastmod></url>
   <url><loc>https://lennertvhoy.github.io/StatePort-Site/papers/</loc><lastmod>2026-09-09</lastmod></url>
-  <url><loc>https://lennertvhoy.github.io/StatePort-Site/tutorials/site-orientation.html</loc><lastmod>2026-09-05</lastmod></url>
+  <url><loc>https://lennertvhoy.github.io/StatePort-Site/tutorials/site-orientation.html</loc><lastmod>2026-09-30</lastmod></url>
   <url><loc>https://lennertvhoy.github.io/StatePort-Site/docs/everyday-work.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://lennertvhoy.github.io/StatePort-Site/docs/project-state.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://lennertvhoy.github.io/StatePort-Site/docs/troubleshooting.html</loc><lastmod>2026-09-10</lastmod></url>
