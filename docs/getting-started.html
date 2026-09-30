@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Install StatePort with the current Alpha.20 one-line installer on the supported Ubuntu 24.04 WSL2 setup, with recovery notes for the historical routes.">
+    <meta name="description" content="Install StatePort Alpha.20 on Windows 11 with WSL2 and Ubuntu 24.04: prerequisites in order, a dry run, the one-line install, what success looks like, and what to expect.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="Getting started — StatePort">
-    <meta property="og:description" content="Check WSL2, run the one-line installer, open StatePort, and create a StudyState or template-backed application.">
+    <meta property="og:description" content="Set up WSL2 and Ubuntu 24.04, run the dry run, install StatePort Alpha.20 with one command, and open it in your browser.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/getting-started.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -49,9 +49,9 @@
       <section class="article-hero" aria-labelledby="getting-started-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / Getting started</p>
-          <h1 id="getting-started-title">Install StatePort on supported WSL2.</h1>
-          <p>New to StatePort? <a href="../index.html#journey">Follow one study example</a>: review an activity, save a reflection, and return to saved progress. The example uses StudyState Sample.</p>
-          <p>Check current status and the intended WSL2 setup. The steps below explain the installation path; the historical Alpha.16 route could not complete a fresh installation, and Alpha.20 is the current install path.</p>
+          <h1 id="getting-started-title">Install StatePort on Windows 11 with WSL2.</h1>
+          <p>One path, in order: get WSL2 and Ubuntu 24.04 ready, run a dry run that installs nothing, run the one-line installer, and open StatePort in your browser. On our test machines the real install took about 6.5 minutes.</p>
+          <p>Not sure what StatePort is? Read the <a href="faq.html#what-is-stateport">short answer</a> or <a href="../index.html#journey">follow one study example</a> first.</p>
         </div>
       </section>
 
@@ -60,23 +60,24 @@
           <h2>Documentation</h2>
           <nav>
             <a href="./">Documentation home</a>
-            <a href="everyday-work.html">Your first session</a>
             <a href="getting-started.html" aria-current="page">Install and open</a>
-            <a href="templates.html">Import a template</a>
+            <a href="everyday-work.html">Your first session</a>
+            <a href="templates.html">Use a template</a>
             <a href="project-state.html">ProjectState</a>
             <a href="study-state.html">StudyState</a>
             <a href="troubleshooting.html">Troubleshooting</a>
+            <a href="faq.html">FAQ</a>
             <a href="lifecycle.html">Backup and recovery</a>
-            <a href="updates.html">Update and uninstall</a>
+            <a href="updates.html">Updates and removal</a>
             <a href="governance.html">Review and control</a>
             <a href="hosts-and-portability.html">AI tools and readiness</a>
             <a href="security-and-privacy.html">Security and privacy</a>
             <a href="platform-support.html">Platform support</a>
+            <a href="limitations.html">Current limitations</a>
             <a href="foundations.html">Why StatePort exists</a>
             <a href="model.html">Core model</a>
             <a href="deployments.html">Container deployments</a>
-            <a href="reference.html">Reference and FAQ</a>
-            <a href="limitations.html">Current limitations</a>
+            <a href="reference.html">Glossary and concepts</a>
             <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="agent-kits.html">Agent Kits</a>
             <a href="prototype-walkthrough.html">Product walkthrough</a>
@@ -84,42 +85,122 @@
         </aside>
 
         <article class="prose">
-          <p class="notice"><strong>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress.</strong> Alpha.16 is a superseded predecessor: its fresh installation was blocked by a signature-check defect and it is retained for history. The current Alpha.20 command installs through this public route and its images are anonymously downloadable; retry guidance for the historical Alpha.16 route no longer applies.</p>
-          <p class="notice"><strong>This is an early local test.</strong> Use non-sensitive data, keep independent backups, and keep all services on loopback.</p>
-          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#supported-environment">Supported environment</a></li><li data-level="2"><a href="#before-installing">Before installing</a></li><li data-level="2"><a href="#installer">The one-line installer</a></li><li data-level="2"><a href="#after-install">After a successful install</a></li><li data-level="2"><a href="#templates">Use a template</a></li><li data-level="2"><a href="#receipts">Receipts and state</a></li><li data-level="2"><a href="#stops">If installation stops</a></li><li data-level="2"><a href="#report-a-problem">Report a problem</a></li><li data-level="2"><a href="#where-to-go-next">Try your first session</a></li></ol></details>
-          <span id="1-confirm-the-supported-environment"></span>
-<h2 id="supported-environment">Supported environment</h2>
-          <p>Use a fresh Windows 11 AMD64 host, WSL2, stock Ubuntu 24.04, a normal sudo-capable user, and anonymous access to the public site and registry. StatePort does not support WSL1, ARM64, macOS, Docker Desktop, or other distributions in this release path.</p>
-          <pre><code>uname -m
+<p class="notice"><strong>Early alpha, release 0.1.0-alpha.20.</strong> StatePort is in early alpha. Do not use it for important data. It has been measured on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+<p class="notice notice--quiet"><strong>Before you start.</strong> The installer adds system packages and services inside the Ubuntu distribution you run it in, and registers one scheduled task in Windows. There is no supported one-command uninstall in this alpha, so use a distribution or virtual machine you can afford to lose. See <a href="updates.html">updates and removal</a>.</p>
+<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#requirements">What you need</a></li><li data-level="2"><a href="#wsl">Step 1. Set up WSL2 and Ubuntu 24.04</a></li><li data-level="2"><a href="#check">Step 2. Check your setup</a></li><li data-level="2"><a href="#dry-run">Step 3. Run the dry run</a></li><li data-level="2"><a href="#install">Step 4. Run the install</a></li><li data-level="2"><a href="#success">What success looks like</a></li><li data-level="2"><a href="#open">Step 5. Open StatePort</a></li><li data-level="2"><a href="#first">What to try first</a></li><li data-level="2"><a href="#closing-wsl">Closing WSL windows, restarts, and the port</a></li><li data-level="2"><a href="#stops">If something stops</a></li></ol></details>
+<h2 id="requirements">What you need</h2>
+<ul>
+<li>A Windows 11 computer with an AMD64 (x86-64) processor. The installer refuses Windows builds older than 22000, the first Windows 11 build.</li>
+<li>WSL2 (Windows Subsystem for Linux, version 2) with stock <strong>Ubuntu 24.04</strong>.</li>
+<li>systemd running inside that Ubuntu. Step 1 shows how to check.</li>
+<li>A normal Ubuntu user account that can use <code>sudo</code>. Do not run the installer as root.</li>
+<li>An internet connection during the install. The installer downloads its files and the container images.</li>
+<li>Windows interoperability, which WSL turns on by default, so Ubuntu can run <code>powershell.exe</code>.</li>
+</ul>
+<p>Nothing else is supported. WSL1, ARM64, macOS, native Linux, Docker Desktop, Windows 10, and other Linux distributions are refused or untested. See <a href="platform-support.html">platform support</a>.</p>
+
+<h2 id="wsl">Step 1. Set up WSL2 and Ubuntu 24.04</h2>
+<p class="notice notice--quiet"><strong>These are standard WSL steps from Microsoft, not StatePort commands.</strong> Skip any step you have already done. Microsoft documents them in <a href="https://learn.microsoft.com/windows/wsl/install" target="_blank" rel="noopener">How to install Linux on Windows with WSL</a> and <a href="https://learn.microsoft.com/windows/wsl/systemd" target="_blank" rel="noopener">Use systemd to manage Linux services with WSL</a>.</p>
+<h3 id="wsl-install">Install WSL2 and Ubuntu 24.04</h3>
+<p>Open PowerShell as administrator (right-click it and choose Run as administrator) and run:</p>
+<pre><code>wsl --install -d Ubuntu-24.04</code>
+</pre>
+<p>Restart Windows if it asks you to. Then open <strong>Ubuntu 24.04</strong> from the Start menu. The first time, it asks you to create a user name and password. That is the normal Ubuntu user you will run the installer as. To confirm it runs as WSL2, run this in PowerShell and look for <code>2</code> in the VERSION column:</p>
+<pre><code>wsl -l -v</code>
+</pre>
+<p>If it says <code>1</code>, run <code>wsl --set-version Ubuntu-24.04 2</code> in PowerShell.</p>
+<h3 id="wsl-systemd">Make sure systemd is on</h3>
+<p>Inside Ubuntu, run:</p>
+<pre><code>ps -p 1 -o comm=</code>
+</pre>
+<p>If it prints <code>systemd</code>, skip to Step 2. If not, edit the WSL settings file. Microsoft's documentation says current Ubuntu images installed by <code>wsl --install</code> have this on already, but check anyway.</p>
+<pre><code>sudo nano /etc/wsl.conf</code>
+</pre>
+<p>Add these two lines. If the file already has content, keep it, and add the line under an existing <code>[boot]</code> section if there is one:</p>
+<pre><code>[boot]
+systemd=true</code>
+</pre>
+<p>Save and leave the editor (in nano: Ctrl+O, Enter, Ctrl+X). Then, in PowerShell, run the following, and open Ubuntu again. This stops every running WSL distribution, so save your work in all of them first.</p>
+<pre><code>wsl --shutdown</code>
+</pre>
+
+<h2 id="check">Step 2. Check your setup</h2>
+<p>Inside Ubuntu, run these five commands. They are the same things the installer checks first.</p>
+<pre><code>uname -r
+uname -m
 grep '^VERSION_ID=' /etc/os-release
-ps -p 1 -o comm=</code>
+ps -p 1 -o comm=
+id -u</code>
 </pre>
-          <p>Expected output is <code>x86_64</code>, <code>VERSION_ID="24.04"</code>, and <code>systemd</code>. The installer also requires <code>curl</code>, <code>sudo</code>, <code>dpkg-deb</code>, <code>python3</code>, <code>sha256sum</code>, and <code>tar</code>; it runs <code>sudo apt-get update -o DPkg::Lock::Timeout=300</code>, installs prerequisite packages with <code>sudo apt-get install -y --no-install-recommends</code>, then verifies the sealed Podman package plan before installing those packages with <code>dpkg</code>. A package-manager lock is retried once by the bootstrap; do not remove lock files.</p>
-          <h2 id="before-installing">Before installing</h2>
-          <p>Save work in all WSL sessions. If PID 1 is not systemd, edit <code>/etc/wsl.conf</code> with administrator privileges, preserving existing settings. Set <code>systemd=true</code> in its existing <code>[boot]</code> section, or add that section if missing, then run <code>wsl --shutdown</code> from PowerShell and reopen Ubuntu. This stops every running WSL distribution. Keep several gigabytes free and do not run as root.</p>
-          <span id="2-run-the-one-line-installer"></span>
-<h2 id="installer">The one-line installer</h2>
-          <p>The documented anonymous route is:</p>
-          <pre><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)</code>
+<ul>
+<li><code>uname -r</code> prints text that contains <code>microsoft</code> and <code>WSL2</code>.</li>
+<li><code>uname -m</code> prints <code>x86_64</code>.</li>
+<li>The third command prints <code>VERSION_ID="24.04"</code>.</li>
+<li><code>ps -p 1 -o comm=</code> prints <code>systemd</code>.</li>
+<li><code>id -u</code> prints a number other than <code>0</code>.</li>
+</ul>
+<p>The installer also checks the Windows build and that Ubuntu can run <code>powershell.exe</code>. If a check fails, the message is explained in <a href="troubleshooting.html#host-checks">troubleshooting</a>.</p>
+
+<h2 id="dry-run">Step 3. Run the dry run</h2>
+<p>This is the same command as the real install, with one extra option. It checks your computer, downloads the signed image manifests and verifies them, and installs nothing. It does not ask for <code>sudo</code>.</p>
+<pre><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh) --transport-probe</code>
 </pre>
-          <p>The Alpha.20 bootstrap checks the host, downloads signed metadata and pinned artifacts, verifies the pinned trust key and image manifests, asks for <code>install-packages</code> and <code>install-exact</code>, and requests sudo when installing system packages. It should finish with <strong>StatePort is installed and healthy</strong>, the loopback URL, and an install receipt path.</p>
-          <p>The historical Alpha.16 route did not reach that outcome on a fresh anonymous host; the current Alpha.20 command installs through this public route.</p>
-          <span id="3-open-the-complete-product"></span>
-<h2 id="after-install">After a successful install</h2>
-          <p>Open the printed <code>http://127.0.0.1:&lt;port&gt;/</code> URL in a Windows browser. The web UI, API, worker, persistence, and execution host are local services. Use the printed reconciled port rather than guessing.</p>
-          <span id="4-create-an-application"></span>
-<h2 id="templates">Use a template</h2>
-          <p>Inspect the catalog and install a reviewed StudyState sample. For your own ProjectState, StudyState, or other valid StateSpec repository, read <a href="templates.html">Templates</a>. Keep the original repository and its own backup.</p>
-          <span id="5-know-where-proof-and-state-live"></span>
-<h2 id="receipts">Receipts and state</h2>
-          <p>Install receipt and updater state live below <code>~/.local/state/stateport-install</code>, including <code>bin/stateport-update</code>. Application repositories and managed template copies are separate from replaceable images. Never share tokens, passwords, private URLs, or complete home directories.</p>
-          <span id="if-installation-stops"></span>
-<h2 id="stops">If installation stops</h2>
-          <p>Save the final refusal code, release version, and step. If you attempted the historical Alpha.16 route: its missing predecessor signature slot was a release defect and its anonymous registry <code>HTTP 401</code> was a package visibility blocker. Neither was fixed by rerunning, changing image tags, bypassing verification, or copying files into the state directory. Read <a href="troubleshooting.html">Troubleshooting</a> and <a href="../releases/">Release status</a> for the current supported release.</p>
-          <h2 id="report-a-problem">Report a problem</h2>
-<p>When reporting a problem, include the release version, final refusal code, environment checks, and last successful step. Remove tokens, passwords, private URLs, and personal file contents. <a href="updates.html">Updates, backup boundaries, and uninstall</a> explain lifecycle operations.</p>
-          <h2 id="where-to-go-next">Try your first session</h2>
-<p>Follow <a href="everyday-work.html">the first-session guide</a> to start a StudyState activity, review a reflection, and check its saved result.</p>
+<p>When it works, the last line begins <code>StatePort Alpha.20 transport probe passed</code> and ends with <code>installer was not executed.</code> If it stops instead, its message names the problem; look it up in <a href="troubleshooting.html">troubleshooting</a> before going on.</p>
+<p>There is a second, optional dry run. It checks that the installer's helper can be fetched and verified and that its files would be created in a safe order, and it changes no packages or system files. Add <code>--materialization-preflight</code> in place of <code>--transport-probe</code>. It is not needed for a normal install.</p>
+<p>You can compare the installer script with the checksum on the <a href="../download/">download page</a> before you run anything.</p>
+
+<h2 id="install">Step 4. Run the install</h2>
+<p>Run this as your normal Ubuntu user, in an interactive Ubuntu window:</p>
+<pre><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)</code>
+</pre>
+<p>What you will see, in order:</p>
+<ol>
+<li>The host checks from Step 2.</li>
+<li>Downloads. Each file is checked against a fixed checksum, and the signed release files are verified.</li>
+<li>Ubuntu asks for your password because the installer uses <code>sudo</code> to install system packages. The installer prints a plan of the packages.</li>
+<li>It asks you to type <code>install-packages</code> to authorize that exact package plan. Type it exactly.</li>
+<li>Packages are installed and the installer prepares the rest. It prints the exact install plan and asks you to type <code>install-exact</code>. Type it exactly.</li>
+<li>Services are installed and started, and their health is checked.</li>
+</ol>
+<p>Let it finish and keep the window open; an interrupted run can leave files behind that stop a later run (see <a href="troubleshooting.html#image-archive-conflict">troubleshooting</a>). Lines that start with <code>StatePort download retry</code> or <code>StatePort apt update retry</code> mean the installer is retrying a step by itself. A line saying StatePort held packages is normal: the installer pins the exact packages it installed so that ordinary updates do not change them.</p>
+
+<h2 id="success">What success looks like</h2>
+<p>Near the end you see this, with your own port and path:</p>
+<pre><code>StatePort is installed and healthy.
+  Open StatePort at: http://127.0.0.1:18012/
+  install receipt: /home/&lt;you&gt;/.local/state/stateport-install/receipts/&lt;receipt file&gt;.json</code>
+</pre>
+<p>The port varies from install to install; 18012 was one example. Use the address your installer printed. You may also see lines that start with <code>notice:</code>. On our successful installs they were informational, for example that the port in use differed from the one first planned. A short closing line naming release 0.1.0-alpha.20 follows.</p>
+<p>The install receipt is a file that records what was installed. The address is stored in it too, in a field called <code>localUrl</code>, if you lose the printed line.</p>
+
+<h2 id="open">Step 5. Open StatePort</h2>
+<p>Open the printed address in a web browser on the same computer, for example <code>http://127.0.0.1:18012/</code>. Use <code>http</code>, not <code>https</code>. The address <code>127.0.0.1</code> means this computer only: nobody else on your network can open it, and you should not expose it to the internet.</p>
+<p>If the page does not load, see <a href="troubleshooting.html#after-install">troubleshooting</a>.</p>
+
+<h2 id="first">What to try first</h2>
+<ol>
+<li>Read <a href="../tutorials/first-application.html">Design your first durable application</a>. It is a thinking exercise with nothing to install, and it explains the ideas behind what you just installed.</li>
+<li>Follow <a href="everyday-work.html">your first session</a> to walk through a small StudyState example: start an activity, review the change, apply it, and open the receipt.</li>
+<li>Read <a href="templates.html">templates</a> to see how ProjectState and StudyState are meant to be brought in.</li>
+</ol>
+<p>Those guides were written from the product's design and earlier recordings. On Alpha.20 the fresh-machine test covered the install and its health check, not every screen (see <a href="limitations.html#not-measured">what has not been measured</a>). If a screen differs from a guide, that is worth reporting.</p>
+
+<h2 id="closing-wsl">Closing WSL windows, restarts, and the port</h2>
+<ul>
+<li><strong>Closing Ubuntu windows.</strong> The installer registers a Windows scheduled task named <code>StatePortKeepAlive</code>, which runs at logon. After you have logged on to Windows interactively, it keeps the Ubuntu environment running even after you close the last WSL window. Without it, WSL stops shortly after the last session ends and StatePort stops with it, until the next Windows logon or until you launch WSL again.</li>
+<li><strong>Restarting Windows.</strong> Whether StatePort comes back by itself after a restart has not been measured. If the address does not answer after a restart, sign in to Windows, open an Ubuntu window, and try again after a few minutes.</li>
+<li><strong>The port.</strong> The installer picks the port, and it can differ between installs and computers. Always use the address printed at the end of your install.</li>
+</ul>
+
+<h2 id="stops">If something stops</h2>
+<p>A message that begins <code>StatePort install:</code> comes from the installer script. A message that begins <code>install refused</code> comes from the installer's own checks and writes a <em>refusal record</em> file you can attach to a report. <a href="troubleshooting.html">Troubleshooting</a> lists each message, its cause, and what to do. If you have tried to install on this computer before and the run stops with <code>image_archive_conflict</code>, there is a specific entry for it.</p>
+<p>To report a problem, see <a href="troubleshooting.html#report">how to report a problem</a>. Next: <a href="updates.html">updates and removal</a>, <a href="lifecycle.html">backup and recovery</a>, and <a href="faq.html">the FAQ</a>.</p>
+
+<div class="inline-actions">
+<a class="button button--ink" href="troubleshooting.html">Troubleshooting</a>
+<a class="button button--outlined" href="everyday-work.html">Your first session</a>
+<a class="button button--outlined" href="../download/">Download page</a>
+</div>
         </article>
       </div>
     </main>
