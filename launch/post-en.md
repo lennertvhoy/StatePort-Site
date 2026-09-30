@@ -1,21 +1,20 @@
-# LinkedIn launch post — English (Lennert, first person)
+# LinkedIn launch post — English (final)
 
-> 190 words including the link line and hashtags. Attach the demo video
-> `launch/demo/stateport-demo-24s.mp4` (24 s, 5.3 MB) when posting; see
-> `launch/README.md` for the exact steps.
+> Attach `launch/demo/stateport-demo-24s.mp4` (24 s, real product UI). Put the link in the FIRST COMMENT as well (see first-comment.md); LinkedIn shows link-in-body posts slightly less, but the link preview card is fixed and clean, so keeping it in the body is fine. Post in the morning (Tue–Thu, 08:00–10:00 Brussels).
 
 ---
 
 AI chats forget. Your work shouldn't.
 
-Every week I watched good work evaporate the moment a chat ended: the plan, the decisions, the context — gone. So I built StatePort: a durable home for AI-assisted work on your own computer. Goals, progress, and history live in readable files on your machine, not inside somebody else's session.
+I kept losing good work the moment a chat ended: the plan, the decisions, the context. So I've been building StatePort, a durable home for AI-assisted work that lives on your own computer instead of inside someone else's session.
 
-In the study sample you review an activity, approve the proposed change, and save a short reflection about what you learned. Come back days later and your progress is still there. Consequential changes are shown for review first, and every run leaves a receipt: what was asked, what was allowed, what was done.
+Here's the idea in the study sample: you review an activity, approve the change the AI proposes, and save a short reflection. A receipt records exactly what was applied. Come back days later and your progress is still there.
 
-What works today: Alpha.20 installs the complete product on Windows 11 + WSL2 (Ubuntu 24.04) from one command. Verified twice on a genuine Windows 11 VM — installed, healthy, and still reachable after the last WSL session closed.
+Where it honestly stands: early alpha. The one-line installer for Windows 11 + WSL2 (Ubuntu 24.04) has installed cleanly on five clean-slate Windows 11 test machines, and the app stayed reachable after I closed the last WSL window. Not measured yet: surviving a Windows reboot, uninstall and reinstall, the full template flow. Please don't put important data in it.
 
-Honest caveat: this is an early alpha. Windows reboot survival is not measured yet, and template and uninstall flows haven't been exercised on that target. Don't trust it with important data.
+If you're on Windows 11 with WSL2, I'd love your help testing, especially telling me where the install breaks:
+https://lennertvhoy.github.io/StatePort-Site/
 
-Try it or read the known limits: https://lennertvhoy.github.io/StatePort-Site/
+What would you want an AI-assisted project to remember for you?
 
-#LocalAI #DurableSoftware #AIApplications #BuildInPublic
+#AI #LocalFirst #BuildInPublic
