@@ -219,6 +219,7 @@ include every past conversation. When the task needs missing evidence,
 the engine should retrieve or request it through the permitted
 interface. Whatever happens to remain in a model session does not become
 authoritative by default.</p>
+<p><strong>Alpha.20 status.</strong> The chat assistant sees only the recent conversation; it does not read your study or project state. Actions that go through StatePort’s approval steps get a small bundle of information built from the saved state; chat does not.</p>
 <h3 id="definition-and-instance">3.2 Definition and instance</h3>
 <p>An <strong>application definition</strong>, supplied by a template,
 describes reusable behavior, state structure, views, and requested
@@ -226,6 +227,7 @@ capabilities. An <strong>instance</strong> is one owner’s working
 application created from that definition. Two learners can use the same
 study template while keeping separate plans, histories, settings, and
 permissions.</p>
+<p><strong>Alpha.20 status.</strong> Separate copies made from the same template stay independent in the project’s automated tests on the source code. This has not yet been shown on an installed product.</p>
 <figure class="paper-diagram" id="figure-2" data-mermaid-id="stateware-whitepaper-public-v1-1-02">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 2: One definition, separate owned instances">
     <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-02.svg" alt="A shared StudyState definition creates Amira and Ben instances. Each instance contains its own plan, progress, and decisions; neither learner shares private state merely by using the same template." width="323" height="284" loading="lazy">
@@ -328,6 +330,7 @@ changes</td>
 </tr>
 </tbody>
 </table>
+<p><strong>Alpha.20 status.</strong> Today the background worker runs one fixed kind of container job. Agent runs and chat are tracked by the web service.</p>
 <h3 id="capability-is-an-intersection">4.1 Capability is an
 intersection</h3>
 <p>A template can request a terminal, file access, provider execution,
@@ -376,6 +379,7 @@ distinguish resources it can attribute to the recovering instance from
 resources whose ownership is unknown. Uncertainty should lead to
 retention and an explicit recovery decision, not speculative
 cleanup.</p>
+<p><strong>Alpha.20 status.</strong> Recovery keeps anything it cannot show belongs to the instance being recovered. That safeguard passes the project’s automated tests and local runs, and an earlier bug in it has been fixed. It has not yet been checked on an installed system.</p>
 <h3 id="one-instance-multiple-engines">4.3 One instance, multiple
 engines</h3>
 <p>An execution host can provide tools, sessions, context handling, and
@@ -511,6 +515,7 @@ ProjectState and StudyState supply the structure and behavior of their
 respective domains; StatePort is meant to supply the application
 interface, lifecycle, and governed execution. The instance preserves the
 project’s history as its work develops and continues in operation.</p>
+<p><strong>Alpha.20 status.</strong> An imported ProjectState or StudyState is checked and stored as its own isolated copy, with one inspection action. The step-by-step flows exist only in the StudyState Sample.</p>
 <figure class="paper-diagram" id="figure-6" data-mermaid-id="stateware-whitepaper-public-v1-1-06">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 6: One ProjectState instance, two uses">
     <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-06.svg" alt="A ProjectState template creates a project instance that holds the actual goals, decisions, and history. The instance supports both development and operating work. These are uses of the instance, not mandatory stages or separate applications." width="285" height="248" loading="lazy">
@@ -559,6 +564,7 @@ an agent never executes a tool or writes in a workspace. Coding agents
 do both. The engineering requirement is that their effective access is
 bounded independently of their instructions and that promotion into
 protected state follows the applicable controls.</p>
+<p><strong>Alpha.20 status.</strong> For actions that follow a fixed script, such as the StudyState Sample, the system applies what you approve. Output from coding agents is currently recorded as a run result; StatePort does not turn it into saved application state.</p>
 <p>A prompt asking an agent to behave is not an authorization mechanism.
 Repository text and retrieved content are inputs to interpret, not
 permissions to widen access. The component that enforces a grant must
@@ -576,6 +582,7 @@ the checks. A signature can establish origin and integrity relative to a
 trusted key; it cannot establish that an answer is correct or that a
 test was adequate. Receipts support scrutiny rather than eliminating the
 need for it.</p>
+<p><strong>Alpha.20 status.</strong> Receipts carry a checksum of their content; they are not individually signed.</p>
 <p>For external effects, recording and execution may fail separately.
 Suppose a remote service accepts a request just before the connection
 drops. The local system cannot yet tell whether it succeeded. The
@@ -654,11 +661,13 @@ recover the instance, at a mutually consistent point. Depending on the
 application, this may include files, database state, manifests,
 ownership metadata, and execution records. A copy made during active
 mutation is not automatically such a snapshot.</p>
+<p><strong>Alpha.20 status.</strong> A backup archives the instance’s files, not its Git history, conversations, receipts index or approvals. Restore creates a new instance from those files.</p>
 <p>Recovery must verify the backup, restore compatible state,
 re-establish identity and permissions, and reconcile interrupted work.
 Disposable projections can then be rebuilt. A restore rehearsal is
 stronger evidence of recoverability than the existence of an
 archive.</p>
+<p><strong>Alpha.20 status.</strong> Restore recreates files only; interrupted work and external effects are not reconciled.</p>
 <figure class="paper-diagram" id="figure-10" data-mermaid-id="stateware-whitepaper-public-v1-1-10">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 10: Recovery restores a coherent working instance">
     <img src="../assets/diagrams/paper/stateware-whitepaper-public-v1-1-10.svg" alt="Create a consistent snapshot of authoritative records. Recovery verifies the backup, restores compatible state, re-establishes identity and permissions, reconciles interrupted effects, and rebuilds derived views before resuming." width="270" height="537" loading="lazy">
@@ -743,8 +752,7 @@ core reviewed on 9 September 2026. It supersedes the earlier text at
 this public URL; the separate July draft, numbered 1.2, is an older
 unpublished text and not a newer architectural reference. The filename
 is retained so existing links continue to work. The status paragraph in
-Section 1 was updated on 30 September 2026 to reflect what has been
-measured in the Alpha.20 release; the argument is unchanged.</p>
+Section 1 was updated on 30 September 2026 to reflect what has been measured in the Alpha.20 release, and paragraphs labeled “Alpha.20 status” were added the same day where a sentence describes product behavior; the argument is unchanged.</p>
 <p>The architectural account is grounded in StatePort’s template
 adapter, persistent application, execution-host, and lifecycle code, and
 in ProjectState’s core contract, initializer, outcome checker, and

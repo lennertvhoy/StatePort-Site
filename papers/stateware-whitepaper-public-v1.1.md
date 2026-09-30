@@ -77,9 +77,13 @@ The arrows show two different activities: reading state to prepare a view or tas
 
 **Context** is the material selected for a particular model task. For a study-plan revision, that might be the current plan, recent exercise results, and the learner's available time. It need not include every past conversation. When the task needs missing evidence, the engine should retrieve or request it through the permitted interface. Whatever happens to remain in a model session does not become authoritative by default.
 
+**Alpha.20 status.** The chat assistant sees only the recent conversation; it does not read your study or project state. Actions that go through StatePort's approval steps get a small bundle of information built from the saved state; chat does not.
+
 ## 3.2 Definition and instance
 
 An **application definition**, supplied by a template, describes reusable behavior, state structure, views, and requested capabilities. An **instance** is one owner's working application created from that definition. Two learners can use the same study template while keeping separate plans, histories, settings, and permissions.
+
+**Alpha.20 status.** Separate copies made from the same template stay independent in the project's automated tests on the source code. This has not yet been shown on an installed product.
 
 ```mermaid
 flowchart TB
@@ -131,6 +135,8 @@ The interface asks; the control layer checks permission; coordination follows th
 | Lifecycle | Template resolution, instance catalog, update and recovery mechanisms | Preserve source identity, ownership, instance state, and recovery boundaries |
 | Context and evidence | Context preparation, approvals, receipts, and durable records | Give engines relevant inputs and owners an inspectable account of changes |
 
+**Alpha.20 status.** Today the background worker runs one fixed kind of container job. Agent runs and chat are tracked by the web service.
+
 ## 4.1 Capability is an intersection
 
 A template can request a terminal, file access, provider execution, or an external operation. That request describes what the application would like to do. The operator decides what to grant, and the host must be able and permitted to provide it. An operation is eligible only where all three agree.
@@ -160,6 +166,8 @@ Cancellation illustrates the requirement. A cancellation request is an intention
 For example, “cancel requested” should remain distinct from “execution stopped.” If a report was already written or a remote request already sent, cancellation must also account for that effect. A worker restart should recover those facts from the work record.
 
 Recovery has an ownership boundary too. Discovering a container or directory does not establish permission to delete it. A host must distinguish resources it can attribute to the recovering instance from resources whose ownership is unknown. Uncertainty should lead to retention and an explicit recovery decision, not speculative cleanup.
+
+**Alpha.20 status.** Recovery keeps anything it cannot show belongs to the instance being recovered. That safeguard passes the project's automated tests and local runs, and an earlier bug in it has been fixed. It has not yet been checked on an installed system.
 
 ## 4.3 One instance, multiple engines
 
@@ -222,6 +230,8 @@ In operating use, the instance remains the working home of the project: maintain
 
 StatePort is designed to host a ProjectState instance in either use. ProjectState and StudyState supply the structure and behavior of their respective domains; StatePort is meant to supply the application interface, lifecycle, and governed execution. The instance preserves the project's history as its work develops and continues in operation.
 
+**Alpha.20 status.** An imported ProjectState or StudyState is checked and stored as its own isolated copy, with one inspection action. The step-by-step flows exist only in the StudyState Sample.
+
 ```mermaid
 flowchart TB
     accTitle: One ProjectState instance, two uses
@@ -264,6 +274,8 @@ The approval step must be satisfied before proceeding: a required decision that 
 
 “The agent proposes, the system applies” is a useful description of a governed mutation boundary. It should not be mistaken for a claim that an agent never executes a tool or writes in a workspace. Coding agents do both. The engineering requirement is that their effective access is bounded independently of their instructions and that promotion into protected state follows the applicable controls.
 
+**Alpha.20 status.** For actions that follow a fixed script, such as the StudyState Sample, the system applies what you approve. Output from coding agents is currently recorded as a run result; StatePort does not turn it into saved application state.
+
 A prompt asking an agent to behave is not an authorization mechanism. Repository text and retrieved content are inputs to interpret, not permissions to widen access. The component that enforces a grant must not accept an agent's assertion that the grant has changed as sufficient evidence of that change.
 
 ## 6.3 Receipts have a scope of trust
@@ -271,6 +283,8 @@ A prompt asking an agent to behave is not an authorization mechanism. Repository
 A receipt records an operation: its identity, relevant inputs, authority, observed transitions, checks, and result. It helps distinguish an attempt from a completed effect and a checked effect from human acceptance.
 
 A receipt is still produced by software. Its value depends on the recorder's integrity, the evidence it references, and the coverage of the checks. A signature can establish origin and integrity relative to a trusted key; it cannot establish that an answer is correct or that a test was adequate. Receipts support scrutiny rather than eliminating the need for it.
+
+**Alpha.20 status.** Receipts carry a checksum of their content; they are not individually signed.
 
 For external effects, recording and execution may fail separately. Suppose a remote service accepts a request just before the connection drops. The local system cannot yet tell whether it succeeded. The outcome is **uncertain**, not necessarily failed. Recovery may use a request identifier that prevents duplicates, query the remote service, or require human investigation. Retrying blindly can repeat the effect.
 
@@ -326,7 +340,11 @@ A copied study plan may remain readable on a new machine while its chosen provid
 
 A useful backup includes every authoritative record required to recover the instance, at a mutually consistent point. Depending on the application, this may include files, database state, manifests, ownership metadata, and execution records. A copy made during active mutation is not automatically such a snapshot.
 
+**Alpha.20 status.** A backup archives the instance's files, not its Git history, conversations, receipts index or approvals. Restore creates a new instance from those files.
+
 Recovery must verify the backup, restore compatible state, re-establish identity and permissions, and reconcile interrupted work. Disposable projections can then be rebuilt. A restore rehearsal is stronger evidence of recoverability than the existence of an archive.
+
+**Alpha.20 status.** Restore recreates files only; interrupted work and external effects are not reconciled.
 
 ```mermaid
 flowchart TB
@@ -378,7 +396,7 @@ The proposal is not that state removes uncertainty. It is that uncertainty, auth
 
 # Reading and provenance
 
-This revision reflects the StatePort architecture and ProjectState v6 core reviewed on 9 September 2026. It supersedes the earlier text at this public URL; the separate July draft, numbered 1.2, is an older unpublished text and not a newer architectural reference. The filename is retained so existing links continue to work. The status paragraph in Section 1 was updated on 30 September 2026 to reflect what has been measured in the Alpha.20 release; the argument is unchanged.
+This revision reflects the StatePort architecture and ProjectState v6 core reviewed on 9 September 2026. It supersedes the earlier text at this public URL; the separate July draft, numbered 1.2, is an older unpublished text and not a newer architectural reference. The filename is retained so existing links continue to work. The status paragraph in Section 1 was updated on 30 September 2026 to reflect what has been measured in the Alpha.20 release, and paragraphs labeled “Alpha.20 status” were added the same day where a sentence describes product behavior; the argument is unchanged.
 
 The architectural account is grounded in StatePort's template adapter, persistent application, execution-host, and lifecycle code, and in ProjectState's core contract, initializer, outcome checker, and upgrade guidance. The editorial review record is maintained with the site's evidence. These sources establish the design and implementation vocabulary; they do not substitute for qualification of every described behavior.
 
