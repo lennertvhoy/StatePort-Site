@@ -59,31 +59,32 @@
           <h2>Documentation</h2>
           <nav>
             <a href="./">Documentation home</a>
-            <a href="everyday-work.html">Your first session</a>
             <a href="getting-started.html">Install and open</a>
-            <a href="templates.html">Import a template</a>
+            <a href="everyday-work.html">Your first session</a>
+            <a href="templates.html">Use a template</a>
             <a href="project-state.html">ProjectState</a>
             <a href="study-state.html">StudyState</a>
             <a href="troubleshooting.html">Troubleshooting</a>
+            <a href="faq.html">FAQ</a>
             <a href="lifecycle.html">Backup and recovery</a>
-            <a href="updates.html">Update and uninstall</a>
+            <a href="updates.html">Updates and removal</a>
             <a href="governance.html">Review and control</a>
             <a href="hosts-and-portability.html">AI tools and readiness</a>
             <a href="security-and-privacy.html">Security and privacy</a>
             <a href="platform-support.html">Platform support</a>
+            <a href="limitations.html">Current limitations</a>
             <a href="foundations.html">Why StatePort exists</a>
             <a href="model.html">Core model</a>
             <a href="deployments.html">Container deployments</a>
-            <a href="reference.html">Reference and FAQ</a>
-            <a href="limitations.html">Current limitations</a>
+            <a href="reference.html">Glossary and concepts</a>
             <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="agent-kits.html">Agent Kits</a>
             <a href="prototype-walkthrough.html" aria-current="page">Product walkthrough</a>
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice"><strong>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress. Alpha.16 is a superseded predecessor: its fresh installation was blocked by a signature-check defect and it is retained for history.</strong> The current Alpha.20 command installs through this public route and its images are anonymously downloadable; retry guidance for the historical Alpha.16 route no longer applies. Published files remain available for inspection.</p>
-          <p class="notice notice--quiet"><strong>Development preview.</strong> This video shows the current interface with sample data. Check <a href="../releases/">release status</a> for software availability.</p>
+          <p class="notice"><strong>Early alpha, release 0.1.0-alpha.20.</strong> StatePort is in early alpha. Do not use it for important data. It has been measured on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+          <p class="notice notice--quiet"><strong>Development preview.</strong> This video was recorded in August 2026 with sample data, before Alpha.20, so it shows the interface as it was then. Its closing status lines are out of date. See <a href="../releases/">release status</a> for the current state and <a href="limitations.html#measured">current limitations</a> for what has been measured.</p>
 
           <div class="media-player">
             <video controls preload="metadata" playsinline width="1920" height="1080" poster="../assets/media/stateport-overview-poster.png" aria-describedby="walkthrough-caption">
@@ -91,14 +92,15 @@
               <track kind="captions" srclang="en" label="English" src="../assets/media/stateport-overview.vtt?v=2026-08-12-1" default>
               Your browser does not support HTML video. The transcript below carries the same information.
             </video>
-             <p id="walkthrough-caption">A 33-second captioned overview recorded in August 2026. The closing release-status line is historical; check the current <a href="../releases/">release status</a>.</p>
+             <p id="walkthrough-caption">A 33-second captioned overview recorded in August 2026. The closing lines describe an early alpha and are out of date; check the current <a href="../releases/">release status</a>.</p>
             <details class="video-transcript" id="walkthrough-transcript">
               <summary>Read the transcript</summary>
               <p>AI chats forget. Your work shouldn't. StatePort gives AI-assisted work a durable home on your own machine.</p>
                <p>A real app retains its context: the study plan, the progress, the evidence — not a blank chat box.</p>
               <p>Consequential changes are reviewed before they land — and they stay undoable.</p>
                <p>And every run leaves a receipt: what was asked, what was allowed, what was done.</p>
-               <p>The video's closing release-status line is historical: the Alpha.16 installer later failed a fresh installation. See exactly where things stand.</p>
+               <p>StatePort alpha.3 is published for inspection. Installation is disabled while we fix it. See exactly where things stand.</p>
+<p><em>Note: those last three lines describe the status when the video was recorded (an early alpha). They are out of date. Alpha.20 is the current release; see the release status page.</em></p>
             </details>
           </div>
 
@@ -108,11 +110,11 @@
             <li><strong>The application remembers.</strong> StudyState keeps the goal, plan, and progress together.</li>
             <li><strong>You review important changes.</strong> The application shows a proposal before changing saved work.</li>
             <li><strong>You can see what happened.</strong> Each run leaves a clear change record.</li>
-            <li><strong>The historical Alpha.16 installer failed a fresh installation.</strong> See the <a href="../releases/">release page</a> for current status.</li>
+            <li><strong>The closing status is out of date.</strong> The video ends with a status from an early alpha. See the <a href="../releases/">release page</a> for the current one.</li>
           </ol>
 
           <h2>What this video is</h2>
-          <p>This is a product preview with sample data. It shows the intended experience. See the <a href="../releases/">release status</a> and <a href="evidence-and-roadmap.html">roadmap</a> for what comes next.</p>
+          <p>This is a recording of the interface with sample data, made in August 2026. It shows the intended experience. What has been measured on Alpha.20 is listed on <a href="limitations.html#measured">current limitations</a>; see the <a href="../releases/">release status</a> and the <a href="evidence-and-roadmap.html">roadmap</a> for what comes next.</p>
 
           <div class="inline-actions">
             <a class="button button--ink" href="study-state.html">Meet StudyState</a>

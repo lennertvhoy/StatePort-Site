@@ -8,7 +8,7 @@
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Reference and FAQ — StatePort">
+    <meta property="og:title" content="Glossary and concepts — StatePort">
     <meta property="og:description" content="Short StatePort definitions and answers to common questions.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/reference.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
@@ -23,7 +23,7 @@
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
     <link rel="stylesheet" href="../assets/site.css?v=2026-09-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-10-1" data-site-enhancements>
-    <title>Reference and FAQ — StatePort</title>
+    <title>Glossary and concepts — StatePort</title>
   <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/reference.html">
   </head>
   <body class="article-page">
@@ -48,9 +48,9 @@
     <main id="main">
       <section class="article-hero" aria-labelledby="page-title">
         <div class="article-hero-inner">
-          <p class="document-kicker">Documentation / 08</p>
-          <h1 id="page-title">Reference and common questions</h1>
-          <p>Short definitions for the terms used across the StatePort website.</p>
+          <p class="document-kicker">Documentation / Glossary and concepts</p>
+          <h1 id="page-title">Glossary and concept questions</h1>
+          <p>Short definitions for the terms used across the StatePort website, and answers to common questions about how the ideas fit together.</p>
         </div>
       </section>
 
@@ -60,32 +60,33 @@
           <h2>Documentation</h2>
           <nav>
             <a href="./">Documentation home</a>
-            <a href="everyday-work.html">Your first session</a>
             <a href="getting-started.html">Install and open</a>
-            <a href="templates.html">Import a template</a>
+            <a href="everyday-work.html">Your first session</a>
+            <a href="templates.html">Use a template</a>
             <a href="project-state.html">ProjectState</a>
             <a href="study-state.html">StudyState</a>
             <a href="troubleshooting.html">Troubleshooting</a>
+            <a href="faq.html">FAQ</a>
             <a href="lifecycle.html">Backup and recovery</a>
-            <a href="updates.html">Update and uninstall</a>
+            <a href="updates.html">Updates and removal</a>
             <a href="governance.html">Review and control</a>
             <a href="hosts-and-portability.html">AI tools and readiness</a>
             <a href="security-and-privacy.html">Security and privacy</a>
             <a href="platform-support.html">Platform support</a>
+            <a href="limitations.html">Current limitations</a>
             <a href="foundations.html">Why StatePort exists</a>
             <a href="model.html">Core model</a>
             <a href="deployments.html">Container deployments</a>
-            <a href="reference.html" aria-current="page">Reference and FAQ</a>
-            <a href="limitations.html">Current limitations</a>
+            <a href="reference.html" aria-current="page">Glossary and concepts</a>
             <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="agent-kits.html">Agent Kits</a>
             <a href="prototype-walkthrough.html">Product walkthrough</a>
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Looking for availability?</strong> Check the <a href="../releases/">release status</a>.</p>
+          <p class="notice notice--quiet"><strong>Looking for installing, safety, or reporting a bug?</strong> See the <a href="faq.html">FAQ</a>. For availability, check the <a href="../releases/">release status</a>.</p>
 
-          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#glossary">Glossary</a></li><li data-level="3"><a href="#stateware">Stateware</a></li><li data-level="3"><a href="#statespec">StateSpec</a></li><li data-level="3"><a href="#canonical-state">Canonical state</a></li><li data-level="3"><a href="#instance">Instance</a></li><li data-level="3"><a href="#change-record">Change record</a></li><li data-level="3"><a href="#template">Template</a></li><li data-level="3"><a href="#proposal">Proposal</a></li><li data-level="3"><a href="#readiness">Readiness</a></li><li data-level="3"><a href="#capability">Capability</a></li><li data-level="3"><a href="#validation">Validation</a></li><li data-level="3"><a href="#acceptance">Acceptance</a></li><li data-level="3"><a href="#source-revision">Source revision</a></li><li data-level="2"><a href="#frequently-asked-questions">Frequently asked questions</a></li><li data-level="3"><a href="#where-can-i-check-availability">Where can I check availability?</a></li><li data-level="3"><a href="#is-a-conversation-the-applications-truth">Is a conversation the application’s truth?</a></li><li data-level="3"><a href="#does-portability-mean-identical-behavior-everywhere">Does portability mean identical behavior everywhere?</a></li><li data-level="3"><a href="#does-a-change-record-prove-a-decision-was-good">Does a change record prove a decision was good?</a></li><li data-level="3"><a href="#where-should-i-begin">Where should I begin?</a></li><li data-level="3"><a href="#sample-or-template">Is the StudyState sample the same as my imported StudyState?</a></li><li data-level="3"><a href="#does-chat-save-state">Does asking in conversation save a change?</a></li><li data-level="3"><a href="#why-action-unavailable">Why is an action unavailable?</a></li><li data-level="3"><a href="#does-undo-reverse-everything">Does Undo reverse everything?</a></li><li data-level="3"><a href="#can-i-use-projectstate-for-operations">Can I use ProjectState after development?</a></li></ol></details>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#glossary">Glossary</a></li><li data-level="3"><a href="#stateware">Stateware</a></li><li data-level="3"><a href="#statespec">StateSpec</a></li><li data-level="3"><a href="#canonical-state">Canonical state</a></li><li data-level="3"><a href="#instance">Instance</a></li><li data-level="3"><a href="#change-record">Change record</a></li><li data-level="3"><a href="#template">Template</a></li><li data-level="3"><a href="#proposal">Proposal</a></li><li data-level="3"><a href="#readiness">Readiness</a></li><li data-level="3"><a href="#capability">Capability</a></li><li data-level="3"><a href="#validation">Validation</a></li><li data-level="3"><a href="#acceptance">Acceptance</a></li><li data-level="3"><a href="#source-revision">Source revision</a></li><li data-level="2"><a href="#concept-questions">Concept questions</a></li><li data-level="3"><a href="#where-can-i-check-availability">Where can I check availability?</a></li><li data-level="3"><a href="#is-a-conversation-the-applications-truth">Is a conversation the application’s truth?</a></li><li data-level="3"><a href="#does-portability-mean-identical-behavior-everywhere">Does portability mean identical behavior everywhere?</a></li><li data-level="3"><a href="#does-a-change-record-prove-a-decision-was-good">Does a change record prove a decision was good?</a></li><li data-level="3"><a href="#where-should-i-begin">Where should I begin?</a></li><li data-level="3"><a href="#sample-or-template">Is the StudyState sample the same as my imported StudyState?</a></li><li data-level="3"><a href="#does-chat-save-state">Does asking in conversation save a change?</a></li><li data-level="3"><a href="#why-action-unavailable">Why is an action unavailable?</a></li><li data-level="3"><a href="#does-undo-reverse-everything">Does Undo reverse everything?</a></li><li data-level="3"><a href="#can-i-use-projectstate-for-operations">Can I use ProjectState after development?</a></li></ol></details>
           <h2 id="glossary">Glossary</h2>
           <h3 id="stateware">Stateware</h3>
           <p>Software that keeps its important state in a durable, inspectable form instead of depending on one AI session or provider.</p>
@@ -113,7 +114,7 @@
           <h3 id="source-revision">Source revision</h3>
 <p>The exact Git commit used to identify imported template content. A branch name can move, while a commit identifies a particular snapshot.</p>
 
-          <h2 id="frequently-asked-questions">Frequently asked questions</h2>
+          <h2 id="concept-questions">Concept questions</h2>
           <h3 id="where-can-i-check-availability">Where can I check availability?</h3>
           <p>Use the <a href="../releases/">release status</a> page.</p>
           <h3 id="is-a-conversation-the-applications-truth">Is a conversation the application’s truth?</h3>

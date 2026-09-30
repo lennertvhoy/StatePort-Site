@@ -60,30 +60,32 @@
           <h2>Documentation</h2>
           <nav>
             <a href="./">Documentation home</a>
-            <a href="everyday-work.html" aria-current="page">Your first session</a>
             <a href="getting-started.html">Install and open</a>
-            <a href="templates.html">Import a template</a>
+            <a href="everyday-work.html" aria-current="page">Your first session</a>
+            <a href="templates.html">Use a template</a>
             <a href="project-state.html">ProjectState</a>
             <a href="study-state.html">StudyState</a>
             <a href="troubleshooting.html">Troubleshooting</a>
+            <a href="faq.html">FAQ</a>
             <a href="lifecycle.html">Backup and recovery</a>
-            <a href="updates.html">Update and uninstall</a>
+            <a href="updates.html">Updates and removal</a>
             <a href="governance.html">Review and control</a>
             <a href="hosts-and-portability.html">AI tools and readiness</a>
             <a href="security-and-privacy.html">Security and privacy</a>
             <a href="platform-support.html">Platform support</a>
+            <a href="limitations.html">Current limitations</a>
             <a href="foundations.html">Why StatePort exists</a>
             <a href="model.html">Core model</a>
             <a href="deployments.html">Container deployments</a>
-            <a href="reference.html">Reference and FAQ</a>
-            <a href="limitations.html">Current limitations</a>
+            <a href="reference.html">Glossary and concepts</a>
             <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="agent-kits.html">Agent Kits</a>
             <a href="prototype-walkthrough.html">Product walkthrough</a>
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice"><strong>Release context.</strong> These instructions describe the supported product surfaces. Availability of a particular application or control depends on the installed release and its capability profile; the <a href="../releases/">release status</a> page is the authority.</p>
+          <p class="notice"><strong>Early alpha, release 0.1.0-alpha.20.</strong> StatePort is in early alpha. Do not use it for important data. It has been measured on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+<p class="notice notice--quiet"><strong>How to read this page.</strong> It was written from the product's design and earlier recordings. On Alpha.20 the fresh-machine test covered the install and its health check, not every screen (see <a href="limitations.html#not-measured">what has not been measured</a>). Which controls you see depends on the installed release. If something differs from this guide, that is worth <a href="troubleshooting.html#report">reporting</a>.</p>
           <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#choose-an-application">Choose an application</a></li><li data-level="2"><a href="#a-small-daily-loop">A first session with the StudyState sample</a></li><li data-level="2"><a href="#check-readiness-before-you-ask">Check readiness before you ask</a></li><li data-level="2"><a href="#when-work-needs-review">When work needs review</a></li><li data-level="2"><a href="#receipts-and-recovery">Receipts and recovery</a></li></ol></details>
           <h2 id="choose-an-application">Choose an application</h2>
           <p>After installation, the application home shows installed applications and recent activity. To add one, open <strong>Catalog</strong>. A reviewed sample such as StudyState can be installed there, or choose <strong>Import a repository</strong> for a committed ProjectState, StudyState, or valid StateSpec template. Catalog is a reviewed shelf; it is not a marketplace.</p>

@@ -48,7 +48,7 @@
     <main id="main">
       <section class="article-hero" aria-labelledby="page-title">
         <div class="article-hero-inner">
-          <p class="document-kicker">Documentation / 05</p>
+          <p class="document-kicker">Documentation / Security and privacy</p>
           <h1 id="page-title">Keep access narrow and data local</h1>
           <p>StatePort is designed to make sensitive work easier to inspect. It does not remove every risk.</p>
         </div>
@@ -60,30 +60,31 @@
           <h2>Documentation</h2>
           <nav>
             <a href="./">Documentation home</a>
-            <a href="everyday-work.html">Your first session</a>
             <a href="getting-started.html">Install and open</a>
-            <a href="templates.html">Import a template</a>
+            <a href="everyday-work.html">Your first session</a>
+            <a href="templates.html">Use a template</a>
             <a href="project-state.html">ProjectState</a>
             <a href="study-state.html">StudyState</a>
             <a href="troubleshooting.html">Troubleshooting</a>
+            <a href="faq.html">FAQ</a>
             <a href="lifecycle.html">Backup and recovery</a>
-            <a href="updates.html">Update and uninstall</a>
+            <a href="updates.html">Updates and removal</a>
             <a href="governance.html">Review and control</a>
             <a href="hosts-and-portability.html">AI tools and readiness</a>
             <a href="security-and-privacy.html" aria-current="page">Security and privacy</a>
             <a href="platform-support.html">Platform support</a>
+            <a href="limitations.html">Current limitations</a>
             <a href="foundations.html">Why StatePort exists</a>
             <a href="model.html">Core model</a>
             <a href="deployments.html">Container deployments</a>
-            <a href="reference.html">Reference and FAQ</a>
-            <a href="limitations.html">Current limitations</a>
+            <a href="reference.html">Glossary and concepts</a>
             <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="agent-kits.html">Agent Kits</a>
             <a href="prototype-walkthrough.html">Product walkthrough</a>
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Early alpha.</strong> StatePort has not had an independent security review. Do not use it for important data.</p>
+          <p class="notice notice--quiet"><strong>Early alpha.</strong> StatePort is in early alpha and has not had an independent security review. Do not use it for important data.</p>
 
           <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#main-risks">Main risks</a></li><li data-level="2"><a href="#how-the-design-reduces-risk">How the design reduces risk</a></li><li data-level="2"><a href="#privacy">Privacy</a></li><li data-level="3"><a href="#before-connecting-an-ai-tool">Before connecting an AI tool</a></li><li data-level="3"><a href="#sharing-diagnostics">Sharing diagnostics</a></li><li data-level="2"><a href="#current-limits">Current limits</a></li><li data-level="2"><a href="#reporting-a-security-issue">Reporting a security issue</a></li></ol></details>
           <h2 id="main-risks">Main risks</h2>
@@ -100,6 +101,7 @@
           </ul>
 
           <h2 id="privacy">Privacy</h2>
+          <p>The installer downloads release files and container images from the internet. After that, StatePort runs as local services and prints an address on your own computer (<code>127.0.0.1</code>), which other devices cannot reach. Whether every feature works without a connection has not been measured.</p>
           <p>Application data stays on your machine by default. StatePort should send an AI model only the context needed for the current task. Private notes, conversations, identifiers, file paths, and credentials should not become analytics data.</p>
 
           <h3 id="before-connecting-an-ai-tool">Before connecting an AI tool</h3>
@@ -110,6 +112,7 @@
 </ul>
           <p>A backup is also a copy of private application data. Verification is an integrity check, not encryption. Keep backups protected and choose your own retention policy; follow <a href="lifecycle.html#back-up-and-recover">backup and recovery</a>.</p>
           <h2 id="current-limits">Current limits</h2>
+          <p>The installer uses <code>sudo</code>. It installs system packages and services in the Ubuntu distribution you run it in and registers one Windows scheduled task, so use a distribution or virtual machine you can afford to lose. There is no supported one-command uninstall yet; see <a href="updates.html">updates and removal</a>.</p>
           <p>StatePort has no security certification or penetration test. It does not claim GDPR, NIS2, or other legal compliance. Review the real setup, data, providers, and retention rules before using it.</p>
 
           <h2 id="reporting-a-security-issue">Reporting a security issue</h2>

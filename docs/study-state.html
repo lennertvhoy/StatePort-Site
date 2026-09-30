@@ -38,34 +38,35 @@
 </section>
 <div class="article-shell">
 <aside class="doc-sidebar" aria-label="Documentation sections">
-<h2>StudyState guide</h2>
+<h2>Documentation</h2>
 <nav>
             <a href="./">Documentation home</a>
-            <a href="everyday-work.html">Your first session</a>
             <a href="getting-started.html">Install and open</a>
-            <a href="templates.html">Import a template</a>
+            <a href="everyday-work.html">Your first session</a>
+            <a href="templates.html">Use a template</a>
             <a href="project-state.html">ProjectState</a>
             <a href="study-state.html" aria-current="page">StudyState</a>
             <a href="troubleshooting.html">Troubleshooting</a>
+            <a href="faq.html">FAQ</a>
             <a href="lifecycle.html">Backup and recovery</a>
-            <a href="updates.html">Update and uninstall</a>
+            <a href="updates.html">Updates and removal</a>
             <a href="governance.html">Review and control</a>
             <a href="hosts-and-portability.html">AI tools and readiness</a>
             <a href="security-and-privacy.html">Security and privacy</a>
             <a href="platform-support.html">Platform support</a>
+            <a href="limitations.html">Current limitations</a>
             <a href="foundations.html">Why StatePort exists</a>
             <a href="model.html">Core model</a>
             <a href="deployments.html">Container deployments</a>
-            <a href="reference.html">Reference and FAQ</a>
-            <a href="limitations.html">Current limitations</a>
+            <a href="reference.html">Glossary and concepts</a>
             <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="agent-kits.html">Agent Kits</a>
             <a href="prototype-walkthrough.html">Product walkthrough</a>
           </nav>
 </aside>
 <article class="prose">
-<p class="notice"><strong>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress. Alpha.16 is a superseded predecessor: its fresh installation was blocked by a signature-check defect and it is retained for history.</strong> The current Alpha.20 command installs through this public route and its images are anonymously downloadable; retry guidance for the historical Alpha.16 route no longer applies. See <a href="../releases/">release status</a> before installing.</p>
-<p class="notice notice--quiet"><strong>Start with the StudyState Sample.</strong> Start its activity, review the exact change, apply it, write a reflection, review the reflection’s effect, save it as evidence, open its receipt, and reload. The expected result is the same activity and saved reflection still visible after reload. An imported StudyState repository is a separate source with its own identity and controls; see <a href="templates.html">the template guide</a>.</p>
+<p class="notice"><strong>Early alpha, release 0.1.0-alpha.20.</strong> StatePort is in early alpha. Do not use it for important data. It has been measured on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+<p class="notice notice--quiet"><strong>Start with the StudyState Sample.</strong> Start its activity, review the exact change, apply it, write a reflection, review the reflection’s effect, save it as evidence, open its receipt, and reload. The expected result is the same activity and saved reflection still visible after reload. This flow is shown in recordings made before Alpha.20 and has not been separately measured on a fresh Alpha.20 install. An imported StudyState repository is a separate source with its own identity and controls; see <a href="templates.html">the template guide</a>.</p>
 <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-studystate-is">What StudyState is</a></li><li data-level="2"><a href="#the-focus-default-what-to-do-next-and-why">The Focus default: what to do next, and why</a></li><li data-level="2"><a href="#lifecycle-you-control">Lifecycle you control</a></li><li data-level="2"><a href="#reflection-becomes-a-change-you-review">Reflection becomes a change you review</a></li><li data-level="2"><a href="#undo-and-change-history">Undo and change history</a></li><li data-level="2"><a href="#state-that-survives-restarts">State that survives restarts</a></li><li data-level="2"><a href="#what-studystate-deliberately-does-not-do">What StudyState deliberately does not do</a></li><li data-level="2"><a href="#use-studystate">Use StudyState</a></li></ol></details>
 <section>
 <h2 id="what-studystate-is">What StudyState is</h2>
@@ -76,7 +77,7 @@
 <section>
 <h2 id="the-focus-default-what-to-do-next-and-why">The Focus default: what to do next, and why</h2>
 <p>In the StudyState model, a next-activity engine can choose a question, spaced review, paper exercise, lab, external resource, interview or presentation rehearsal, voice note, diagram, or upload-and-review task. Due reviews remain visible, and volatile subjects require fresh source metadata before an authoritative question.</p>
-<p>The installed StudyState Sample demonstrates a small, explicit activity and reflection flow. Do not assume that every imported template exposes the entire next-activity engine as a StatePort UI; inspect the imported application’s own views and contract.</p>
+<p>The StudyState Sample demonstrates a small, explicit activity and reflection flow. Do not assume that every imported template exposes the entire next-activity engine as a StatePort UI; inspect the imported application’s own views and contract.</p>
 </section>
 <section>
 <h2 id="lifecycle-you-control">Lifecycle you control</h2>

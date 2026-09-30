@@ -187,7 +187,7 @@ id -u</code>
 
 <h2 id="closing-wsl">Closing WSL windows, restarts, and the port</h2>
 <ul>
-<li><strong>Closing Ubuntu windows.</strong> The installer registers a Windows scheduled task named <code>StatePortKeepAlive</code>, which runs at logon. After you have logged on to Windows interactively, it keeps the Ubuntu environment running even after you close the last WSL window. Without it, WSL stops shortly after the last session ends and StatePort stops with it, until the next Windows logon or until you launch WSL again.</li>
+<li><strong>Closing Ubuntu windows.</strong> The installer registers a Windows scheduled task named <code>StatePortKeepAlive</code>, which runs at logon. After you have logged on to Windows interactively, it keeps the Ubuntu environment running even after you close the last WSL window. Right after the install it has not run yet, because it starts at logon; signing out of Windows and back in is how we activated it in our test. Without it, WSL stops shortly after the last session ends and StatePort stops with it, until the next Windows logon or until you launch WSL again.</li>
 <li><strong>Restarting Windows.</strong> Whether StatePort comes back by itself after a restart has not been measured. If the address does not answer after a restart, sign in to Windows, open an Ubuntu window, and try again after a few minutes.</li>
 <li><strong>The port.</strong> The installer picks the port, and it can differ between installs and computers. Always use the address printed at the end of your install.</li>
 </ul>
