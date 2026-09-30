@@ -214,23 +214,23 @@ supervision, permissions, isolation, cancellation, and evidence).
 Neither replaces the other.</li>
 <li><strong>Providers are opinionated.</strong> “Replaceable processor”
 overstated the case: execution providers differ in capabilities and
-behaviour, and those differences are explicitly profiled rather than
+behavior, and those differences are explicitly profiled rather than
 assumed away.</li>
 <li><strong>Portability is not equivalence.</strong> Preserving
-canonical state across providers does not promise identical behaviour,
+canonical state across providers does not promise identical behavior,
 security posture, or evidence on each provider; portability preserves
 the declared boundary.</li>
 <li><strong>The ownership seam is explicit.</strong> StatePort owns
 intent, authority, state, evidence, and acceptance; the execution
-harness owns execution behaviour and must never silently become the
+harness owns execution behavior and must never silently become the
 source of truth.</li>
 <li><strong>Definition, instance, and runtime realization are
 separated.</strong> An application definition, an installed instance,
 and a particular runtime realization of that instance are three
 different things.</li>
 <li><strong>Canonical state is the durable boundary, not the whole
-behaviour.</strong> It anchors the instance’s truth; it is not a
-complete definition of how the application behaves at runtime.</li>
+behavior.</strong> It anchors the instance’s truth; it is not a complete
+definition of how the application behaves at runtime.</li>
 <li><strong>Pi is a reference direction.</strong> It is not a delivered
 adapter. As of July 2026, Codex CLI was the only provider the project
 had qualified, OpenCode was unqualified, and there was no direct-API
@@ -505,7 +505,7 @@ quietly authoritative — not the chat history, not an index, not a
 model’s memory of what it did last week.</p>
 <p>One boundary deserves to be stated precisely. Canonical state is the
 <strong>durable boundary of the instance</strong> — the anchor of its
-truth — not a complete definition of its behaviour. How the application
+truth — not a complete definition of its behavior. How the application
 behaves at runtime also depends on its definition version, the
 provider’s capabilities, the model in use, and the owner’s policy, all
 of which the state can reference but none of which it contains. State
@@ -799,7 +799,7 @@ appears, the application does not need to be rebuilt around it: the
 canonical state and its contracts are what an engine consumes, and any
 engine that honors the contract can run the application. But portability
 preserves the <strong>declared boundary</strong>, not identity of
-experience. Providers are opinionated: their capabilities, behaviour,
+experience. Providers are opinionated: their capabilities, behavior,
 security posture, and the evidence their runs produce differ, and an
 honest platform profiles those differences instead of promising them
 away. What survives a provider change is the state, the authority
@@ -893,7 +893,7 @@ decisions.</p>
 platform owns intent, authority, state, evidence, and acceptance: what
 was asked, what was permitted, what is true, what was recorded, and what
 the owner agreed to. The execution harness — the agent runtime, the
-provider adapter — owns execution behaviour: how a run is driven,
+provider adapter — owns execution behavior: how a run is driven,
 streamed, sandboxed, and cancelled. The seam’s one rule is directional:
 the harness must never silently become the source of truth. A harness
 observation can inform the record; it cannot outrank it.</p>
@@ -969,8 +969,8 @@ because changing engines is a configuration act, not a migration:
 today’s frontier model, tomorrow’s local model, a specialized model for
 a specialized task — each is a provider hired to run applications it
 does not own. The change is not free of consequences: providers are
-opinionated, their capabilities and behaviour differ, and an honest
-ecosystem profiles those differences rather than promising behavioural,
+opinionated, their capabilities and behavior differ, and an honest
+ecosystem profiles those differences rather than promising behavioral,
 security, or evidence equivalence. Competition returns to the layer
 where it belongs, and no one’s assistant is collateral.</p>
 <p><strong>Teams and classrooms of owned assistants.</strong> Because

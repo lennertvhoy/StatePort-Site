@@ -146,18 +146,18 @@ emphasis and accuracy learned from building the reference implementation:
    permissions, isolation, cancellation, and evidence). Neither replaces
    the other.
 5. **Providers are opinionated.** "Replaceable processor" overstated the
-   case: execution providers differ in capabilities and behaviour, and
+   case: execution providers differ in capabilities and behavior, and
    those differences are explicitly profiled rather than assumed away.
 6. **Portability is not equivalence.** Preserving canonical state across
-   providers does not promise identical behaviour, security posture, or
+   providers does not promise identical behavior, security posture, or
    evidence on each provider; portability preserves the declared boundary.
 7. **The ownership seam is explicit.** StatePort owns intent, authority,
    state, evidence, and acceptance; the execution harness owns execution
-   behaviour and must never silently become the source of truth.
+   behavior and must never silently become the source of truth.
 8. **Definition, instance, and runtime realization are separated.** An
    application definition, an installed instance, and a particular runtime
    realization of that instance are three different things.
-9. **Canonical state is the durable boundary, not the whole behaviour.** It
+9. **Canonical state is the durable boundary, not the whole behavior.** It
    anchors the instance's truth; it is not a complete definition of how the
    application behaves at runtime.
 10. **Pi is a reference direction.** It is not a delivered adapter. As of
@@ -480,7 +480,7 @@ what it did last week.
 
 One boundary deserves to be stated precisely. Canonical state is the
 **durable boundary of the instance** — the anchor of its truth — not a
-complete definition of its behaviour. How the application behaves at runtime
+complete definition of its behavior. How the application behaves at runtime
 also depends on its definition version, the provider's capabilities, the
 model in use, and the owner's policy, all of which the state can reference
 but none of which it contains. State anchors identity and truth; it does not
@@ -788,7 +788,7 @@ does not need to be rebuilt around it: the canonical state and its contracts
 are what an engine consumes, and any engine that honors the contract can run
 the application. But portability preserves the **declared boundary**, not
 identity of experience. Providers are opinionated: their capabilities,
-behaviour, security posture, and the evidence their runs produce differ,
+behavior, security posture, and the evidence their runs produce differ,
 and an honest platform profiles those differences instead of promising them
 away. What survives a provider change is the state, the authority structure,
 and the record — not a guarantee that the new provider will behave like the
@@ -894,7 +894,7 @@ This division draws an explicit **ownership seam**. The platform owns
 intent, authority, state, evidence, and acceptance: what was asked, what was
 permitted, what is true, what was recorded, and what the owner agreed to.
 The execution harness — the agent runtime, the provider adapter — owns
-execution behaviour: how a run is driven, streamed, sandboxed, and
+execution behavior: how a run is driven, streamed, sandboxed, and
 cancelled. The seam's one rule is directional: the harness must never
 silently become the source of truth. A harness observation can inform the
 record; it cannot outrank it.
@@ -976,8 +976,8 @@ engines is a configuration act, not a migration: today's frontier model,
 tomorrow's local model, a specialized model for a specialized task — each
 is a provider hired to run applications it does not own. The change is not
 free of consequences: providers are opinionated, their capabilities and
-behaviour differ, and an honest ecosystem profiles those differences rather
-than promising behavioural, security, or evidence equivalence. Competition
+behavior differ, and an honest ecosystem profiles those differences rather
+than promising behavioral, security, or evidence equivalence. Competition
 returns to the layer where it belongs, and no one's assistant is collateral.
 
 **Teams and classrooms of owned assistants.** Because instances are separate
