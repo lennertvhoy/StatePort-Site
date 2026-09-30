@@ -63,7 +63,7 @@
           <p class="document-kicker">Download</p>
           <h1 id="download-title">Install StatePort Alpha.20</h1>
           <p>One command installs StatePort on Windows 11 with WSL2 and Ubuntu 24.04. It sets up a web interface, an API, a background worker, storage and a sandbox where work runs.</p>
-          <p><strong>Alpha.20 installed successfully, and came up healthy, five times on fresh Windows 11 virtual machines. It is an early alpha with known limits, listed below.</strong></p>
+          <p><strong>Alpha.20 installed and came up healthy on seven fresh Windows 11 test installs, about 6.5 to 15 minutes each. It is an early alpha with known limits, listed below.</strong></p>
           <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue<span class="sr-only"> (opens in a new tab)</span></a>.</p>
         </div>
       </section>
@@ -93,9 +93,11 @@
           <section id="status" aria-labelledby="status-heading">
             <h2 id="status-heading">What has and has not been tested</h2>
             <ul>
-              <li><strong>Tested:</strong> the one-line command below installed Alpha.20 successfully, and it came up healthy, five times on fresh Windows 11 virtual machines with WSL2 and stock Ubuntu 24.04 (two earlier runs and three on 30 September 2026). All five were virtual machines, not physical PCs.</li>
-              <li><strong>Tested:</strong> after an interactive Windows sign-in, a small keep-alive task keeps StatePort reachable after the last WSL window is closed.</li>
-              <li><strong>Not tested yet:</strong> whether StatePort survives a Windows reboot, working with templates on Windows, uninstalling and reinstalling, a screen-by-screen check of the whole interface, and speed and resource use. The StudyState sample (a small study-plan app) loop of review, approve, reflect and receipt passes in the project&rsquo;s automated tests. I have not yet run it end to end on an installed Alpha.20.</li>
+              <li><strong>Tested:</strong> the one-line command below installed Alpha.20 and it came up healthy on seven fresh test installs of Windows 11 with WSL2 and stock Ubuntu 24.04. Installs took about 6.5 to 15 minutes. All seven were virtual machines, not physical PCs.</li>
+              <li><strong>Tested:</strong> the StudyState sample (a small study-plan app) in the browser on an installed Alpha.20: review, approve, apply, reflect, receipt, and undo of the last evidence update. The saved state was kept when I came back later, and after service restarts and an unclean WSL shutdown.</li>
+              <li><strong>Tested:</strong> importing a ProjectState or StudyState template from a local Git checkout (after a one-time ownership fix; see <a href="../docs/troubleshooting.html#template-import-ownership">troubleshooting</a>), plus export and import, a verified backup, restore as a new instance and a template upgrade, all through the API.</li>
+              <li><strong>Tested:</strong> after an interactive Windows sign-in, a small keep-alive task keeps StatePort reachable after the last WSL window is closed. Before that first sign-in, closing the last Ubuntu window stops the product; it comes back about three minutes after you reopen Ubuntu.</li>
+              <li><strong>Not working yet:</strong> chat replies, coding-agent runs, per-application workspaces and container tools, the workbench terminal and files tools, and restore from the interface. Windows reboot survival is not measured, and uninstall is not documented. The full list is on <a href="../docs/limitations.html">current limitations</a>.</li>
             </ul>
             <details class="status-exact">
               <summary>Exact status statement (for reviewers)</summary>
@@ -148,18 +150,18 @@ systemd=true</code></pre>
             <h2 id="after-install-heading">After installation</h2>
             <p>Success looks like this: the installer prints <strong>StatePort is installed and healthy</strong>, a local address such as <code>http://127.0.0.1:18012/</code> (your port may differ), and the path of an install receipt (a small file that records what was installed) below <code>~/.local/state/stateport-install</code>.</p>
             <ol>
-              <li>Open the printed <code>http://127.0.0.1:…/</code> address in your Windows browser.</li>
-              <li>Install the StudyState sample (a small study-plan app) from <strong>Catalog</strong>. The <a href="../tutorials/site-orientation.html">72-second field guide</a> shows what to look for.</li>
-              <li>To try your own project, place a Git repository below <code>/var/lib/stateport/imports</code> and use <strong>Catalog → Import a local repository</strong>.</li>
+              <li>Open the printed <code>http://127.0.0.1:…/</code> address in your Windows browser. The first screen opens empty: no applications installed, worker execution disabled, provider not configured. That is normal.</li>
+              <li>Install the StudyState sample (a small study-plan app) in three clicks: <strong>Catalog</strong>, <strong>Install</strong> on StudyState Sample, <strong>Confirm</strong>. The install records a receipt. The <a href="../tutorials/site-orientation.html">72-second field guide</a> shows what to look for.</li>
+              <li>To try your own project, place a Git repository below <code>/var/lib/stateport/imports</code> and use <strong>Catalog → Import a local repository</strong>. If the repository does not appear, see the ownership note in <a href="../docs/troubleshooting.html#template-import-ownership">troubleshooting</a>.</li>
             </ol>
-            <p>I have not tested templates on Windows yet, and that includes the StudyState sample, so expect rough edges. The sample&rsquo;s review, approve, reflect and receipt steps pass the project&rsquo;s automated tests. I have not yet run them on an installed Alpha.20.</p>
+            <p>The study sample needs no provider login: everything in it is proposed by a fixed script. Chat replies and coding-agent runs would need a provider connection, and they do not work yet in Alpha.20. Importing a template from a public Git URL was not tested.</p>
             <p><a href="../docs/templates.html">Open the template workflow</a> or <a href="../docs/getting-started.html">read the full getting-started guide</a>.</p>
           </section>
 
           <section id="wsl-behaviour" aria-labelledby="wsl-behaviour-heading">
             <h2 id="wsl-behaviour-heading">What happens when you close WSL windows</h2>
-            <p>StatePort runs inside WSL. Windows normally stops WSL when the last window closes, so the installer adds a small Windows scheduled task named <code>StatePortKeepAlive</code> that keeps Ubuntu running in the background once you have signed in to Windows. On the test virtual machines, StatePort stayed reachable after the last WSL window was closed.</p>
-            <p><strong>Be aware:</strong> this was checked on virtual machines after an interactive Windows sign-in. Closing all WSL windows, running <code>wsl --shutdown</code>, or restarting Windows can still leave StatePort stopped until your next Windows sign-in. Surviving a Windows reboot has not been measured. If the local address stops answering, try signing out of Windows and back in (that is when the keep-alive task starts), then reload the page.</p>
+            <p>StatePort runs inside WSL. Windows normally stops WSL when the last window closes, so the installer adds a small Windows scheduled task named <code>StatePortKeepAlive</code> that keeps Ubuntu running in the background once you have signed in to Windows.</p>
+            <p><strong>Be aware:</strong> in my fresh-install tests, before any sign-out, closing the last Ubuntu window stopped the product, and it came back about three minutes after I reopened Ubuntu. After an interactive Windows sign-in the keep-alive task held the environment, and StatePort stayed reachable with the last WSL window closed. Surviving a Windows reboot has not been measured. If the local address stops answering, open an Ubuntu window and reload after a few minutes, or sign out of Windows and back in (that is when the keep-alive task starts), then reload the page.</p>
           </section>
 
           <section id="stop" aria-labelledby="stop-heading">
