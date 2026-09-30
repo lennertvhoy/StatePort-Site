@@ -90,9 +90,9 @@
 <p>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress.</p>
 </details>
 
-<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#early-alpha">Early alpha</a></li><li data-level="2"><a href="#supported">The one supported setup</a></li><li data-level="2"><a href="#measured">What works today</a></li><li data-level="2"><a href="#not-measured">Not yet measured</a></li><li data-level="2"><a href="#designed">Designed, not built</a></li><li data-level="2"><a href="#local-use">Local use</a></li><li data-level="2"><a href="#security">Security</a></li><li data-level="2"><a href="#applications-and-features">Applications and features</a></li><li data-level="2"><a href="#release-files">Release files</a></li></ol></details>
+<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#early-alpha">Early alpha</a></li><li data-level="2"><a href="#supported">The one supported setup</a></li><li data-level="2"><a href="#measured">What works today</a></li><li data-level="2"><a href="#not-working">Not working yet</a></li><li data-level="2"><a href="#designed">Designed, not built</a></li><li data-level="2"><a href="#local-use">Local use</a></li><li data-level="2"><a href="#security">Security</a></li><li data-level="2"><a href="#applications-and-features">Applications and features</a></li><li data-level="2"><a href="#release-files">Release files</a></li></ol></details>
 <h2 id="early-alpha">Early alpha</h2>
-<p>StatePort is an early alpha. Alpha.20 is a test release for people who want to try it and tell me what breaks. This page has three lists: what works today, what I have not measured yet, and what is designed but not built. Only the first list describes measured behavior.</p>
+<p>StatePort is an early alpha. Alpha.20 is a test release for people who want to try it and tell me what breaks. This page has three lists: what works today, what is not working yet, and what is designed but not built. Only the first list describes measured behavior.</p>
 
 <h2 id="supported">The one supported setup</h2>
 <ul>
@@ -103,23 +103,38 @@
 <p>WSL1, ARM64, macOS, Docker Desktop, native Linux, Windows 10 and other Linux distributions are not supported. The installer checks your setup before it changes anything and stops with a message if it does not match. See <a href="platform-support.html">platform support</a>.</p>
 
 <h2 id="measured">What works today</h2>
-<p>This is the only list that describes measured behavior of Alpha.20 on a real setup.</p>
+<p>This is the only list that describes measured behavior of Alpha.20 on a real setup. All of it was measured on installed copies, driven through the real web interface in a browser and through the API.</p>
 <ul>
-<li><strong>Install.</strong> The public one-line command installed Alpha.20 and reported it healthy on a fresh virtual machine with Windows 11 25H2, WSL2 and stock Ubuntu 24.04. I ran it five times. Each install took about 6.5 minutes.</li>
+<li><strong>Install.</strong> The public one-line command installed Alpha.20 and reported it healthy on seven fresh test installs of Windows 11 25H2 with WSL2 and stock Ubuntu 24.04. Installs took about 6.5 to 15 minutes. All were virtual machines.</li>
 <li><strong>What a good install prints.</strong> <code>StatePort is installed and healthy.</code>, then <code>Open StatePort at: http://127.0.0.1:&lt;port&gt;/</code>, then the path to an install receipt under <code>~/.local/state/stateport-install/receipts/</code>. The port number varies, for example 18012.</li>
-<li><strong>Keeping WSL running.</strong> The installer adds a Windows scheduled task called <code>StatePortKeepAlive</code>. It runs when you sign in to Windows and keeps Ubuntu running after you close the last WSL window. Without it, WSL stops shortly after the last session ends, and StatePort stops with it until your next sign-in or until you start WSL again.</li>
+<li><strong>The first screen.</strong> A fresh install opens empty: no applications, worker execution disabled, provider not configured. That is normal, not a broken install.</li>
+<li><strong>The study sample in the browser.</strong> The web interface opens without a login. Installing the StudyState sample takes three clicks (Catalog, Install, Confirm) and records a receipt. I reviewed an activity, approved the exact change, applied it, wrote a reflection, opened the receipt, and undid the last evidence update. The saved state was still there when I came back later. It also survived service restarts and an unclean WSL shutdown. A guard refused a change proposed against outdated state. A fixed script proposes the changes in the sample, not an AI model.</li>
+<li><strong>Approvals and runs.</strong> The approvals page lists a pending change with its exact scope, and the runs page approves an exact proposal and applies it. Receipts are listed per app.</li>
+<li><strong>Templates.</strong> I imported a ProjectState and a StudyState template from a local Git checkout, inspected them, installed them, and ran the read-only inspect action. This worked after a one-time ownership fix (see <a href="troubleshooting.html#template-import-ownership">troubleshooting</a>). Uncommitted changes in the source were not imported.</li>
+<li><strong>Export, backup and restore.</strong> Export and import of an instance, a verified backup, restore as a new instance, and a template upgrade to a newer revision all worked, measured through the API.</li>
+<li><strong>Provider screen.</strong> It shows the provider status, and an API key can be saved and removed.</li>
+<li><strong>Keeping WSL running.</strong> The installer adds a Windows scheduled task called <code>StatePortKeepAlive</code>. It runs when you sign in to Windows and keeps Ubuntu running after you close the last WSL window.</li>
+<li><strong>Memory at idle.</strong> The installed services used about 83 MB of memory together at idle. Use under real work is not measured.</li>
 </ul>
 <p>The installer is a script you can read. It checks that you have WSL2 (not WSL1), Ubuntu 24.04, systemd as the first process, Windows build 22000 or newer, <code>powershell.exe</code> reachable from Ubuntu, an x86-64 CPU, and a user that is not root. It asks for two typed confirmations. It has two options that install nothing: <code>--transport-probe</code> and <code>--materialization-preflight</code>. <a href="getting-started.html">Getting started</a> explains them.</p>
 
-<h2 id="not-measured">Not yet measured</h2>
+<h2 id="not-working">Not working yet</h2>
+<p>These are built into Alpha.20, and on my installed test copies they did not work. Fixes for most of this list are being built into the next release (Alpha.21); none of that is published yet.</p>
 <ul>
-<li><strong>The StudyState sample loop on an installed Alpha.20.</strong> Start an activity, approve it, write a reflection, open the receipt, restart the service and read the saved state again. All of this passes in the project&rsquo;s automated tests. I have not yet run it end to end on an installed Alpha.20.</li>
-<li><strong>Windows restart.</strong> Whether StatePort comes back by itself after Windows restarts. After you sign in, it stayed reachable when the last WSL window closed. A reboot is a different case, and I have not measured it.</li>
-<li><strong>Templates on the installed product.</strong> Importing a ProjectState (project tracker) or StudyState (study plan) repository into an installed StatePort.</li>
-<li><strong>Uninstall and reinstall.</strong> Neither is measured, and there is no supported one-command uninstall in this alpha. See <a href="updates.html">updates and removal</a>.</li>
-<li><strong>The full interface.</strong> I have not checked every screen and control on an installed Alpha.20.</li>
-<li><strong>Speed and memory use.</strong> I have not measured how much memory, processor, disk or battery the installed stack uses on an ordinary 16 GB laptop.</li>
-<li><strong>Recovery safeguards.</strong> Recovery is meant to leave alone anything it cannot show belongs to the instance it is recovering. That check passes the project&rsquo;s automated tests and local runs, and an earlier bug in it was fixed. I have not tested it on an installed system.</li>
+<li><strong>Coding-agent runs.</strong> The provider directory is not ready, and there is no agent workspace. A run is refused before it starts.</li>
+<li><strong>Per-application workspaces and container tools.</strong> Recreating the container fails, logs are refused, and workspace authority must be issued from a shell with sudo.</li>
+<li><strong>The terminal and files tools in the workbench.</strong> The terminal cannot start, and creating a file is refused.</li>
+<li><strong>Chat replies.</strong> Assistant work is disabled, and chat does not read your project state.</li>
+<li><strong>Restore from the interface.</strong> The recovery panel shows an error. Restore through the API works.</li>
+<li><strong>The standing-authority and updater pages.</strong> Both answer with errors.</li>
+<li><strong>The notifications list.</strong> The unread count shows, but the list does not open.</li>
+<li><strong>Cancelling an approved-but-stale run.</strong> The cancel button is refused, and the run stays listed as approved.</li>
+<li><strong>Going back from a review.</strong> It leaves a stale pending approval behind.</li>
+<li><strong>The Learning tab.</strong> It can show stale numbers after a change made on another tab. A reload fixes it.</li>
+<li><strong>Stopping.</strong> The product stops when the last Ubuntu window closes, and comes back about three minutes after you reopen Ubuntu. The keep-alive task only starts at your next Windows sign-in.</li>
+<li><strong>Windows reboot.</strong> Not measured.</li>
+<li><strong>Uninstall.</strong> Not documented.</li>
+<li><strong>A leftover archive from an earlier install attempt.</strong> It can make the installer refuse with <code>image_archive_conflict</code>. The <a href="troubleshooting.html#image-archive-conflict">troubleshooting page</a> has the workaround.</li>
 </ul>
 <p>The measured installs ran on virtual machines, not on a physical laptop. A real request to an AI provider has not been measured on Alpha.20 either. Something I have not measured may work or may not. I do not know yet.</p>
 
@@ -155,7 +170,7 @@
 <h2 id="applications-and-features">Applications and features</h2>
 <ul>
 <li>StudyState (a study-plan template) and ProjectState (a project-tracking template) are early alpha. They are not finished, and nobody independent has evaluated them.</li>
-<li>Imported templates must be Git repositories under an import folder the installer creates, and only committed content is copied into the managed app. That is how it is built. I have not measured it on an Alpha.20 install. See <a href="templates.html">templates</a>.</li>
+<li>Imported templates must be Git repositories under an import folder the installer creates, and only committed content is copied into the managed app. That is how it is built, and that is what I measured on an installed Alpha.20: a source repository with uncommitted changes imported only its committed files. The import needs a one-time ownership fix; see <a href="templates.html">templates</a> and <a href="troubleshooting.html#template-import-ownership">troubleshooting</a>.</li>
 <li>There is no supported in-place update or rollback. See <a href="updates.html">updates and removal</a>.</li>
 <li>Alpha.20 ships and defaults to OpenCode as its coding agent. Codex is not bundled. StatePort does not check OpenCode&rsquo;s login for you. The <strong>Verify bounded request</strong> button sends one short test request. A real provider request has not been measured on Alpha.20.</li>
 <li>Container deployment is a design preview and is not in the Alpha.20 installer. Cloud deployment and managed hosting do not exist.</li>
