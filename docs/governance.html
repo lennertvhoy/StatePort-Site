@@ -84,50 +84,50 @@
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice"><strong>Use this page with an installed application.</strong> The exact controls depend on the application capability profile and release. Check <a href="../releases/">release status</a> for availability.</p>
+          <p class="notice"><strong>Use this page with an installed app.</strong> The exact controls depend on the app and the release. Check the <a href="../releases/">release status</a> for what is available.</p>
 
-          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#one-change-four-clear-steps">One change, four clear steps</a></li><li data-level="2"><a href="#read-the-proposal">Read the proposal</a></li><li data-level="2"><a href="#permissions-should-be-specific">Permissions should be specific</a></li><li data-level="2"><a href="#cancel-and-recover">Cancel and recover deliberately</a></li><li data-level="2"><a href="#stay-in-control-without-watching-every-step">Stay in control without watching every step</a></li><li data-level="2"><a href="#change-records-answer-simple-questions">Change records answer simple questions</a></li><li data-level="2"><a href="#blocked-work-should-be-clear">Blocked work should be clear</a></li></ol></details>
-          <h2 id="one-change-four-clear-steps">One change, four clear steps</h2>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#one-change-four-clear-steps">One change, four steps</a></li><li data-level="2"><a href="#read-the-proposal">Read the proposal</a></li><li data-level="2"><a href="#permissions-should-be-specific">Permissions</a></li><li data-level="2"><a href="#cancel-and-recover">Cancel and recover</a></li><li data-level="2"><a href="#stay-in-control-without-watching-every-step">Supervising without watching every step</a></li><li data-level="2"><a href="#change-records-answer-simple-questions">What a change record tells you</a></li><li data-level="2"><a href="#blocked-work-should-be-clear">When work is blocked</a></li></ol></details>
+          <h2 id="one-change-four-clear-steps">One change, four steps</h2>
           <div class="code-panel" data-label="A reviewed change"><code>request
 → review and approval
 → change
 → check and record</code>
 </div>
-          <p>The order matters. An application can suggest work without gaining permission to do it. A change can also fail its checks. StatePort keeps both outcomes visible.</p>
+          <p>The order matters. An app can suggest work without getting permission to do it. A change can also fail its checks. StatePort shows both outcomes.</p>
 
           <h2 id="read-the-proposal">Read the proposal</h2>
-          <p>Before approval, check the requested outcome, current base revision, files or operations in scope, side-effect class, authority, and budget. A proposal is an exact review object. If its base or content changes, the old approval should no longer apply.</p>
-          <p>For a template import, review the detected adapter, exact commit, working-tree status, and inspection findings before choosing <strong>Create isolated copy</strong>. For a run, review the operation list and validation plan. A receipt is created after the operation; it does not turn an unreviewed action into a reviewed one.</p>
-          <p><strong>Who applies the change.</strong> For deterministic application actions, such as the StudyState Sample, the system applies what you approve. Output from coding agents is currently recorded as a run result and is not promoted into application state by StatePort. The workbench file editor is a separate, capability-gated path: it validates a change but does not require a proposal.</p>
+          <p>Before you approve, check the outcome it asks for, the current base revision, the files or operations in scope, the side effects, who is acting, and the budget. A proposal is an exact thing to review. If its base or content changes, the old approval should no longer apply.</p>
+          <p>For a template import, check the detected template type, the exact commit, the working-tree status and the inspection findings before you choose <strong>Create isolated copy</strong>. For a run, check the list of operations and the validation plan. A receipt is created after the operation. It does not turn an unreviewed action into a reviewed one.</p>
+          <p><strong>Who applies the change.</strong> For actions that follow a fixed script, such as the StudyState sample, the system applies what you approve. Output from coding agents is recorded as a run result. StatePort does not turn it into saved app state. The workbench file editor is a separate path, limited by permissions: it checks a change but does not need a proposal.</p>
 
-          <h2 id="permissions-should-be-specific">Permissions should be specific</h2>
-          <p>You can allow routine, reversible work without approving every small step. Deleting data, spending money, publishing content, or contacting another service should stop for a fresh decision. An application cannot give itself more access.</p>
+          <h2 id="permissions-should-be-specific">Permissions</h2>
+          <p>You can allow routine, reversible work without approving every small step. Deleting data, spending money, publishing content or contacting another service should stop and ask you again. An app cannot give itself more access.</p>
 
-          <h2 id="cancel-and-recover">Cancel and recover deliberately</h2>
-          <p>Use <strong>Cancel</strong> on the selected workload when you need to interrupt it. Read the confirmation: in-progress output may be incomplete, and cancelled work is not automatically resumed. A stopped workspace can usually be started again; a cancelled operation needs a fresh request.</p>
-          <p>When the execution host offers <strong>Recover application workspace</strong>, recovery reuses the sealed profile and reattaches preserved data. It refuses to overwrite existing or partially initialized data. If provider work must stop, <strong>Disconnect StatePort</strong> stops active assistant processing and cancels queued requests while leaving the transcript available.</p>
+          <h2 id="cancel-and-recover">Cancel and recover</h2>
+          <p>Use <strong>Cancel</strong> on the selected workload to interrupt it. Read the confirmation. Output may be incomplete, and StatePort does not resume a cancelled operation. A stopped workspace can usually be started again. A cancelled operation needs a new request.</p>
+          <p>When the execution host offers <strong>Recover application workspace</strong>, recovery reuses the workspace&rsquo;s saved profile and reattaches the data that was kept. It refuses to overwrite data that is already there. If provider work must stop, <strong>Disconnect StatePort</strong> stops the running assistant and cancels queued requests. The transcript stays.</p>
 
-          <h2 id="stay-in-control-without-watching-every-step">Stay in control without watching every step</h2>
-          <p>Routine work can continue while you supervise it. You should be able to pause, redirect, or stop the application. StatePort asks for approval when the consequences justify it.</p>
+          <h2 id="stay-in-control-without-watching-every-step">Supervising without watching every step</h2>
+          <p>Routine work can continue while you watch. You should be able to pause, redirect or stop the app, and StatePort asks for approval when the consequences call for it. Today the StudyState sample can pause and redirect an activity, you can cancel a workload, and you can pause or revoke a standing grant.</p>
 
-          <h2 id="change-records-answer-simple-questions">Change records answer simple questions</h2>
+          <h2 id="change-records-answer-simple-questions">What a change record tells you</h2>
           <ul>
             <li>What was requested?</li>
             <li>Who approved it?</li>
-            <li>What did the application do?</li>
+            <li>What did the app do?</li>
             <li>Did the checks pass?</li>
             <li>What still needs attention?</li>
           </ul>
           <p>A clear record does not make a bad decision good. It makes the decision easier to inspect and correct.</p>
 
-          <h2 id="blocked-work-should-be-clear">Blocked work should be clear</h2>
-          <p>If StatePort cannot continue safely, it should stop and tell you why. Read-only or unavailable modes should always include a useful next step.</p>
+          <h2 id="blocked-work-should-be-clear">When work is blocked</h2>
+          <p>If StatePort cannot continue safely, it should stop and say why. Read-only or unavailable modes should suggest a next step.</p>
 
           <div class="inline-actions">
             <a class="button button--ink" href="../tutorials/reading-a-receipt.html">Read a receipt walkthrough</a>
             <a class="button button--outlined" href="security-and-privacy.html">Review safety limits</a>
           </div>
-        <figure class="diagram-figure"><img src="../assets/diagrams/stateport-change-path.svg" alt="A requested change is scoped, checked against permission, reviewed when required, then applied and recorded. A refusal stops the operation." width="576" height="991" loading="lazy" decoding="async"><figcaption>The conceptual change path. Approval is required by the operation's policy; a receipt alone does not prove correctness.</figcaption></figure>
+        <figure class="diagram-figure"><img src="../assets/diagrams/stateport-change-path.svg" alt="A requested change is scoped, checked against permission, reviewed when required, then applied and recorded. A refusal stops the operation." width="576" height="991" loading="lazy" decoding="async"><figcaption>The change path in outline. The operation&rsquo;s policy decides when approval is required. A receipt alone does not prove the change is correct.</figcaption></figure>
         </article>
       </div>
     </main>

@@ -84,34 +84,34 @@
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice"><strong>Current support is conditional.</strong> The public Alpha.20 path targets fresh Windows 11 AMD64 with WSL2 Ubuntu 24.04. Provider and optional Workbench controls depend on the installed capability profile. Connecting a real AI provider has not been measured on Alpha.20. Check <a href="../releases/">release status</a> before relying on a control.</p>
+          <p class="notice"><strong>Current support depends on your setup.</strong> The public Alpha.20 path targets fresh Windows 11 AMD64 with WSL2 Ubuntu 24.04. Provider and optional Workbench controls depend on what is installed. I have not measured connecting a real AI provider on Alpha.20. Check the <a href="../releases/">release status</a> before you rely on a control.</p>
 
-          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#a-session-is-not-the-application">A session is not the application</a></li><li data-level="2"><a href="#tools-are-not-interchangeable">Tools are not interchangeable</a></li><li data-level="2"><a href="#provider-setup-and-readiness">Provider setup and readiness</a></li><li data-level="2"><a href="#what-portability-should-preserve">What portability should preserve</a></li><li data-level="2"><a href="#moving-or-recovering-a-workspace">Moving or recovering a workspace</a></li></ol></details>
-          <h2 id="a-session-is-not-the-application">A session is not the application</h2>
-          <p>A model session can help with current work, but it should not be the only place that holds your goals or progress. The application should remain understandable even when that session is gone.</p>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#a-session-is-not-the-application">A session is not the app</a></li><li data-level="2"><a href="#tools-are-not-interchangeable">Tools are not interchangeable</a></li><li data-level="2"><a href="#provider-setup-and-readiness">Provider setup and readiness</a></li><li data-level="2"><a href="#what-portability-should-preserve">What portability is meant to preserve</a></li><li data-level="2"><a href="#moving-or-recovering-a-workspace">Moving or recovering a workspace</a></li></ol></details>
+          <h2 id="a-session-is-not-the-application">A session is not the app</h2>
+          <p>A model session can help with current work, but it should not be the only place your goals or progress live. The app should still make sense when the session is gone.</p>
 
           <h2 id="tools-are-not-interchangeable">Tools are not interchangeable</h2>
-          <p>One tool may support cancellation, safe file access, or detailed usage reporting while another does not. StatePort should check those abilities instead of assuming every provider works the same way.</p>
+          <p>One tool may support cancelling, safe file access or detailed usage reports while another does not. StatePort should check these abilities instead of assuming every provider works the same way.</p>
 
           <span id="current-tool-support"></span>
 <h2 id="provider-setup-and-readiness">Provider setup and readiness</h2>
-          <p>Open <strong>Set up or verify provider</strong> from Workspace readiness or Platform. StatePort reports the selected provider, executable status, model configuration, StatePort connection, login presence, bounded-request result, and unavailable billing/quota information as separate observations. Installed does not mean authenticated; authenticated does not mean a request succeeded.</p>
-          <p>Alpha.20 ships and defaults to OpenCode; Codex is not bundled. The supported settings surface can save a model identifier, and saving is configuration only. StatePort does not verify OpenCode authentication for you: choose <strong>Verify bounded request</strong> to test one short request. The provider keeps credentials in its private directory, outside StatePort application backups and exports. The check sends one short request without application files or conversation. Direct API providers and other tools are not implied by a provider selector.</p>
-          <p>Use <strong>Disconnect StatePort</strong> to stop active provider work and cancel queued requests. Reconnecting permits future requests; earlier transcript content remains. Use <strong>Refresh status</strong> when an observation is unavailable.</p>
-          <p>See <a href="platform-support.html">platform support</a> for computer requirements and <a href="../releases/">release status</a> for the release boundary.</p>
+          <p>Open <strong>Set up or verify provider</strong> from Workspace readiness or Platform. StatePort shows the selected provider, whether its program is installed, the model setting, the StatePort connection, whether a login exists, the result of a test request, and quota information when it has it. Each is a separate observation. Installed does not mean logged in. Logged in does not mean a request worked.</p>
+          <p>Alpha.20 ships with OpenCode and uses it by default. Codex is not bundled. The settings can save a model name, and saving is not logging in. StatePort does not check OpenCode&rsquo;s login for you, so choose <strong>Verify bounded request</strong> to send one short test request. The provider keeps its credentials in its own private directory, outside StatePort backups and exports. The test sends no app files and no conversation. A provider selector does not mean direct API providers or other tools are supported.</p>
+          <p>Use <strong>Disconnect StatePort</strong> to stop active provider work and cancel queued requests. Reconnecting allows new requests. The earlier transcript stays. Use <strong>Refresh status</strong> when an observation is unavailable.</p>
+          <p>See <a href="platform-support.html">platform support</a> for computer requirements and <a href="../releases/">release status</a> for what you can install.</p>
 
-          <h2 id="what-portability-should-preserve">What portability should preserve</h2>
-          <p>This is the design goal. In Alpha.20, portable export and import exist for the instance&rsquo;s files; grants, receipts and provider logins do not travel, and there is no migration wizard.</p>
+          <h2 id="what-portability-should-preserve">What portability is meant to preserve</h2>
+          <p>This is the goal. In Alpha.20, export and import exist for the instance&rsquo;s files. Grants, receipts and provider logins do not travel, and there is no migration wizard.</p>
           <ul>
-            <li>Your application files and saved state.</li>
-            <li>Your goals, permissions, and history.</li>
-            <li>A clear record of which tool did the work.</li>
-            <li>An honest warning when a new tool lacks a needed feature.</li>
+            <li>Your app files and saved state.</li>
+            <li>Your goals, permissions and history.</li>
+            <li>A record of which tool did the work.</li>
+            <li>A clear warning when a new tool lacks a feature you need.</li>
           </ul>
 
           <h2 id="moving-or-recovering-a-workspace">Moving or recovering a workspace</h2>
-          <p>Portability means the durable application and its reviewed provenance can be inspected independently of one model session. A managed template copy has its own identity, history, and import receipt; the source repository stays untouched. Keep the source at a committed revision and import it again on another supported host when you want a new managed copy. Importing the template again does not move the existing instance’s saved state, activity history, receipts, or provider login.</p>
-          <p>To preserve an existing instance, use the lifecycle recovery path described in <a href="lifecycle.html">the lifecycle guide</a> and <a href="updates.html">updates and recovery</a>. The governed restore flow creates a different managed instance from an indexed backup and leaves the source unchanged; it is distinct from importing the template source again. This describes recovery within a supported installation, not a general cross-machine migration wizard. Keep the original machine and data until a documented migration path has been checked. For an interrupted execution workspace, use <strong>Recover application workspace</strong> when the execution host offers it. Recovery reuses the sealed profile and grant and reattaches preserved data; it does not overwrite existing or partially initialized data. A provider login is separate from application portability and may need to be re-established on the new host.</p>
+          <p>A managed template copy has its own identity, history and import receipt, and the source repository stays untouched. To get a new managed copy on another supported machine, keep the source at a committed revision and import it again. Importing the template again does not move the existing instance&rsquo;s saved state, activity history, receipts or provider login.</p>
+          <p>To keep an existing instance, use the recovery steps in <a href="lifecycle.html">the lifecycle guide</a> and in <a href="updates.html">updates and removal</a>. The restore flow creates a different managed instance from an indexed backup and leaves the source unchanged. That is different from importing the template source again. This covers recovery within a supported install. It is not a general cross-machine migration wizard. Keep the original machine and data until you have checked the result. For an interrupted execution workspace, use <strong>Recover application workspace</strong> when the execution host offers it. Recovery reuses the workspace&rsquo;s saved profile and reattaches the data that was kept. It does not overwrite data that is already there. A provider login is separate from your app and may need to be set up again on the new machine.</p>
 
           <div class="inline-actions">
             <a class="button button--ink" href="platform-support.html">View platform support</a>

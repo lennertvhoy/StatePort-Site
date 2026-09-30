@@ -84,36 +84,36 @@
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Early alpha.</strong> StatePort is in early alpha and has not had an independent security review. Do not use it for important data.</p>
+          <p class="notice notice--quiet"><strong>Early alpha.</strong> StatePort has not had an independent security review. Do not use it for important data.</p>
 
           <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#main-risks">Main risks</a></li><li data-level="2"><a href="#how-the-design-reduces-risk">How the design reduces risk</a></li><li data-level="2"><a href="#privacy">Privacy</a></li><li data-level="3"><a href="#before-connecting-an-ai-tool">Before connecting an AI tool</a></li><li data-level="3"><a href="#sharing-diagnostics">Sharing diagnostics</a></li><li data-level="2"><a href="#current-limits">Current limits</a></li><li data-level="2"><a href="#reporting-a-security-issue">Reporting a security issue</a></li></ol></details>
           <h2 id="main-risks">Main risks</h2>
-          <p>AI-assisted applications can read malicious content, follow unsafe instructions, use old permissions, expose secrets, or change the wrong files. A compromised computer can also bypass application-level controls.</p>
+          <p>AI-assisted apps can read malicious content, follow unsafe instructions, use old permissions, expose secrets or change the wrong files. A compromised computer can also get around an app&rsquo;s own controls.</p>
 
-          <h2 id="how-the-design-reduces-risk">How the design reduces risk</h2>
+          <h2 id="how-the-design-reduces-risk">What StatePort tries to do about them</h2>
           <ul>
-            <li>Check where software and application files came from.</li>
-            <li>Define which files an application may change.</li>
+            <li>Check where software and app files came from.</li>
+            <li>State which files an app may change.</li>
             <li>Ask before important or destructive actions.</li>
-            <li>Limit what AI tools and containers can access.</li>
-            <li>Keep passwords and provider credentials out of application files and images.</li>
-            <li>Record changes and their checks for later review.</li>
+            <li>Limit what AI tools and containers can reach.</li>
+            <li>Keep passwords and provider credentials out of app files and images.</li>
+            <li>Record changes and their checks so you can review them later.</li>
           </ul>
 
           <h2 id="privacy">Privacy</h2>
-          <p>The installer downloads release files and container images from the internet. After that, StatePort runs as local services and prints an address on your own computer (<code>127.0.0.1</code>), which other devices cannot reach. Whether every feature works without a connection has not been measured.</p>
-          <p>Application data stays on your machine by default. StatePort is designed to send an AI model only the context needed for the current task. In Alpha.20 the chat assistant is given the recent conversation, not your application state, and a remote provider sees whatever is in that conversation. Private notes, conversations, identifiers, file paths, and credentials should not become analytics data.</p>
+          <p>The installer downloads release files and container images from the internet. After that, StatePort runs as local services and prints an address on your own computer (<code>127.0.0.1</code>), which other devices cannot reach. I have not measured whether every feature works without a connection.</p>
+          <p>App data stays on your machine by default. The plan is to send an AI model only the context the current task needs. In Alpha.20 the chat assistant is given the recent conversation, not your app state, and a remote provider sees whatever is in that conversation. Private notes, conversations, identifiers, file paths and credentials should not become analytics data.</p>
 
           <h3 id="before-connecting-an-ai-tool">Before connecting an AI tool</h3>
-          <p>A local web interface does not make a remote AI provider local. A provider request may send task context to that provider. Check the selected tool and model, the information in the request, and your provider account settings before sending sensitive content. Read <a href="hosts-and-portability.html">AI setup and readiness</a> for the connection steps.</p>
-          <p>Keep provider login credentials separate from application content. Do not paste access tokens into a reflection, project evidence, a public issue, or a repository file. Disconnecting StatePort stops its active processing; it does not erase data already sent to a provider or replace that provider's account controls.</p>
+          <p>A local web interface does not make a remote AI provider local. A provider request may send task context to that provider. Before you send sensitive content, check the selected tool and model, what the request contains, and your provider account settings. <a href="hosts-and-portability.html">AI tools and readiness</a> has the connection steps.</p>
+          <p>Keep provider login credentials apart from app content. Do not paste access tokens into a reflection, project evidence, a public issue or a repository file. Disconnecting StatePort stops its running work. It does not erase data already sent to a provider, and it does not replace that provider&rsquo;s account controls.</p>
           <h3 id="sharing-diagnostics">Sharing diagnostics</h3>
-          <ul><li>Start with the release version, the visible error, and the action that triggered it.</li><li>Review receipts, logs, diffs, and screenshots before sharing: they may include prompts, paths, repository names, or personal content.</li><li>Share the smallest relevant excerpt and remove credentials and private data. Keep the original private record for your own investigation.</li>
+          <ul><li>Start with the release version, the visible error and the action that triggered it.</li><li>Look through receipts, logs, diffs and screenshots before you share them. They may include prompts, paths, repository names or personal content.</li><li>Share the smallest excerpt that helps, and remove credentials and private data. Keep the original private.</li>
 </ul>
-          <p>A backup is also a copy of private application data. Verification is an integrity check, not encryption. Keep backups protected and choose your own retention policy; follow <a href="lifecycle.html#back-up-and-recover">backup and recovery</a>.</p>
+          <p>A backup is also a copy of private app data. Verification checks integrity. It is not encryption. Keep backups protected and choose your own retention policy. See <a href="lifecycle.html#back-up-and-recover">backup and recovery</a>.</p>
           <h2 id="current-limits">Current limits</h2>
           <p>The installer uses <code>sudo</code>. It installs system packages and services in the Ubuntu distribution you run it in and registers one Windows scheduled task, so use a distribution or virtual machine you can afford to lose. There is no supported one-command uninstall yet; see <a href="updates.html">updates and removal</a>.</p>
-          <p>StatePort has no security certification or penetration test. It does not claim GDPR, NIS2, or other legal compliance. Review the real setup, data, providers, and retention rules before using it.</p>
+          <p>StatePort has no security certification and no penetration test. It makes no claim of GDPR, NIS2 or other legal compliance. Review your own setup, data, providers and retention rules before you use it.</p>
 
           <h2 id="reporting-a-security-issue">Reporting a security issue</h2>
           <p>There is no dedicated vulnerability-reporting address yet. For now, you can <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">open a public issue</a> for non-sensitive reports. Do not post secrets or private security details.</p>

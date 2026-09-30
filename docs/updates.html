@@ -97,14 +97,14 @@
 </ul>
 
 <h2 id="identity">Check what is installed</h2>
-<p>The install receipt records what was installed. It is a JSON file in <code>~/.local/state/stateport-install/receipts/</code>, and the installer printed its path when it finished. The installer also leaves a status command at the path below. We describe it as read-only, but we have not measured it on Alpha.20.</p>
+<p>The install receipt records what was installed. It is a JSON file in <code>~/.local/state/stateport-install/receipts/</code>, and the installer printed its path when it finished. The installer also leaves a status command at the path below. I expect it to only read, but I have not measured it on Alpha.20.</p>
 <pre><code>~/.local/state/stateport-install/bin/stateport-update status</code>
 </pre>
-<p>Installation records are specific to one installation. Do not copy them to another computer or combine receipts from different installations.</p>
+<p>Install records belong to one installation. Do not copy them to another computer or mix receipts from different installations.</p>
 
 <h2 id="updating">Updating</h2>
 <p>There is no supported way to update an installed StatePort in place, and there is no safe copy-and-paste update command. Running the one-line install command again on a computer that already has StatePort is not a tested update path either; it can stop with <a href="troubleshooting.html#image-archive-conflict"><code>image_archive_conflict</code></a>.</p>
-<p>When a newer release exists, its own documentation will give its instructions. Until then:</p>
+<p>When a newer release exists, its own docs will give instructions. Until then:</p>
 <ul>
 <li>Do not replace the trusted key, edit the generated files, or mix files from different releases.</li>
 <li>Do not run an installer or command from an older release against an Alpha.20 installation.</li>
@@ -112,20 +112,20 @@
 </ul>
 
 <h2 id="backup">Back up before anything else</h2>
-<p>The product is designed to offer backup and restore controls; see <a href="lifecycle.html#back-up-and-recover">backup and recovery</a>. They have not been measured on Alpha.20. Until they have been, keep your own copy of anything you care about outside the Ubuntu distribution where StatePort runs, and do not use StatePort for important data. Container images, the install receipt, and the installer's records are not a backup of your application data. Even when the controls work, a backup archives the instance's files, not its Git history, conversations, receipts index or approvals, and restore recreates files only.</p>
+<p>StatePort has backup and restore controls (see <a href="lifecycle.html#back-up-and-recover">backup and recovery</a>), but I have not measured them on Alpha.20. Until I have, keep your own copy of anything you care about outside the Ubuntu distribution where StatePort runs, and do not use StatePort for important data. Container images, the install receipt, and the installer's records are not a backup of your application data. Even when the controls work, a backup archives the instance's files, not its Git history, conversations, receipts index or approvals, and restore recreates files only.</p>
 
 <h2 id="removal">Removing StatePort</h2>
-<p>There is no tested removal procedure. It helps to know what the installer put in place:</p>
+<p>There is no tested removal procedure. Here is what the installer puts in place:</p>
 <ul>
-<li>System packages in the Ubuntu distribution, which the installer holds so that ordinary updates do not change them.</li>
-<li>Background services that run under Ubuntu's systemd, and the container images they use.</li>
+<li>System packages in the Ubuntu distribution. The installer holds them so ordinary updates do not change them.</li>
+<li>Background services that run under Ubuntu&rsquo;s systemd, and the container images they use.</li>
 <li>Receipts and installer records in <code>~/.local/state/stateport-install</code>.</li>
-<li>One Windows scheduled task, <code>StatePortKeepAlive</code>, which lives in Windows and not in Ubuntu.</li>
+<li>One Windows scheduled task, <code>StatePortKeepAlive</code>. It lives in Windows, not in Ubuntu.</li>
 </ul>
-<p>What we can say honestly:</p>
+<p>What I can say:</p>
 <ul>
 <li>The reliable way to remove everything inside Ubuntu is to remove the whole distribution or virtual machine you installed it in. Microsoft documents how to <a href="https://learn.microsoft.com/windows/wsl/basic-commands#unregister-or-uninstall-a-linux-distribution" target="_blank" rel="noopener">unregister a WSL distribution</a>. That permanently deletes everything in it, so use it only on a distribution you created for this test and never on one you use for other work.</li>
-<li>The scheduled task is separate. It stays until you remove it, and you can delete it yourself in Windows Task Scheduler. How it should be removed with StatePort has not been measured.</li>
+<li>The scheduled task is separate. It stays until you remove it, and you can delete it yourself in Windows Task Scheduler. How to remove it together with StatePort has not been measured.</li>
 <li>Do not delete folders under <code>~/.local/state/stateport-install</code> by hand as a way to clean up, and do not run broad <code>rm -rf</code> commands. The only documented exception is the folder that <a href="troubleshooting.html#image-archive-conflict">the <code>image_archive_conflict</code> workaround</a> moves aside.</li>
 </ul>
 

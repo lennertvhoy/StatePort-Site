@@ -86,13 +86,13 @@
         <article class="prose">
           <p class="notice notice--quiet"><strong>Design overview.</strong> Check the <a href="../releases/">release status</a> for current software availability.</p>
 
-          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#the-problem-with-chat-alone">The problem with chat alone</a></li><li data-level="2"><a href="#what-stateware-means">What Stateware means</a></li><li data-level="2"><a href="#where-the-ai-tool-fits">Where the AI tool fits</a></li><li data-level="2"><a href="#what-this-gives-you">What this is designed to give you</a></li><li data-level="2"><a href="#the-goal">The goal</a></li></ol></details>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#the-problem-with-chat-alone">The problem with chat alone</a></li><li data-level="2"><a href="#what-stateware-means">What Stateware means</a></li><li data-level="2"><a href="#where-the-ai-tool-fits">Where the AI tool fits</a></li><li data-level="2"><a href="#what-this-gives-you">What I want it to give you</a></li><li data-level="2"><a href="#the-goal">The goal</a></li></ol></details>
           <h2 id="the-problem-with-chat-alone">The problem with chat alone</h2>
-          <p>A chat is good for asking questions. It is a poor place to keep an application's memory, permissions, decisions, and history. Long threads get shortened. Sessions disappear. A transcript may contain several conflicting versions of the same fact.</p>
+          <p>A chat is good for asking questions. It is a poor place to keep an app&rsquo;s memory, permissions, decisions and history. Long threads get shortened. Sessions disappear. A transcript may hold several conflicting versions of the same fact.</p>
           <p>StatePort moves the important information into readable files on your machine. The chat can still help, but it is no longer the only copy of your work.</p>
 
           <h2 id="what-stateware-means">What Stateware means</h2>
-          <p><strong>Stateware</strong> is software built around durable, inspectable state. Its useful memory belongs to the application, not to one AI model or provider.</p>
+          <p><strong>Stateware</strong> is my name for software built around saved, readable state. Its useful memory belongs to the app, not to one AI model or provider.</p>
           <div class="code-panel" data-label="The working idea"><code>application
 = reusable workflow
 + your saved state
@@ -101,26 +101,26 @@
 </div>
 
           <h2 id="where-the-ai-tool-fits">Where the AI tool fits</h2>
-          <p>An AI tool can plan work, explain a choice, and prepare a change. In the design, StatePort decides what the tool may access, asks you before important actions, and saves the result in the application. Today that full path is built for deterministic application actions such as the StudyState Sample. Output from coding agents is recorded as a run result and is not promoted into application state by StatePort.</p>
+          <p>An AI tool can plan work, explain a choice and prepare a change. The plan is that StatePort decides what the tool may access, asks you before important actions and saves the result in the app. Today that full path is built for actions that follow a fixed script, such as the StudyState sample. Output from coding agents is recorded as a run result. StatePort does not turn it into saved app state.</p>
           <figure class="diagram-figure reveal">
-            <img src="../assets/diagrams/stateport-diagram-harness.png" alt="Diagram: profiled coding-agent providers feed an AgentRunSpec into the StatePort harness, which plans, approves, runs headlessly, and validates, writing results into a durable StateSpec instance.">
-            <figcaption>The AI tool does the work. StatePort keeps the application and its history.</figcaption>
+            <img src="../assets/diagrams/stateport-diagram-harness.png" alt="Diagram: coding-agent tools feed a run request into StatePort. In the plan, StatePort plans the work, asks for approval, runs the agent with no screen, and checks the result before it is written into your app's saved state. See the text for what works today.">
+            <figcaption>The AI tool does the work. StatePort keeps the app and its history.</figcaption>
           </figure>
 
-          <h2 id="what-this-gives-you">What this is designed to give you</h2>
-          <p>These are design goals. What has been measured on Alpha.20 is listed on <a href="limitations.html#measured">current limitations</a>.</p>
+          <h2 id="what-this-gives-you">What I want it to give you</h2>
+          <p>These are goals. <a href="limitations.html#measured">Current limitations</a> lists what I have measured on Alpha.20.</p>
           <ul>
-            <li>Open the current goals and progress without replaying a chat.</li>
-            <li>Change AI tools without throwing away the application.</li>
+            <li>Open your current goals and progress without replaying a chat.</li>
+            <li>Change AI tools without throwing away the app.</li>
             <li>Review a proposal before it changes saved work.</li>
             <li>See a clear message when a tool cannot do something safely.</li>
           </ul>
 
           <h2 id="the-goal">The goal</h2>
-          <p>StatePort should help you resume work faster, understand changes, and keep useful context when a tool or session changes.</p>
+          <p>I want StatePort to help you resume work faster, understand changes, and keep useful context when a tool or session changes.</p>
 
           <div class="inline-actions">
-            <a class="button button--ink" href="model.html">Explore the model</a>
+            <a class="button button--ink" href="model.html">How StatePort is organized</a>
             <a class="button button--outlined" href="getting-started.html">Install StatePort</a>
           </div>
         </article>
