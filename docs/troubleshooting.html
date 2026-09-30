@@ -206,10 +206,10 @@ refusal record: ~/.local/state/stateport-install/refusals/&lt;timestamp&gt;-imag
 <p>For any other <code>install refused</code> code, keep the message and the refusal record, do not change files in <code>~/.local/state/stateport-install</code>, and report it.</p>
 
 <h2 id="after-install">After a successful install</h2>
-<h3 id="wsl-stops">The address stops answering after I close Ubuntu</h3>
-<p><strong>You see</strong> the browser page stop loading after you closed the last Ubuntu window, or after some time away.</p>
-<p><strong>Cause.</strong> WSL stops the Linux environment shortly after the last session ends, and StatePort runs inside it. The installer registers a Windows scheduled task named <code>StatePortKeepAlive</code> to prevent that. It runs at Windows logon, so it only takes effect after an interactive Windows logon; right after the install it has not run yet.</p>
-<p><strong>What to do.</strong> Open an Ubuntu window and reload the address, and give the services a few minutes to come back. To make the keep-alive task start, sign out of Windows and sign back in; that is how I activated it in my test. Windows Task Scheduler lists the task if you want to check it. If StatePort stops again after a logon, report it.</p>
+<h3 id="wsl-stops">The page says &ldquo;Service offline&rdquo; after I close Ubuntu</h3>
+<p><strong>You see</strong> the page show <code>Service offline</code>, or stop loading, after you closed the last Ubuntu window.</p>
+<p><strong>Cause.</strong> WSL stops the Linux environment shortly after the last session ends, and StatePort runs inside it. On my fresh installs the product stopped when the last Ubuntu window closed, and it came back about three minutes after I reopened Ubuntu. The installer registers a Windows scheduled task named <code>StatePortKeepAlive</code> to prevent this. It runs at Windows logon, so it only takes effect after an interactive Windows logon; right after the install it has not run yet.</p>
+<p><strong>What to do.</strong> Open an Ubuntu window and reload the address after a few minutes. To make the keep-alive task start, sign out of Windows and sign back in; that is how I activated it in my test. Windows Task Scheduler lists the task if you want to check it. If StatePort stops again after a logon, report it.</p>
 <h3 id="restart">It did not come back after I restarted Windows</h3>
 <p><strong>You see</strong> no answer from the address after a Windows restart.</p>
 <p><strong>Cause.</strong> Whether StatePort comes back by itself after a Windows restart has not been measured.</p>
@@ -226,6 +226,13 @@ refusal record: ~/.local/state/stateport-install/refusals/&lt;timestamp&gt;-imag
 <p><strong>You see</strong> something that does not respond or reports an error after a successful install.</p>
 <p><strong>Cause.</strong> The cause is not known from the address alone.</p>
 <p><strong>What to do.</strong> Keep the terminal output and the receipt path. Do not delete containers or volumes, do not edit generated files, and do not copy another installation's state. Report it.</p>
+<h3 id="template-import-ownership">Template import: the checkout does not appear, or inspection is refused</h3>
+<p><strong>You see</strong> no repositories under <strong>Catalog → Import a repository → Import from a local source folder</strong>, or <strong>Inspect</strong> stops with <code>Git repository inspection was refused</code>.</p>
+<p><strong>Cause.</strong> The checkout was placed in <code>/var/lib/stateport/imports</code> by your normal Ubuntu user. The service reads it as a different user, and Git refuses to work in a repository owned by someone else.</p>
+<p><strong>What to do.</strong> Change the owner of the checkout to the service user, once, and retry. In Ubuntu:</p>
+<pre><code>sudo chown -R stateport-control:stateport-control /var/lib/stateport/imports/&lt;repository&gt;
+</code></pre>
+<p>Then open Catalog and import again. I measured template import working after this fix.</p>
 
 <h2 id="report">Report a problem</h2>
 <p><a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue on GitHub</a> and include:</p>
