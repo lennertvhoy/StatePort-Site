@@ -85,7 +85,7 @@
         </aside>
 
         <article class="prose">
-<p class="notice"><strong>Early alpha, release 0.1.0-alpha.20.</strong> StatePort is in early alpha. Do not use it for important data. It has been measured on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+<p class="notice"><strong>Early alpha, release 0.1.0-alpha.20.</strong> Do not use it for important data. I have measured it on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
 <p class="notice notice--quiet"><strong>Before you start.</strong> The installer adds system packages and services inside the Ubuntu distribution you run it in, and registers one scheduled task in Windows. There is no supported one-command uninstall in this alpha, so use a distribution or virtual machine you can afford to lose. See <a href="updates.html">updates and removal</a>.</p>
 <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#requirements">What you need</a></li><li data-level="2"><a href="#wsl">Step 1. Set up WSL2 and Ubuntu 24.04</a></li><li data-level="2"><a href="#check">Step 2. Check your setup</a></li><li data-level="2"><a href="#dry-run">Step 3. Run the dry run</a></li><li data-level="2"><a href="#install">Step 4. Run the install</a></li><li data-level="2"><a href="#success">What success looks like</a></li><li data-level="2"><a href="#open">Step 5. Open StatePort</a></li><li data-level="2"><a href="#first">What to try first</a></li><li data-level="2"><a href="#closing-wsl">Closing WSL windows, restarts, and the port</a></li><li data-level="2"><a href="#stops">If something stops</a></li></ol></details>
 <h2 id="requirements">What you need</h2>
@@ -142,12 +142,12 @@ id -u</code>
 <p>The installer also checks the Windows build and that Ubuntu can run <code>powershell.exe</code>. If a check fails, the message is explained in <a href="troubleshooting.html#host-checks">troubleshooting</a>.</p>
 
 <h2 id="dry-run">Step 3. Run the dry run</h2>
-<p>This is the same command as the real install, with one extra option. It checks your computer, downloads the signed image manifests and verifies them, and installs nothing. It does not ask for <code>sudo</code>.</p>
+<p>This is the same command as the real install, with one extra option. It checks your computer, downloads the list of container images with their fingerprints, checks those fingerprints, and installs nothing. It does not ask for <code>sudo</code>.</p>
 <pre><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh) --transport-probe</code>
 </pre>
 <p>When it works, the last line begins <code>StatePort Alpha.20 transport probe passed</code> and ends with <code>installer was not executed.</code> If it stops instead, its message names the problem; look it up in <a href="troubleshooting.html">troubleshooting</a> before going on.</p>
 <p>There is a second, optional dry run. It checks that the installer's helper can be fetched and verified and that its files would be created in a safe order, and it changes no packages or system files. Add <code>--materialization-preflight</code> in place of <code>--transport-probe</code>. It is not needed for a normal install.</p>
-<p>You can compare the installer script with the checksum on the <a href="../download/">download page</a> before you run anything.</p>
+<p>You can compare the installer script with its SHA-256 fingerprint on the <a href="../download/">download page</a> before you run anything.</p>
 
 <h2 id="install">Step 4. Run the install</h2>
 <p>Run this as your normal Ubuntu user, in an interactive Ubuntu window:</p>
@@ -156,7 +156,7 @@ id -u</code>
 <p>What you will see, in order:</p>
 <ol>
 <li>The host checks from Step 2.</li>
-<li>Downloads. Each file is checked against a fixed checksum, and the signed release files are verified.</li>
+<li>Downloads. Each file is checked against a fingerprint built into the installer, and the release signature is checked.</li>
 <li>Ubuntu asks for your password because the installer uses <code>sudo</code> to install system packages. The installer prints a plan of the packages.</li>
 <li>It asks you to type <code>install-packages</code> to authorize that exact package plan. Type it exactly.</li>
 <li>Packages are installed and the installer prepares the rest. It prints the exact install plan and asks you to type <code>install-exact</code>. Type it exactly.</li>
@@ -179,11 +179,11 @@ id -u</code>
 
 <h2 id="first">What to try first</h2>
 <ol>
-<li>Read <a href="../tutorials/first-application.html">Design your first durable application</a>. It is a thinking exercise with nothing to install, and it explains the ideas behind what you just installed.</li>
-<li>Follow <a href="everyday-work.html">your first session</a> to walk through a small StudyState example: start an activity, review the change, apply it, and open the receipt.</li>
-<li>Read <a href="templates.html">templates</a> to see how ProjectState and StudyState are meant to be brought in.</li>
+<li>Read <a href="../tutorials/first-application.html">Design a small app that keeps its state</a>. It is a thinking exercise with nothing to install, and it explains the ideas behind what you just installed.</li>
+<li>Follow <a href="everyday-work.html">your first session</a> to walk through the StudyState sample, a small study-plan app: start an activity, review the change, apply it, and open the receipt.</li>
+<li>Read <a href="templates.html">templates</a> to see how ProjectState (a project tracker) and StudyState (a study plan) are brought in.</li>
 </ol>
-<p>Those guides were written from the product's design and earlier recordings. On Alpha.20 the fresh-machine test covered the install and its health check, not every screen (see <a href="limitations.html#not-measured">what has not been measured</a>). If a screen differs from a guide, that is worth reporting.</p>
+<p>I wrote those guides from the design and from earlier recordings. On Alpha.20 the fresh-machine test covered the install and its health check, not every screen (see <a href="limitations.html#not-measured">what has not been measured</a>). If a screen differs from a guide, please report it.</p>
 
 <h2 id="closing-wsl">Closing WSL windows, restarts, and the port</h2>
 <ul>

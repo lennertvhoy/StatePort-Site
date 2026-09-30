@@ -61,8 +61,8 @@
       <section class="article-hero" aria-labelledby="docs-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation</p>
-          <h1 id="docs-title">Make progress with StatePort.</h1>
-          <p>Start your first application, review a proposed change, and pick up where you left off. These guides explain each task, the result to check, and where to go when something stops.</p>
+          <h1 id="docs-title">StatePort docs</h1>
+          <p>Guides for installing StatePort, trying the study sample, and fixing problems. Each guide says what to do and what you should see.</p>
         </div>
       </section>
 
@@ -96,7 +96,7 @@
         </aside>
 
         <article class="prose docs-overview" data-no-toc>
-          <p class="notice"><strong>Early alpha, release 0.1.0-alpha.20.</strong> StatePort is in early alpha. Do not use it for important data. It has been measured on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+          <p class="notice"><strong>Early alpha, release 0.1.0-alpha.20.</strong> Do not use it for important data. I have measured it on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
           <p class="notice notice--quiet"><strong>Ready to install?</strong> Follow <a href="getting-started.html">the step-by-step guide</a>. It covers the one supported setup, a dry run that installs nothing, and the one-line install.</p>
 
           <nav class="quick-routes" aria-label="Choose a documentation path">
@@ -110,15 +110,15 @@
           <h2 id="choose-your-next-task">Choose your next task</h2>
           <ol>
 <li><strong>Install it.</strong> Follow <a href="getting-started.html">getting started</a>: set up WSL2 and Ubuntu 24.04, run the dry run, and install with one command.</li>
-<li><strong>Understand the experience.</strong> Follow <a href="everyday-work.html">your first session</a>: open an application, ask for help, review a proposal, and check the saved result. You can read along before installing.</li>
-<li><strong>Bring your work.</strong> Read about <a href="templates.html">templates</a>, then the <a href="project-state.html">ProjectState guide</a> for projects or the <a href="study-state.html">StudyState guide</a> for learning.</li>
-<li><strong>Keep control.</strong> Learn <a href="governance.html">what to check before approving</a> and <a href="hosts-and-portability.html">what an AI connection needs</a>.</li>
-<li><strong>Keep your work safe.</strong> Follow <a href="lifecycle.html">backup and recovery</a>, read what <a href="updates.html">updates and removal</a> support in this alpha, or look up an installer message in <a href="troubleshooting.html">troubleshooting</a>.</li>
+<li><strong>Try the study sample.</strong> <a href="everyday-work.html">Your first session</a> walks through the StudyState sample: start an activity, review the change, apply it, check the receipt. You can read it before you install.</li>
+<li><strong>Bring your own project.</strong> Read about <a href="templates.html">templates</a>. ProjectState is a template for tracking a project (<a href="project-state.html">guide</a>). StudyState is a template for a study plan (<a href="study-state.html">guide</a>).</li>
+<li><strong>Approvals.</strong> <a href="governance.html">What to check before you approve a change</a>, and <a href="hosts-and-portability.html">what an AI connection needs</a>.</li>
+<li><strong>Back up.</strong> <a href="lifecycle.html">Backup and recovery</a>, what <a href="updates.html">updates and removal</a> support in this alpha, and <a href="troubleshooting.html">troubleshooting</a> for installer messages.</li>
 <li><strong>Get quick answers.</strong> The <a href="faq.html">FAQ</a> covers what StatePort is, whether it is safe, where your data lives, and how to report a bug.</li>
 </ol>
           <h2>What is StatePort?</h2>
-          <p>StatePort gives AI-assisted applications a durable place to keep goals, progress, decisions, and history. That information lives in readable files on your machine instead of being trapped in one chat session.</p>
-          <p>Applications can ask an AI tool to help with work, but the tool does not own your data or decide its own permissions. In the StudyState Sample, StatePort keeps the current state, shows the proposed change, and records the result. Output from coding agents is recorded as a run result and is not promoted into application state.</p>
+          <p>StatePort keeps the goals, progress and decisions of AI-assisted work in readable files on your machine, not in one chat session.</p>
+          <p>An AI tool can help with the work, but it does not own your data or decide its own permissions. In the StudyState sample, StatePort keeps the saved state, shows the proposed change and records the result. Output from coding agents is recorded as a run result and is not saved into the app&rsquo;s state.</p>
 
           <section class="docs-catalogue-section" aria-labelledby="catalogue-heading">
             <div class="docs-catalogue-heading">
@@ -141,25 +141,25 @@
 <a class="docs-index-link" href="faq.html" data-doc-entry data-keywords="faq questions safe data internet bug report who builds what is">
 <span><strong>FAQ</strong><small>Short answers: what StatePort is, whether it is safe, where your data lives, and how to report a bug.</small></span><i aria-hidden="true">↗</i>
 </a>
-<a class="docs-index-link" href="project-state.html" data-doc-entry data-keywords="projectstate project operating development outcome slice gate"><span><strong>Work with ProjectState</strong><small>Set a project outcome, work through one slice, and separate checks from your verdict.</small></span><i aria-hidden="true">↗</i></a>
-<a class="docs-index-link" href="everyday-work.html" data-doc-entry data-keywords="first session daily conversation proposal apply readiness"><span><strong>Your first session and everyday work</strong><small>Open an application, check readiness, request help, review changes, and resume work.</small></span><i aria-hidden="true">↗</i></a>
+<a class="docs-index-link" href="project-state.html" data-doc-entry data-keywords="projectstate project operating development outcome slice gate"><span><strong>Work with ProjectState</strong><small>Track a project: the goal, the one piece of work you are on, and the evidence that it works.</small></span><i aria-hidden="true">↗</i></a>
+<a class="docs-index-link" href="everyday-work.html" data-doc-entry data-keywords="first session daily conversation proposal apply readiness"><span><strong>Your first session and everyday work</strong><small>Open an app, check that it is ready, ask for one thing, and review the change.</small></span><i aria-hidden="true">↗</i></a>
                   <a class="docs-index-link" href="getting-started.html" data-doc-entry data-keywords="install setup windows wsl ubuntu one line open first run">
                     <span><strong>Install and open StatePort</strong><small>Set up WSL2 and Ubuntu 24.04, run the dry run, install, and open StatePort.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="templates.html" data-doc-entry data-keywords="template import projectstate studystate statespec repository git isolated copy">
-                    <span><strong>Use a template</strong><small>Understand ProjectState and StudyState, and how template import is designed to work.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Use a template</strong><small>What ProjectState and StudyState are, and how importing a template works.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="prototype-walkthrough.html" data-doc-entry data-keywords="product demo video transcript interface prototype evidence">
                     <span><strong>Product walkthrough</strong><small>See an overview of the interface and follow the longer field guide.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="study-state.html" data-doc-entry data-keywords="studystate study coach application focus lifecycle reflection undo receipts durable state restart">
-                    <span><strong>StudyState</strong><small>Meet the first application: a study sample whose changes you review and apply. One undo exists today, for its last evidence update.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>StudyState</strong><small>The study-plan template and its sample app. You review and apply each change. One undo exists, for the last evidence update.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="deployments.html" data-doc-entry data-keywords="deployment container podman plan approval health receipts inspect rollback">
-                    <span><strong>Container deployments</strong><small>A design preview of how local container deployment is meant to work. It is not in the current installer.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Container deployments</strong><small>A design preview of running a project in local containers. It is not in the installer.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="foundations.html" data-doc-entry data-keywords="why problem chat durable work ownership stateware">
-                    <span><strong>Why StatePort exists</strong><small>Learn why a chat transcript is not enough for lasting work.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Why StatePort exists</strong><small>Why a chat transcript is not enough to keep your work in.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="../releases/" data-doc-entry data-keywords="release status availability download source install">
                     <span><strong>Release status</strong><small>See what you can view or download today.</small></span><i aria-hidden="true">↗</i>
@@ -171,7 +171,7 @@
                 <h3 id="docs-group-build">Design and build</h3>
                 <div class="docs-index-links">
                   <a class="docs-index-link" href="model.html" data-doc-entry data-keywords="model application instance canonical state authority capability receipt">
-                    <span><strong>Core model</strong><small>Learn how applications, personal copies, and saved state fit together.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Core model</strong><small>How templates, your own copy of an app, and saved state fit together.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="../tutorials/first-application.html" data-doc-entry data-keywords="tutorial first application design facts authority lifecycle evidence">
                     <span><strong>Design a first application</strong><small>Choose what your application should remember and who may change it.</small></span><i aria-hidden="true">↗</i>
@@ -186,7 +186,7 @@
                 <h3 id="docs-group-operate">Control, safety, and recovery</h3>
                 <div class="docs-index-links">
                   <a class="docs-index-link" href="lifecycle.html" data-doc-entry data-keywords="lifecycle install update move backup recovery restore">
-                    <span><strong>Lifecycle</strong><small>Follow an application from setup through use, updates, backup, and recovery.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Lifecycle</strong><small>From setup through use, updates, backup and recovery.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="updates.html" data-doc-entry data-keywords="updates upgrade rollback uninstall reinstall removal remove health">
                     <span><strong>Updates and removal</strong><small>See what this alpha supports for updates, rollback, uninstall, and reinstall.</small></span><i aria-hidden="true">↗</i>
@@ -198,7 +198,7 @@
                     <span><strong>Security and privacy</strong><small>Read the safety approach and its current limits.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="hosts-and-portability.html" data-doc-entry data-keywords="host portability model provider execution runtime degradation move">
-                    <span><strong>AI tools and portability</strong><small>See what stays with your application when tools change.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>AI tools and portability</strong><small>What you keep when you change AI tools or move machines.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="platform-support.html" data-doc-entry data-keywords="platform support linux docker macos windows wsl qualification install">
                     <span><strong>Platform support</strong><small>Check the exact Windows 11, WSL2, Ubuntu 24.04, and AMD64 requirements.</small></span><i aria-hidden="true">↗</i>
@@ -210,7 +210,7 @@
                 <h3 id="docs-group-evidence">Roadmap and reference</h3>
                 <div class="docs-index-links">
                   <a class="docs-index-link" href="evidence-and-roadmap.html" data-doc-entry data-keywords="evidence roadmap claim proof validation acceptance release">
-                    <span><strong>Roadmap</strong><small>See what is available now and what we plan to build next.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Roadmap</strong><small>What works now and what I plan to build next.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="limitations.html" data-doc-entry data-keywords="limitations boundaries alpha single user linux podman codex security review download">
                     <span><strong>Current limitations</strong><small>See what has and has not been measured, and the limits of an early alpha.</small></span><i aria-hidden="true">↗</i>
@@ -219,10 +219,10 @@
                     <span><strong>Glossary and concepts</strong><small>Find short definitions of the terms used across the documentation.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="../papers/stateware-whitepaper-public-v1.1.html" data-doc-entry data-keywords="paper whitepaper stateware architecture research thesis">
-                    <span><strong>Stateware paper</strong><small>Read the longer design argument and its publication note.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Stateware paper</strong><small>The longer paper behind the idea.</small></span><i aria-hidden="true">↗</i>
                   </a>
                   <a class="docs-index-link" href="agent-kits.html" data-doc-entry data-keywords="agent kits roadmap templates portable tools planned early direction">
-                    <span><strong>Agent Kits roadmap</strong><small>Explore a scoped early direction without treating it as a released feature.</small></span><i aria-hidden="true">↗</i>
+                    <span><strong>Agent Kits roadmap</strong><small>An idea for shareable app packages. It is not released.</small></span><i aria-hidden="true">↗</i>
                   </a>
                 </div>
               </section>
