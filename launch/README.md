@@ -35,13 +35,13 @@ It checks WSL2, Ubuntu 24.04, systemd, the Windows build and your network, verif
 ## What the owner does to post (10 minutes)
 
 1. Open LinkedIn → Start a post. Copy the body text from `launch/post-en.md` (between the `---` rule and the end; skip the italic note above it).
-2. Attach the demo video `launch/demo/stateport-demo-24s.mp4` (24 s, 5.3 MB; real product UI, trimmed from the published 33 s overview — the outdated closing status card is cut). Alternative: attach images instead — `launch/screenshots/frame-conversation.png`, `frame-result.png`, `stateport-hero-preview.png` (LinkedIn takes video OR images in one post; the video carries the story better).
+2. Attach the demo video `launch/demo/stateport-demo-19s.mp4` (19 s, 2.9 MB; real product UI, trimmed from the published 33 s overview — the outdated closing status card is cut). Alternative: attach images instead — `launch/screenshots/frame-conversation.png`, `frame-result.png`, `stateport-hero-preview.png` (LinkedIn takes video OR images in one post; the video carries the story better).
 3. Post it. Dutch version ready in `launch/post-nl.md` for a follow-up post if you want one.
 4. Immediately add the first comment from `launch/first-comment.md` (EN top, NL below) and pin it.
 5. Optional 10-second check: LinkedIn's link preview uses `assets/media/stateport-social-card.png`; this session could not visually inspect that image (no image input) — glance at the preview and confirm it says nothing stale.
 
 ## Known limits of this kit
 
-- The demo video was recorded in August 2026 (pre-Alpha.20 build); the product UI journey it shows is the same one the site presents today. Its on-screen text says changes "stay undoable". That is not accurate for Alpha.20: one undo exists (the last StudyState Sample evidence update) and platform rollback is not supported. The video is not edited; if this bothers you, post the screenshots instead of the video. A fresh Alpha.20 guest capture was not needed (site assets sufficed); no CAPTURE-REQUEST.md was written.
+- The demo video is the site overview cut to 19 s (the "undoable" segment removed because Alpha.20 has no general undo). It was recorded in August 2026 on an earlier build and shows the study sample and a receipt; it does not show installing.
 - The link-preview card (`assets/media/stateport-social-card.png`) was regenerated after publication: its subtitle now reads "AI-assisted work, saved in files on your own computer." (it said "A durable home ..."). LinkedIn caches previews, so refresh it in the Post Inspector before you post.
 - Windows reboot qualification (`~/.local/state/stateport/alpha20-publish/gov-reboot-1259/`) had not produced a result at publication time; if it lands green, update the releases page wording in a small follow-up commit.

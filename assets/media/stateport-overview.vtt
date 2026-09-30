@@ -1,8 +1,5 @@
 WEBVTT
-
-NOTE Narration of the 24-second product overview (real product interface, recorded August 2026).
-NOTE Cues are the narration word for word. The line "and they stay undoable" is not accurate for Alpha.20:
-only one undo exists (the last StudyState Sample evidence update) and platform rollback is not supported.
+NOTE Narration of the 19-second product overview (real product interface, recorded August 2026 on an earlier build).
 
 1
 00:00:00.090 --> 00:00:01.920
@@ -37,25 +34,13 @@ The study plan, the progress,
 the evidence, not a blank chat box.
 
 9
-00:00:14.643 --> 00:00:16.633
-Consequential changes are reviewed
-
-10
-00:00:16.713 --> 00:00:18.213
-before they land,
-
-11
-00:00:18.213 --> 00:00:19.523
-and they stay undoable.
-
-12
-00:00:19.769 --> 00:00:21.709
+00:00:14.649 --> 00:00:16.589
 And every run leaves a receipt,
 
-13
-00:00:21.939 --> 00:00:22.789
+10
+00:00:16.819 --> 00:00:17.669
 what was asked,
 
-14
-00:00:22.839 --> 00:00:24.309
+11
+00:00:17.719 --> 00:00:19.189
 what was allowed, what was done.

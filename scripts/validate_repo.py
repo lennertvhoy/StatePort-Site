@@ -137,7 +137,7 @@ BRAND_ASSET_SHA256 = {
     "assets/stateport-mascot-block-arch-dark.svg": "62d1a8ee6a68aa025e7246f689cd4ed7e885d7f3d97fb78fe84c0d5f75cdf013",
 }
 MASCOT_SIZE_CONTRACT = {"header": (184, 184), "footer": (85, 85)}
-OVERVIEW_MP4_SHA256 = "3f971754a4fa182c0936aa00b2c6482bb7367d2b580acf2d1de7d6132ddde5bf"
+OVERVIEW_MP4_SHA256 = "bccf9121e2ecd43779599c48ffead2675fd0043b2bdf1d5b3fb0b6fca85c09b5"
 
 
 def is_local_build_source(path: Path) -> bool:
@@ -1597,7 +1597,7 @@ def main() -> None:
     require_text("STATE.yaml", "0.1.0-alpha.16")
     require_text("evidence/alpha16-public-install-001/summary.md", "## Primary journey")
     require_text("index.html", "StatePort")
-    require_text("index.html", "See StatePort in 24 seconds")
+    require_text("index.html", "See StatePort in 19 seconds")
     require_text("docs/prototype-walkthrough.html", "Development preview")
     require_text("docs/agent-kits.html", "Early direction")
     require_text("docs/platform-support.html", "Alpha.16 requirements")
