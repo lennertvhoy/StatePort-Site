@@ -96,11 +96,12 @@
           <span id="current-tool-support"></span>
 <h2 id="provider-setup-and-readiness">Provider setup and readiness</h2>
           <p>Open <strong>Set up or verify provider</strong> from Workspace readiness or Platform. StatePort reports the selected provider, executable status, model configuration, StatePort connection, login presence, bounded-request result, and unavailable billing/quota information as separate observations. Installed does not mean authenticated; authenticated does not mean a request succeeded.</p>
-          <p>The supported settings surface can select <strong>Codex</strong> or <strong>OpenCode</strong> and save a model identifier. Saving is configuration only. For Codex, open <strong>Show installed login command</strong>, paste the displayed command into the Ubuntu WSL terminal, follow the one-time browser code flow, return to StatePort, refresh status, and choose <strong>Verify bounded request</strong>. The provider keeps credentials in its private directory, outside StatePort application backups and exports. The check sends one short request without application files or conversation. OpenCode selection is recorded, but execution is not available through this path. Direct API providers and other tools are not implied by a provider selector.</p>
+          <p>Alpha.20 ships and defaults to OpenCode; Codex is not bundled. The supported settings surface can save a model identifier, and saving is configuration only. StatePort does not verify OpenCode authentication for you: choose <strong>Verify bounded request</strong> to test one short request. The provider keeps credentials in its private directory, outside StatePort application backups and exports. The check sends one short request without application files or conversation. Direct API providers and other tools are not implied by a provider selector.</p>
           <p>Use <strong>Disconnect StatePort</strong> to stop active provider work and cancel queued requests. Reconnecting permits future requests; earlier transcript content remains. Use <strong>Refresh status</strong> when an observation is unavailable.</p>
           <p>See <a href="platform-support.html">platform support</a> for computer requirements and <a href="../releases/">release status</a> for the release boundary.</p>
 
           <h2 id="what-portability-should-preserve">What portability should preserve</h2>
+          <p>This is the design goal. In Alpha.20, portable export and import exist for the instance&rsquo;s files; grants, receipts and provider logins do not travel, and there is no migration wizard.</p>
           <ul>
             <li>Your application files and saved state.</li>
             <li>Your goals, permissions, and history.</li>
