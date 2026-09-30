@@ -88,21 +88,13 @@
 <p class="notice"><strong>Uninstall and reinstall are not yet measured; there is no supported one-command uninstall in this alpha.</strong> Install StatePort only on a computer, Ubuntu distribution, or virtual machine you can afford to lose.</p>
 <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#supported">What this alpha supports</a></li><li data-level="2"><a href="#identity">Check what is installed</a></li><li data-level="2"><a href="#updating">Updating</a></li><li data-level="2"><a href="#backup">Back up before anything else</a></li><li data-level="2"><a href="#removal">Removing StatePort</a></li><li data-level="2"><a href="#reinstalling">Reinstalling</a></li></ol></details>
 <h2 id="supported">What this alpha supports</h2>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Lifecycle support in Alpha.20">
-<table>
-<caption class="sr-only">Lifecycle support in Alpha.20</caption>
-<thead>
-<tr><th scope="col">Action</th><th scope="col">Status in Alpha.20</th></tr>
-</thead>
-<tbody>
-<tr><th scope="row">Fresh install on the supported setup</th><td>Measured: installed and healthy on a fresh Windows 11 virtual machine with WSL2 and Ubuntu 24.04, five times.</td></tr>
-<tr><th scope="row">Update in place</th><td>No supported command.</td></tr>
-<tr><th scope="row">Roll back</th><td>Not supported. The signed release index for Alpha.20 declares that rollback is not supported.</td></tr>
-<tr><th scope="row">Uninstall</th><td>Not yet measured. No supported one-command uninstall.</td></tr>
-<tr><th scope="row">Reinstall</th><td>Not yet measured.</td></tr>
-</tbody>
-</table>
-</div>
+<ul>
+<li><strong>Fresh install on the supported setup:</strong> measured. It installed and reported healthy on a fresh Windows 11 virtual machine with WSL2 and Ubuntu 24.04, five times.</li>
+<li><strong>Update in place:</strong> no supported command.</li>
+<li><strong>Roll back:</strong> not supported. The signed release index for Alpha.20 declares that rollback is not supported.</li>
+<li><strong>Uninstall:</strong> not yet measured. No supported one-command uninstall.</li>
+<li><strong>Reinstall:</strong> not yet measured.</li>
+</ul>
 
 <h2 id="identity">Check what is installed</h2>
 <p>The install receipt records what was installed. It is a JSON file in <code>~/.local/state/stateport-install/receipts/</code>, and the installer printed its path when it finished. The installer also leaves a status command at the path below. We describe it as read-only, but we have not measured it on Alpha.20.</p>

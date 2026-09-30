@@ -116,20 +116,12 @@
 <p>Your approval is tied to what was inspected. If the source changes afterwards, the approval is refused instead of silently importing a different version.</p>
 
 <h2 id="verified">What is verified and what is not</h2>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Verification status of templates">
-<table>
-<caption class="sr-only">Verification status of templates</caption>
-<thead>
-<tr><th scope="col">Item</th><th scope="col">Status</th></tr>
-</thead>
-<tbody>
-<tr><th scope="row">The install itself</th><td>Measured on Alpha.20: installed and healthy on a fresh Windows 11 virtual machine with WSL2 and Ubuntu 24.04, five times. See <a href="limitations.html#measured">current limitations</a>.</td></tr>
-<tr><th scope="row">The StudyState sample flow</th><td>Shown in the product recordings on this site, made before Alpha.20. It has not been separately measured on a fresh Alpha.20 install.</td></tr>
-<tr><th scope="row">Importing a ProjectState or StudyState repository</th><td>Not measured on the installed product.</td></tr>
-<tr><th scope="row">A third, independent template</th><td>Not measured.</td></tr>
-</tbody>
-</table>
-</div>
+<ul>
+<li><strong>The install itself:</strong> measured on Alpha.20. It installed and reported healthy on a fresh Windows 11 virtual machine with WSL2 and Ubuntu 24.04, five times. See <a href="limitations.html#measured">current limitations</a>.</li>
+<li><strong>The StudyState sample flow:</strong> shown in the product recordings on this site, made before Alpha.20. It has not been separately measured on a fresh Alpha.20 install.</li>
+<li><strong>Importing a ProjectState or StudyState repository:</strong> not measured on the installed product.</li>
+<li><strong>A third, independent template:</strong> not measured.</li>
+</ul>
 <p>Not measured means we do not know yet, not that it fails. If you try it, <a href="troubleshooting.html#report">tell us what happened</a>.</p>
 
 <h2 id="safety-heading">What StatePort is designed to copy and run</h2>

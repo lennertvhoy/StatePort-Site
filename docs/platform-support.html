@@ -101,45 +101,13 @@
 <p>Run the five commands in <a href="getting-started.html#check">Step 2 of getting started</a> inside Ubuntu, then run the dry run in <a href="getting-started.html#dry-run">Step 3</a>. It checks the same requirements, verifies the signed manifests, and installs nothing.</p>
 
 <h2 id="table">What is and is not supported</h2>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Platform support">
-<table>
-<caption class="sr-only">Platform support</caption>
-<thead>
-<tr>
-<th scope="col">Environment</th>
-<th scope="col">Status</th>
-<th scope="col">What to know</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th scope="row">Windows 11 + WSL2 + Ubuntu 24.04 on AMD64</th>
-<td>The supported target</td>
-<td>This is the only setup Alpha.20 is meant for, and the only one it has been measured on. See <a href="getting-started.html">getting started</a>.</td>
-</tr>
-<tr>
-<th scope="row">WSL1</th>
-<td>Not supported</td>
-<td>The installer stops with <code>WSL2 is required; WSL1 and native Linux are not this release target.</code></td>
-</tr>
-<tr>
-<th scope="row">Windows 10, or a Windows build older than 22000</th>
-<td>Not supported</td>
-<td>The installer stops with <code>Windows 11 build 22000 or newer is required.</code></td>
-</tr>
-<tr>
-<th scope="row">Native Linux</th>
-<td>Not supported</td>
-<td>The installer refuses it. Native Linux would need its own release path.</td>
-</tr>
-<tr>
-<th scope="row">macOS, Docker Desktop, ARM64, other Linux distributions or Ubuntu versions</th>
-<td>Not supported</td>
-<td>Not tested or packaged. The installer stops on ARM64 and on any distribution other than Ubuntu 24.04.</td>
-</tr>
-</tbody>
-</table>
-</div>
+<ul>
+<li><strong>Windows 11 + WSL2 + Ubuntu 24.04 on AMD64: the supported target.</strong> This is the only setup Alpha.20 is meant for, and the only one it has been measured on. See <a href="getting-started.html">getting started</a>.</li>
+<li><strong>WSL1: not supported.</strong> The installer stops with <code>WSL2 is required; WSL1 and native Linux are not this release target.</code></li>
+<li><strong>Windows 10, or a Windows build older than 22000: not supported.</strong> The installer stops with <code>Windows 11 build 22000 or newer is required.</code></li>
+<li><strong>Native Linux: not supported.</strong> The installer refuses it. Native Linux would need its own release path.</li>
+<li><strong>macOS, Docker Desktop, ARM64, other Linux distributions or Ubuntu versions: not supported.</strong> Not tested or packaged. The installer stops on ARM64 and on any distribution other than Ubuntu 24.04.</li>
+</ul>
 
 <h2 id="measured">What was measured on this setup</h2>
 <p>The public one-line command installed Alpha.20 and reported it healthy on a fresh virtual machine running genuine Windows 11 25H2 with WSL2 and stock Ubuntu 24.04, five times. Not measured yet: surviving a Windows restart, importing templates on the installed product, uninstall and reinstall, every screen of the interface, and memory and disk use on a 16 GB laptop. The full lists are on <a href="limitations.html#measured">current limitations</a>.</p>
