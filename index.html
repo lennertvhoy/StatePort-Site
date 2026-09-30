@@ -4,20 +4,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="StatePort gives AI-assisted work a durable home on your own computer. Early alpha: one command installs it on Windows 11 with WSL2 and Ubuntu 24.04.">
+    <meta name="description" content="StatePort keeps the plan and progress of AI-assisted work in plain files on your computer. Early alpha: one command installs it on Windows 11 with WSL2.">
     <meta name="theme-color" content="#0B132B">
     <meta name="color-scheme" content="light">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="StatePort — a durable home for AI-assisted work">
+    <meta property="og:title" content="StatePort: AI-assisted work saved in files on your computer">
     <meta property="og:description" content="AI chats forget. StatePort keeps your plan, progress and history in files on your own computer. Early alpha for Windows 11 + WSL2.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer, with the current release status.">
+    <meta property="og:image:alt" content="StatePort overview card: AI-assisted work saved in files on your own computer, with the current release status.">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="StatePort — a durable home for AI-assisted work">
+    <meta name="twitter:title" content="StatePort: AI-assisted work saved in files on your computer">
     <meta name="twitter:description" content="AI chats forget. StatePort keeps your plan, progress and history in files on your own computer. Early alpha for Windows 11 + WSL2.">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/">
@@ -28,13 +28,13 @@
     <link rel="manifest" href="site.webmanifest">
     <link rel="stylesheet" href="assets/site.css?v=2026-09-10-1">
     <link rel="stylesheet" href="assets/site-enhancements.css?v=2026-09-10-1" data-site-enhancements>
-    <title>StatePort — Durable AI applications that keep their state</title>
+    <title>StatePort: AI-assisted work saved in files on your computer</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "StatePort",
-        "description": "A lasting home on your own computer for durable, user-owned AI applications, with changes you review before they are applied and a receipt of what was done. Early alpha.",
+        "description": "Keeps the plan and progress of AI-assisted work in plain files on your own computer. Changes wait for your approval and a receipt records what was done. Early alpha.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/",
         "inLanguage": "en"
       }
@@ -67,8 +67,8 @@
         <div class="hero-inner">
           <div class="hero-copy">
             <p class="eyebrow">Early alpha · Windows 11 + WSL2</p>
-            <h1 id="hero-title" aria-label="StatePort. Pick up your work where you left off.">StatePort<span aria-hidden="true">Pick up your work where you left off.</span></h1>
-            <p class="hero-deck">AI chats forget. StatePort keeps AI-assisted work on your own computer: your plan, progress and history live in files you own, important changes wait for your approval, and a receipt records what was done.</p>
+            <h1 id="hero-title" aria-label="StatePort. AI-assisted work, kept in files on your computer.">StatePort<span aria-hidden="true">AI-assisted work, kept in files on your computer.</span></h1>
+            <p class="hero-deck">StatePort keeps the plan and progress of AI-assisted work in plain files on your own computer. Changes wait for your approval, and a receipt records what was done.</p>
             <div class="hero-actions">
               <a class="button" href="#journey">Follow the study example</a>
               <a class="button button--quiet" href="download/">Install on Windows 11</a>
@@ -84,19 +84,19 @@
               <img src="assets/media/stateport-hero-preview.png?v=2026-09-05-2" alt="StudyState Sample showing saved progress and a reflection." width="1280" height="800" decoding="async" loading="eager">
               <span class="prototype-frame-zoom">View full size <span aria-hidden="true">↗</span></span>
             </a>
-            <figcaption>StudyState Sample · your study plan, progress, and reflections.</figcaption>
+            <figcaption>The sample app (StudyState, a study-plan template): a study plan with progress and a saved reflection.</figcaption>
           </figure>
         </div>
       </section>
 
       <section class="home-section" id="journey" aria-labelledby="journey-heading">
         <div class="audience-intro reveal">
-           <p class="section-kicker">One journey, shown step by step</p>
-          <h2 class="section-heading" id="journey-heading">Review an activity. Save a reflection. Come back.</h2>
-          <p>Imagine returning to a study session and wondering where you stopped. StudyState Sample keeps a goal and activities together. Start an activity, approve the proposed change, then review and save a reflection about what you learned. The sample saves your reflection and progress in files on disk, so that is where a return visit starts.</p>
-          <p class="notice notice--quiet"><strong>Where this stands.</strong> In the StudyState Sample, the review-approve-reflect-receipt loop is implemented and passes in the project&rsquo;s automated tests, including a service restart that re-reads the saved state. It has not yet been run end to end on an installed Alpha.20. In the sample, the proposed change comes from a deterministic script, not from a model.</p>
+           <p class="section-kicker">The study example</p>
+          <h2 class="section-heading" id="journey-heading">The study sample, step by step</h2>
+          <p>The sample app is a small study planner called StudyState. It keeps a goal and a few activities. You start an activity and approve the change it proposes. Then you write a reflection and approve saving it. The goal, activities and reflection are saved as files on your computer.</p>
+          <p class="notice notice--quiet"><strong>Status.</strong> The whole loop (review, approve, reflect, receipt) passes in the project&rsquo;s automated tests. That includes restarting the service and reading the saved state again. I have not yet run it end to end on an installed Alpha.20. The change is proposed by a fixed script, not by an AI model.</p>
         </div>
-        <p class="prototype-gallery-intro reveal">Follow the review-and-save workflow in StudyState Sample. A receipt records the change you approved; a reflection captures your own account of what you learned. Click a screen to inspect it, or <a href="tutorials/site-orientation.html">watch the same example in 72 seconds</a>.</p>
+        <p class="prototype-gallery-intro reveal">These screens show the sample. A receipt records the change you approved. The reflection is your own account of what you learned. Click a screen to enlarge it, or <a href="tutorials/site-orientation.html">watch the 72-second walkthrough</a>.</p>
         <div class="prototype-frames" role="group" aria-label="StudyState Sample journey screens">
           <figure class="reveal">
             <a class="prototype-frame-link" href="assets/media/frame-conversation.png?v=2026-09-05-2" data-prototype-gallery-item data-gallery-label="Review a change" data-gallery-summary="Review the exact proposed activity change before approving it." aria-label="Open the change review screenshot in the full-size gallery">
@@ -117,17 +117,17 @@
               <img src="assets/media/frame-mobile.png?v=2026-09-05-2" alt="StudyState Sample in a narrow layout, showing saved progress." width="390" height="844" loading="lazy" decoding="async">
               <span class="prototype-frame-zoom" aria-hidden="true">View full size <span>↗</span></span>
             </a>
-              <figcaption><span>03 / RETURN</span><strong>Use the same clear view</strong><p>Read your study progress and reflections in a layout that adapts to smaller screens.</p></figcaption>
+              <figcaption><span>03 / SMALL SCREEN</span><strong>Use the same clear view</strong><p>Your progress and reflections in a narrow layout, as on a phone.</p></figcaption>
           </figure>
         </div>
       </section>
 
       <section class="reader-paths" aria-labelledby="reader-paths-heading">
-        <div class="reader-paths-intro"><p class="section-kicker">Find your starting point</p><h2 id="reader-paths-heading">Explore more when you are ready.</h2></div>
+        <div class="reader-paths-intro"><p class="section-kicker">More</p><h2 id="reader-paths-heading">Where to read next</h2></div>
         <div class="reader-path-grid">
-          <a class="reader-path" href="docs/study-state.html"><span class="path-number">01 / EXPLORE</span><h3>See a study plan that stays with you.</h3><p>Follow StudyState from a question to a reviewed change.</p><span class="path-link">Meet StudyState <span aria-hidden="true">→</span></span></a>
-          <a class="reader-path" href="docs/"><span class="path-number">02 / UNDERSTAND</span><h3>Know what lives on your machine.</h3><p>Start with the basics. Find setup, privacy, templates, and recovery.</p><span class="path-link">Open the guides <span aria-hidden="true">→</span></span></a>
-          <a class="reader-path" href="papers/"><span class="path-number">03 / GO DEEPER</span><h3>Read the idea behind the product.</h3><p>Explore Stateware, the design idea behind StatePort: durable state, replaceable tools, and explicit control.</p><span class="path-link">Browse the papers <span aria-hidden="true">→</span></span></a>
+          <a class="reader-path" href="docs/study-state.html"><span class="path-number">01 / STUDYSTATE</span><h3>The study sample</h3><p>What StudyState is and what the sample does.</p><span class="path-link">Read about StudyState <span aria-hidden="true">→</span></span></a>
+          <a class="reader-path" href="docs/"><span class="path-number">02 / DOCS</span><h3>The docs</h3><p>Setup, privacy, templates, backup and troubleshooting.</p><span class="path-link">Open the docs <span aria-hidden="true">→</span></span></a>
+          <a class="reader-path" href="papers/"><span class="path-number">03 / PAPERS</span><h3>The idea behind it</h3><p>Stateware is my name for software that keeps its state in plain files you own, so you can change the AI tool without losing the work.</p><span class="path-link">Read the papers <span aria-hidden="true">→</span></span></a>
         </div>
       </section>
 
@@ -136,7 +136,7 @@
           <div class="prototype-intro reveal">
             <p class="section-kicker">Product walkthrough</p>
             <h2 id="overview-heading">See StatePort in 24 seconds.</h2>
-            <p>See an application remember your work, show a proposed change, and record what happened. Captions and a transcript are included.</p>
+            <p>See an application remember your study plan, propose a change, and record a receipt, in a 24-second clip. Captions and a transcript are included.</p>
           </div>
 
           <div class="prototype-stage reveal">
@@ -145,14 +145,14 @@
               <track kind="captions" srclang="en" label="English" src="assets/media/stateport-overview.vtt?v=2026-09-30-1" default>
               Your browser does not support HTML video. The transcript below carries the same information.
             </video>
-            <p id="overview-caption">24 seconds of the real product interface, recorded in August 2026 on an earlier development build. Screens in Alpha.20 may differ. <strong>The video&rsquo;s text says consequential changes &ldquo;stay undoable&rdquo;. That is not accurate for Alpha.20:</strong> one undo exists (the last StudyState Sample evidence update), most changes have no undo, and platform rollback is not supported. Current status: <a href="releases/">release status</a>.</p>
+            <p id="overview-caption">This clip shows the real interface, recorded in August 2026 on an earlier development build. Screens in Alpha.20 may differ. <strong>The text in the video says changes &ldquo;stay undoable&rdquo;. That is wrong for Alpha.20.</strong> Only one undo exists (the last evidence update in the StudyState sample). Most changes cannot be undone, and rolling back the platform is not supported. Current status: <a href="releases/">release status</a>.</p>
             <details class="video-transcript" id="overview-transcript">
               <summary>Read the transcript</summary>
               <p>AI chats forget. Your work shouldn't. StatePort gives AI-assisted work a durable home on your own machine.</p>
               <p>A real app retains its context: the study plan, the progress, the evidence — not a blank chat box.</p>
               <p>Consequential changes are reviewed before they land — and they stay undoable.</p>
               <p>And every run leaves a receipt: what was asked, what was allowed, what was done.</p>
-              <p><em>Note: the narration says changes &ldquo;stay undoable&rdquo;. In Alpha.20 only one undo exists, for the last StudyState Sample evidence update. Most changes have no undo, and platform rollback is not supported.</em></p>
+              <p><em>Note: the narration says changes &ldquo;stay undoable&rdquo;. In Alpha.20 only one undo exists, for the last evidence update in the StudyState sample. Most changes cannot be undone, and rolling back the platform is not supported.</em></p>
             </details>
           </div>
         </div>
@@ -195,24 +195,24 @@
 
       <section class="home-section principles-section" id="benefits" aria-labelledby="benefits-heading">
         <div class="principles-header reveal">
-          <p class="section-kicker">Why it matters</p>
-          <h2 class="section-heading" id="benefits-heading">Three things stay true.</h2>
+          <p class="section-kicker">What it does</p>
+          <h2 class="section-heading" id="benefits-heading">What StatePort does</h2>
         </div>
         <div class="principles">
           <article class="principle reveal">
             <p class="principle-index">01</p>
-            <h3>Your work stays yours</h3>
-            <p>Goals, decisions, and history live in readable files on your own machine — not in a session locked inside someone else's chat.</p>
+            <h3>Your work is in files you own</h3>
+            <p>Goals, decisions and history are saved as readable files on your own computer, not inside a chat session.</p>
           </article>
           <article class="principle reveal">
             <p class="principle-index">02</p>
-            <h3>Continuity comes from saved files</h3>
-            <p>State is saved on disk, not held in a chat window, so a new session can start from what was saved. After you sign in to Windows, StatePort stayed reachable after the last WSL window closed. A Windows reboot is not yet measured.</p>
+            <h3>A new session starts from the saved files</h3>
+            <p>State is saved on disk, not held in a chat window. After you sign in to Windows, StatePort stayed reachable when the last WSL window closed. I have not yet measured a Windows reboot.</p>
           </article>
           <article class="principle reveal">
             <p class="principle-index">03</p>
-            <h3>Change stays reviewable</h3>
-            <p>In the StudyState Sample, important changes are proposed first, and you can inspect the result and its receipt. Output from coding agents is recorded as a run result; StatePort does not yet promote it into application state.</p>
+            <h3>Changes wait for your approval</h3>
+            <p>In the StudyState sample, a change is proposed first and you approve it. You can then open its receipt. Output from coding agents is recorded as a run result. StatePort does not yet save it into your app's state.</p>
           </article>
         </div>
       </section>
@@ -220,27 +220,27 @@
       <section class="route-section" id="how-it-works" aria-labelledby="how-it-works-heading">
         <div class="home-section">
           <p class="section-kicker reveal">How it works</p>
-          <h2 class="section-heading reveal" id="how-it-works-heading">Choose an application. Review the work. Keep the result.</h2>
+          <h2 class="section-heading reveal" id="how-it-works-heading">Templates, approvals, files</h2>
           <div class="route-list">
             <article class="route-step reveal">
               <p class="route-number">01 / TEMPLATE</p>
               <h3>Start from a template</h3>
-              <p>Each application combines a focused workflow with files that hold your goals, progress, and history.</p>
+              <p>A template is a set of files for one kind of app. It has a workflow and the files that hold your goals and progress.</p>
             </article>
             <article class="route-step reveal">
               <p class="route-number">02 / RUN</p>
-              <h3>Stay in control</h3>
-              <p>StatePort shows what the application wants to do and asks before important changes.</p>
+              <h3>Approve changes</h3>
+              <p>StatePort shows what the app wants to change and waits for you to approve it.</p>
             </article>
             <article class="route-step reveal">
               <p class="route-number">03 / KEEP</p>
-              <h3>Keep the result</h3>
-              <p>Your application keeps its decisions, files, and history together on your machine.</p>
+              <h3>Keep the files</h3>
+              <p>Your decisions, files and history stay together on your machine.</p>
             </article>
           </div>
           <figure class="diagram-figure reveal">
-            <img src="assets/diagrams/stateport-diagram-template.png" alt="Design diagram: an application template of state files and scripts flows through StatePort, which runs a headless agent in a managed environment and writes results into a durable instance." width="1568" height="256" loading="lazy" decoding="async">
-            <figcaption>The design, from an application template to a durable instance: the agent does the work, StatePort governs it, the instance keeps it. Today the write into the instance is built for deterministic application actions; coding-agent output is recorded as a run result and is not yet promoted into application state.</figcaption>
+            <img src="assets/diagrams/stateport-diagram-template.png" alt="Design diagram: a template of state files and scripts goes through StatePort, which runs a coding agent in a managed environment and writes the results into your own copy of the app." width="1568" height="256" loading="lazy" decoding="async">
+            <figcaption>The plan: a template becomes your own copy of an app. The agent does the work, StatePort checks it and asks you first, and your copy keeps the result. Today that works for fixed-script actions such as the study sample. Output from coding agents is recorded as a run result and is not yet saved into your app's state.</figcaption>
           </figure>
         </div>
       </section>
@@ -249,12 +249,12 @@
         <div class="release-band-inner release-band-inner--expanded">
           <div class="reveal">
             <p class="release-label">Current availability</p>
-            <h2 id="status-heading">Alpha.20 is the current early alpha.</h2>
+            <h2 id="status-heading">Alpha.20 is the current release, and it is an early alpha</h2>
             <p class="notice"><strong>StatePort is in early alpha. Do not use it for important data.</strong> Here is exactly what works today and what is designed but not yet built.</p>
-            <p><strong>What works today.</strong> Alpha.20 installs on Windows 11 with WSL2 and Ubuntu 24.04 from one command. That command installed StatePort successfully, and it came up healthy, five times on fresh Windows 11 virtual machines. After you sign in to Windows, a small background task keeps StatePort reachable even after the last WSL window is closed.</p>
-            <p>The release installs the web interface, a local API, a background worker, storage and an isolated place to run work, all on your own machine. The included sample application is StudyState.</p>
-            <p><strong>Not yet measured.</strong> Whether StatePort comes back after a Windows reboot, working with templates on Windows, uninstalling and reinstalling, a screen-by-screen check of the whole interface, and speed and resource use. The StudyState Sample loop (review, approve, reflect, receipt) is implemented and passes in the project&rsquo;s automated tests, but has not yet been run end to end on an installed Alpha.20. If you hit a problem, please tell me.</p>
-            <p><strong>Designed, not built.</strong> A general undo (one undo exists, for the last StudyState Sample evidence update) and platform rollback; a chat assistant that answers from your own state (chat sees only the recent conversation); coding-agent output promoted into application state; backups that carry Git history, conversations, receipts and approvals; container deployment; Agent Kits.</p>
+            <p><strong>What works today.</strong> Alpha.20 installs on Windows 11 with WSL2 and Ubuntu 24.04 from one command. The command installed StatePort and it came up healthy five times on fresh Windows 11 virtual machines. After you sign in to Windows, a small background task keeps StatePort reachable when the last WSL window is closed.</p>
+            <p>The install puts a web interface, an API, a background worker, storage and a sandbox for running work on your own machine. The sample app is StudyState, a study-plan template.</p>
+            <p><strong>Not yet measured.</strong> Whether StatePort comes back after a Windows reboot, templates on Windows, uninstalling and reinstalling, a screen-by-screen check of the interface, and speed and memory use. The study sample loop (review, approve, reflect, receipt) passes in the project&rsquo;s automated tests, but I have not yet run it end to end on an installed Alpha.20. If you hit a problem, please tell me.</p>
+            <p><strong>Designed, not built.</strong> An undo for most changes (only one undo exists, for the last evidence update in the study sample) and rolling back the platform. A chat assistant that answers from your own state (chat sees only the recent conversation). Saving coding-agent output into your app's state. Backups that include Git history, conversations, receipts and approvals. Container deployment. Agent Kits (shareable app packages).</p>
             <details class="status-exact">
               <summary>Exact status statement (for reviewers)</summary>
               <p>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress.</p>
@@ -270,15 +270,15 @@
             </div>
             <div>
               <dt>Not yet measured</dt>
-              <dd>Windows reboot, templates, uninstall and reinstall, full interface check, efficiency, and the StudyState Sample loop on an installed Alpha.20 (it passes in automated tests)</dd>
+              <dd>Windows reboot, templates, uninstall and reinstall, full interface check, speed and memory use, and the study sample loop on an installed Alpha.20 (it passes in automated tests)</dd>
             </div>
             <div>
               <dt>Designed, not built</dt>
-              <dd>General undo and platform rollback, chat that reads your state, coding-agent output promoted into state, backup of history and receipts, container deployment, Agent Kits</dd>
+              <dd>Undo for most changes, platform rollback, chat that reads your state, saving coding-agent output into your app's state, backup of history and receipts, container deployment, Agent Kits</dd>
             </div>
             <div>
               <dt>Older releases</dt>
-              <dd>Alpha.16 and earlier are superseded and kept for history only</dd>
+              <dd>Earlier alphas are old. They are kept for history only, so do not install them</dd>
             </div>
           </dl>
         </div>
@@ -286,36 +286,36 @@
 
       <section class="home-section audience-section" id="routes" aria-labelledby="routes-heading">
         <div class="audience-intro reveal">
-          <p class="section-kicker">Choose a deeper route</p>
-          <h2 class="section-heading" id="routes-heading">Where to go next.</h2>
+          <p class="section-kicker">More</p>
+          <h2 class="section-heading" id="routes-heading">Where to go next</h2>
         </div>
         <div class="audience-paths">
           <article class="audience-path reveal">
             <p class="audience-label">Curious</p>
-            <h3>Watch the product work</h3>
-            <p>Follow the study sample from review to saved reflection. It is shown in recordings from an earlier build and passes in automated tests; it has not yet been run on an installed Alpha.20.</p>
-            <a href="docs/prototype-walkthrough.html">Open the product walkthrough <span aria-hidden="true">↗</span></a>
+            <h3>See the study sample</h3>
+            <p>Follow it from review to saved reflection. The recordings come from an earlier build. It passes automated tests, and I have not yet run it on an installed Alpha.20.</p>
+            <a href="docs/prototype-walkthrough.html">Open the walkthrough <span aria-hidden="true">↗</span></a>
           </article>
           <article class="audience-path reveal">
             <p class="audience-label">Builders</p>
-            <h3>Study the design</h3>
-            <p>Learn how StatePort stores work, controls changes, and stays portable.</p>
-            <a href="docs/">Open the documentation <span aria-hidden="true">↗</span></a>
+            <h3>Read the docs</h3>
+            <p>How StatePort stores work, asks for approval, and backs up.</p>
+            <a href="docs/">Open the docs <span aria-hidden="true">↗</span></a>
           </article>
           <article class="audience-path reveal">
             <p class="audience-label">Self-hosters</p>
-            <h3>Check availability</h3>
-            <p>See what you can view or download today.</p>
+            <h3>Check the release status</h3>
+            <p>What you can view or download today.</p>
             <a href="releases/">Open the release status <span aria-hidden="true">↗</span></a>
           </article>
         </div>
-        <p class="roadmap-note reveal"><strong>Early direction:</strong> Agent Kits remain an early direction, not a released capability. <a href="docs/agent-kits.html">Read the scoped roadmap.</a></p>
+        <p class="roadmap-note reveal">Agent Kits (shareable app packages) are an idea, not a release. <a href="docs/agent-kits.html">Read what is planned.</a></p>
       </section>
       <section class="home-section about-section" id="about" aria-labelledby="about-heading">
         <div class="audience-intro reveal">
           <p class="section-kicker">About</p>
           <h2 class="section-heading" id="about-heading">Built by one person, in the open.</h2>
-          <p>StatePort is a one-person project. The site, the release files and the measurement notes are public, and the installer is a plain script you can read before you run it. Questions, bugs and feedback all go to the same place: <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">GitHub issues<span class="sr-only"> (opens in a new tab)</span></a>.</p>
+          <p>I am building StatePort alone. The site, the release files and my measurement notes are public, and the installer is a plain script you can read before you run it. Questions, bugs and feedback all go to the same place: <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">GitHub issues<span class="sr-only"> (opens in a new tab)</span></a>.</p>
         </div>
       </section>
     </main>
@@ -351,7 +351,7 @@
       <div class="footer-inner">
         <div class="footer-mark">
           <img src="assets/stateport-mascot-block-arch-light.svg" alt="" width="85" height="85">
-          <p><strong>StatePort</strong>Durable AI-assisted work, kept in view.</p>
+          <p><strong>StatePort</strong>AI-assisted work, saved in files on your computer.</p>
         </div>
         <nav class="footer-nav" aria-label="Footer navigation">
           <a href="docs/">Docs</a>
