@@ -24,26 +24,27 @@
 
   const documentationSequence = [
     ["docs/", "Documentation home"],
-    ["docs/troubleshooting.html", "Troubleshooting"],
-    ["docs/project-state.html", "ProjectState"],
-    ["docs/everyday-work.html", "Your first session"],
-    ["docs/prototype-walkthrough.html", "Product walkthrough"],
     ["docs/getting-started.html", "Install and open"],
+    ["docs/everyday-work.html", "Your first session"],
     ["docs/templates.html", "Use a template"],
+    ["docs/project-state.html", "ProjectState"],
     ["docs/study-state.html", "StudyState"],
+    ["docs/troubleshooting.html", "Troubleshooting"],
+    ["docs/faq.html", "FAQ"],
+    ["docs/lifecycle.html", "Lifecycle"],
+    ["docs/updates.html", "Updates and removal"],
+    ["docs/governance.html", "Governed change"],
+    ["docs/hosts-and-portability.html", "Hosts and portability"],
+    ["docs/security-and-privacy.html", "Security and privacy"],
+    ["docs/platform-support.html", "Platform support"],
+    ["docs/limitations.html", "Current limitations"],
     ["docs/foundations.html", "Why StatePort exists"],
     ["docs/model.html", "Core model"],
-    ["docs/lifecycle.html", "Lifecycle"],
-    ["docs/governance.html", "Governed change"],
-    ["docs/security-and-privacy.html", "Security and privacy"],
-    ["docs/hosts-and-portability.html", "Hosts and portability"],
-    ["docs/platform-support.html", "Platform support"],
-    ["docs/evidence-and-roadmap.html", "Evidence and roadmap"],
-    ["docs/reference.html", "Reference and FAQ"],
     ["docs/deployments.html", "Container deployments"],
-    ["docs/updates.html", "Updates"],
-    ["docs/limitations.html", "Current limitations"],
+    ["docs/reference.html", "Glossary and concepts"],
+    ["docs/evidence-and-roadmap.html", "Roadmap"],
     ["docs/agent-kits.html", "Agent Kits roadmap"],
+    ["docs/prototype-walkthrough.html", "Product walkthrough"],
   ];
 
   Object.assign(routeLabels, Object.fromEntries(documentationSequence));
@@ -343,7 +344,7 @@
 
   function classifyDocumentationLink(path) {
     const groups = [
-      ["Start", ["docs/everyday-work.html", "docs/project-state.html", "docs/", "docs/getting-started.html", "docs/templates.html", "docs/study-state.html", "docs/foundations.html", "docs/prototype-walkthrough.html"]],
+      ["Start", ["docs/faq.html", "docs/everyday-work.html", "docs/project-state.html", "docs/", "docs/getting-started.html", "docs/templates.html", "docs/study-state.html", "docs/foundations.html", "docs/prototype-walkthrough.html"]],
       ["Design", ["docs/model.html", "tutorials/", "tutorials/first-application.html", "tutorials/reading-a-receipt.html"]],
       ["Operate", ["docs/troubleshooting.html", "docs/updates.html", "docs/deployments.html", "docs/limitations.html", "docs/lifecycle.html", "docs/governance.html", "docs/security-and-privacy.html", "docs/hosts-and-portability.html", "docs/platform-support.html"]],
       ["Evidence", ["docs/evidence-and-roadmap.html", "docs/reference.html", "docs/agent-kits.html", "papers/stateware-whitepaper-public-v1.1.html", "releases/"]],
