@@ -98,7 +98,7 @@
 <p>The installer makes more checks on the host while it runs and refuses with a message if something is missing. <a href="troubleshooting.html">Troubleshooting</a> explains each message.</p>
 
 <h2 id="check">Check before you start</h2>
-<p>Run the five commands in <a href="getting-started.html#check">Step 2 of getting started</a> inside Ubuntu, then run the dry run in <a href="getting-started.html#dry-run">Step 3</a>. It checks the same requirements, verifies the signed manifests, and installs nothing.</p>
+<p>Run the five commands in <a href="getting-started.html#check">Step 2 of getting started</a> inside Ubuntu, then run the dry run in <a href="getting-started.html#dry-run">Step 3</a>. It checks the same requirements, checks the fingerprints of the container image list, and installs nothing.</p>
 
 <h2 id="table">What is and is not supported</h2>
 <ul>
@@ -113,10 +113,14 @@
 <p>The public one-line command installed Alpha.20 and reported it healthy on a fresh virtual machine running genuine Windows 11 25H2 with WSL2 and stock Ubuntu 24.04, five times. Not measured yet: surviving a Windows restart, importing templates on the installed product, uninstall and reinstall, every screen of the interface, and memory and disk use on a 16 GB laptop. The full lists are on <a href="limitations.html#measured">current limitations</a>.</p>
 
 <h2 id="why-support-is-narrow">Why support is narrow</h2>
-<p>StatePort uses local storage, Linux services, containers, and an AI command-line tool. A setup is only useful when all of those parts work together and your data survives a restart. We will add platforms only after testing the full journey.</p>
+<p>StatePort uses local storage, Linux services, containers and an AI command-line tool. A setup is only useful when all of those work together and your data survives a restart. I will add platforms only after I have tested the whole path on them.</p>
 
 <h2 id="earlier">Earlier releases</h2>
-<p>The Alpha.16 requirements named the same Windows 11, WSL2, and Ubuntu 24.04 setup. Alpha.16 is superseded, and its fresh installation was blocked, so do not use it. Use the current release named on the <a href="../releases/">release status</a> page, and do not mix files from different releases.</p>
+<p>Earlier alphas are old. Do not use them. Use the current release named on the <a href="../releases/">release status</a> page, and do not mix files from different releases.</p>
+<details class="status-exact">
+<summary>Earlier release requirements (for reviewers)</summary>
+<p>The Alpha.16 requirements named the same Windows 11, WSL2, and Ubuntu 24.04 setup. Alpha.16 is superseded, and its fresh installation was blocked, so do not use it.</p>
+</details>
 <div class="inline-actions">
 <a class="button button--ink" href="getting-started.html">Install StatePort</a>
 <a class="button button--outlined" href="hosts-and-portability.html">Read host boundaries</a>

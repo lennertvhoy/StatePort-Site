@@ -99,28 +99,28 @@
 
           <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-stateport-keeps">What StatePort keeps</a></li><li data-level="2"><a href="#how-a-deployment-happens">How a deployment happens</a></li><li data-level="2"><a href="#what-the-plan-refuses">What the plan refuses</a></li><li data-level="2"><a href="#what-is-not-supported-yet">What is not supported yet</a></li></ol></details>
           <h2 id="what-stateport-keeps">What StatePort keeps</h2>
-          <p>StatePort saves the deployment plan, your approval, the result, and later status checks. That is more useful than a command with no record of why it ran.</p>
+          <p>StatePort would save the deployment plan, your approval, the result and later status checks. That is more useful than a command with no record of why it ran.</p>
 
           <h2 id="how-a-deployment-happens">How a deployment happens</h2>
           <ol>
             <li><strong>Inspect.</strong> Read the project without changing it.</li>
-            <li><strong>Plan.</strong> List the services, images, ports, storage, and generated configuration.</li>
-            <li><strong>Approve.</strong> Show you the complete plan and wait for your decision.</li>
-            <li><strong>Run and check.</strong> Start the containers with rootless Podman and wait for their health checks.</li>
-            <li><strong>Operate.</strong> Keep status, logs, and restart controls available.</li>
+            <li><strong>Plan.</strong> List the services, images, ports, storage and generated configuration.</li>
+            <li><strong>Approve.</strong> Show you the whole plan and wait for your decision.</li>
+            <li><strong>Run and check.</strong> Start the containers with rootless Podman (containers that do not need root) and wait for their health checks.</li>
+            <li><strong>Operate.</strong> Keep status, logs and restart controls available.</li>
             <li><strong>Remove.</strong> Stop the deployment without deleting stored data unless you approve that separately.</li>
           </ol>
-          <p>Each step leaves a change record. Failed or interrupted work stays visible.</p>
+          <p>Each step would leave a change record, and failed or interrupted work would stay visible.</p>
 
           <h2 id="what-the-plan-refuses">What the plan refuses</h2>
-          <p>The design refuses root containers, privileged access, host bind mounts, changing image tags, missing health checks, plain-text secrets, and public network exposure.</p>
+          <p>The plan refuses root containers, privileged access, host bind mounts, image tags that can change, missing health checks, plain-text secrets and public network exposure.</p>
 
           <h2 id="what-is-not-supported-yet">What is not supported yet</h2>
           <ul>
             <li>Upgrade and rollback between deployment versions.</li>
             <li>Remote hosts over SSH, image-registry distribution, and a dedicated deployment interface.</li>
-            <li>Arbitrary projects. Initial support focuses on clear Python, Node, and static web projects.</li>
-            <li>Cloud or public-network deployment, including Azure. The current target is a single local machine.</li>
+            <li>Arbitrary projects. The first target is plain Python, Node and static web projects.</li>
+            <li>Cloud or public-network deployment, including Azure. The target is a single local machine.</li>
           </ul>
 
           <div class="inline-actions">
