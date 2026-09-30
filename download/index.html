@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Install StatePort on Windows 11 with WSL2 and Ubuntu 24.04 using one command. Alpha.20 is the current signed candidate; native qualification remains pending.">
+    <meta name="description" content="Install StatePort on Windows 11 with WSL2 and Ubuntu 24.04 with one signed command; Alpha.20 installed and came up healthy twice on a genuine Windows 11 VM.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
@@ -33,7 +33,7 @@
         "name": "Download StatePort Alpha.20",
         "description": "Review the Alpha.20 signed candidate status and inspect its published signed files; native reboot checks remain pending.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/download/",
-        "dateModified": "2026-09-04",
+        "dateModified": "2026-09-30",
         "inLanguage": "en"
       }
     </script>
@@ -103,6 +103,7 @@
             <p>Open Ubuntu 24.04 in WSL2 and run this as your normal Ubuntu user:</p>
           <pre><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)</code></pre>
             <p>The installer checks the host before mutation, verifies the signed release and exact image manifests, shows the package and installation plans, and asks for two explicit confirmations. A successful run prints <strong>StatePort is installed and healthy</strong>, the local URL, and the durable receipt path.</p>
+            <p>You can check the published installer bytes before running anything: <code>install.sh</code> has SHA-256 <code>b83e8376776cd663b6a0aa8098ddde489f0125e033d70e8b1421fb04d1cb8916</code>. Compare it yourself with <code>curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh | sha256sum</code>.</p>
           </section>
 
           <section id="after-install" aria-labelledby="after-install-heading">

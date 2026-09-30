@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Alpha.20 is the current signed candidate; its one-line installer installed and came up healthy on a genuine Windows 11 host; reboot checks remain pending. Alpha.16 is retained for history.">
+    <meta name="description" content="Alpha.20 is the current signed candidate; its one-line installer is available, measured healthy twice on a genuine Windows 11 + WSL2 VM; reboot checks pending.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
@@ -33,7 +33,7 @@
         "name": "StatePort release status",
         "description": "StatePort 0.1.0-alpha.20 is the current signed candidate for Windows 11, WSL2, and Ubuntu 24.04; native install and session-close survival measured, reboot checks pending.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/releases/",
-        "dateModified": "2026-09-04",
+        "dateModified": "2026-09-30",
         "inLanguage": "en"
       }
     </script>
@@ -88,7 +88,7 @@
               <p>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress. The published Alpha.16 package contains the web interface, API, worker, persistent application service, rootless Podman stack, and isolated execution host; its fresh installer failed before completing that setup. ProjectState, StudyState, and portable StateSpec repositories can be reviewed and copied into managed applications.</p>
               <p><a class="button button--ink" href="../download/">Open download page <span aria-hidden="true">↗</span></a></p>
             </div>
-            <p class="release-review-date">Status reviewed<br><time datetime="2026-09-14">14 September 2026</time></p>
+            <p class="release-review-date">Status reviewed<br><time datetime="2026-09-30">30 September 2026</time></p>
           </div>
 
           <section id="available-now" aria-labelledby="available-now-heading">
@@ -121,6 +121,7 @@
             <p><strong>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress.</strong> Its signed release index passed independent verifier review, and its complete installed-product rehearsal passed in an isolated simulation environment. Alpha.16 is a superseded predecessor: its fresh installation was blocked by a signature-check defect, and it is retained for history; its signed index binds the corrected installer source identity, runtime package bundle, seven image digests, and image signatures. Anonymous public-byte verification passed for the published files; native Windows/WSL owner acceptance remains a separate gate.</p>
             <p>The Alpha.20 evidence entry is recorded at <code>evidence/alpha20-public-install-001/summary.md</code> in this repository.</p>
             <p><a href="../download/technical-release-files.html">Technical release files</a> remain available for developers and reviewers.</p>
+            <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue</a>.</p>
           </section>
 
           <p class="notice"><strong>Do not install Alpha 2 or Alpha 3. They contain known bugs.</strong> <a href="../download/erratum-alpha3.html">Read the Alpha.3 technical details</a>.</p>
