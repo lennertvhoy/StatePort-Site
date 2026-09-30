@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Alpha.20 is the current signed candidate; its one-line installer is available, measured healthy twice on a genuine Windows 11 + WSL2 VM; reboot checks pending.">
+    <meta name="description" content="Alpha.20 is the current early alpha. Its one-line installer is available and came up healthy five times on fresh Windows 11 VMs; reboot survival is not yet measured.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="StatePort release status">
-    <meta property="og:description" content="Alpha.20 is the current signed candidate; its rehearsal passed in isolated simulation and its public route installed on a genuine Windows 11 host; reboot checks remain pending. Alpha.16 is retained for history.">
+    <meta property="og:description" content="What is available today: Alpha.20 installs on Windows 11 with WSL2 from one command (five clean installs on fresh VMs). Known limits are listed plainly.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/releases/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -31,7 +31,7 @@
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "StatePort release status",
-        "description": "StatePort 0.1.0-alpha.20 is the current signed candidate for Windows 11, WSL2, and Ubuntu 24.04; native install and session-close survival measured, reboot checks pending.",
+        "description": "StatePort Alpha.20 for Windows 11, WSL2, and Ubuntu 24.04: what has been measured, what has not been tested yet, and what is available today.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/releases/",
         "dateModified": "2026-09-30",
         "inLanguage": "en"
@@ -80,13 +80,14 @@
         </aside>
 
         <article class="prose release-overview" data-no-toc>
-          <p class="notice"><strong>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress. Alpha.16 is a superseded predecessor: its fresh installation was blocked by a signature-check defect and it is retained for history.</strong> The current Alpha.20 command installs through this public route and its images are anonymously downloadable; retry guidance for the historical Alpha.16 route no longer applies. Published files remain available for inspection.</p>
+          <p class="notice"><strong>StatePort is in early alpha. Do not use it for important data.</strong> Use test data and keep your own backups.</p>
           <div class="release-summary" id="current-status">
             <div>
               <p class="release-summary-label">Current software status</p>
-              <h2>Alpha.20 is the current signed candidate</h2>
-              <p>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress. The published Alpha.16 package contains the web interface, API, worker, persistent application service, rootless Podman stack, and isolated execution host; its fresh installer failed before completing that setup. ProjectState, StudyState, and portable StateSpec repositories can be reviewed and copied into managed applications.</p>
-              <p><a class="button button--ink" href="../download/">Open download page <span aria-hidden="true">↗</span></a></p>
+              <h2>Alpha.20 is the current early alpha</h2>
+              <p>Alpha.20 installs on Windows 11 with WSL2 and Ubuntu 24.04 from one command. It installed successfully, and came up healthy, five times on fresh Windows 11 virtual machines (two earlier runs and three on 30 September 2026). After an interactive Windows sign-in, a small keep-alive task keeps StatePort reachable after the last WSL window is closed.</p>
+              <p><strong>Not tested yet:</strong> whether StatePort survives a Windows reboot, working with templates on Windows, uninstalling and reinstalling, a screen-by-screen check of the whole interface, and speed and resource use.</p>
+              <p><a class="button button--ink" href="../download/">Open the install guide <span aria-hidden="true">↗</span></a></p>
             </div>
             <p class="release-review-date">Status reviewed<br><time datetime="2026-09-30">30 September 2026</time></p>
           </div>
@@ -95,21 +96,20 @@
             <h2 id="available-now-heading">At a glance</h2>
             <div class="table-scroll">
               <table>
-                <caption>What is available right now</caption>
+                <caption>What is available and what has been measured</caption>
                 <thead><tr><th scope="col">What</th><th scope="col">Status</th></tr></thead>
                 <tbody>
-                  <tr><th scope="row">Website</th><td>Live</td></tr>
-                  <tr><th scope="row">Product preview</th><td>Available</td></tr>
-                  <tr><th scope="row">Documentation</th><td>Available</td></tr>
-                  <tr><th scope="row">Alpha.20 signed candidate files</th><td>Available; native install measured on a genuine Windows 11 host</td></tr>
-                  <tr><th scope="row">Alpha.20 one-line installer</th><td>Installed and came up healthy on a genuine Windows 11/WSL2 host through the public route; after an interactive logon the keep-alive task held the environment and the product stayed reachable after the last WSL session closed; reboot survival not yet measured</td></tr>
-                  <tr><th scope="row">Alpha.16 signed release files</th><td>Available; superseded and retained for history (its fresh installation was blocked)</td></tr>
-                  <tr><th scope="row">Seven Alpha.20 release images</th><td>Exact signed GHCR digests; anonymous downloads verified</td></tr>
-                  <tr><th scope="row">Clean isolated Ubuntu 24.04 rehearsal</th><td>Passed for Alpha.20 in an isolated simulation; the historical Alpha.16 fresh public install failed its package signature check</td></tr>
-                  <tr><th scope="row">Native Windows/WSL reboot survival</th><td>Not yet measured</td></tr>
-                  <tr><th scope="row">Native Windows/WSL owner acceptance</th><td>Not yet recorded</td></tr>
-                  <tr><th scope="row">Alpha.14, Alpha.13, and earlier</th><td>Superseded, rejected, or retained for inspection only; never a current install path</td></tr>
-                  <tr><th scope="row">Older alphas</th><td>Do not install Alpha 2 or Alpha 3</td></tr>
+                  <tr><th scope="row">Website and documentation</th><td>Live</td></tr>
+                  <tr><th scope="row">Product preview (screens and video)</th><td>Available; the video was recorded on an earlier development build</td></tr>
+                  <tr><th scope="row">Alpha.20 one-line installer</th><td>Available. Installed and healthy five times on fresh Windows 11 virtual machines (not physical PCs)</td></tr>
+                  <tr><th scope="row">Reachable after the last WSL window closes</th><td>Measured after an interactive Windows sign-in, with the keep-alive task</td></tr>
+                  <tr><th scope="row">Windows reboot survival</th><td>Not yet measured</td></tr>
+                  <tr><th scope="row">Templates on Windows</th><td>Not yet tested</td></tr>
+                  <tr><th scope="row">Uninstall and reinstall</th><td>Not yet tested</td></tr>
+                  <tr><th scope="row">Screen-by-screen interface check</th><td>Not yet done</td></tr>
+                  <tr><th scope="row">Speed and resource use</th><td>Not yet measured</td></tr>
+                  <tr><th scope="row">Alpha.16 and earlier</th><td>Superseded; kept for inspection only, never a current install path (Alpha.16&rsquo;s fresh installation was blocked by a signature-check defect)</td></tr>
+                  <tr><th scope="row">Alpha 2 and Alpha 3</th><td>Do not install</td></tr>
                 </tbody>
               </table>
             </div>
@@ -118,10 +118,12 @@
           <section id="release-evidence" aria-labelledby="release-evidence-heading">
             <h2 id="release-evidence-heading">Before you use StatePort</h2>
             <p>StatePort is in early alpha. Do not use it for important data.</p>
-            <p><strong>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress.</strong> Its signed release index passed independent verifier review, and its complete installed-product rehearsal passed in an isolated simulation environment. Alpha.16 is a superseded predecessor: its fresh installation was blocked by a signature-check defect, and it is retained for history; its signed index binds the corrected installer source identity, runtime package bundle, seven image digests, and image signatures. Anonymous public-byte verification passed for the published files; native Windows/WSL owner acceptance remains a separate gate.</p>
-            <p>The Alpha.20 evidence entry is recorded at <code>evidence/alpha20-public-install-001/summary.md</code> in this repository.</p>
-            <p><a href="../download/technical-release-files.html">Technical release files</a> remain available for developers and reviewers.</p>
-            <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue</a>.</p>
+            <p>It is built by one person, in the open. The measurement notes for the first runs are in the public repository under <a href="https://github.com/lennertvhoy/StatePort-Site/tree/main/evidence/alpha20-public-install-001" target="_blank" rel="noopener">evidence/alpha20-public-install-001<span class="sr-only"> (opens in a new tab)</span></a>, and <a href="../download/technical-release-files.html">technical release files</a> remain available for developers and reviewers.</p>
+            <details class="status-exact">
+              <summary>Exact status statement (for reviewers)</summary>
+              <p>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress.</p>
+            </details>
+            <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue<span class="sr-only"> (opens in a new tab)</span></a>.</p>
           </section>
 
           <p class="notice"><strong>Do not install Alpha 2 or Alpha 3. They contain known bugs.</strong> <a href="../download/erratum-alpha3.html">Read the Alpha.3 technical details</a>.</p>
@@ -139,6 +141,7 @@
           <a href="../docs/">Docs</a>
           <a href="../tutorials/">Tutorials</a>
           <a href="./" aria-current="page">Release status</a>
+          <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Report a problem<span class="sr-only"> (opens in a new tab)</span></a>
         </nav>
         <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
       </div>
