@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Read the idea behind StatePort: Stateware, a 20-minute paper on keeping AI-assisted work durable, reviewable, and on your own computer.">
+    <meta name="description" content="The idea behind StatePort: a 20-minute paper on keeping the state of AI-assisted work in plain files you own.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="The idea behind StatePort — papers">
-    <meta property="og:description" content="AI chats forget. Your work shouldn't. Read Stateware, the 20-minute idea paper behind StatePort, a durable home for AI-assisted work on your own computer.">
+    <meta property="og:description" content="Read the 20-minute paper behind StatePort: keep AI-assisted work in plain files on your own computer.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/papers/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -61,20 +61,20 @@
     <main id="main">
       <section class="article-hero" aria-labelledby="papers-title"><div class="article-hero-inner">
         <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="../">Home</a></li><li><span aria-current="page">Papers</span></li></ol></nav>
-        <p class="document-kicker">Papers</p><h1 id="papers-title">The idea behind StatePort.</h1>
-        <p>AI chats forget. Your work shouldn't. Stateware is the idea behind StatePort: a durable home for AI-assisted work on your own computer, where the record of your work, not the chat, is the application.</p>
+        <p class="document-kicker">Papers</p><h1 id="papers-title">The idea behind StatePort</h1>
+        <p>Stateware is my name for software that keeps its state in plain files you own, so you can change the AI tool without losing the work. The papers explain the idea.</p>
         <div class="inline-actions"><a class="button" href="stateware-whitepaper-public-v1.1.html">Read the idea behind StatePort</a><a class="button button--quiet" href="../">Back to the home page</a></div>
       </div></section>
       <div class="article-shell article-shell--docs-overview">
         <aside class="doc-sidebar doc-sidebar--wide-only" aria-label="Reading room sections"><h2>In this collection</h2><nav><a href="#start">Read this first</a><a href="#short-on-time">Short on time?</a><a href="#try-it">Try StatePort</a><a href="#terms">Three useful distinctions</a><a href="#earlier-draft">Earlier draft</a><a href="../">Home</a><a href="../download/">Download</a><a href="../releases/">Release status</a></nav></aside>
         <article class="prose" data-no-toc>
-          <p class="notice notice--quiet"><strong>An idea is not a release guarantee.</strong> These papers explain the idea behind StatePort. StatePort itself is an early alpha, and the <a href="../releases/">release status page</a> says what is available today and what has been measured.</p>
-          <h2 id="start">Read this first.</h2>
-          <p>When an AI session ends, where does the work live? Stateware puts goals, decisions, progress, and history in a durable application state that you can inspect. Models and interfaces work with that state under explicit rules.</p>
+          <p class="notice notice--quiet"><strong>An idea is not a promise about the release.</strong> These papers explain the idea behind StatePort. StatePort itself is an early alpha. The <a href="../releases/">release status page</a> says what works today and what I have measured.</p>
+          <h2 id="start">Start here</h2>
+          <p>When an AI session ends, where does the work live? Stateware puts goals, decisions, progress and history in saved state that you can inspect. Models and interfaces work with that state under stated rules.</p>
           <section class="paper-edition paper-edition--primary" aria-labelledby="paper-title-main">
             <p class="section-kicker">Start here · Current public paper</p>
             <h3 id="paper-title-main">Stateware: State as the Application Boundary</h3>
-            <p class="paper-summary">Why the lasting record of your work, not the chat, should be the application: keep your work on your own computer, review changes before they count, and change the AI tool without losing the work.</p>
+            <p class="paper-summary">Why the saved record of your work, not the chat, should be the application. Keep your work on your own computer, review changes before they count, and change the AI tool without losing the work.</p>
             <ul class="paper-facts" aria-label="About this paper">
               <li>About 20 minutes</li>
               <li>10 diagrams</li>
@@ -86,16 +86,16 @@
           </section>
           <h2 id="short-on-time">Short on time?</h2>
           <p>Read <a href="stateware-whitepaper-public-v1.1.html#abstract-and-thesis">Section 1, the abstract and thesis</a> (about 2 minutes) and <a href="stateware-whitepaper-public-v1.1.html#the-bet">Section 9, the bet</a> (about 1 minute). Or start with a shorter guide:</p>
-          <div class="quick-routes"><a href="../docs/foundations.html"><strong>The idea in plain language</strong><span>A short introduction to why StatePort exists →</span></a><a href="../docs/model.html"><strong>From idea to working model</strong><span>Templates, instances, state, and change records →</span></a></div>
-          <h2 id="try-it">Then try StatePort.</h2>
-          <p>StatePort is early alpha software. The Alpha.20 release installs from one command on Windows 11 with WSL2 and Ubuntu 24.04. Reboot survival, templates, and uninstall and reinstall have not been measured yet, so please do not trust it with important data.</p>
+          <div class="quick-routes"><a href="../docs/foundations.html"><strong>The idea in plain language</strong><span>Why StatePort exists →</span></a><a href="../docs/model.html"><strong>How StatePort is organized</strong><span>Templates, instances, saved state and change records →</span></a></div>
+          <h2 id="try-it">Try StatePort</h2>
+          <p>StatePort is early alpha software. Alpha.20 installs from one command on Windows 11 with WSL2 and Ubuntu 24.04. I have not measured a Windows reboot, templates, or uninstall and reinstall yet, so please do not trust it with important data.</p>
           <p class="paper-actions"><a class="button button--ink" href="../download/">Get the install command</a> <a class="button button--outlined" href="../releases/">Read the known limits</a> <a class="button button--outlined" href="../index.html#journey">See the study example</a></p>
-          <h2 id="terms">Three useful distinctions</h2>
-          <dl class="plain-definitions"><dt>Stateware / StatePort</dt><dd>Stateware names the proposed model. StatePort is an implementation exploring it.</dd><dt>Template / instance</dt><dd>A template defines an application. An instance is your own working copy, with its own state and history.</dd><dt>Recorded / verified</dt><dd>A receipt records an operation. Verification checks a specific result. Neither alone establishes that an answer is correct or that a person accepted it.</dd></dl>
-          <h2 id="read-critically">Read critically. Follow the evidence.</h2><p>Readable files are not automatically portable execution. Local storage does not mean an external AI provider receives no data. A recorded change is not necessarily reversible. The practical guides explain these boundaries.</p>
-          <p><a href="../docs/security-and-privacy.html">Security and privacy</a> · <a href="../docs/lifecycle.html">Recovery and lifecycle</a> · <a href="../docs/evidence-and-roadmap.html">Evidence and roadmap</a></p>
+          <h2 id="terms">Terms used in the papers</h2>
+          <dl class="plain-definitions"><dt>Stateware / StatePort</dt><dd>Stateware is the model. StatePort is my attempt to build it.</dd><dt>Template / instance</dt><dd>A template defines an app. An instance is your own working copy, with its own state and history.</dd><dt>Recorded / verified</dt><dd>A receipt records an operation. Verification checks a specific result. Neither shows that an answer is correct or that a person accepted it.</dd></dl>
+          <h2 id="read-critically">Read it critically</h2><p>Readable files do not automatically move between machines and keep working. Local storage does not mean an outside AI provider receives no data. A recorded change is not always reversible. The practical guides explain these limits.</p>
+          <p><a href="../docs/security-and-privacy.html">Security and privacy</a> · <a href="../docs/lifecycle.html">Backup and recovery</a> · <a href="../docs/evidence-and-roadmap.html">Roadmap</a></p>
           <h2 id="earlier-draft">An earlier draft</h2>
-          <p class="edition-note">An earlier, longer draft of the same idea, dated July 2026, is kept for comparison. Its number (1.2) is higher, but it is the older text: it was never published, it was written when Alpha.5 was the current release, and the paper above replaces it. Some of its statements about the product are out of date.</p>
+          <p class="edition-note">I keep an earlier, longer draft of the same idea, dated July 2026, for comparison. Its number (1.2) is higher, but it is the older text. I never published it, I wrote it when Alpha.5 was the current release, and the paper above replaces it. Some of its statements about the product are out of date. I added short notes that say what Alpha.20 does today.</p>
           <p><a href="stateware-whitepaper-candidate-v1.2.html">Read the earlier draft</a> · <a href="stateware-whitepaper-candidate-v1.2.md">Markdown source</a></p>
         </article>
       </div>

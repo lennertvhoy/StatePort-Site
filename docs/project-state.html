@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Use a ProjectState v6 repository in StatePort, from exact commit review through a durable managed application.">
+    <meta name="description" content="ProjectState is a template for tracking a project. How StatePort inspects it and stores a separate managed copy.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
 <meta property="og:site_name" content="StatePort">
 <meta property="og:title" content="ProjectState — StatePort">
-<meta property="og:description" content="A practical guide to ProjectState v6 repositories, exact review, managed copies, development, and ongoing operation.">
+<meta property="og:description" content="What ProjectState is, how to import it, and how to use it while building and running a project.">
 <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/project-state.html">
 <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
 <meta property="og:image:width" content="1200">
@@ -85,7 +85,7 @@
 <tbody>
 <tr><th scope="row"><code>PROJECT.md</code></th><td>The outcome, scope, non-goals and limits.</td>
 </tr>
-<tr><th scope="row"><code>STATE.yaml</code></th><td>The one piece of work in progress (the current slice), the user journey that tests it, its status, blockers and next action.</td>
+<tr><th scope="row"><code>STATE.yaml</code></th><td>The one piece of work in progress (the current slice), the real user task that tests it, its status, blockers and next action.</td>
 </tr>
 <tr><th scope="row"><code>AGENTS.md</code></th><td>Rules for making changes and keeping them safe.</td>
 </tr>
@@ -96,7 +96,7 @@
 </tbody>
 </table>
 </div>
-<p>The check script reads what the record says. It does not run your project. A real run of the user journey supplies the observed result.</p>
+<p>The check script reads what the record says. It does not run your project. A real run of the user task supplies the observed result.</p>
 </section>
           <section>
 <h2 id="import">Import and review in StatePort</h2>
@@ -116,7 +116,7 @@
 </section>
           <section>
 <h2 id="validation">Tests are evidence; acceptance is your decision</h2>
-<p>Run the smallest realistic test of the user journey first, then wider tests, then a check on the installed or released product when the change reaches that boundary. Record the exact environment and the limits. A test can show that a parser accepts a file. A real journey shows whether a user can finish the task. A receipt shows what StatePort observed at one step.</p>
+<p>Run the smallest realistic test of the user task first, then wider tests, then a check on the installed or released product when the change reaches that boundary. Record the exact environment and the limits. A test can show that a parser accepts a file. A real run shows whether a user can finish the task. A receipt shows what StatePort observed at one step.</p>
 <p>The project owner still decides whether the evidence meets the outcome. When the evidence is incomplete, keep the observed result, the limit and the next action in view.</p>
 </section>
           <section>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Learn how StatePort separates requests, permissions, changes, checks, and change records so you can stay in control.">
+    <meta name="description" content="How StatePort separates the request, your approval, the change and the result, and what to check before you approve.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
@@ -105,7 +105,7 @@
 
           <h2 id="cancel-and-recover">Cancel and recover</h2>
           <p>Use <strong>Cancel</strong> on the selected workload to interrupt it. Read the confirmation. Output may be incomplete, and StatePort does not resume a cancelled operation. A stopped workspace can usually be started again. A cancelled operation needs a new request.</p>
-          <p>When the execution host offers <strong>Recover application workspace</strong>, recovery reuses the workspace&rsquo;s saved profile and reattaches the data that was kept. It refuses to overwrite data that is already there. If provider work must stop, <strong>Disconnect StatePort</strong> stops the running assistant and cancels queued requests. The transcript stays.</p>
+          <p>When the execution host (the run environment) offers <strong>Recover application workspace</strong>, recovery reuses the workspace&rsquo;s saved profile and reattaches the data that was kept. It refuses to overwrite data that is already there. If provider work must stop, <strong>Disconnect StatePort</strong> stops the running assistant and cancels queued requests. The transcript stays.</p>
 
           <h2 id="stay-in-control-without-watching-every-step">Supervising without watching every step</h2>
           <p>Routine work can continue while you watch. You should be able to pause, redirect or stop the app, and StatePort asks for approval when the consequences call for it. Today the StudyState sample can pause and redirect an activity, you can cancel a workload, and you can pause or revoke a standing grant.</p>

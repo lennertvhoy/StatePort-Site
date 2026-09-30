@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Learn what StatePort keeps when an AI tool, model, session, or computer changes, and where portability still has limits.">
+    <meta name="description" content="What you keep when you change AI tool, model or computer, and where moving your work still has limits.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="AI tools and portability - StatePort">
-    <meta property="og:description" content="What stays with your StatePort application when AI tools, models, or sessions change.">
+    <meta property="og:description" content="What stays with your app when the AI tool, model or session changes.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/hosts-and-portability.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -111,7 +111,7 @@
 
           <h2 id="moving-or-recovering-a-workspace">Moving or recovering a workspace</h2>
           <p>A managed template copy has its own identity, history and import receipt, and the source repository stays untouched. To get a new managed copy on another supported machine, keep the source at a committed revision and import it again. Importing the template again does not move the existing instance&rsquo;s saved state, activity history, receipts or provider login.</p>
-          <p>To keep an existing instance, use the recovery steps in <a href="lifecycle.html">the lifecycle guide</a> and in <a href="updates.html">updates and removal</a>. The restore flow creates a different managed instance from an indexed backup and leaves the source unchanged. That is different from importing the template source again. This covers recovery within a supported install. It is not a general cross-machine migration wizard. Keep the original machine and data until you have checked the result. For an interrupted execution workspace, use <strong>Recover application workspace</strong> when the execution host offers it. Recovery reuses the workspace&rsquo;s saved profile and reattaches the data that was kept. It does not overwrite data that is already there. A provider login is separate from your app and may need to be set up again on the new machine.</p>
+          <p>To keep an existing instance, use the recovery steps in <a href="lifecycle.html">the lifecycle guide</a> and in <a href="updates.html">updates and removal</a>. The restore flow creates a different managed instance from an indexed backup and leaves the source unchanged. That is different from importing the template source again. This covers recovery within a supported install. It is not a general cross-machine migration wizard. Keep the original machine and data until you have checked the result. For an interrupted execution workspace, use <strong>Recover application workspace</strong> when the execution host (the run environment) offers it. Recovery reuses the workspace&rsquo;s saved profile and reattaches the data that was kept. It does not overwrite data that is already there. A provider login is separate from your app and may need to be set up again on the new machine.</p>
 
           <div class="inline-actions">
             <a class="button button--ink" href="platform-support.html">View platform support</a>

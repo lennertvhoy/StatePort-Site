@@ -199,7 +199,7 @@ refusal record: /home/&lt;you&gt;/.local/state/stateport-install/refusals/&lt;fi
 refusal record: ~/.local/state/stateport-install/refusals/&lt;timestamp&gt;-image_archive_conflict-&lt;id&gt;.json</code>
 </pre>
 <p><strong>Cause.</strong> An earlier run on this computer left retained image archives in <code>~/.local/state/stateport-install/updater/bundles/image-archives/</code>. This run has an archive with the same name whose contents differ, for example because the earlier run was an older release or was interrupted while copying. The installer refuses to overwrite it. You would only see this if an earlier attempt left files behind; it did not occur on our installs on fresh machines.</p>
-<p><strong>What to do.</strong> This is a workaround for a known alpha issue. A proper fix needs a new signed release, and we are still verifying the workaround, so treat it as provisional. Close any running StatePort, then move the folder aside with this command (it moves the folder, it does not delete it):</p>
+<p><strong>What to do.</strong> This is a workaround for a known alpha issue. A proper fix needs a new signed release, and I am still verifying the workaround, so treat it as provisional. Close any running StatePort, then move the folder aside with this command (it moves the folder, it does not delete it):</p>
 <pre><code>mv ~/.local/state/stateport-install/updater/bundles/image-archives ~/.local/state/stateport-install/updater/bundles/image-archives.old</code>
 </pre>
 <p>Then run the one-line install command again. If you report this, attach the refusal record. A leftover from an older release can be the cause, so say whether you tried an earlier StatePort release on the same computer.</p>
@@ -209,7 +209,7 @@ refusal record: ~/.local/state/stateport-install/refusals/&lt;timestamp&gt;-imag
 <h3 id="wsl-stops">The address stops answering after I close Ubuntu</h3>
 <p><strong>You see</strong> the browser page stop loading after you closed the last Ubuntu window, or after some time away.</p>
 <p><strong>Cause.</strong> WSL stops the Linux environment shortly after the last session ends, and StatePort runs inside it. The installer registers a Windows scheduled task named <code>StatePortKeepAlive</code> to prevent that. It runs at Windows logon, so it only takes effect after an interactive Windows logon; right after the install it has not run yet.</p>
-<p><strong>What to do.</strong> Open an Ubuntu window and reload the address, and give the services a few minutes to come back. To make the keep-alive task start, sign out of Windows and sign back in; that is how we activated it in our test. Windows Task Scheduler lists the task if you want to check it. If StatePort stops again after a logon, report it.</p>
+<p><strong>What to do.</strong> Open an Ubuntu window and reload the address, and give the services a few minutes to come back. To make the keep-alive task start, sign out of Windows and sign back in; that is how I activated it in my test. Windows Task Scheduler lists the task if you want to check it. If StatePort stops again after a logon, report it.</p>
 <h3 id="restart">It did not come back after I restarted Windows</h3>
 <p><strong>You see</strong> no answer from the address after a Windows restart.</p>
 <p><strong>Cause.</strong> Whether StatePort comes back by itself after a Windows restart has not been measured.</p>
