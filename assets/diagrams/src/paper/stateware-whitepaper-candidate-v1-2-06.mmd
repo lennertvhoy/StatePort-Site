@@ -1,8 +1,10 @@
-flowchart LR
-    P[Propose<br/>exact, inspectable intent] --> G{Gate<br/>capability & policy check}
-    G -->|within standing authority| V[Validate<br/>against the application's rules]
-    G -->|consequential| A[Approve<br/>human decision, bound to the exact proposal]
+flowchart TB
+    accTitle: Every consequential change travels one pipeline
+    accDescr: The assistant proposes an exact, inspectable intent. A gate checks capability and policy. Changes within standing authority go straight to validation; consequential changes first need a human approval bound to the exact proposal. After validation, the system, not the agent, applies the change and records a receipt. A rejected or invalid proposal leaves state untouched.
+    P["Propose<br/>exact, inspectable intent"] --> G{"Gate<br/>capability and policy check"}
+    G -->|"within standing authority"| V["Validate<br/>against the application's rules"]
+    G -->|"consequential"| A["Approve<br/>human decision, bound to the exact proposal"]
     A --> V
-    V --> AP[Apply<br/>system executes, not the agent]
-    AP --> R[Record<br/>receipt & history]
-    P -.->|rejected or invalid| X[Nothing happens<br/>state untouched]
+    V --> AP["Apply<br/>system executes, not the agent"]
+    AP --> R["Record<br/>receipt and history"]
+    P -.->|"rejected or invalid"| X["Nothing happens<br/>state untouched"]

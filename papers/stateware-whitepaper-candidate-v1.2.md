@@ -47,8 +47,8 @@ not the product's center of gravity.
 The model is presented here on its own terms, as a thesis about where the
 application boundary should sit in AI software. It is illustrated by
 StatePort, an early-alpha local reference implementation built on these
-principles; the screenshots in this paper come from a development build with
-sample data. The paper makes no
+principles; the screenshots in this paper come from a development build and
+may show features that the current alpha does not include. The paper makes no
 comparative claims. It argues a single idea: **state is the application
 boundary** — and that moving the boundary there changes what an assistant can
 be.
@@ -321,26 +321,15 @@ improvise.
 
 ```mermaid
 flowchart TB
-    subgraph BOUNDARY["The application"]
-        S[(Canonical state<br/>user-owned, durable, readable)]
-        GOV[Governance<br/>capabilities · approvals · validation · receipts]
-    end
-
-    subgraph VIEWS["Projections — replaceable"]
-        C[Conversation]
-        F[Files & previews]
-        D[Dashboards]
-        N[Notifications]
-    end
-
-    subgraph ENGINES["Engines — profiled"]
-        M1[Model / agent A]
-        M2[Model / agent B]
-    end
-
-    S --> C & F & D & N
-    ENGINES --> GOV
+    accTitle: The application is its state; everything else attaches at the edges
+    accDescr: Canonical state and governance form the application. Conversation, files and previews, dashboards, and notifications are replaceable projections derived from the state. Models and agents are profiled engines whose proposals reach the state only through governance.
+    ENGINES["Engines, profiled<br/>model or agent A<br/>model or agent B"]
+    GOV["Governance<br/>capabilities · approvals<br/>validation · receipts"]
+    S[("Canonical state<br/>the application itself:<br/>user-owned, durable, readable")]
+    VIEWS["Projections, replaceable<br/>conversation<br/>files and previews<br/>dashboards · notifications"]
+    ENGINES -->|"propose"| GOV
     GOV -->|"governed transactions"| S
+    S -->|"derive"| VIEWS
 ```
 
 The figure states the whole architecture in one shape: the state sits at the
@@ -439,13 +428,16 @@ are not: lose the container and the instance can be re-realized elsewhere
 from its canonical state.
 
 ```mermaid
-flowchart LR
-    APP[Application<br/>reusable definition] -->|install| I1[Instance<br/>Amira's study coach]
-    APP -->|install| I2[Instance<br/>Ben's study coach]
-    APP -->|install| I3[Instance<br/>Class 3B]
-    I1 -.->|private state| S1[(owned state)]
-    I2 -.->|private state| S2[(owned state)]
-    I3 -.->|private state| S3[(owned state)]
+flowchart TB
+    accTitle: One reusable application, many separately owned instances
+    accDescr: One reusable application definition is installed as three instances, Amira's study coach, Ben's study coach, and Class 3B. Each instance keeps its own private, owned state.
+    APP["Application<br/>reusable definition"]
+    APP -->|"install"| I1["Amira's<br/>study coach"]
+    APP -->|"install"| I2["Ben's<br/>study coach"]
+    APP -->|"install"| I3["Class 3B"]
+    I1 -.->|"private state"| S1[("owned<br/>state")]
+    I2 -.->|"private state"| S2[("owned<br/>state")]
+    I3 -.->|"private state"| S3[("owned<br/>state")]
 ```
 
 An instance is the unit of ownership. It is also the unit of everything
@@ -468,14 +460,15 @@ one task, then thrown away.
 
 ```mermaid
 flowchart TB
-    S[(Canonical state<br/>the only truth)]
-    S --> CV[Conversation view]
-    S --> FV[File & preview views]
-    S --> TV[Terminal view]
-    S --> DV[Dashboards & notifications]
-    S --> CX[Compiled model context<br/>bounded, task-scoped, disposable]
-    CX -.->|consumed once, then discarded| OUT[Model output]
-    OUT -.->|never writes state directly| S
+    accTitle: Canonical state is the only truth; everything else is a projection
+    accDescr: Canonical state is the only truth. The conversation, file and preview, terminal, and dashboard views, and a compiled model context, are all derived from it. The model context is bounded, task-scoped, and disposable; it is consumed once and discarded. Model output never writes state directly.
+    S[("Canonical state<br/>the only truth")]
+    VIEWS["Views, all rebuildable<br/>conversation<br/>files and previews<br/>terminal<br/>dashboards, notifications"]
+    CX["Compiled model context<br/>bounded, task-scoped,<br/>disposable"]
+    OUT["Model output<br/>never writes state<br/>directly"]
+    S --> VIEWS
+    S --> CX
+    CX -.->|"used once"| OUT
 ```
 
 The rule that makes this architecture work is asymmetric: projections may be
@@ -637,11 +630,13 @@ of that source — not a moving pointer like "latest," but a pinned identity
 that two people can name and know they mean the same thing.
 
 ```mermaid
-flowchart LR
-    SRC[Canonical source<br/>designated origin] --> REL[Release<br/>immutable, identified]
-    REL --> RES[Resolution<br/>fetch & verify exact content]
-    RES --> INS[Install<br/>new instance with recorded provenance]
-    REL -.->|later| UPG[Update<br/>existing instance, governed]
+flowchart TB
+    accTitle: From a designated source to an installed instance
+    accDescr: A canonical source, the designated origin of an application, produces an immutable, identified release. Installation resolves that release by fetching and verifying its exact content and creates a new instance with recorded provenance. Later, the release can be used to update an existing instance under governance.
+    SRC["Canonical source<br/>designated origin"] --> REL["Release<br/>immutable, identified"]
+    REL --> RES["Resolution<br/>fetch and verify<br/>exact content"]
+    RES --> INS["Install<br/>new instance,<br/>provenance recorded"]
+    REL -.->|"later"| UPG["Update<br/>existing instance,<br/>governed"]
 ```
 
 The conceptual requirements are few and firm. Installation resolves an exact
@@ -668,22 +663,23 @@ relationship with an owned thing.
 
 A note on the illustrations: every screenshot in this paper is taken from a
 development build of StatePort, the early-alpha reference implementation
-described in Section 1, with sample data. They appear here as illustrations of
+described in Section 1, and may show features that the current alpha does not
+include. They appear here as illustrations of
 the abstractions — what a projection looks like, what an approval feels like —
 not as a feature tour. The lifecycle described in this section is design
 intent: catalogue installation, governed updates, moving between machines, and
 backup and recovery have not been measured in the current alpha.
 
 ```mermaid
-flowchart LR
-    IN[Install<br/>resolve an exact release] --> US[Use<br/>conversation as projection]
-    US --> UN[Understand<br/>read the state itself]
-    UN --> UP[Update<br/>governed, reviewable]
-    UP --> US
-    US --> MV[Move<br/>new machine, new engine]
-    MV --> US
-    US --> BK[Back up<br/>copy the state]
-    BK --> RC[Recover<br/>restore, rebuild projections, resume]
+flowchart TB
+    accTitle: The lifecycle is a loop that always returns to use
+    accDescr: An application is installed by resolving an exact release, then used. From use, the owner can understand the state, update it under governance, move it to a new machine or engine, or back it up and later recover it. Every stage returns to use.
+    IN["Install<br/>exact release"] --> US["Use<br/>conversation as<br/>a projection"]
+    US <--> UN["Understand"]
+    US <--> UP["Update"]
+    US <--> MV["Move"]
+    US --> BK["Back up"]
+    BK --> RC["Recover"]
     RC --> US
 ```
 
@@ -846,14 +842,16 @@ draws out two consequences that define what Stateware feels like to trust.
 Every consequential change to canonical state travels one pipeline:
 
 ```mermaid
-flowchart LR
-    P[Propose<br/>exact, inspectable intent] --> G{Gate<br/>capability & policy check}
-    G -->|within standing authority| V[Validate<br/>against the application's rules]
-    G -->|consequential| A[Approve<br/>human decision, bound to the exact proposal]
+flowchart TB
+    accTitle: Every consequential change travels one pipeline
+    accDescr: The assistant proposes an exact, inspectable intent. A gate checks capability and policy. Changes within standing authority go straight to validation; consequential changes first need a human approval bound to the exact proposal. After validation, the system, not the agent, applies the change and records a receipt. A rejected or invalid proposal leaves state untouched.
+    P["Propose<br/>exact, inspectable intent"] --> G{"Gate<br/>capability and policy check"}
+    G -->|"within standing authority"| V["Validate<br/>against the application's rules"]
+    G -->|"consequential"| A["Approve<br/>human decision, bound to the exact proposal"]
     A --> V
-    V --> AP[Apply<br/>system executes, not the agent]
-    AP --> R[Record<br/>receipt & history]
-    P -.->|rejected or invalid| X[Nothing happens<br/>state untouched]
+    V --> AP["Apply<br/>system executes, not the agent"]
+    AP --> R["Record<br/>receipt and history"]
+    P -.->|"rejected or invalid"| X["Nothing happens<br/>state untouched"]
 ```
 
 **Propose**: the assistant prepares an exact intent. **Gate**: the system

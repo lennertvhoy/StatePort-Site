@@ -1,7 +1,10 @@
-flowchart LR
-    APP[Application<br/>reusable definition] -->|install| I1[Instance<br/>Amira's study coach]
-    APP -->|install| I2[Instance<br/>Ben's study coach]
-    APP -->|install| I3[Instance<br/>Class 3B]
-    I1 -.->|private state| S1[(owned state)]
-    I2 -.->|private state| S2[(owned state)]
-    I3 -.->|private state| S3[(owned state)]
+flowchart TB
+    accTitle: One reusable application, many separately owned instances
+    accDescr: One reusable application definition is installed as three instances, Amira's study coach, Ben's study coach, and Class 3B. Each instance keeps its own private, owned state.
+    APP["Application<br/>reusable definition"]
+    APP -->|"install"| I1["Amira's<br/>study coach"]
+    APP -->|"install"| I2["Ben's<br/>study coach"]
+    APP -->|"install"| I3["Class 3B"]
+    I1 -.->|"private state"| S1[("owned<br/>state")]
+    I2 -.->|"private state"| S2[("owned<br/>state")]
+    I3 -.->|"private state"| S3[("owned<br/>state")]

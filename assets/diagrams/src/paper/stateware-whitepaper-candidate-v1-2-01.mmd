@@ -1,21 +1,10 @@
 flowchart TB
-    subgraph BOUNDARY["The application"]
-        S[(Canonical state<br/>user-owned, durable, readable)]
-        GOV[Governance<br/>capabilities · approvals · validation · receipts]
-    end
-
-    subgraph VIEWS["Projections — replaceable"]
-        C[Conversation]
-        F[Files & previews]
-        D[Dashboards]
-        N[Notifications]
-    end
-
-    subgraph ENGINES["Engines — profiled"]
-        M1[Model / agent A]
-        M2[Model / agent B]
-    end
-
-    S --> C & F & D & N
-    ENGINES --> GOV
+    accTitle: The application is its state; everything else attaches at the edges
+    accDescr: Canonical state and governance form the application. Conversation, files and previews, dashboards, and notifications are replaceable projections derived from the state. Models and agents are profiled engines whose proposals reach the state only through governance.
+    ENGINES["Engines, profiled<br/>model or agent A<br/>model or agent B"]
+    GOV["Governance<br/>capabilities · approvals<br/>validation · receipts"]
+    S[("Canonical state<br/>the application itself:<br/>user-owned, durable, readable")]
+    VIEWS["Projections, replaceable<br/>conversation<br/>files and previews<br/>dashboards · notifications"]
+    ENGINES -->|"propose"| GOV
     GOV -->|"governed transactions"| S
+    S -->|"derive"| VIEWS

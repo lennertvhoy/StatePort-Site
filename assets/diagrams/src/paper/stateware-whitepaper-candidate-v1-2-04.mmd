@@ -1,5 +1,7 @@
-flowchart LR
-    SRC[Canonical source<br/>designated origin] --> REL[Release<br/>immutable, identified]
-    REL --> RES[Resolution<br/>fetch & verify exact content]
-    RES --> INS[Install<br/>new instance with recorded provenance]
-    REL -.->|later| UPG[Update<br/>existing instance, governed]
+flowchart TB
+    accTitle: From a designated source to an installed instance
+    accDescr: A canonical source, the designated origin of an application, produces an immutable, identified release. Installation resolves that release by fetching and verifying its exact content and creates a new instance with recorded provenance. Later, the release can be used to update an existing instance under governance.
+    SRC["Canonical source<br/>designated origin"] --> REL["Release<br/>immutable, identified"]
+    REL --> RES["Resolution<br/>fetch and verify<br/>exact content"]
+    RES --> INS["Install<br/>new instance,<br/>provenance recorded"]
+    REL -.->|"later"| UPG["Update<br/>existing instance,<br/>governed"]
