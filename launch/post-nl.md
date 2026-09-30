@@ -1,20 +1,20 @@
-# LinkedIn-launchpost — Nederlands (Lennert, eerste persoon)
+# LinkedIn-lanceerpost — Nederlands (definitief)
 
-> Zelfde verhaal en feiten als `launch/post-en.md`; bijlage: dezelfde demo-video
-> `launch/demo/stateport-demo-24s.mp4`. Zie `launch/README.md` voor de stappen.
+> Voeg `launch/demo/stateport-demo-24s.mp4` toe (24 s, echte productinterface). Post bij voorkeur di–do tussen 08:00 en 10:00.
 
 ---
 
-AI-chats vergeten. Jouw werk zou dat niet moeten doen.
+AI-chats vergeten. Jouw werk niet.
 
-Elke week zag ik goed werk verdwijnen zodra een gesprek eindigde: het plan, de beslissingen, de context — weg. Dus bouwde ik StatePort: een duurzame thuisbasis voor AI-ondersteund werk op je eigen computer. Doelen, voortgang en geschiedenis liggen in leesbare bestanden op jouw machine, niet in de sessie van iemand anders.
+Ik verloor steeds goed werk zodra een chat ophield: het plan, de beslissingen, de context. Daarom bouw ik StatePort: een duurzaam thuis voor AI-ondersteund werk, op je eigen computer in plaats van in de sessie van iemand anders.
 
-In het studievoorbeeld bekijk je een activiteit, keur je de voorgestelde wijziging goed en sla je een korte reflectie op van wat je leerde. Kom dagen later terug: je voortgang staat er nog steeds. Belangrijke wijzigingen worden eerst ter goedkeuring voorgelegd, en elke run laat een ontvangstbewijs na: wat gevraagd, wat toegestaan en wat gedaan werd.
+Het idee in het studievoorbeeld: je bekijkt een activiteit, keurt de wijziging goed die de AI voorstelt en bewaart een korte reflectie. Een bewijs (receipt) legt vast wat precies is toegepast. Kom je dagen later terug, dan staat je voortgang er nog.
 
-Wat vandaag werkt: Alpha.20 installeert het complete product op Windows 11 + WSL2 (Ubuntu 24.04) met één commando. Twee keer geverifieerd op een echte Windows 11-VM — geïnstalleerd, gezond, en bereikbaar nadat de laatste WSL-sessie sloot.
+Eerlijk over de stand van zaken: vroege alpha. De one-line installer voor Windows 11 + WSL2 (Ubuntu 24.04) is al vijf keer netjes geïnstalleerd op een schone Windows 11-testmachine, en de app bleef bereikbaar nadat ik het laatste WSL-venster sloot. Nog niet gemeten: overleven na een Windows-herstart, verwijderen en opnieuw installeren, de volledige template-flow. Zet er dus geen belangrijke data in.
 
-Eerlijke kanttekening: dit is een vroege alpha. Overleven van een Windows-herstart is nog niet gemeten, en template- en uninstall-flows zijn op dat doel nog niet getest. Vertrouw het nog niet met belangrijke gegevens.
+Werk je op Windows 11 met WSL2? Ik kan je hulp bij het testen goed gebruiken, vooral om te horen waar de installatie stukloopt:
+https://lennertvhoy.github.io/StatePort-Site/
 
-Probeer het uit of lees de bekende grenzen: https://lennertvhoy.github.io/StatePort-Site/
+Wat zou jij willen dat een AI-project voor je onthoudt?
 
-#LokaleAI #DuurzameSoftware #AIToepassingen #BuildInPublic
+#AI #LocalFirst #BuildInPublic
