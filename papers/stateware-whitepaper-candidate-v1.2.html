@@ -83,8 +83,7 @@ is the older text: the public paper (version 1.1, revised 9 September
 when StatePort v0.1.0-alpha.5 was the current release, so its statements
 about the product are dated. It applies eleven conceptual corrections
 learned from building the reference implementation since 1.1 was first
-published; they are summarized in the revision note at the end of
-Section 1.</p>
+published; they are summarized in the revision note at the end of Section 1. Paragraphs labeled “Alpha.20 status” were added on 30 September 2026; each states what the installed alpha does today.</p>
 </blockquote>
 <h2 id="abstract-and-thesis">1. Abstract and thesis</h2>
 <h3 id="abstract">Abstract</h3>
@@ -135,7 +134,7 @@ measured. The <a href="../releases/">release page</a> is the source for
 current status.</p>
 <p><strong>Current delivery versus future architecture.</strong> The
 wider architecture this paper describes — catalogues of community
-applications, multiple qualified providers, team deployments — is a
+applications, several tested providers, team deployments — is a
 direction, not a description of what the alpha delivers. Unless the
 release page says otherwise, statements in this paper about how
 StatePort behaves are design intent, not measured behavior. Where the
@@ -232,9 +231,7 @@ different things.</li>
 behavior.</strong> It anchors the instance’s truth; it is not a complete
 definition of how the application behaves at runtime.</li>
 <li><strong>Pi is a reference direction.</strong> It is not a delivered
-adapter. As of July 2026, Codex CLI was the only provider the project
-had qualified, OpenCode was unqualified, and there was no direct-API
-provider; those statements are dated.</li>
+adapter. As of July 2026, Codex CLI was the only provider the project had tested and cleared for use, OpenCode had not been, and there was no direct-API provider; those statements are dated. Alpha.20 ships and defaults to OpenCode; Codex is not bundled.</li>
 <li><strong>Current delivery and future architecture are
 separated.</strong> The alpha facts above describe what exists; the rest
 of the paper describes what the model argues for.</li>
@@ -355,12 +352,14 @@ user reads is a rendering of application state, exactly as a formatted
 document is a rendering of its source. Projections can be beautiful,
 fast, cached, and convenient — they are free to be all of those things
 precisely because none of them is load-bearing.</p>
+<p><strong>Alpha.20 status.</strong> In StatePort today the conversation is its own record. It is never the source of truth for application state.</p>
 <p>The same discipline applies inward, to the model itself. What an
 engine is shown when it runs — its context — is itself a projection: a
 deliberate, bounded selection compiled from the canonical state for a
 particular task, not an undifferentiated dump of everything that exists.
 Context is something the system <em>prepares</em>, with known provenance
 and known limits, not something that happens to accumulate.</p>
+<p><strong>Alpha.20 status.</strong> The chat assistant sees only the recent conversation; it does not read your study or project state. Actions that go through StatePort’s approval steps get a small bundle of information built from the saved state; chat does not.</p>
 <h3 id="every-mutation-is-a-governed-transaction">3.3 Every mutation is
 a governed transaction</h3>
 <p>The third claim is about change. In Stateware, nothing writes to
@@ -436,6 +435,7 @@ has built no way to act on it. StatePort, the reference implementation,
 is designed to implement both, and this paper’s claims about durability
 belong to the application plane while its claims about supervision
 belong to the execution plane.</p>
+<p><strong>Alpha.20 status.</strong> Output from coding agents is currently recorded as a run result. StatePort does not turn it into saved application state.</p>
 <h2 id="the-core-abstractions">4. The core abstractions</h2>
 <p>The three claims of the model are realized through seven
 abstractions. Each is presented conceptually: what it is, what problem
@@ -460,6 +460,7 @@ The instance can accumulate private truth without polluting the shared
 definition. And many instances can coexist — a teacher’s thirty
 classrooms, a consultant’s dozen clients — each self-contained, each
 owned, none leaking into another.</p>
+<p><strong>Alpha.20 status.</strong> Separate copies made from the same template stay independent in the project’s automated tests on the source code. This has not yet been shown on an installed product.</p>
 <p>A third layer completes the picture: the <strong>runtime
 realization</strong> — one particular running of an instance on a
 particular machine, container, and provider, with its own sessions,
@@ -592,6 +593,7 @@ the destructive, the external, the expensive, the irreversible. A system
 that treats every keystroke as a governance transaction trains its owner
 to rubber-stamp; a system that reserves decisions for what matters keeps
 them meaningful.</p>
+<p><strong>Alpha.20 status.</strong> The StudyState Sample has pause and redirect for its activities, and one undo: the last evidence update. Most changes have no undo. Rolling back or escalating arbitrary running work is not built, and Alpha.20 does not support rolling back the platform.</p>
 <h3 id="receipts">4.5 Receipts</h3>
 <p>A <strong>receipt</strong> is the record of a governed act: what was
 proposed, what was approved and by whom, what was applied, what
@@ -606,6 +608,7 @@ time, these checks passed, this was the result. Claims can be argued
 with; receipts can only be checked. An assistant’s assertion that
 something was done carries exactly as much weight as the receipt it can
 point to, and no more.</p>
+<p><strong>Alpha.20 status.</strong> Receipts carry a checksum of their content; they are not individually signed.</p>
 <p>Receipts compose into history. Because every consequential mutation
 leaves one, an instance accumulates an inspectable account of its own
 life: not a transcript of things said, but a ledger of things done. That
@@ -657,6 +660,7 @@ governance, never as a silent background drift. And an application
 definition whose origin is unsettled is not installable at all:
 ambiguity about <em>what this is</em> is resolved before anyone builds
 on it, not after.</p>
+<p><strong>Alpha.20 status.</strong> Alpha.20 has no rollback and no tested in-place update. A newer release is installed with its own one-line installer, and running an installer over an existing install is not a tested way to update.</p>
 <p>This is package management’s hard-won discipline — pinning,
 provenance, reviewed upgrades — applied to a domain that has so far
 shipped “agents” as prompts and prayers. It matters more here, not less:
@@ -736,6 +740,7 @@ other facts because it <em>is</em> one of the instance’s facts.
 Attachments of context are explicit: the assistant sees what the owner
 attached and the application’s own state, not an ungoverned sweep of
 everything on the machine.</p>
+<p><strong>Alpha.20 status.</strong> The chat assistant sees only the recent conversation. It does not read your study or project state, and the context policy in the screenshot shows the intent, not what Alpha.20 does. Actions that go through StatePort’s approval steps get a small bundle of information built from the saved state. Chat does not.</p>
 <h3 id="understand">5.3 Understand</h3>
 <p>Because the state is real, readable files, understanding an
 application does not require trusting its self-report. You can open it.
@@ -744,6 +749,7 @@ canonical state rendered as files you can browse — and the rule of
 projections holds here with special force: looking at the state is safe,
 and the state you are looking at is the truth, not a copy that might
 disagree with one.</p>
+<p><strong>Alpha.20 status.</strong> The file workbench is an optional part of ProjectState and generic templates. The StudyState Sample does not have it. Where it is turned on, its file editor is a separate path that checks a change but does not need a proposal.</p>
 <p>This is the property chat-centric assistants cannot offer at any
 price: the assistant’s knowledge is not locked in a vector store, a
 proprietary thread format, or the model’s parametric memory. It is
@@ -770,12 +776,12 @@ starting a machine, sending something outward, touching shared
 infrastructure — arrive in the owner’s approvals inbox as exact,
 inspectable intents, each waiting for a decision that binds precisely
 what was reviewed.</p>
+<p><strong>Alpha.20 status.</strong> Pending approvals show the exact plan. Only restore approvals have an expiry.</p>
 <figure>
 <img src="assets/stateware-approvals.png"
-alt="Approvals as an inbox. Each pending request is a specific proposal — this action, for this application, expiring at this time — waiting on an explicit decision. Proposal and execution are different events, and the space between them belongs to the owner." />
+alt="Approvals as an inbox. Each pending request is a specific proposal — this action, for this application, and for restore requests its expiry time — waiting on an explicit decision. Proposal and execution are different events, and the space between them belongs to the owner." />
 <figcaption aria-hidden="true">Approvals as an inbox. Each pending
-request is a specific proposal — this action, for this application,
-expiring at this time — waiting on an explicit decision. Proposal and
+request is a specific proposal — this action, for this application, and for restore requests its expiry time — waiting on an explicit decision. Proposal and
 execution are different events, and the space between them belongs to
 the owner.</figcaption>
 </figure>
@@ -793,6 +799,7 @@ migration project. A different device renders the same projections from
 the same truth. A different engine reads the same canonical state and
 picks up the work. The conversation that follows you to a phone is the
 same instance wearing a smaller view.</p>
+<p><strong>Alpha.20 status.</strong> Export and import exist for an instance’s files. Grants, receipts and provider logins do not travel, and there is no migration wizard.</p>
 <p>Movement between <em>engines</em> deserves the stronger statement —
 and a precise one. When a better or cheaper or more local engine
 appears, the application does not need to be rebuilt around it: the
@@ -818,12 +825,13 @@ opens a terminal into and treats like any machine they own. Where the
 application lives never changes what the application is.</p>
 <h3 id="back-up">5.6 Back up</h3>
 <p>Backup in Stateware is not a feature so much as a consequence: when
-the application is a state object, backing it up is copying the state —
+the application is a state object, backing it up should be copying the state —
 whole, with its history and receipts, in a form that is inspectable
 before it is ever restored. There is no separate “export” that loses
 structure, no faith that a provider’s retention coincides with your
 needs. The backup is the same kind of thing as the original, because the
 original was never anything exotic.</p>
+<p><strong>Alpha.20 status.</strong> A backup archives the instance’s files, not its Git history, conversations, receipts index or approvals. Restore creates a new instance from those files.</p>
 <h3 id="recover">5.7 Recover</h3>
 <p>Recovery is the moment a model earns its name. The failure modes of a
 chat-centric assistant are silent and total: the session is gone, the
@@ -833,6 +841,7 @@ instance are ordinary computer problems with ordinary remedies: restore
 the state, rebuild the projections, resume. Nothing needs to be
 reconstructed from a transcript, because nothing essential ever lived
 only in one.</p>
+<p><strong>Alpha.20 status.</strong> Restore recreates files only; interrupted work and external effects are not reconciled.</p>
 <p>The deeper comfort is structural. Every layer of the system was built
 on the assumption that everything except the canonical state is
 disposable — so when something is lost, it is almost always something
@@ -861,13 +870,13 @@ consequential, a human decides, and the decision binds the exact
 proposal. <strong>Validate</strong>: the change is checked against the
 application’s own rules. <strong>Apply</strong>: the system executes it.
 <strong>Record</strong>: a receipt enters the history.</p>
-<p>Two properties of the pipeline are load-bearing by design. It is
-<em>total</em>: there is no second path to canonical state — not a
+<p>Two properties of the pipeline are load-bearing by design. It is designed to be <em>total</em>: there is no second path to canonical state — not a
 convenience shortcut, not an operator backdoor, not a channel adapter
 writing files directly. And it is <em>fail-closed</em>: when any stage
 cannot be completed with certainty — policy unavailable, state
 unreadable, validation indeterminate — the outcome is that nothing
 happens, visibly, rather than something happening quietly.</p>
+<p><strong>Alpha.20 status.</strong> Changes to saved application state go through proposals and approvals. The workbench file editor is a separate path, limited by permissions, that checks a change but does not need a proposal.</p>
 <h3 id="the-agent-proposes-the-system-applies">6.2 The agent proposes,
 the system applies</h3>
 <p>The pipeline embodies a deliberate division of cognitive labor.
@@ -875,6 +884,7 @@ Interpreting ambiguous human intent, drafting plans, preparing changes:
 this is what models are good at, and the model does it. Deciding what is
 permitted, executing against durable state, certifying success: this is
 what deterministic systems are good at, and the system does it.</p>
+<p><strong>Alpha.20 status.</strong> For actions that follow a fixed script, such as the StudyState Sample, the system applies what you approve. Output from coding agents is currently recorded as a run result; StatePort does not turn it into saved application state.</p>
 <p>This is a different safety story from the prevailing one. The
 prevailing story puts a powerful actor in the world and then attempts to
 supervise its behavior — better prompts, better training, better
