@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="See the exact Windows 11, WSL2, Ubuntu 24.04, and AMD64 requirements for StatePort Alpha.16.">
+    <meta name="description" content="The one setup StatePort Alpha.20 supports: Windows 11, WSL2, Ubuntu 24.04, and AMD64, what the installer refuses, and what was measured.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Platform support - StatePort">
-    <meta property="og:description" content="Computer requirements, preflight checks, and platform limits for StatePort Alpha.16.">
+    <meta property="og:title" content="Platform support — StatePort">
+    <meta property="og:description" content="Alpha.20 supports Windows 11, WSL2, Ubuntu 24.04, and AMD64 only. What the installer refuses and what was measured.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/platform-support.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -23,7 +23,7 @@
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
     <link rel="stylesheet" href="../assets/site.css?v=2026-09-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-10-1" data-site-enhancements>
-    <title>Platform support - StatePort</title>
+    <title>Platform support — StatePort</title>
   <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/platform-support.html">
   </head>
   <body class="article-page">
@@ -49,8 +49,8 @@
       <section class="article-hero" aria-labelledby="page-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / Platform support</p>
-          <h1 id="page-title">Where Alpha.16 is meant to run</h1>
-          <p>Alpha.16 deliberately supports one reproducible Windows and WSL environment. The installer checks it before changing the host.</p>
+          <h1 id="page-title">Where Alpha.20 is meant to run</h1>
+          <p>Alpha.20 supports one setup: Windows 11, WSL2, and Ubuntu 24.04 on an AMD64 computer. The installer checks that setup before it changes anything and stops with a message if it does not match.</p>
         </div>
       </section>
 
@@ -59,23 +59,24 @@
           <h2>Documentation</h2>
           <nav>
             <a href="./">Documentation home</a>
-            <a href="everyday-work.html">Your first session</a>
             <a href="getting-started.html">Install and open</a>
-            <a href="templates.html">Import a template</a>
+            <a href="everyday-work.html">Your first session</a>
+            <a href="templates.html">Use a template</a>
             <a href="project-state.html">ProjectState</a>
             <a href="study-state.html">StudyState</a>
             <a href="troubleshooting.html">Troubleshooting</a>
+            <a href="faq.html">FAQ</a>
             <a href="lifecycle.html">Backup and recovery</a>
-            <a href="updates.html">Update and uninstall</a>
+            <a href="updates.html">Updates and removal</a>
             <a href="governance.html">Review and control</a>
             <a href="hosts-and-portability.html">AI tools and readiness</a>
             <a href="security-and-privacy.html">Security and privacy</a>
             <a href="platform-support.html" aria-current="page">Platform support</a>
+            <a href="limitations.html">Current limitations</a>
             <a href="foundations.html">Why StatePort exists</a>
             <a href="model.html">Core model</a>
             <a href="deployments.html">Container deployments</a>
-            <a href="reference.html">Reference and FAQ</a>
-            <a href="limitations.html">Current limitations</a>
+            <a href="reference.html">Glossary and concepts</a>
             <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="agent-kits.html">Agent Kits</a>
             <a href="prototype-walkthrough.html">Product walkthrough</a>
@@ -83,72 +84,76 @@
         </aside>
 
         <article class="prose">
-          <p class="notice"><strong>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress. Alpha.16 is a superseded predecessor: its fresh installation was blocked by a signature-check defect and it is retained for history.</strong> The current Alpha.20 command installs through this public route and its images are anonymously downloadable; retry guidance for the historical Alpha.16 route no longer applies. Published files remain available for inspection.</p>
-          <p class="notice notice--quiet"><strong>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress.</strong> The published Alpha.16 package declared an exact Podman stack and crun runtime plus the control plane and isolated execution host; its fresh installation was blocked before completing that setup. The current Alpha.20 command installs through this public route.</p>
+<p class="notice"><strong>Early alpha, release 0.1.0-alpha.20.</strong> StatePort is in early alpha. Do not use it for important data. It has been measured on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#requirements">Alpha.20 requirements</a></li><li data-level="2"><a href="#check">Check before you start</a></li><li data-level="2"><a href="#table">What is and is not supported</a></li><li data-level="2"><a href="#measured">What was measured on this setup</a></li><li data-level="2"><a href="#why-support-is-narrow">Why support is narrow</a></li><li data-level="2"><a href="#earlier">Earlier releases</a></li></ol></details>
+<h2 id="requirements">Alpha.20 requirements</h2>
+<ul>
+<li>Windows 11 (build 22000 or newer) on an AMD64 (x86-64) computer.</li>
+<li>WSL2, not WSL1, with stock Ubuntu 24.04.</li>
+<li>systemd running as the first process inside Ubuntu.</li>
+<li>A normal Ubuntu user, not root, who can use <code>sudo</code>.</li>
+<li>Windows interoperability, so Ubuntu can run <code>powershell.exe</code>.</li>
+<li>An internet connection during the install.</li>
+</ul>
+<p>The installer makes more checks on the host while it runs and refuses with a message if something is missing. <a href="troubleshooting.html">Troubleshooting</a> explains each message.</p>
 
-          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#alpha16-requirements">Alpha.16 requirements</a></li><li data-level="2"><a href="#quick-preflight">Quick preflight</a></li><li data-level="2"><a href="#why-support-is-narrow">Why support is narrow</a></li><li data-level="2"><a href="#check-before-you-start">Check before you start</a></li></ol></details>
-          <h2 id="alpha16-requirements">Alpha.16 requirements</h2>
-          <ul>
-            <li>Windows 11 on an x86-64 computer.</li>
-            <li>WSL2 with Ubuntu 24.04.</li>
-            <li>A normal Ubuntu user with <code>sudo</code> access.</li>
-            <li>Systemd enabled in WSL and Windows interoperability available.</li>
-            <li>Internet access and several gigabytes of free WSL disk space.</li>
-          </ul>
+<h2 id="check">Check before you start</h2>
+<p>Run the five commands in <a href="getting-started.html#check">Step 2 of getting started</a> inside Ubuntu, then run the dry run in <a href="getting-started.html#dry-run">Step 3</a>. It checks the same requirements, verifies the signed manifests, and installs nothing.</p>
 
-          <h2 id="quick-preflight">Quick preflight</h2>
-          <p>Run these inside Ubuntu. They must report <code>x86_64</code>, Ubuntu <code>24.04</code>, and <code>systemd</code>:</p>
-          <pre><code>uname -m
-grep '^VERSION_ID=' /etc/os-release
-ps -p 1 -o comm=</code>
-</pre>
-          <p>The installer also verifies WSL2, Windows 11 build 22000 or newer, cgroup v2, subordinate UID/GID mappings, Quadlet, and the exact signed runtime inputs. If a requirement is missing, it refuses with a specific code instead of silently selecting a different setup.</p>
+<h2 id="table">What is and is not supported</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Platform support">
+<table>
+<caption class="sr-only">Platform support</caption>
+<thead>
+<tr>
+<th scope="col">Environment</th>
+<th scope="col">Status</th>
+<th scope="col">What to know</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Windows 11 + WSL2 + Ubuntu 24.04 on AMD64</th>
+<td>The supported target</td>
+<td>This is the only setup Alpha.20 is meant for, and the only one it has been measured on. See <a href="getting-started.html">getting started</a>.</td>
+</tr>
+<tr>
+<th scope="row">WSL1</th>
+<td>Not supported</td>
+<td>The installer stops with <code>WSL2 is required; WSL1 and native Linux are not this release target.</code></td>
+</tr>
+<tr>
+<th scope="row">Windows 10, or a Windows build older than 22000</th>
+<td>Not supported</td>
+<td>The installer stops with <code>Windows 11 build 22000 or newer is required.</code></td>
+</tr>
+<tr>
+<th scope="row">Native Linux</th>
+<td>Not supported</td>
+<td>The installer refuses it. Native Linux would need its own release path.</td>
+</tr>
+<tr>
+<th scope="row">macOS, Docker Desktop, ARM64, other Linux distributions or Ubuntu versions</th>
+<td>Not supported</td>
+<td>Not tested or packaged. The installer stops on ARM64 and on any distribution other than Ubuntu 24.04.</td>
+</tr>
+</tbody>
+</table>
+</div>
 
-          <div class="table-scroll" tabindex="0" role="region" aria-label="Platform support">
-            <table>
-              <caption class="sr-only">Platform support</caption>
-              <thead>
-                <tr>
-                  <th scope="col">Environment</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">What to know</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">Windows 11 + WSL2 + Ubuntu 24.04 AMD64</th>
-                  <td>Supported platform; native qualification pending</td>
-                  <td>This is the supported install path; native qualification remains pending. See the <a href="../download/">download page</a> for the install command.</td>
-                </tr>
-                <tr>
-                  <th scope="row">WSL1</th>
-                  <td>Not supported</td>
-                  <td>Alpha.16 refuses WSL1 before installation state or host mutation.</td>
-                </tr>
-                <tr>
-                  <th scope="row">Native Linux</th>
-                  <td>Not supported by Alpha.16</td>
-                  <td>Native Linux needs a separate release path.</td>
-                </tr>
-                <tr>
-                  <th scope="row">macOS, Docker Desktop, ARM64, other Linux distributions</th>
-                  <td>Not supported by Alpha.16</td>
-                  <td>These platforms need separate testing and packaging.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+<h2 id="measured">What was measured on this setup</h2>
+<p>The public one-line command installed Alpha.20 and reported it healthy on a fresh virtual machine running genuine Windows 11 25H2 with WSL2 and stock Ubuntu 24.04, five times. Not measured yet: surviving a Windows restart, importing templates on the installed product, uninstall and reinstall, every screen of the interface, and memory and disk use on a 16 GB laptop. The full lists are on <a href="limitations.html#measured">current limitations</a>.</p>
 
-          <h2 id="why-support-is-narrow">Why support is narrow</h2>
-          <p>StatePort uses local storage, Linux services, containers, and an AI command-line tool. A setup is only useful when all of those parts work together and your data survives a restart. We will add platforms only after testing the full journey.</p>
+<h2 id="why-support-is-narrow">Why support is narrow</h2>
+<p>StatePort uses local storage, Linux services, containers, and an AI command-line tool. A setup is only useful when all of those parts work together and your data survives a restart. We will add platforms only after testing the full journey.</p>
 
-          <h2 id="check-before-you-start">Check before you start</h2>
-          <p>Use the <a href="../releases/">release status</a> for current availability. Do not edit the bootstrap, mix older release files into Alpha.16, or relabel another platform as this release target.</p>
-
-          <div class="inline-actions">
-            <a class="button button--ink" href="hosts-and-portability.html">Read host boundaries</a>
-            <a class="button button--outlined" href="../releases/">View release status</a>
-          </div>
+<h2 id="earlier">Earlier releases</h2>
+<p>The Alpha.16 requirements named the same Windows 11, WSL2, and Ubuntu 24.04 setup. Alpha.16 is superseded, and its fresh installation was blocked, so do not use it. Use the current release named on the <a href="../releases/">release status</a> page, and do not mix files from different releases.</p>
+<div class="inline-actions">
+<a class="button button--ink" href="getting-started.html">Install StatePort</a>
+<a class="button button--outlined" href="hosts-and-portability.html">Read host boundaries</a>
+<a class="button button--outlined" href="../releases/">View release status</a>
+</div>
         </article>
       </div>
     </main>

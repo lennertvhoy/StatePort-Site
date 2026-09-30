@@ -1,131 +1,175 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none">
-<meta name="description" content="Use ProjectState, StudyState, or another supported StateSpec template with an installed StatePort workspace.">
-<meta name="theme-color" content="#0B132B">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="StatePort">
-<meta property="og:title" content="Use a template — StatePort">
-<meta property="og:description" content="Inspect an exact Git commit, review its identity, and create an isolated managed application.">
-<meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/templates.html">
-<meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
-<link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/templates.html">
-<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="../assets/site.css?v=2026-09-10-1">
-<link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-10-1" data-site-enhancements>
-<title>Use a template — StatePort</title>
-<meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer.">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+    <meta name="description" content="What ProjectState and StudyState templates are in plain language, how import is designed to work, and what has and has not been verified on StatePort Alpha.20.">
+    <meta name="theme-color" content="#0B132B">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="StatePort">
+    <meta property="og:title" content="Use a template — StatePort">
+    <meta property="og:description" content="ProjectState and StudyState explained in plain language, how import is designed to work, and what is and is not verified.">
+    <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/templates.html">
+    <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-10-1">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-10-1" data-site-enhancements>
+    <title>Use a template — StatePort</title>
+  <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/templates.html">
   </head>
-<body class="article-page"><a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header site-header--light"><a class="brand" href="../" aria-label="StatePort home"><img src="../assets/stateport-mascot-block-arch-light.svg" alt=""><span>StatePort</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation"><span class="sr-only">Toggle navigation</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg></button>
-<nav class="site-nav" id="site-navigation" aria-label="Primary navigation"><a href="./" aria-current="page">Docs</a><a href="../tutorials/">Tutorials</a><a class="nav-download" href="../download/">Download</a><a class="nav-release" href="../releases/">Release status</a><a href="../papers/">Papers</a>
-</nav>
-</header>
-<main id="main">
-<section class="article-hero" aria-labelledby="templates-title">
-<div class="article-hero-inner">
-<p class="document-kicker">Documentation / Templates</p>
-<h1 id="templates-title">Bring your template. Keep the source untouched.</h1>
-<p>StatePort recognizes ProjectState, StudyState, and portable StateSpec repositories, then creates a reviewed, isolated managed application from the exact snapshot you approved.</p>
-</div>
-</section>
-<div class="article-shell">
-<aside class="doc-sidebar" aria-label="Documentation sections">
-<h2>Template guide</h2>
-<nav>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-block-arch-light.svg" alt="">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="./" aria-current="page">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
+      <a href="../papers/">Papers</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="templates-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Documentation / Templates</p>
+          <h1 id="templates-title">Templates: ProjectState and StudyState.</h1>
+          <p>A template is a reusable starting point for an application. StatePort is designed to take one from a Git repository, review it with you, and create a managed copy with its own history, leaving the original untouched.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+        <aside class="doc-sidebar" aria-label="Documentation sections">
+          <h2>Documentation</h2>
+          <nav>
             <a href="./">Documentation home</a>
-            <a href="everyday-work.html">Your first session</a>
             <a href="getting-started.html">Install and open</a>
-            <a href="templates.html" aria-current="page">Import a template</a>
+            <a href="everyday-work.html">Your first session</a>
+            <a href="templates.html" aria-current="page">Use a template</a>
             <a href="project-state.html">ProjectState</a>
             <a href="study-state.html">StudyState</a>
             <a href="troubleshooting.html">Troubleshooting</a>
+            <a href="faq.html">FAQ</a>
             <a href="lifecycle.html">Backup and recovery</a>
-            <a href="updates.html">Update and uninstall</a>
+            <a href="updates.html">Updates and removal</a>
             <a href="governance.html">Review and control</a>
             <a href="hosts-and-portability.html">AI tools and readiness</a>
             <a href="security-and-privacy.html">Security and privacy</a>
             <a href="platform-support.html">Platform support</a>
+            <a href="limitations.html">Current limitations</a>
             <a href="foundations.html">Why StatePort exists</a>
             <a href="model.html">Core model</a>
             <a href="deployments.html">Container deployments</a>
-            <a href="reference.html">Reference and FAQ</a>
-            <a href="limitations.html">Current limitations</a>
+            <a href="reference.html">Glossary and concepts</a>
             <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="agent-kits.html">Agent Kits</a>
             <a href="prototype-walkthrough.html">Product walkthrough</a>
           </nav>
-</aside>
-<article class="prose">
-<p class="notice"><strong>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress. Alpha.16 is a superseded predecessor: its fresh installation was blocked by a signature-check defect and it is retained for history.</strong> The current Alpha.20 command installs through this public route and its images are anonymously downloadable; retry guidance for the historical Alpha.16 route no longer applies. Published pages remain available for inspection.</p>
-<p class="notice notice--quiet"><strong>Prerequisite:</strong> when StatePort is installed, its Catalog import drawer discovers configured local Git folders and can inspect a public HTTPS repository at an exact commit.</p>
-<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#prepare-heading">1. Put a Git repository in the import folder</a></li><li data-level="2"><a href="#import-heading">2. Review and create the application</a></li><li data-level="2"><a href="#recognized-heading">3. What StatePort recognizes</a></li><li data-level="2"><a href="#safety-heading">What StatePort copies and runs</a></li><li data-level="2"><a href="#troubleshooting-heading">If the repository does not appear</a></li></ol></details>
-<section id="prepare">
-<h2 id="prepare-heading">1. Put a Git repository in the import folder</h2>
-<p>For a local import, place a real Git checkout, including its <code>.git</code> directory, below the configured source folder. The default installed folder is:</p>
-<pre><code>/var/lib/stateport/imports</code>
-</pre>
-<p>The checkout can be ProjectState, StudyState, or another repository that declares a supported StateSpec contract. Keep the intended version committed. A ZIP extraction without Git history cannot establish the exact commit identity that review needs.</p>
-<p>You may also enter a public HTTPS repository and its full 40-character commit in the import drawer. StatePort fetches that exact revision for inspection without requiring a sign-in, following redirects, or running repository scripts.</p>
-</section>
-<section id="import">
-<h2 id="import-heading">2. Review and create the application</h2>
-<ol><li>Open <strong>Catalog</strong> and choose <strong>Import a repository</strong>.</li><li>Refresh the discovered local candidates, or enter the public HTTPS URL and exact commit.</li><li>Choose <strong>Inspect</strong>. Inspection is read-only and reports source identity, template detection, commit and working-tree findings.</li><li>Read the findings. If the repository changed, is dirty, or has an error finding, fix and commit it, then inspect again.</li><li>Enter the application name and check the approval box for the exact inspection.</li><li>For a supported template, choose <strong>Create isolated copy</strong>. For an ordinary unsupported repository, the action is <strong>Register repository</strong> and it does not invent template actions.</li><li>Wait for StatePort to reread the new application and durable receipt. Then choose <strong>Open application</strong> or <strong>View installation receipt</strong>.</li>
+        </aside>
+
+        <article class="prose">
+<p class="notice"><strong>Early alpha, release 0.1.0-alpha.20.</strong> StatePort is in early alpha. Do not use it for important data. It has been measured on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+<p class="notice"><strong>Status of this page.</strong> Importing ProjectState and StudyState templates into an installed StatePort has not been measured yet on Alpha.20. Most of this page describes design intent, and it says so. <a href="#verified">What is verified and what is not</a> is listed below.</p>
+<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-a-template-is">What a template is</a></li><li data-level="2"><a href="#projectstate">ProjectState</a></li><li data-level="2"><a href="#studystate">StudyState</a></li><li data-level="2"><a href="#other-templates">Other templates</a></li><li data-level="2"><a href="#import-heading">How import is designed to work</a></li><li data-level="2"><a href="#verified">What is verified and what is not</a></li><li data-level="2"><a href="#safety-heading">What StatePort is designed to copy and run</a></li><li data-level="2"><a href="#troubleshooting-heading">If a repository does not appear</a></li></ol></details>
+<h2 id="what-a-template-is">What a template is</h2>
+<p>An application in StatePort has two parts. The <strong>template</strong> is the reusable part: its starting files, its rules, and the operations it supports. The <strong>instance</strong> is your own copy, with your saved work, permissions, and history. Two people, or two projects, can start from the same template and end up with different instances. Importing a template creates a new instance from an exact snapshot; it does not turn the source repository into your live application, and later edits to the source do not change an instance you already have.</p>
+<p>Both templates below are ordinary Git repositories of readable files. The contract they define is useful without StatePort. StatePort's part is to wrap a reviewed copy in a managed application with approvals and receipts.</p>
+
+<h2 id="projectstate">ProjectState</h2>
+<p><strong>In plain terms:</strong> ProjectState keeps a project's goal, its one current piece of work, its working rules, and the evidence of what actually happened in ordinary files, so that a person or an AI agent can pick up the project without replaying old conversations. It answers four questions: what are we trying to change, what is the one active step, what did we observe, and what should happen next?</p>
+<p>The files are <code>PROJECT.md</code> for the outcome and boundaries, <code>STATE.yaml</code> for the current step, <code>AGENTS.md</code> for the rules, an <code>evidence</code> folder for results, and a small check script. Read <a href="project-state.html">the ProjectState guide</a> for the details.</p>
+
+<h2 id="studystate">StudyState</h2>
+<p><strong>In plain terms:</strong> StudyState is a study coach that remembers. It keeps a learner's targets, activities, sources, sessions, reviews, and evidence in readable files, so progress survives closed tabs and new chat sessions. Changes to that record are proposals you review before they are saved.</p>
+<p>The <strong>StudyState Sample</strong> is a small worked example of that loop. You start an activity, review the exact change, approve it, write a reflection, review what saving it would do, apply it, open the receipt, and reload to see the result still there. That is the flow shown on the <a href="../index.html#journey">home page</a> and in the <a href="../tutorials/site-orientation.html">field guide video</a>. Read <a href="study-state.html">the StudyState guide</a> and <a href="everyday-work.html">your first session</a> for the steps.</p>
+
+<h2 id="other-templates">Other templates</h2>
+<p>StatePort is designed to accept any repository that declares a valid template manifest and supported actions, called a portable StateSpec repository, and to run only the actions it has actually implemented. Declaring a capability in a repository does not grant it. Nothing on this page says that a third template has been tried on an installed Alpha.20.</p>
+
+<h2 id="import-heading">How import is designed to work</h2>
+<p>This is design intent. It comes from the product's design and has not been measured on an Alpha.20 install.</p>
+<ol>
+<li>Put a real Git checkout, including its <code>.git</code> folder, below the import folder the installer creates. The default is <code>/var/lib/stateport/imports</code>. A ZIP file without Git history cannot identify an exact commit. You may instead give a public HTTPS repository and its full 40-character commit.</li>
+<li>In StatePort, open <strong>Catalog</strong> and choose <strong>Import a repository</strong>.</li>
+<li>Choose <strong>Inspect</strong>. Inspection only reads. It reports the source, which template it detected, the commit, and whether the working tree has uncommitted changes.</li>
+<li>Read the findings. If the repository is dirty or reports an error, fix it, commit, and inspect again.</li>
+<li>Name the application and approve that exact inspection.</li>
+<li>For a supported template, choose <strong>Create isolated copy</strong>. For an ordinary repository that is not a supported template, the action is <strong>Register repository</strong>.</li>
+<li>Open the new application or its install receipt.</li>
 </ol>
-<p>Approval is bound to the inspection digest. A stale approval is refused instead of silently importing a different tree. If the response becomes uncertain, close the flow and refresh Catalog before attempting another mutation.</p>
-</section>
-<section id="recognized">
-<h2 id="recognized-heading">3. What StatePort recognizes</h2>
-<div class="table-scroll" tabindex="0" role="region" aria-label="Recognized template formats">
+<p>Your approval is tied to what was inspected. If the source changes afterwards, the approval is refused instead of silently importing a different version.</p>
+
+<h2 id="verified">What is verified and what is not</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Verification status of templates">
 <table>
+<caption class="sr-only">Verification status of templates</caption>
 <thead>
-<tr><th scope="col">Repository</th><th scope="col">How it is identified</th><th scope="col">Result</th>
-</tr>
+<tr><th scope="col">Item</th><th scope="col">Status</th></tr>
 </thead>
 <tbody>
-<tr><th scope="row">ProjectState v6</th><td>ProjectState v6 contract files, including <code>PROJECT.md</code> and <code>STATE.yaml</code>.</td><td>ProjectState managed application.</td>
-</tr>
-<tr><th scope="row">StudyState</th><td>StudyState mode and template-version compatibility markers plus its committed application files.</td><td>StudyState managed application.</td>
-</tr>
-<tr><th scope="row">Portable StateSpec</th><td>A valid template manifest and declared actions/capabilities that pass the adapter’s checks.</td><td>Generic StateSpec managed application.</td>
-</tr>
+<tr><th scope="row">The install itself</th><td>Measured on Alpha.20: installed and healthy on a fresh Windows 11 virtual machine with WSL2 and Ubuntu 24.04, five times. See <a href="limitations.html#measured">current limitations</a>.</td></tr>
+<tr><th scope="row">The StudyState sample flow</th><td>Shown in the product recordings on this site, made before Alpha.20. It has not been separately measured on a fresh Alpha.20 install.</td></tr>
+<tr><th scope="row">Importing a ProjectState or StudyState repository</th><td>Not measured on the installed product.</td></tr>
+<tr><th scope="row">A third, independent template</th><td>Not measured.</td></tr>
 </tbody>
 </table>
 </div>
-<p><a href="project-state.html">ProjectState</a> stores project outcome, current slice, rules, and evidence. <a href="study-state.html">StudyState</a> stores learner profile, targets, activities, sources, sessions, reviews, and evidence. The template contract remains useful without StatePort; StatePort wraps it with a managed application and receipts.</p>
-</section>
-<section id="safety">
-<h2 id="safety-heading">What StatePort copies and runs</h2>
-<ul><li>The source repository is inspected read-only and remains untouched.</li><li>The managed copy is made from the exact reviewed snapshot and gets its own application identity, provenance, and import receipt.</li><li>Repository code is not executed during discovery or inspection.</li><li>Only actions implemented by StatePort for the detected adapter are available. Declaring a capability in a repository does not grant it automatically.</li><li>Application actions go through the installed service’s review, approval, and receipt boundaries. A source file is never proof that an action succeeded.</li>
+<p>Not measured means we do not know yet, not that it fails. If you try it, <a href="troubleshooting.html#report">tell us what happened</a>.</p>
+
+<h2 id="safety-heading">What StatePort is designed to copy and run</h2>
+<ul>
+<li>The source repository is only read and stays untouched.</li>
+<li>The managed copy is made from the exact snapshot you reviewed, with its own identity and record of where it came from.</li>
+<li>Repository code is not executed while StatePort discovers or inspects a repository.</li>
+<li>Only actions that StatePort itself implements for the detected template are available, and application actions go through review, approval, and a receipt.</li>
 </ul>
-</section>
-<section id="troubleshooting">
-<h2 id="troubleshooting-heading">If the repository does not appear</h2>
-<ul><li>Confirm the checkout is below the configured source folder and is a real directory, not a symbolic link.</li><li>Keep its <code>.git</code> directory and ensure the installer user can read it.</li><li>Use <strong>Refresh repositories</strong> in the drawer after copying the checkout.</li><li>For a public source, use HTTPS and a full commit SHA; a branch name is not an exact reviewed identity.</li><li>If inspection reports a dirty tree or invalid contract, make the smallest repair, commit it, and inspect again.</li><li>If an import response is uncertain, reread Catalog, Applications, and Receipts before retrying.</li>
+
+<h2 id="troubleshooting-heading">If a repository does not appear</h2>
+<p>These are design-based checks that have not been measured on Alpha.20 yet:</p>
+<ul>
+<li>The checkout should be below the import folder, be a real directory rather than a symbolic link, and keep its <code>.git</code> folder.</li>
+<li>Refresh the list after copying a checkout in.</li>
+<li>For a public source, use HTTPS and a full commit, not a branch name.</li>
+<li>If inspection reports uncommitted changes or an invalid template, make the smallest fix, commit it, and inspect again.</li>
+<li>If an import response is uncertain, reread Catalog and Receipts before you try again.</li>
 </ul>
-<p>See <a href="platform-support.html">platform support</a> for the supported install environment, <a href="getting-started.html">getting started</a> for the product path, and <a href="limitations.html">limitations</a> for evidence boundaries.</p>
-</section>
-<div class="inline-actions"><a class="button button--ink" href="getting-started.html">Install StatePort</a><a class="button button--outlined" href="project-state.html">Use ProjectState</a><a class="button button--outlined" href="study-state.html">Use StudyState</a>
+<p>See <a href="platform-support.html">platform support</a> for the supported setup, <a href="getting-started.html">getting started</a> to install, and <a href="limitations.html">current limitations</a> for what has not been measured.</p>
+<div class="inline-actions"><a class="button button--ink" href="getting-started.html">Install StatePort</a><a class="button button--outlined" href="project-state.html">ProjectState guide</a><a class="button button--outlined" href="study-state.html">StudyState guide</a>
 </div>
-</article>
-</div>
-</main>
-<footer class="site-footer">
-<div class="footer-inner">
-<div class="footer-mark"><img src="../assets/stateport-mascot-block-arch-light.svg" alt="">
-<p><strong>StatePort</strong>Durable AI-assisted work, kept in view.</p>
-</div>
-<nav class="footer-nav" aria-label="Footer navigation"><a href="./">Docs</a><a href="../tutorials/">Tutorials</a><a href="../releases/">Release status</a>
-</nav>
-<p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
-</div>
-</footer><script src="../assets/site.js?v=2026-09-10-1"></script>
-</body>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-block-arch-light.svg" alt="">
+          <p><strong>StatePort</strong>Durable AI-assisted work, kept in view.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="./">Docs</a>
+          <a href="../tutorials/">Tutorials</a>
+          <a href="../releases/">Release status</a>
+        </nav>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
+      </div>
+    </footer>
+    <script src="../assets/site.js?v=2026-09-10-1"></script>
+  </body>
 </html>

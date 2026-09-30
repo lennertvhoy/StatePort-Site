@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Check an installed StatePort Alpha.16 release, apply the current Alpha.20 successor, or uninstall while preserving state.">
+    <meta name="description" content="What StatePort Alpha.20 supports for updates, rollback, uninstall, and reinstall: no supported in-place update or one-command uninstall yet, and what to do instead.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Updates and uninstall — StatePort">
-    <meta property="og:description" content="Inspect installed status, use exact signed release transitions, rerun safely, and uninstall or purge deliberately.">
+    <meta property="og:title" content="Updates and removal — StatePort">
+    <meta property="og:description" content="Alpha.20 has no supported in-place update, rollback, or one-command uninstall. What that means and what to do.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/updates.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -17,25 +17,14 @@
     <meta property="og:image:alt" content="StatePort overview card: durable AI applications on your own computer.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
-    <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/updates.html">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
     <link rel="stylesheet" href="../assets/site.css?v=2026-09-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-10-1" data-site-enhancements>
-    <title>Updates and uninstall — StatePort</title>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "TechArticle",
-        "headline": "Update or uninstall StatePort",
-        "description": "Inspect installed status, use exact signed release transitions, rerun safely, and uninstall or purge deliberately.",
-        "url": "https://lennertvhoy.github.io/StatePort-Site/docs/updates.html",
-        "dateModified": "2026-09-04",
-        "inLanguage": "en"
-      }
-    </script>
+    <title>Updates and removal — StatePort</title>
+  <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/updates.html">
   </head>
   <body class="article-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -59,9 +48,9 @@
     <main id="main">
       <section class="article-hero" aria-labelledby="updates-title">
         <div class="article-hero-inner">
-          <p class="document-kicker">Documentation / Updates</p>
-          <h1 id="updates-title">Update, back up, or remove StatePort deliberately.</h1>
-          <p>Installed identity and user data are kept separate, so checking a release, applying a successor, removing services, and deleting state remain different actions.</p>
+          <p class="document-kicker">Documentation / Updates and removal</p>
+          <h1 id="updates-title">Updates, backups, and removal in this alpha.</h1>
+          <p>In Alpha.20 there is no supported in-place update, no rollback, and no supported one-command uninstall. This page says what that means and what to do instead.</p>
         </div>
       </section>
 
@@ -70,23 +59,24 @@
           <h2>Documentation</h2>
           <nav>
             <a href="./">Documentation home</a>
-            <a href="everyday-work.html">Your first session</a>
             <a href="getting-started.html">Install and open</a>
-            <a href="templates.html">Import a template</a>
+            <a href="everyday-work.html">Your first session</a>
+            <a href="templates.html">Use a template</a>
             <a href="project-state.html">ProjectState</a>
             <a href="study-state.html">StudyState</a>
             <a href="troubleshooting.html">Troubleshooting</a>
+            <a href="faq.html">FAQ</a>
             <a href="lifecycle.html">Backup and recovery</a>
-            <a href="updates.html" aria-current="page">Update and uninstall</a>
+            <a href="updates.html" aria-current="page">Updates and removal</a>
             <a href="governance.html">Review and control</a>
             <a href="hosts-and-portability.html">AI tools and readiness</a>
             <a href="security-and-privacy.html">Security and privacy</a>
             <a href="platform-support.html">Platform support</a>
+            <a href="limitations.html">Current limitations</a>
             <a href="foundations.html">Why StatePort exists</a>
             <a href="model.html">Core model</a>
             <a href="deployments.html">Container deployments</a>
-            <a href="reference.html">Reference and FAQ</a>
-            <a href="limitations.html">Current limitations</a>
+            <a href="reference.html">Glossary and concepts</a>
             <a href="evidence-and-roadmap.html">Roadmap</a>
             <a href="agent-kits.html">Agent Kits</a>
             <a href="prototype-walkthrough.html">Product walkthrough</a>
@@ -94,41 +84,62 @@
         </aside>
 
         <article class="prose">
-          <p class="notice"><strong>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress. Alpha.16 is a superseded predecessor: its fresh installation was blocked by a signature-check defect and it is retained for history.</strong> The current Alpha.20 command installs through this public route and its images are anonymously downloadable; retry guidance for the historical Alpha.16 route no longer applies.</p>
-          <p class="notice"><strong>Rollback is not supported for the Alpha.16 public candidate.</strong> Alpha.15 remains immutable, and the Alpha.16 release index declares no authenticated rollback path.</p>
-          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#identity">Check installed identity</a></li><li data-level="2"><a href="#successor">Apply a successor</a></li><li data-level="2"><a href="#backup">Back up before lifecycle work</a></li><li data-level="2"><a href="#uninstall">Uninstall and preserve receipts</a></li><li data-level="2"><a href="#purge">Purge boundary</a></li></ol></details>
-          <span id="check-the-installed-identity"></span>
-<h2 id="identity">Check installed identity</h2>
-          <p>On an already installed host, read the durable status without downloading or changing a release:</p>
-          <pre><code>~/.local/state/stateport-install/bin/stateport-update status</code>
+<p class="notice"><strong>Early alpha, release 0.1.0-alpha.20.</strong> StatePort is in early alpha. Do not use it for important data. It has been measured on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+<p class="notice"><strong>Uninstall and reinstall are not yet measured; there is no supported one-command uninstall in this alpha.</strong> Install StatePort only on a computer, Ubuntu distribution, or virtual machine you can afford to lose.</p>
+<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#supported">What this alpha supports</a></li><li data-level="2"><a href="#identity">Check what is installed</a></li><li data-level="2"><a href="#updating">Updating</a></li><li data-level="2"><a href="#backup">Back up before anything else</a></li><li data-level="2"><a href="#removal">Removing StatePort</a></li><li data-level="2"><a href="#reinstalling">Reinstalling</a></li></ol></details>
+<h2 id="supported">What this alpha supports</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Lifecycle support in Alpha.20">
+<table>
+<caption class="sr-only">Lifecycle support in Alpha.20</caption>
+<thead>
+<tr><th scope="col">Action</th><th scope="col">Status in Alpha.20</th></tr>
+</thead>
+<tbody>
+<tr><th scope="row">Fresh install on the supported setup</th><td>Measured: installed and healthy on a fresh Windows 11 virtual machine with WSL2 and Ubuntu 24.04, five times.</td></tr>
+<tr><th scope="row">Update in place</th><td>No supported command.</td></tr>
+<tr><th scope="row">Roll back</th><td>Not supported. The signed release index for Alpha.20 declares that rollback is not supported.</td></tr>
+<tr><th scope="row">Uninstall</th><td>Not yet measured. No supported one-command uninstall.</td></tr>
+<tr><th scope="row">Reinstall</th><td>Not yet measured.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="identity">Check what is installed</h2>
+<p>The install receipt records what was installed. It is a JSON file in <code>~/.local/state/stateport-install/receipts/</code>, and the installer printed its path when it finished. The installer also leaves a status command at the path below. We describe it as read-only, but we have not measured it on Alpha.20.</p>
+<pre><code>~/.local/state/stateport-install/bin/stateport-update status</code>
 </pre>
-          <p>The state root is installation-specific. Do not copy it to another machine or combine receipts from different installations; the installed authority binds the state directory identity.</p>
-          <span id="historical-alpha16-rerun-command"></span><span id="check-the-release"></span>
-<h2 id="successor">Apply a successor</h2>
-          <p>Only use a specifically named, signed successor whose release index, source identity, target, images, and trust information agree. explicit authorization, then <code>apply</code>; each step leaves a receipt. A supported release should document the exact command. Alpha.20 is that successor and documents its one-line install command for a fresh supported host; there is no safe copy-paste in-place update command.</p>
-          <p>The release index keeps trust-root changes separate from ordinary updates. Do not replace the pinned key, edit the compose file, or pull mutable image tags. If an update fails or its external effect is unknown, stop and inspect the recorded recovery instructions; do not infer success from a running container.</p>
-          <span id="keep-trust-changes-separate"></span><span id="review-before-updating"></span>
-<h2 id="backup">Back up before lifecycle work</h2>
-<p>Follow <a href="lifecycle.html#back-up-and-recover">backup and recovery</a> to check an archive and restore into a separate instance where those controls are available.</p>
-          <p>Back up each durable application repository and keep the archive outside the source instance, preferably on a separate device. StatePort's backup contract excludes host Git metadata, transient engine state, secret-looking files, and secret-classified metadata; an export is not encryption, retention, or full-host disaster recovery. A restore creates a new reidentified instance and refuses to overwrite an existing or foreign target.</p>
-          <p>Do not treat container images, the install receipt, or the updater store as a backup of your application data. Keep the backup receipt and archive digest together.</p>
-          <span id="check-the-result-and-roll-back-failures"></span><span id="keep-a-change-record"></span><span id="uninstall-while-preserving-installer-state"></span>
-<h2 id="uninstall">Uninstall and preserve receipts</h2>
-          <p>The Alpha.16 installer is available at the versioned URL below. Verify its artifact digest before invoking its uninstall mode:</p>
-          <pre><code>(
-set -eu
-installer=$(mktemp)
-trap 'rm -f "$installer"' EXIT
-curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.16/stateport-installer -o "$installer"
-printf '%s  %s\n' b49dbcde86b99a1fa06210d0c2f625e52b82c135d5f76adcc0f903eceeb84d8d "$installer" | sha256sum -c -
-python3 "$installer" --uninstall --state-root "$HOME/.local/state/stateport-install"
- )</code>
-</pre>
-          <p>Uninstall removes the recorded runtime units, containers, and live runtime configuration while retaining installer state and receipts. Run it only on a host with a successfully recorded installation; it is not a repair for a failed fresh install.</p>
-          <span id="purge-is-destructive"></span><span id="current-status"></span>
-<h2 id="purge">Purge boundary</h2>
-          <p><code>--purge</code> additionally removes retained installation state. Export application data and confirm the exact state root first. Purge is destructive and intentionally requires an explicit operator decision; never substitute <code>rm -rf</code> or delete a broader home-directory path.</p>
-          <p>Read <a href="troubleshooting.html">Troubleshooting</a> for refusal codes and <a href="../releases/">Release status</a> before using a future successor.</p>
+<p>Installation records are specific to one installation. Do not copy them to another computer or combine receipts from different installations.</p>
+
+<h2 id="updating">Updating</h2>
+<p>There is no supported way to update an installed StatePort in place, and there is no safe copy-and-paste update command. Running the one-line install command again on a computer that already has StatePort is not a tested update path either; it can stop with <a href="troubleshooting.html#image-archive-conflict"><code>image_archive_conflict</code></a>.</p>
+<p>When a newer release exists, its own documentation will give its instructions. Until then:</p>
+<ul>
+<li>Do not replace the trusted key, edit the generated files, or mix files from different releases.</li>
+<li>Do not run an installer or command from an older release against an Alpha.20 installation.</li>
+<li>Check the <a href="../releases/">release status</a> and the <a href="../download/">download page</a> for what is current.</li>
+</ul>
+
+<h2 id="backup">Back up before anything else</h2>
+<p>The product is designed to offer backup and restore controls; see <a href="lifecycle.html#back-up-and-recover">backup and recovery</a>. They have not been measured on Alpha.20. Until they have been, keep your own copy of anything you care about outside the Ubuntu distribution where StatePort runs, and do not use StatePort for important data. Container images, the install receipt, and the installer's records are not a backup of your application data.</p>
+
+<h2 id="removal">Removing StatePort</h2>
+<p>There is no tested removal procedure. It helps to know what the installer put in place:</p>
+<ul>
+<li>System packages in the Ubuntu distribution, which the installer holds so that ordinary updates do not change them.</li>
+<li>Background services that run under Ubuntu's systemd, and the container images they use.</li>
+<li>Receipts and installer records in <code>~/.local/state/stateport-install</code>.</li>
+<li>One Windows scheduled task, <code>StatePortKeepAlive</code>, which lives in Windows and not in Ubuntu.</li>
+</ul>
+<p>What we can say honestly:</p>
+<ul>
+<li>The reliable way to remove everything inside Ubuntu is to remove the whole distribution or virtual machine you installed it in. Microsoft documents how to <a href="https://learn.microsoft.com/windows/wsl/basic-commands#unregister-or-uninstall-a-linux-distribution" target="_blank" rel="noopener">unregister a WSL distribution</a>. That permanently deletes everything in it, so use it only on a distribution you created for this test and never on one you use for other work.</li>
+<li>The scheduled task is separate. It stays until you remove it, and you can delete it yourself in Windows Task Scheduler. How it should be removed with StatePort has not been measured.</li>
+<li>Do not delete folders under <code>~/.local/state/stateport-install</code> by hand as a way to clean up, and do not run broad <code>rm -rf</code> commands. The only documented exception is the folder that <a href="troubleshooting.html#image-archive-conflict">the <code>image_archive_conflict</code> workaround</a> moves aside.</li>
+</ul>
+
+<h2 id="reinstalling">Reinstalling</h2>
+<p>Reinstalling on a computer that already had StatePort is not yet measured. On a fresh setup, follow <a href="getting-started.html">getting started</a>. If an earlier attempt left files behind, the run can stop with <code>image_archive_conflict</code>, and <a href="troubleshooting.html#image-archive-conflict">troubleshooting</a> has a provisional workaround.</p>
+<p>See also <a href="limitations.html#not-measured">what has not been measured</a> and <a href="troubleshooting.html">troubleshooting</a>.</p>
         </article>
       </div>
     </main>
