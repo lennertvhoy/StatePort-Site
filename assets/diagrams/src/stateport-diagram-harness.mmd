@@ -1,12 +1,11 @@
 flowchart TB
-    SPEC["AgentRunSpec<br/>plan + bounds + base SHA"]
-    subgraph HOSTS["Profiled execution providers"]
-        CX["Codex CLI — qualified (private alpha)"]
-        OC["OpenCode — unqualified"]
-        PI["Pi — reference direction"]
+    SPEC["Run request<br/>plan, limits,<br/>starting point"]
+    subgraph HOSTS["Coding agents"]
+        OC["OpenCode<br/>ships with Alpha.20<br/>(the default)"]
+        CX["Codex<br/>not bundled"]
     end
-    HARNESS["StatePort harness<br/>plan · approve · run<br/>headless · validate"]
-    DB[("Durable StateSpec instance<br/>state files + cockpit scripts")]
+    HARNESS["StatePort<br/>plans, asks you,<br/>runs the agent,<br/>checks the result"]
+    DB[("Your copy of the app<br/>state files + scripts")]
     SPEC --> HARNESS
     HOSTS --> HARNESS
     HARNESS --> DB
