@@ -4,12 +4,13 @@ Everything is prepared so clicking "post" is the only step left.
 
 ## What was published (2026-09-30)
 
+- Follow-up, later the same day: the site pages were updated with the installed-product measurements (a UI pass in a real browser and an API pass on fresh Windows 11 guests). The bullet below now describes what the pages claim.
 - Branch `launch/linkedin-20260930`, pushed to `origin`, then fast-forwarded into `main`; GitHub Pages serves `main` directly.
 - Live pages tell one honest Alpha.20 story (what works, the exact one-line command, target, known limits, how to report problems):
   - https://lennertvhoy.github.io/StatePort-Site/ (home)
   - https://lennertvhoy.github.io/StatePort-Site/download/ (install command + installer SHA-256 displayed)
   - https://lennertvhoy.github.io/StatePort-Site/releases/ (release status, known limits)
-- Measured claims on the pages: Alpha.20 installed from the anonymous one-line route on a genuine Windows 11 25H2 + WSL2 + stock Ubuntu 24.04 VM, five times (exit 0, healthy receipt), and stayed reachable after the last WSL session closed (keep-alive task activated by an interactive logon). Known limits stated plainly: Windows reboot survival not yet measured (qualification run was still in flight at publication), templates/uninstall/reinstall, full UI inventory, and efficiency not yet run; early alpha — do not use for important data.
+- Measured claims on the pages: Alpha.20 installed from the anonymous one-line route on fresh Windows 11 25H2 + WSL2 + stock Ubuntu 24.04 guests, seven times (healthy receipts, about 6.5 to 15 minutes each). The study sample loop is measured end to end in the browser on the installed alpha (review, approve, apply, reflect, receipt, undo; state kept after service restarts and an unclean WSL shutdown). Template import from a local Git checkout is measured (one-time ownership fix, on the troubleshooting page); export/import, a verified backup, restore as a new instance and a template upgrade are measured through the API. Chat replies, coding-agent runs and container workspaces do not work yet, and the pages say so plainly. Without the keep-alive task started (before a Windows sign-in), the product stops when the last Ubuntu window closes and returns about three minutes after reopening Ubuntu. Known limits stated plainly: Windows reboot survival not yet measured, uninstall not documented, early alpha — do not use for important data.
 - Validators before push: `scripts/validate_repo.py` OK, `scripts/check_site_quality.py` OK (34 pages), 63 unit tests OK (run in a clean clone of the branch; the recorded immutable-manifest file modes were applied mode-only, as the qualification run also recorded). `scripts/projectstate_gate.py` honestly exits 1: the full journey (reboot, uninstall/reinstall, human acceptance) is not closed — by design, nothing on the site overclaims it.
 
 ## Verification commands (anonymous)
