@@ -116,7 +116,7 @@
 <li>Use anything other than Windows 11 with WSL2 and Ubuntu 24.04 on AMD64. WSL1, ARM64, macOS, native Linux, Docker Desktop, and other distributions are not supported.</li>
 <li>Uninstall or reinstall with a tested, supported command. Neither has been measured yet.</li>
 <li>Rely on StatePort surviving a Windows restart. Restart survival has not been measured.</li>
-<li>Count on template import (ProjectState, a project tracker; StudyState, a study plan) working on the installed product. It is built, but I have not measured it there yet.</li>
+<li>Count on template import (ProjectState, a project tracker; StudyState, a study plan) working without extra steps. It was measured from a local Git checkout, after a one-time ownership fix. Import from a public Git URL was not tested.</li>
 <li>Update in place or roll back. There is no supported in-place update or rollback in this alpha.</li>
 <li>Undo most changes. One undo exists: the last evidence update in the StudyState sample.</li>
 <li>Back up more than an instance's files. A backup does not include Git history, conversations, the receipts index or approvals, and restore recreates files only.</li>

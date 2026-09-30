@@ -112,7 +112,7 @@
 </ul>
 
 <h2 id="backup">Back up before anything else</h2>
-<p>StatePort has backup and restore controls (see <a href="lifecycle.html#back-up-and-recover">backup and recovery</a>), but I have not measured them on Alpha.20. Until I have, keep your own copy of anything you care about outside the Ubuntu distribution where StatePort runs, and do not use StatePort for important data. Container images, the install receipt, and the installer's records are not a backup of your application data. Even when the controls work, a backup archives the instance's files, not its Git history, conversations, receipts index or approvals, and restore recreates files only.</p>
+<p>StatePort has backup and restore controls (see <a href="lifecycle.html#back-up-and-recover">backup and recovery</a>). A verified backup and restore as a new instance were measured through the API on an installed Alpha.20; restore from the interface does not work yet. Keep your own copy of anything you care about outside the Ubuntu distribution where StatePort runs, and do not use StatePort for important data. Container images, the install receipt, and the installer's records are not a backup of your application data. A backup archives the instance's files, not its Git history, conversations, receipts index or approvals, and restore recreates files only.</p>
 
 <h2 id="removal">Removing StatePort</h2>
 <p>There is no tested removal procedure. Here is what the installer puts in place:</p>

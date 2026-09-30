@@ -87,26 +87,27 @@
           <p class="notice"><strong>Early alpha, release 0.1.0-alpha.20.</strong> Do not use it for important data. I have measured it on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
           <p class="notice notice--quiet"><strong>Looking for availability?</strong> Check the <a href="../releases/">release status</a>.</p>
 
-          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#available-now">What works today: measured on Alpha.20</a></li><li data-level="2"><a href="#designed">Not yet measured, and designed but not built</a></li><li data-level="2"><a href="#current-priorities">Current priorities</a></li><li data-level="2"><a href="#later">Later</a></li></ol></details>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#available-now">What works today: measured on Alpha.20</a></li><li data-level="2"><a href="#designed">Not working yet, and designed but not built</a></li><li data-level="2"><a href="#current-priorities">Current priorities</a></li><li data-level="2"><a href="#later">Later</a></li></ol></details>
 <h2 id="available-now">What works today: measured on Alpha.20</h2>
 <ul>
-<li>A one-line installer for Windows 11, WSL2, Ubuntu 24.04 and AMD64. It installed StatePort and reported it healthy on a fresh Windows 11 virtual machine, five times, in about 6.5 minutes each.</li>
+<li>A one-line installer for Windows 11, WSL2, Ubuntu 24.04 and AMD64. It installed StatePort and reported it healthy on seven fresh Windows 11 test installs, in about 6.5 to 15 minutes each.</li>
 <li>The install sets up StatePort&rsquo;s local services: the web interface, the API, the worker, a storage service and an execution host, which is a sandbox that runs work.</li>
+<li>The study sample loop in the browser: review, approve, apply, reflect, receipt, undo, with the saved state kept after restarts.</li>
+<li>Importing a ProjectState or StudyState template from a local Git checkout, plus export and import, a verified backup, restore as a new instance and a template upgrade, through the API.</li>
 <li>A Windows scheduled task, <code>StatePortKeepAlive</code>, that keeps Ubuntu running after the last WSL window closes, once you have signed in to Windows.</li>
 <li>Release files with signatures and fingerprints that you can inspect on the <a href="../download/technical-release-files.html">technical release files</a> page.</li>
 </ul>
-<h2 id="designed">Not yet measured, and designed but not built</h2>
-<p><strong>Not yet measured.</strong> These are built and described in these docs. I have not measured them on an installed Alpha.20.</p>
+<h2 id="designed">Not working yet, and designed but not built</h2>
+<p><strong>Not working yet.</strong> These are built into Alpha.20, and on my installed test copies they did not work. Fixes for most of them are being built into the next release (Alpha.21); none of that is published yet. <a href="limitations.html#not-working">Current limitations</a> has the full list.</p>
 <ul>
-<li>The StudyState sample loop (it passes in the project&rsquo;s automated tests) and importing ProjectState (a project tracker), StudyState (a study-plan template) and other template Git repositories.</li>
-<li>Backup and recovery controls.</li>
+<li>Chat replies, coding-agent runs, per-application workspaces and container tools, the workbench terminal and files tools, restore from the interface, the standing-authority and updater pages, and notifications.</li>
 <li>Surviving a Windows restart, uninstall, and reinstall.</li>
-<li>A full walk through every screen of the interface, and speed and memory use on a 16 GB laptop.</li>
+<li>Memory and disk use under real work. Idle use was measured and is small.</li>
 </ul>
 <p><strong>Designed, not built.</strong> Undo for most changes and rolling back the platform, a chat assistant that reads your state, saving coding-agent output into an app&rsquo;s state, backups that carry Git history and receipts, and moving an instance to another machine with its grants and receipts. <a href="limitations.html#designed">Current limitations</a> has the exact wording of each.</p>
 <h2 id="current-priorities">Current priorities</h2>
 <ul>
-<li>Measure the items above, starting with a Windows restart, templates, and uninstall and reinstall.</li>
+<li>Fix the not-working list, and measure what is left, starting with a Windows restart and uninstall.</li>
 <li>Write backup, recovery and update guidance around real workflows.</li>
 <li>Test the product with people who did not build it.</li>
 <li>Get a security review before I ask anyone to trust important data to StatePort.</li>
