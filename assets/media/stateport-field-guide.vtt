@@ -1,5 +1,8 @@
 WEBVTT
 
+NOTE Cues are the narration word for word. The recording shows an earlier development build. The loop passes in the
+project's automated tests and has not yet been run end to end on an installed Alpha.20; a Windows reboot is not measured.
+
 00:00:00.000 --> 00:00:05.960
 In this sample learning application, the goal and next activity are saved with the work.
 
