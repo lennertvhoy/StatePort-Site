@@ -34,7 +34,7 @@
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "StatePort",
-        "description": "A lasting home on your own computer for durable, user-owned AI applications, with change you can review and undo.",
+        "description": "A lasting home on your own computer for durable, user-owned AI applications, with changes you review before they are applied and a receipt of what was done. Early alpha.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/",
         "inLanguage": "en"
       }
@@ -93,7 +93,8 @@
         <div class="audience-intro reveal">
            <p class="section-kicker">One journey, shown step by step</p>
           <h2 class="section-heading" id="journey-heading">Review an activity. Save a reflection. Come back.</h2>
-          <p>Imagine returning to a study session and wondering where you stopped. StudyState Sample keeps a goal and activities together. Start an activity, approve the proposed change, then review and save a reflection about what you learned. Your saved reflection and progress remain available when you return.</p>
+          <p>Imagine returning to a study session and wondering where you stopped. StudyState Sample keeps a goal and activities together. Start an activity, approve the proposed change, then review and save a reflection about what you learned. The sample saves your reflection and progress in files on disk, so that is where a return visit starts.</p>
+          <p class="notice notice--quiet"><strong>Where this stands.</strong> In the StudyState Sample, the review-approve-reflect-receipt loop is implemented and passes in the project&rsquo;s automated tests, including a service restart that re-reads the saved state. It has not yet been run end to end on an installed Alpha.20. In the sample, the proposed change comes from a deterministic script, not from a model.</p>
         </div>
         <p class="prototype-gallery-intro reveal">Follow the review-and-save workflow in StudyState Sample. A receipt records the change you approved; a reflection captures your own account of what you learned. Click a screen to inspect it, or <a href="tutorials/site-orientation.html">watch the same example in 72 seconds</a>.</p>
         <div class="prototype-frames" role="group" aria-label="StudyState Sample journey screens">
@@ -144,13 +145,14 @@
               <track kind="captions" srclang="en" label="English" src="assets/media/stateport-overview.vtt?v=2026-09-30-1" default>
               Your browser does not support HTML video. The transcript below carries the same information.
             </video>
-            <p id="overview-caption">24 seconds of the real product interface, recorded in August 2026 on an earlier development build. Screens in Alpha.20 may differ. Current status: <a href="releases/">release status</a>.</p>
+            <p id="overview-caption">24 seconds of the real product interface, recorded in August 2026 on an earlier development build. Screens in Alpha.20 may differ. <strong>The video&rsquo;s text says consequential changes &ldquo;stay undoable&rdquo;. That is not accurate for Alpha.20:</strong> one undo exists (the last StudyState Sample evidence update), most changes have no undo, and platform rollback is not supported. Current status: <a href="releases/">release status</a>.</p>
             <details class="video-transcript" id="overview-transcript">
               <summary>Read the transcript</summary>
               <p>AI chats forget. Your work shouldn't. StatePort gives AI-assisted work a durable home on your own machine.</p>
               <p>A real app retains its context: the study plan, the progress, the evidence — not a blank chat box.</p>
               <p>Consequential changes are reviewed before they land — and they stay undoable.</p>
               <p>And every run leaves a receipt: what was asked, what was allowed, what was done.</p>
+              <p><em>Note: the narration says changes &ldquo;stay undoable&rdquo;. In Alpha.20 only one undo exists, for the last StudyState Sample evidence update. Most changes have no undo, and platform rollback is not supported.</em></p>
             </details>
           </div>
         </div>
@@ -204,13 +206,13 @@
           </article>
           <article class="principle reveal">
             <p class="principle-index">02</p>
-            <h3>Continuity is designed for restarts</h3>
-            <p>State is saved on disk, not held in a chat window, so a new session, a different model or a restart starts from what was saved.</p>
+            <h3>Continuity comes from saved files</h3>
+            <p>State is saved on disk, not held in a chat window, so a new session can start from what was saved. After you sign in to Windows, StatePort stayed reachable after the last WSL window closed. A Windows reboot is not yet measured.</p>
           </article>
           <article class="principle reveal">
             <p class="principle-index">03</p>
             <h3>Change stays reviewable</h3>
-            <p>Important changes are proposed first. You can inspect the result and see what happened.</p>
+            <p>In the StudyState Sample, important changes are proposed first, and you can inspect the result and its receipt. Output from coding agents is recorded as a run result; StatePort does not yet promote it into application state.</p>
           </article>
         </div>
       </section>
@@ -237,8 +239,8 @@
             </article>
           </div>
           <figure class="diagram-figure reveal">
-            <img src="assets/diagrams/stateport-diagram-template.png" alt="Diagram: an application template of state files and scripts flows through StatePort, which runs a headless agent in a managed environment and writes results into a durable instance." width="1568" height="256" loading="lazy" decoding="async">
-            <figcaption>From an application template to a durable instance — the agent does the work, StatePort governs it, the instance keeps it.</figcaption>
+            <img src="assets/diagrams/stateport-diagram-template.png" alt="Design diagram: an application template of state files and scripts flows through StatePort, which runs a headless agent in a managed environment and writes results into a durable instance." width="1568" height="256" loading="lazy" decoding="async">
+            <figcaption>The design, from an application template to a durable instance: the agent does the work, StatePort governs it, the instance keeps it. Today the write into the instance is built for deterministic application actions; coding-agent output is recorded as a run result and is not yet promoted into application state.</figcaption>
           </figure>
         </div>
       </section>
@@ -248,10 +250,11 @@
           <div class="reveal">
             <p class="release-label">Current availability</p>
             <h2 id="status-heading">Alpha.20 is the current early alpha.</h2>
-            <p class="notice"><strong>StatePort is in early alpha. Do not use it for important data.</strong></p>
-            <p>Alpha.20 installs on Windows 11 with WSL2 and Ubuntu 24.04 from one command. That command installed StatePort successfully, and it came up healthy, five times on fresh Windows 11 virtual machines. After you sign in to Windows, a small background task keeps StatePort reachable even after the last WSL window is closed.</p>
+            <p class="notice"><strong>StatePort is in early alpha. Do not use it for important data.</strong> Here is exactly what works today and what is designed but not yet built.</p>
+            <p><strong>What works today.</strong> Alpha.20 installs on Windows 11 with WSL2 and Ubuntu 24.04 from one command. That command installed StatePort successfully, and it came up healthy, five times on fresh Windows 11 virtual machines. After you sign in to Windows, a small background task keeps StatePort reachable even after the last WSL window is closed.</p>
             <p>The release installs the web interface, a local API, a background worker, storage and an isolated place to run work, all on your own machine. The included sample application is StudyState.</p>
-            <p><strong>Not tested yet:</strong> whether StatePort comes back after a Windows reboot, working with templates on Windows, uninstalling and reinstalling, a screen-by-screen check of the whole interface, and speed and resource use. If you hit a problem, please tell me.</p>
+            <p><strong>Not yet measured.</strong> Whether StatePort comes back after a Windows reboot, working with templates on Windows, uninstalling and reinstalling, a screen-by-screen check of the whole interface, and speed and resource use. The StudyState Sample loop (review, approve, reflect, receipt) is implemented and passes in the project&rsquo;s automated tests, but has not yet been run end to end on an installed Alpha.20. If you hit a problem, please tell me.</p>
+            <p><strong>Designed, not built.</strong> A general undo (one undo exists, for the last StudyState Sample evidence update) and platform rollback; a chat assistant that answers from your own state (chat sees only the recent conversation); coding-agent output promoted into application state; backups that carry Git history, conversations, receipts and approvals; container deployment; Agent Kits.</p>
             <details class="status-exact">
               <summary>Exact status statement (for reviewers)</summary>
               <p>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress.</p>
@@ -262,16 +265,16 @@
           </div>
           <dl class="release-status-list reveal">
             <div>
-              <dt>Install</dt>
-              <dd>One command; installed and healthy five times on fresh Windows 11 VMs</dd>
+              <dt>What works today</dt>
+              <dd>One-command install, installed and healthy five times on fresh Windows 11 VMs; stayed reachable after the last WSL window closed (after signing in to Windows)</dd>
             </div>
             <div>
-              <dt>Keeps running</dt>
-              <dd>Stayed reachable after the last WSL window closed (after signing in to Windows)</dd>
+              <dt>Not yet measured</dt>
+              <dd>Windows reboot, templates, uninstall and reinstall, full interface check, efficiency, and the StudyState Sample loop on an installed Alpha.20 (it passes in automated tests)</dd>
             </div>
             <div>
-              <dt>Not tested yet</dt>
-              <dd>Windows reboot, templates, uninstall and reinstall, full interface check, efficiency</dd>
+              <dt>Designed, not built</dt>
+              <dd>General undo and platform rollback, chat that reads your state, coding-agent output promoted into state, backup of history and receipts, container deployment, Agent Kits</dd>
             </div>
             <div>
               <dt>Older releases</dt>
@@ -290,7 +293,7 @@
           <article class="audience-path reveal">
             <p class="audience-label">Curious</p>
             <h3>Watch the product work</h3>
-            <p>Follow the installed study sample from review to saved reflection.</p>
+            <p>Follow the study sample from review to saved reflection. It is shown in recordings from an earlier build and passes in automated tests; it has not yet been run on an installed Alpha.20.</p>
             <a href="docs/prototype-walkthrough.html">Open the product walkthrough <span aria-hidden="true">↗</span></a>
           </article>
           <article class="audience-path reveal">
