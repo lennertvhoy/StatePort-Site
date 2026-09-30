@@ -95,7 +95,7 @@
             <ul>
               <li><strong>Tested:</strong> the one-line command below installed Alpha.20 successfully, and it came up healthy, five times on fresh Windows 11 virtual machines with WSL2 and stock Ubuntu 24.04 (two earlier runs and three on 30 September 2026). All five were virtual machines, not physical PCs.</li>
               <li><strong>Tested:</strong> after an interactive Windows sign-in, a small keep-alive task keeps StatePort reachable after the last WSL window is closed.</li>
-              <li><strong>Not tested yet:</strong> whether StatePort survives a Windows reboot, working with templates on Windows, uninstalling and reinstalling, a screen-by-screen check of the whole interface, and speed and resource use.</li>
+              <li><strong>Not tested yet:</strong> whether StatePort survives a Windows reboot, working with templates on Windows, uninstalling and reinstalling, a screen-by-screen check of the whole interface, and speed and resource use. The StudyState Sample loop (review, approve, reflect, receipt) is implemented and passes in the project&rsquo;s automated tests, but has not yet been run end to end on an installed Alpha.20.</li>
             </ul>
             <details class="status-exact">
               <summary>Exact status statement (for reviewers)</summary>
@@ -152,7 +152,7 @@ systemd=true</code></pre>
               <li>Install the reviewed StudyState sample from <strong>Catalog</strong> and follow the <a href="../tutorials/site-orientation.html">72-second field guide</a> to see what to look for.</li>
               <li>To try your own project, place a Git repository below <code>/var/lib/stateport/imports</code> and use <strong>Catalog → Import a local repository</strong>.</li>
             </ol>
-            <p>Templates, including the StudyState sample, have not been tested on Windows yet, so expect rough edges.</p>
+            <p>Templates, including the StudyState sample, have not been tested on Windows yet, so expect rough edges. In the sample, the review-approve-reflect-receipt loop passes in the project&rsquo;s automated tests but has not yet been run end to end on an installed Alpha.20.</p>
             <p><a href="../docs/templates.html">Open the template workflow</a> or <a href="../docs/getting-started.html">read the full getting-started guide</a>.</p>
           </section>
 
@@ -166,7 +166,7 @@ systemd=true</code></pre>
             <h2 id="stop-heading">Stop or remove StatePort</h2>
             <ul>
               <li><strong>Stop it for now:</strong> run <code>wsl --shutdown</code> in PowerShell. That stops every WSL distribution, StatePort included, and it can stay stopped until your next Windows sign-in.</li>
-              <li><strong>Uninstall:</strong> the command above only installs. Uninstalling and reinstalling Alpha.20 have not been tested, and this page has no one-line uninstall. The <a href="../docs/updates.html">update and uninstall guide</a> describes the installer&rsquo;s uninstall mode; treat it as unverified for Alpha.20.</li>
+              <li><strong>Uninstall:</strong> the command above only installs. Uninstalling and reinstalling Alpha.20 have not been tested, and this page has no one-line uninstall. The <a href="../docs/updates.html">update and removal guide</a> says what is and is not known. Do not run the Alpha.16 installer, or any installer from another release, against an Alpha.20 install.</li>
               <li><strong>Cleanest option:</strong> try StatePort in a throwaway WSL distribution or virtual machine and delete that when you are done. Deleting a distribution deletes everything inside it, so only do this with a test one.</li>
               <li><strong>Keep-alive task:</strong> if you remove StatePort, also delete the <code>StatePortKeepAlive</code> task in Windows Task Scheduler (or run <code>schtasks /Delete /TN StatePortKeepAlive /F</code> in PowerShell). This removal path is untested.</li>
             </ul>

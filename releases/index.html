@@ -86,7 +86,7 @@
               <p class="release-summary-label">Current software status</p>
               <h2>Alpha.20 is the current early alpha</h2>
               <p>Alpha.20 installs on Windows 11 with WSL2 and Ubuntu 24.04 from one command. It installed successfully, and came up healthy, five times on fresh Windows 11 virtual machines (two earlier runs and three on 30 September 2026). After an interactive Windows sign-in, a small keep-alive task keeps StatePort reachable after the last WSL window is closed.</p>
-              <p><strong>Not tested yet:</strong> whether StatePort survives a Windows reboot, working with templates on Windows, uninstalling and reinstalling, a screen-by-screen check of the whole interface, and speed and resource use.</p>
+              <p><strong>Not tested yet:</strong> whether StatePort survives a Windows reboot, working with templates on Windows, uninstalling and reinstalling, a screen-by-screen check of the whole interface, and speed and resource use. The StudyState Sample loop (review, approve, reflect, receipt) is implemented and passes in the project&rsquo;s automated tests, but has not yet been run end to end on an installed Alpha.20.</p>
               <p><a class="button button--ink" href="../download/">Open the install guide <span aria-hidden="true">↗</span></a></p>
             </div>
             <p class="release-review-date">Status reviewed<br><time datetime="2026-09-30">30 September 2026</time></p>
@@ -100,10 +100,13 @@
                 <thead><tr><th scope="col">What</th><th scope="col">Status</th></tr></thead>
                 <tbody>
                   <tr><th scope="row">Website and documentation</th><td>Live</td></tr>
-                  <tr><th scope="row">Product preview (screens and video)</th><td>Available; the video was recorded on an earlier development build</td></tr>
+                  <tr><th scope="row">Product preview (screens and video)</th><td>Available; the video was recorded on an earlier development build, and its &ldquo;stay undoable&rdquo; line does not hold for Alpha.20</td></tr>
                   <tr><th scope="row">Alpha.20 one-line installer</th><td>Available. Installed and healthy five times on fresh Windows 11 virtual machines (not physical PCs)</td></tr>
                   <tr><th scope="row">Reachable after the last WSL window closes</th><td>Measured after an interactive Windows sign-in, with the keep-alive task</td></tr>
                   <tr><th scope="row">Windows reboot survival</th><td>Not yet measured</td></tr>
+                  <tr><th scope="row">StudyState Sample loop on an installed Alpha.20</th><td>Not yet run end to end; it passes in the project&rsquo;s automated tests</td></tr>
+                  <tr><th scope="row">Undo and rollback</th><td>Designed, not built, beyond one undo (the last StudyState Sample evidence update); platform rollback is not supported</td></tr>
+                  <tr><th scope="row">Backup and restore</th><td>Not yet measured on Alpha.20; a backup archives the instance&rsquo;s files, not Git history, conversations, receipts index or approvals</td></tr>
                   <tr><th scope="row">Templates on Windows</th><td>Not yet tested</td></tr>
                   <tr><th scope="row">Uninstall and reinstall</th><td>Not yet tested</td></tr>
                   <tr><th scope="row">Screen-by-screen interface check</th><td>Not yet done</td></tr>
