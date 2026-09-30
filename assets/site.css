@@ -1883,9 +1883,9 @@ select {
 }
 
 .status-exact summary {
-  display: flex;
-  align-items: center;
-  min-height: 44px;
+  display: list-item;
+  padding: 0.95rem 0;
+  list-style-position: inside;
   font-weight: 700;
   cursor: pointer;
 }
