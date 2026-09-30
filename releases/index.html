@@ -86,7 +86,7 @@
               <p class="release-summary-label">Current software status</p>
               <h2>Alpha.20 is the current early alpha</h2>
               <p>Alpha.20 installs on Windows 11 with WSL2 and Ubuntu 24.04 from one command. It installed and came up healthy five times on fresh Windows 11 virtual machines (two earlier runs and three on 30 September 2026). After you sign in to Windows, a small keep-alive task keeps StatePort reachable when the last WSL window is closed.</p>
-              <p><strong>Not tested yet:</strong> whether StatePort survives a Windows reboot, working with templates on Windows, uninstalling and reinstalling, a screen-by-screen check of the whole interface, and speed and resource use. The StudyState Sample loop (review, approve, reflect, receipt) is implemented and passes in the project&rsquo;s automated tests, but has not yet been run end to end on an installed Alpha.20.</p>
+              <p><strong>Not tested yet:</strong> whether StatePort survives a Windows reboot, working with templates on Windows, uninstalling and reinstalling, a screen-by-screen check of the whole interface, and speed and resource use. The StudyState sample (a small study-plan app) loop of review, approve, reflect and receipt passes in the project&rsquo;s automated tests. I have not yet run it end to end on an installed Alpha.20.</p>
               <p><a class="button button--ink" href="../download/">Open the install guide <span aria-hidden="true">↗</span></a></p>
             </div>
             <p class="release-review-date">Status reviewed<br><time datetime="2026-09-30">30 September 2026</time></p>
@@ -104,8 +104,8 @@
                   <tr><th scope="row">Alpha.20 one-line installer</th><td>Available. Installed and healthy five times on fresh Windows 11 virtual machines (not physical PCs)</td></tr>
                   <tr><th scope="row">Reachable after the last WSL window closes</th><td>Measured after an interactive Windows sign-in, with the keep-alive task</td></tr>
                   <tr><th scope="row">Windows reboot survival</th><td>Not yet measured</td></tr>
-                  <tr><th scope="row">StudyState Sample loop on an installed Alpha.20</th><td>Not yet run end to end; it passes in the project&rsquo;s automated tests</td></tr>
-                  <tr><th scope="row">Undo and rollback</th><td>Designed, not built, beyond one undo (the last StudyState Sample evidence update); platform rollback is not supported</td></tr>
+                  <tr><th scope="row">Study sample (StudyState, a study-plan app) loop on an installed Alpha.20</th><td>Not yet run end to end; it passes in the project&rsquo;s automated tests</td></tr>
+                  <tr><th scope="row">Undo and rollback</th><td>Designed, not built, beyond one undo (the last evidence update in the StudyState sample); platform rollback is not supported</td></tr>
                   <tr><th scope="row">Backup and restore</th><td>Not yet measured on Alpha.20; a backup archives the instance&rsquo;s files, not Git history, conversations, receipts index or approvals</td></tr>
                   <tr><th scope="row">Templates on Windows</th><td>Not yet tested</td></tr>
                   <tr><th scope="row">Uninstall and reinstall</th><td>Not yet tested</td></tr>
@@ -121,7 +121,7 @@
           <section id="release-evidence" aria-labelledby="release-evidence-heading">
             <h2 id="release-evidence-heading">Before you use StatePort</h2>
             <p>StatePort is in early alpha. Do not use it for important data.</p>
-            <p>It is built by one person, in the open. The measurement notes for the first runs are in the public repository under <a href="https://github.com/lennertvhoy/StatePort-Site/tree/main/evidence/alpha20-public-install-001" target="_blank" rel="noopener">evidence/alpha20-public-install-001<span class="sr-only"> (opens in a new tab)</span></a>, and <a href="../download/technical-release-files.html">technical release files</a> remain available for developers and reviewers.</p>
+            <p>It is built by one person, in the open. The measurement notes for the first runs are in the public repository under <a href="https://github.com/lennertvhoy/StatePort-Site/tree/main/evidence/alpha20-public-install-001" target="_blank" rel="noopener">evidence/alpha20-public-install-001<span class="sr-only"> (opens in a new tab)</span></a>, and <a href="../download/technical-release-files.html">technical release files</a> remain available for developers and anyone who wants to check them.</p>
             <details class="status-exact">
               <summary>Exact status statement (for reviewers)</summary>
               <p>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress.</p>
