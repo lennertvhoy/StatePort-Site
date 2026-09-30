@@ -22,6 +22,16 @@ curl -fsSI https://lennertvhoy.github.io/StatePort-Site/ | head -1      # 200
 curl -fsSI https://lennertvhoy.github.io/StatePort-Site/releases/ | head -1  # 200
 ```
 
+## Step 0 — test on your own laptop first (5 minutes, changes nothing)
+
+In Ubuntu 24.04 under WSL2, as your normal user:
+
+```sh
+bash <(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh) --transport-probe
+```
+
+It checks WSL2, Ubuntu 24.04, systemd, the Windows build and your network, verifies the signed manifests, and installs nothing. Expected last line: `StatePort Alpha.20 transport probe passed ... installer was not executed.` If it stops, the message names the missing prerequisite (most often: systemd not enabled in WSL; run `wsl --shutdown` in PowerShell after enabling it). Then run the real install (without `--transport-probe`), answer the two confirmations, and open the printed local URL. Only post once that works on your machine. Known: after a Windows reboot you may need to log in and open WSL again (reboot survival not yet measured).
+
 ## What the owner does to post (10 minutes)
 
 1. Open LinkedIn → Start a post. Copy the body text from `launch/post-en.md` (between the `---` rule and the end; skip the italic note above it).
