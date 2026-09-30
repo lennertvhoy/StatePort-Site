@@ -147,7 +147,20 @@ class ImmutableManifestTests(unittest.TestCase):
         recorded = json.loads(
             (ROOT / "config/immutable-release-trees.json").read_text(encoding="utf-8")
         )
-        self.assertEqual(recorded, manifest_builder.build_manifest())
+        def executable_bit_only(node):
+            # lstat permission bits follow the checkout umask; only the executable bit is comparable.
+            if isinstance(node, dict):
+                return {
+                    key: (("100755" if int(value, 8) & 0o111 else "100644") if key == "lstatMode" else executable_bit_only(value))
+                    for key, value in node.items()
+                }
+            if isinstance(node, list):
+                return [executable_bit_only(item) for item in node]
+            return node
+
+        self.assertEqual(
+            executable_bit_only(recorded), executable_bit_only(manifest_builder.build_manifest())
+        )
 
     def test_tree_records_reject_path_byte_count_mode_and_git_metadata_drift(self) -> None:
         digest = hashlib.sha256(b"abc").hexdigest()
@@ -185,8 +198,8 @@ class ImmutableManifestTests(unittest.TestCase):
         changed_count["artifact"]["bytes"] = 4
         cases.append(("Byte-count change", recorded, anchored, changed_count))
         changed_mode = deepcopy(observed)
-        changed_mode["artifact"]["lstatMode"] = "100644"
-        cases.append(("lstat mode change", recorded, anchored, changed_mode))
+        changed_mode["artifact"]["lstatMode"] = "100755"
+        cases.append(("executable-bit change", recorded, anchored, changed_mode))
         changed_git_mode = deepcopy(recorded)
         changed_git_mode["artifact"]["gitMode"] = "100755"
         cases.append(("Manifest gitMode", changed_git_mode, anchored, observed))
