@@ -86,7 +86,7 @@
         <article class="prose">
           <p class="notice notice--quiet"><strong>Design overview.</strong> Check the <a href="../releases/">release status</a> for current software availability.</p>
 
-          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#the-problem-with-chat-alone">The problem with chat alone</a></li><li data-level="2"><a href="#what-stateware-means">What Stateware means</a></li><li data-level="2"><a href="#where-the-ai-tool-fits">Where the AI tool fits</a></li><li data-level="2"><a href="#what-this-gives-you">What this gives you</a></li><li data-level="2"><a href="#the-goal">The goal</a></li></ol></details>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#the-problem-with-chat-alone">The problem with chat alone</a></li><li data-level="2"><a href="#what-stateware-means">What Stateware means</a></li><li data-level="2"><a href="#where-the-ai-tool-fits">Where the AI tool fits</a></li><li data-level="2"><a href="#what-this-gives-you">What this is designed to give you</a></li><li data-level="2"><a href="#the-goal">The goal</a></li></ol></details>
           <h2 id="the-problem-with-chat-alone">The problem with chat alone</h2>
           <p>A chat is good for asking questions. It is a poor place to keep an application's memory, permissions, decisions, and history. Long threads get shortened. Sessions disappear. A transcript may contain several conflicting versions of the same fact.</p>
           <p>StatePort moves the important information into readable files on your machine. The chat can still help, but it is no longer the only copy of your work.</p>
@@ -101,13 +101,14 @@
 </div>
 
           <h2 id="where-the-ai-tool-fits">Where the AI tool fits</h2>
-          <p>An AI tool can plan work, explain a choice, and prepare a change. StatePort decides what the tool may access, asks you before important actions, and saves the result in the application.</p>
+          <p>An AI tool can plan work, explain a choice, and prepare a change. In the design, StatePort decides what the tool may access, asks you before important actions, and saves the result in the application. Today that full path is built for deterministic application actions such as the StudyState Sample. Output from coding agents is recorded as a run result and is not promoted into application state by StatePort.</p>
           <figure class="diagram-figure reveal">
             <img src="../assets/diagrams/stateport-diagram-harness.png" alt="Diagram: profiled coding-agent providers feed an AgentRunSpec into the StatePort harness, which plans, approves, runs headlessly, and validates, writing results into a durable StateSpec instance.">
             <figcaption>The AI tool does the work. StatePort keeps the application and its history.</figcaption>
           </figure>
 
-          <h2 id="what-this-gives-you">What this gives you</h2>
+          <h2 id="what-this-gives-you">What this is designed to give you</h2>
+          <p>These are design goals. What has been measured on Alpha.20 is listed on <a href="limitations.html#measured">current limitations</a>.</p>
           <ul>
             <li>Open the current goals and progress without replaying a chat.</li>
             <li>Change AI tools without throwing away the application.</li>

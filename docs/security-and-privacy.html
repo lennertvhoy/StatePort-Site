@@ -102,7 +102,7 @@
 
           <h2 id="privacy">Privacy</h2>
           <p>The installer downloads release files and container images from the internet. After that, StatePort runs as local services and prints an address on your own computer (<code>127.0.0.1</code>), which other devices cannot reach. Whether every feature works without a connection has not been measured.</p>
-          <p>Application data stays on your machine by default. StatePort should send an AI model only the context needed for the current task. Private notes, conversations, identifiers, file paths, and credentials should not become analytics data.</p>
+          <p>Application data stays on your machine by default. StatePort is designed to send an AI model only the context needed for the current task. In Alpha.20 the chat assistant is given the recent conversation, not your application state, and a remote provider sees whatever is in that conversation. Private notes, conversations, identifiers, file paths, and credentials should not become analytics data.</p>
 
           <h3 id="before-connecting-an-ai-tool">Before connecting an AI tool</h3>
           <p>A local web interface does not make a remote AI provider local. A provider request may send task context to that provider. Check the selected tool and model, the information in the request, and your provider account settings before sending sensitive content. Read <a href="hosts-and-portability.html">AI setup and readiness</a> for the connection steps.</p>
