@@ -1,6 +1,6 @@
 # First comment — pin it right after posting (EN)
 
-StatePort — durable AI-assisted work on your own computer: https://lennertvhoy.github.io/StatePort-Site/
+StatePort — AI-assisted work saved in files on your own computer: https://lennertvhoy.github.io/StatePort-Site/
 
 Install on Windows 11 + WSL2 (Ubuntu 24.04): open Ubuntu in WSL2 and run
 `bash <(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)`
@@ -19,7 +19,7 @@ Bugs and reports: https://github.com/lennertvhoy/StatePort-Site/issues
 
 # Eerste reactie (NL) — vastpinnen na de Nederlandse post
 
-StatePort — duurzaam AI-ondersteund werk op je eigen computer: https://lennertvhoy.github.io/StatePort-Site/
+StatePort — AI-ondersteund werk, bewaard in bestanden op je eigen computer: https://lennertvhoy.github.io/StatePort-Site/
 
 Installeren op Windows 11 + WSL2 (Ubuntu 24.04): open Ubuntu in WSL2 en draai
 `bash <(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)`

@@ -43,4 +43,5 @@ It checks WSL2, Ubuntu 24.04, systemd, the Windows build and your network, verif
 ## Known limits of this kit
 
 - The demo video was recorded in August 2026 (pre-Alpha.20 build); the product UI journey it shows is the same one the site presents today. Its on-screen text says changes "stay undoable". That is not accurate for Alpha.20: one undo exists (the last StudyState Sample evidence update) and platform rollback is not supported. The video is not edited; if this bothers you, post the screenshots instead of the video. A fresh Alpha.20 guest capture was not needed (site assets sufficed); no CAPTURE-REQUEST.md was written.
+- The link-preview card (`assets/media/stateport-social-card.png`) was regenerated after publication: its subtitle now reads "AI-assisted work, saved in files on your own computer." (it said "A durable home ..."). LinkedIn caches previews, so refresh it in the Post Inspector before you post.
 - Windows reboot qualification (`~/.local/state/stateport/alpha20-publish/gov-reboot-1259/`) had not produced a result at publication time; if it lands green, update the releases page wording in a small follow-up commit.

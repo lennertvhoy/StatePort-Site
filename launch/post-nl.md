@@ -6,7 +6,7 @@
 
 AI-chats vergeten. Jouw werk niet.
 
-Ik verloor steeds goed werk zodra een chat ophield: het plan, de beslissingen, de context. Daarom bouw ik StatePort: een duurzaam thuis voor AI-ondersteund werk, op je eigen computer in plaats van in de sessie van iemand anders.
+Ik verloor steeds goed werk zodra een chat ophield: het plan, de beslissingen, de context. Daarom bouw ik StatePort. Het bewaart AI-ondersteund werk in gewone bestanden op je eigen computer, in plaats van in de sessie van iemand anders.
 
 Het idee in het studievoorbeeld: je bekijkt een activiteit, keurt de wijziging goed die de app voorstelt en bewaart een korte reflectie. Een bewijs (receipt) legt vast wat precies is toegepast. Die hele flow slaagt in de automatische tests van het project. Ik heb hem nog niet van begin tot eind op de geïnstalleerde alpha gedraaid.
 
