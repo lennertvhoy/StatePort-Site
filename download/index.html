@@ -62,7 +62,7 @@
         <div class="article-hero-inner">
           <p class="document-kicker">Download</p>
           <h1 id="download-title">Install StatePort Alpha.20</h1>
-          <p>One command installs the complete local product on Windows 11 with WSL2 and Ubuntu 24.04: the web interface, a local API, a background worker, storage, and an isolated place to run work.</p>
+          <p>One command installs StatePort on Windows 11 with WSL2 and Ubuntu 24.04. It sets up a web interface, an API, a background worker, storage and a sandbox where work runs.</p>
           <p><strong>Alpha.20 installed successfully, and came up healthy, five times on fresh Windows 11 virtual machines. It is an early alpha with known limits, listed below.</strong></p>
           <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue<span class="sr-only"> (opens in a new tab)</span></a>.</p>
         </div>
@@ -123,7 +123,7 @@ systemd=true</code></pre>
 
           <section id="dry-run" aria-labelledby="dry-run-heading">
             <h2 id="dry-run-heading">Optional: run a dry run first</h2>
-            <p>Add <code>--transport-probe</code> to the command. It installs nothing and does not ask for <code>sudo</code>: it checks your machine (WSL2, Ubuntu 24.04, systemd, Windows 11) and downloads and verifies the signed image manifests. If a prerequisite is missing, it stops and names it.</p>
+            <p>Add <code>--transport-probe</code> to the command. It installs nothing and does not ask for <code>sudo</code>: it checks your machine (WSL2, Ubuntu 24.04, systemd, Windows 11), downloads the list of container images with their fingerprints, and checks those fingerprints. If a prerequisite is missing, it stops and names it.</p>
 <pre class="snippet"><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh) --transport-probe</code></pre>
             <p>A passing dry run ends with a line that starts <code>StatePort Alpha.20 transport probe passed</code>.</p>
           </section>
@@ -134,25 +134,25 @@ systemd=true</code></pre>
 <pre class="snippet"><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)</code></pre>
             <p>What the installer does and asks, in order:</p>
             <ol>
-              <li>Checks your machine before changing anything, then downloads the signed release and verifies it.</li>
+              <li>Checks your machine before changing anything, then downloads the release and checks each file against a fingerprint.</li>
               <li>Asks for your Ubuntu password (<code>sudo</code>) to install a few system packages.</li>
               <li>Shows the package plan and asks you to type <code>install-packages</code> to approve it.</li>
               <li>Shows the exact install plan and asks you to type <code>install-exact</code> to approve it.</li>
               <li>Installs and starts StatePort, then prints the result.</li>
             </ol>
             <p>Expect it to take a while: about 20 minutes on our test virtual machine, and longer on a slow connection.</p>
-            <p>You can check the published installer bytes before running anything: <code>install.sh</code> has SHA-256 <code>b83e8376776cd663b6a0aa8098ddde489f0125e033d70e8b1421fb04d1cb8916</code>. Compare it yourself with <code>curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh | sha256sum</code>.</p>
+            <p>You can check the installer before you run it. Its SHA-256 fingerprint is <code>b83e8376776cd663b6a0aa8098ddde489f0125e033d70e8b1421fb04d1cb8916</code>. To compare, run <code>curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh | sha256sum</code>. The two should match.</p>
           </section>
 
           <section id="after-install" aria-labelledby="after-install-heading">
             <h2 id="after-install-heading">After installation</h2>
-            <p>Success looks like this: the installer prints <strong>StatePort is installed and healthy</strong>, a local address such as <code>http://127.0.0.1:18012/</code> (your port may differ), and the path of a durable install receipt below <code>~/.local/state/stateport-install</code>.</p>
+            <p>Success looks like this: the installer prints <strong>StatePort is installed and healthy</strong>, a local address such as <code>http://127.0.0.1:18012/</code> (your port may differ), and the path of an install receipt (a small file that records what was installed) below <code>~/.local/state/stateport-install</code>.</p>
             <ol>
               <li>Open the printed <code>http://127.0.0.1:…/</code> address in your Windows browser.</li>
-              <li>Install the reviewed StudyState sample from <strong>Catalog</strong> and follow the <a href="../tutorials/site-orientation.html">72-second field guide</a> to see what to look for.</li>
+              <li>Install the StudyState sample (a small study-plan app) from <strong>Catalog</strong>. The <a href="../tutorials/site-orientation.html">72-second field guide</a> shows what to look for.</li>
               <li>To try your own project, place a Git repository below <code>/var/lib/stateport/imports</code> and use <strong>Catalog → Import a local repository</strong>.</li>
             </ol>
-            <p>Templates, including the StudyState sample, have not been tested on Windows yet, so expect rough edges. In the sample, the review-approve-reflect-receipt loop passes in the project&rsquo;s automated tests but has not yet been run end to end on an installed Alpha.20.</p>
+            <p>I have not tested templates on Windows yet, and that includes the StudyState sample, so expect rough edges. The sample&rsquo;s review, approve, reflect and receipt steps pass the project&rsquo;s automated tests. I have not yet run them on an installed Alpha.20.</p>
             <p><a href="../docs/templates.html">Open the template workflow</a> or <a href="../docs/getting-started.html">read the full getting-started guide</a>.</p>
           </section>
 
@@ -166,7 +166,7 @@ systemd=true</code></pre>
             <h2 id="stop-heading">Stop or remove StatePort</h2>
             <ul>
               <li><strong>Stop it for now:</strong> run <code>wsl --shutdown</code> in PowerShell. That stops every WSL distribution, StatePort included, and it can stay stopped until your next Windows sign-in.</li>
-              <li><strong>Uninstall:</strong> the command above only installs. Uninstalling and reinstalling Alpha.20 have not been tested, and this page has no one-line uninstall. The <a href="../docs/updates.html">update and removal guide</a> says what is and is not known. Do not run the Alpha.16 installer, or any installer from another release, against an Alpha.20 install.</li>
+              <li><strong>Uninstall:</strong> the command above only installs. Uninstalling and reinstalling Alpha.20 have not been tested, and this page has no one-line uninstall. The <a href="../docs/updates.html">update and removal guide</a> says what is and is not known. Do not run an installer from another release against an Alpha.20 install.</li>
               <li><strong>Cleanest option:</strong> try StatePort in a throwaway WSL distribution or virtual machine and delete that when you are done. Deleting a distribution deletes everything inside it, so only do this with a test one.</li>
               <li><strong>Keep-alive task:</strong> if you remove StatePort, also delete the <code>StatePortKeepAlive</code> task in Windows Task Scheduler (or run <code>schtasks /Delete /TN StatePortKeepAlive /F</code> in PowerShell). This removal path is untested.</li>
             </ul>
@@ -191,7 +191,7 @@ systemd=true</code></pre>
 
           <section id="older-releases" aria-labelledby="older-releases-heading">
             <h2 id="older-releases-heading">Older releases</h2>
-            <p><strong>Alpha.16 and earlier are superseded or rejected and are not the current install path (Alpha.16&rsquo;s fresh installation was blocked by a signature-check defect). Never substitute files from one release into another.</strong></p>
+            <p><strong>Earlier alphas are kept only for history. Do not install them, and do not mix files from different releases.</strong></p>
             <p><a href="technical-release-files.html#older-releases">Inspect retained release records</a> or <a href="erratum-alpha3.html">read the Alpha.3 technical details</a>.</p>
           </section>
         </article>

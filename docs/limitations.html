@@ -84,12 +84,15 @@
         </aside>
 
         <article class="prose">
-<p class="notice"><strong>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress.</strong></p>
-<p class="notice notice--quiet"><strong>StatePort is in early alpha. Do not use it for important data.</strong> Try it on a computer or virtual machine where a mistake would not matter, use test data, and keep your own backups.</p>
+<p class="notice"><strong>StatePort is in early alpha. Do not use it for important data.</strong> Use a computer or virtual machine where a mistake would not matter, use test data, and keep your own backups.</p>
+<details class="status-exact">
+<summary>Exact status statement (for reviewers)</summary>
+<p>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress.</p>
+</details>
 
 <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#early-alpha">Early alpha</a></li><li data-level="2"><a href="#supported">The one supported setup</a></li><li data-level="2"><a href="#measured">What works today</a></li><li data-level="2"><a href="#not-measured">Not yet measured</a></li><li data-level="2"><a href="#designed">Designed, not built</a></li><li data-level="2"><a href="#local-use">Local use</a></li><li data-level="2"><a href="#security">Security</a></li><li data-level="2"><a href="#applications-and-features">Applications and features</a></li><li data-level="2"><a href="#release-files">Release files</a></li></ol></details>
 <h2 id="early-alpha">Early alpha</h2>
-<p>StatePort is in early alpha. Do not use it for important data. Alpha.20 is a test release for people who want to try the idea and tell us what breaks. Sections below separate what was measured on a real setup from what is only design intent, so you can decide how much to trust each part.</p>
+<p>StatePort is an early alpha. Alpha.20 is a test release for people who want to try it and tell me what breaks. This page has three lists: what works today, what I have not measured yet, and what is designed but not built. Only the first list describes measured behavior.</p>
 
 <h2 id="supported">The one supported setup</h2>
 <ul>
@@ -97,70 +100,70 @@
 <li>WSL2, not WSL1, with stock Ubuntu 24.04 and systemd running as the first process.</li>
 <li>A normal Ubuntu user with <code>sudo</code>, not the root account.</li>
 </ul>
-<p>WSL1, ARM64, macOS, Docker Desktop, native Linux, Windows 10, and other Linux distributions are not supported. The installer checks the supported setup before it changes anything and stops with a message if it is not met. See <a href="platform-support.html">platform support</a>.</p>
+<p>WSL1, ARM64, macOS, Docker Desktop, native Linux, Windows 10 and other Linux distributions are not supported. The installer checks your setup before it changes anything and stops with a message if it does not match. See <a href="platform-support.html">platform support</a>.</p>
 
 <h2 id="measured">What works today</h2>
-<p>These are the only product claims this documentation makes about how Alpha.20 behaves on a real setup.</p>
+<p>This is the only list that describes measured behavior of Alpha.20 on a real setup.</p>
 <ul>
-<li><strong>Install.</strong> The public one-line command installed Alpha.20 and reported it healthy on a fresh virtual machine running genuine Windows 11 25H2 with WSL2 and stock Ubuntu 24.04. This was repeated five times, and each install took about 6.5 minutes.</li>
-<li><strong>What a good install prints.</strong> <code>StatePort is installed and healthy.</code>, then <code>Open StatePort at: http://127.0.0.1:&lt;port&gt;/</code>, then a path to an install receipt under <code>~/.local/state/stateport-install/receipts/</code>. The port number varies, for example 18012.</li>
-<li><strong>Keeping WSL running.</strong> The installer registers a Windows scheduled task named <code>StatePortKeepAlive</code>, which runs at logon (interactive). After an interactive Windows logon it keeps the Ubuntu environment running after the last WSL window closes. Without it, WSL stops shortly after the last session ends, so StatePort can stop until the next Windows logon or WSL launch.</li>
+<li><strong>Install.</strong> The public one-line command installed Alpha.20 and reported it healthy on a fresh virtual machine with Windows 11 25H2, WSL2 and stock Ubuntu 24.04. I ran it five times. Each install took about 6.5 minutes.</li>
+<li><strong>What a good install prints.</strong> <code>StatePort is installed and healthy.</code>, then <code>Open StatePort at: http://127.0.0.1:&lt;port&gt;/</code>, then the path to an install receipt under <code>~/.local/state/stateport-install/receipts/</code>. The port number varies, for example 18012.</li>
+<li><strong>Keeping WSL running.</strong> The installer adds a Windows scheduled task called <code>StatePortKeepAlive</code>. It runs when you sign in to Windows and keeps Ubuntu running after you close the last WSL window. Without it, WSL stops shortly after the last session ends, and StatePort stops with it until your next sign-in or until you start WSL again.</li>
 </ul>
-<p>The installer itself is a script you can read, and it enforces its prerequisites: WSL2 (not WSL1), Ubuntu 24.04, systemd as the first process, Windows build 22000 or newer, <code>powershell.exe</code> reachable from Ubuntu, x86-64, and not running as root. It asks for two explicit confirmations, and it has two options that install nothing: <code>--transport-probe</code> and <code>--materialization-preflight</code>. <a href="getting-started.html">Getting started</a> explains them.</p>
+<p>The installer is a script you can read. It checks that you have WSL2 (not WSL1), Ubuntu 24.04, systemd as the first process, Windows build 22000 or newer, <code>powershell.exe</code> reachable from Ubuntu, an x86-64 CPU, and a user that is not root. It asks for two typed confirmations. It has two options that install nothing: <code>--transport-probe</code> and <code>--materialization-preflight</code>. <a href="getting-started.html">Getting started</a> explains them.</p>
 
 <h2 id="not-measured">Not yet measured</h2>
 <ul>
-<li><strong>The StudyState Sample loop on an installed Alpha.20.</strong> Start an activity, review, approve, write a reflection, open the receipt, and read the saved state again after a service restart. This is implemented and passes in the project&rsquo;s automated tests. It has not yet been run end to end on an installed Alpha.20.</li>
-<li><strong>Windows restart.</strong> Whether StatePort comes back by itself after Windows restarts. Reachability after the last WSL window closes is measured (after you sign in to Windows); a Windows reboot is not.</li>
-<li><strong>Templates on the installed product.</strong> Importing a ProjectState or StudyState repository into an installed StatePort.</li>
-<li><strong>Uninstall and reinstall.</strong> Uninstall and reinstall are not yet measured; there is no supported one-command uninstall in this alpha. See <a href="updates.html">updates and removal</a>.</li>
-<li><strong>The full interface.</strong> Every screen and control has not been checked one by one on an installed Alpha.20.</li>
-<li><strong>Efficiency on a 16 GB laptop.</strong> Resource use of the installed stack has not yet been measured: memory, processor, disk, and battery use on an ordinary laptop.</li>
-<li><strong>Recovery guards.</strong> Recovery retains resources of unknown ownership. The guard has unit and local tests and a known earlier defect that was fixed, and it is not yet qualified on an installed host.</li>
+<li><strong>The StudyState sample loop on an installed Alpha.20.</strong> Start an activity, approve it, write a reflection, open the receipt, restart the service and read the saved state again. All of this passes in the project&rsquo;s automated tests. I have not yet run it end to end on an installed Alpha.20.</li>
+<li><strong>Windows restart.</strong> Whether StatePort comes back by itself after Windows restarts. After you sign in, it stayed reachable when the last WSL window closed. A reboot is a different case, and I have not measured it.</li>
+<li><strong>Templates on the installed product.</strong> Importing a ProjectState (project tracker) or StudyState (study plan) repository into an installed StatePort.</li>
+<li><strong>Uninstall and reinstall.</strong> Neither is measured, and there is no supported one-command uninstall in this alpha. See <a href="updates.html">updates and removal</a>.</li>
+<li><strong>The full interface.</strong> I have not checked every screen and control on an installed Alpha.20.</li>
+<li><strong>Speed and memory use.</strong> I have not measured how much memory, processor, disk or battery the installed stack uses on an ordinary 16 GB laptop.</li>
+<li><strong>Recovery safeguards.</strong> Recovery is meant to leave alone anything it cannot show belongs to the instance it is recovering. That check passes the project&rsquo;s automated tests and local runs, and an earlier bug in it was fixed. I have not tested it on an installed system.</li>
 </ul>
-<p>The measured installs ran on virtual machines, not on a physical laptop. A real request to an AI provider has also not been measured on Alpha.20. Something that has not been measured may work or may not; we do not know yet.</p>
+<p>The measured installs ran on virtual machines, not on a physical laptop. A real request to an AI provider has not been measured on Alpha.20 either. Something I have not measured may work or may not. I do not know yet.</p>
 
 <h2 id="designed">Designed, not built</h2>
-<p>These are described in the design, in these guides or in the papers. They are not features of Alpha.20.</p>
+<p>These appear in the design, in these docs or in the papers. They are not part of Alpha.20.</p>
 <ul>
-<li><strong>General undo.</strong> One undo exists: the last StudyState Sample evidence update. Most changes have no undo. Platform rollback is not supported; the signed Alpha.20 release index declares it unsupported.</li>
-<li><strong>A chat assistant that reads your state.</strong> The chat assistant sees only the recent conversation, not your study or project state. Governed actions get a bounded context pack built from state; chat does not.</li>
-<li><strong>Coding-agent output promoted into application state.</strong> For deterministic application actions the system applies what you approve. Output from coding agents is recorded as a run result and is not promoted into application state by StatePort.</li>
-<li><strong>Backup of history and receipts.</strong> A backup archives the instance&rsquo;s files, not its Git history, conversations, receipts index or approvals. Restore creates a new instance from those files; it does not reconcile interrupted work or external effects.</li>
-<li><strong>Moving an instance to another machine.</strong> Portable export and import exist for the instance&rsquo;s files. Grants, receipts and provider logins do not travel, and there is no migration wizard.</li>
-<li><strong>Guided flows for imported templates.</strong> An imported ProjectState or StudyState is validated and stored as an isolated managed copy with an inspection action. The guided flows exist only in the StudyState Sample, and the StudyState next-activity engine is not surfaced in StatePort.</li>
-<li><strong>Signed receipts.</strong> Receipts carry content digests; they are not individually signed.</li>
-<li><strong>A general worker.</strong> The worker runs one fixed container job type today; agent runs and chat are tracked by the web service.</li>
+<li><strong>Undo for most changes.</strong> One undo exists: the last evidence update in the StudyState sample. Most changes cannot be undone. Alpha.20 does not support rolling back the platform, and its release file says so.</li>
+<li><strong>A chat assistant that reads your state.</strong> The chat assistant sees only the recent conversation. It does not read your study or project files. Actions that go through StatePort&rsquo;s approval steps get a small bundle of information built from the saved state. Chat does not.</li>
+<li><strong>Saving coding-agent output into your app&rsquo;s state.</strong> For actions that follow a fixed script, such as the StudyState sample, StatePort applies what you approve. Output from coding agents is recorded as a run result. StatePort does not turn it into saved state.</li>
+<li><strong>Backup of history and receipts.</strong> A backup archives the instance&rsquo;s files. It does not include Git history, conversations, the receipts index or approvals. Restore creates a new instance from those files. It does not finish interrupted work or check what happened outside StatePort.</li>
+<li><strong>Moving to another machine.</strong> Export and import work for an instance&rsquo;s files. Grants, receipts and provider logins do not travel, and there is no migration wizard.</li>
+<li><strong>Guided flows for imported templates.</strong> An imported ProjectState or StudyState is checked and stored as a separate copy with one inspection action. The step-by-step flows exist only in the StudyState sample. StudyState&rsquo;s next-activity engine, the part that picks what to study next, is not part of StatePort.</li>
+<li><strong>Signed receipts.</strong> Receipts carry a checksum of their content. They are not individually signed.</li>
+<li><strong>A general background worker.</strong> The worker runs one fixed kind of container job. Agent runs and chat are tracked by the web service.</li>
 </ul>
 
 <h2 id="local-use">Local use</h2>
 <ul>
-<li>StatePort is designed for one person on one local computer.</li>
-<li>There is no hosted service, team account system, or supported public-network setup.</li>
-<li>The address it prints works on that computer only. Do not expose it to the public internet.</li>
-<li>The interface and documentation are in English only.</li>
+<li>StatePort is for one person on one local computer.</li>
+<li>There is no hosted service, no team accounts and no supported way to reach it over a network.</li>
+<li>The address it prints works on that computer only. Do not expose it to the internet.</li>
+<li>The interface and the docs are in English only.</li>
 </ul>
 
 <h2 id="security">Security</h2>
 <ul>
 <li>StatePort has not had an independent security review or penetration test.</li>
-<li>The installer uses <code>sudo</code> and changes the Ubuntu distribution it runs in, so use a distribution or virtual machine you can afford to lose.</li>
-<li>StatePort does not claim legal or regulatory certification.</li>
+<li>The installer uses <code>sudo</code> and changes the Ubuntu distribution it runs in. Use a distribution or virtual machine you can afford to lose.</li>
+<li>StatePort makes no legal or regulatory compliance claims.</li>
 </ul>
 <p>More in <a href="security-and-privacy.html">security and privacy</a>.</p>
 
 <h2 id="applications-and-features">Applications and features</h2>
 <ul>
-<li>StudyState and ProjectState are early-alpha templates, not finished or independently evaluated products.</li>
-<li>By design, imported templates must be Git repositories under an import folder the installer creates, and only committed content is copied into the managed application. This comes from the product's design and has not been measured on an Alpha.20 install. See <a href="templates.html">templates</a>.</li>
+<li>StudyState (a study-plan template) and ProjectState (a project-tracking template) are early alpha. They are not finished, and nobody independent has evaluated them.</li>
+<li>Imported templates must be Git repositories under an import folder the installer creates, and only committed content is copied into the managed app. That is how it is built. I have not measured it on an Alpha.20 install. See <a href="templates.html">templates</a>.</li>
 <li>There is no supported in-place update or rollback. See <a href="updates.html">updates and removal</a>.</li>
-<li>Alpha.20 ships and defaults to OpenCode as its coding agent; Codex is not bundled. Provider authentication is not verified by StatePort for OpenCode; use <strong>Verify bounded request</strong> to test one short request. A real provider request has not been measured on Alpha.20.</li>
-<li>Container deployment is a design preview and is not available through the current installer. Cloud deployment and managed hosting are not available.</li>
-<li>Agent Kits are a roadmap idea and are not available.</li>
+<li>Alpha.20 ships and defaults to OpenCode as its coding agent. Codex is not bundled. StatePort does not check OpenCode&rsquo;s login for you. The <strong>Verify bounded request</strong> button sends one short test request. A real provider request has not been measured on Alpha.20.</li>
+<li>Container deployment is a design preview and is not in the Alpha.20 installer. Cloud deployment and managed hosting do not exist.</li>
+<li>Agent Kits (shareable app packages) are an idea and do not exist yet.</li>
 </ul>
 
 <h2 id="release-files">Release files</h2>
-<p>Developers can inspect the signed index, source archive, signatures, and licenses on the <a href="../download/technical-release-files.html">technical release files</a> page.</p>
+<p>The <a href="../download/technical-release-files.html">technical release files</a> page has the source archive, signatures and licenses for developers and reviewers.</p>
 
 <div class="inline-actions">
 <a class="button button--ink" href="../releases/">View release status</a>
