@@ -2,22 +2,22 @@
 
 Everything is prepared so clicking "post" is the only step left.
 
-## What was published (2026-09-30)
+## What the pages say (updated 2026-10-01 for Alpha.21)
 
-- Follow-up, later the same day: the site pages were updated with the installed-product measurements (a UI pass in a real browser and an API pass on fresh Windows 11 guests). The bullet below now describes what the pages claim.
-- Branch `launch/linkedin-20260930`, pushed to `origin`, then fast-forwarded into `main`; GitHub Pages serves `main` directly.
-- Live pages tell one honest Alpha.20 story (what works, the exact one-line command, target, known limits, how to report problems):
+- The site was published on 2026-09-30 with the Alpha.20 story (branch `launch/linkedin-20260930`, fast-forwarded into `main`; GitHub Pages serves `main` directly). On 2026-10-01 the one-line route switched to Alpha.21, and the pages were rewritten to what was measured on Alpha.21. The Alpha.20 history stays on the release status page as the previous release.
+- Live pages tell one honest Alpha.21 story (what works, the exact one-line command, target, known limits, how to report problems):
   - https://lennertvhoy.github.io/StatePort-Site/ (home)
   - https://lennertvhoy.github.io/StatePort-Site/download/ (install command + installer SHA-256 displayed)
   - https://lennertvhoy.github.io/StatePort-Site/releases/ (release status, known limits)
-- Measured claims on the pages: Alpha.20 installed from the anonymous one-line route on fresh Windows 11 25H2 + WSL2 + stock Ubuntu 24.04 guests, seven times (healthy receipts, about 6.5 to 15 minutes each). The study sample loop is measured end to end in the browser on the installed alpha (review, approve, apply, reflect, receipt, undo; state kept after service restarts and an unclean WSL shutdown). Template import from a local Git checkout is measured (one-time ownership fix, on the troubleshooting page); export/import, a verified backup, restore as a new instance and a template upgrade are measured through the API. Chat replies, coding-agent runs and container workspaces do not work yet, and the pages say so plainly. Without the keep-alive task started (before a Windows sign-in), the product stops when the last Ubuntu window closes and returns about three minutes after reopening Ubuntu. Known limits stated plainly: Windows reboot survival not yet measured, uninstall not documented, early alpha — do not use for important data.
-- Validators before push: `scripts/validate_repo.py` OK, `scripts/check_site_quality.py` OK (34 pages), 63 unit tests OK (run in a clean clone of the branch; the recorded immutable-manifest file modes were applied mode-only, as the qualification run also recorded). `scripts/projectstate_gate.py` honestly exits 1: the full journey (reboot, uninstall/reinstall, human acceptance) is not closed — by design, nothing on the site overclaims it.
+- Install facts: the installer SHA-256 is `5fc574f25072f1c801cd40a098126eb230934e8af4f18f8e5c1518955d0cc9e0`. On fresh Windows 11 + WSL2 + stock Ubuntu 24.04 test machines (virtual machines, reset to a clean snapshot each time), Alpha.21 came up healthy on 2 of 3 install attempts. On the public route one attempt stopped after about 5 minutes with `install refused (package_installation_invalid): dpkg reports an incomplete package transaction` (a check that races Ubuntu's background updater; nothing was left half-installed that blocked the next try), and the next attempt on a fresh machine installed in about 12 minutes (735 s) and came up healthy. A separate install from the same signed files (a local copy instead of the website) also succeeded, in about 18 minutes. The fix to give people is to wait a minute and run the same command again; it is on the troubleshooting page. Alpha.20 history: it came up healthy on seven fresh test installs.
+- Measured on Alpha.21, as the pages say it: the study sample opens with one click on the first screen; in the browser you can start an activity, review the exact change, approve it, write a reflection and open the receipt, and the saved state is still there after a reload; going back from a review withdraws the proposed change; the notifications list and the Back up now button work; ProjectState and StudyState templates import from a local Git folder in the browser and through the API without the Alpha.20 ownership fix; undo, export and import, a verified backup, restore as a new instance and a template upgrade work through the API. Not working on Alpha.21: coding-agent runs (refused before they start), chat replies (no AI provider could be connected), restore from the interface, provider actions in the interface (refused with "provider action access denied"), the workbench terminal and files tools, per-application workspaces, the standing-authority and updater pages, and the background worker (runs no jobs). Also rough: the Learning tab shows old numbers until a reload, error messages for refused changes are vague, and the keep-alive task had never run on the test machine and did not start after an unplanned restart of the test machine with nobody signed in (StatePort stayed down until Ubuntu was opened; saved state was intact). Not measured: a planned Windows reboot (the test machine cannot reboot its nested WSL), uninstall (not finished), undo in the browser (the test machine stalled), restarting the web service.
+- Validators: `scripts/validate_repo.py`, `scripts/check_site_quality.py` and the unit tests are run in a clean clone of the branch before anything is pushed. `scripts/projectstate_gate.py` honestly exits 1: the full journey (reboot, uninstall/reinstall, human acceptance) is not closed, by design, and nothing on the site overclaims it.
 
 ## Verification commands (anonymous)
 
 ```sh
 curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh | sha256sum
-# must print: b83e8376776cd663b6a0aa8098ddde489f0125e033d70e8b1421fb04d1cb8916  -
+# must print: 5fc574f25072f1c801cd40a098126eb230934e8af4f18f8e5c1518955d0cc9e0  -
 # (the same digest is displayed on the download page)
 curl -fsSI https://lennertvhoy.github.io/StatePort-Site/ | head -1      # 200
 curl -fsSI https://lennertvhoy.github.io/StatePort-Site/releases/ | head -1  # 200
@@ -31,7 +31,7 @@ In Ubuntu 24.04 under WSL2, as your normal user:
 bash <(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh) --transport-probe
 ```
 
-It checks WSL2, Ubuntu 24.04, systemd, the Windows build and your network, verifies the signed manifests, and installs nothing. Expected last line: `StatePort Alpha.20 transport probe passed ... installer was not executed.` If it stops, the message names the missing prerequisite (most often: systemd not enabled in WSL; run `wsl --shutdown` in PowerShell after enabling it). Then run the real install (without `--transport-probe`), answer the two confirmations, and open the printed local URL. Only post once that works on your machine. Known: after a Windows reboot you may need to log in and open WSL again (reboot survival not yet measured).
+It checks WSL2, Ubuntu 24.04, systemd, the Windows build and your network, verifies the signed manifests, and installs nothing. Expected last line: `StatePort Alpha.21 transport probe passed: bootstrap syntax and 7 exact image manifests verified; installer was not executed.` If it stops, the message names the missing prerequisite (most often: systemd not enabled in WSL; run `wsl --shutdown` in PowerShell after enabling it). Then run the real install (without `--transport-probe`), answer the two confirmations, and open the printed local URL. Only post once that works on your machine. Known: a package check can stop the install once with `package_installation_invalid`; wait a minute and run the same command again. After a Windows restart you may need to sign in and open Ubuntu again (a planned restart was not measured).
 
 ## What the owner does to post (10 minutes)
 
@@ -43,6 +43,6 @@ It checks WSL2, Ubuntu 24.04, systemd, the Windows build and your network, verif
 
 ## Known limits of this kit
 
-- The demo video is the site overview cut to 19 s (the "undoable" segment removed because Alpha.20 has no general undo). It was recorded in August 2026 on an earlier build and shows the study sample and a receipt; it does not show installing.
+- The demo video is the site overview cut to 19 s (the "undoable" segment removed because only one undo exists, the last evidence update in the study sample). It was recorded in August 2026 on an earlier build and shows the study sample and a receipt; it does not show installing.
 - The link-preview card (`assets/media/stateport-social-card.png`) was regenerated after publication: its subtitle now reads "AI-assisted work, saved in files on your own computer." (it said "A durable home ..."). LinkedIn caches previews, so refresh it in the Post Inspector before you post.
-- Windows reboot qualification (`~/.local/state/stateport/alpha20-publish/gov-reboot-1259/`) had not produced a result at publication time; if it lands green, update the releases page wording in a small follow-up commit.
+- A planned Windows reboot was not measured on Alpha.21 (the test machine cannot reboot its nested WSL), and uninstall is not finished. If either is measured later, update the releases page wording in a small follow-up commit.
