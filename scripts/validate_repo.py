@@ -43,7 +43,7 @@ CURRENT_RELEASE_INDEX_SHA256 = "78390eaca6da93eddb8ea0f93d90463a36f9d61aa83793d7
 CURRENT_RELEASE_INDEX_SIGSTORE_SHA256 = "fd46f071e541d40d3d02dad62e9f287fdc5c02c94e00fa62b4dfd70dbcd16f1e"
 CURRENT_SIGNED_PAYLOAD_SHA256 = "899715d27dd86e7c2abbca886e5e5587508200143c79ab4c3efb9306acf959d6"
 CURRENT_TRUST_PUBLIC_KEY_SHA256 = "798d6ea6e2703993758f0fb45618b1f05b40f6ef116e7d286fd5a6867859b8ad"
-INSTALLER_STATUS = "StatePort 0.1.0-alpha.21 is the current signed candidate; the measurements below were taken on the previous release, 0.1.0-alpha.20, and have not yet been repeated on Alpha.21. The Alpha.20 installed-product rehearsal passed in an isolated simulation environment, and the Alpha.20 public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress."
+INSTALLER_STATUS = "StatePort 0.1.0-alpha.21 is the current signed release. Its installation was measured on fresh Windows 11 test machines with WSL2 and stock Ubuntu 24.04: it came up healthy on 2 of 3 attempts, one through the public one-line route (about 12 minutes) and one from a local copy of the same signed files (about 18 minutes). The third attempt, through the public route, was refused after about 5 minutes by a package check that races Ubuntu's background updater, and the next attempt succeeded. On the installed product the study sample worked in the browser (start an activity, review, approve, reflect, receipt, saved state after a reload), and undo, export and import, backup and restore as a new instance worked through the API. The installed keep-alive task had not run on the test machine, and it did not start after an unplanned restart when nobody was signed in. Windows reboot survival and uninstall were not measured as planned tests. Coding-agent runs, chat replies, restore from the interface, the workbench terminal and files tools, per-application workspaces, and the standing-authority and updater pages did not work on Alpha.21."
 
 # These publication anchors are intentionally duplicated here instead of being
 # imported from build_immutable_manifest.py. The validator is an independent
@@ -1397,6 +1397,16 @@ def validate_release_semantics() -> None:
         raise AssertionError("download/index.html must show the install command with download/install.sh")
 
     launcher = require("download/install.sh")
+    launcher_sha256 = hashlib.sha256(launcher.read_bytes()).hexdigest()
+    if launcher_sha256 not in download:
+        raise AssertionError(
+            "download/index.html must display the SHA-256 of download/install.sh "
+            f"({launcher_sha256})"
+        )
+    for page in ("launch/README.md", "launch/first-comment.md"):
+        launch_text = require(page).read_text(encoding="utf-8")
+        if launcher_sha256 not in launch_text:
+            raise AssertionError(f"{page} must quote the SHA-256 of download/install.sh ({launcher_sha256})")
     if stat.S_IMODE(launcher.stat().st_mode) != 0o755:
         raise AssertionError(f"{CURRENT_RELEASE_LABEL} mutable bootstrap route must remain executable")
     syntax = subprocess.run(

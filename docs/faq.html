@@ -84,7 +84,7 @@
         </aside>
 
         <article class="prose">
-<p class="notice"><strong>Early alpha, release 0.1.0-alpha.21.</strong> Do not use it for important data. The previous release, Alpha.20, has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+<p class="notice"><strong>Early alpha, release 0.1.0-alpha.21.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
 <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-is-stateport">What is StatePort?</a></li><li data-level="2"><a href="#is-it-safe">Is it safe?</a></li><li data-level="2"><a href="#where-is-my-data">Where does my data live?</a></li><li data-level="2"><a href="#internet">Does it need internet?</a></li><li data-level="2"><a href="#cannot-do-yet">What can I not do yet?</a></li><li data-level="2"><a href="#report-a-bug">How do I report a bug?</a></li><li data-level="2"><a href="#who-builds-it">Who builds it?</a></li></ol></details>
 <h2 id="what-is-stateport">What is StatePort?</h2>
 <p>StatePort keeps the goals, progress, decisions and history of AI-assisted work in readable files on your own computer, not in one chat session. An AI tool can help with the work, but it does not own your data or decide its own permissions. For actions that follow a fixed script, such as the StudyState sample, StatePort shows the proposed change, asks for your approval, applies it and records the result. Output from coding agents is recorded as a run result. StatePort does not turn it into saved app state.</p>
@@ -115,12 +115,12 @@
 <ul>
 <li>Use anything other than Windows 11 with WSL2 and Ubuntu 24.04 on AMD64. WSL1, ARM64, macOS, native Linux, Docker Desktop, and other distributions are not supported.</li>
 <li>Uninstall or reinstall with a tested, supported command. Neither has been measured yet.</li>
-<li>Rely on StatePort surviving a Windows restart. Restart survival has not been measured.</li>
-<li>Count on template import (ProjectState, a project tracker; StudyState, a study plan) working without extra steps. It was measured from a local Git checkout, after a one-time ownership fix. Import from a public Git URL was not tested.</li>
+<li>Rely on StatePort surviving a Windows restart. A planned restart has not been measured. After one unplanned restart of the test machine, with nobody signed in, StatePort stayed down until Ubuntu was started by hand.</li>
+<li>Count on template import (ProjectState, a project tracker; StudyState, a study plan) from anything but a local Git checkout. A local checkout was measured without extra steps on Alpha.21; import from a public Git URL was not tested.</li>
 <li>Update in place or roll back. There is no supported in-place update or rollback in this alpha.</li>
 <li>Undo most changes. One undo exists: the last evidence update in the StudyState sample.</li>
 <li>Back up more than an instance's files. A backup does not include Git history, conversations, the receipts index or approvals, and restore recreates files only.</li>
-<li>Ask the chat assistant about your study or project state. It sees only the recent conversation, not your state.</li>
+<li>Count on the chat assistant answering, or on it knowing your study or project state. No AI provider could be connected in testing, so no reply was produced on Alpha.21, and on Alpha.20 the assistant saw only the recent conversation.</li>
 <li>Use it for a team, as a hosted service, or across the public internet. It is for one person on one local computer.</li>
 </ul>
 <p>The full lists of what works, what is not measured and what is not built are on <a href="limitations.html">current limitations</a>.</p>

@@ -84,7 +84,7 @@
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice"><strong>Current support depends on your setup.</strong> The public Alpha.21 path targets fresh Windows 11 AMD64 with WSL2 Ubuntu 24.04. Provider and optional Workbench controls depend on what is installed. Connecting a real AI provider has not been measured on Alpha.20. Check the <a href="../releases/">release status</a> before you rely on a control.</p>
+          <p class="notice"><strong>Current support depends on your setup.</strong> The public Alpha.21 path targets fresh Windows 11 AMD64 with WSL2 Ubuntu 24.04. Provider and optional Workbench controls depend on what is installed. Connecting a real AI provider was not measured. Check the <a href="../releases/">release status</a> before you rely on a control.</p>
 
           <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#a-session-is-not-the-application">A session is not the app</a></li><li data-level="2"><a href="#tools-are-not-interchangeable">Tools are not interchangeable</a></li><li data-level="2"><a href="#provider-setup-and-readiness">Provider setup and readiness</a></li><li data-level="2"><a href="#what-portability-should-preserve">What portability is meant to preserve</a></li><li data-level="2"><a href="#moving-or-recovering-a-workspace">Moving or recovering a workspace</a></li></ol></details>
           <h2 id="a-session-is-not-the-application">A session is not the app</h2>
@@ -96,12 +96,12 @@
           <span id="current-tool-support"></span>
 <h2 id="provider-setup-and-readiness">Provider setup and readiness</h2>
           <p>Open <strong>Set up or verify provider</strong> from Workspace readiness or Platform. StatePort shows the selected provider, whether its program is installed, the model setting, the StatePort connection, whether a login exists, the result of a test request, and quota information when it has it. Each is a separate observation. Installed does not mean logged in. Logged in does not mean a request worked.</p>
-          <p>Alpha.20 ships with OpenCode and uses it by default. Codex is not bundled. The settings can save a model name, and saving is not logging in. StatePort does not check OpenCode&rsquo;s login for you, so choose <strong>Verify bounded request</strong> to send one short test request. The provider keeps its credentials in its own private directory, outside StatePort backups and exports. The test sends no app files and no conversation. A provider selector does not mean direct API providers or other tools are supported.</p>
+          <p>StatePort is set up to use OpenCode as its coding agent. Codex is not bundled. The settings can save a model name, and saving is not logging in. On Alpha.21 the settings screen showed OpenCode as installed and refused a model name with an invalid shape before sending it. In the same test, checking the selected adapter and saving an API key were refused with a &ldquo;provider action access denied&rdquo; error, and the cause is not known. StatePort does not check OpenCode&rsquo;s login for you, so choose <strong>Verify bounded request</strong> to send one short test request. The provider keeps its credentials in its own private directory, outside StatePort backups and exports. The test sends no app files and no conversation. A provider selector does not mean direct API providers or other tools are supported.</p>
           <p>Use <strong>Disconnect StatePort</strong> to stop active provider work and cancel queued requests. Reconnecting allows new requests. The earlier transcript stays. Use <strong>Refresh status</strong> when an observation is unavailable.</p>
           <p>See <a href="platform-support.html">platform support</a> for computer requirements and <a href="../releases/">release status</a> for what you can install.</p>
 
           <h2 id="what-portability-should-preserve">What portability is meant to preserve</h2>
-          <p>This is the goal. In Alpha.20, export and import exist for the instance&rsquo;s files. Grants, receipts and provider logins do not travel, and there is no migration wizard.</p>
+          <p>This is the goal. Today, export and import exist for the instance&rsquo;s files; an exported instance imported through the API as a new instance with the same saved state. Grants, receipts and provider logins do not travel, and there is no migration wizard.</p>
           <ul>
             <li>Your app files and saved state.</li>
             <li>Your goals, permissions and history.</li>

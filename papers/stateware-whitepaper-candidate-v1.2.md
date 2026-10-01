@@ -17,7 +17,7 @@ lang: en
 > eleven conceptual corrections learned from building the reference
 > implementation since 1.1 was first published; they are summarized in the
 > revision note at the end of Section 1. Paragraphs labeled “Alpha.20 status” were
-> added on 30 September 2026; each states what the installed alpha does today.
+> added on 30 September 2026; each states what the installed Alpha.20 did when it was measured. Alpha.21 replaced Alpha.20 on 1 October 2026, and not every paragraph has been checked again.
 
 # 1. Abstract and thesis
 
@@ -60,13 +60,13 @@ prepared for Windows 11, WSL2, and Ubuntu 24.04 on x86-64, with local
 single-user operation. The public walkthrough was a local development preview
 with sample data. Do not use StatePort for important data.
 
-**Status today (30 September 2026).** The current release is Alpha.20, and what
+**Status today (1 October 2026).** The current release is Alpha.21, and what
 has been measured is narrow: it installs from one command on Windows 11 with
-WSL2 and Ubuntu 24.04, and, after an interactive Windows logon, a keep-alive
-task keeps it running after the last WSL window closes. Surviving a reboot,
-templates, uninstall and reinstall, the full interface, and resource efficiency
-have not yet been measured. The [release page](../releases/) is the source for
-current status.
+WSL2 and Ubuntu 24.04 and came up healthy on 2 of 3 fresh test installs, and
+the study sample works in the browser from start to receipt. Surviving a
+planned reboot, uninstall and reinstall, the full interface, and resource
+efficiency were not measured. The [release page](../releases/) is the
+source for current status.
 
 **Current delivery versus future architecture.** The wider
 architecture this paper describes — catalogues of community applications,
@@ -162,7 +162,7 @@ emphasis and accuracy learned from building the reference implementation:
    anchors the instance's truth; it is not a complete definition of how the
    application behaves at runtime.
 10. **Pi is a reference direction.** It is not a delivered adapter. As of
-    July 2026, Codex CLI was the only provider the project had tested and cleared for use, OpenCode had not been, and there was no direct-API provider; those statements are dated. Alpha.20 ships and defaults to OpenCode; Codex is not bundled.
+    July 2026, Codex CLI was the only provider the project had tested and cleared for use, OpenCode had not been, and there was no direct-API provider; those statements are dated. StatePort is set up to use OpenCode; Codex is not bundled.
 11. **Current delivery and future architecture are separated.** The alpha
     facts above describe what exists; the rest of the paper describes what
     the model argues for.

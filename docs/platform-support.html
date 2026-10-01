@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="The one setup StatePort Alpha.21 supports: Windows 11, WSL2, Ubuntu 24.04, and AMD64, what the installer refuses, and what was measured on Alpha.20.">
+    <meta name="description" content="The one setup StatePort Alpha.21 supports: Windows 11, WSL2, Ubuntu 24.04, and AMD64, what the installer refuses, and what was measured on Alpha.21.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="Platform support — StatePort">
-    <meta property="og:description" content="Alpha.21 supports Windows 11, WSL2, Ubuntu 24.04, and AMD64 only. What the installer refuses and what was measured on Alpha.20.">
+    <meta property="og:description" content="Alpha.21 supports Windows 11, WSL2, Ubuntu 24.04, and AMD64 only. What the installer refuses and what was measured on Alpha.21.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/platform-support.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -84,7 +84,7 @@
         </aside>
 
         <article class="prose">
-<p class="notice"><strong>Early alpha, release 0.1.0-alpha.21.</strong> Do not use it for important data. The previous release, Alpha.20, has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+<p class="notice"><strong>Early alpha, release 0.1.0-alpha.21.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
 <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#requirements">Alpha.21 requirements</a></li><li data-level="2"><a href="#check">Check before you start</a></li><li data-level="2"><a href="#table">What is and is not supported</a></li><li data-level="2"><a href="#measured">What was measured on this setup</a></li><li data-level="2"><a href="#why-support-is-narrow">Why support is narrow</a></li><li data-level="2"><a href="#earlier">Earlier releases</a></li></ol></details>
 <h2 id="requirements">Alpha.21 requirements</h2>
 <ul>
@@ -102,7 +102,7 @@
 
 <h2 id="table">What is and is not supported</h2>
 <ul>
-<li><strong>Windows 11 + WSL2 + Ubuntu 24.04 on AMD64: the supported target.</strong> This is the only setup Alpha.21 is meant for. Alpha.20, the release measured so far, was measured only on this setup. See <a href="getting-started.html">getting started</a>.</li>
+<li><strong>Windows 11 + WSL2 + Ubuntu 24.04 on AMD64: the supported target.</strong> This is the only setup Alpha.21 is meant for, and the only one it was measured on. See <a href="getting-started.html">getting started</a>.</li>
 <li><strong>WSL1: not supported.</strong> The installer stops with <code>WSL2 is required; WSL1 and native Linux are not this release target.</code></li>
 <li><strong>Windows 10, or a Windows build older than 22000: not supported.</strong> The installer stops with <code>Windows 11 build 22000 or newer is required.</code></li>
 <li><strong>Native Linux: not supported.</strong> The installer refuses it. Native Linux would need its own release path.</li>
@@ -110,7 +110,7 @@
 </ul>
 
 <h2 id="measured">What was measured on this setup</h2>
-<p>The public one-line command installed Alpha.20 and reported it healthy on seven fresh test installs of genuine Windows 11 with WSL2 and stock Ubuntu 24.04, about 6.5 to 15 minutes each. Template import from a local Git checkout and the study sample loop were also measured on the installed product, and several screens still have known problems. Not measured yet: surviving a Windows restart, uninstall and reinstall, and memory and disk use under real work. The full lists are on <a href="limitations.html#measured">current limitations</a>.</p>
+<p>The one-line command installed Alpha.21 and reported it healthy on 2 of 3 fresh test installs of Windows 11 with WSL2 and stock Ubuntu 24.04, about 12 to 18 minutes each. One public-route attempt was refused by a package check (see <a href="troubleshooting.html#package-installation-invalid">troubleshooting</a>). The study sample loop was also measured on the installed product, and several screens still have known problems. Not measured yet: surviving a Windows restart, uninstall and reinstall, and memory and disk use under real work. The full lists are on <a href="limitations.html#measured">current limitations</a>.</p>
 
 <h2 id="why-support-is-narrow">Why support is narrow</h2>
 <p>StatePort uses local storage, Linux services, containers and an AI command-line tool. A setup is only useful when all of those work together and your data survives a restart. Platforms will be added only after the whole path has been tested on them.</p>
