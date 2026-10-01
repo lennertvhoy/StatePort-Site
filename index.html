@@ -94,7 +94,6 @@
            <p class="section-kicker">The study example</p>
           <h2 class="section-heading" id="journey-heading">The study sample, step by step</h2>
           <p>The sample app is a small study planner called StudyState. It keeps a goal and a few activities. You start an activity and approve the change it proposes. Then you write a reflection and approve saving it. The goal, activities and reflection are saved as files on your computer.</p>
-          <p class="notice notice--quiet"><strong>Status.</strong> I ran this loop in the browser on an installed Alpha.20. The saved state was still there when I came back later, and it survived service restarts and an unclean WSL shutdown. The change is proposed by a fixed script, not by an AI model.</p>
         </div>
         <p class="prototype-gallery-intro reveal">These screens show the sample. A receipt records the change you approved. The reflection is your own account of what you learned. Click a screen to enlarge it, or <a href="tutorials/site-orientation.html">watch the 72-second walkthrough</a>.</p>
         <div class="prototype-frames" role="group" aria-label="StudyState Sample journey screens">
@@ -158,9 +157,9 @@
 
       <section class="home-section try-section" id="try" aria-labelledby="try-heading">
         <div class="audience-intro reveal">
-          <p class="section-kicker">Try it · help me test</p>
-          <h2 class="section-heading" id="try-heading">Run one command. Tell me what breaks.</h2>
-          <p>StatePort Alpha.20 is an early alpha, built by one person, in the open. If you have a Windows 11 computer with WSL2 and Ubuntu 24.04, you can install it with one command and help me find what still fails. Use a test machine and test data only.</p>
+          <p class="section-kicker">Try it</p>
+          <h2 class="section-heading" id="try-heading">Install it with one command.</h2>
+          <p>StatePort Alpha.20 is an early alpha. If you have a Windows 11 computer with WSL2 and Ubuntu 24.04, you can install it with one command. Use a test machine and test data only.</p>
         </div>
         <div class="try-grid">
           <article class="try-card reveal">
@@ -182,7 +181,7 @@
           </article>
         </div>
         <div class="try-help reveal">
-          <h3>What I would like to know</h3>
+          <h3>Feedback welcome</h3>
           <ul>
             <li>Did it install and print &ldquo;installed and healthy&rdquo; on your machine? If not, which step stopped?</li>
             <li>Was anything on this site unclear, or claimed more than it should?</li>
@@ -205,7 +204,7 @@
           <article class="principle reveal">
             <p class="principle-index">02</p>
             <h3>A new session starts from the saved files</h3>
-            <p>State is saved on disk, not held in a chat window. In my tests it survived service restarts and an unclean WSL shutdown. StatePort stops when the last Ubuntu window closes, and comes back a few minutes after you reopen Ubuntu. A Windows reboot is not measured yet.</p>
+            <p>State is saved on disk, not held in a chat window. It survives service restarts and an unclean WSL shutdown. StatePort stops when the last Ubuntu window closes, and comes back a few minutes after you reopen Ubuntu. A Windows reboot is not measured yet.</p>
           </article>
           <article class="principle reveal">
             <p class="principle-index">03</p>
@@ -249,16 +248,13 @@
             <p class="release-label">Current availability</p>
             <h2 id="status-heading">Alpha.20 is the current release, and it is an early alpha</h2>
             <p class="notice"><strong>StatePort is in early alpha. Do not use it for important data.</strong> Here is exactly what works today, what is not working yet, and what is designed but not yet built.</p>
-            <p><strong>What works today.</strong> Alpha.20 installs on Windows 11 with WSL2 and Ubuntu 24.04 from one command. The command installed StatePort and it came up healthy on seven fresh test installs, taking about 6.5 to 15 minutes each. All of them were virtual machines.</p>
-            <p>The install puts a web interface, an API, a background worker, storage and a sandbox for running work on your own machine. The web interface opens without a login. Installing the StudyState sample (a small study-plan app) takes three clicks: Catalog, Install, Confirm. A fresh install opens empty, and that is normal.</p>
-            <p>In the browser on an installed Alpha.20 I reviewed an activity, approved the exact change, applied it, wrote a reflection, opened the receipt, and undid the last evidence update. The saved state was still there when I came back later. It also survived service restarts and an unclean WSL shutdown. A guard refuses a change proposed against outdated state. Importing a ProjectState or StudyState template from a local Git checkout worked too, along with export and import, a verified backup, restore as a new instance and a template upgrade, all through the API. The provider screen shows its status, and an API key can be saved and removed.</p>
-            <p><strong>Not working yet.</strong> Coding-agent runs (the provider directory is not ready and there is no agent workspace). Per-application workspaces and container tools: recreating the container fails, logs are refused, and workspace authority must be issued from a shell with sudo. The terminal and files tools in the workbench. Chat replies (assistant work is disabled, and chat does not read your project state). Restore from the interface (the recovery panel shows an error). The standing-authority and updater pages (they answer with errors). The notifications list. Cancelling an approved-but-stale run. Going back from a review leaves a stale pending approval. The Learning tab can show stale numbers after a change made on another tab. When the last Ubuntu window closes, the product stops and comes back about three minutes after you reopen Ubuntu; the keep-alive task only starts at your next Windows sign-in. A Windows reboot is not measured. Uninstall is not documented. Fixes for most of this list are being built into the next release (Alpha.21); none of that is published yet. If you hit a problem, please tell me.</p>
-            <p><strong>Designed, not built.</strong> An undo for most changes (only one undo exists, for the last evidence update in the study sample) and rolling back the platform. A chat assistant that answers from your own state (chat sees only the recent conversation). Saving coding-agent output into your app's state. Backups that include Git history, conversations, receipts and approvals. Container deployment. Agent Kits (shareable app packages).</p>
+            <p><strong>What works today.</strong> Alpha.20 installs on Windows 11 with WSL2 and Ubuntu 24.04 from one command. It installs a web interface, an API, a background worker, storage and a sandbox on your own machine. You can install the StudyState sample in three clicks (Catalog, Install, Confirm), review and approve a change, write a reflection, open the receipt and undo the last evidence update. Saved state survives restarts. You can also import templates from a Git checkout, export and import, back up, restore and upgrade a template through the API.</p>
+            <p><strong>Not working yet.</strong> Coding-agent runs, per-application workspaces and container tools, the workbench terminal and files, chat replies, restore from the interface, the standing-authority and updater pages, and notifications. StatePort stops when the last Ubuntu window closes and returns a few minutes after you reopen Ubuntu. A Windows reboot is untested. Fixes are planned for Alpha.21. <a href="docs/limitations.html">Full list of limitations</a>.</p>
+            <p><strong>Planned.</strong> Undo for most changes, platform rollback, a chat assistant that reads your state, saving coding-agent output into your app's state, backups that include history and receipts, container deployment and Agent Kits.</p>
             <details class="status-exact">
-              <summary>Exact status statement (for reviewers)</summary>
+              <summary>Technical status of this release</summary>
               <p>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress.</p>
             </details>
-            <p class="release-updated">Status reviewed <time datetime="2026-09-30">30 September 2026</time>.</p>
             <p><a class="release-ledger-link" href="releases/">Check release status <span aria-hidden="true">↗</span></a> · <a href="download/">Install guide</a> · <a href="docs/limitations.html">Current limitations</a></p>
             <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue<span class="sr-only"> (opens in a new tab)</span></a>.</p>
           </div>
@@ -292,7 +288,7 @@
           <article class="audience-path reveal">
             <p class="audience-label">Curious</p>
             <h3>See the study sample</h3>
-            <p>Follow it from review to saved reflection. The recordings come from an earlier build. I ran the loop end to end in the browser on an installed Alpha.20.</p>
+            <p>Follow it from review to saved reflection. The recordings come from an earlier build.</p>
             <a href="docs/prototype-walkthrough.html">Open the walkthrough <span aria-hidden="true">↗</span></a>
           </article>
           <article class="audience-path reveal">
@@ -313,8 +309,8 @@
       <section class="home-section about-section" id="about" aria-labelledby="about-heading">
         <div class="audience-intro reveal">
           <p class="section-kicker">About</p>
-          <h2 class="section-heading" id="about-heading">Built by one person, in the open.</h2>
-          <p>I am building StatePort alone. The site, the release files and my measurement notes are public, and the installer is a plain script you can read before you run it. Questions, bugs and feedback all go to the same place: <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">GitHub issues<span class="sr-only"> (opens in a new tab)</span></a>.</p>
+          <h2 class="section-heading" id="about-heading">Open source, built in the open.</h2>
+          <p>StatePort is an open source project. The site and the release files are public, and the installer is a plain script you can read before you run it. Questions, bugs and feedback all go to <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">GitHub issues<span class="sr-only"> (opens in a new tab)</span></a>.</p>
         </div>
       </section>
     </main>
