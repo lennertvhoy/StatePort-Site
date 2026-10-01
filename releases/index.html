@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Alpha.20 is the current early alpha. Its one-line installer is available and came up healthy seven times on fresh test installs; reboot survival is unmeasured.">
+    <meta name="description" content="Alpha.21 is the current early alpha and its one-line installer is available. Alpha.20 came up healthy on seven fresh test installs; Alpha.21 is not yet measured.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="StatePort release status">
-    <meta property="og:description" content="What is available today: Alpha.20 installs on Windows 11 with WSL2 from one command and came up healthy on seven fresh test installs. Known limits are listed plainly.">
+    <meta property="og:description" content="What is available today: Alpha.21 has a one-line installer for Windows 11 with WSL2. Alpha.20 came up healthy on seven fresh test installs; Alpha.21 is not yet measured. Known limits are listed plainly.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/releases/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -31,7 +31,7 @@
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "StatePort release status",
-        "description": "StatePort Alpha.20 for Windows 11, WSL2, and Ubuntu 24.04: what has been measured, what has not been tested yet, and what is available today.",
+        "description": "StatePort Alpha.21 for Windows 11, WSL2, and Ubuntu 24.04: what has been measured (so far on Alpha.20), what has not been tested yet, and what is available today.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/releases/",
         "dateModified": "2026-09-30",
         "inLanguage": "en"
@@ -84,8 +84,8 @@
           <div class="release-summary" id="current-status">
             <div>
               <p class="release-summary-label">Current software status</p>
-              <h2>Alpha.20 is the current early alpha</h2>
-              <p>Alpha.20 installs on Windows 11 with WSL2 and Ubuntu 24.04 from one command. It installed and came up healthy on seven fresh test installs, about 6.5 to 15 minutes each. All seven were virtual machines. The web interface opens without a login, and the StudyState sample (a small study-plan app) works end to end in the browser: review, approve, apply, reflect, receipt, and undo, with the saved state kept after restarts.</p>
+              <h2>Alpha.21 is the current early alpha</h2>
+              <p>Alpha.21 is installed on Windows 11 with WSL2 and Ubuntu 24.04 from one command, and has not been measured yet. Everything measured so far was measured on the previous release, Alpha.20. It installed and came up healthy on seven fresh test installs, about 6.5 to 15 minutes each. All seven were virtual machines. The web interface opens without a login, and the StudyState sample (a small study-plan app) works end to end in the browser: review, approve, apply, reflect, receipt, and undo, with the saved state kept after restarts.</p>
               <p><strong>Not working yet:</strong> chat replies, coding-agent runs, per-application workspaces and container tools, the workbench terminal and files tools, restore from the interface, the standing-authority and updater pages, and notifications. When the last Ubuntu window closes, the product stops and comes back about three minutes after you reopen Ubuntu. Windows reboot survival is not measured, and uninstall is not documented. The full list is on <a href="../docs/limitations.html">current limitations</a>.</p>
               <p><a class="button button--ink" href="../download/">Open the install guide <span aria-hidden="true">↗</span></a></p>
             </div>
@@ -101,7 +101,8 @@
                 <tbody>
                   <tr><th scope="row">Website and documentation</th><td>Live</td></tr>
                   <tr><th scope="row">Product preview (screens and video)</th><td>Available; the video was recorded on an earlier development build, and its &ldquo;stay undoable&rdquo; line does not hold for Alpha.20</td></tr>
-                  <tr><th scope="row">Alpha.20 one-line installer</th><td>Available. Installed and healthy on seven fresh Windows 11 test installs, about 6.5 to 15 minutes each (not physical PCs)</td></tr>
+                  <tr><th scope="row">Alpha.21 one-line installer</th><td>Available. Not yet measured on a fresh Windows 11 install</td></tr>
+                  <tr><th scope="row">Alpha.20 one-line installer (previous release)</th><td>Files remain available. Installed and healthy on seven fresh Windows 11 test installs, about 6.5 to 15 minutes each (not physical PCs)</td></tr>
                   <tr><th scope="row">Study sample loop on an installed Alpha.20</th><td>Measured end to end in the browser: review, approve, apply, reflect, receipt, undo; state kept after restarts and an unclean WSL shutdown</td></tr>
                   <tr><th scope="row">Reachable after the last WSL window closes</th><td>After a Windows sign-in, with the keep-alive task, it stayed reachable. Before that, the product stops and returns about three minutes after you reopen Ubuntu</td></tr>
                   <tr><th scope="row">Windows reboot survival</th><td>Not yet measured</td></tr>
@@ -125,7 +126,7 @@
             <p>It is built by one person, in the open. The measurement notes for the first runs are in the public repository under <a href="https://github.com/lennertvhoy/StatePort-Site/tree/main/evidence/alpha20-public-install-001" target="_blank" rel="noopener">evidence/alpha20-public-install-001<span class="sr-only"> (opens in a new tab)</span></a>, and <a href="../download/technical-release-files.html">technical release files</a> remain available for developers and anyone who wants to check them.</p>
             <details class="status-exact">
               <summary>Exact status statement (for reviewers)</summary>
-              <p>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress.</p>
+              <p>StatePort 0.1.0-alpha.21 is the current signed candidate; the measurements below were taken on the previous release, 0.1.0-alpha.20, and have not yet been repeated on Alpha.21. The Alpha.20 installed-product rehearsal passed in an isolated simulation environment, and the Alpha.20 public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress.</p>
             </details>
             <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue<span class="sr-only"> (opens in a new tab)</span></a>.</p>
           </section>

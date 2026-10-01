@@ -87,12 +87,12 @@
 <p class="notice"><strong>StatePort is in early alpha. Do not use it for important data.</strong> Use a computer or virtual machine where a mistake would not matter, use test data, and keep your own backups.</p>
 <details class="status-exact">
 <summary>Exact status statement (for reviewers)</summary>
-<p>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress.</p>
+<p>StatePort 0.1.0-alpha.21 is the current signed candidate; the measurements below were taken on the previous release, 0.1.0-alpha.20, and have not yet been repeated on Alpha.21. The Alpha.20 installed-product rehearsal passed in an isolated simulation environment, and the Alpha.20 public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress.</p>
 </details>
 
 <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#early-alpha">Early alpha</a></li><li data-level="2"><a href="#supported">The one supported setup</a></li><li data-level="2"><a href="#measured">What works today</a></li><li data-level="2"><a href="#not-working">Not working yet</a></li><li data-level="2"><a href="#designed">Designed, not built</a></li><li data-level="2"><a href="#local-use">Local use</a></li><li data-level="2"><a href="#security">Security</a></li><li data-level="2"><a href="#applications-and-features">Applications and features</a></li><li data-level="2"><a href="#release-files">Release files</a></li></ol></details>
 <h2 id="early-alpha">Early alpha</h2>
-<p>StatePort is an early alpha. Alpha.20 is a test release for people who want to try it and report what breaks. This page has three lists: what works today, what is not working yet, and what is designed but not built. Only the first list describes measured behavior.</p>
+<p>StatePort is an early alpha. Alpha.21 is a test release for people who want to try it and report what breaks. This page has three lists: what works today, what is not working yet, and what is designed but not built. Only the first list describes measured behavior.</p>
 
 <h2 id="supported">The one supported setup</h2>
 <ul>
@@ -119,7 +119,7 @@
 <p>The installer is a script you can read. It checks that you have WSL2 (not WSL1), Ubuntu 24.04, systemd as the first process, Windows build 22000 or newer, <code>powershell.exe</code> reachable from Ubuntu, an x86-64 CPU, and a user that is not root. It asks for two typed confirmations. It has two options that install nothing: <code>--transport-probe</code> and <code>--materialization-preflight</code>. <a href="getting-started.html">Getting started</a> explains them.</p>
 
 <h2 id="not-working">Not working yet</h2>
-<p>These are built into Alpha.20, and on installed test copies they did not work. Fixes for most of this list are being built into the next release (Alpha.21); none of that is published yet.</p>
+<p>These are built into Alpha.20, and on installed test copies they did not work. Fixes for most of this list are intended for Alpha.21, now the current release; none of them has been measured on an installed Alpha.21 yet.</p>
 <ul>
 <li><strong>Coding-agent runs.</strong> The provider directory is not ready, and there is no agent workspace. A run is refused before it starts.</li>
 <li><strong>Per-application workspaces and container tools.</strong> Recreating the container fails, logs are refused, and workspace authority must be issued from a shell with sudo.</li>
@@ -141,7 +141,7 @@
 <h2 id="designed">Designed, not built</h2>
 <p>These appear in the design, in these docs or in the papers. They are not part of Alpha.20.</p>
 <ul>
-<li><strong>Undo for most changes.</strong> One undo exists: the last evidence update in the StudyState sample. Most changes cannot be undone. Alpha.20 does not support rolling back the platform, and its release file says so.</li>
+<li><strong>Undo for most changes.</strong> One undo exists: the last evidence update in the StudyState sample. Most changes cannot be undone. Alpha.21 does not support rolling back the platform, and its release file says so.</li>
 <li><strong>A chat assistant that reads your state.</strong> The chat assistant sees only the recent conversation. It does not read your study or project files. Actions that go through StatePort&rsquo;s approval steps get a small bundle of information built from the saved state. Chat does not.</li>
 <li><strong>Saving coding-agent output into your app&rsquo;s state.</strong> For actions that follow a fixed script, such as the StudyState sample, StatePort applies what you approve. Output from coding agents is recorded as a run result. StatePort does not turn it into saved state.</li>
 <li><strong>Backup of history and receipts.</strong> A backup archives the instance&rsquo;s files. It does not include Git history, conversations, the receipts index or approvals. Restore creates a new instance from those files. It does not finish interrupted work or check what happened outside StatePort.</li>

@@ -76,7 +76,7 @@
 <!-- support-section-link:start -->
 
 <!-- support-section-link:end -->
-            <p class="availability"><strong>Alpha.20 installs on Windows 11 + WSL2 from one command: installed and healthy on seven fresh test installs, about 6.5 to 15 minutes each. Early alpha, <a href="#status">known limits below</a>.</strong> <a href="download/">Get the install command →</a></p>
+            <p class="availability"><strong>Alpha.21 has a one-line installer for Windows 11 + WSL2 (not yet measured; Alpha.20 was installed and healthy on seven fresh test installs, about 6.5 to 15 minutes each). Early alpha, <a href="#status">known limits below</a>.</strong> <a href="download/">Get the install command →</a></p>
           </div>
 
           <figure class="hero-visual">
@@ -159,7 +159,7 @@
         <div class="audience-intro reveal">
           <p class="section-kicker">Try it</p>
           <h2 class="section-heading" id="try-heading">Install it with one command.</h2>
-          <p>StatePort Alpha.20 is an early alpha. If you have a Windows 11 computer with WSL2 and Ubuntu 24.04, you can install it with one command. Use a test machine and test data only.</p>
+          <p>StatePort Alpha.21 is an early alpha. If you have a Windows 11 computer with WSL2 and Ubuntu 24.04, you can install it with one command. Use a test machine and test data only.</p>
         </div>
         <div class="try-grid">
           <article class="try-card reveal">
@@ -246,14 +246,14 @@
         <div class="release-band-inner release-band-inner--expanded">
           <div class="reveal">
             <p class="release-label">Current availability</p>
-            <h2 id="status-heading">Alpha.20 is the current release, and it is an early alpha</h2>
+            <h2 id="status-heading">Alpha.21 is the current release, and it is an early alpha</h2>
             <p class="notice"><strong>StatePort is in early alpha. Do not use it for important data.</strong> Here is exactly what works today, what is not working yet, and what is designed but not yet built.</p>
-            <p><strong>What works today.</strong> Alpha.20 installs on Windows 11 with WSL2 and Ubuntu 24.04 from one command. It installs a web interface, an API, a background worker, storage and a sandbox on your own machine. You can install the StudyState sample in three clicks (Catalog, Install, Confirm), review and approve a change, write a reflection, open the receipt and undo the last evidence update. Saved state survives restarts. You can also import templates from a Git checkout, export and import, back up, restore and upgrade a template through the API.</p>
-            <p><strong>Not working yet.</strong> Coding-agent runs, per-application workspaces and container tools, the workbench terminal and files, chat replies, restore from the interface, the standing-authority and updater pages, and notifications. StatePort stops when the last Ubuntu window closes and returns a few minutes after you reopen Ubuntu. A Windows reboot is untested. Fixes are planned for Alpha.21. <a href="docs/limitations.html">Full list of limitations</a>.</p>
+            <p><strong>What works today.</strong> Alpha.21 is installed on Windows 11 with WSL2 and Ubuntu 24.04 from one command, and has not been measured yet. Everything in this section was measured on the previous release, Alpha.20, which installs a web interface, an API, a background worker, storage and a sandbox on your own machine. You can install the StudyState sample in three clicks (Catalog, Install, Confirm), review and approve a change, write a reflection, open the receipt and undo the last evidence update. Saved state survives restarts. You can also import templates from a Git checkout, export and import, back up, restore and upgrade a template through the API.</p>
+            <p><strong>Not working yet (measured on Alpha.20).</strong> Coding-agent runs, per-application workspaces and container tools, the workbench terminal and files, chat replies, restore from the interface, the standing-authority and updater pages, and notifications. StatePort stops when the last Ubuntu window closes and returns a few minutes after you reopen Ubuntu. A Windows reboot is untested. Fixes are intended for Alpha.21, now the current release; none have been measured on an installed Alpha.21 yet. <a href="docs/limitations.html">Full list of limitations</a>.</p>
             <p><strong>Planned.</strong> Undo for most changes, platform rollback, a chat assistant that reads your state, saving coding-agent output into your app's state, backups that include history and receipts, container deployment and Agent Kits.</p>
             <details class="status-exact">
               <summary>Technical status of this release</summary>
-              <p>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress.</p>
+              <p>StatePort 0.1.0-alpha.21 is the current signed candidate; the measurements below were taken on the previous release, 0.1.0-alpha.20, and have not yet been repeated on Alpha.21. The Alpha.20 installed-product rehearsal passed in an isolated simulation environment, and the Alpha.20 public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress.</p>
             </details>
             <p><a class="release-ledger-link" href="releases/">Check release status <span aria-hidden="true">↗</span></a> · <a href="download/">Install guide</a> · <a href="docs/limitations.html">Current limitations</a></p>
             <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue<span class="sr-only"> (opens in a new tab)</span></a>.</p>

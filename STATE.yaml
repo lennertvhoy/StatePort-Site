@@ -5,13 +5,13 @@ project:
   outcome_ref: "PROJECT.md#outcome"
 current_slice:
   id: alpha20-public-install-001
-  objective: "Publish one accurate StatePort 0.1.0-alpha.20 site whose Alpha.20 one-line installer (download/install.sh) delivers the complete product on fresh Windows 11 WSL2 Ubuntu 24.04; the install and session-close survival legs are measured on a genuine host and reboot qualification follows publication."
+  objective: "Publish one accurate StatePort 0.1.0-alpha.21 site whose Alpha.21 one-line installer (download/install.sh) delivers the complete product on fresh Windows 11 WSL2 Ubuntu 24.04; the install and session-close survival legs are measured on a genuine host and reboot qualification follows publication."
   status: implementing
   # Human-owned. Agents may report results but may not weaken these criteria.
   acceptance:
     - "One consistent public documentation path gives a fresh Windows 11 WSL2 Ubuntu 24.04 AMD64 user exactly one anonymous installer command, then clear open-product, template, troubleshooting, update, and uninstall guidance."
-    - "The signed index, versioned URL, displayed version, source identity, image manifests, mutable installer, and installed receipt all identify Alpha.20 exactly."
-    - "The additive Alpha.20 tree is deployed and anonymously byte-verified while the immutable Alpha.17 predecessor and every anchored earlier versioned release tree remain unchanged."
+    - "The signed index, versioned URL, displayed version, source identity, image manifests, mutable installer, and installed receipt all identify Alpha.21 exactly."
+    - "The additive Alpha.21 tree is deployed and anonymously byte-verified while the immutable Alpha.20 and Alpha.17 trees and every anchored earlier versioned release tree remain unchanged."
     - "The public command installs the web UI, control API, worker, execution host, persistence, restart and reboot behavior, and supports the actual ProjectState and StudyState repositories plus an independent third valid template."
     - "The site remains accessible without JavaScript and contains no analytics, tracking, third-party runtime scripts, secrets, or mutable artifact references."
   primary_journey:
@@ -31,7 +31,7 @@ delivery_boundary:
       cause: "Three honest rehearsal failures (updater genesis precondition, grant-digest injection path matching, harness provider-status expectation) each root-caused and fixed before the passing end-to-end simulation rehearsal; native public-route qualification follows publication."
   simplification_review: null
   # Immutable predecessors: the versioned 0.1.0-alpha.16 and 0.1.0-alpha.17 trees
-  # remain published and unchanged; they are superseded by the current 0.1.0-alpha.20
+  # remain published and unchanged; they are superseded by the current 0.1.0-alpha.21
   # signed candidate route.
 blockers:
   - "All seven Alpha.16 GHCR packages are private; anonymous image access fails HTTP 401 independently of signature preflight. Package-wide visibility is not safe to change based on the reviewed Alpha.16 digests because fourteen older versions lack matching public signed provenance."

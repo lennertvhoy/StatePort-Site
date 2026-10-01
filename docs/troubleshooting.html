@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Find the installer message you see, what caused it, and what to do, for StatePort Alpha.20 on Windows 11 with WSL2 and Ubuntu 24.04.">
+    <meta name="description" content="Find the installer message you see, what caused it, and what to do, for StatePort Alpha.21 on Windows 11 with WSL2 and Ubuntu 24.04.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
@@ -84,7 +84,7 @@
         </aside>
 
         <article class="prose">
-<p class="notice"><strong>Early alpha, release 0.1.0-alpha.20.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+<p class="notice"><strong>Early alpha, release 0.1.0-alpha.21.</strong> Do not use it for important data. The previous release, Alpha.20, has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
 <p class="notice notice--quiet"><strong>Ground rules.</strong> Do not edit the installer, skip its checks, or run it with <code>sudo</code>. Do not delete folders you did not create, and do not remove package-manager lock files. After you fix a cause, run the same command again. A message that begins <code>StatePort install:</code> comes from the installer script and stops it.</p>
 <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#host-checks">Host checks</a></li><li data-level="2"><a href="#tools">Missing tools and temporary files</a></li><li data-level="2"><a href="#downloads">Downloads and checksums</a></li><li data-level="2"><a href="#confirmations">Confirmations, sudo, and packages</a></li><li data-level="2"><a href="#system-folders">System folder checks</a></li><li data-level="2"><a href="#refusals">Installer refusals and a leftover from an earlier attempt</a></li><li data-level="3"><a href="#image-archive-conflict">image_archive_conflict</a></li><li data-level="2"><a href="#after-install">After a successful install</a></li><li data-level="2"><a href="#report">Report a problem</a></li></ol></details>
 <h2 id="host-checks">Host checks</h2>
@@ -100,7 +100,7 @@
 <h3 id="amd64"><code>WSL2 AMD64 is required.</code></h3>
 <p><strong>You see</strong> the installer stop.</p>
 <p><strong>Cause.</strong> <code>uname -m</code> did not print <code>x86_64</code>, for example on an ARM64 computer.</p>
-<p><strong>What to do.</strong> Alpha.20 supports AMD64 only. Use a different computer.</p>
+<p><strong>What to do.</strong> Alpha.21 supports AMD64 only. Use a different computer.</p>
 <h3 id="os-release"><code>Cannot read /etc/os-release.</code></h3>
 <p><strong>You see</strong> the installer stop.</p>
 <p><strong>Cause.</strong> The file that names the Linux distribution is missing or unreadable, so this is not a stock Ubuntu.</p>
@@ -124,7 +124,7 @@
 <h3 id="windows-11"><code>Windows 11 build 22000 or newer is required.</code></h3>
 <p><strong>You see</strong> the installer stop.</p>
 <p><strong>Cause.</strong> This is Windows 10 or an older build. Build 22000 is the first Windows 11 build.</p>
-<p><strong>What to do.</strong> Alpha.20 supports Windows 11 only.</p>
+<p><strong>What to do.</strong> Alpha.21 supports Windows 11 only.</p>
 <h3 id="usage"><code>Usage: &lt;script&gt; [--transport-probe|--materialization-preflight]</code></h3>
 <p><strong>You see</strong> the installer stop before it does anything.</p>
 <p><strong>Cause.</strong> You added an option or an extra word the installer does not know. Only <code>--transport-probe</code> and <code>--materialization-preflight</code> exist.</p>
@@ -237,7 +237,7 @@ refusal record: ~/.local/state/stateport-install/refusals/&lt;timestamp&gt;-imag
 <h2 id="report">Report a problem</h2>
 <p><a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue on GitHub</a> and include:</p>
 <ul>
-<li>the release, 0.1.0-alpha.20, and whether the dry run passed;</li>
+<li>the release, 0.1.0-alpha.21, and whether the dry run passed;</li>
 <li>the step you were on and the exact message, copied from the terminal;</li>
 <li>the output of the five checks in <a href="getting-started.html#check">Step 2</a>;</li>
 <li>the refusal record, if the installer printed one, after you check it for private content.</li>

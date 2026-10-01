@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Install StatePort Alpha.20 on Windows 11 with WSL2 and Ubuntu 24.04 with one command. Prerequisites, what it asks, known limits, and how to report problems.">
+    <meta name="description" content="Install StatePort Alpha.21 on Windows 11 with WSL2 and Ubuntu 24.04 with one command. Prerequisites, what it asks, known limits, and how to report problems.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Download StatePort Alpha.20">
+    <meta property="og:title" content="Download StatePort Alpha.21">
     <meta property="og:description" content="One command installs StatePort on Windows 11 with WSL2 and Ubuntu 24.04. Early alpha: prerequisites, known limits, and how to report problems.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/download/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
@@ -25,13 +25,13 @@
     <link rel="manifest" href="../site.webmanifest">
     <link rel="stylesheet" href="../assets/site.css?v=2026-09-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-10-1" data-site-enhancements>
-    <title>Download StatePort Alpha.20</title>
+    <title>Download StatePort Alpha.21</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Download StatePort Alpha.20",
-        "description": "Install steps, prerequisites, known limits, and how to report problems for StatePort Alpha.20 on Windows 11 with WSL2.",
+        "name": "Download StatePort Alpha.21",
+        "description": "Install steps, prerequisites, known limits, and how to report problems for StatePort Alpha.21 on Windows 11 with WSL2.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/download/",
         "dateModified": "2026-09-30",
         "inLanguage": "en"
@@ -61,7 +61,7 @@
       <section class="article-hero" id="alpha16" aria-labelledby="download-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Download</p>
-          <h1 id="download-title">Install StatePort Alpha.20</h1>
+          <h1 id="download-title">Install StatePort Alpha.21</h1>
           <p>One command installs StatePort on Windows 11 with WSL2 and Ubuntu 24.04. It sets up a web interface, an API, a background worker, storage and a sandbox where work runs.</p>
           <p><strong>Alpha.20 installed and came up healthy on seven fresh Windows 11 test installs, about 6.5 to 15 minutes each. It is an early alpha with known limits, listed below.</strong></p>
           <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue<span class="sr-only"> (opens in a new tab)</span></a>.</p>
@@ -88,12 +88,12 @@
         </aside>
 
         <article class="prose release-overview" data-no-toc>
-          <p class="notice"><strong>StatePort is in early alpha. Do not use it for important data.</strong> Use test data and keep your own backups. Alpha.20 is meant for one person on one Windows 11 computer; it is not production software.</p>
+          <p class="notice"><strong>StatePort is in early alpha. Do not use it for important data.</strong> Use test data and keep your own backups. Alpha.21 is meant for one person on one Windows 11 computer; it is not production software.</p>
 
           <section id="status" aria-labelledby="status-heading">
             <h2 id="status-heading">What has and has not been tested</h2>
             <ul>
-              <li><strong>Tested:</strong> the one-line command below installed Alpha.20 and it came up healthy on seven fresh test installs of Windows 11 with WSL2 and stock Ubuntu 24.04. Installs took about 6.5 to 15 minutes. All seven were virtual machines, not physical PCs.</li>
+              <li><strong>Tested:</strong> the one-line command for Alpha.20 installed Alpha.20 and it came up healthy on seven fresh test installs of Windows 11 with WSL2 and stock Ubuntu 24.04. Installs took about 6.5 to 15 minutes. All seven were virtual machines, not physical PCs. The command below now installs Alpha.21, which has not been measured yet.</li>
               <li><strong>Tested:</strong> the StudyState sample (a small study-plan app) in the browser on an installed Alpha.20: review, approve, apply, reflect, receipt, and undo of the last evidence update. The saved state was kept after coming back later, and after service restarts and an unclean WSL shutdown.</li>
               <li><strong>Tested:</strong> importing a ProjectState or StudyState template from a local Git checkout (after a one-time ownership fix; see <a href="../docs/troubleshooting.html#template-import-ownership">troubleshooting</a>), plus export and import, a verified backup, restore as a new instance and a template upgrade, all through the API.</li>
               <li><strong>Tested:</strong> after an interactive Windows sign-in, a small keep-alive task keeps StatePort reachable after the last WSL window is closed. Before that first sign-in, closing the last Ubuntu window stops the product; it comes back about three minutes after you reopen Ubuntu.</li>
@@ -101,7 +101,7 @@
             </ul>
             <details class="status-exact">
               <summary>Exact status statement (for reviewers)</summary>
-              <p>StatePort 0.1.0-alpha.20 is the current signed candidate; its installed-product rehearsal passed in an isolated simulation environment, and its public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress.</p>
+              <p>StatePort 0.1.0-alpha.21 is the current signed candidate; the measurements below were taken on the previous release, 0.1.0-alpha.20, and have not yet been repeated on Alpha.21. The Alpha.20 installed-product rehearsal passed in an isolated simulation environment, and the Alpha.20 public-route installation completed and came up healthy on a genuine Windows 11 host with WSL2 and stock Ubuntu 24.04. After an interactive Windows logon the installed keep-alive task held the WSL environment, and the installed product stayed reachable after the last WSL session closed on that host. Windows reboot survival and the remaining lifecycle, template, UI and efficiency checks are in progress.</p>
             </details>
           </section>
 
@@ -127,7 +127,7 @@ systemd=true</code></pre>
             <h2 id="dry-run-heading">Optional: run a dry run first</h2>
             <p>Add <code>--transport-probe</code> to the command. It installs nothing and does not ask for <code>sudo</code>: it checks your machine (WSL2, Ubuntu 24.04, systemd, Windows 11), downloads the list of container images with their fingerprints, and checks those fingerprints. If a prerequisite is missing, it stops and names it.</p>
 <pre class="snippet"><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh) --transport-probe</code></pre>
-            <p>A passing dry run ends with a line that starts <code>StatePort Alpha.20 transport probe passed</code>.</p>
+            <p>A passing dry run ends with a line that starts <code>StatePort Alpha.21 transport probe passed</code>.</p>
           </section>
 
           <section id="install" aria-labelledby="install-heading">
@@ -178,7 +178,7 @@ systemd=true</code></pre>
             <h2 id="report-heading">Something went wrong? Report a problem</h2>
             <p>Open an issue at <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">github.com/lennertvhoy/StatePort-Site/issues<span class="sr-only"> (opens in a new tab)</span></a>. Please include:</p>
             <ul>
-              <li>the version (Alpha.20) and the last lines of the installer&rsquo;s output; failures start with <code>StatePort install:</code>;</li>
+              <li>the version (Alpha.21) and the last lines of the installer&rsquo;s output; failures start with <code>StatePort install:</code>;</li>
               <li>the output of <code>ps -p 1 -o comm=</code> in Ubuntu and of <code>wsl --list --verbose</code> in PowerShell;</li>
               <li>which step it stopped at.</li>
             </ul>
