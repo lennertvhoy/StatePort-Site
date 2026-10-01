@@ -94,7 +94,7 @@
             <h2 id="status-heading">What has and has not been tested</h2>
             <ul>
               <li><strong>Tested:</strong> the one-line command below installed Alpha.20 and it came up healthy on seven fresh test installs of Windows 11 with WSL2 and stock Ubuntu 24.04. Installs took about 6.5 to 15 minutes. All seven were virtual machines, not physical PCs.</li>
-              <li><strong>Tested:</strong> the StudyState sample (a small study-plan app) in the browser on an installed Alpha.20: review, approve, apply, reflect, receipt, and undo of the last evidence update. The saved state was kept when I came back later, and after service restarts and an unclean WSL shutdown.</li>
+              <li><strong>Tested:</strong> the StudyState sample (a small study-plan app) in the browser on an installed Alpha.20: review, approve, apply, reflect, receipt, and undo of the last evidence update. The saved state was kept after coming back later, and after service restarts and an unclean WSL shutdown.</li>
               <li><strong>Tested:</strong> importing a ProjectState or StudyState template from a local Git checkout (after a one-time ownership fix; see <a href="../docs/troubleshooting.html#template-import-ownership">troubleshooting</a>), plus export and import, a verified backup, restore as a new instance and a template upgrade, all through the API.</li>
               <li><strong>Tested:</strong> after an interactive Windows sign-in, a small keep-alive task keeps StatePort reachable after the last WSL window is closed. Before that first sign-in, closing the last Ubuntu window stops the product; it comes back about three minutes after you reopen Ubuntu.</li>
               <li><strong>Not working yet:</strong> chat replies, coding-agent runs, per-application workspaces and container tools, the workbench terminal and files tools, and restore from the interface. Windows reboot survival is not measured, and uninstall is not documented. The full list is on <a href="../docs/limitations.html">current limitations</a>.</li>
@@ -142,7 +142,7 @@ systemd=true</code></pre>
               <li>Shows the exact install plan and asks you to type <code>install-exact</code> to approve it.</li>
               <li>Installs and starts StatePort, then prints the result.</li>
             </ol>
-            <p>Expect it to take a while: about 20 minutes on my test virtual machine, and longer on a slow connection.</p>
+            <p>Expect it to take a while: about 20 minutes on a test virtual machine, and longer on a slow connection.</p>
             <p>You can check the installer before you run it. Its SHA-256 fingerprint is <code>b83e8376776cd663b6a0aa8098ddde489f0125e033d70e8b1421fb04d1cb8916</code>. To compare, run <code>curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh | sha256sum</code>. The two should match.</p>
           </section>
 
@@ -161,7 +161,7 @@ systemd=true</code></pre>
           <section id="wsl-behaviour" aria-labelledby="wsl-behaviour-heading">
             <h2 id="wsl-behaviour-heading">What happens when you close WSL windows</h2>
             <p>StatePort runs inside WSL. Windows normally stops WSL when the last window closes, so the installer adds a small Windows scheduled task named <code>StatePortKeepAlive</code> that keeps Ubuntu running in the background once you have signed in to Windows.</p>
-            <p><strong>Be aware:</strong> in my fresh-install tests, before any sign-out, closing the last Ubuntu window stopped the product, and it came back about three minutes after I reopened Ubuntu. After an interactive Windows sign-in the keep-alive task held the environment, and StatePort stayed reachable with the last WSL window closed. Surviving a Windows reboot has not been measured. If the local address stops answering, open an Ubuntu window and reload after a few minutes, or sign out of Windows and back in (that is when the keep-alive task starts), then reload the page.</p>
+            <p><strong>Be aware:</strong> in fresh-install tests, before any sign-out, closing the last Ubuntu window stopped the product, and it came back about three minutes after Ubuntu was reopened. After an interactive Windows sign-in the keep-alive task held the environment, and StatePort stayed reachable with the last WSL window closed. Surviving a Windows reboot has not been measured. If the local address stops answering, open an Ubuntu window and reload after a few minutes, or sign out of Windows and back in (that is when the keep-alive task starts), then reload the page.</p>
           </section>
 
           <section id="stop" aria-labelledby="stop-heading">

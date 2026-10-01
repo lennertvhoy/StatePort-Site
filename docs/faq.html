@@ -84,7 +84,7 @@
         </aside>
 
         <article class="prose">
-<p class="notice"><strong>Early alpha, release 0.1.0-alpha.20.</strong> Do not use it for important data. I have measured it on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+<p class="notice"><strong>Early alpha, release 0.1.0-alpha.20.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
 <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-is-stateport">What is StatePort?</a></li><li data-level="2"><a href="#is-it-safe">Is it safe?</a></li><li data-level="2"><a href="#where-is-my-data">Where does my data live?</a></li><li data-level="2"><a href="#internet">Does it need internet?</a></li><li data-level="2"><a href="#cannot-do-yet">What can I not do yet?</a></li><li data-level="2"><a href="#report-a-bug">How do I report a bug?</a></li><li data-level="2"><a href="#who-builds-it">Who builds it?</a></li></ol></details>
 <h2 id="what-is-stateport">What is StatePort?</h2>
 <p>StatePort keeps the goals, progress, decisions and history of AI-assisted work in readable files on your own computer, not in one chat session. An AI tool can help with the work, but it does not own your data or decide its own permissions. For actions that follow a fixed script, such as the StudyState sample, StatePort shows the proposed change, asks for your approval, applies it and records the result. Output from coding agents is recorded as a run result. StatePort does not turn it into saved app state.</p>
@@ -101,7 +101,7 @@
 <p>What it changes on your machine: it installs system packages and services inside the Ubuntu distribution you run it in, and it registers one Windows scheduled task named <code>StatePortKeepAlive</code>. There is no supported one-command uninstall in this alpha, so read <a href="updates.html">updates and removal</a> before installing on a computer you care about. More detail is in <a href="security-and-privacy.html">security and privacy</a>.</p>
 
 <h2 id="where-is-my-data">Where does my data live?</h2>
-<p>On your own computer, inside the Ubuntu (WSL) distribution where you installed StatePort. It is not stored in a StatePort cloud service. The installer keeps its receipts and installation records in <code>~/.local/state/stateport-install</code> in that Ubuntu user's home folder. StatePort's local services keep app content in the same distribution. I have not yet written down where every file lives for Alpha.20.</p>
+<p>On your own computer, inside the Ubuntu (WSL) distribution where you installed StatePort. It is not stored in a StatePort cloud service. The installer keeps its receipts and installation records in <code>~/.local/state/stateport-install</code> in that Ubuntu user's home folder. StatePort's local services keep app content in the same distribution. Where every file lives is not yet documented for Alpha.20.</p>
 <p>Because it all sits inside one distribution, removing that distribution would remove it. Keep your own backups, and read <a href="lifecycle.html">backup and recovery</a> for what StatePort does and does not promise.</p>
 
 <h2 id="internet">Does it need internet?</h2>
@@ -129,7 +129,7 @@
 <p><a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue on GitHub</a>. Include the release (0.1.0-alpha.20), the step you were on, and the exact message you saw. If the installer printed a <code>refusal record:</code> path, attach that file after checking it for anything private. Remove tokens, passwords, private URLs, and personal file contents from anything you share. Do not post secrets, and do not post details of a suspected vulnerability in public: there is no private reporting address yet, so open an issue that says a security issue exists and leaves the details out. <a href="troubleshooting.html#report">Troubleshooting</a> lists what helps most.</p>
 
 <h2 id="who-builds-it">Who builds it?</h2>
-<p>I am Lennert Van Hoyweghen, and I build StatePort alone. AI coding agents help me write the code, and I direct them. The source for the release is in the <a href="https://github.com/lennertvhoy/StatePort-Source" target="_blank" rel="noopener">StatePort-Source repository</a>. The code and the template files are AGPL-3.0-or-later, and the docs are CC-BY-4.0. The <a href="../download/technical-release-files.html">technical release files</a> page has the release files for developers.</p>
+<p>StatePort is built and maintained by Lennert Van Hoyweghen. AI coding agents help write the code, under the maintainer's direction. The source for the release is in the <a href="https://github.com/lennertvhoy/StatePort-Source" target="_blank" rel="noopener">StatePort-Source repository</a>. The code and the template files are AGPL-3.0-or-later, and the docs are CC-BY-4.0. The <a href="../download/technical-release-files.html">technical release files</a> page has the release files for developers.</p>
 
 <div class="inline-actions">
 <a class="button button--ink" href="getting-started.html">Install StatePort</a>
