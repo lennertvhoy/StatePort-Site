@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Install StatePort Alpha.21 on Windows 11 with WSL2 and Ubuntu 24.04 with one command. Prerequisites, what it asks, known limits, and how to report problems.">
+    <meta name="description" content="Install StatePort Alpha.22 on Windows 11 with WSL2 and Ubuntu 24.04 with one command. Prerequisites, what it asks, known limits, and how to report problems.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Download StatePort Alpha.21">
+    <meta property="og:title" content="Download StatePort Alpha.22">
     <meta property="og:description" content="One command installs StatePort on Windows 11 with WSL2 and Ubuntu 24.04. Early alpha: prerequisites, known limits, and how to report problems.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/download/">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
@@ -25,13 +25,13 @@
     <link rel="manifest" href="../site.webmanifest">
     <link rel="stylesheet" href="../assets/site.css?v=2026-09-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-10-1" data-site-enhancements>
-    <title>Download StatePort Alpha.21</title>
+    <title>Download StatePort Alpha.22</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Download StatePort Alpha.21",
-        "description": "Install steps, prerequisites, known limits, and how to report problems for StatePort Alpha.21 on Windows 11 with WSL2.",
+        "name": "Download StatePort Alpha.22",
+        "description": "Install steps, prerequisites, known limits, and how to report problems for StatePort Alpha.22 on Windows 11 with WSL2.",
         "url": "https://lennertvhoy.github.io/StatePort-Site/download/",
         "dateModified": "2026-09-30",
         "inLanguage": "en"
@@ -61,9 +61,9 @@
       <section class="article-hero" id="alpha16" aria-labelledby="download-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Download</p>
-          <h1 id="download-title">Install StatePort Alpha.21</h1>
+          <h1 id="download-title">Install StatePort Alpha.22</h1>
           <p>One command installs StatePort on Windows 11 with WSL2 and Ubuntu 24.04. It sets up a web interface, an API, a background worker, storage and a sandbox where work runs.</p>
-          <p><strong>Alpha.21 came up healthy on 2 of 3 fresh Windows 11 test installs, in about 12 to 18 minutes. It is an early alpha with known limits, listed below.</strong></p>
+          <p><strong>Alpha.22 installs and passes in a clean test VM; real-Windows and reboot results pending. It is an early alpha with known limits, listed below.</strong></p>
           <p>Found a bug or have feedback? <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue<span class="sr-only"> (opens in a new tab)</span></a>.</p>
         </div>
       </section>
@@ -88,19 +88,19 @@
         </aside>
 
         <article class="prose release-overview" data-no-toc>
-          <p class="notice"><strong>StatePort is in early alpha. Do not use it for important data.</strong> Use test data and keep your own backups. Alpha.21 is meant for one person on one Windows 11 computer; it is not production software.</p>
+          <p class="notice"><strong>StatePort is in early alpha. Do not use it for important data.</strong> Use test data and keep your own backups. Alpha.22 is meant for one person on one Windows 11 computer; it is not production software.</p>
 
           <section id="status" aria-labelledby="status-heading">
             <h2 id="status-heading">What has and has not been tested</h2>
             <ul>
-              <li><strong>Tested:</strong> the one-line command installed Alpha.21 and it came up healthy on 2 of 3 fresh test installs of Windows 11 with WSL2 and stock Ubuntu 24.04. Through the public route one attempt installed in about 12 minutes; another was refused after about 5 minutes with <code>package_installation_invalid</code> (see <a href="../docs/troubleshooting.html#package-installation-invalid">troubleshooting</a>). An install from a local copy of the same signed files took about 18 minutes. All were virtual machines, not physical PCs.</li>
-              <li><strong>Tested:</strong> the StudyState sample (a small study-plan app) in the browser on an installed Alpha.21: open it with one click, start an activity, review the exact change, approve, write a reflection, and open the receipt. The saved state was still there after a reload. Going back from a review withdraws the proposed change.</li>
-              <li><strong>Tested:</strong> importing a ProjectState and a StudyState template from a local Git checkout, in the browser and through the API, without an ownership fix. Through the API: undo of the last evidence update, export and import, a verified backup and restore as a new instance (the request needs a destination name). The notifications list and the Back up now button also worked.</li>
-              <li><strong>Not working yet:</strong> on Alpha.21, coding-agent runs are refused before they start, chat replies fail because no AI provider could be connected, restore from the interface fails, provider actions in the interface were refused, the workbench terminal and files tools do not work, and per-application workspaces are unavailable. The Learning tab can show old numbers until you reload, and refused changes give vague error messages. The keep-alive task had not run on the test machine and did not start after an unplanned restart. A planned Windows reboot is not measured, undo in the browser did not finish, and uninstall is not finished. The full list is on <a href="../docs/limitations.html">current limitations</a>.</li>
+              <li><strong>Tested:</strong> Alpha.22 installed on a fresh Windows 11 virtual machine with WSL2 and stock Ubuntu 24.04, from a local copy of the signed files. All services reported healthy, the web page and the API answered, and a second run of the installer reported that StatePort was already installed and changed nothing. It was installed three times on that test machine: the first run stopped while downloading the images, which had not been uploaded yet (a mistake in the test setup), and the second and third runs finished healthy. The public one-line command was not used for those installs, and the install time was not recorded. On Alpha.21 the public command came up healthy on 2 of 3 fresh test installs, and the other attempt was refused with <code>package_installation_invalid</code> (see <a href="../docs/troubleshooting.html#package-installation-invalid">troubleshooting</a>).</li>
+              <li><strong>Tested on Alpha.21, not repeated on Alpha.22:</strong> the StudyState sample (a small study-plan app) in the browser: open it with one click, start an activity, review the exact change, approve, write a reflection, and open the receipt. The saved state was still there after a reload. Going back from a review withdraws the proposed change.</li>
+              <li><strong>Tested on Alpha.21, not repeated on Alpha.22:</strong> importing a ProjectState and a StudyState template from a local Git checkout, in the browser and through the API, without an ownership fix. Through the API: undo of the last evidence update, export and import, a verified backup and restore as a new instance (the request needs a destination name). The notifications list and the Back up now button also worked.</li>
+              <li><strong>Not working yet:</strong> on Alpha.21, coding-agent runs were refused before they started, chat replies failed because no AI provider could be connected, restore from the interface failed, provider actions in the interface were refused, the workbench terminal and files tools did not work, and per-application workspaces were unavailable. The Learning tab could show old numbers until you reloaded, and refused changes gave vague error messages. None of this has been measured again on an installed Alpha.22. The keep-alive task had not run on the test machine. A planned Windows reboot is not measured (reboot: not measured), and uninstall was not run on Windows. The full list is on <a href="../docs/limitations.html">current limitations</a>.</li>
             </ul>
             <details class="status-exact">
               <summary>Exact status statement (for reviewers)</summary>
-              <p>StatePort 0.1.0-alpha.21 is the current signed release. Its installation was measured on fresh Windows 11 test machines with WSL2 and stock Ubuntu 24.04: it came up healthy on 2 of 3 attempts, one through the public one-line route (about 12 minutes) and one from a local copy of the same signed files (about 18 minutes). The third attempt, through the public route, was refused after about 5 minutes by a package check that races Ubuntu's background updater, and the next attempt succeeded. On the installed product the study sample worked in the browser (start an activity, review, approve, reflect, receipt, saved state after a reload), and undo, export and import, backup and restore as a new instance worked through the API. The installed keep-alive task had not run on the test machine, and it did not start after an unplanned restart when nobody was signed in. Windows reboot survival and uninstall were not measured as planned tests. Coding-agent runs, chat replies, restore from the interface, the workbench terminal and files tools, per-application workspaces, and the standing-authority and updater pages did not work on Alpha.21.</p>
+              <p>StatePort 0.1.0-alpha.22 is the current signed release. It installs and passes in a clean test VM; real-Windows and reboot results pending. In a fresh Windows 11 test virtual machine with WSL2 and stock Ubuntu 24.04, the Alpha.22 installer, run from a local copy of the signed files with the container images pulled from the registry, installed StatePort. All services reported healthy, the web page and the API answered, and a second run of the installer over the finished install reported that it was already installed and changed nothing. Alpha.22 was installed on that test machine three times: the first run stopped while downloading the images, which had not been uploaded yet (a mistake in the test setup), and the second and third runs finished healthy. The public one-line route was not used for those installs. The installed keep-alive task was registered to start at Windows start-up, at sign-in and every 10 minutes, but it had not run on the test machine. Reboot: not measured. Uninstall was not run on Windows. The study sample in the browser, undo, export and import, backup and restore, and template import were last measured on Alpha.21 and have not been repeated on Alpha.22. On Alpha.21, coding-agent runs, chat replies, restore from the interface, the workbench terminal and files tools, per-application workspaces, and the standing-authority and updater pages did not work, and none of that has been measured on an installed Alpha.22.</p>
             </details>
           </section>
 
@@ -126,7 +126,7 @@ systemd=true</code></pre>
             <h2 id="dry-run-heading">Optional: run a dry run first</h2>
             <p>Add <code>--transport-probe</code> to the command. It installs nothing and does not ask for <code>sudo</code>: it checks your machine (WSL2, Ubuntu 24.04, systemd, Windows 11), downloads the list of container images with their fingerprints, and checks those fingerprints. If a prerequisite is missing, it stops and names it.</p>
 <pre class="snippet"><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh) --transport-probe</code></pre>
-            <p>A passing dry run ends with a line that starts <code>StatePort Alpha.21 transport probe passed</code>.</p>
+            <p>A passing dry run ends with a line that starts <code>StatePort Alpha.22 transport probe passed</code>.</p>
           </section>
 
           <section id="install" aria-labelledby="install-heading">
@@ -141,8 +141,8 @@ systemd=true</code></pre>
               <li>Shows the exact install plan and asks you to type <code>install-exact</code> to approve it.</li>
               <li>Installs and starts StatePort, then prints the result.</li>
             </ol>
-            <p>Expect it to take a while: about 12 to 18 minutes on a test virtual machine, and longer on a slow connection. If it stops with <code>package_installation_invalid</code>, wait a minute and run the same command again; <a href="../docs/troubleshooting.html#package-installation-invalid">troubleshooting</a> explains why.</p>
-            <p>You can check the installer before you run it. Its SHA-256 fingerprint is <code>5fc574f25072f1c801cd40a098126eb230934e8af4f18f8e5c1518955d0cc9e0</code>. To compare, run <code>curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh | sha256sum</code>. The two should match.</p>
+            <p>Expect it to take a while: Alpha.21 took about 12 to 18 minutes on a test virtual machine (the Alpha.22 install time was not recorded), and longer on a slow connection. If it stops with <code>package_installation_invalid</code>, wait a minute and run the same command again; <a href="../docs/troubleshooting.html#package-installation-invalid">troubleshooting</a> explains why.</p>
+            <p>You can check the installer before you run it. Its SHA-256 fingerprint is <code>60db0ca4dc590eeadd328c34bd20e1cfe202ac00f066289272fa12229d03db43</code>. To compare, run <code>curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh | sha256sum</code>. The two should match.</p>
           </section>
 
           <section id="after-install" aria-labelledby="after-install-heading">
@@ -151,7 +151,7 @@ systemd=true</code></pre>
             <ol>
               <li>Open the printed <code>http://127.0.0.1:…/</code> address in your Windows browser. The first screen opens empty: no applications installed, worker execution disabled, provider not configured. That is normal.</li>
               <li>Click <strong>Open the study sample</strong> (a small study-plan app). It installs the bundled sample, records a receipt and opens it after about ten seconds. The Applications list at the left may keep saying that no applications exist until you reload. The <a href="../tutorials/site-orientation.html">72-second field guide</a> shows what to look for.</li>
-              <li>To try your own project, place a Git repository below <code>/var/lib/stateport/imports</code> and use <strong>Catalog → Import a repository</strong>. On Alpha.21 such a checkout was imported without an ownership fix. If it does not appear, see <a href="../docs/troubleshooting.html#template-import-ownership">troubleshooting</a>.</li>
+              <li>To try your own project, place a Git repository below <code>/var/lib/stateport/imports</code> and use <strong>Catalog → Import a repository</strong>. On Alpha.21 such a checkout was imported without an ownership fix (not repeated on Alpha.22). If it does not appear, see <a href="../docs/troubleshooting.html#template-import-ownership">troubleshooting</a>.</li>
             </ol>
             <p>The study sample needs no provider login: everything in it is proposed by a fixed script. Chat replies and coding-agent runs would need a provider connection, and they have not been shown to work. Importing a template from a public Git URL was not tested.</p>
             <p><a href="../docs/templates.html">Open the template workflow</a> or <a href="../docs/getting-started.html">read the full getting-started guide</a>.</p>
@@ -160,14 +160,14 @@ systemd=true</code></pre>
           <section id="wsl-behaviour" aria-labelledby="wsl-behaviour-heading">
             <h2 id="wsl-behaviour-heading">What happens when you close WSL windows</h2>
             <p>StatePort runs inside WSL. Windows normally stops WSL when the last window closes, so the installer adds a small Windows scheduled task named <code>StatePortKeepAlive</code> that keeps Ubuntu running in the background once you have signed in to Windows.</p>
-            <p><strong>Be aware:</strong> on Alpha.21 the task was registered and enabled, but it had never run on the test machine, because it only starts at a Windows sign-in and no sign-in happened after it was registered. Whether it keeps StatePort reachable was not measured on Alpha.21. On Alpha.20, on a real Windows 11 host, it held the environment after a sign-in, and before that sign-in closing the last Ubuntu window stopped the product, which came back about three minutes after Ubuntu was reopened. The task is also set not to start on battery power, so on a laptop running on battery it may not keep WSL running. Surviving a Windows reboot was not measured. If the local address stops answering, open an Ubuntu window and reload after a few minutes, or sign out of Windows and back in (that is when the keep-alive task starts), then reload the page.</p>
+            <p><strong>Be aware:</strong> on Alpha.22 the task is registered to start at Windows start-up, at sign-in and every 10 minutes, to run when nobody is signed in, and to run on battery power. On the test machine it had never run, so whether it keeps StatePort reachable was not measured. Windows may allow only a smaller version for your account (for example sign-in only); the installer says so at the end of the install. On Alpha.21 the task ran only at sign-in and was set not to start on battery power; it had never run on the test machine either. On Alpha.20, on a real Windows 11 host, it held the environment after a sign-in, and before that sign-in closing the last Ubuntu window stopped the product, which came back about three minutes after Ubuntu was reopened. Surviving a Windows reboot was not measured (reboot: not measured). If the local address stops answering, open an Ubuntu window and reload after a few minutes, or sign out of Windows and back in, then reload the page.</p>
           </section>
 
           <section id="stop" aria-labelledby="stop-heading">
             <h2 id="stop-heading">Stop or remove StatePort</h2>
             <ul>
               <li><strong>Stop it for now:</strong> run <code>wsl --shutdown</code> in PowerShell. That stops every WSL distribution, StatePort included, and it can stay stopped until your next Windows sign-in.</li>
-              <li><strong>Uninstall:</strong> the command above only installs. Uninstalling and reinstalling Alpha.21 have not been tested, and this page has no one-line uninstall. The <a href="../docs/updates.html">update and removal guide</a> says what is and is not known. Do not run an installer from another release against an Alpha.21 install.</li>
+              <li><strong>Uninstall:</strong> the command above only installs. The Alpha.22 installer prints options to stop and remove StatePort (your data is kept) and to reinstall it. They passed in a Linux test lab that imitates WSL2; they were not run on Windows, and this page has no one-line uninstall. The <a href="../docs/updates.html">update and removal guide</a> says what is and is not known. Do not run an installer from another release against an Alpha.22 install.</li>
               <li><strong>Cleanest option:</strong> try StatePort in a throwaway WSL distribution or virtual machine and delete that when you are done. Deleting a distribution deletes everything inside it, so only do this with a test one.</li>
               <li><strong>Keep-alive task:</strong> if you remove StatePort, also delete the <code>StatePortKeepAlive</code> task in Windows Task Scheduler (or run <code>schtasks /Delete /TN StatePortKeepAlive /F</code> in PowerShell). This removal path is untested.</li>
             </ul>
@@ -177,7 +177,7 @@ systemd=true</code></pre>
             <h2 id="report-heading">Something went wrong? Report a problem</h2>
             <p>Open an issue at <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">github.com/lennertvhoy/StatePort-Site/issues<span class="sr-only"> (opens in a new tab)</span></a>. Please include:</p>
             <ul>
-              <li>the version (Alpha.21) and the last lines of the installer&rsquo;s output; failures start with <code>StatePort install:</code>;</li>
+              <li>the version (Alpha.22) and the last lines of the installer&rsquo;s output; failures start with <code>StatePort install:</code>;</li>
               <li>the output of <code>ps -p 1 -o comm=</code> in Ubuntu and of <code>wsl --list --verbose</code> in PowerShell;</li>
               <li>which step it stopped at.</li>
             </ul>

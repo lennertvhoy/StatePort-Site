@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Find the installer message you see, what caused it, and what to do, for StatePort Alpha.21 on Windows 11 with WSL2 and Ubuntu 24.04.">
+    <meta name="description" content="Find the installer message you see, what caused it, and what to do, for StatePort Alpha.22 on Windows 11 with WSL2 and Ubuntu 24.04.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
@@ -84,7 +84,7 @@
         </aside>
 
         <article class="prose">
-<p class="notice"><strong>Early alpha, release 0.1.0-alpha.21.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+<p class="notice"><strong>Early alpha, release 0.1.0-alpha.22.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer, in virtual machines; real-Windows results are pending. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
 <p class="notice notice--quiet"><strong>Ground rules.</strong> Do not edit the installer, skip its checks, or run it with <code>sudo</code>. Do not delete folders you did not create, and do not remove package-manager lock files. After you fix a cause, run the same command again. A message that begins <code>StatePort install:</code> comes from the installer script and stops it.</p>
 <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#host-checks">Host checks</a></li><li data-level="2"><a href="#tools">Missing tools and temporary files</a></li><li data-level="2"><a href="#downloads">Downloads and checksums</a></li><li data-level="2"><a href="#confirmations">Confirmations, sudo, and packages</a></li><li data-level="2"><a href="#system-folders">System folder checks</a></li><li data-level="2"><a href="#refusals">Installer refusals and a leftover from an earlier attempt</a></li><li data-level="3"><a href="#package-installation-invalid">package_installation_invalid</a></li><li data-level="3"><a href="#image-archive-conflict">image_archive_conflict</a></li><li data-level="2"><a href="#after-install">After a successful install</a></li><li data-level="2"><a href="#report">Report a problem</a></li></ol></details>
 <h2 id="host-checks">Host checks</h2>
@@ -100,7 +100,7 @@
 <h3 id="amd64"><code>WSL2 AMD64 is required.</code></h3>
 <p><strong>You see</strong> the installer stop.</p>
 <p><strong>Cause.</strong> <code>uname -m</code> did not print <code>x86_64</code>, for example on an ARM64 computer.</p>
-<p><strong>What to do.</strong> Alpha.21 supports AMD64 only. Use a different computer.</p>
+<p><strong>What to do.</strong> Alpha.22 supports AMD64 only. Use a different computer.</p>
 <h3 id="os-release"><code>Cannot read /etc/os-release.</code></h3>
 <p><strong>You see</strong> the installer stop.</p>
 <p><strong>Cause.</strong> The file that names the Linux distribution is missing or unreadable, so this is not a stock Ubuntu.</p>
@@ -124,7 +124,7 @@
 <h3 id="windows-11"><code>Windows 11 build 22000 or newer is required.</code></h3>
 <p><strong>You see</strong> the installer stop.</p>
 <p><strong>Cause.</strong> This is Windows 10 or an older build. Build 22000 is the first Windows 11 build.</p>
-<p><strong>What to do.</strong> Alpha.21 supports Windows 11 only.</p>
+<p><strong>What to do.</strong> Alpha.22 supports Windows 11 only.</p>
 <h3 id="usage"><code>Usage: &lt;script&gt; [--transport-probe|--materialization-preflight]</code></h3>
 <p><strong>You see</strong> the installer stop before it does anything.</p>
 <p><strong>Cause.</strong> You added an option or an extra word the installer does not know. Only <code>--transport-probe</code> and <code>--materialization-preflight</code> exist.</p>
@@ -198,8 +198,14 @@ refusal record: /home/&lt;you&gt;/.local/state/stateport-install/refusals/&lt;fi
 <pre><code>install refused (package_installation_invalid): dpkg reports an incomplete package transaction
 refusal record: ~/.local/state/stateport-install/refusals/&lt;timestamp&gt;-package_installation_invalid-&lt;id&gt;.json</code>
 </pre>
-<p><strong>Cause.</strong> After it installs its packages, the installer asks Ubuntu&rsquo;s package tool (<code>dpkg --audit</code>) whether any package change is unfinished, and it stops if the tool prints anything. A freshly started Ubuntu runs its own automatic updates in the background a few minutes after it boots. If that update is in the middle of a step at the moment of the check, the check sees an unfinished change and the installer refuses. This happened on one of three fresh test installs of Alpha.21. Nothing was left half installed that blocked the next attempt.</p>
+<p><strong>Cause.</strong> After it installs its packages, the installer asks Ubuntu&rsquo;s package tool (<code>dpkg --audit</code>) whether any package change is unfinished, and it stops if the tool prints anything. A freshly started Ubuntu runs its own automatic updates in the background a few minutes after it boots. If that update is in the middle of a step at the moment of the check, the check sees an unfinished change and the installer refuses. This happened on one of three fresh test installs of Alpha.21. Nothing was left half installed that blocked the next attempt. The Alpha.22 test installs did not meet it, but they were few and did not use the public route, so it can still happen.</p>
 <p><strong>What to do.</strong> Wait a minute, then run the same one-line install command again. If you want to check first, run <code>sudo dpkg --audit</code> in Ubuntu: when it prints nothing, Ubuntu&rsquo;s update has finished. On a fresh test machine the next attempt installed and came up healthy. Do not remove package lock files and do not kill Ubuntu&rsquo;s update. If the same message appears again after several minutes, report it and attach the refusal record.</p>
+<h3 id="not-tested-setup">Note: this machine is not one of the tested setups</h3>
+<p><strong>You see</strong> this line in step 2 of 7. The install carries on.</p>
+<pre><code>Note: this machine is not one of the tested setups; it has every capability StatePort needs, so the install continues.</code>
+</pre>
+<p><strong>Cause.</strong> The installer found every capability it needs, but this exact combination of Windows, WSL and Ubuntu is not on its list of validated setups. The line appeared on the Alpha.22 test machine, a fresh Windows 11 virtual machine with stock Ubuntu 24.04, and the install finished healthy.</p>
+<p><strong>What to do.</strong> Nothing. It is a note, not a refusal. If the install later stops, include this line in your report.</p>
 <h3 id="image-archive-conflict">image_archive_conflict</h3>
 <p><strong>You see</strong> this near the end of a run, after the package steps. The image name can differ.</p>
 <pre><code>install refused (image_archive_conflict): retained image archive differs: stateport-web.oci.tar
@@ -216,11 +222,11 @@ refusal record: ~/.local/state/stateport-install/refusals/&lt;timestamp&gt;-imag
 <h3 id="wsl-stops">The page says &ldquo;Service offline&rdquo; after I close Ubuntu</h3>
 <p><strong>You see</strong> the page show <code>Service offline</code>, or stop loading, after you closed the last Ubuntu window.</p>
 <p><strong>Cause.</strong> WSL stops the Linux environment shortly after the last session ends, and StatePort runs inside it. On Alpha.20 fresh installs the product stopped when the last Ubuntu window closed, and it came back about three minutes after Ubuntu was reopened.</p>
-<p><strong>What the keep-alive task does.</strong> The installer registers a Windows scheduled task named <code>StatePortKeepAlive</code>. At each Windows sign-in it starts <code>wsl.exe -d Ubuntu-24.04 --exec sleep infinity</code>, a command that does nothing except keep Ubuntu running so that WSL does not shut it down when the last window closes. It needs an interactive Windows sign-in, so right after the install it has not run yet. On the Alpha.21 test machine the task was registered and enabled, but it had never run, because no sign-in happened after it was registered. It is set not to start on battery power, so on a laptop running on battery it may not keep WSL running. Windows also lists a 72-hour limit for it. On Alpha.20, on a real Windows 11 host, it held Ubuntu open after a sign-in; that was not measured again on Alpha.21.</p>
+<p><strong>What the keep-alive task does.</strong> The installer registers a Windows scheduled task named <code>StatePortKeepAlive</code>. It runs <code>wsl.exe -d Ubuntu-24.04 --exec sleep infinity</code>, a command that does nothing except keep Ubuntu running so that WSL does not shut it down when the last window closes. On the Alpha.22 test machine Windows listed it with three triggers: at Windows start-up, at sign-in, and every 10 minutes. It was set to run when nobody is signed in, to run on battery power, to have no time limit and to restart if it fails. It had never run on the test machine, so whether it works was not measured. Windows may allow only a smaller version for your account (for example sign-in only); the installer says so at the end of the install. On Alpha.21 the task ran only at sign-in, was set not to start on battery power, and had never run on the test machine. On Alpha.20, on a real Windows 11 host, it held Ubuntu open after a sign-in.</p>
 <p><strong>What to do.</strong> Open an Ubuntu window and reload the address after a few minutes. To make the keep-alive task start, sign out of Windows and sign back in; that activated it on Alpha.20. Windows Task Scheduler lists the task if you want to check it. If StatePort stops again after a sign-in, report it.</p>
 <h3 id="restart">It did not come back after I restarted Windows</h3>
 <p><strong>You see</strong> no answer from the address after a Windows restart.</p>
-<p><strong>Cause.</strong> A planned Windows restart has not been measured. During Alpha.21 testing the test machine restarted once without warning (cause not established). Nobody was signed in to Windows afterwards, the keep-alive task did not start, and StatePort stayed down until Ubuntu was started by hand. About two minutes after that it answered again, and the saved state was intact.</p>
+<p><strong>Cause.</strong> A planned Windows restart has not been measured on Alpha.21 or Alpha.22 (reboot: not measured). During Alpha.21 testing the test machine restarted once without warning (cause not established). Nobody was signed in to Windows afterwards, the keep-alive task did not start, and StatePort stayed down until Ubuntu was started by hand. About two minutes after that it answered again, and the saved state was intact. The Alpha.22 task also starts at Windows start-up, but that was not measured.</p>
 <p><strong>What to do.</strong> Sign in to Windows, open an Ubuntu window, wait a few minutes, and try again. Please report what you saw either way.</p>
 <h3 id="port-differs">The port is not the one I expected</h3>
 <p><strong>You see</strong> an address such as <code>http://127.0.0.1:18216/</code> whose port differs from an earlier install, another computer, or an example.</p>
@@ -236,8 +242,8 @@ refusal record: ~/.local/state/stateport-install/refusals/&lt;timestamp&gt;-imag
 <p><strong>What to do.</strong> Keep the terminal output and the receipt path. Do not delete containers or volumes, do not edit generated files, and do not copy another installation's state. Report it.</p>
 <h3 id="template-import-ownership">Template import: the checkout does not appear, or inspection is refused</h3>
 <p><strong>You see</strong> no repositories under <strong>Catalog → Import a repository → Import from a local source folder</strong>, or <strong>Inspect</strong> stops with <code>Git repository inspection was refused</code>.</p>
-<p><strong>Cause.</strong> On Alpha.20 the checkout was placed in <code>/var/lib/stateport/imports</code> by your normal Ubuntu user, the service read it as a different user, and Git refused to work in a repository owned by someone else. On Alpha.21 the same placement worked without any change in testing, so you should not see this message there.</p>
-<p><strong>What to do.</strong> If you do see it on your install, report it. The Alpha.20 workaround was to change the owner of the checkout to the service user, once, and retry; it has not been tried on Alpha.21. In Ubuntu:</p>
+<p><strong>Cause.</strong> On Alpha.20 the checkout was placed in <code>/var/lib/stateport/imports</code> by your normal Ubuntu user, the service read it as a different user, and Git refused to work in a repository owned by someone else. On Alpha.21 the same placement worked without any change in testing; it was not checked on Alpha.22.</p>
+<p><strong>What to do.</strong> If you do see it on your install, report it. The Alpha.20 workaround was to change the owner of the checkout to the service user, once, and retry; it has not been tried on Alpha.21 or Alpha.22. In Ubuntu:</p>
 <pre><code>sudo chown -R stateport-control:stateport-control /var/lib/stateport/imports/&lt;repository&gt;
 </code></pre>
 <p>Then open Catalog and import again. On Alpha.20 template import worked after this fix.</p>
@@ -245,7 +251,7 @@ refusal record: ~/.local/state/stateport-install/refusals/&lt;timestamp&gt;-imag
 <h2 id="report">Report a problem</h2>
 <p><a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue on GitHub</a> and include:</p>
 <ul>
-<li>the release, 0.1.0-alpha.21, and whether the dry run passed;</li>
+<li>the release, 0.1.0-alpha.22, and whether the dry run passed;</li>
 <li>the step you were on and the exact message, copied from the terminal;</li>
 <li>the output of the five checks in <a href="getting-started.html#check">Step 2</a>;</li>
 <li>the refusal record, if the installer printed one, after you check it for private content.</li>

@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="What StatePort Alpha.21 supports for updates, rollback, uninstall, and reinstall: no supported in-place update or one-command uninstall yet, and what to do instead.">
+    <meta name="description" content="What StatePort Alpha.22 supports for updates, rollback, uninstall, and reinstall: no supported in-place update or one-command uninstall yet, and what to do instead.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="Updates and removal — StatePort">
-    <meta property="og:description" content="Alpha.21 has no supported in-place update, rollback, or one-command uninstall. What that means and what to do.">
+    <meta property="og:description" content="Alpha.22 has no supported in-place update, rollback, or one-command uninstall. What that means and what to do.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/updates.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -50,7 +50,7 @@
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / Updates and removal</p>
           <h1 id="updates-title">Updates, backups, and removal in this alpha.</h1>
-          <p>In Alpha.21 there is no supported in-place update, no rollback, and no supported one-command uninstall. This page says what that means and what to do instead.</p>
+          <p>In Alpha.22 there is no supported in-place update, no rollback, and no supported one-command uninstall. This page says what that means and what to do instead.</p>
         </div>
       </section>
 
@@ -84,20 +84,20 @@
         </aside>
 
         <article class="prose">
-<p class="notice"><strong>Early alpha, release 0.1.0-alpha.21.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
-<p class="notice"><strong>Uninstall and reinstall are not tested; there is no supported one-command uninstall in this alpha.</strong> Install StatePort only on a computer, Ubuntu distribution, or virtual machine you can afford to lose.</p>
+<p class="notice"><strong>Early alpha, release 0.1.0-alpha.22.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer, in virtual machines; real-Windows results are pending. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+<p class="notice"><strong>Uninstall and reinstall have not been run on Windows; there is no supported one-command uninstall in this alpha.</strong> Install StatePort only on a computer, Ubuntu distribution, or virtual machine you can afford to lose.</p>
 <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#supported">What this alpha supports</a></li><li data-level="2"><a href="#identity">Check what is installed</a></li><li data-level="2"><a href="#updating">Updating</a></li><li data-level="2"><a href="#backup">Back up before anything else</a></li><li data-level="2"><a href="#removal">Removing StatePort</a></li><li data-level="2"><a href="#reinstalling">Reinstalling</a></li></ol></details>
 <h2 id="supported">What this alpha supports</h2>
 <ul>
-<li><strong>Fresh install on the supported setup:</strong> measured. Alpha.21 installed and reported healthy on 2 of 3 fresh Windows 11 test machines with WSL2 and Ubuntu 24.04; one attempt was refused by a package check and succeeded on the retry.</li>
+<li><strong>Fresh install on the supported setup:</strong> measured in a virtual machine. Alpha.22 installed and passed its checks on a fresh Windows 11 test machine with WSL2 and Ubuntu 24.04 (from a local copy of the signed files); real-Windows and reboot results are pending. On Alpha.21 the public command came up healthy on 2 of 3 fresh test machines; one attempt was refused by a package check and succeeded on the retry.</li>
 <li><strong>Update in place:</strong> no supported command.</li>
-<li><strong>Roll back:</strong> not supported. The Alpha.21 release file declares that rollback is not supported.</li>
-<li><strong>Uninstall:</strong> not tested. No supported one-command uninstall.</li>
-<li><strong>Reinstall:</strong> not tested.</li>
+<li><strong>Roll back:</strong> not supported. The Alpha.22 release file declares that rollback is not supported.</li>
+<li><strong>Uninstall:</strong> not run on Windows. The Alpha.22 installer prints an option that removes the running services and keeps your data, and a separate purge option that deletes the data; both passed in a Linux test lab that imitates WSL2. No supported one-command uninstall.</li>
+<li><strong>Reinstall:</strong> not run on Windows. Running the installer again over a finished Alpha.22 install reported that it was already installed and changed nothing (measured in the test virtual machine). The Alpha.22 installer prints a reinstall option that keeps your data; in the Linux test lab, installing again after an uninstall brought the data back.</li>
 </ul>
 
 <h2 id="identity">Check what is installed</h2>
-<p>The install receipt records what was installed. It is a JSON file in <code>~/.local/state/stateport-install/receipts/</code>, and the installer printed its path when it finished. The installer also leaves a status command at the path below. It is expected to only read, but this has not been measured on Alpha.21.</p>
+<p>The install receipt records what was installed. It is a JSON file in <code>~/.local/state/stateport-install/receipts/</code>, and the installer printed its path when it finished. The installer also leaves a status command at the path below. It is expected to only read, but this has not been measured on Alpha.21 or Alpha.22.</p>
 <pre><code>~/.local/state/stateport-install/bin/stateport-update status</code>
 </pre>
 <p>Install records belong to one installation. Do not copy them to another computer or mix receipts from different installations.</p>
@@ -107,15 +107,15 @@
 <p>When a newer release exists, its own docs will give instructions. Until then:</p>
 <ul>
 <li>Do not replace the trusted key, edit the generated files, or mix files from different releases.</li>
-<li>Do not run an installer or command from an older release against an Alpha.21 installation.</li>
+<li>Do not run an installer or command from an older release against an Alpha.22 installation.</li>
 <li>Check the <a href="../releases/">release status</a> and the <a href="../download/">download page</a> for what is current.</li>
 </ul>
 
 <h2 id="backup">Back up before anything else</h2>
-<p>StatePort has backup and restore controls (see <a href="lifecycle.html#back-up-and-recover">backup and recovery</a>). A verified backup and restore as a new instance were measured through the API on an installed Alpha.21 (the restore request needs a destination name); restore from the interface failed on Alpha.20 and was not completed on Alpha.21. Keep your own copy of anything you care about outside the Ubuntu distribution where StatePort runs, and do not use StatePort for important data. Container images, the install receipt, and the installer's records are not a backup of your application data. A backup archives the instance's files, not its Git history, conversations, receipts index or approvals, and restore recreates files only.</p>
+<p>StatePort has backup and restore controls (see <a href="lifecycle.html#back-up-and-recover">backup and recovery</a>). A verified backup and restore as a new instance were measured through the API on an installed Alpha.21, not repeated on Alpha.22 (the restore request needs a destination name); restore from the interface failed on Alpha.20 and was not completed on Alpha.21. Keep your own copy of anything you care about outside the Ubuntu distribution where StatePort runs, and do not use StatePort for important data. Container images, the install receipt, and the installer's records are not a backup of your application data. A backup archives the instance's files, not its Git history, conversations, receipts index or approvals, and restore recreates files only.</p>
 
 <h2 id="removal">Removing StatePort</h2>
-<p>There is no tested removal procedure. Here is what the installer puts in place:</p>
+<p>There is no tested removal procedure on Windows. Here is what the installer puts in place:</p>
 <ul>
 <li>System packages in the Ubuntu distribution. The installer holds them so ordinary updates do not change them.</li>
 <li>Background services that run under Ubuntu&rsquo;s systemd, and the container images they use.</li>
@@ -130,7 +130,7 @@
 </ul>
 
 <h2 id="reinstalling">Reinstalling</h2>
-<p>Reinstalling on a computer that already had StatePort is not tested. On a fresh setup, follow <a href="getting-started.html">getting started</a>. If an earlier attempt left files behind, the run can stop with <code>image_archive_conflict</code>, and <a href="troubleshooting.html#image-archive-conflict">troubleshooting</a> has a provisional workaround.</p>
+<p>Reinstalling on a computer that already had StatePort has not been run on Windows. On a fresh setup, follow <a href="getting-started.html">getting started</a>. If an earlier attempt left files behind, the run can stop with <code>image_archive_conflict</code>, and <a href="troubleshooting.html#image-archive-conflict">troubleshooting</a> has a provisional workaround.</p>
 <p>See also <a href="limitations.html#not-working">what is not working yet</a> and <a href="troubleshooting.html">troubleshooting</a>.</p>
         </article>
       </div>

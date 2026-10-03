@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="What works in StatePort Alpha.21, what I have not measured yet, what is designed but not built, and what comes next.">
+    <meta name="description" content="What works in StatePort Alpha.22, what I have not measured yet, what is designed but not built, and what comes next.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
@@ -50,7 +50,7 @@
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / Roadmap</p>
           <h1 id="page-title">Roadmap: what works and what comes next</h1>
-          <p>Alpha.21 is the current release. It installs on Windows 11 with WSL2 and Ubuntu 24.04 and came up healthy on 2 of 3 fresh test installs. This page separates what has been measured from what is designed but not measured yet.</p>
+          <p>Alpha.22 is the current release. It installs and passes in a clean test VM (Windows 11 with WSL2 and Ubuntu 24.04); real-Windows and reboot results are pending. This page separates what has been measured from what is designed but not measured yet.</p>
         </div>
       </section>
 
@@ -84,27 +84,27 @@
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice"><strong>Early alpha, release 0.1.0-alpha.21.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+          <p class="notice"><strong>Early alpha, release 0.1.0-alpha.22.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer, in virtual machines; real-Windows results are pending. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
           <p class="notice notice--quiet"><strong>Looking for availability?</strong> Check the <a href="../releases/">release status</a>.</p>
 
-          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#available-now">What works today: measured on Alpha.21</a></li><li data-level="2"><a href="#designed">Not working yet, and designed but not built</a></li><li data-level="2"><a href="#current-priorities">Current priorities</a></li><li data-level="2"><a href="#later">Later</a></li></ol></details>
-<h2 id="available-now">What works today: measured on Alpha.21</h2>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#available-now">What works today: measured on Alpha.22 and Alpha.21</a></li><li data-level="2"><a href="#designed">Not working yet, and designed but not built</a></li><li data-level="2"><a href="#current-priorities">Current priorities</a></li><li data-level="2"><a href="#later">Later</a></li></ol></details>
+<h2 id="available-now">What works today: measured on Alpha.22 and Alpha.21</h2>
 <ul>
-<li>A one-line installer for Windows 11, WSL2, Ubuntu 24.04 and AMD64. It installed StatePort and reported it healthy on 2 of 3 fresh Windows 11 test installs, in about 12 to 18 minutes each. The third was refused by a package check that races Ubuntu&rsquo;s background updates.</li>
+<li>A one-line installer for Windows 11, WSL2, Ubuntu 24.04 and AMD64. Alpha.22 installed StatePort on a fresh Windows 11 test virtual machine, from a local copy of the signed files: all services reported healthy, the web page and the API answered, and a second run of the installer changed nothing. Alpha.21 came up healthy on 2 of 3 fresh Windows 11 test installs through the one-line command, in about 12 to 18 minutes each; the third was refused by a package check that races Ubuntu&rsquo;s background updates.</li>
 <li>The install sets up StatePort&rsquo;s local services: the web interface, the API, the worker, a storage service and an execution host, which is a sandbox that runs work.</li>
-<li>The study sample loop in the browser: open the sample with one click, start an activity, review, approve, reflect, receipt, with the saved state kept after a reload. Going back from a review withdraws the proposed change.</li>
-<li>Importing a ProjectState or StudyState template from a local Git checkout without an ownership fix, in the browser and through the API.</li>
-<li>Through the API: undo of the last evidence update, export and import, a verified backup, restore as a new instance (with a destination name) and a template upgrade.</li>
-<li>The notifications list and the Back up now button in the interface.</li>
-<li>A Windows scheduled task, <code>StatePortKeepAlive</code>, that the installer registers. It is meant to keep Ubuntu running after the last WSL window closes once you have signed in to Windows. On the test machine it had not run, so its effect was not measured on Alpha.21.</li>
+<li>Measured on Alpha.21, not repeated on Alpha.22: the study sample loop in the browser: open the sample with one click, start an activity, review, approve, reflect, receipt, with the saved state kept after a reload. Going back from a review withdraws the proposed change.</li>
+<li>Measured on Alpha.21, not repeated on Alpha.22: importing a ProjectState or StudyState template from a local Git checkout without an ownership fix, in the browser and through the API.</li>
+<li>Measured on Alpha.21, not repeated on Alpha.22, through the API: undo of the last evidence update, export and import, a verified backup, restore as a new instance (with a destination name) and a template upgrade.</li>
+<li>Measured on Alpha.21, not repeated on Alpha.22: the notifications list and the Back up now button in the interface.</li>
+<li>A Windows scheduled task, <code>StatePortKeepAlive</code>, that the installer registers. It is meant to keep Ubuntu running after the last WSL window closes. On Alpha.22 it is registered to start at Windows start-up, at sign-in and every 10 minutes; on the test machine it had not run, so its effect was not measured (reboot: not measured).</li>
 <li>Release files with signatures and fingerprints that you can inspect on the <a href="../download/technical-release-files.html">technical release files</a> page.</li>
 </ul>
 <h2 id="designed">Not working yet, and designed but not built</h2>
-<p><strong>Not working yet.</strong> These were measured as not working on Alpha.21. <a href="limitations.html#not-working">Current limitations</a> has the full list.</p>
+<p><strong>Not working yet.</strong> These were measured as not working on Alpha.21 and have not been measured again on an installed Alpha.22. <a href="limitations.html#not-working">Current limitations</a> has the full list.</p>
 <ul>
 <li>Coding-agent runs, chat replies, restore from the interface, provider actions in the interface, the workbench terminal and files tools, per-application workspaces, the standing-authority and updater pages, and the background worker, which runs no jobs.</li>
 <li>Fresh state in the Learning tab without a reload, and clear error messages for refused changes.</li>
-<li>Staying reachable after a Windows restart: the keep-alive task did not start after an unplanned restart. A planned restart, uninstall, and reinstall are not measured.</li>
+<li>Staying reachable after a Windows restart: on Alpha.21 the keep-alive task did not start after an unplanned restart. A planned restart (reboot: not measured), and uninstall and reinstall on Windows, are not measured.</li>
 <li>Memory and disk use under real work. Idle use was measured and is small.</li>
 </ul>
 <p><strong>Designed, not built.</strong> Undo for most changes and rolling back the platform, a chat assistant that reads your state, saving coding-agent output into an app&rsquo;s state, backups that carry Git history and receipts, and moving an instance to another machine with its grants and receipts. <a href="limitations.html#designed">Current limitations</a> has the exact wording of each.</p>

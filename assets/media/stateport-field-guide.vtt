@@ -1,7 +1,7 @@
 WEBVTT
 
 NOTE Cues are the narration word for word. The recording shows an earlier development build. The same loop has since been run in
-the browser on an installed Alpha.21 (with a page reload instead of a service restart); restarting the web service and a planned Windows reboot were not measured on Alpha.21.
+the browser on an installed Alpha.21 (with a page reload instead of a service restart; not repeated on Alpha.22); restarting the web service and a planned Windows reboot were not measured on Alpha.21 or Alpha.22.
 
 00:00:00.000 --> 00:00:05.960
 In this sample learning application, the goal and next activity are saved with the work.

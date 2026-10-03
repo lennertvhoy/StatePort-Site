@@ -17,7 +17,7 @@ lang: en
 > eleven conceptual corrections learned from building the reference
 > implementation since 1.1 was first published; they are summarized in the
 > revision note at the end of Section 1. Paragraphs labeled “Alpha.20 status” were
-> added on 30 September 2026; each states what the installed Alpha.20 did when it was measured. Alpha.21 replaced Alpha.20 on 1 October 2026, and not every paragraph has been checked again.
+> added on 30 September 2026; each states what the installed Alpha.20 did when it was measured. Alpha.21 replaced Alpha.20 on 1 October 2026 and Alpha.22 replaced Alpha.21 on 3 October 2026, and not every paragraph has been checked again.
 
 # 1. Abstract and thesis
 
@@ -60,12 +60,7 @@ prepared for Windows 11, WSL2, and Ubuntu 24.04 on x86-64, with local
 single-user operation. The public walkthrough was a local development preview
 with sample data. Do not use StatePort for important data.
 
-**Status today (1 October 2026).** The current release is Alpha.21, and what
-has been measured is narrow: it installs from one command on Windows 11 with
-WSL2 and Ubuntu 24.04 and came up healthy on 2 of 3 fresh test installs, and
-the study sample works in the browser from start to receipt. Surviving a
-planned reboot, uninstall and reinstall, the full interface, and resource
-efficiency were not measured. The [release page](../releases/) is the
+**Status today (3 October 2026).** The current release is Alpha.22, and what has been measured is narrow: it installs and passes in a clean test VM (Windows 11 with WSL2 and Ubuntu 24.04); real-Windows and reboot results are pending. On Alpha.21 the study sample worked in the browser from start to receipt; that has not been repeated on Alpha.22. Surviving a planned reboot, uninstall and reinstall on Windows, the full interface, and resource efficiency were not measured. The [release page](../releases/) is the
 source for current status.
 
 **Current delivery versus future architecture.** The wider

@@ -1,4 +1,4 @@
-> Superseded on 2026-10-01: this file records the Alpha.20 launch of 2026-09-30 and is kept as history. The one-line route now installs Alpha.21 (installer SHA-256 `5fc574f25072f1c801cd40a098126eb230934e8af4f18f8e5c1518955d0cc9e0`); what the pages say now is in `README.md`.
+> Superseded on 2026-10-01: this file records the Alpha.20 launch of 2026-09-30 and is kept as history. The one-line route now installs Alpha.21 (installer SHA-256 `5fc574f25072f1c801cd40a098126eb230934e8af4f18f8e5c1518955d0cc9e0`); what the pages say now is in `README.md`. Superseded again on 2026-10-03 (branch `copy/alpha22`): the route is prepared to install Alpha.22 (installer SHA-256 `60db0ca4dc590eeadd328c34bd20e1cfe202ac00f066289272fa12229d03db43`).
 
 # Launch DONE — 2026-09-30
 

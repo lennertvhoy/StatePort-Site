@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Install StatePort Alpha.21 on Windows 11 with WSL2 and Ubuntu 24.04: prerequisites in order, a dry run, the one-line install, what success looks like, and what to expect.">
+    <meta name="description" content="Install StatePort Alpha.22 on Windows 11 with WSL2 and Ubuntu 24.04: prerequisites in order, a dry run, the one-line install, what success looks like, and what to expect.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="Getting started — StatePort">
-    <meta property="og:description" content="Set up WSL2 and Ubuntu 24.04, run the dry run, install StatePort Alpha.21 with one command, and open it in your browser.">
+    <meta property="og:description" content="Set up WSL2 and Ubuntu 24.04, run the dry run, install StatePort Alpha.22 with one command, and open it in your browser.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/getting-started.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -85,7 +85,7 @@
         </aside>
 
         <article class="prose">
-<p class="notice"><strong>Early alpha, release 0.1.0-alpha.21.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+<p class="notice"><strong>Early alpha, release 0.1.0-alpha.22.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer, in virtual machines; real-Windows results are pending. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
 <p class="notice notice--quiet"><strong>Before you start.</strong> The installer adds system packages and services inside the Ubuntu distribution you run it in, and registers one scheduled task in Windows. There is no supported one-command uninstall in this alpha, so use a distribution or virtual machine you can afford to lose. See <a href="updates.html">updates and removal</a>.</p>
 <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#requirements">What you need</a></li><li data-level="2"><a href="#wsl">Step 1. Set up WSL2 and Ubuntu 24.04</a></li><li data-level="2"><a href="#check">Step 2. Check your setup</a></li><li data-level="2"><a href="#dry-run">Step 3. Run the dry run</a></li><li data-level="2"><a href="#install">Step 4. Run the install</a></li><li data-level="2"><a href="#success">What success looks like</a></li><li data-level="2"><a href="#open">Step 5. Open StatePort</a></li><li data-level="2"><a href="#first">What to try first</a></li><li data-level="2"><a href="#closing-wsl">Closing WSL windows, restarts, and the port</a></li><li data-level="2"><a href="#stops">If something stops</a></li></ol></details>
 <h2 id="requirements">What you need</h2>
@@ -145,7 +145,7 @@ id -u</code>
 <p>This is the same command as the real install, with one extra option. It checks your computer, downloads the list of container images with their fingerprints, checks those fingerprints, and installs nothing. It does not ask for <code>sudo</code>.</p>
 <pre><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh) --transport-probe</code>
 </pre>
-<p>When it works, the last line begins <code>StatePort Alpha.21 transport probe passed</code> and ends with <code>installer was not executed.</code> If it stops instead, its message names the problem; look it up in <a href="troubleshooting.html">troubleshooting</a> before going on.</p>
+<p>When it works, the last line begins <code>StatePort Alpha.22 transport probe passed</code> and ends with <code>installer was not executed.</code> If it stops instead, its message names the problem; look it up in <a href="troubleshooting.html">troubleshooting</a> before going on.</p>
 <p>There is a second, optional dry run. It checks that the installer's helper can be fetched and verified and that its files would be created in a safe order, and it changes no packages or system files. Add <code>--materialization-preflight</code> in place of <code>--transport-probe</code>. It is not needed for a normal install.</p>
 <p>You can compare the installer script with its SHA-256 fingerprint on the <a href="../download/">download page</a> before you run anything.</p>
 
@@ -167,10 +167,11 @@ id -u</code>
 <h2 id="success">What success looks like</h2>
 <p>Near the end you see this, with your own port and path:</p>
 <pre><code>StatePort is installed and healthy.
+  OpenCode sign-in: none found on this account; nothing was copied.
   Open StatePort at: http://127.0.0.1:18216/
   install receipt: /home/&lt;you&gt;/.local/state/stateport-install/receipts/&lt;receipt file&gt;.json</code>
 </pre>
-<p>The port varies from install to install; 18216 was one example. Use the address your installer printed. You may also see lines that start with <code>notice:</code>. On successful installs they were informational, for example that the port in use differed from the one first planned. A short closing line naming release 0.1.0-alpha.21 follows.</p>
+<p>The port varies from install to install; 18216 was one example. Use the address your installer printed. You may also see lines that start with <code>notice:</code>. On successful installs they were informational, for example that the port in use differed from the one first planned. The closing lines say where your data and install records live and how to stop, remove or reinstall StatePort. The line about an OpenCode sign-in says whether the installer found one; on the Alpha.22 test machine there was none, and nothing was copied. You may also see <code>Note: this machine is not one of the tested setups; it has every capability StatePort needs, so the install continues.</code> That is a note, not a refusal (see <a href="troubleshooting.html#not-tested-setup">troubleshooting</a>).</p>
 <p>The install receipt is a file that records what was installed. The address is stored in it too, in a field called <code>localUrl</code>, if you lose the printed line.</p>
 
         <h2 id="open">Step 5. Open StatePort</h2>
@@ -186,12 +187,12 @@ id -u</code>
 <li>Follow <a href="everyday-work.html">your first session</a> to walk through the StudyState sample, a small study-plan app: start an activity, review the change, apply it, and open the receipt.</li>
 <li>Read <a href="templates.html">templates</a> to see how ProjectState (a project tracker) and StudyState (a study plan) are brought in.</li>
 </ol>
-<p>The guides are based on the design and earlier recordings. The study sample screens have since been walked through on an installed Alpha.21, and the study sample loop has been run in the browser from start to receipt. Some screens still have known problems (see <a href="limitations.html#not-working">current limitations</a>). If a screen differs from a guide, please report it.</p>
+<p>The guides are based on the design and earlier recordings. The study sample screens have since been walked through on an installed Alpha.21, and the study sample loop has been run in the browser from start to receipt; that walk-through has not been repeated on Alpha.22. Some screens still have known problems (see <a href="limitations.html#not-working">current limitations</a>). If a screen differs from a guide, please report it.</p>
 
 <h2 id="closing-wsl">Closing WSL windows, restarts, and the port</h2>
 <ul>
-<li><strong>Closing Ubuntu windows.</strong> The installer registers a Windows scheduled task named <code>StatePortKeepAlive</code>, which runs at Windows sign-in. On Alpha.20, before any sign-out, closing the last Ubuntu window stopped StatePort, and it came back about three minutes after Ubuntu was reopened; after an interactive Windows sign-in the keep-alive task held the environment. On Alpha.21 the task was registered but had not run on the test machine, so its effect was not measured. <a href="troubleshooting.html#wsl-stops">Troubleshooting</a> explains what the task does.</li>
-<li><strong>Restarting Windows.</strong> A planned restart has not been measured. After one unplanned restart of the Alpha.21 test machine, with nobody signed in, StatePort stayed down until Ubuntu was started by hand, and answered again about two minutes later with its saved state intact. If the address does not answer after a restart, sign in to Windows, open an Ubuntu window, and try again after a few minutes.</li>
+<li><strong>Closing Ubuntu windows.</strong> The installer registers a Windows scheduled task named <code>StatePortKeepAlive</code>. On Alpha.22 it is registered to start at Windows start-up, at sign-in and every 10 minutes; on the test machine it had never run, so its effect was not measured. On Alpha.21 it ran only at sign-in and had not run on the test machine. On Alpha.20, before any sign-out, closing the last Ubuntu window stopped StatePort, and it came back about three minutes after Ubuntu was reopened; after an interactive Windows sign-in the keep-alive task held the environment. <a href="troubleshooting.html#wsl-stops">Troubleshooting</a> explains what the task does.</li>
+<li><strong>Restarting Windows.</strong> A planned restart has not been measured (reboot: not measured). After one unplanned restart of the Alpha.21 test machine, with nobody signed in, StatePort stayed down until Ubuntu was started by hand, and answered again about two minutes later with its saved state intact. If the address does not answer after a restart, sign in to Windows, open an Ubuntu window, and try again after a few minutes.</li>
 <li><strong>The port.</strong> The installer picks the port, and it can differ between installs and computers. Always use the address printed at the end of your install.</li>
 </ul>
 
