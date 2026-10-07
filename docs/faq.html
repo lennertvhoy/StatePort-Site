@@ -116,11 +116,11 @@
 <li>Use anything other than Windows 11 with WSL2 and Ubuntu 24.04 on AMD64. WSL1, ARM64, macOS, native Linux, Docker Desktop, and other distributions are not supported.</li>
 <li>Uninstall or reinstall with a tested, supported command. Neither has been measured yet.</li>
 <li>Rely on StatePort surviving a Windows restart. A planned restart has not been measured. After one unplanned restart of the test machine, with nobody signed in, StatePort stayed down until Ubuntu was started by hand.</li>
-<li>Count on template import (ProjectState, a project tracker; StudyState, a study plan) from anything but a local Git checkout. A local checkout was measured without extra steps on Alpha.21 (not repeated on Alpha.23); import from a public Git URL was not tested.</li>
+<li>Count on template import (ProjectState, a project tracker; StudyState, a study plan) from GitHub or any public Git URL: importing the real StudyState_Template from GitHub fails on a stock WSL2 install, because the product&rsquo;s containers cannot resolve external host names (measured); the template files themselves are fine to use as plain files. A local Git checkout was measured without extra steps on Alpha.21 (not repeated on Alpha.23).</li>
 <li>Update in place or roll back. There is no supported in-place update or rollback in this alpha.</li>
 <li>Undo most changes. One undo exists: the last evidence update in the StudyState sample.</li>
 <li>Back up more than an instance's files. A backup does not include Git history, conversations, the receipts index or approvals, and restore recreates files only.</li>
-<li>Count on the chat assistant answering, or on it knowing your study or project state. No AI provider could be connected in testing, so no reply was produced on Alpha.21 (Alpha.22 and Alpha.23 were not tried), and on Alpha.20 the assistant saw only the recent conversation.</li>
+<li>Count on the chat assistant answering, or on it knowing your study or project state. No AI provider could be connected in testing, so no reply was produced on Alpha.21, and on Alpha.23 the same class of failure is measured at the network level: the product&rsquo;s containers cannot resolve external host names on a stock WSL2 install. On Alpha.20 the assistant saw only the recent conversation.</li>
 <li>Use it for a team, as a hosted service, or across the public internet. It is for one person on one local computer.</li>
 </ul>
 <p>The full lists of what works, what is not measured and what is not built are on <a href="limitations.html">current limitations</a>.</p>
