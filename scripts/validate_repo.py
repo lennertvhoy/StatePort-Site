@@ -35,15 +35,15 @@ from projectstate_gate import validate as validate_projectstate
 
 ROOT = Path(__file__).resolve().parents[1]
 
-CURRENT_RELEASE_VERSION = "0.1.0-alpha.22"
-CURRENT_RELEASE_LABEL = "Alpha.22"
-CURRENT_RELEASE_ROOT = "download/0.1.0-alpha.22"
-CURRENT_MANIFEST_ROOT = "download/alpha22-manifests"
-CURRENT_RELEASE_INDEX_SHA256 = "59872746b3fa7b4eafa17ed64cdebd808d387f7cf282903c3621b3e8f49d196d"
-CURRENT_RELEASE_INDEX_SIGSTORE_SHA256 = "61470f8c81f8d0f54899b33b9d501ff3997c1899be8e892aee16ceec8ddd2e7d"
-CURRENT_SIGNED_PAYLOAD_SHA256 = "88d965586222920ea697bdff164f861e9c75ff0d80500bb55dd6db09b7be2bb7"
+CURRENT_RELEASE_VERSION = "0.1.0-alpha.23"
+CURRENT_RELEASE_LABEL = "Alpha.23"
+CURRENT_RELEASE_ROOT = "download/0.1.0-alpha.23"
+CURRENT_MANIFEST_ROOT = "download/alpha23-manifests"
+CURRENT_RELEASE_INDEX_SHA256 = "e6bc7a35d5f6b6c080a7b2e439c51572b07819e7e0c12279d839049c1bd7d696"
+CURRENT_RELEASE_INDEX_SIGSTORE_SHA256 = "0975911176b75331383469106e48e68fb00625ec05b334fdc2ee1db88e3527c9"
+CURRENT_SIGNED_PAYLOAD_SHA256 = "3297441598ef7d90d38e2f25eee17654d6393fba7afa7d893940c48f6b07d895"
 CURRENT_TRUST_PUBLIC_KEY_SHA256 = "798d6ea6e2703993758f0fb45618b1f05b40f6ef116e7d286fd5a6867859b8ad"
-INSTALLER_STATUS = "StatePort 0.1.0-alpha.22 is the current signed release. It installs and passes in a clean test VM; real-Windows and reboot results pending. In a fresh Windows 11 test virtual machine with WSL2 and stock Ubuntu 24.04, the Alpha.22 installer, run from a local copy of the signed files with the container images pulled from the registry, installed StatePort. All services reported healthy, the web page and the API answered, and a second run of the installer over the finished install reported that it was already installed and changed nothing. Alpha.22 was installed on that test machine three times: the first run stopped while downloading the images, which had not been uploaded yet (a mistake in the test setup), and the second and third runs finished healthy. The public one-line route was not used for those installs. The installed keep-alive task was registered to start at Windows start-up, at sign-in and every 10 minutes, but it had not run on the test machine. Reboot: not measured. Uninstall was not run on Windows. The study sample in the browser, undo, export and import, backup and restore, and template import were last measured on Alpha.21 and have not been repeated on Alpha.22. On Alpha.21, coding-agent runs, chat replies, restore from the interface, the workbench terminal and files tools, per-application workspaces, and the standing-authority and updater pages did not work, and none of that has been measured on an installed Alpha.22."
+INSTALLER_STATUS = "StatePort 0.1.0-alpha.23 is the current signed release. It installs and passes in a clean test VM; real-Windows and reboot results pending (reboot: not measured). In a fresh Windows 11 test virtual machine with WSL2 and stock Ubuntu 24.04, reset to a clean snapshot, the Alpha.23 installer, run from a local copy of the signed files with the container images pulled from the registry, installed StatePort. All services reported healthy, the web page and the API answered, and a second run of the installer over the finished install reported that it was already installed and changed nothing. One measured defect stays open on that install: the install plan and manifest named API port 18464 while the started API actually answered on port 18447; the installer prints the address of the service that is really listening, so the printed web address worked. The installed keep-alive task was registered to start at Windows start-up, at sign-in and every 10 minutes, but it had not run on the test machine. Reboot: not measured. Uninstall was not run on Windows. The study sample in the browser, undo, export and import, backup and restore, and template import were last measured on Alpha.21 and have not been repeated on Alpha.23. On Alpha.21, coding-agent runs, chat replies, restore from the interface, the workbench terminal and files tools, per-application workspaces, and the standing-authority and updater pages did not work, and none of that has been measured on an installed Alpha.23."
 
 # These publication anchors are intentionally duplicated here instead of being
 # imported from build_immutable_manifest.py. The validator is an independent
@@ -70,8 +70,8 @@ ALPHA3_CURATED_SOURCE_ARCHIVE = {
     "sha256": "17f5680c30841b1e831b37df02dca8f03c2c03d265a42633dd525f99bd613398",
 }
 CURRENT_CANONICAL_SOURCE_IDENTITY = {
-    "commit": "0e495cc9517330b3355ad4c8b18f502d1aaf3dfd",
-    "tree": "b7ec1f046f4cfcf93d15be87e531a22f4633b633",
+    "commit": "c549033fc482afc15e903d7df59eb6eb2be8e473",
+    "tree": "64a82d857eb6d0f4fe64043a630d91e708153a21",
 }
 # Retained immutable Alpha.16 canonical identity (byte-anchored also by
 # config/immutable-release-trees.json; per-field identity retained here).
@@ -80,20 +80,20 @@ RETAINED_ALPHA16_IDENTITY = {
     "tree": "126587c310cf195e1ac06a59d76134ab6f8cc975",
 }
 CURRENT_PUBLIC_SNAPSHOT_IDENTITY = {
-    "commit": "a86d925e235ff88376810434525ca8f468bf31e6",
-    "tree": "a1797a40fe48a9bf650e7b4435592b79778eacd5",
+    "commit": "497639b94035ae1dc1fc35d990055b611167609c",
+    "tree": "b0cc268640741ff536e14fe526b5d0f60486a08d",
 }
 RETAINED_ALPHA16_PUBLIC_SNAPSHOT_IDENTITY = {
     "commit": "05c2ace3b07233c1a84bd2a4b006c7ec6d2a918f",
     "tree": "cdc5769ff933599fba8c74d95842eb7cae0b0bd5",
 }
 CURRENT_CURATED_SOURCE_ARCHIVE = {
-    "bytes": 28_313_600,
-    "sha256": "97060257d0c0fb4139a5c19e1958e6bfbbd1c1666f764e401c5fbdab790e4312",
+    "bytes": 28_344_320,
+    "sha256": "0609fb82d5b6a17023bdb89b0fd81e4f96f293b3862ed9df443a6108404afddf",
 }
 CURRENT_PUBLIC_SOURCE_URL = "https://github.com/lennertvhoy/StatePort-Source.git"
 CURRENT_TARGET_ID = "wsl2-ubuntu2404-linux-amd64-rootless-podman-quadlet"
-RETAINED_ALPHA16_PREDECESSOR_VERSION = "0.1.0-alpha.17"
+RETAINED_ALPHA16_PREDECESSOR_VERSION = "0.1.0-alpha.22"
 RETAINED_ALPHA11_IDENTITY = {
     "commit": "57dae10ff94c5b6aa37cc5d23509a89d91887cac",
     "tree": "c17f0ba7b44cfbf3f30ebe1938d92e640434a640",
@@ -919,13 +919,13 @@ def validate_current_release() -> None:
         raise AssertionError("the current successor contract must identify its authenticated predecessor")
     if compatibility.get("predecessor", {}).get("version") != RETAINED_ALPHA16_PREDECESSOR_VERSION:
         raise AssertionError("current compatibility must identify its authenticated predecessor")
-    if compatibility.get("predecessor", {}).get("signedPayloadDigest") != "sha256:f5bebd221a33e787c1d61ebb59e3fd39c318faca2bafe63a2211c1f76e1168e8":
+    if compatibility.get("predecessor", {}).get("signedPayloadDigest") != "sha256:88d965586222920ea697bdff164f861e9c75ff0d80500bb55dd6db09b7be2bb7":
         raise AssertionError("current compatibility predecessor payload is stale")
     if compatibility.get("rollback", {}).get("supported") is not False:
         raise AssertionError("current rollback must remain explicitly unsupported")
 
     versioned = require(f"{release_root}/bootstrap.sh")
-    mutable_root = "download/0.1.0-alpha.22"
+    mutable_root = "download/0.1.0-alpha.23"
     mutable_versioned = require(f"{mutable_root}/bootstrap.sh")
     mutable = require("download/install.sh")
     for path in (versioned, mutable):
@@ -936,16 +936,16 @@ def validate_current_release() -> None:
     if VERSIONED_BOOTSTRAP_URL != f"https://lennertvhoy.github.io/StatePort-Site/{release_root}/bootstrap.sh":
         raise AssertionError("Immutable Alpha.16 bootstrap URL is stale")
     if mutable.stat().st_size != MUTABLE_BOOTSTRAP_SIZE or mutable.read_bytes() != mutable_versioned.read_bytes():
-        raise AssertionError("Mutable bootstrap must equal the versioned Alpha.22 bytes")
+        raise AssertionError("Mutable bootstrap must equal the versioned Alpha.23 bytes")
     if hashlib.sha256(mutable.read_bytes()).hexdigest() != MUTABLE_BOOTSTRAP_SHA256:
-        raise AssertionError("Mutable Alpha.22 bootstrap digest is stale")
+        raise AssertionError("Mutable Alpha.23 bootstrap digest is stale")
     if MUTABLE_BOOTSTRAP_URL != f"https://lennertvhoy.github.io/StatePort-Site/{mutable_root}/bootstrap.sh":
-        raise AssertionError("Mutable Alpha.22 bootstrap URL is stale")
+        raise AssertionError("Mutable Alpha.23 bootstrap URL is stale")
     bootstrap = versioned.read_text(encoding="utf-8")
     for fragment in (
         CURRENT_TARGET_ID,
-        "RELEASE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.22\"",
-        "PROBE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/alpha22-manifests\"",
+        "RELEASE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.23\"",
+        "PROBE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/alpha23-manifests\"",
         "Windows 11 build 22000 or newer is required.",
         "Ubuntu 24.04 for WSL is required.",
         "WSL2 is required; WSL1 and native Linux are not this release target.",
@@ -957,8 +957,8 @@ def validate_current_release() -> None:
     mutable_bootstrap = mutable.read_text(encoding="utf-8")
     for fragment in (
         CURRENT_TARGET_ID,
-        "RELEASE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.22\"",
-        "PROBE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/alpha22-manifests\"",
+        "RELEASE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/0.1.0-alpha.23\"",
+        "PROBE_ROOT=\"https://lennertvhoy.github.io/StatePort-Site/download/alpha23-manifests\"",
         "Windows 11 build 22000 or newer is required.",
         "Ubuntu 24.04 for WSL is required.",
         "WSL2 is required; WSL1 and native Linux are not this release target.",
@@ -966,26 +966,68 @@ def validate_current_release() -> None:
         "Type install-exact to authorize",
     ):
         if fragment not in mutable_bootstrap:
-            raise AssertionError(f"Alpha.22 mutable bootstrap lacks required contract: {fragment}")
-    alpha22_index = json.loads(require(f"{mutable_root}/release-index.json").read_text(encoding="utf-8"))
-    alpha22_images = {
+            raise AssertionError(f"Alpha.23 mutable bootstrap lacks required contract: {fragment}")
+    alpha23_index = json.loads(require(f"{mutable_root}/release-index.json").read_text(encoding="utf-8"))
+    alpha23_images = {
         image.get("imageId"): image.get("digest")
-        for image in alpha22_index.get("signed", {}).get("images", [])
+        for image in alpha23_index.get("signed", {}).get("images", [])
     }
-    if not alpha22_images:
-        raise AssertionError("Alpha.22 signed index must declare its seven images")
-    for image_id, digest in alpha22_images.items():
-        manifest = require(f"download/alpha22-manifests/{image_id}.json")
+    if not alpha23_images:
+        raise AssertionError("Alpha.23 signed index must declare its seven images")
+    for image_id, digest in alpha23_images.items():
+        manifest = require(f"download/alpha23-manifests/{image_id}.json")
         if hashlib.sha256(manifest.read_bytes()).hexdigest() != str(digest).removeprefix("sha256:"):
-            raise AssertionError(f"Alpha.22 manifest does not match the signed index: {image_id}")
+            raise AssertionError(f"Alpha.23 manifest does not match the signed index: {image_id}")
     for image_id, expected in MANIFEST_DIGESTS.items():
         manifest = require(f"{CURRENT_MANIFEST_ROOT}/{image_id}.json")
         if hashlib.sha256(manifest.read_bytes()).hexdigest() != expected:
             raise AssertionError(f"current manifest is stale: {image_id}")
 
 
+def validate_retained_alpha22() -> None:
+    """Keep the superseded Alpha.22 tree byte-identical while Alpha.23 is current."""
+
+    release_root = "download/0.1.0-alpha.22"
+    fixed_files = {
+        "release-index.json": "59872746b3fa7b4eafa17ed64cdebd808d387f7cf282903c3621b3e8f49d196d",
+        "release-index.sigstore.json": "61470f8c81f8d0f54899b33b9d501ff3997c1899be8e892aee16ceec8ddd2e7d",
+        "release-index.signed-payload.json": "88d965586222920ea697bdff164f861e9c75ff0d80500bb55dd6db09b7be2bb7",
+        "bootstrap.sh": "60db0ca4dc590eeadd328c34bd20e1cfe202ac00f066289272fa12229d03db43",
+        "stateport-alpha-2026-08-cosign.pub": CURRENT_TRUST_PUBLIC_KEY_SHA256,
+    }
+    for name, expected in fixed_files.items():
+        path = require(f"{release_root}/{name}")
+        observed = hashlib.sha256(path.read_bytes()).hexdigest()
+        if observed != expected:
+            raise AssertionError(f"{path.relative_to(ROOT)} digest {observed} != {expected}")
+
+    index = json.loads(require(f"{release_root}/release-index.json").read_text(encoding="utf-8"))
+    signed = index.get("signed", {})
+    if signed.get("release", {}).get("version") != "0.1.0-alpha.22":
+        raise AssertionError("Retained Alpha.22 index has the wrong version")
+    source = signed.get("source", {})
+    if source.get("commit") != "0e495cc9517330b3355ad4c8b18f502d1aaf3dfd":
+        raise AssertionError("Retained Alpha.22 canonical source commit changed")
+    if source.get("tree") != "b7ec1f046f4cfcf93d15be87e531a22f4633b633":
+        raise AssertionError("Retained Alpha.22 canonical source tree changed")
+
+    retained_manifests = {
+        "stateport-api": "7ea5acf72e199d4b1fd45db20b498eb92806b81b7f44b8b59f20014bcd0bc98d",
+        "stateport-dev-workspace": "c76a69d805cf4a6624159adb3368b0b9551e61451ce64d45bb249262bf94463e",
+        "stateport-execution-host": "38e899cc4e356e7c71a1a9581ee7857fcb99e179e83a7b01271fd16d2f2987e3",
+        "stateport-playwright": "02317c3dc0b1f5674ec5393a6c0a0bfb07e5ea507a5fd73230843fc34ba90e3f",
+        "stateport-runner": "a1df6e3dc17518ec706f1bb7ec31521c709a900f01b7e0a8b6f81cc351095986",
+        "stateport-web": "9c08fceeed5d18651591c823c96f3a4a28b16a4311dc2749c4dde385cc84270e",
+        "stateport-worker": "2278f8507c52cb68d342148357df40ab73f249fd6c866d00429d76bfdbf0427a",
+    }
+    for image_id, expected in retained_manifests.items():
+        path = require(f"download/alpha22-manifests/{image_id}.json")
+        if hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+            raise AssertionError(f"Retained Alpha.22 manifest is stale: {image_id}")
+
+
 def validate_retained_alpha21() -> None:
-    """Keep the superseded Alpha.21 tree byte-identical while Alpha.22 is current."""
+    """Keep the superseded Alpha.21 tree byte-identical while a later release is current."""
 
     release_root = "download/0.1.0-alpha.21"
     fixed_files = {
@@ -1724,6 +1766,7 @@ def main() -> None:
     validate_retained_alpha15()
     validate_retained_alpha20()
     validate_retained_alpha21()
+    validate_retained_alpha22()
     validate_current_release()
     validate_immutable_release_trees()
     validate_release_semantics()
