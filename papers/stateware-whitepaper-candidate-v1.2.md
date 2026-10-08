@@ -60,7 +60,7 @@ prepared for Windows 11, WSL2, and Ubuntu 24.04 on x86-64, with local
 single-user operation. The public walkthrough was a local development preview
 with sample data. Do not use StatePort for important data.
 
-**Status today (7 October 2026).** The current release is Alpha.23, and what has been measured is narrow: it installs and passes in a clean test VM (Windows 11 with WSL2 and Ubuntu 24.04); real-Windows and reboot results are pending. On Alpha.21 the study sample worked in the browser from start to receipt; that has not been repeated on Alpha.22 or Alpha.23. Surviving a planned reboot, uninstall and reinstall on Windows, the full interface, and resource efficiency were not measured. The [release page](../releases/) is the
+**Status today (8 October 2026).** The current release is Alpha.24, and what has been measured is narrow: it installs and passes in a clean test VM (Windows 11 with WSL2 and Ubuntu 24.04); real-Windows and reboot results are pending. On Alpha.21 the study sample worked in the browser from start to receipt; that has not been repeated on Alpha.22, Alpha.23 or Alpha.24. Surviving a planned reboot, uninstall and reinstall on Windows, the full interface, and resource efficiency were not measured. The [release page](../releases/) is the
 source for current status.
 
 **Current delivery versus future architecture.** The wider

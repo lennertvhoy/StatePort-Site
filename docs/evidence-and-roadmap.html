@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="What works in StatePort Alpha.23, what I have not measured yet, what is designed but not built, and what comes next.">
+    <meta name="description" content="What works in StatePort Alpha.24, what I have not measured yet, what is designed but not built, and what comes next.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
@@ -50,7 +50,7 @@
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / Roadmap</p>
           <h1 id="page-title">Roadmap: what works and what comes next</h1>
-          <p>Alpha.23 is the current release. It installs and passes in a clean test VM (Windows 11 with WSL2 and Ubuntu 24.04); real-Windows and reboot results are pending. This page separates what has been measured from what is designed but not measured yet.</p>
+          <p>Alpha.24 is the current release. It installs and passes in a clean test VM (Windows 11 with WSL2 and Ubuntu 24.04); real-Windows and reboot results are pending. This page separates what has been measured from what is designed but not measured yet.</p>
         </div>
       </section>
 
@@ -84,23 +84,23 @@
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice"><strong>Early alpha, release 0.1.0-alpha.23.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer, in virtual machines; real-Windows results are pending. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+          <p class="notice"><strong>Early alpha, release 0.1.0-alpha.24.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer, in virtual machines; real-Windows results are pending. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
           <p class="notice notice--quiet"><strong>Looking for availability?</strong> Check the <a href="../releases/">release status</a>.</p>
 
-          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#available-now">What works today: measured on Alpha.23 and Alpha.21</a></li><li data-level="2"><a href="#designed">Not working yet, and designed but not built</a></li><li data-level="2"><a href="#current-priorities">Current priorities</a></li><li data-level="2"><a href="#later">Later</a></li></ol></details>
-<h2 id="available-now">What works today: measured on Alpha.23 and Alpha.21</h2>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#available-now">What works today: measured on Alpha.24, Alpha.23 and Alpha.21</a></li><li data-level="2"><a href="#designed">Not working yet, and designed but not built</a></li><li data-level="2"><a href="#current-priorities">Current priorities</a></li><li data-level="2"><a href="#later">Later</a></li></ol></details>
+<h2 id="available-now">What works today: measured on Alpha.24, Alpha.23 and Alpha.21</h2>
 <ul>
-<li>A one-line installer for Windows 11, WSL2, Ubuntu 24.04 and AMD64. The public one-line command installed Alpha.23 on a pristine Windows 11 test virtual machine and exited 0 in about 9 minutes (3 of 4 attempts on these bytes; the 4th crashed in the optional keep-alive registration, a fix is prepared but not released): all services reported healthy, the web page and the API answered, and a second run of the installer changed nothing. The bundled study sample ran end to end with the durable result read back, and the saved data was still there after a StatePort service restart and a full WSL distribution restart. The install plan named one API port while the started API answered on another; the printed address worked. Alpha.21 came up healthy on 2 of 3 fresh Windows 11 test installs through the one-line command, in about 12 to 18 minutes each; the third was refused by a package check that races Ubuntu&rsquo;s background updates.</li>
+<li>A one-line installer for Windows 11, WSL2, Ubuntu 24.04 and AMD64. Alpha.24 installed on a fresh Windows 11 test virtual machine from a local copy of the signed files: all services reported healthy, the web page and the API answered, a second run of the installer changed nothing, and the API port in the manifest matched the port it answered on. The public command, the study sample, the restarts and the template import are still to be measured on Alpha.24. The public one-line command installed Alpha.23 on a pristine Windows 11 test virtual machine and exited 0 in about 9 minutes (3 of 4 attempts on these bytes; the 4th crashed in the optional keep-alive registration, Alpha.24 carries a fix that is still being verified): all services reported healthy, the web page and the API answered, and a second run of the installer changed nothing. The bundled study sample ran end to end with the durable result read back, and the saved data was still there after a StatePort service restart and a full WSL distribution restart. The install plan named one API port while the started API answered on another; the printed address worked. Alpha.21 came up healthy on 2 of 3 fresh Windows 11 test installs through the one-line command, in about 12 to 18 minutes each; the third was refused by a package check that races Ubuntu&rsquo;s background updates.</li>
 <li>The install sets up StatePort&rsquo;s local services: the web interface, the API, the worker, a storage service and an execution host, which is a sandbox that runs work.</li>
-<li>Measured on Alpha.23 through the product's own interface: the study sample loop: start an activity, review, approve, reflect, receipt, with the durable result read back and the saved state kept after a StatePort service restart and a full WSL distribution restart. Measured in the browser on Alpha.21, not repeated on Alpha.23; going back from a review withdraws the proposed change.</li>
-<li>Measured on Alpha.21, not repeated on Alpha.23: importing a ProjectState or StudyState template from a local Git checkout without an ownership fix, in the browser and through the API. Importing the real StudyState_Template from GitHub inside StatePort fails on a stock WSL2 install (the product's containers cannot resolve external host names; measured).</li>
-<li>Measured on Alpha.21, not repeated on Alpha.23, through the API: undo of the last evidence update, export and import, a verified backup, restore as a new instance (with a destination name) and a template upgrade.</li>
-<li>Measured on Alpha.21, not repeated on Alpha.23: the notifications list and the Back up now button in the interface.</li>
-<li>A Windows scheduled task, <code>StatePortKeepAlive</code>, that the installer registers. It is meant to keep Ubuntu running after the last WSL window closes. On Alpha.23 it is registered to start at Windows start-up, at sign-in and every 10 minutes; on the test machine it had not run, so its effect was not measured (reboot: not measured).</li>
+<li>Measured on Alpha.23 through the product's own interface: the study sample loop: start an activity, review, approve, reflect, receipt, with the durable result read back and the saved state kept after a StatePort service restart and a full WSL distribution restart. Measured in the browser on Alpha.21, not repeated on Alpha.24; going back from a review withdraws the proposed change.</li>
+<li>Measured on Alpha.21, not repeated on Alpha.24: importing a ProjectState or StudyState template from a local Git checkout without an ownership fix, in the browser and through the API. Importing the real StudyState_Template from GitHub inside StatePort fails on a stock WSL2 install (the product's containers cannot resolve external host names; measured).</li>
+<li>Measured on Alpha.21, not repeated on Alpha.24, through the API: undo of the last evidence update, export and import, a verified backup, restore as a new instance (with a destination name) and a template upgrade.</li>
+<li>Measured on Alpha.21, not repeated on Alpha.24: the notifications list and the Back up now button in the interface.</li>
+<li>A Windows scheduled task, <code>StatePortKeepAlive</code>, that the installer registers. It is meant to keep Ubuntu running after the last WSL window closes. On Alpha.24 it is registered to start at Windows start-up, at sign-in and every 10 minutes; on the test machine it had not run, so its effect was not measured (reboot: not measured).</li>
 <li>Release files with signatures and fingerprints that you can inspect on the <a href="../download/technical-release-files.html">technical release files</a> page.</li>
 </ul>
 <h2 id="designed">Not working yet, and designed but not built</h2>
-<p><strong>Not working yet.</strong> These were measured as not working on Alpha.21 and have not been measured again on an installed Alpha.23. <a href="limitations.html#not-working">Current limitations</a> has the full list.</p>
+<p><strong>Not working yet.</strong> These were measured as not working on Alpha.21 and have not been measured again on an installed Alpha.24. <a href="limitations.html#not-working">Current limitations</a> has the full list.</p>
 <ul>
 <li>Coding-agent runs, chat replies, restore from the interface, provider actions in the interface, the workbench terminal and files tools, per-application workspaces, the standing-authority and updater pages, and the background worker, which runs no jobs.</li>
 <li>Fresh state in the Learning tab without a reload, and clear error messages for refused changes.</li>

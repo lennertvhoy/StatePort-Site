@@ -84,7 +84,7 @@
         </aside>
 
         <article class="prose">
-<p class="notice"><strong>Early alpha, release 0.1.0-alpha.23.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer, in virtual machines; real-Windows results are pending. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+<p class="notice"><strong>Early alpha, release 0.1.0-alpha.24.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer, in virtual machines; real-Windows results are pending. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
 <p class="notice notice--quiet"><strong>Ground rules.</strong> Do not edit the installer, skip its checks, or run it with <code>sudo</code>. Do not delete folders you did not create, and do not remove package-manager lock files. After you fix a cause, run the same command again. A message that begins <code>StatePort install:</code> comes from the installer script and stops it.</p>
 <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#host-checks">Host checks</a></li><li data-level="2"><a href="#tools">Missing tools and temporary files</a></li><li data-level="2"><a href="#downloads">Downloads and checksums</a></li><li data-level="2"><a href="#confirmations">Confirmations, sudo, and packages</a></li><li data-level="2"><a href="#system-folders">System folder checks</a></li><li data-level="2"><a href="#refusals">Installer refusals and a leftover from an earlier attempt</a></li><li data-level="3"><a href="#package-installation-invalid">package_installation_invalid</a></li><li data-level="3"><a href="#image-archive-conflict">image_archive_conflict</a></li><li data-level="2"><a href="#after-install">After a successful install</a></li><li data-level="2"><a href="#report">Report a problem</a></li></ol></details>
 <h2 id="host-checks">Host checks</h2>
@@ -100,7 +100,7 @@
 <h3 id="amd64"><code>WSL2 AMD64 is required.</code></h3>
 <p><strong>You see</strong> the installer stop.</p>
 <p><strong>Cause.</strong> <code>uname -m</code> did not print <code>x86_64</code>, for example on an ARM64 computer.</p>
-<p><strong>What to do.</strong> Alpha.23 supports AMD64 only. Use a different computer.</p>
+<p><strong>What to do.</strong> Alpha.24 supports AMD64 only. Use a different computer.</p>
 <h3 id="os-release"><code>Cannot read /etc/os-release.</code></h3>
 <p><strong>You see</strong> the installer stop.</p>
 <p><strong>Cause.</strong> The file that names the Linux distribution is missing or unreadable, so this is not a stock Ubuntu.</p>
@@ -124,7 +124,7 @@
 <h3 id="windows-11"><code>Windows 11 build 22000 or newer is required.</code></h3>
 <p><strong>You see</strong> the installer stop.</p>
 <p><strong>Cause.</strong> This is Windows 10 or an older build. Build 22000 is the first Windows 11 build.</p>
-<p><strong>What to do.</strong> Alpha.23 supports Windows 11 only.</p>
+<p><strong>What to do.</strong> Alpha.24 supports Windows 11 only.</p>
 <h3 id="usage"><code>Usage: &lt;script&gt; [--transport-probe|--materialization-preflight]</code></h3>
 <p><strong>You see</strong> the installer stop before it does anything.</p>
 <p><strong>Cause.</strong> You added an option or an extra word the installer does not know. Only <code>--transport-probe</code> and <code>--materialization-preflight</code> exist.</p>
@@ -222,11 +222,11 @@ refusal record: ~/.local/state/stateport-install/refusals/&lt;timestamp&gt;-imag
 <h3 id="wsl-stops">The page says &ldquo;Service offline&rdquo; after I close Ubuntu</h3>
 <p><strong>You see</strong> the page show <code>Service offline</code>, or stop loading, after you closed the last Ubuntu window.</p>
 <p><strong>Cause.</strong> WSL stops the Linux environment shortly after the last session ends, and StatePort runs inside it. On Alpha.20 fresh installs the product stopped when the last Ubuntu window closed, and it came back about three minutes after Ubuntu was reopened.</p>
-<p><strong>What the keep-alive task does.</strong> The installer registers a Windows scheduled task named <code>StatePortKeepAlive</code>. It runs <code>wsl.exe -d Ubuntu-24.04 --exec sleep infinity</code>, a command that does nothing except keep Ubuntu running so that WSL does not shut it down when the last window closes. On the Alpha.23 test machine Windows listed it with three triggers: at Windows start-up, at sign-in, and every 10 minutes. It was set to run when nobody is signed in, to run on battery power, to have no time limit and to restart if it fails. It had never run on the test machine, so whether it works was not measured. Windows may allow only a smaller version for your account (for example sign-in only); the installer says so at the end of the install. On Alpha.21 the task ran only at sign-in, was set not to start on battery power, and had never run on the test machine. On Alpha.20, on a real Windows 11 host, it held Ubuntu open after a sign-in.</p>
+<p><strong>What the keep-alive task does.</strong> The installer registers a Windows scheduled task named <code>StatePortKeepAlive</code>. It runs <code>wsl.exe -d Ubuntu-24.04 --exec sleep infinity</code>, a command that does nothing except keep Ubuntu running so that WSL does not shut it down when the last window closes. On the Alpha.24 test machine Windows listed it with three triggers: at Windows start-up, at sign-in, and every 10 minutes. It was set to run when nobody is signed in, to run on battery power, to have no time limit and to restart if it fails. It had never run on the test machine, so whether it works was not measured. Windows may allow only a smaller version for your account (for example sign-in only); the installer says so at the end of the install. On Alpha.21 the task ran only at sign-in, was set not to start on battery power, and had never run on the test machine. On Alpha.20, on a real Windows 11 host, it held Ubuntu open after a sign-in.</p>
 <p><strong>What to do.</strong> Open an Ubuntu window and reload the address after a few minutes. To make the keep-alive task start, sign out of Windows and sign back in; that activated it on Alpha.20. Windows Task Scheduler lists the task if you want to check it. If StatePort stops again after a sign-in, report it.</p>
 <h3 id="restart">It did not come back after I restarted Windows</h3>
 <p><strong>You see</strong> no answer from the address after a Windows restart.</p>
-<p><strong>Cause.</strong> A planned Windows restart has not been measured on Alpha.21, Alpha.22 or Alpha.23 (reboot: not measured). During Alpha.21 testing the test machine restarted once without warning (cause not established). Nobody was signed in to Windows afterwards, the keep-alive task did not start, and StatePort stayed down until Ubuntu was started by hand. About two minutes after that it answered again, and the saved state was intact. The Alpha.22 and Alpha.23 tasks also start at Windows start-up, but that was not measured.</p>
+<p><strong>Cause.</strong> A planned Windows restart has not been measured on Alpha.21, Alpha.22, Alpha.23 or Alpha.24 (reboot: not measured). During Alpha.21 testing the test machine restarted once without warning (cause not established). Nobody was signed in to Windows afterwards, the keep-alive task did not start, and StatePort stayed down until Ubuntu was started by hand. About two minutes after that it answered again, and the saved state was intact. The Alpha.22, Alpha.23 and Alpha.24 tasks also start at Windows start-up, but that was not measured.</p>
 <p><strong>What to do.</strong> Sign in to Windows, open an Ubuntu window, wait a few minutes, and try again. Please report what you saw either way.</p>
 <h3 id="port-differs">The port is not the one I expected</h3>
 <p><strong>You see</strong> an address such as <code>http://127.0.0.1:18216/</code> whose port differs from an earlier install, another computer, or an example.</p>
@@ -251,7 +251,7 @@ refusal record: ~/.local/state/stateport-install/refusals/&lt;timestamp&gt;-imag
 <h2 id="report">Report a problem</h2>
 <p><a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue on GitHub</a> and include:</p>
 <ul>
-<li>the release, 0.1.0-alpha.23, and whether the dry run passed;</li>
+<li>the release, 0.1.0-alpha.24, and whether the dry run passed;</li>
 <li>the step you were on and the exact message, copied from the terminal;</li>
 <li>the output of the five checks in <a href="getting-started.html#check">Step 2</a>;</li>
 <li>the refusal record, if the installer printed one, after you check it for private content.</li>

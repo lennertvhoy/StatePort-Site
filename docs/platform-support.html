@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="The one setup StatePort Alpha.23 supports: Windows 11, WSL2, Ubuntu 24.04, and AMD64, what the installer refuses, and what was measured.">
+    <meta name="description" content="The one setup StatePort Alpha.24 supports: Windows 11, WSL2, Ubuntu 24.04, and AMD64, what the installer refuses, and what was measured.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="Platform support — StatePort">
-    <meta property="og:description" content="Alpha.23 supports Windows 11, WSL2, Ubuntu 24.04, and AMD64 only. What the installer refuses and what was measured.">
+    <meta property="og:description" content="Alpha.24 supports Windows 11, WSL2, Ubuntu 24.04, and AMD64 only. What the installer refuses and what was measured.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/platform-support.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -49,8 +49,8 @@
       <section class="article-hero" aria-labelledby="page-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / Platform support</p>
-          <h1 id="page-title">Where Alpha.23 is meant to run</h1>
-          <p>Alpha.23 supports one setup: Windows 11, WSL2, and Ubuntu 24.04 on an AMD64 computer. The installer checks that setup before it changes anything and stops with a message if it does not match.</p>
+          <h1 id="page-title">Where Alpha.24 is meant to run</h1>
+          <p>Alpha.24 supports one setup: Windows 11, WSL2, and Ubuntu 24.04 on an AMD64 computer. The installer checks that setup before it changes anything and stops with a message if it does not match.</p>
         </div>
       </section>
 
@@ -84,9 +84,9 @@
         </aside>
 
         <article class="prose">
-<p class="notice"><strong>Early alpha, release 0.1.0-alpha.23.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer, in virtual machines; real-Windows results are pending. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
-<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#requirements">Alpha.23 requirements</a></li><li data-level="2"><a href="#check">Check before you start</a></li><li data-level="2"><a href="#table">What is and is not supported</a></li><li data-level="2"><a href="#measured">What was measured on this setup</a></li><li data-level="2"><a href="#why-support-is-narrow">Why support is narrow</a></li><li data-level="2"><a href="#earlier">Earlier releases</a></li></ol></details>
-<h2 id="requirements">Alpha.23 requirements</h2>
+<p class="notice"><strong>Early alpha, release 0.1.0-alpha.24.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer, in virtual machines; real-Windows results are pending. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#requirements">Alpha.24 requirements</a></li><li data-level="2"><a href="#check">Check before you start</a></li><li data-level="2"><a href="#table">What is and is not supported</a></li><li data-level="2"><a href="#measured">What was measured on this setup</a></li><li data-level="2"><a href="#why-support-is-narrow">Why support is narrow</a></li><li data-level="2"><a href="#earlier">Earlier releases</a></li></ol></details>
+<h2 id="requirements">Alpha.24 requirements</h2>
 <ul>
 <li>Windows 11 (build 22000 or newer) on an AMD64 (x86-64) computer.</li>
 <li>WSL2, not WSL1, with stock Ubuntu 24.04.</li>
@@ -102,7 +102,7 @@
 
 <h2 id="table">What is and is not supported</h2>
 <ul>
-<li><strong>Windows 11 + WSL2 + Ubuntu 24.04 on AMD64: the supported target.</strong> This is the only setup Alpha.23 is meant for, and the only one it was measured on (in virtual machines; real-Windows results are pending). See <a href="getting-started.html">getting started</a>.</li>
+<li><strong>Windows 11 + WSL2 + Ubuntu 24.04 on AMD64: the supported target.</strong> This is the only setup Alpha.24 is meant for, and the only one it was measured on (in virtual machines; real-Windows results are pending). See <a href="getting-started.html">getting started</a>.</li>
 <li><strong>WSL1: not supported.</strong> The installer stops with <code>WSL2 is required; WSL1 and native Linux are not this release target.</code></li>
 <li><strong>Windows 10, or a Windows build older than 22000: not supported.</strong> The installer stops with <code>Windows 11 build 22000 or newer is required.</code></li>
 <li><strong>Native Linux: not supported.</strong> The installer refuses it. Native Linux would need its own release path.</li>
@@ -110,7 +110,7 @@
 </ul>
 
 <h2 id="measured">What was measured on this setup</h2>
-<p>Alpha.23 installed and passed its checks on a fresh Windows 11 virtual machine with WSL2 and stock Ubuntu 24.04, reset to a clean snapshot, from a local copy of the signed files; real-Windows and reboot results are pending. On that machine the installer printed a note that the machine is not one of the tested setups but has every capability StatePort needs, and the install carried on (see <a href="troubleshooting.html#not-tested-setup">troubleshooting</a>). Alpha.21 came up healthy on 2 of 3 fresh test installs through the one-line command, about 12 to 18 minutes each; one attempt was refused by a package check (see <a href="troubleshooting.html#package-installation-invalid">troubleshooting</a>). Several screens had known problems on Alpha.21. Not measured yet: surviving a Windows restart (reboot: not measured), uninstall on Windows, and memory and disk use under real work. The full lists are on <a href="limitations.html#measured">current limitations</a>.</p>
+<p>Alpha.24 installed and passed its checks on a fresh Windows 11 virtual machine with WSL2 and stock Ubuntu 24.04, reset to a clean snapshot, from a local copy of the signed files; real-Windows and reboot results are pending. On that machine the installer printed a note that the machine is not one of the tested setups but has every capability StatePort needs, and the install carried on (see <a href="troubleshooting.html#not-tested-setup">troubleshooting</a>). Alpha.21 came up healthy on 2 of 3 fresh test installs through the one-line command, about 12 to 18 minutes each; one attempt was refused by a package check (see <a href="troubleshooting.html#package-installation-invalid">troubleshooting</a>). Several screens had known problems on Alpha.21. Not measured yet: surviving a Windows restart (reboot: not measured), uninstall on Windows, and memory and disk use under real work. The full lists are on <a href="limitations.html#measured">current limitations</a>.</p>
 
 <h2 id="why-support-is-narrow">Why support is narrow</h2>
 <p>StatePort uses local storage, Linux services, containers and an AI command-line tool. A setup is only useful when all of those work together and your data survives a restart. Platforms will be added only after the whole path has been tested on them.</p>

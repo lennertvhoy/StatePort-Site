@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Short answers about StatePort Alpha.23: what it is, whether it is safe, where your data lives, whether it needs internet, what it cannot do yet, and how to report a bug.">
+    <meta name="description" content="Short answers about StatePort Alpha.24: what it is, whether it is safe, where your data lives, whether it needs internet, what it cannot do yet, and how to report a bug.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
@@ -84,11 +84,11 @@
         </aside>
 
         <article class="prose">
-<p class="notice"><strong>Early alpha, release 0.1.0-alpha.23.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer, in virtual machines; real-Windows results are pending. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+<p class="notice"><strong>Early alpha, release 0.1.0-alpha.24.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer, in virtual machines; real-Windows results are pending. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
 <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-is-stateport">What is StatePort?</a></li><li data-level="2"><a href="#is-it-safe">Is it safe?</a></li><li data-level="2"><a href="#where-is-my-data">Where does my data live?</a></li><li data-level="2"><a href="#internet">Does it need internet?</a></li><li data-level="2"><a href="#cannot-do-yet">What can I not do yet?</a></li><li data-level="2"><a href="#report-a-bug">How do I report a bug?</a></li><li data-level="2"><a href="#who-builds-it">Who builds it?</a></li></ol></details>
 <h2 id="what-is-stateport">What is StatePort?</h2>
 <p>StatePort keeps the goals, progress, decisions and history of AI-assisted work in readable files on your own computer, not in one chat session. An AI tool can help with the work, but it does not own your data or decide its own permissions. For actions that follow a fixed script, such as the StudyState sample, StatePort shows the proposed change, asks for your approval, applies it and records the result. Output from coding agents is recorded as a run result. StatePort does not turn it into saved app state.</p>
-<p>Alpha.23 is an early test release. It installs as a set of local services inside Ubuntu 24.04 on WSL2 (Windows Subsystem for Linux) on Windows 11, and you open it in your web browser at an address on your own computer. Read <a href="foundations.html">why StatePort exists</a> or <a href="model.html">how it is organized</a>, or <a href="getting-started.html">install it</a> and look for yourself.</p>
+<p>Alpha.24 is an early test release. It installs as a set of local services inside Ubuntu 24.04 on WSL2 (Windows Subsystem for Linux) on Windows 11, and you open it in your web browser at an address on your own computer. Read <a href="foundations.html">why StatePort exists</a> or <a href="model.html">how it is organized</a>, or <a href="getting-started.html">install it</a> and look for yourself.</p>
 
 <h2 id="is-it-safe">Is it safe?</h2>
 <p>Treat it as untested software. StatePort is an early alpha and has not had an independent security review. Do not use it for important data, and try it on a computer or virtual machine where a mistake would not matter.</p>
@@ -116,7 +116,7 @@
 <li>Use anything other than Windows 11 with WSL2 and Ubuntu 24.04 on AMD64. WSL1, ARM64, macOS, native Linux, Docker Desktop, and other distributions are not supported.</li>
 <li>Uninstall or reinstall with a tested, supported command. Neither has been measured yet.</li>
 <li>Rely on StatePort surviving a Windows restart. A planned restart has not been measured. After one unplanned restart of the test machine, with nobody signed in, StatePort stayed down until Ubuntu was started by hand.</li>
-<li>Count on template import (ProjectState, a project tracker; StudyState, a study plan) from GitHub or any public Git URL: importing the real StudyState_Template from GitHub fails on a stock WSL2 install, because the product&rsquo;s containers cannot resolve external host names (measured); the template files themselves are fine to use as plain files. A local Git checkout was measured without extra steps on Alpha.21 (not repeated on Alpha.23).</li>
+<li>Count on template import (ProjectState, a project tracker; StudyState, a study plan) from GitHub or any public Git URL: importing the real StudyState_Template from GitHub fails on a stock WSL2 install, because the product&rsquo;s containers cannot resolve external host names (measured); the template files themselves are fine to use as plain files. A local Git checkout was measured without extra steps on Alpha.21 (not repeated on Alpha.24).</li>
 <li>Update in place or roll back. There is no supported in-place update or rollback in this alpha.</li>
 <li>Undo most changes. One undo exists: the last evidence update in the StudyState sample.</li>
 <li>Back up more than an instance's files. A backup does not include Git history, conversations, the receipts index or approvals, and restore recreates files only.</li>
@@ -126,7 +126,7 @@
 <p>The full lists of what works, what is not measured and what is not built are on <a href="limitations.html">current limitations</a>.</p>
 
 <h2 id="report-a-bug">How do I report a bug?</h2>
-<p><a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue on GitHub</a>. Include the release (0.1.0-alpha.23), the step you were on, and the exact message you saw. If the installer printed a <code>refusal record:</code> path, attach that file after checking it for anything private. Remove tokens, passwords, private URLs, and personal file contents from anything you share. Do not post secrets, and do not post details of a suspected vulnerability in public: there is no private reporting address yet, so open an issue that says a security issue exists and leaves the details out. <a href="troubleshooting.html#report">Troubleshooting</a> lists what helps most.</p>
+<p><a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue on GitHub</a>. Include the release (0.1.0-alpha.24), the step you were on, and the exact message you saw. If the installer printed a <code>refusal record:</code> path, attach that file after checking it for anything private. Remove tokens, passwords, private URLs, and personal file contents from anything you share. Do not post secrets, and do not post details of a suspected vulnerability in public: there is no private reporting address yet, so open an issue that says a security issue exists and leaves the details out. <a href="troubleshooting.html#report">Troubleshooting</a> lists what helps most.</p>
 
 <h2 id="who-builds-it">Who builds it?</h2>
 <p>StatePort is built and maintained by Lennert Van Hoyweghen. AI coding agents help write the code, under the maintainer's direction. The source for the release is in the <a href="https://github.com/lennertvhoy/StatePort-Source" target="_blank" rel="noopener">StatePort-Source repository</a>. The code and the template files are AGPL-3.0-or-later, and the docs are CC-BY-4.0. The <a href="../download/technical-release-files.html">technical release files</a> page has the release files for developers.</p>

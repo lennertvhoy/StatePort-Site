@@ -4,10 +4,10 @@ StatePort — AI-assisted work saved in files on your own computer: https://lenn
 
 Install on Windows 11 + WSL2 (Ubuntu 24.04): open Ubuntu in WSL2 and run
 `bash <(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)`
-The public one-line command installed it on a pristine Windows 11 test VM in about 9 minutes (3 of 4 attempts on these bytes); the study sample works end to end and its data survives StatePort and WSL restarts. Real-Windows and reboot results are pending. If it stops with `package_installation_invalid` (a check that races Ubuntu's background updates; it stopped one of three Alpha.21 installs), wait a minute and run the same command again.
+Alpha.24 installed in a clean Windows 11 test VM from a local copy of the signed files (healthy, a repeat run changed nothing); the public command itself, the study sample, restarts and GitHub template import are not yet measured on Alpha.24. On Alpha.23 the public command installed in about 9 minutes (3 of 4 attempts) and the study sample survived restarts. Real-Windows and reboot results are pending. If it stops with `package_installation_invalid` (a check that races Ubuntu's background updates; it stopped one of three Alpha.21 installs), wait a minute and run the same command again.
 
 Known limits, stated plainly: https://lennertvhoy.github.io/StatePort-Site/releases/
-Verify the installer bytes yourself: `curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh | sha256sum` → f14c53e5ce596cd81b234f70b23d755aacc9eac9bd2adf3644a251807090d0c8 (also shown on the download page).
+Verify the installer bytes yourself: `curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh | sha256sum` → 4c7499e60b82fded33672dfd472fea87bca8ea96b74a579affc1681af10181fd (also shown on the download page).
 
 Feedback I'd genuinely love:
 1. Does the one-line install run cleanly on your Windows 11 + WSL2 machine — and where does it stop if not?
@@ -24,10 +24,10 @@ StatePort — AI-ondersteund werk, bewaard in bestanden op je eigen computer: ht
 
 Installeren op Windows 11 + WSL2 (Ubuntu 24.04): open Ubuntu in WSL2 en draai
 `bash <(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)`
-Het publieke één-regel-commando installeerde hem op een schone Windows 11-test-VM in ongeveer 9 minuten (3 van 4 pogingen op deze bytes); het studievoorbeeld werkt end-to-end en zijn data overleeft StatePort- en WSL-herstarts. Resultaten op echte Windows en na een herstart zijn nog open. Stopt hij met `package_installation_invalid` (een controle die racet met de achtergrondupdates van Ubuntu; bij Alpha.21 stopte dit één van de drie installaties), wacht dan een minuut en voer dezelfde opdracht opnieuw uit.
+Alpha.24 installeerde in een schone Windows 11-test-VM vanaf een lokale kopie van de ondertekende bestanden (gezond, een tweede run veranderde niets); het publieke commando zelf, het studievoorbeeld, herstarts en de GitHub-template-import zijn op Alpha.24 nog niet gemeten. Op Alpha.23 installeerde het publieke commando in ongeveer 9 minuten (3 van 4 pogingen) en overleefde het studievoorbeeld herstarts. Resultaten op echte Windows en na een herstart zijn nog open. Stopt hij met `package_installation_invalid` (een controle die racet met de achtergrondupdates van Ubuntu; bij Alpha.21 stopte dit één van de drie installaties), wacht dan een minuut en voer dezelfde opdracht opnieuw uit.
 
 Bekende grenzen, eerlijk verwoord: https://lennertvhoy.github.io/StatePort-Site/releases/
-Controleer de installer-bytes zelf: `curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh | sha256sum` → f14c53e5ce596cd81b234f70b23d755aacc9eac9bd2adf3644a251807090d0c8 (staat ook op de downloadpagina).
+Controleer de installer-bytes zelf: `curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh | sha256sum` → 4c7499e60b82fded33672dfd472fea87bca8ea96b74a579affc1681af10181fd (staat ook op de downloadpagina).
 
 Feedback die ik echt wil:
 1. Draait de one-line install netjes op jouw Windows 11 + WSL2-machine — en waar stopt hij als dat niet zo is?
