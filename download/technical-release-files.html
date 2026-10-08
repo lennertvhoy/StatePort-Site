@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Technical files for the StatePort Alpha.23 signed candidate, including the signed release index, source archive, image signatures, and release notes, and the retained records of earlier releases.">
+    <meta name="description" content="Technical files for the StatePort Alpha.24 signed candidate, including the signed release index, source archive, image signatures, and release notes, and the retained records of earlier releases.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
@@ -58,7 +58,7 @@
         <aside class="doc-sidebar" aria-label="Technical release file sections">
           <h2>Release files</h2>
           <nav>
-            <a href="#alpha23-files-heading" aria-current="page">Alpha.23</a> <a href="#alpha22-files-heading">Alpha.22 (superseded)</a> <a href="#alpha21-files-heading">Alpha.21 (superseded)</a> <a href="#alpha20-files-heading">Alpha.20 (superseded)</a> <a href="#alpha16-files-heading">Alpha.16 (superseded)</a>
+            <a href="#alpha24-files-heading" aria-current="page">Alpha.24</a> <a href="#alpha23-files-heading">Alpha.24 (superseded)</a> <a href="#alpha22-files-heading">Alpha.22 (superseded)</a> <a href="#alpha21-files-heading">Alpha.21 (superseded)</a> <a href="#alpha20-files-heading">Alpha.20 (superseded)</a> <a href="#alpha16-files-heading">Alpha.16 (superseded)</a>
             <a href="#alpha15">Alpha.15 (superseded)</a>
             <a href="#alpha12">Alpha.12</a>
             <a href="#alpha11">Alpha.11</a>
@@ -69,22 +69,39 @@
         </aside>
 
         <article class="prose" data-no-toc>
-          <section id="alpha23-files" aria-labelledby="alpha23-files-heading">
-            <h2 id="alpha23-files-heading">Alpha.23 signed candidate</h2>
-            <p><strong>Current signed candidate.</strong> The signed index, source archive, package bundle, image signatures, release notes, and known limitations are the same signed bytes staged for the public route. In a fresh Windows 11 test VM with WSL2 and stock Ubuntu 24.04, reset to a clean snapshot, this release installed once from a local copy of the signed files with the images pulled from the registry; all services reported healthy, the web page and the API answered, and a second installer run reported that it was already installed and changed nothing. One measured defect stays open: the install plan and manifest named API port 18464 while the started API answered on 18447; the web address the installer printed was correct and worked. The keep-alive task is registered to start at Windows start-up, at sign-in and every 10 minutes, but it had not run on the test machine, and reboot survival is not measured. The signed release notes and known-limitations files are generated text that is carried over from Alpha.22; they do not describe what changed in Alpha.23.</p>
+          <section id="alpha24-files" aria-labelledby="alpha24-files-heading">
+            <h2 id="alpha24-files-heading">Alpha.24 signed candidate</h2>
+            <p><strong>Current signed candidate.</strong> The signed index, source archive, package bundle, image signatures, release notes, and known limitations are the same signed bytes staged for the public route. In a fresh Windows 11 test VM with WSL2 and stock Ubuntu 24.04, reset to a clean snapshot, this release installed once from a local copy of the signed files with the images pulled from the registry and exited 0; all services reported healthy, the web page and the API answered, a second installer run reported that it was already installed and changed nothing, and the API port named in the install manifest (18097) was the port the started API answered on. Three changes are in this release and are still being verified on the public bytes: the web service has its own outbound network while the API and worker stay isolated, the installer continues with a notice when the optional Windows keep-alive registration is slow, and restarting the StatePort target restarts its containers. The keep-alive task is registered to start at Windows start-up, at sign-in and every 10 minutes, but it had not run on the test machine, and reboot survival is not measured. The signed release notes and known-limitations files are generated text that is carried over from Alpha.24; they do not describe what changed in Alpha.24.</p>
             <ul>
-              <li><a href="0.1.0-alpha.23/release-index.json">Signed release index</a></li>
-              <li><a href="0.1.0-alpha.23/release-index.sigstore.json">Release index signature</a></li>
-              <li><a href="0.1.0-alpha.23/stateport-alpha-2026-08-cosign.pub">Release public key</a></li>
-              <li><a href="0.1.0-alpha.23/stateport-podman-package-bundle.tar">Podman and crun package bundle</a></li>
-              <li><a href="0.1.0-alpha.23/compose.yaml">Compose definition</a></li>
-              <li><a href="0.1.0-alpha.23/release-notes.md">Release notes</a></li>
-              <li><a href="0.1.0-alpha.23/known-limitations.md">Known limitations</a></li>
-              <li><a href="0.1.0-alpha.23/stateport-source.tar">Source archive</a></li>
-              <li><a href="0.1.0-alpha.23/stateport-updater">Updater</a></li>
-              <li><a href="0.1.0-alpha.23/stateport-installer">Installer</a></li>
+              <li><a href="0.1.0-alpha.24/release-index.json">Signed release index</a></li>
+              <li><a href="0.1.0-alpha.24/release-index.sigstore.json">Release index signature</a></li>
+              <li><a href="0.1.0-alpha.24/stateport-alpha-2026-08-cosign.pub">Release public key</a></li>
+              <li><a href="0.1.0-alpha.24/stateport-podman-package-bundle.tar">Podman and crun package bundle</a></li>
+              <li><a href="0.1.0-alpha.24/compose.yaml">Compose definition</a></li>
+              <li><a href="0.1.0-alpha.24/release-notes.md">Release notes</a></li>
+              <li><a href="0.1.0-alpha.24/known-limitations.md">Known limitations</a></li>
+              <li><a href="0.1.0-alpha.24/stateport-source.tar">Source archive</a></li>
+              <li><a href="0.1.0-alpha.24/stateport-updater">Updater</a></li>
+              <li><a href="0.1.0-alpha.24/stateport-installer">Installer</a></li>
             </ul>
-            <p>The Alpha.23 signed candidate declares the published Alpha.22 predecessor; rollback remains unsupported.</p>
+            <p>The Alpha.24 signed candidate declares the published Alpha.24 predecessor; rollback remains unsupported.</p>
+
+
+<h2 id="alpha23-files-heading">Alpha.24 (superseded)</h2>
+            <p><strong>Previous signed release.</strong> The public one-line command installed it on a pristine Windows 11 test VM (a KVM guest) and exited 0 in about 9 minutes on 3 of 4 attempts; the 4th crashed in the optional Windows keep-alive registration on a 120-second PowerShell timeout. The study sample ran end to end and the saved data survived a service restart and a WSL distribution restart. The install plan named API port 18464 while the started API answered on 18447, and importing a template from GitHub failed because the containers could not resolve external host names. Reboot was not measured. These immutable files remain available for inspection.</p>
+            <ul>
+              <li><a href="0.1.0-alpha.24/release-index.json">Signed release index</a></li>
+              <li><a href="0.1.0-alpha.24/release-index.sigstore.json">Release index signature</a></li>
+              <li><a href="0.1.0-alpha.24/stateport-alpha-2026-08-cosign.pub">Release public key</a></li>
+              <li><a href="0.1.0-alpha.24/stateport-podman-package-bundle.tar">Podman and crun package bundle</a></li>
+              <li><a href="0.1.0-alpha.24/compose.yaml">Compose definition</a></li>
+              <li><a href="0.1.0-alpha.24/release-notes.md">Release notes</a></li>
+              <li><a href="0.1.0-alpha.24/known-limitations.md">Known limitations</a></li>
+              <li><a href="0.1.0-alpha.24/stateport-source.tar">Source archive</a></li>
+              <li><a href="0.1.0-alpha.24/stateport-updater">Updater</a></li>
+              <li><a href="0.1.0-alpha.24/stateport-installer">Installer</a></li>
+            </ul>
+            <p>The Alpha.24 signed candidate declares the published Alpha.22 predecessor; rollback remains unsupported.</p>
 
             <h2 id="alpha22-files-heading">Alpha.22 (superseded)</h2>
             <p><strong>Previous signed release.</strong> On a fresh Windows 11 test VM with WSL2 and stock Ubuntu 24.04 it was installed three times on a reset test machine; after a test-setup fix the second and third runs finished healthy, all services reported healthy, the web page and the API answered, and a repeated install reported it was already installed and changed nothing. The install plan named API port 18578 while the started API answered on 18561; the printed web address worked. Reboot was not measured and uninstall was not run on Windows. These immutable files remain available for inspection.</p>
@@ -135,7 +152,7 @@
             <p>The Alpha.20 signed candidate declares the published Alpha.17 predecessor; rollback remains unsupported.</p>
 
             <h2 id="alpha16-files-heading">Alpha.16</h2>
-            <p><strong>Previously published candidate:</strong> complete WSL2 control plane and execution host, exact Podman and crun runtime package set, public digest-pinned images, and governed ProjectState, StudyState, and generic StateSpec template imports. The installer reports the live reconciled web port after provisioning. Its fresh installation was blocked by a signature-check defect; Alpha.23 is the current install path.</p>
+            <p><strong>Previously published candidate:</strong> complete WSL2 control plane and execution host, exact Podman and crun runtime package set, public digest-pinned images, and governed ProjectState, StudyState, and generic StateSpec template imports. The installer reports the live reconciled web port after provisioning. Its fresh installation was blocked by a signature-check defect; Alpha.24 is the current install path.</p>
             <ul>
               <li><a href="0.1.0-alpha.16/release-index.json">Signed release index</a></li>
               <li><a href="0.1.0-alpha.16/release-index.sigstore.json">Release index signature</a></li>
@@ -152,7 +169,7 @@
 
           <section id="alpha15" aria-labelledby="alpha15-files-heading">
             <h2 id="alpha15-files-heading">Alpha.15 (superseded)</h2>
-            <p><strong>Superseded:</strong> these immutable files remain available for inspection only. The Alpha.15 installer had a stale printed web-port URL on one native provisioning path. Alpha.23 is the current install path.</p>
+            <p><strong>Superseded:</strong> these immutable files remain available for inspection only. The Alpha.15 installer had a stale printed web-port URL on one native provisioning path. Alpha.24 is the current install path.</p>
             <ul>
               <li><a href="0.1.0-alpha.15/release-index.json">Signed release index</a></li>
               <li><a href="0.1.0-alpha.15/release-index.sigstore.json">Release index signature</a></li>
@@ -251,7 +268,8 @@
           <section id="source" aria-labelledby="source-heading">
             <h2 id="source-heading">Source and licenses</h2>
             <ul>
-              <li><a href="0.1.0-alpha.23/stateport-source.tar">Alpha.23 source archive</a></li>
+              <li><a href="0.1.0-alpha.24/stateport-source.tar">Alpha.24 source archive</a></li>
+              <li><a href="0.1.0-alpha.24/stateport-source.tar">Alpha.24 source archive</a> (superseded)</li>
               <li><a href="0.1.0-alpha.22/stateport-source.tar">Alpha.22 source archive</a> (superseded)</li>
               <li><a href="0.1.0-alpha.21/stateport-source.tar">Alpha.21 source archive</a> (superseded)</li>
               <li><a href="0.1.0-alpha.20/stateport-source.tar">Alpha.20 source archive</a> (superseded)</li>
