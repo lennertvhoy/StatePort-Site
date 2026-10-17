@@ -86,7 +86,7 @@
         <article class="prose">
           <p class="notice notice--quiet"><strong>Early alpha.</strong> StatePort has not had an independent security review. Do not use it for important data.</p>
 
-          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#main-risks">Main risks</a></li><li data-level="2"><a href="#how-the-design-reduces-risk">How the design reduces risk</a></li><li data-level="2"><a href="#privacy">Privacy</a></li><li data-level="3"><a href="#before-connecting-an-ai-tool">Before connecting an AI tool</a></li><li data-level="3"><a href="#sharing-diagnostics">Sharing diagnostics</a></li><li data-level="2"><a href="#current-limits">Current limits</a></li><li data-level="2"><a href="#reporting-a-security-issue">Reporting a security issue</a></li></ol></details>
+          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#main-risks">Main risks</a></li><li data-level="2"><a href="#how-the-design-reduces-risk">How the design reduces risk</a></li><li data-level="2"><a href="#privacy">Privacy</a></li><li data-level="3"><a href="#before-connecting-an-ai-tool">Before connecting an AI tool</a></li><li data-level="3"><a href="#sharing-diagnostics">Sharing diagnostics</a></li><li data-level="2"><a href="#current-limits">Current limits</a></li><li data-level="2"><a href="#reporting-a-security-issue">Report a vulnerability</a></li></ol></details>
           <h2 id="main-risks">Main risks</h2>
           <p>AI-assisted apps can read malicious content, follow unsafe instructions, use old permissions, expose secrets or change the wrong files. A compromised computer can also get around an app&rsquo;s own controls.</p>
 
@@ -115,8 +115,9 @@
           <p>The installer uses <code>sudo</code>. It installs system packages and services in the Ubuntu distribution you run it in and registers one Windows scheduled task, so use a distribution or virtual machine you can afford to lose. There is no supported one-command uninstall yet; see <a href="updates.html">updates and removal</a>.</p>
           <p>StatePort has no security certification and no penetration test. It makes no claim of GDPR, NIS2 or other legal compliance. Review your own setup, data, providers and retention rules before you use it.</p>
 
-          <h2 id="reporting-a-security-issue">Reporting a security issue</h2>
-          <p>There is no dedicated vulnerability-reporting address yet. For now, you can <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">open a public issue</a> for non-sensitive reports. Do not post secrets or private security details.</p>
+          <h2 id="reporting-a-security-issue">Report a vulnerability</h2>
+          <p>To report a suspected vulnerability in StatePort or in this site, <a href="https://github.com/lennertvhoy/StatePort-Source/security/advisories/new" target="_blank" rel="noopener">report it privately on GitHub<span class="sr-only"> (opens in a new tab)</span></a>. This uses GitHub private vulnerability reporting, which is enabled on the public source repository; only you and the maintainer can see the report. You need a GitHub account. StatePort is an early alpha maintained by one person, so no response time is promised.</p>
+          <p>For ordinary bugs and feedback that contain nothing sensitive, <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">open a public issue</a> instead. Do not post secrets or details of a suspected vulnerability in a public issue.</p>
 
           <div class="inline-actions">
             <a class="button button--ink" href="hosts-and-portability.html">Understand host boundaries</a>
