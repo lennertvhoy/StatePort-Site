@@ -154,7 +154,7 @@ systemd=true</code></pre>
               <li>Click <strong>Open the study sample</strong> (a small study-plan app). It installs the bundled sample, records a receipt and opens it after about ten seconds. The Applications list at the left may keep saying that no applications exist until you reload. The <a href="../tutorials/site-orientation.html">72-second field guide</a> shows what to look for.</li>
               <li>To try your own project, place a Git repository below <code>/var/lib/stateport/imports</code> and use <strong>Catalog → Import a repository</strong>. On Alpha.21 such a checkout was imported without an ownership fix (not repeated on Alpha.24). If it does not appear, see <a href="../docs/troubleshooting.html#template-import-ownership">troubleshooting</a>.</li>
             </ol>
-            <p>The study sample needs no provider login: everything in it is proposed by a fixed script. Chat replies and coding-agent runs would need a provider connection, and they have not been shown to work. Importing a template from a public Git URL was not tested.</p>
+            <p>The study sample needs no provider login: everything in it is proposed by a fixed script. Chat replies and coding-agent runs would need a provider connection, and they have not been shown to work. Importing the real StudyState template from its public GitHub address worked on Alpha.24 (it adds a read-only inspect action, not the study planner); importing ProjectState or any other template from a public Git address was not tested on Alpha.24.</p>
             <p><a href="../docs/templates.html">Open the template workflow</a> or <a href="../docs/getting-started.html">read the full getting-started guide</a>.</p>
           </section>
 

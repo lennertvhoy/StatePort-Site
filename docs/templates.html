@@ -103,7 +103,7 @@
 <p>StatePort is meant to accept any repository that declares a valid template file and supported actions. That format is called a portable StateSpec repository. StatePort runs only the actions it has actually built, and a repository cannot give itself access by declaring it. A third template has not been tried on an installed copy.</p>
 
 <h2 id="import-heading">How import works</h2>
-<p>This flow was measured on an installed Alpha.21 with local checkouts of ProjectState and StudyState. It has not been repeated on Alpha.24.</p>
+<p>This flow was measured on an installed Alpha.21 with local checkouts of ProjectState and StudyState, and it has not been repeated on Alpha.24 with a local checkout. The public HTTPS route was measured on Alpha.24 for StudyState only (see <a href="#verified">what is verified</a>).</p>
 <ol>
 <li>Put a real Git checkout, with its <code>.git</code> folder, in the import folder the installer creates. The default is <code>/var/lib/stateport/imports</code>. A ZIP file has no Git history, so it cannot give an exact commit. Or give a public HTTPS repository and its full 40-character commit.</li>
 <li>In StatePort, open <strong>Catalog</strong> and choose <strong>Import a repository</strong>.</li>
@@ -121,7 +121,7 @@
 <li><strong>The install itself:</strong> Alpha.24 installed and passed its checks on a fresh Windows 11 test virtual machine with WSL2 and Ubuntu 24.04; real-Windows and reboot results are pending. Alpha.21 came up healthy on 2 of 3 fresh test installs; one attempt was refused by a package check. See <a href="limitations.html#measured">current limitations</a>.</li>
 <li><strong>The StudyState sample flow:</strong> measured in the browser on an installed Alpha.21 from start to receipt, with the saved state kept after a reload. Undo was measured through the API, not in the browser. Not repeated on Alpha.24.</li>
 <li><strong>Importing a ProjectState or StudyState repository from a local checkout:</strong> measured on an installed Alpha.21 through the API and in the browser, without an ownership fix. Discover, inspect, plan, approve, install and the read-only inspect action all worked, and the source repository stayed untouched. A stale inspection and an approval with the wrong digest were refused. On Alpha.20 a dirty source repository imported only its committed files; that was not repeated on Alpha.21, Alpha.22, Alpha.23 or Alpha.24.</li>
-<li><strong>Importing from a public HTTPS repository:</strong> not tested.</li>
+<li><strong>Importing from a public HTTPS repository:</strong> measured once, for StudyState only, on Alpha.24 in a local KVM-hosted Windows 11 test virtual machine (not bare metal). The real StudyState_Template, given as its public GitHub HTTPS address, was inspected, planned and installed as a new instance. The imported copy offers only a read-only inspect action, and it does not add the study planner (the planner is the built-in sample). On Alpha.23 the same import failed because the product&rsquo;s containers could not resolve external host names. Importing ProjectState, or any other repository, from a public HTTPS address was not tested on Alpha.24.</li>
 <li><strong>A third, independent template:</strong> not tested.</li>
 </ul>
 <p>Not tested means unknown, not that it fails. If you try it, <a href="troubleshooting.html#report">report what happened</a>.</p>
