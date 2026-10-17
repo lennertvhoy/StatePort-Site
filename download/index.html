@@ -142,7 +142,7 @@ systemd=true</code></pre>
               <li>Shows the exact install plan and asks you to type <code>install-exact</code> to approve it.</li>
               <li>Installs and starts StatePort, then prints the result.</li>
             </ol>
-            <p>Expect it to take a while: Alpha.21 took about 12 to 18 minutes on a test virtual machine (the Alpha.22, Alpha.23 and Alpha.24 install times were not recorded), and longer on a slow connection. If it stops with <code>package_installation_invalid</code>, wait a minute and run the same command again; <a href="../docs/troubleshooting.html#package-installation-invalid">troubleshooting</a> explains why.</p>
+            <p>Expect it to take several minutes: the Alpha.24 public command took 474 seconds (about 8 minutes) once on a test virtual machine (a local KVM guest, not bare metal), and expect longer on a slow connection or a slower computer. If it stops with <code>package_installation_invalid</code>, wait a minute and run the same command again; <a href="../docs/troubleshooting.html#package-installation-invalid">troubleshooting</a> explains why.</p>
             <p>You can check the installer before you run it. Its SHA-256 fingerprint is <code>4c7499e60b82fded33672dfd472fea87bca8ea96b74a579affc1681af10181fd</code>. To compare, run <code>curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh | sha256sum</code>. The two should match.</p>
           </section>
 
