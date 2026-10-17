@@ -91,7 +91,7 @@
 <ul>
 <li><strong>Fresh install on the supported setup:</strong> measured in a virtual machine. Alpha.24 installed and passed its checks on a fresh Windows 11 test machine with WSL2 and Ubuntu 24.04, reset to a clean snapshot (from a local copy of the signed files); real-Windows and reboot results are pending. On Alpha.21 the public command came up healthy on 2 of 3 fresh test machines; one attempt was refused by a package check and succeeded on the retry.</li>
 <li><strong>Update in place:</strong> no supported command.</li>
-<li><strong>Roll back:</strong> not supported. The Alpha.24 release file declares that rollback is not supported.</li>
+<li><strong>Roll back:</strong> not supported. The Alpha.24 release file declares that rollback is not supported, so there is no way back to an earlier alpha. Data saved by one alpha may not work in another.</li>
 <li><strong>Uninstall:</strong> not run on Windows. The Alpha.24 installer prints an option that removes the running services and keeps your data, and a separate purge option that deletes the data; both passed in a Linux test lab that imitates WSL2 (run on Alpha.22). No supported one-command uninstall.</li>
 <li><strong>Reinstall:</strong> not run on Windows. Running the installer again over a finished Alpha.24 install reported that it was already installed and changed nothing (measured in the test virtual machine). The Alpha.24 installer prints a reinstall option that keeps your data; in the Linux test lab, installing again after an uninstall brought the data back.</li>
 </ul>
@@ -107,7 +107,7 @@
 <p>When a newer release exists, its own docs will give instructions. Until then:</p>
 <ul>
 <li>Do not replace the trusted key, edit the generated files, or mix files from different releases.</li>
-<li>Do not run an installer or command from an older release against an Alpha.24 installation.</li>
+<li>Do not run an installer or command from an older release against an Alpha.24 installation. Going back to an earlier alpha is not supported, and data saved by one alpha may not be compatible with another.</li>
 <li>Check the <a href="../releases/">release status</a> and the <a href="../download/">download page</a> for what is current.</li>
 </ul>
 
