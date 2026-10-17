@@ -11,7 +11,7 @@ last_updated: 2026-09-04
 
 User-authorized queue, 2026-09-05: before the next ordinary task, update this
 project’s template coordination from the local reference at
-`/home/ff/Projects/.projectstate-handoffs/persistent-threads-2026-09-05`.
+`~/Projects/.projectstate-handoffs/persistent-threads-2026-09-05`.
 Read its `docs/UPGRADING.md`; review `core/AGENTS.md` and the applicable gate.
 This source supersedes the older template revision in any migration notice below.
 Preserve project-specific rules, product truth, acceptance criteria, evidence,
@@ -164,11 +164,11 @@ selected; it is optional and is not part of the default six-file core.
   escalation, secrets/private-data exposure, permission-boundary changes,
   unverifiable provenance, or reachable critical/high vulnerabilities.
 - Heavy signing, VM, publication, or deployment work on this workstation enters
-  through `/home/ff/.kimi-code/governor/heavy-run.sh` after cheap premises pass.
+  through `~/.kimi-code/governor/heavy-run.sh` after cheap premises pass.
 
 ## Git and workstation safety
 
-- Canonical checkout: `/home/ff/Projects/StatePort-Site`; canonical branch:
+- Canonical checkout: `~/Projects/StatePort-Site`; canonical branch:
   `main`; remote: `origin`.
 - Preserve unrelated or owner-authored changes. Never reset, clean, stash,
   force-push, rewrite shared history, or delete unique data as workflow cleanup.

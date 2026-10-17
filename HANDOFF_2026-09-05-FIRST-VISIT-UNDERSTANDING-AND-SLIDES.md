@@ -27,9 +27,9 @@ canonical state, weaken existing acceptance, or mark the current release done.
 The original HANDOFF_2026-09-05-PRODUCT-VIDEO-AND-PAPERS.md is retained in full as
 historical context, including its appended implementation result.
 
-- Site: /home/ff/Projects/StatePort-Site.
-- Papers: /home/ff/Projects/StatePort-Papers (private).
-- Product: /home/ff/Projects/StatePort remains read-only while another agent
+- Site: ~/Projects/StatePort-Site.
+- Papers: ~/Projects/StatePort-Papers (private).
+- Product: ~/Projects/StatePort remains read-only while another agent
   works there. Do not change its checkout or disturb its runtime.
 - Preserve staged/unstaged changes, untracked evidence, original slide files,
   historical media and immutable signed/versioned release bytes.
@@ -117,7 +117,7 @@ publication of existing decks merely to satisfy a loosely interpreted API wish.
 The preceding implementation is published: Site b431e63, Papers 85c6c39.
 GitHub Pages built the Site commit; all 43 changed public files anonymously
 matched local bytes. Exact receipt:
-/home/ff/Projects/.local/stateport-product-guide-sep05/publication-verification.json.
+~/Projects/.local/stateport-product-guide-sep05/publication-verification.json.
 Recheck actual repository and remote state on resume; these are historical
 provenance, not mutable-state commit binding.
 
@@ -138,8 +138,8 @@ provenance, not mutable-state commit binding.
   passed. Papers build and outcome gate passed. Human acceptance is pending.
 
 Media source, narration, captured scenes, render scripts and logs:
-/home/ff/Projects/.local/stateport-product-guide-sep05/.
-Earlier source: /home/ff/Projects/.local/stateport-site-media-sep05/.
+~/Projects/.local/stateport-product-guide-sep05/.
+Earlier source: ~/Projects/.local/stateport-site-media-sep05/.
 Site visual evidence: output/product-refresh/ and the current slice JSON files.
 Papers sources/outputs: src/*.md, out/*.pdf; build/check-papers.sh;
 visual evidence: build/.work/product-refresh-review/ and current slice summary.
@@ -151,7 +151,7 @@ local-file fallback; this is a separate local installation, not a repaired or
 qualified public Windows release.
 
 - Open http://127.0.0.1:18780 or application menu “StatePort (Local)”.
-- Root: /home/ff/.local/share/stateport-local; control: stateport-local
+- Root: ~/.local/share/stateport-local; control: stateport-local
   start|stop|restart|status|logs. Separate enabled systemd user services and XDG
   data use loopback ports 18780, 18790 and 18791.
 - Independent source snapshot: 28f72db7ef8f30e6a3a24641c4d61f8b58d5a297;

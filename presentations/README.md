@@ -14,9 +14,9 @@ installed bundle was found at the path below and its runtime.json inspected.
 Do not install replacement dependencies into the bundle.
 
 ```bash
-export RUNTIME_ROOT=/home/ff/.cache/codex-runtimes/codex-primary-runtime
+export RUNTIME_ROOT=~/.cache/codex-runtimes/codex-primary-runtime
 export RUNTIME_NODE_MODULES="$RUNTIME_ROOT/dependencies/node/node_modules"
-export PRESENTATIONS_SKILL=/home/ff/.codex/plugins/cache/openai-primary-runtime/presentations/26.904.11930/skills/presentations
+export PRESENTATIONS_SKILL=~/.codex/plugins/cache/openai-primary-runtime/presentations/26.904.11930/skills/presentations
 "$RUNTIME_ROOT/dependencies/node/bin/node" presentations/build.mjs presentations/deck.json ../.local/stateport-slides-revision-1
 ```
 

@@ -25,10 +25,10 @@ the latest local files before adopting anything. Proceed in English.
 
 ## Boundaries
 
-- **`/home/ff/Projects/StatePort` is read-only.** Another agent is working there.
+- **`~/Projects/StatePort` is read-only.** Another agent is working there.
   Do not edit it, run commands that generate files there, or disturb its runtime.
-- Editable repositories: `/home/ff/Projects/StatePort-Site` and
-  `/home/ff/Projects/StatePort-Papers`. Read each repository's AGENTS.md,
+- Editable repositories: `~/Projects/StatePort-Site` and
+  `~/Projects/StatePort-Papers`. Read each repository's AGENTS.md,
   PROJECT.md, STATE.yaml and current evidence before work.
 - Preserve all existing staged and unstaged changes and untracked evidence.
   No reset, clean, stash, force-push or shared-history rewrite. No commits,
@@ -41,7 +41,7 @@ the latest local files before adopting anything. Proceed in English.
 
 ## Template integration: inspect the actual latest source
 
-Local source: `/home/ff/Projects/ProjectState_Template`.
+Local source: `~/Projects/ProjectState_Template`.
 At handoff, its HEAD is `7e4cb7c` (“fix(core): make outcome validation truthful
 and exercise packaged delivery”). Recheck its working tree and any newer local
 handoff; a commit ID alone does not establish the newest template contents.
@@ -49,7 +49,7 @@ The working tree contains staged updates to AGENTS.md, README.md, STATE.yaml,
 upgrade guidance, startup/model-routing prompts, persistent-thread rules,
 initialization code and rollout evidence. Preserve these and inspect them as
 part of the latest local source. The queued persistent-thread reference is:
-`/home/ff/Projects/.projectstate-handoffs/persistent-threads-2026-09-05`.
+`~/Projects/.projectstate-handoffs/persistent-threads-2026-09-05`.
 
 The prior session adopted that handoff's coordination core into Papers and
 appended optional thread rules in Site. This **does not establish that the
@@ -92,7 +92,7 @@ owner's intended product demonstration**. Rework the footage, narration,
 poster, transcript, captions, chapter labels and referring page copy together.
 
 Preserved production source:
-`/home/ff/Projects/.local/stateport-site-media-sep05/`.
+`~/Projects/.local/stateport-site-media-sep05/`.
 Read its README.md, scenes.json, capture.cjs and build-composition.py. It contains
 HyperFrames/GSAP composition, screenshots, Edge narration stems, original ambient
 music and render logs. Reuse useful production tooling; replace the documentation
@@ -163,7 +163,7 @@ installation. The sample review/apply/receipt/restart journey passed.
 
 The user explicitly authorized installation from local files when the public
 installer refused native Linux. The uv-managed installation is at
-`/home/ff/.local/share/stateport-local`, open at `http://127.0.0.1:18780`, with
+`~/.local/share/stateport-local`, open at `http://127.0.0.1:18780`, with
 its own services, data and independent source snapshot. Real ProjectState and
 StudyState snapshots were imported too; unavailable template Runs/metadata and
 external runtime/provider setup remain separate limits.

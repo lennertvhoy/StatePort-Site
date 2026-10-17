@@ -1,7 +1,8 @@
 /* Headless rendered-label regression check; PLAYWRIGHT_MODULE may select a local installation. */
-const {chromium}=require(process.env.PLAYWRIGHT_MODULE || '/home/ff/Projects/StatePort/apps/web/node_modules/playwright');
 const fs=require('node:fs');
+const os=require('node:os');
 const path=require('node:path');
+const {chromium}=require(process.env.PLAYWRIGHT_MODULE || path.join(os.homedir(),'Projects/StatePort/apps/web/node_modules/playwright'));
 const base=process.env.PAPER_BASE || 'http://127.0.0.1:4194';
 const out=process.env.PAPER_REPORT || 'output/diagram-clipping-20260909/local';
 const stem='stateware-whitepaper-public-v1-1';

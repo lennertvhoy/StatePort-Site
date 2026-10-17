@@ -146,13 +146,13 @@ site:
     alpha12_mutable_install_sha256: a189338670d4e24c15b1fefc915e0b2770214efa5ec7c87aec31980343e3deae
     alpha12_mutable_install_matches_versioned: false
     alpha12_mutable_install_carries_digest_slot_and_real_python3_venv_install_repairs: true
-    alpha10_containment_receipt: /home/ff/.local/state/stateport/release/alpha10/pages-anonymous-containment-verification-27bcf6c-r1.json
+    alpha10_containment_receipt: ~/.local/state/stateport/release/alpha10/pages-anonymous-containment-verification-27bcf6c-r1.json
     alpha10_containment_live_content_commit: 27bcf6c8431a89e8893f047d6a4b61b9467f460e
 
 owner_directive:
   id: STATEPORT-ALPHA11-PODMAN-CLEAN-INSTALL-20260831
   status: alpha12_site_release_truth_publication_authorized
-  source_repository: /home/ff/Projects/StatePort
+  source_repository: ~/Projects/StatePort
   source_base: c39a0049dfbc7e0a40bb7661e8b86eadb0f9bfa6
   site_base: 705d50b0c2bff2ef92283eeb5eb3b7f9ff646376
   objective: fail_close_rejected_alpha10_mutable_installer_then_publish_an_alpha12_public_test_candidate_that_repairs_the_alpha11_install_path_and_present_it_as_the_current_public_test_candidate
