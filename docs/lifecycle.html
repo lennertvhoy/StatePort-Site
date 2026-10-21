@@ -9,7 +9,7 @@
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="Application lifecycle - StatePort">
-    <meta property="og:description" content="Setup, use, updates, backup, moving and recovery for a StatePort app.">
+    <meta property="og:description" content="Setup, everyday use, upgrades, backup, restore and the install commands for a StatePort application.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/lifecycle.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -50,7 +50,7 @@
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / Lifecycle</p>
           <h1 id="page-title">From setup to recovery</h1>
-          <p>This page follows an app through setup, everyday use, updates, backup, moving and recovery.</p>
+          <p>This page follows an application through setup, everyday use, upgrades, backup, moving and recovery, and through the commands that manage the install.</p>
         </div>
       </section>
 
@@ -85,55 +85,75 @@
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice"><strong>Early alpha, release 0.1.0-alpha.24.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer, in virtual machines; real-Windows results are pending. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+<p class="notice"><strong>Early alpha. This page describes Alpha.26.</strong> Do not use StatePort for important data, and keep your own copies of anything you care about. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
 
-          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#set-up-a-known-release">Set up a known release</a></li><li data-level="2"><a href="#use-the-application">Use the application</a></li><li data-level="2"><a href="#update-or-move">Update or move</a></li><li data-level="2"><a href="#back-up-and-recover">Back up and recover</a></li><li data-level="3"><a href="#before-a-backup">Before a backup</a></li><li data-level="3"><a href="#restore-a-separate-instance">Restore a separate instance</a></li><li data-level="3"><a href="#what-recovery-does-not-undo">What recovery does not undo</a></li><li data-level="2"><a href="#current-availability">Current availability</a></li></ol></details>
-          <h2 id="set-up-a-known-release">Set up a known release</h2>
-          <p>Keep three things apart: StatePort itself, the template that defines an app, and your instance, which holds your actual work. Replacing StatePort does not back up your instance. Importing a newer template does not update your existing work.</p>
-          <p>To install the current release, follow <a href="getting-started.html">getting started</a> and check the <a href="../releases/">release status</a>. Keep the install receipt and the address the installer printed. <a href="updates.html">Updates and removal</a> says what this alpha supports for updating and removing StatePort.</p>
-          <h2 id="use-the-application">Use the application</h2>
-          <ol>
-            <li>Open the app you want and read its current state before you ask for anything. Two instances from the same template hold different work.</li>
-            <li>Pick one concrete task. Readiness tells you whether the app can do it with the tools and permissions it has now.</li>
-            <li>Review the proposed change before you apply it. Check the target, the files or facts it touches, and the access it asks for.</li>
-            <li>After you apply it, check the receipt and the updated state. A chat reply alone does not show that a change was saved.</li>
-            <li>When you come back later, reload the app and check that the last result is still there. Use Activity and Receipts to settle any doubt before you repeat a request.</li>
-          </ol>
-          <p>The <a href="everyday-work.html">everyday-work guide</a> walks through this cycle. <a href="study-state.html">StudyState</a>, a study-plan template, gives a concrete reflection example.</p>
-          <h2 id="update-or-move">Update or move</h2>
-          <p>Before you change an installation, write down the installed release, the app&rsquo;s identity and the template&rsquo;s source revision. Keep a verified backup outside anything you are about to replace. A template checkout, a container image or a conversation export is not a full backup of an instance.</p>
-          <p>Updating StatePort in place is not supported in this alpha, and neither is rolling back to an earlier alpha: data saved by one alpha may not be compatible with another. Read <a href="updates.html">the update boundary</a> before you re-run an installer. An imported template is a separate managed copy. Editing its original repository does not change your instance.</p>
-          <p>Moving to another machine changes the environment. Tool availability, permission grants, credentials and reachable services all need checking again. The <a href="hosts-and-portability.html">portability guide</a> explains what can travel with your work and what needs new setup. Export and import exist for an instance&rsquo;s files. Grants, receipts and provider logins do not travel, and there is no migration wizard.</p>
-          <h2 id="back-up-and-recover">Back up and recover</h2>
-          <p><strong>Availability:</strong> a verified backup and restore as a new instance were measured through the API on an installed Alpha.21, and a backup from the interface produced a verified receipt. The restore request through the API fails unless it includes a destination name. Restore from the interface was not completed on Alpha.21, and the overview kept saying &ldquo;Backup due&rdquo; right after a verified backup. None of this has been repeated on Alpha.22. Keep your own copy of anything you care about outside the Ubuntu distribution where StatePort runs. What you see depends on the app, its permissions and the installed version.</p>
-          <p><strong>What a backup contains.</strong> A backup archives the instance&rsquo;s files. It does not include the instance&rsquo;s Git history, conversations, the receipts index or approvals. Restore creates a new instance from those files. It recreates files only. It does not finish interrupted work or check what happened outside StatePort.</p>
-          <h3 id="before-a-backup">Before a backup</h3>
-          <ul>
-            <li>Finish or check outstanding changes so you know which state you are keeping.</li>
-            <li>Write down the app&rsquo;s identity and a few facts you expect to get back, such as the current project step or your last study reflection.</li>
-            <li>Where available, use <strong>Back up now</strong> and check the backup status and receipt. A backup attempt is not the same as a verified archive.</li>
-            <li>Keep backups private. Verification checks integrity. It does not mean encryption, a schedule or a retention policy.</li>
-          </ul>
-          <h3 id="restore-a-separate-instance">Restore a separate instance</h3>
-          <p>Restore makes a new managed instance. It does not overwrite the source app. In versions that show <strong>Settings → Backup &amp; recovery</strong>, an operator picks an indexed backup, reviews the restore plan and the new instance&rsquo;s identity, approves that exact plan, and applies it.</p>
-          <ol>
-            <li>Pick the backup you want. Check which app and which point in time it represents.</li>
-            <li>Review the proposed new identity and any source-access details. Do not assume earlier consent carries over to a new instance.</li>
-            <li>Apply only the plan you reviewed. If the plan expires, or the backup, the source or the destination changes, prepare and review a new plan.</li>
-            <li>Check the restore receipt and open the new app. Compare it with the facts you wrote down before the backup.</li>
-            <li>Check tool readiness and permissions separately. Keep the original instance until you have checked the restored work and decided which copy to use.</li>
-          </ol>
-          <p>If recovery stops with an uncertain result, keep the receipt and both instances so you can look at them. Do not remove the destination or apply the restore again and again to make an error go away. See <a href="troubleshooting.html">troubleshooting</a>.</p>
-          <h3 id="what-recovery-does-not-undo">What recovery does not undo</h3>
-          <p>Recovery restores files. It does not recall a sent message, reverse a payment, remove a remote deployment or undo a provider request. Check outside effects yourself before you carry on. A restored file that says &ldquo;not sent&rdquo; does not prove the message was never sent.</p>
-          <h2 id="current-availability">Current availability</h2>
-          <p>The release status page says what you can install. The controls described here may be missing in an older install or for a particular template. Do not use developer commands or manual file replacement to get around a missing recovery control. Keep the original work and report what is missing.</p>
+<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#set-up-a-known-release">Set up a known release</a></li><li data-level="2"><a href="#manage-the-install">Manage the install</a></li><li data-level="2"><a href="#use-the-application">Use the application</a></li><li data-level="2"><a href="#update-or-move">Update or move</a></li><li data-level="2"><a href="#back-up-and-recover">Back up and recover</a></li><li data-level="3"><a href="#before-a-backup">Before a backup</a></li><li data-level="3"><a href="#restore-a-separate-instance">Restore a separate instance</a></li><li data-level="3"><a href="#what-recovery-does-not-undo">What recovery does not undo</a></li></ol></details>
 
-          <div class="inline-actions">
-            <a class="button button--ink" href="governance.html">Review and control changes</a>
-            <a class="button button--outlined" href="../releases/">Check release status</a>
-          </div>
-        </article>
+<h2 id="set-up-a-known-release">Set up a known release</h2>
+<p>Keep three things apart: StatePort itself, the template that defines an application, and your application, which holds your actual work. Replacing StatePort does not back up your work. Importing a newer template does not update what you already have.</p>
+<p>To install, follow <a href="getting-started.html">getting started</a>. Keep the install receipt and the address the installer printed. <a href="updates.html">Updates and removal</a> says what this release supports for updating and removing StatePort.</p>
+
+<h2 id="manage-the-install">Manage the install</h2>
+<p>The installer leaves a small command at <code>~/.local/state/stateport-install/bin/stateport</code>. Run it from the Ubuntu window, as your normal user:</p>
+<pre><code>~/.local/state/stateport-install/bin/stateport status
+~/.local/state/stateport-install/bin/stateport open
+~/.local/state/stateport-install/bin/stateport url</code>
+</pre>
+<ul>
+<li><code>status</code> shows what is installed and whether the services answer.</li>
+<li><code>open</code> opens StatePort in your browser.</li>
+<li><code>url</code> prints the address to open, which is useful when you have lost the printed line.</li>
+</ul>
+<p>Two more commands remove it: <code>uninstall</code>, which stops the services and keeps your data, and <code>purge</code>, which deletes the data as well and asks you to type a confirmation. <a href="updates.html#removal">Updates and removal</a> explains both.</p>
+
+<h2 id="use-the-application">Use the application</h2>
+<ol>
+<li>Open the application and read its current state before you ask for anything. Two applications from the same template hold different work.</li>
+<li>Run its check. The verdict tells you whether the files agree with each other, and the reason tells you what is missing.</li>
+<li>Ask for one concrete piece of work. The model works on a copy and hands you a proposal.</li>
+<li>Read the proposal: the exact changes, and the check before and after. Apply it or reject it.</li>
+<li>After you apply it, read the record of what happened. A chat reply alone does not show that a change was saved.</li>
+<li>When you come back later, reload the application and check that the last result is still there.</li>
+</ol>
+<p><a href="everyday-work.html">Your first session</a> walks through this cycle. <a href="study-state.html">StudyState</a>, a study-plan template, gives a concrete example.</p>
+
+<h2 id="update-or-move">Update or move</h2>
+<p>Before you change an installation, write down the installed release, the application's identity and the template's source revision. Keep a verified backup outside anything you are about to replace. A template checkout, a container image or a conversation export is not a full backup.</p>
+<p>Running the one-line install command of a newer release over an older install offers you an upgrade in place. You type <code>upgrade</code>, and your data is kept. There is still no way back to an earlier release: data saved by one release may not be compatible with another. Read <a href="updates.html">the update boundary</a> before you run it.</p>
+<p>An imported template is a separate managed copy. Editing its original repository does not change your application.</p>
+<p>Moving to another machine changes the environment. Tool availability, permissions, credentials and reachable services all need checking again. <a href="hosts-and-portability.html">AI tools and portability</a> explains what can travel with your work and what needs new setup.</p>
+
+<h2 id="back-up-and-recover">Back up and recover</h2>
+<p><strong>How it works.</strong> Every application has its own <strong>Back up now</strong> button. A backup is an archive of the files of that application. Restoring one creates a <em>new</em> application from the backup. It never overwrites the application you already have, so you can compare the two and keep the one you want.</p>
+<p><strong>What a backup contains.</strong> The files of the application. It does not include the application's Git history, its conversations, the index of records or the approvals you gave. A restore recreates files only: it does not finish interrupted work, and it does not check what happened outside StatePort.</p>
+
+<h3 id="before-a-backup">Before a backup</h3>
+<ul>
+<li>Finish or check outstanding changes, so you know which state you are keeping.</li>
+<li>Write down the application's identity and a few facts you expect to get back, such as the current project step or your last study reflection.</li>
+<li>Use <strong>Back up now</strong> and check the backup status and its record. A backup attempt is not the same as a stored archive.</li>
+<li>Keep backups private. The check on a backup tests its integrity. It is not encryption, and there is no schedule or retention policy.</li>
+</ul>
+
+<h3 id="restore-a-separate-instance">Restore a separate instance</h3>
+<ol>
+<li>Pick the backup you want. Check which application and which point in time it represents.</li>
+<li>Review the new application's name and any source-access details. Do not assume that earlier permission carries over to a new application.</li>
+<li>Apply only the plan you reviewed. If the plan expires, or the backup, the source or the destination changes, prepare and review a new plan.</li>
+<li>Check the restore record and open the new application. Compare it with the facts you wrote down before the backup.</li>
+<li>Check the model route separately, if the new application uses one. Keep the original application until you have checked the restored work and decided which copy to use.</li>
+</ol>
+<p>If a restore stops with an uncertain result, keep the record and both applications so you can look at them. Do not remove the destination, and do not apply the same restore again and again. See <a href="troubleshooting.html">troubleshooting</a>.</p>
+
+<h3 id="what-recovery-does-not-undo">What recovery does not undo</h3>
+<p>A restore puts files back. It does not recall a sent message, reverse a payment, remove a remote deployment or undo a request that already reached a model provider. Check outside effects yourself before you carry on. A restored file that says &ldquo;not sent&rdquo; does not prove the message was never sent.</p>
+
+<div class="inline-actions">
+<a class="button button--ink" href="governance.html">Review and control changes</a>
+<a class="button button--outlined" href="updates.html">Updates and removal</a>
+<a class="button button--outlined" href="../releases/">Check release status</a>
+</div>
+</article>
       </div>
     </main>
 
