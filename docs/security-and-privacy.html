@@ -9,7 +9,7 @@
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="Security and privacy — StatePort">
-    <meta property="og:description" content="How StatePort limits access, keeps secrets out of application files, and handles current security limits.">
+    <meta property="og:description" content="What leaves your machine, what a model can reach, and the free-model terms you accept before the first request.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/security-and-privacy.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -50,7 +50,7 @@
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / Security and privacy</p>
           <h1 id="page-title">Security and privacy</h1>
-          <p>StatePort has not had an independent security review, and it does not remove every risk. This page lists the main ones.</p>
+          <p>What leaves your machine, when it leaves, and what a model can reach once it does. StatePort has not had an independent security review, and it does not remove every risk.</p>
         </div>
       </section>
 
@@ -85,46 +85,80 @@
           </nav>
         </aside>
         <article class="prose">
-          <p class="notice notice--quiet"><strong>Early alpha.</strong> StatePort has not had an independent security review. Do not use it for important data.</p>
+<p class="notice notice--quiet"><strong>Early alpha.</strong> StatePort has not had an independent security review. Do not use it for important data. One setup is supported: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
 
-          <details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#main-risks">Main risks</a></li><li data-level="2"><a href="#how-the-design-reduces-risk">How the design reduces risk</a></li><li data-level="2"><a href="#privacy">Privacy</a></li><li data-level="3"><a href="#before-connecting-an-ai-tool">Before connecting an AI tool</a></li><li data-level="3"><a href="#sharing-diagnostics">Sharing diagnostics</a></li><li data-level="2"><a href="#current-limits">Current limits</a></li><li data-level="2"><a href="#reporting-a-security-issue">Report a vulnerability</a></li></ol></details>
-          <h2 id="main-risks">Main risks</h2>
-          <p>AI-assisted apps can read malicious content, follow unsafe instructions, use old permissions, expose secrets or change the wrong files. A compromised computer can also get around an app&rsquo;s own controls.</p>
+<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#main-risks">Main risks</a></li><li data-level="2"><a href="#what-leaves">What leaves your machine, and when</a></li><li data-level="2"><a href="#the-sandbox">The sandbox</a></li><li data-level="2"><a href="#egress">The list of addresses a model may reach</a></li><li data-level="2"><a href="#privacy">Privacy</a></li><li data-level="3"><a href="#free-models">Using free models</a></li><li data-level="3"><a href="#before-connecting-an-ai-tool">Before connecting an AI tool</a></li><li data-level="3"><a href="#sharing-diagnostics">Sharing diagnostics</a></li><li data-level="2"><a href="#current-limits">Current limits</a></li><li data-level="2"><a href="#reporting-a-security-issue">Report a vulnerability</a></li></ol></details>
 
-          <h2 id="how-the-design-reduces-risk">What StatePort tries to do about them</h2>
-          <ul>
-            <li>Check where software and app files came from.</li>
-            <li>State which files an app may change.</li>
-            <li>Ask before important or destructive actions.</li>
-            <li>Limit what AI tools and containers can reach.</li>
-            <li>Keep passwords and provider credentials out of app files and images.</li>
-            <li>Record changes and their checks so you can review them later.</li>
-          </ul>
+<h2 id="main-risks">Main risks</h2>
+<p>AI-assisted applications can read malicious content, follow unsafe instructions, use old permissions, expose secrets or change the wrong files. A compromised computer can also get around an application&rsquo;s own controls. StatePort reduces these risks; it does not remove them.</p>
 
-          <h2 id="privacy">Privacy</h2>
-          <p>The installer downloads release files and container images from the internet. After that, StatePort runs as local services and prints an address on your own computer (<code>127.0.0.1</code>), which other devices cannot reach. Whether every feature works without a connection has not been measured.</p>
-          <p>App data stays on your machine by default. The plan is to send an AI model only the context the current task needs. On Alpha.20 the chat assistant was given the recent conversation, not your app state. On Alpha.21 the context it is given could not be checked, because no AI provider was connected in testing, and it has not been checked on Alpha.22. Either way, a remote provider sees whatever is sent to it, including the conversation. Private notes, conversations, identifiers, file paths and credentials should not become analytics data.</p>
-
-          <h3 id="before-connecting-an-ai-tool">Before connecting an AI tool</h3>
-          <p>A local web interface does not make a remote AI provider local. A provider request may send task context to that provider. Before you send sensitive content, check the selected tool and model, what the request contains, and your provider account settings. <a href="hosts-and-portability.html">AI tools and readiness</a> has the connection steps.</p>
-          <p>Keep provider login credentials apart from app content. Do not paste access tokens into a reflection, project evidence, a public issue or a repository file. Disconnecting StatePort stops its running work. It does not erase data already sent to a provider, and it does not replace that provider&rsquo;s account controls.</p>
-          <h3 id="sharing-diagnostics">Sharing diagnostics</h3>
-          <ul><li>Start with the release version, the visible error and the action that triggered it.</li><li>Look through receipts, logs, diffs and screenshots before you share them. They may include prompts, paths, repository names or personal content.</li><li>Share the smallest excerpt that helps, and remove credentials and private data. Keep the original private.</li>
+<h2 id="what-leaves">What leaves your machine, and when</h2>
+<p>StatePort runs as local services and prints an address on your own computer (<code>127.0.0.1</code>). Other devices cannot reach it, and you should not expose it to the internet.</p>
+<p>Three things can leave your machine, and only three:</p>
+<ul>
+<li><strong>During the install.</strong> The installer downloads the release files and the container images from this site and from GitHub, and checks each one against a fingerprint before using it.</li>
+<li><strong>When you import a template from a public repository.</strong> StatePort reads the repository you name. It does not send anything else, and it does not run the code of that repository while inspecting it.</li>
+<li><strong>When you ask a model to do something.</strong> An agent action or a chat message sends the work to the model provider you chose. That is the only time your content is sent to someone else.</li>
 </ul>
-          <p>A backup is also a copy of private app data. Verification checks integrity. It is not encryption. Keep backups protected and choose your own retention policy. See <a href="lifecycle.html#back-up-and-recover">backup and recovery</a>.</p>
-          <h2 id="current-limits">Current limits</h2>
-          <p>The installer uses <code>sudo</code>. It installs system packages and services in the Ubuntu distribution you run it in and registers one Windows scheduled task, so use a distribution or virtual machine you can afford to lose. There is no supported one-command uninstall yet; see <a href="updates.html">updates and removal</a>.</p>
-          <p>StatePort has no security certification and no penetration test. It makes no claim of GDPR, NIS2 or other legal compliance. Review your own setup, data, providers and retention rules before you use it.</p>
+<p>Everything else stays where it is. Your applications, their files, their history, your backups and the record of what happened all stay inside the Ubuntu distribution where you installed StatePort. Check actions, applying a change you have reviewed, and the whole interface work without a model and without a network.</p>
 
-          <h2 id="reporting-a-security-issue">Report a vulnerability</h2>
-          <p>To report a suspected vulnerability in StatePort or in this site, <a href="https://github.com/lennertvhoy/StatePort-Source/security/advisories/new" target="_blank" rel="noopener">report it privately on GitHub<span class="sr-only"> (opens in a new tab)</span></a>. This uses GitHub private vulnerability reporting, which is enabled on the public source repository; only you and the maintainer can see the report. You need a GitHub account. StatePort is an early alpha, so no response time is promised.</p>
-          <p>For ordinary bugs and feedback that contain nothing sensitive, <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">open a public issue</a> instead. Do not post secrets or details of a suspected vulnerability in a public issue.</p>
+<h2 id="the-sandbox">The sandbox</h2>
+<p>When a model works on an application, it does not work on your machine. It works in a sandbox, and the sandbox is built so that a confused or malicious model has very little to reach:</p>
+<ul>
+<li>It sees a copy of the one application it was asked to work on, and nothing else. Not your other applications, not the rest of your files, not the conversations of other applications.</li>
+<li>It sees the system files it needs to run (the read-only system libraries, the CA bundle and the pinned programs) as read-only.</li>
+<li>It gets a clean environment, its own working folder and its own process group, and it cannot start processes that outlive it.</li>
+<li>It has a wall-clock limit and a limit on how much it can write. When the limit is reached, it is stopped.</li>
+<li>It cannot reach the loopback address of the StatePort services themselves, so it cannot ask them to do anything.</li>
+</ul>
+<p>Only one file can be given to it on purpose: when you connect your own account, the single credential file that account needs is copied into the run&rsquo;s own home folder. The agent can read that file, and the address list below bounds where it could send it. The copy is deleted with the run, and the record of the run states that this route exposes the credential to the model.</p>
+<p>StatePort itself computes the difference between the copy and your application, so the proposal you review is the real change, not a summary from the model. A proposal that touches a file outside the application is refused before you see it.</p>
 
-          <div class="inline-actions">
-            <a class="button button--ink" href="hosts-and-portability.html">Understand host boundaries</a>
-            <a class="button button--outlined" href="evidence-and-roadmap.html">Read the roadmap</a>
-          </div>
-        </article>
+<h2 id="egress">The list of addresses a model may reach</h2>
+<p>The sandbox has no network of its own. A small forwarder inside it relays to one socket, and behind that socket StatePort acts as a gatekeeper:</p>
+<ul>
+<li>Only the addresses on the route&rsquo;s list are allowed, and only on port 443. For the free models, that list is the model provider&rsquo;s addresses and whatever else the program needs to reach, measured rather than guessed.</li>
+<li>Everything else is refused, and the refusal is written down.</li>
+<li>The names are looked up outside the sandbox, at the gate, so the sandbox cannot ask a name server of its own.</li>
+</ul>
+<p>Each run records which addresses were asked for, how many bytes went each way, and which requests were allowed or refused. You can read that in the record of the run.</p>
+
+<h2 id="privacy">Privacy</h2>
+<p>Your applications stay on your machine. What you send to a model provider is what that provider receives, including the conversation. Private notes, conversations, identifiers, file paths and credentials should not become data you send.</p>
+
+<h3 id="free-models">Using free models</h3>
+<p>You do not need an account to use StatePort. The free route needs no sign-in and no key, which is why it is offered with its terms in front of you:</p>
+<ul>
+<li>Before the first request, StatePort shows you the provider&rsquo;s terms and asks you to accept them. During a model&rsquo;s free period, OpenCode states that data sent to that model may be used to improve that model. Read that text before you accept; the page links to the provider&rsquo;s own wording.</li>
+<li>If you decline, no free-model request is made. The rest of StatePort keeps working, and you can connect your own account or API key instead.</li>
+<li>With the free route, the model receives the task you asked for and the files of the copy it works on. It does not receive your other applications, and it does not receive your account details.</li>
+<li>You can withdraw the consent at any time. The route then stops being used.</li>
+</ul>
+<p><a href="models.html">Models and keeping up</a> has the full picture, including how StatePort measures models on its own practice tasks without ever using your data.</p>
+
+<h3 id="before-connecting-an-ai-tool">Before connecting an AI tool</h3>
+<p>A local web interface does not make a remote AI provider local. A provider request may send task context to that provider. Before you send sensitive content, check the selected route, what the request contains, and your provider account settings.</p>
+<p>Keep provider login credentials apart from application content. Do not paste access tokens into a reflection, project evidence, a public issue or a repository file. Disconnecting StatePort stops its running work. It does not erase data already sent to a provider, and it does not replace that provider&rsquo;s account controls.</p>
+
+<h3 id="sharing-diagnostics">Sharing diagnostics</h3>
+<ul><li>Start with the release version, the visible error and the action that triggered it.</li><li>Look through records, logs, diffs and screenshots before you share them. They may include prompts, paths, repository names or personal content.</li><li>Share the smallest excerpt that helps, and remove credentials and private data. Keep the original private.</li>
+</ul>
+<p>A backup is also a copy of private application data. The check on a backup tests its integrity. It is not encryption. Keep backups protected and choose your own retention rules. See <a href="lifecycle.html#back-up-and-recover">backup and recovery</a>.</p>
+
+<h2 id="current-limits">Current limits</h2>
+<p>The installer uses <code>sudo</code>. It installs system packages and services in the Ubuntu distribution you run it in and registers one Windows scheduled task, so use a distribution or virtual machine you can afford to lose. You can remove it again with the commands in <a href="updates.html#removal">updates and removal</a>.</p>
+<p>StatePort has no security certification and no penetration test. It makes no claim of GDPR, NIS2 or other legal compliance. Review your own setup, data, providers and retention rules before you use it.</p>
+
+<h2 id="reporting-a-security-issue">Report a vulnerability</h2>
+<p>To report a suspected vulnerability in StatePort or in this site, <a href="https://github.com/lennertvhoy/StatePort-Source/security/advisories/new" target="_blank" rel="noopener">report it privately on GitHub<span class="sr-only"> (opens in a new tab)</span></a>. This uses GitHub private vulnerability reporting, which is enabled on the public source repository; only you and the maintainer can see the report. You need a GitHub account. StatePort is an early alpha, so no response time is promised.</p>
+<p>For ordinary bugs and feedback that contain nothing sensitive, <a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">open a public issue</a> instead. Do not post secrets or details of a suspected vulnerability in a public issue.</p>
+
+<div class="inline-actions">
+<a class="button button--ink" href="models.html">Models and keeping up</a>
+<a class="button button--outlined" href="hosts-and-portability.html">AI tools and portability</a>
+<a class="button button--outlined" href="limitations.html">Current limitations</a>
+</div>
+</article>
       </div>
     </main>
 
