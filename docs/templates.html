@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="What ProjectState and StudyState templates are, how import works, and what has been measured on Alpha.21 and what has not.">
+    <meta name="description" content="What ProjectState, StudyState and Decision Log are, how importing a template from a Git repository works, and what StatePort copies and runs.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="Use a template — StatePort">
-    <meta property="og:description" content="What ProjectState and StudyState templates are, how import works, and what has been measured.">
+    <meta property="og:description" content="What the templates are, how importing one from a Git repository works, and what StatePort copies and runs.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/templates.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -49,8 +49,8 @@
       <section class="article-hero" aria-labelledby="templates-title">
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / Templates</p>
-          <h1 id="templates-title">Templates: ProjectState and StudyState.</h1>
-          <p>A template is a reusable starting point for an app. StatePort takes one from a Git repository, shows it to you for review, and makes a managed copy with its own history. The original stays untouched.</p>
+          <h1 id="templates-title">Templates: a reusable starting point.</h1>
+          <p>A template is a reusable starting point for an application. StatePort takes one from a Git repository, shows it to you for review, and makes a managed copy with its own history. The original stays untouched.</p>
         </div>
       </section>
 
@@ -85,70 +85,69 @@
         </aside>
 
         <article class="prose">
-<p class="notice"><strong>Early alpha, release 0.1.0-alpha.24.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer, in virtual machines; real-Windows results are pending. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
-<p class="notice"><strong>Status of this page.</strong> Importing ProjectState and StudyState templates from a local Git checkout was measured on an installed Alpha.21 through the API and in the browser (Catalog, then Import a repository), and this page follows those measurements. It has not been repeated on Alpha.24. Importing the real StudyState_Template (tested at template commit 3bf1048 from August; the template&rsquo;s current main changed on 7 October and is not yet measured) from a public HTTPS URL (GitHub) failed on Alpha.23 because the product&rsquo;s containers could not resolve external host names, and worked on Alpha.24 (inspected, planned and installed as a new instance). <a href="#verified">What is verified and what is not</a> is listed below.</p>
-<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-a-template-is">What a template is</a></li><li data-level="2"><a href="#projectstate">ProjectState</a></li><li data-level="2"><a href="#studystate">StudyState</a></li><li data-level="2"><a href="#other-templates">Other templates</a></li><li data-level="2"><a href="#import-heading">How import works</a></li><li data-level="2"><a href="#verified">What is verified and what is not</a></li><li data-level="2"><a href="#safety-heading">What StatePort copies and runs</a></li><li data-level="2"><a href="#troubleshooting-heading">If a repository does not appear</a></li></ol></details>
+<p class="notice"><strong>Early alpha. This page describes Alpha.26.</strong> Alpha.24 was the previous public release. Do not use StatePort for important data. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-a-template-is">What a template is</a></li><li data-level="2"><a href="#the-templates">The three templates</a></li><li data-level="2"><a href="#the-contract">The template contract</a></li><li data-level="2"><a href="#import-heading">How import works</a></li><li data-level="2"><a href="#safety-heading">What StatePort copies and runs</a></li><li data-level="2"><a href="#troubleshooting-heading">If a repository does not appear</a></li></ol></details>
+
 <h2 id="what-a-template-is">What a template is</h2>
-<p>An app in StatePort has two parts. The <strong>template</strong> is the reusable part: its starting files, its rules and the operations it supports. The <strong>instance</strong> is your own copy, with your saved work, permissions and history. Two people, or two projects, can start from the same template and end up with different instances. The project&rsquo;s automated tests show that instances made from the same template stay independent. On an installed Alpha.20, importing the same ProjectState template twice produced two separate instances; that was not repeated on Alpha.21 or Alpha.22. Importing a template makes a new instance from an exact snapshot. It does not turn the source repository into your live app, and later edits to the source do not change an instance you already have.</p>
-<p>Both templates below are ordinary Git repositories of readable files. You can use them without StatePort. StatePort checks a reviewed copy and stores it as a separate managed copy. For an imported ProjectState or StudyState that copy has one inspection action. The step-by-step flows exist only in the StudyState sample.</p>
+<p>An application in StatePort has two parts. The <strong>template</strong> is the reusable part: its files, its check and the actions it offers. The <strong>application</strong> is your own copy, with your own work in it. Two people can start from the same template and end up with two different applications.</p>
+<p>Importing makes a new application from an exact snapshot. It does not turn the source repository into your live work, and later edits to the source do not change an application you already have.</p>
+<p>The templates below are ordinary Git repositories of readable files. You can use them without StatePort. StatePort reads a reviewed copy and keeps it as a separate managed copy.</p>
 
-<h2 id="projectstate">ProjectState</h2>
-<p><strong>In plain terms:</strong> ProjectState is a template for tracking a project. It keeps the goal, the one piece of work in progress, the working rules and the evidence of what happened in ordinary files, so a person or an AI agent can pick the project up without replaying old conversations. It answers four questions: what are we trying to change, what is the one thing we are working on, what did we see, and what happens next?</p>
-<p>The files are <code>PROJECT.md</code> for the outcome and limits, <code>STATE.yaml</code> for the current work, <code>AGENTS.md</code> for the rules, an <code>evidence</code> folder for results, and a small check script. <a href="project-state.html">The ProjectState guide</a> has the details.</p>
+<h2 id="the-templates">The three templates</h2>
+<p><strong>ProjectState</strong> is a template for tracking a project. It keeps the goal, the one piece of work in progress, the working rules and the evidence in ordinary files, so that a person or an AI agent can pick the project up without replaying old conversations. Its public repository is <a href="https://github.com/lennertvhoy/ProjectState_Template" target="_blank" rel="noopener">lennertvhoy/ProjectState_Template</a>. <a href="project-state.html">The ProjectState guide</a> has the details.</p>
+<p><strong>StudyState</strong> is a template for a study plan. It keeps your targets, activities, sources, sessions, reviews and evidence in readable files, so progress is kept outside a chat window. Its public repository is <a href="https://lennertvhoy/StudyState_Template" target="_blank" rel="noopener">lennertvhoy/StudyState_Template</a>. <a href="study-state.html">The StudyState guide</a> has the details.</p>
+<p><strong>Decision Log</strong> is an independent template that depends on neither of the other two. Every question that has to be settled gets an entry with a date by which it should be decided. When it is settled, the entry gets a short reason and a written record. Its public repository is <!-- facts:decision-log-url -->not published yet, so you cannot import it today. Its own README describes the four actions: Check, List due, Draft the oldest open decision, and Add an open question.</p>
+<p>There is also a bundled study sample that ships with StatePort, so you can try the loop before you import anything.</p>
 
-<h2 id="studystate">StudyState</h2>
-<p><strong>In plain terms:</strong> StudyState is a template for a study plan. It keeps a learner&rsquo;s targets, activities, sources, sessions, reviews and evidence in readable files, so progress is kept outside a chat window. Its next-activity engine, the part that picks what to study next, belongs to the template and is not part of StatePort. In the StudyState sample, changes to the record are proposals you review before they are saved.</p>
-<p>The <strong>StudyState sample</strong> is a small worked example. You start an activity, review the exact change, approve it, write a reflection, review what saving it does, apply it, open the receipt, and reload to see the result still there. The sample offers a fixed set of activities, and its loop passes in the project&rsquo;s automated tests. The <a href="../index.html#journey">home page</a> and the <a href="../tutorials/site-orientation.html">field guide video</a> show this flow. <a href="study-state.html">The StudyState guide</a> and <a href="everyday-work.html">your first session</a> have the steps.</p>
-
-<h2 id="other-templates">Other templates</h2>
-<p>StatePort is meant to accept any repository that declares a valid template file and supported actions. That format is called a portable StateSpec repository. StatePort runs only the actions it has actually built, and a repository cannot give itself access by declaring it. A third template has not been tried on an installed copy.</p>
+<h2 id="the-contract">The template contract</h2>
+<p>Any repository can be imported if it follows the same contract as the templates above. A template declares five things:</p>
+<ul>
+<li><strong>Its state:</strong> the files that hold the work, in a Git repository.</li>
+<li><strong>Its outcome:</strong> what the work is for.</li>
+<li><strong>Its check:</strong> a deterministic check of those files that answers <em>passed</em>, <em>not yet</em> or <em>invalid</em>, with a reason. Never a model's opinion.</li>
+<li><strong>Its actions:</strong> named pieces of work, each either a <strong>check</strong> action (read-only) or an <strong>agent</strong> action (a model works on a copy).</li>
+<li><strong>Your grants:</strong> what may run, with which model, how much and until when.</li>
+</ul>
+<p>StatePort offers exactly the actions a template declares, and nothing more. A template cannot give itself access to something StatePort has not built.</p>
 
 <h2 id="import-heading">How import works</h2>
-<p>This flow was measured on an installed Alpha.21 with local checkouts of ProjectState and StudyState, and it has not been repeated on Alpha.24 with a local checkout. The public HTTPS route was measured on Alpha.24 for StudyState only (see <a href="#verified">what is verified</a>).</p>
 <ol>
-<li>Put a real Git checkout, with its <code>.git</code> folder, in the import folder the installer creates. The default is <code>/var/lib/stateport/imports</code>. A ZIP file has no Git history, so it cannot give an exact commit. Or give a public HTTPS repository and its full 40-character commit.</li>
+<li>Give StatePort the repository, in one of two ways. Put a real Git checkout, with its <code>.git</code> folder, in the import folder the installer creates; the default is <code>/var/lib/stateport/imports</code>. Or give a public HTTPS repository address and the exact 40-character commit. A ZIP file has no Git history, so it cannot give an exact commit, and a branch name is not enough either.</li>
 <li>In StatePort, open <strong>Catalog</strong> and choose <strong>Import a repository</strong>.</li>
-<li>Choose <strong>Inspect</strong>. Inspection only reads. It reports the source, the template type it detected, the commit, and whether the working tree has uncommitted changes.</li>
-<li>Read the findings. If the repository is dirty or reports an error, fix it, commit, and inspect again. On Alpha.20 a dirty repository still imported, but only its committed files.</li>
-<li>Name the app and approve that exact inspection.</li>
-<li>For a supported template, choose <strong>Create isolated copy</strong>. For an ordinary repository that is not a supported template, the action is <strong>Register repository</strong>.</li>
-<li>Open the new app or its install receipt.</li>
+<li>Choose <strong>Inspect</strong>. Inspection only reads. It reports the source, the kind of template it detected, the commit, and whether the working tree has uncommitted changes.</li>
+<li>Read the findings. If the repository is dirty or reports an error, fix it, commit, and inspect again.</li>
+<li>Name the application and approve that exact inspection.</li>
+<li>For a template that follows the contract, choose <strong>Create isolated copy</strong>. For an ordinary repository that is not a template, the action is <strong>Register repository</strong>.</li>
+<li>Open the new application, or its record of the import.</li>
 </ol>
-<p>Your approval is tied to what was inspected. If the source changes afterwards, StatePort refuses the approval instead of quietly importing a different version. On Alpha.21 an inspection made stale by a changed source was refused, and so was an approval with the wrong digest; nothing was installed.</p>
-<p><strong>Ownership.</strong> On Alpha.21 a checkout placed in the import folder by your normal Ubuntu user was listed, inspected and installed without any ownership change. On Alpha.20 such a checkout did not appear until you changed its owner to the service user. If a checkout still does not appear on your install, <a href="troubleshooting.html#template-import-ownership">troubleshooting</a> has the entry.</p>
-
-<h2 id="verified">What is verified and what is not</h2>
-<ul>
-<li><strong>The install itself:</strong> Alpha.24 installed and passed its checks on a fresh Windows 11 test virtual machine with WSL2 and Ubuntu 24.04; real-Windows and reboot results are pending. Alpha.21 came up healthy on 2 of 3 fresh test installs; one attempt was refused by a package check. See <a href="limitations.html#measured">current limitations</a>.</li>
-<li><strong>The StudyState sample flow:</strong> measured in the browser on an installed Alpha.21 from start to receipt, with the saved state kept after a reload. Undo was measured through the API, not in the browser. Not repeated on Alpha.24.</li>
-<li><strong>Importing a ProjectState or StudyState repository from a local checkout:</strong> measured on an installed Alpha.21 through the API and in the browser, without an ownership fix. Discover, inspect, plan, approve, install and the read-only inspect action all worked, and the source repository stayed untouched. A stale inspection and an approval with the wrong digest were refused. On Alpha.20 a dirty source repository imported only its committed files; that was not repeated on Alpha.21, Alpha.22, Alpha.23 or Alpha.24.</li>
-<li><strong>Importing from a public HTTPS repository:</strong> measured once, for StudyState only, on Alpha.24 in a local KVM-hosted Windows 11 test virtual machine (not bare metal). The real StudyState_Template (tested at template commit 3bf1048 from August; the template&rsquo;s current main changed on 7 October and is not yet measured), given as its public GitHub HTTPS address, was inspected, planned and installed as a new instance. The imported copy offers only a read-only inspect action, and it does not add the study planner (the planner is the built-in sample). On Alpha.23 the same import failed because the product&rsquo;s containers could not resolve external host names. Importing ProjectState, or any other repository, from a public HTTPS address was not tested on Alpha.24.</li>
-<li><strong>A third, independent template:</strong> not tested.</li>
-</ul>
-<p>Not tested means unknown, not that it fails. If you try it, <a href="troubleshooting.html#report">report what happened</a>.</p>
+<p>Your approval is tied to what was inspected. If the source changes afterwards, StatePort refuses the approval instead of quietly importing a different version.</p>
+<p><strong>Ownership.</strong> A checkout placed in the import folder by your normal Ubuntu user is listed, inspected and installed without any ownership change. If a checkout does not appear on your install, <a href="troubleshooting.html#template-import-ownership">troubleshooting</a> has the entry.</p>
 
 <h2 id="safety-heading">What StatePort copies and runs</h2>
 <ul>
 <li>The source repository is only read. It stays untouched.</li>
 <li>The managed copy is made from the exact snapshot you reviewed, with its own identity and a record of where it came from.</li>
 <li>Repository code is not run while StatePort finds or inspects a repository.</li>
-<li>Only the actions StatePort has built for the detected template are available, and app actions go through review, approval and a receipt. For an imported ProjectState or StudyState, the action that exists is an inspection.</li>
+<li>A template may ship the code for its own check actions. That code runs only inside the sandbox: no network, a read-only copy of your files, a clean environment, a time limit and its own process.</li>
+<li>The instructions of an agent action shape what the model is asked to do. They cannot widen what the model is allowed to do.</li>
 </ul>
 
 <h2 id="troubleshooting-heading">If a repository does not appear</h2>
-<p>These are the checks that mattered in testing.</p>
 <ul>
 <li>The checkout should be in the import folder, be a real directory and not a symbolic link, and keep its <code>.git</code> folder.</li>
-<li>If a checkout you copied in does not appear, or inspection is refused, its ownership was the cause on Alpha.20 and did not matter on Alpha.21; see the entry in <a href="troubleshooting.html#template-import-ownership">troubleshooting</a>.</li>
 <li>Refresh the list after you copy a checkout in.</li>
 <li>For a public source, use HTTPS and a full commit, not a branch name.</li>
 <li>If inspection reports uncommitted changes or an invalid template, make the smallest fix, commit it, and inspect again.</li>
-<li>If an import response is uncertain, read Catalog and Receipts again before you try again.</li>
+<li>If an import result is uncertain, read Catalog and the records again before you try again.</li>
 </ul>
-<p>See <a href="platform-support.html">platform support</a> for the supported setup, <a href="getting-started.html">getting started</a> to install, and <a href="limitations.html">current limitations</a> for what has not been measured.</p>
-<div class="inline-actions"><a class="button button--ink" href="getting-started.html">Install StatePort</a><a class="button button--outlined" href="project-state.html">ProjectState guide</a><a class="button button--outlined" href="study-state.html">StudyState guide</a>
+<p>See <a href="getting-started.html">getting started</a> to install, <a href="everyday-work.html">your first session</a> for the daily loop, and <a href="limitations.html">current limitations</a> for what has not been measured.</p>
+
+<div class="inline-actions">
+<a class="button button--ink" href="getting-started.html">Install StatePort</a>
+<a class="button button--outlined" href="project-state.html">ProjectState guide</a>
+<a class="button button--outlined" href="study-state.html">StudyState guide</a>
 </div>
-        </article>
+</article>
       </div>
     </main>
 
