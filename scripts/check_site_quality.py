@@ -109,6 +109,7 @@ PUBLIC_COPY_REJECTIONS = {
 # They stay out of sitemap.xml so crawlers are not sent to unfinished work.
 UNPUBLISHED_PAGES = {
     Path("papers/stateware-whitepaper-candidate-v1.2.html"),
+    Path("papers/stateware-whitepaper-candidate-v2.0.html"),
 }
 TRACKING_PATTERNS = (
     "googletagmanager.com",

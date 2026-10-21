@@ -1,0 +1,10 @@
+flowchart TB
+    accTitle: How a work request moves through StatePort
+    accDescr: The interface submits a request to control checks. Admitted work runs on an execution host inside its boundary. The candidate result is judged by the evaluator, applied under authority, and recorded in durable state, then shown in the interface.
+    view["Application interface"]
+    view -->|"request work"| api["Control and policy checks"]
+    api -->|"admit under a grant"| host["Execution host and boundary"]
+    host -->|"candidate result"| judge["Evaluator"]
+    judge --> apply["Apply under authority"]
+    apply --> records[("Durable work records")]
+    records -->|"refresh"| updated["Updated application view"]

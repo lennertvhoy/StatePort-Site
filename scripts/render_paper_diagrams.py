@@ -10,6 +10,7 @@ back to their Mermaid sources. SVG-local styles and IDs do not enter the page.
 Requires pandoc, mmdc, and a Chrome/Chromium executable (or MMDC_CHROME_BIN).
 Without --paper, only the public paper renders. The earlier draft (candidate v1.2) now
 carries hand-redrawn static SVGs; render it only with an explicit --paper.
+Candidate v2.0 is built the same way as the public paper (--paper stateware-whitepaper-candidate-v2.0).
 """
 from __future__ import annotations
 
@@ -31,6 +32,12 @@ THEME_CONFIG = ROOT / "config" / "mermaid-theme.json"
 PAPERS_TO_RENDER = (
     "stateware-whitepaper-public-v1.1",
     "stateware-whitepaper-candidate-v1.2",
+    "stateware-whitepaper-candidate-v2.0",
+)
+# Papers rebuilt from Markdown into isolated static SVG image files.
+STATIC_SVG_PAPERS = (
+    "stateware-whitepaper-public-v1.1",
+    "stateware-whitepaper-candidate-v2.0",
 )
 
 MERMAID_FENCE = re.compile(r"```mermaid\n(.*?)```", re.DOTALL)
@@ -165,7 +172,7 @@ def slugify(stem: str) -> str:
 
 
 def render_paper(stem: str, work: Path) -> None:
-    if stem == "stateware-whitepaper-public-v1.1":
+    if stem in STATIC_SVG_PAPERS:
         render_public_paper(stem, work)
         return
     md_path = PAPERS / (stem + ".md")
@@ -208,6 +215,21 @@ def render_paper(stem: str, work: Path) -> None:
     print(f"  inlined {len(figures)} diagrams into {html_path.relative_to(ROOT)}")
 
 
+def pandoc_html(markdown: str) -> str:
+    """Markdown to an HTML fragment with unhighlighted code blocks.
+
+    Pandoc 3.8+ wraps highlighted fences in div.sourceCode, which hides the
+    plain <pre class="mermaid"><code> slots this script replaces. Turn highlighting
+    off with the current flag, or the older one on earlier Pandoc releases.
+    """
+    base = ["pandoc", "--from=markdown", "--to=html5", "--shift-heading-level-by=1"]
+    for flag in ("--syntax-highlighting=none", "--no-highlight"):
+        result = subprocess.run(base + [flag], input=markdown, text=True, capture_output=True)
+        if result.returncode == 0:
+            return result.stdout
+    raise AssertionError("pandoc failed:\n" + result.stderr.strip())
+
+
 def render_public_paper(stem: str, work: Path) -> None:
     """Build the current paper from Markdown, with isolated SVG image assets.
 
@@ -222,10 +244,7 @@ def render_public_paper(stem: str, work: Path) -> None:
     md_path = PAPERS / f"{stem}.md"
     html_path = PAPERS / f"{stem}.html"
     markdown = md_path.read_text(encoding="utf-8")
-    body = subprocess.run(
-        ["pandoc", "--from=markdown", "--to=html5", "--shift-heading-level-by=1"],
-        input=markdown, text=True, capture_output=True, check=True,
-    ).stdout
+    body = pandoc_html(markdown)
     asset_dir = ROOT / "assets/diagrams/paper"
     asset_dir.mkdir(parents=True, exist_ok=True)
     MMD_SRC_DIR.mkdir(parents=True, exist_ok=True)
@@ -265,10 +284,11 @@ def render_public_paper(stem: str, work: Path) -> None:
         raise AssertionError("Markdown render lost diagram slots")
     replacements = iter(figures)
     body = DIAGRAM_SLOT.sub(lambda _: next(replacements), body)
-    # Preserve section URLs from the previous public revision.
-    body = body.replace('id="projectstate-developing-and-operating-projects"',
-                        'id="projectstate-coordinating-development-without-coupling-the-runtime"')
-    body = body.replace('id="development-and-operating-use"', 'id="the-two-uses-of-projectstate"')
+    if stem == "stateware-whitepaper-public-v1.1":
+        # Preserve section URLs from the previous public revision.
+        body = body.replace('id="projectstate-developing-and-operating-projects"',
+                            'id="projectstate-coordinating-development-without-coupling-the-runtime"')
+        body = body.replace('id="development-and-operating-use"', 'id="the-two-uses-of-projectstate"')
     page = html_path.read_text(encoding="utf-8")
     start = page.index('<article class="prose paper-prose">')
     start = page.index('<h2 ', start)

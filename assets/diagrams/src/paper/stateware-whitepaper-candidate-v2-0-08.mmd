@@ -1,0 +1,12 @@
+flowchart TB
+    accTitle: One improvement loop at three levels
+    accDescr: Observe changes in the world, evaluate candidates against a judgment the loop cannot edit, propose the better one, apply it where authority allows, and record the result. Instruments may switch automatically inside a lease; definitions and the platform change only through proposals and signed releases.
+    observe["Observe: new models, releases, results"]
+    observe --> evaluate["Evaluate against a fixed judgment"]
+    evaluate --> propose["Propose the better candidate"]
+    propose --> applyStep{"Within authority?"}
+    applyStep -->|"lease covers it"| applied["Apply, reversibly"]
+    applyStep -->|"otherwise"| owner["Owner decides"]
+    applied --> recordStep[("Record")]
+    owner --> recordStep
+    recordStep --> observe

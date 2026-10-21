@@ -5,7 +5,9 @@ const path=require('node:path');
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE || path.join(os.homedir(),'Projects/StatePort/apps/web/node_modules/playwright'));
 const base=process.env.PAPER_BASE || 'http://127.0.0.1:4194';
 const out=process.env.PAPER_REPORT || 'output/diagram-clipping-20260909/local';
-const stem='stateware-whitepaper-public-v1-1';
+const stem=process.env.PAPER_STEM || 'stateware-whitepaper-public-v1-1';
+const pageName=process.env.PAPER_PAGE || 'stateware-whitepaper-public-v1.1.html';
+const figures=Number(process.env.PAPER_FIGURES || 10);
 const normalize=s=>s.replace(/\s+/g,' ').trim();
 (async()=>{
  fs.mkdirSync(out,{recursive:true});
@@ -15,8 +17,8 @@ const normalize=s=>s.replace(/\s+/g,' ').trim();
  for(const width of [360,768,1440]) for(const javaScriptEnabled of [true,false]) {
   const context=await browser.newContext({viewport:{width,height:1000},javaScriptEnabled});
   const page=await context.newPage();
-  await page.goto(`${base}/papers/stateware-whitepaper-public-v1.1.html`);
-  for(let i=1;i<=10;i++) {
+  await page.goto(`${base}/papers/${pageName}`);
+  for(let i=1;i<=figures;i++) {
    const figure=page.locator(`#figure-${i}`);await figure.scrollIntoViewIfNeeded();
    const img=figure.locator('img');await img.evaluate(e=>e.decode());
    const embedded=await img.evaluate(e=>({loaded:e.complete&&e.naturalWidth>0,width:e.width,natural:e.naturalWidth}));
@@ -26,7 +28,7 @@ const normalize=s=>s.replace(/\s+/g,' ').trim();
    if(await scroll.evaluate(e=>e.scrollWidth>e.clientWidth)) await figure.screenshot({path:`${out}/embedded-right-${width}-${javaScriptEnabled}-${i}.png`});
    results.push({kind:'embedded',width,javaScriptEnabled,i,...embedded,overflow:await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth)});
   }
-  for(let i=1;i<=10;i++) {
+  for(let i=1;i<=figures;i++) {
    const id=`${stem}-${String(i).padStart(2,'0')}`;
    const response=await page.goto(`${base}/assets/diagrams/paper/${id}.svg`);if(!response.ok())throw Error('SVG request failed');
    const source=fs.readFileSync(path.join('assets/diagrams/src/paper',id+'.mmd'),'utf8');
