@@ -154,6 +154,9 @@
 <p><strong>Cause.</strong> A downloaded file does not match the checksum built into the installer. The download may have been damaged or altered on the way, for example by a network device that rewrites traffic, or the files on the site do not match the installer.</p>
 <p><strong>What to do.</strong> Do not bypass this check. Run the command again once. If it fails again with the same file, stop and report it with the file name shown.</p>
 
+<h3 id="cannot-chdir"><code>install refused (volume_create_failed): podman volume create ...: cannot chdir to /home/&lt;you&gt;: Permission denied</code></h3>
+<p>A defect in Alpha.24 (found 21 October 2026 on the test machine): the installer runs part of its work as StatePort's own service account, and that account cannot enter your home folder, which Ubuntu 24.04 creates readable only by you. Run <code>cd /tmp</code> and run the install command again. Nothing was installed when this message appears; the refusal record it names is kept for reference. The fix is in the next release.</p>
+
 <h2 id="confirmations">Confirmations, sudo, and packages</h2>
 <h3 id="confirm-packages"><code>Authenticated package plan not confirmed.</code></h3>
 <p><strong>You see</strong> the installer stop after it prints the package plan and asks you to type <code>install-packages</code>.</p>

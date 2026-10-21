@@ -151,6 +151,7 @@ id -u</code>
 
 <h2 id="install">Step 4. Run the install</h2>
 <p>Run this as your normal Ubuntu user, in an interactive Ubuntu window:</p>
+<p><strong>Known issue in Alpha.24:</strong> started from your home folder (where the Ubuntu window opens), the installer stops at step 5 of 7 with <code>volume_create_failed</code> and <code>cannot chdir to /home/&lt;you&gt;: Permission denied</code>. Run <code>cd /tmp</code> first, then the command below. Nothing else changes, and the next release removes the need for it (<a href="troubleshooting.html#cannot-chdir">details</a>).</p>
 <pre><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)</code>
 </pre>
 <p>What you will see, in order:</p>

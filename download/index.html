@@ -132,7 +132,7 @@ systemd=true</code></pre>
 
           <section id="install" aria-labelledby="install-heading">
             <h2 id="install-heading">Install</h2>
-            <p>Open Ubuntu 24.04 in WSL2 and run this as your normal Ubuntu user:</p>
+            <p>Open Ubuntu 24.04 in WSL2 and run this as your normal Ubuntu user. <strong>Known issue in Alpha.24:</strong> run <code>cd /tmp</code> first; started from your home folder the installer stops at step 5 of 7 with <code>volume_create_failed</code> (<a href="../docs/troubleshooting.html#cannot-chdir">details</a>).</p>
 <pre class="snippet"><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)</code></pre>
             <p>What the installer does and asks, in order:</p>
             <ol>
