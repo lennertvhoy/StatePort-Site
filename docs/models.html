@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+    <meta name="description" content="Which AI models StatePort can use, what the free route sends out, how StatePort measures and picks a model, and how to keep one model or pin your own.">
+    <meta name="theme-color" content="#0B132B">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="StatePort">
+    <meta property="og:title" content="Models and keeping up — StatePort">
+    <meta property="og:description" content="Which models StatePort can use, what the free route sends out, and how StatePort keeps itself on a good model.">
+    <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/models.html">
+    <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="StatePort overview card: AI-assisted work saved in files on your own computer.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="../assets/site.css?v=2026-09-10-1">
+    <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-10-1" data-site-enhancements>
+    <title>Models and keeping up — StatePort</title>
+  <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/models.html">
+  </head>
+  <body class="article-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header site-header--light">
+      <a class="brand" href="../" aria-label="StatePort home">
+        <img src="../assets/stateport-mascot-block-arch-light.svg" alt="" width="105" height="105">
+        <span>StatePort</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" /></svg>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+        <a href="./" aria-current="page">Docs</a>
+        <a href="../tutorials/">Tutorials</a>
+        <a class="nav-download" href="../download/">Download</a> <a class="nav-release" href="../releases/">Release status</a>
+      <a href="../papers/">Papers</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="article-hero" aria-labelledby="page-title">
+        <div class="article-hero-inner">
+          <p class="document-kicker">Documentation / Models</p>
+          <h1 id="page-title">Models and keeping up</h1>
+          <p>StatePort can let an AI model do work for you. This page says which models you can use, what leaves your machine when you use one, and how StatePort keeps itself on a model that works.</p>
+        </div>
+      </section>
+
+      <div class="article-shell">
+        <aside class="doc-sidebar" aria-label="Documentation sections">
+          <h2>Documentation</h2>
+          <nav>
+            <a href="./">Documentation home</a>
+            <a href="getting-started.html">Install and open</a>
+            <a href="everyday-work.html">Your first session</a>
+            <a href="templates.html">Use a template</a>
+            <a href="project-state.html">ProjectState</a>
+            <a href="study-state.html">StudyState</a>
+            <a href="troubleshooting.html">Troubleshooting</a>
+            <a href="faq.html">FAQ</a>
+            <a href="lifecycle.html">Backup and recovery</a>
+            <a href="updates.html">Updates and removal</a>
+            <a href="governance.html">Review and control</a>
+            <a href="hosts-and-portability.html">AI tools and readiness</a>
+            <a href="models.html" aria-current="page">Models and keeping up</a>
+            <a href="security-and-privacy.html">Security and privacy</a>
+            <a href="platform-support.html">Platform support</a>
+            <a href="limitations.html">Current limitations</a>
+            <a href="foundations.html">Why StatePort exists</a>
+            <a href="model.html">Core model</a>
+            <a href="deployments.html">Container deployments</a>
+            <a href="reference.html">Glossary and concepts</a>
+            <a href="evidence-and-roadmap.html">Roadmap</a>
+            <a href="agent-kits.html">Agent Kits</a>
+            <a href="prototype-walkthrough.html">Product walkthrough</a>
+          </nav>
+        </aside>
+        <article class="prose">
+<p class="notice notice--quiet"><strong>You do not need an account to use StatePort.</strong> Only the AI actions and the chat need a model. Everything else &mdash; opening an application, running its checks, applying a change you have reviewed, backups and the rest of the interface &mdash; works without one.</p>
+<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#when-you-need-a-model">When you need a model</a></li><li data-level="2"><a href="#two-ways">Two ways to get a model</a></li><li data-level="2"><a href="#free-route">What the free route sends out</a></li><li data-level="2"><a href="#picking">How StatePort picks a model</a></li><li data-level="2"><a href="#keep-up">Keep up automatically</a></li><li data-level="2"><a href="#pinning">Pinning a model</a></li><li data-level="2"><a href="#no-model">When no free model is available</a></li><li data-level="2"><a href="#not-measured">What is not measured yet</a></li></ol></details>
+
+<h2 id="when-you-need-a-model">When you need a model</h2>
+<p>Two things in StatePort use an AI model:</p>
+<ul>
+<li><strong>Agent actions.</strong> A model works on a copy of one of your applications and hands you the result as a proposal. <a href="everyday-work.html">Your first session</a> shows the loop.</li>
+<li><strong>Chat.</strong> Chat answers questions about an application. It reads the files that the template&rsquo;s actions say a model may read, at most 12 KiB of them. It never runs tools and never changes anything.</li>
+</ul>
+<p>Everything else is deterministic. The check actions read your files and give a verdict: passed, not yet, or invalid, with the reason. Those verdicts come from a script, not from a model.</p>
+
+<h2 id="two-ways">Two ways to get a model</h2>
+<p>On the first screen, and later under <strong>Settings &rarr; Models</strong>, you can choose:</p>
+<ul>
+<li><strong>Use free models (no account).</strong> These are OpenCode's free models. You do not need an account and you do not need a key. Before the first request, StatePort shows you the provider's terms and asks you to accept them. The agent actions and the chat can both use this route.</li>
+<li><strong>Your own OpenCode sign-in or API key.</strong> You connect an account you already have, on the <strong>Coding provider</strong> page, which <strong>Settings &rarr; Models</strong> links to. In this release only the chat can use it. The agent actions, and the practice runs on the Models page, use only the free route. What that provider does with what it receives is covered by your agreement with them.</li>
+</ul>
+<p>You can leave both alone. The rest of StatePort keeps working, and you can pick a route later.</p>
+
+<h2 id="free-route">What the free route sends out</h2>
+<p>The free route is the only one that works without an account, so it is worth being precise about it.</p>
+<ul>
+<li>During a model's free period, OpenCode states that data sent to that model may be used to improve that model. StatePort shows you that text before you accept, together with a link to the provider's own page.</li>
+<li>Accepting is your choice. If you decline, no free-model request is made and the rest of StatePort is unaffected.</li>
+<li>When you use the free route, the model receives the work it was asked to do: the prompt for the action and the files of the copy it is working on. A chat message sends your question, the files StatePort put into it (at most 12 KiB) and the pending approvals and recent records. It does not receive your other applications, your conversations from other applications, or your account details.</li>
+<li>The model runs inside a sandbox that has no access to anything else on the machine, and it can reach only the model provider's addresses. <a href="security-and-privacy.html">Security and privacy</a> explains what that means in detail.</li>
+<li>You can withdraw the consent later. The route then stops being used.</li>
+</ul>
+
+<h2 id="picking">How StatePort picks a model</h2>
+<p>Free models come and go. Their names change, they get better, and their free periods end. A hard-coded name would stop working within weeks, so StatePort watches the catalogue and measures what it finds.</p>
+<p>Under <strong>Settings &rarr; Models</strong> you see:</p>
+<ul>
+<li>the models in the current catalogue, and which ones are free;</li>
+<li>a score for each model that has been measured;</li>
+<li>the model StatePort uses for agent actions and the model it uses for chat; you choose each one;</li>
+<li>the history of what was measured and what changed.</li>
+</ul>
+<p>The scores come from StatePort's own practice tasks: small, fixed jobs with a clear right answer, run through the same runner and the same sandbox that your agent actions use. <strong>Your data is never used for measuring.</strong> The practice tasks belong to StatePort and never touch your applications. The page says so in the same words, so a score is never mistaken for a judgement about your work.</p>
+<p>Each model in use is replaced only when the new one does everything the current one does, and does more, or the same work faster. When two models are equal, the one you already use stays.</p>
+
+<h2 id="keep-up">Keep up automatically</h2>
+<p>You can switch on <strong>Keep up automatically</strong>. It is a permission you give for 30 days, and you can take it away at any moment.</p>
+<p>While it is on, StatePort may move to a better model when the free catalogue changes. It will not do this silently: it tells you what changed, why it changed, and how to switch back. It also never moves to a model behind a different provider, or under different terms, without asking you first.</p>
+<p>With the switch off, a better model is shown to you as a suggestion. You accept it or dismiss it.</p>
+
+<h2 id="pinning">Pinning a model</h2>
+<p>You can pin a model. A pinned model is never changed for you, not by the catalogue and not by the automatic switch. Pin the model you trust if you would rather make that choice yourself.</p>
+
+<h2 id="no-model">When no free model is available</h2>
+<p>If no free model can be used or measured, the route becomes <em>none</em>. The agent actions then say so in plain words: no measured free model is available, so you can evaluate one now. Connecting your own account does not change that, because the agent actions use only the free route in this release. Nothing is sent anywhere, and no action runs against a model you did not choose.</p>
+<p>If the free models are refused because OpenCode's free allowance for this computer is used up, see <a href="troubleshooting.html#free-usage-limit">Free usage limit reached</a>. Nothing is lost, and trying again later is the remedy.</p>
+
+<h2 id="not-measured">What is not measured yet</h2>
+<p>This release is new. No numbers are given for the following until they have been measured. A result is written after its item once it exists, and an item with nothing after it has not been measured yet:</p>
+<ul>
+<li>How long the free-route evaluation takes on the reference machine. <!-- facts:model-suite-seconds --></li>
+<li>How often the catalogue changes in practice. <!-- facts:catalogue-change-rate --></li>
+<li>Whether the automatic switch is comfortable to leave on. <!-- facts:keep-up-result --></li>
+</ul>
+<p>Scores shown in the product come from the practice tasks that ship with it. They say how a model did on those tasks, not how it will do on your work. <a href="limitations.html">Current limitations</a> lists everything else that is not measured.</p>
+
+<div class="inline-actions">
+<a class="button button--ink" href="getting-started.html">Install StatePort</a>
+<a class="button button--outlined" href="security-and-privacy.html">Security and privacy</a>
+<a class="button button--outlined" href="everyday-work.html">Your first session</a>
+</div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-mark">
+          <img src="../assets/stateport-mascot-block-arch-light.svg" alt="" width="85" height="85">
+          <p><strong>StatePort</strong>AI-assisted work, saved in files on your computer.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="./" aria-current="page">Docs</a>
+          <a href="../tutorials/">Tutorials</a>
+          <a href="../releases/">Release status</a>
+        </nav>
+        <p class="footer-meta"><span data-current-year></span> StatePort. Your work, on your machine.</p>
+      </div>
+    </footer>
+    <script src="../assets/site.js?v=2026-09-10-1"></script>
+  </body>
+</html>

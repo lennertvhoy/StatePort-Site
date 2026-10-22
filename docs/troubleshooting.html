@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Find the installer message you see, what caused it, and what to do, for StatePort Alpha.22 on Windows 11 with WSL2 and Ubuntu 24.04.">
+    <meta name="description" content="Find the message you see, what caused it, and what to do: installer checks and refusals, the keep-alive task, the install commands, and models.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
@@ -50,7 +50,7 @@
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / Troubleshooting</p>
           <h1 id="troubleshooting-title">Troubleshooting</h1>
-          <p>Look up the message you see, what it means, and what to do about it. Every installer message on this page is taken from the installer script, so you can search for it word for word.</p>
+          <p>Look up the message you see, what it means, and what to do about it. The installer messages on this page are taken from the installer script, so you can search for them word for word. The last entries describe what you see in the interface rather than a message from a script.</p>
         </div>
       </section>
 
@@ -70,6 +70,7 @@
             <a href="updates.html">Updates and removal</a>
             <a href="governance.html">Review and control</a>
             <a href="hosts-and-portability.html">AI tools and readiness</a>
+            <a href="models.html">Models and keeping up</a>
             <a href="security-and-privacy.html">Security and privacy</a>
             <a href="platform-support.html">Platform support</a>
             <a href="limitations.html">Current limitations</a>
@@ -84,9 +85,10 @@
         </aside>
 
         <article class="prose">
-<p class="notice"><strong>Early alpha, release 0.1.0-alpha.24.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer, in virtual machines; real-Windows results are pending. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+<p class="notice"><strong>Early alpha. This page describes Alpha.26.</strong> Do not use StatePort for important data. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
 <p class="notice notice--quiet"><strong>Ground rules.</strong> Do not edit the installer, skip its checks, or run it with <code>sudo</code>. Do not delete folders you did not create, and do not remove package-manager lock files. After you fix a cause, run the same command again. A message that begins <code>StatePort install:</code> comes from the installer script and stops it.</p>
-<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#host-checks">Host checks</a></li><li data-level="2"><a href="#tools">Missing tools and temporary files</a></li><li data-level="2"><a href="#downloads">Downloads and checksums</a></li><li data-level="2"><a href="#confirmations">Confirmations, sudo, and packages</a></li><li data-level="2"><a href="#system-folders">System folder checks</a></li><li data-level="2"><a href="#refusals">Installer refusals and a leftover from an earlier attempt</a></li><li data-level="3"><a href="#package-installation-invalid">package_installation_invalid</a></li><li data-level="3"><a href="#image-archive-conflict">image_archive_conflict</a></li><li data-level="2"><a href="#after-install">After a successful install</a></li><li data-level="2"><a href="#report">Report a problem</a></li></ol></details>
+<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#host-checks">Host checks</a></li><li data-level="2"><a href="#tools">Missing tools and temporary files</a></li><li data-level="2"><a href="#downloads">Downloads and checksums</a></li><li data-level="2"><a href="#confirmations">Confirmations, sudo, and packages</a></li><li data-level="2"><a href="#system-folders">System folder checks</a></li><li data-level="2"><a href="#refusals">Installer refusals and a leftover from an earlier attempt</a></li><li data-level="3"><a href="#package-installation-invalid">package_installation_invalid</a></li><li data-level="3"><a href="#image-archive-conflict">image_archive_conflict</a></li><li data-level="2"><a href="#after-install">After a successful install</a></li><li data-level="2"><a href="#models">Models and agent actions</a></li><li data-level="2"><a href="#report">Report a problem</a></li></ol></details>
+
 <h2 id="host-checks">Host checks</h2>
 <p>These run first, in both the real install and the dry run, before anything is changed. The setup they check is in <a href="getting-started.html#check">Step 2 of getting started</a>.</p>
 <h3 id="not-root"><code>Run this as your normal WSL user, not root.</code></h3>
@@ -100,7 +102,7 @@
 <h3 id="amd64"><code>WSL2 AMD64 is required.</code></h3>
 <p><strong>You see</strong> the installer stop.</p>
 <p><strong>Cause.</strong> <code>uname -m</code> did not print <code>x86_64</code>, for example on an ARM64 computer.</p>
-<p><strong>What to do.</strong> Alpha.24 supports AMD64 only. Use a different computer.</p>
+<p><strong>What to do.</strong> This release supports AMD64 only. Use a different computer.</p>
 <h3 id="os-release"><code>Cannot read /etc/os-release.</code></h3>
 <p><strong>You see</strong> the installer stop.</p>
 <p><strong>Cause.</strong> The file that names the Linux distribution is missing or unreadable, so this is not a stock Ubuntu.</p>
@@ -124,7 +126,7 @@
 <h3 id="windows-11"><code>Windows 11 build 22000 or newer is required.</code></h3>
 <p><strong>You see</strong> the installer stop.</p>
 <p><strong>Cause.</strong> This is Windows 10 or an older build. Build 22000 is the first Windows 11 build.</p>
-<p><strong>What to do.</strong> Alpha.24 supports Windows 11 only.</p>
+<p><strong>What to do.</strong> This release supports Windows 11 only.</p>
 <h3 id="usage"><code>Usage: &lt;script&gt; [--transport-probe|--materialization-preflight]</code></h3>
 <p><strong>You see</strong> the installer stop before it does anything.</p>
 <p><strong>Cause.</strong> You added an option or an extra word the installer does not know. Only <code>--transport-probe</code> and <code>--materialization-preflight</code> exist.</p>
@@ -154,8 +156,11 @@
 <p><strong>Cause.</strong> A downloaded file does not match the checksum built into the installer. The download may have been damaged or altered on the way, for example by a network device that rewrites traffic, or the files on the site do not match the installer.</p>
 <p><strong>What to do.</strong> Do not bypass this check. Run the command again once. If it fails again with the same file, stop and report it with the file name shown.</p>
 
-<h3 id="cannot-chdir"><code>install refused (volume_create_failed): podman volume create ...: cannot chdir to /home/&lt;you&gt;: Permission denied</code></h3>
-<p>A defect in Alpha.24 (found 21 October 2026 on the test machine): the installer runs part of its work as StatePort's own service account, and that account cannot enter your home folder, which Ubuntu 24.04 creates readable only by you. Run <code>cd /tmp</code> and run the install command again. Nothing was installed when this message appears; the refusal record it names is kept for reference. The fix is in the next release.</p>
+<h3 id="cannot-chdir"><code>install refused (volume_create_failed): podman volume create ...: cannot chdir to /home/&lt;you&gt;: Permission denied</code> &mdash; Alpha.24 only</h3>
+<p><strong>This entry is for Alpha.24 only. It does not happen on this release.</strong></p>
+<p><strong>You see</strong> the installer stop with <code>volume_create_failed</code> and <code>cannot chdir to /home/&lt;you&gt;: Permission denied</code>.</p>
+<p><strong>Cause.</strong> The Alpha.24 installer ran part of its work as StatePort's own service account, and that account cannot enter your home folder, which Ubuntu 24.04 creates readable only by you. The installer no longer does this, so the problem is gone in this release and the <code>cd /tmp</code> workaround is not needed.</p>
+<p><strong>What to do.</strong> If you see this message, you are running the Alpha.24 installer. Run the one-line command of the current release instead. If you did nothing to make it happen and the message still appears, report it with the refusal record it names.</p>
 
 <h2 id="confirmations">Confirmations, sudo, and packages</h2>
 <h3 id="confirm-packages"><code>Authenticated package plan not confirmed.</code></h3>
@@ -197,44 +202,47 @@ refusal record: /home/&lt;you&gt;/.local/state/stateport-install/refusals/&lt;fi
 </pre>
 <p>The code and reason name what was refused. The refusal record is a file with the same information. Attach it when you report the problem, after checking it for anything private.</p>
 <h3 id="package-installation-invalid">package_installation_invalid</h3>
-<p><strong>You see</strong> this near the end of the package steps, a few minutes into the run (in one test about five minutes). The install stops.</p>
+<p><strong>You see</strong> this near the end of the package steps, a few minutes into the run. The install stops.</p>
 <pre><code>install refused (package_installation_invalid): dpkg reports an incomplete package transaction
 refusal record: ~/.local/state/stateport-install/refusals/&lt;timestamp&gt;-package_installation_invalid-&lt;id&gt;.json</code>
 </pre>
-<p><strong>Cause.</strong> After it installs its packages, the installer asks Ubuntu&rsquo;s package tool (<code>dpkg --audit</code>) whether any package change is unfinished, and it stops if the tool prints anything. A freshly started Ubuntu runs its own automatic updates in the background a few minutes after it boots. If that update is in the middle of a step at the moment of the check, the check sees an unfinished change and the installer refuses. This happened on one of three fresh test installs of Alpha.21. Nothing was left half installed that blocked the next attempt. The Alpha.22 test installs did not meet it, but they were few and did not use the public route, so it can still happen.</p>
-<p><strong>What to do.</strong> Wait a minute, then run the same one-line install command again. If you want to check first, run <code>sudo dpkg --audit</code> in Ubuntu: when it prints nothing, Ubuntu&rsquo;s update has finished. On a fresh test machine the next attempt installed and came up healthy. Do not remove package lock files and do not kill Ubuntu&rsquo;s update. If the same message appears again after several minutes, report it and attach the refusal record.</p>
+<p><strong>Cause.</strong> After it installs its packages, the installer asks Ubuntu&rsquo;s package tool (<code>dpkg --audit</code>) whether any package change is unfinished, and it stops if the tool prints anything. A freshly started Ubuntu runs its own automatic updates in the background a few minutes after it boots. If that update is in the middle of a step at the moment of the check, the check sees an unfinished change and the installer refuses. Nothing is left half installed that blocks the next attempt.</p>
+<p><strong>What to do.</strong> Wait a minute, then run the same one-line install command again. If you want to check first, run <code>sudo dpkg --audit</code> in Ubuntu: when it prints nothing, Ubuntu&rsquo;s update has finished. Do not remove package lock files and do not kill Ubuntu&rsquo;s update. If the same message appears again after several minutes, report it and attach the refusal record.</p>
 <h3 id="not-tested-setup">Note: this machine is not one of the tested setups</h3>
 <p><strong>You see</strong> this line in step 2 of 7. The install carries on.</p>
 <pre><code>Note: this machine is not one of the tested setups; it has every capability StatePort needs, so the install continues.</code>
 </pre>
-<p><strong>Cause.</strong> The installer found every capability it needs, but this exact combination of Windows, WSL and Ubuntu is not on its list of validated setups. The line appeared on the Alpha.22 test machine, a fresh Windows 11 virtual machine with stock Ubuntu 24.04, and the install finished healthy.</p>
+<p><strong>Cause.</strong> The installer found every capability it needs, but this exact combination of Windows, WSL and Ubuntu is not on its list of validated setups.</p>
 <p><strong>What to do.</strong> Nothing. It is a note, not a refusal. If the install later stops, include this line in your report.</p>
 <h3 id="image-archive-conflict">image_archive_conflict</h3>
 <p><strong>You see</strong> this near the end of a run, after the package steps. The image name can differ.</p>
-<pre><code>install refused (image_archive_conflict): retained image archive differs: stateport-web.oci.tar
+<pre><code>install refused (image_archive_conflict): retained image archive is not a regular file: stateport-web.oci.tar
 refusal record: ~/.local/state/stateport-install/refusals/&lt;timestamp&gt;-image_archive_conflict-&lt;id&gt;.json</code>
 </pre>
-<p><strong>Cause.</strong> An earlier run on this computer left retained image archives in <code>~/.local/state/stateport-install/updater/bundles/image-archives/</code>. This run has an archive with the same name whose contents differ, for example because the earlier run was an older release or was interrupted while copying. The installer refuses to overwrite it. You would only see this if an earlier attempt left files behind; it did not occur on the fresh test installs.</p>
-<p><strong>What to do.</strong> This is a workaround for a known alpha issue. A proper fix needs a new signed release, and the workaround is still being verified, so treat it as provisional. Close any running StatePort, then move the folder aside with this command (it moves the folder, it does not delete it):</p>
+<p><strong>Cause.</strong> The installer keeps a copy of each image archive in <code>~/.local/state/stateport-install/updater/bundles/image-archives/</code>. If an archive with the same name is already there and its contents differ, for example because an earlier run was an older release or was interrupted while copying, the installer moves the old one aside by itself. It renames it to end in <code>.superseded-</code> and a number, never deletes it, and carries on, so that case no longer stops the install. The refusal above remains for one case: the existing path is not a regular file, for example a symbolic link or a folder, and the installer will not replace that.</p>
+<p><strong>What to do.</strong> Close any running StatePort. To see what is in the way, list the folder:</p>
+<pre><code>ls -l ~/.local/state/stateport-install/updater/bundles/image-archives/</code>
+</pre>
+<p>Then move the folder aside with this command (it moves the folder, it does not delete it):</p>
 <pre><code>mv ~/.local/state/stateport-install/updater/bundles/image-archives ~/.local/state/stateport-install/updater/bundles/image-archives.old</code>
 </pre>
-<p>Then run the one-line install command again. If you report this, attach the refusal record. A leftover from an older release can be the cause, so say whether you tried an earlier StatePort release on the same computer.</p>
+<p>Then run the one-line install command again. If you report this, attach the refusal record and the output of the <code>ls -l</code> command. Files whose names end in <code>.superseded-</code> and a number are old archives the installer set aside by itself; leave them where they are.</p>
 <p>For any other <code>install refused</code> code, keep the message and the refusal record, do not change files in <code>~/.local/state/stateport-install</code>, and report it.</p>
 
 <h2 id="after-install">After a successful install</h2>
 <h3 id="wsl-stops">The page says &ldquo;Service offline&rdquo; after I close Ubuntu</h3>
 <p><strong>You see</strong> the page show <code>Service offline</code>, or stop loading, after you closed the last Ubuntu window.</p>
-<p><strong>Cause.</strong> WSL stops the Linux environment shortly after the last session ends, and StatePort runs inside it. On Alpha.20 fresh installs the product stopped when the last Ubuntu window closed, and it came back about three minutes after Ubuntu was reopened.</p>
-<p><strong>What the keep-alive task does.</strong> The installer registers a Windows scheduled task named <code>StatePortKeepAlive</code>. It runs <code>wsl.exe -d Ubuntu-24.04 --exec sleep infinity</code>, a command that does nothing except keep Ubuntu running so that WSL does not shut it down when the last window closes. On the Alpha.24 test machine Windows listed it with three triggers: at Windows start-up, at sign-in, and every 10 minutes. It was set to run when nobody is signed in, to run on battery power, to have no time limit and to restart if it fails. It had never run on the test machine, so whether it works was not measured. Windows may allow only a smaller version for your account (for example sign-in only); the installer says so at the end of the install. On Alpha.21 the task ran only at sign-in, was set not to start on battery power, and had never run on the test machine. On Alpha.20, on a real Windows 11 host, it held Ubuntu open after a sign-in.</p>
-<p><strong>What to do.</strong> Open an Ubuntu window and reload the address after a few minutes. To make the keep-alive task start, sign out of Windows and sign back in; that activated it on Alpha.20. Windows Task Scheduler lists the task if you want to check it. If StatePort stops again after a sign-in, report it.</p>
+<p><strong>Cause.</strong> WSL stops the Linux environment shortly after the last session ends, and StatePort runs inside it.</p>
+<p><strong>What the keep-alive task does.</strong> The installer registers a Windows scheduled task named <code>StatePortKeepAlive</code>. It runs <code>wsl.exe -d Ubuntu-24.04 --exec sleep infinity</code>, a command that does nothing except keep Ubuntu running so that WSL does not shut it down when the last window closes. Windows may allow only a smaller version for your account, for example sign-in only; the installer says so at the end of the install.</p>
+<p><strong>What to do.</strong> Open an Ubuntu window and reload the address after a few minutes. To make the keep-alive task start, sign out of Windows and sign back in. Windows Task Scheduler lists the task if you want to check it. If StatePort stops again after a sign-in, report it.</p>
 <h3 id="restart">It did not come back after I restarted Windows</h3>
 <p><strong>You see</strong> no answer from the address after a Windows restart.</p>
-<p><strong>Cause.</strong> A planned Windows restart has not been measured on Alpha.21, Alpha.22, Alpha.23 or Alpha.24 (reboot: not measured). During Alpha.21 testing the test machine restarted once without warning (cause not established). Nobody was signed in to Windows afterwards, the keep-alive task did not start, and StatePort stayed down until Ubuntu was started by hand. About two minutes after that it answered again, and the saved state was intact. The Alpha.22, Alpha.23 and Alpha.24 tasks also start at Windows start-up, but that was not measured.</p>
+<p><strong>Cause.</strong> A planned Windows restart has not been measured on this release. <!-- facts:reboot-result --> The keep-alive task is registered to start at Windows start-up, at sign-in and every 10 minutes, but that has not been measured either.</p>
 <p><strong>What to do.</strong> Sign in to Windows, open an Ubuntu window, wait a few minutes, and try again. Please report what you saw either way.</p>
 <h3 id="port-differs">The port is not the one I expected</h3>
 <p><strong>You see</strong> an address such as <code>http://127.0.0.1:18216/</code> whose port differs from an earlier install, another computer, or an example.</p>
 <p><strong>Cause.</strong> The installer chooses the port, and it can differ between installs and computers. Example numbers on this site are only examples.</p>
-<p><strong>What to do.</strong> Use the address printed at the end of your own install. It is also stored in the install receipt (a JSON file in <code>~/.local/state/stateport-install/receipts/</code>) in a field called <code>localUrl</code>.</p>
+<p><strong>What to do.</strong> Use the address printed at the end of your own install, or ask for it again with <code>~/.local/state/stateport-install/bin/stateport url</code>. It is also stored in the install receipt (a JSON file in <code>~/.local/state/stateport-install/receipts/</code>) in a field called <code>localUrl</code>.</p>
 <h3 id="page-no-load">The address does not load although the install said it was healthy</h3>
 <p><strong>You see</strong> an error in the browser, or a page that never loads.</p>
 <p><strong>Cause.</strong> The address only works on the computer where you installed StatePort, over <code>http</code>. Otherwise WSL may have stopped (see the first entry in this section), or the address you typed has a different port.</p>
@@ -244,24 +252,56 @@ refusal record: ~/.local/state/stateport-install/refusals/&lt;timestamp&gt;-imag
 <p><strong>Cause.</strong> The cause is not known from the address alone.</p>
 <p><strong>What to do.</strong> Keep the terminal output and the receipt path. Do not delete containers or volumes, do not edit generated files, and do not copy another installation's state. Report it.</p>
 <h3 id="template-import-ownership">Template import: the checkout does not appear, or inspection is refused</h3>
-<p><strong>You see</strong> no repositories under <strong>Catalog → Import a repository → Import from a local source folder</strong>, or <strong>Inspect</strong> stops with <code>Git repository inspection was refused</code>.</p>
-<p><strong>Cause.</strong> On Alpha.20 the checkout was placed in <code>/var/lib/stateport/imports</code> by your normal Ubuntu user, the service read it as a different user, and Git refused to work in a repository owned by someone else. On Alpha.21 the same placement worked without any change in testing; it was not checked on Alpha.22.</p>
-<p><strong>What to do.</strong> If you do see it on your install, report it. The Alpha.20 workaround was to change the owner of the checkout to the service user, once, and retry; it has not been tried on Alpha.21 or Alpha.22. In Ubuntu:</p>
-<pre><code>sudo chown -R stateport-control:stateport-control /var/lib/stateport/imports/&lt;repository&gt;
-</code></pre>
-<p>Then open Catalog and import again. On Alpha.20 template import worked after this fix.</p>
+<p><strong>You see</strong> no repositories under <strong>Catalog &rarr; Import a repository &rarr; Import from a local source folder</strong>, or <strong>Inspect</strong> stops with <code>Git repository inspection was refused</code>.</p>
+<p><strong>Cause.</strong> The checkout is not where the installer expects it, is not a real directory, is a symbolic link, does not keep its <code>.git</code> folder, or is owned by another user. Git refuses to work in a repository owned by someone else.</p>
+<p><strong>What to do.</strong> Check that the checkout sits in <code>/var/lib/stateport/imports</code> with its <code>.git</code> folder, refresh the list, and inspect again. If the checkout belongs to another user, you can change the owner once in Ubuntu:</p>
+<pre><code>sudo chown -R stateport-control:stateport-control /var/lib/stateport/imports/&lt;repository&gt;</code>
+</pre>
+<p>Then open Catalog and import again. If it still does not appear, report it.</p>
+<h3 id="upgrade-offered">The installer says an older version is installed and asks me to type upgrade</h3>
+<p><strong>You see</strong> the installer offer an upgrade in place, and wait for you to type <code>upgrade</code>.</p>
+<p><strong>Cause.</strong> You ran the one-line command of a newer release over an install of an older release.</p>
+<p><strong>What to do.</strong> Read what it prints first. If you want the newer version, type <code>upgrade</code> and let it run; your applications and their data are kept. If you would rather keep what you have, stop the run and start the older version's installer again. <a href="updates.html">Updates and removal</a> has the details.</p>
+<h3 id="command-missing">The command stateport is not found</h3>
+<p><strong>You see</strong> the shell says <code>stateport: command not found</code>, or <code>No such file or directory</code> for the path.</p>
+<p><strong>Cause.</strong> The command lives in your own home folder, at <code>~/.local/state/stateport-install/bin/stateport</code>, and that folder is not on your path.</p>
+<p><strong>What to do.</strong> Call it with its full path:</p>
+<pre><code>~/.local/state/stateport-install/bin/stateport status</code>
+</pre>
+<p>If the file is not there at all, the install did not finish. Run the one-line command again and read what it says.</p>
+
+<h2 id="models">Models and agent actions</h2>
+<h3 id="no-model">An agent action says no model is available</h3>
+<p><strong>You see</strong> an agent action refused, or the page saying that no measured free model is available.</p>
+<p><strong>Cause.</strong> You have not accepted the free-model terms yet, or the free catalogue has no model that StatePort could use. The agent actions need a model; everything else does not.</p>
+<p><strong>What to do.</strong> Open <strong>Settings &rarr; Models</strong> and accept the provider&rsquo;s terms in the <strong>Free models</strong> section. Agent actions use only the free models in this release, so connecting your own OpenCode sign-in or API key does not turn them on; it gives the chat another route. If you already accepted and it still says this, choose <strong>Evaluate</strong> next to a free model under <strong>Available models</strong>. If the models answer with a usage limit, see <a href="#free-usage-limit">Free usage limit reached</a>. <a href="models.html">Models and keeping up</a> explains what StatePort measures and why.</p>
+<h3 id="free-usage-limit">Free usage limit reached</h3>
+<p><strong>You see</strong> the Models page say <code>the free usage limit is reached</code> next to a model, or say that OpenCode&rsquo;s free models refused every request because the free usage limit for this computer is reached and nothing was learned about the models. A chat message or an agent action can fail with a message that says the provider&rsquo;s usage limit has been reached. OpenCode&rsquo;s own message reads <code>Free usage limit reached. Subscribe to OpenCode Go to keep going</code>.</p>
+<p><strong>Cause.</strong> The free route needs no account, and OpenCode limits how much it gives for free. When the allowance for this computer is used up, OpenCode refuses every free-model request. That is OpenCode&rsquo;s limit. It says nothing about the models or about StatePort, and StatePort does not count it against a model: it records the models as not runnable for now, not as low quality.</p>
+<p><strong>What to do.</strong> Nothing is lost. Your applications, your files and your choices on the Models page stay as they are, and the checks and the rest of StatePort still work without a model. Wait and try again later; when the allowance returns is up to OpenCode. Then choose <strong>Evaluate</strong> next to a model under <strong>Available models</strong> to measure it again.</p>
+<p>The chat can use something else in the meantime: your own OpenCode sign-in or an API key. Open <strong>Settings &rarr; Models</strong> and follow <strong>connect your own OpenCode sign-in or API key</strong>. On the <strong>Coding provider</strong> page, save a model, then choose <strong>Adopt existing OpenCode sign-in</strong> if OpenCode is already signed in on this Ubuntu, or connect an API key. The chat uses that model when no free model is chosen for chat under <strong>Current route</strong>. In this release agent actions use only the free models, so they have to wait. OpenCode&rsquo;s message suggests subscribing to OpenCode Go; that is between you and OpenCode.</p>
+<h3 id="chat-silent">Chat does not answer</h3>
+<p><strong>You see</strong> your message accepted in the chat and no answer coming back.</p>
+<p><strong>Cause.</strong> Chat needs a model, and it needs a route that works. Without one, nothing is sent anywhere and nothing comes back.</p>
+<p><strong>What to do.</strong> Check <strong>Settings &rarr; Models</strong> first. Then check that the machine can reach the provider: agent actions and chat are the only things that use the network after the install. If the answer comes back as a usage-limit message, see <a href="#free-usage-limit">Free usage limit reached</a>. If the route is set and the answer still does not come, report it with what you see in <strong>Settings &rarr; Models</strong>.</p>
 
 <h2 id="report">Report a problem</h2>
 <p><a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue on GitHub</a> and include:</p>
 <ul>
-<li>the release, 0.1.0-alpha.24, and whether the dry run passed;</li>
+<li>the release, Alpha.26, and whether the dry run passed;</li>
 <li>the step you were on and the exact message, copied from the terminal;</li>
 <li>the output of the five checks in <a href="getting-started.html#check">Step 2</a>;</li>
 <li>the refusal record, if the installer printed one, after you check it for private content.</li>
 </ul>
 <p>Remove tokens, passwords, private URLs, personal paths, and file contents from anything you post. Do not post secrets or details of a suspected vulnerability in public; <a href="https://github.com/lennertvhoy/StatePort-Source/security/advisories/new" target="_blank" rel="noopener">report a suspected vulnerability privately on GitHub</a> instead (<a href="security-and-privacy.html#reporting-a-security-issue">how that works</a>).</p>
 <p>See also <a href="getting-started.html">getting started</a>, <a href="updates.html">updates and removal</a>, <a href="limitations.html">current limitations</a>, and the <a href="../releases/">release status</a>.</p>
-        </article>
+
+<div class="inline-actions">
+<a class="button button--ink" href="getting-started.html">Getting started</a>
+<a class="button button--outlined" href="updates.html">Updates and removal</a>
+<a class="button button--outlined" href="models.html">Models and keeping up</a>
+</div>
+</article>
       </div>
     </main>
 

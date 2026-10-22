@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Install StatePort Alpha.24 on Windows 11 with WSL2 and Ubuntu 24.04: prerequisites in order, a dry run, the one-line install, what success looks like, and what to expect.">
+    <meta name="description" content="Install StatePort on Windows 11 with WSL2 and Ubuntu 24.04: what you need, a check of your setup, the one-line install, the two confirmations, and what success looks like.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="Getting started — StatePort">
-    <meta property="og:description" content="Set up WSL2 and Ubuntu 24.04, run the dry run, install StatePort Alpha.24 with one command, and open it in your browser.">
+    <meta property="og:description" content="Set up WSL2 and Ubuntu 24.04, check your setup, install StatePort with one command, and open it in your browser.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/getting-started.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -50,7 +50,7 @@
         <div class="article-hero-inner">
           <p class="document-kicker">Documentation / Getting started</p>
           <h1 id="getting-started-title">Install StatePort on Windows 11 with WSL2.</h1>
-          <p>One path, in order: get WSL2 and Ubuntu 24.04 ready, run a dry run that installs nothing, run the one-line installer, and open StatePort in your browser. On Alpha.24 the public one-line command took 474 seconds (about 8 minutes) once in a Windows 11 test virtual machine; allow more time on a slower computer or connection.</p>
+          <p>One path, in order: get WSL2 and Ubuntu 24.04 ready, check your setup, run the one-line installer, and open StatePort in your browser. The installer asks for your password and for two typed confirmations, then prints the address to open.</p>
           <p>Not sure what StatePort is? Read the <a href="faq.html#what-is-stateport">short answer</a> or <a href="../index.html#journey">follow one study example</a> first.</p>
         </div>
       </section>
@@ -85,9 +85,9 @@
         </aside>
 
         <article class="prose">
-<p class="notice"><strong>Early alpha, release 0.1.0-alpha.24.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer, in virtual machines; real-Windows results are pending. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
-<p class="notice notice--quiet"><strong>Before you start.</strong> The installer adds system packages and services inside the Ubuntu distribution you run it in, and registers one scheduled task in Windows. There is no supported one-command uninstall in this alpha, so use a distribution or virtual machine you can afford to lose. See <a href="updates.html">updates and removal</a>.</p>
-<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#requirements">What you need</a></li><li data-level="2"><a href="#wsl">Step 1. Set up WSL2 and Ubuntu 24.04</a></li><li data-level="2"><a href="#check">Step 2. Check your setup</a></li><li data-level="2"><a href="#dry-run">Step 3. Run the dry run</a></li><li data-level="2"><a href="#install">Step 4. Run the install</a></li><li data-level="2"><a href="#success">What success looks like</a></li><li data-level="2"><a href="#open">Step 5. Open StatePort</a></li><li data-level="2"><a href="#first">What to try first</a></li><li data-level="2"><a href="#closing-wsl">Closing WSL windows, restarts, and the port</a></li><li data-level="2"><a href="#stops">If something stops</a></li></ol></details>
+<p class="notice"><strong>Early alpha. This page describes Alpha.26.</strong> Alpha.24 was the previous public release. Do not use StatePort for important data. One setup is supported: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+<p class="notice notice--quiet"><strong>Before you start.</strong> The installer adds system packages and services inside the Ubuntu distribution you run it in, and it registers one scheduled task in Windows. You can remove it again with the <code>uninstall</code> and <code>purge</code> commands in <a href="updates.html">updates and removal</a>. If you are unsure, try it in a virtual machine.</p>
+<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#requirements">What you need</a></li><li data-level="2"><a href="#wsl">Step 1. Set up WSL2 and Ubuntu 24.04</a></li><li data-level="2"><a href="#check">Step 2. Check your setup</a></li><li data-level="2"><a href="#dry-run">Step 3. Try it without installing</a></li><li data-level="2"><a href="#install">Step 4. Run the install</a></li><li data-level="2"><a href="#success">What success looks like</a></li><li data-level="2"><a href="#open">Step 5. Open StatePort</a></li><li data-level="2"><a href="#route">Step 6. Choose an AI route</a></li><li data-level="2"><a href="#first">What to try first</a></li><li data-level="2"><a href="#keeping-running">Keeping StatePort running</a></li><li data-level="2"><a href="#stops">If something stops</a></li></ol></details>
 <h2 id="requirements">What you need</h2>
 <ul>
 <li>A Windows 11 computer with an AMD64 (x86-64) processor. The installer refuses Windows builds older than 22000, the first Windows 11 build.</li>
@@ -141,19 +141,19 @@ id -u</code>
 </ul>
 <p>The installer also checks the Windows build and that Ubuntu can run <code>powershell.exe</code>. If a check fails, the message is explained in <a href="troubleshooting.html#host-checks">troubleshooting</a>.</p>
 
-<h2 id="dry-run">Step 3. Run the dry run</h2>
+<h2 id="dry-run">Step 3. Try it without installing</h2>
 <p>This is the same command as the real install, with one extra option. It checks your computer, downloads the list of container images with their fingerprints, checks those fingerprints, and installs nothing. It does not ask for <code>sudo</code>.</p>
 <pre><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh) --transport-probe</code>
 </pre>
-<p>When it works, the last line begins <code>StatePort Alpha.24 transport probe passed</code> and ends with <code>installer was not executed.</code> If it stops instead, its message names the problem; look it up in <a href="troubleshooting.html">troubleshooting</a> before going on.</p>
+<p>When it works, the last line says the transport probe passed and that the installer was not executed. If it stops instead, its message names the problem; look it up in <a href="troubleshooting.html">troubleshooting</a> before you go on.</p>
 <p>There is a second, optional dry run. It checks that the installer's helper can be fetched and verified and that its files would be created in a safe order, and it changes no packages or system files. Add <code>--materialization-preflight</code> in place of <code>--transport-probe</code>. It is not needed for a normal install.</p>
 <p>You can compare the installer script with its SHA-256 fingerprint on the <a href="../download/">download page</a> before you run anything.</p>
 
 <h2 id="install">Step 4. Run the install</h2>
 <p>Run this as your normal Ubuntu user, in an interactive Ubuntu window:</p>
-<p><strong>Known issue in Alpha.24:</strong> started from your home folder (where the Ubuntu window opens), the installer stops at step 5 of 7 with <code>volume_create_failed</code> and <code>cannot chdir to /home/&lt;you&gt;: Permission denied</code>. Run <code>cd /tmp</code> first, then the command below. Nothing else changes, and the next release removes the need for it (<a href="troubleshooting.html#cannot-chdir">details</a>).</p>
 <pre><code>bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)</code>
 </pre>
+<p>You can run it in any folder, including your home folder. On Alpha.24 you had to change into <code>/tmp</code> first, because the installer could not enter your home folder from its own service account. That is fixed now, and the extra step is gone.</p>
 <p>What you will see, in order:</p>
 <ol>
 <li>The host checks from Step 2.</li>
@@ -162,39 +162,64 @@ id -u</code>
 <li>It asks you to type <code>install-packages</code> to authorize that exact package plan. Type it exactly.</li>
 <li>Packages are installed and the installer prepares the rest. It prints the exact install plan and asks you to type <code>install-exact</code>. Type it exactly.</li>
 <li>Services are installed and started, and their health is checked.</li>
+<li>It prints the address to open and the commands you use to manage StatePort afterwards.</li>
 </ol>
-<p>Let it finish and keep the window open; an interrupted run can leave files behind that stop a later run (see <a href="troubleshooting.html#image-archive-conflict">troubleshooting</a>). Lines that start with <code>StatePort download retry</code> or <code>StatePort apt update retry</code> mean the installer is retrying a step by itself. A line saying StatePort held packages is normal: the installer pins the exact packages it installed so that ordinary updates do not change them.</p>
+<p>Let it finish and keep the window open; an interrupted run can leave files behind (see <a href="troubleshooting.html#image-archive-conflict">troubleshooting</a>). Lines that start with <code>StatePort download retry</code> or <code>StatePort apt update retry</code> mean the installer is retrying a step by itself. A line saying StatePort held packages is normal: the installer pins the exact packages it installed so that ordinary updates do not change them.</p>
+<p>How long this takes on the reference test machine has not been measured for this release yet. <!-- facts:install-seconds --> Allow more time on a slower computer or a slower connection.</p>
 
 <h2 id="success">What success looks like</h2>
-<p>Near the end you see this, with your own port and path:</p>
+<p>Near the end you see this, with your own port and your own paths:</p>
 <pre><code>StatePort is installed and healthy.
   OpenCode sign-in: none found on this account; nothing was copied.
-  Open StatePort at: http://127.0.0.1:18216/
-  install receipt: /home/&lt;you&gt;/.local/state/stateport-install/receipts/&lt;receipt file&gt;.json</code>
-</pre>
-<p>The port varies from install to install; 18216 was one example. Use the address your installer printed. You may also see lines that start with <code>notice:</code>. On successful installs they were informational, for example that the port in use differed from the one first planned. The closing lines say where your data and install records live and how to stop, remove or reinstall StatePort. The line about an OpenCode sign-in says whether the installer found one; on the Alpha.22 test machine there was none, and nothing was copied. You may also see <code>Note: this machine is not one of the tested setups; it has every capability StatePort needs, so the install continues.</code> That is a note, not a refusal (see <a href="troubleshooting.html#not-tested-setup">troubleshooting</a>).</p>
-<p>The install receipt is a file that records what was installed. The address is stored in it too, in a field called <code>localUrl</code>, if you lose the printed line.</p>
 
-        <h2 id="open">Step 5. Open StatePort</h2>
-        <p>Open the printed address in a web browser on the same computer, for example <code>http://127.0.0.1:18216/</code>. Use <code>http</code>, not <code>https</code>. The address <code>127.0.0.1</code> means this computer only: nobody else on your network can open it, and you should not expose it to the internet.</p>
-        <p>The first screen opens empty, with one main button, <strong>Open the study sample</strong>. Worker execution shows as disabled and the provider as not configured, each with a short explanation. That is normal.</p>
-        <p>To open the study sample, click <strong>Open the study sample</strong>. It installs the bundled sample, records a receipt and opens it after about ten seconds. The Applications list at the left may keep saying that no applications exist until you reload the page. Then follow <a href="everyday-work.html">your first session</a>.</p>
-        <p><strong>What you will not get yet:</strong> chat replies, coding-agent runs, per-application workspaces and container tools, the workbench terminal and files tools, and restore from the interface. The study sample needs no provider login; everything in it is proposed by a fixed script. The full list is in <a href="limitations.html#not-working">current limitations</a>.</p>
-        <p>If the page does not load, see <a href="troubleshooting.html#after-install">troubleshooting</a>.</p>
+  Open StatePort at: http://127.0.0.1:&lt;port&gt;/
+    On Windows, open that same address in your normal Windows browser;
+    WSL forwards localhost, so it is the same localhost address there.
+    The first screen is Applications: click "Open the study sample" to start.
+  install receipt: /home/&lt;you&gt;/.local/state/stateport-install/receipts/&lt;receipt file&gt;
+  Your data and install records live under: /home/&lt;you&gt;/.local/state/stateport-install
+
+  Commands for this installation (type them in this Ubuntu terminal):
+    Open StatePort:  /home/&lt;you&gt;/.local/state/stateport-install/bin/stateport open
+    Status:          /home/&lt;you&gt;/.local/state/stateport-install/bin/stateport status
+    Uninstall:       /home/&lt;you&gt;/.local/state/stateport-install/bin/stateport uninstall    (stops and removes StatePort; your data is kept)
+    Reinstall:       STATEPORT_REINSTALL=1 bash &lt;(curl -fsSL &lt;address of this release&gt;/bootstrap.sh)    (your data is kept)
+    Upgrade:         bash &lt;(curl -fsSL &lt;address of the install script&gt;)    (installs a newer published release; your data is kept)
+    Purge:           /home/&lt;you&gt;/.local/state/stateport-install/bin/stateport purge    (DELETES all StatePort data; asks you to type purge)</code>
+</pre>
+<p>The port is chosen by the installer and can differ between computers. Use the address your installer printed. Your own home folder, receipt file and release addresses appear where this example has placeholders, and the commands are printed with their full paths. The line that starts with <code>OpenCode sign-in:</code> says whether the installer copied an existing OpenCode sign-in; <a href="security-and-privacy.html#what-leaves">security and privacy</a> explains what that means. You may also see lines that start with <code>notice:</code>; on a successful install they were informational. The closing lines say where your data and install records live and give the exact commands to open, check, remove, reinstall, upgrade or purge StatePort. You may also see <code>Note: this machine is not one of the tested setups; it has every capability StatePort needs, so the install continues.</code> That is a note, not a refusal (see <a href="troubleshooting.html#not-tested-setup">troubleshooting</a>).</p>
+<p>The install receipt is a file that records what was installed. The address is stored in it too, in a field called <code>localUrl</code>, if you lose the printed line. Receipts live in <code>~/.local/state/stateport-install/receipts/</code>.</p>
+
+<h2 id="open">Step 5. Open StatePort</h2>
+<p>Open the printed address in a web browser on the same computer. Use <code>http</code>, not <code>https</code>. The address <code>127.0.0.1</code> means this computer only: nobody else on your network can open it, and you should not expose it to the internet.</p>
+<p>You can also let the product open it for you:</p>
+<pre><code>~/.local/state/stateport-install/bin/stateport open</code>
+</pre>
+<p>The first screen is the Applications page. While you have no applications it shows three steps: choose an AI route, create your first application, and run its first action. The first step is optional, because the study sample and every check work without an AI model; Step 6 explains it. For the second step you can choose <strong>Open the study sample</strong>, <strong>Import a template</strong> or <strong>Browse catalog</strong>. <a href="templates.html">Templates</a> explains the difference.</p>
+<p>If the page does not load, see <a href="troubleshooting.html#after-install">troubleshooting</a>.</p>
+
+<h2 id="route">Step 6. Choose an AI route</h2>
+<p>StatePort can ask an AI model to do work for you, but only if a model is available. The first step on the first screen offers two routes:</p>
+<ul>
+<li><strong>Use free models (no account).</strong> These are OpenCode's free models. You do not need an account and you do not need a key. Before the first request, the product shows you the provider's terms and asks you to accept them. During a model's free period, OpenCode states that data sent to that model may be used to improve it. Read the terms before you accept. The agent actions use this route in this release.</li>
+<li><strong>Connect your own OpenCode sign-in or API key.</strong> You connect an account you already have. In this release only the chat uses it. The agent actions, and the practice runs on the Models page, use only the free models, so they stay off until you accept the free-model terms. What that provider does with your data is covered by your own agreement with them.</li>
+</ul>
+<p>You can also skip both for now. Without an AI route everything still works except the AI actions and the chat. The check actions, the applications, the backup and the rest of the interface do not need a model.</p>
+<p><a href="models.html">Models and keeping up</a> explains how StatePort chooses a model, how it measures them, and how to pin one.</p>
 
 <h2 id="first">What to try first</h2>
 <ol>
-<li>Read <a href="../tutorials/first-application.html">Design a small app that keeps its state</a>. It is a thinking exercise with nothing to install, and it explains the ideas behind what you just installed.</li>
-<li>Follow <a href="everyday-work.html">your first session</a> to walk through the StudyState sample, a small study-plan app: start an activity, review the change, apply it, and open the receipt.</li>
-<li>Read <a href="templates.html">templates</a> to see how ProjectState (a project tracker) and StudyState (a study plan) are brought in.</li>
+<li>Open the bundled study sample and follow <a href="everyday-work.html">your first session</a>. It is a small study-plan app you can run in a few minutes.</li>
+<li>Read <a href="templates.html">templates</a> to see how ProjectState (a project tracker), StudyState (a study plan) and Decision Log (a decision log) are brought in.</li>
+<li>Read <a href="../tutorials/first-application.html">design a small app that keeps its state</a>. It is a thinking exercise with nothing to install, and it explains the ideas behind what you just installed.</li>
 </ol>
-<p>The guides are based on the design and earlier recordings. The study sample screens have since been walked through on an installed Alpha.21, and the study sample loop has been run in the browser from start to receipt; that walk-through has not been repeated on Alpha.24. Some screens still have known problems (see <a href="limitations.html#not-working">current limitations</a>). If a screen differs from a guide, please report it.</p>
+<p>If a screen differs from a guide, please <a href="troubleshooting.html#report">report it</a>. This is an early release and screens change.</p>
 
-<h2 id="closing-wsl">Closing WSL windows, restarts, and the port</h2>
+<h2 id="keeping-running">Keeping StatePort running</h2>
 <ul>
-<li><strong>Closing Ubuntu windows.</strong> The installer registers a Windows scheduled task named <code>StatePortKeepAlive</code>. On Alpha.24 it is registered to start at Windows start-up, at sign-in and every 10 minutes; on the test machine it had never run, so its effect was not measured. On Alpha.21 it ran only at sign-in and had not run on the test machine. On Alpha.20, before any sign-out, closing the last Ubuntu window stopped StatePort, and it came back about three minutes after Ubuntu was reopened; after an interactive Windows sign-in the keep-alive task held the environment. <a href="troubleshooting.html#wsl-stops">Troubleshooting</a> explains what the task does.</li>
-<li><strong>Restarting Windows.</strong> A planned restart has not been measured (reboot: not measured). After one unplanned restart of the Alpha.21 test machine, with nobody signed in, StatePort stayed down until Ubuntu was started by hand, and answered again about two minutes later with its saved state intact. If the address does not answer after a restart, sign in to Windows, open an Ubuntu window, and try again after a few minutes.</li>
-<li><strong>The port.</strong> The installer picks the port, and it can differ between installs and computers. Always use the address printed at the end of your install.</li>
+<li><strong>Closing Ubuntu windows.</strong> The installer registers a Windows scheduled task named <code>StatePortKeepAlive</code>. The task is designed to keep Ubuntu running, so that StatePort stays reachable after you close the last Ubuntu window, and to start Ubuntu again at Windows start-up (where Windows allows it), at sign-in and every 10 minutes. Windows may allow only a smaller version for your account, for example sign-in only, and the installer says so at the end when that is the case. Whether the task does what it is designed to do has not been measured on this release.</li>
+<li><strong>Restarting Windows.</strong> What happens after a restart has not been measured yet on this release. <!-- facts:reboot-result --> If the address does not answer after a restart, sign in to Windows, open an Ubuntu window, and try again after a few minutes.</li>
+<li><strong>The port.</strong> The installer picks the port, and it can differ between installs and computers. Always use the address printed at the end of your install, or ask for it later with <code>stateport url</code>.</li>
 </ul>
 
 <h2 id="stops">If something stops</h2>
@@ -206,7 +231,7 @@ id -u</code>
 <a class="button button--outlined" href="everyday-work.html">Your first session</a>
 <a class="button button--outlined" href="../download/">Download page</a>
 </div>
-        </article>
+</article>
       </div>
     </main>
 

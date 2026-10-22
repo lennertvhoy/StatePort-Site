@@ -1,0 +1,9 @@
+flowchart TB
+    accTitle: The work stays; the tools can change
+    accDescr: Durable state supplies views and task context. The selected context informs a model or agent, which proposes a change. The evaluator judges the change, and authority decides whether it becomes the next revision of the same durable state.
+    stateStore[("Durable application state")]
+    stateStore -->|"derive"| projections["Views and task context"]
+    projections -->|"selected context"| engine["Model or agent"]
+    engine -->|"proposed change"| judge["Evaluator: before and after"]
+    judge --> control["Authority and validation"]
+    control -->|"permitted change"| updated[("Next state revision")]

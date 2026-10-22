@@ -1,0 +1,9 @@
+flowchart TB
+    accTitle: A request alone gives no permission
+    accDescr: Effective authority is the shared scope of the template request, the instance grant, operator policy, host capability and the run's lease. Each restricts the request; if no shared permission remains, the operation is unavailable.
+    request["Template's requested scope"]
+    request -->|"restricted by"| grant["Instance grant"]
+    grant -->|"restricted by"| policy["Operator policy"]
+    policy -->|"restricted by"| host["Host capability"]
+    host -->|"restricted by"| lease["Run lease"]
+    lease --> result["Only the shared scope is eligible"]

@@ -1,0 +1,10 @@
+flowchart TB
+    accTitle: An agent's work becomes state only through a proposal
+    accDescr: An agent action runs on a copy of the state and returns a proposal with the exact diff and the evaluator verdict before and after. The owner or a standing grant decides. Applying binds to the proposal digest and base revision, re-runs the evaluator, and records the result.
+    action["Agent action on a copy"]
+    action --> proposal["Proposal: exact diff, evaluator before and after"]
+    proposal --> decide{"Approved or within a grant?"}
+    decide -->|"yes"| apply["Apply to the named base"]
+    decide -->|"no"| keep["Keep as rejected"]
+    apply --> verify["Evaluator on the result"]
+    verify --> record[("Record both verdicts")]

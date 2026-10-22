@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Short answers about StatePort Alpha.24: what it is, whether it is safe, where your data lives, whether it needs internet, what it cannot do yet, and how to report a bug.">
+    <meta name="description" content="Short answers about StatePort: what it is, whether you need an account, whether it is safe, where your data lives, and what it cannot do yet.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
     <meta property="og:title" content="FAQ — StatePort">
-    <meta property="og:description" content="What StatePort is, whether it is safe, where your data lives, what it cannot do yet, and how to report a bug.">
+    <meta property="og:description" content="What StatePort is, whether you need an account, whether it is safe, where your data lives, and how to report a bug.">
     <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/faq.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
@@ -70,6 +70,7 @@
             <a href="updates.html">Updates and removal</a>
             <a href="governance.html">Review and control</a>
             <a href="hosts-and-portability.html">AI tools and readiness</a>
+            <a href="models.html">Models and keeping up</a>
             <a href="security-and-privacy.html">Security and privacy</a>
             <a href="platform-support.html">Platform support</a>
             <a href="limitations.html">Current limitations</a>
@@ -84,59 +85,66 @@
         </aside>
 
         <article class="prose">
-<p class="notice"><strong>Early alpha, release 0.1.0-alpha.24.</strong> Do not use it for important data. It has been tested on one setup only: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer, in virtual machines; real-Windows results are pending. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
-<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-is-stateport">What is StatePort?</a></li><li data-level="2"><a href="#is-it-safe">Is it safe?</a></li><li data-level="2"><a href="#where-is-my-data">Where does my data live?</a></li><li data-level="2"><a href="#internet">Does it need internet?</a></li><li data-level="2"><a href="#cannot-do-yet">What can I not do yet?</a></li><li data-level="2"><a href="#report-a-bug">How do I report a bug?</a></li><li data-level="2"><a href="#who-builds-it">Who builds it?</a></li></ol></details>
+<p class="notice"><strong>Early alpha. This page describes Alpha.26.</strong> Do not use StatePort for important data. One setup is supported: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
+<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-is-stateport">What is StatePort?</a></li><li data-level="2"><a href="#do-i-need-an-account">Do I need an account?</a></li><li data-level="2"><a href="#is-it-safe">Is it safe?</a></li><li data-level="2"><a href="#where-is-my-data">Where does my data live?</a></li><li data-level="2"><a href="#internet">Does it need internet?</a></li><li data-level="2"><a href="#cannot-do-yet">What can I not do yet?</a></li><li data-level="2"><a href="#report-a-bug">How do I report a bug?</a></li><li data-level="2"><a href="#who-builds-it">Who builds it?</a></li></ol></details>
+
 <h2 id="what-is-stateport">What is StatePort?</h2>
-<p>StatePort keeps the goals, progress, decisions and history of AI-assisted work in readable files on your own computer, not in one chat session. An AI tool can help with the work, but it does not own your data or decide its own permissions. For actions that follow a fixed script, such as the StudyState sample, StatePort shows the proposed change, asks for your approval, applies it and records the result. Output from coding agents is recorded as a run result. StatePort does not turn it into saved app state.</p>
-<p>Alpha.24 is an early test release. It installs as a set of local services inside Ubuntu 24.04 on WSL2 (Windows Subsystem for Linux) on Windows 11, and you open it in your web browser at an address on your own computer. Read <a href="foundations.html">why StatePort exists</a> or <a href="model.html">how it is organized</a>, or <a href="getting-started.html">install it</a> and look for yourself.</p>
+<p>StatePort keeps the goals, progress, decisions and history of AI-assisted work in readable files on your own computer, not in one chat session. An AI tool can help with the work, but it does not own your data and it does not decide what it may do.</p>
+<p>You install it with one command, open it in your browser at an address on your own computer, and open an application: a folder of plain files with a name, a history, a check and a set of actions. The check reads your files and answers passed, not yet or invalid, with the reason. An agent action asks a model to work on a <em>copy</em> of the application and hands you the result as a proposal: the exact changes as a diff, and the check&rsquo;s verdict before and after. You apply it, and it becomes one commit in your application, or you reject it and nothing changes.</p>
+<p>Read <a href="foundations.html">why StatePort exists</a> or <a href="model.html">how it is organized</a>, or <a href="getting-started.html">install it</a> and look for yourself.</p>
+
+<h2 id="do-i-need-an-account">Do I need an account?</h2>
+<p>No. The whole product works without an account: opening an application, running its checks, applying a change you have reviewed, backups, and the rest of the interface.</p>
+<p>Only two things need a model: the agent actions and the chat. You can use OpenCode&rsquo;s free models, which need no account and no key; before the first request, StatePort shows you the provider&rsquo;s terms and asks you to accept them. During a model&rsquo;s free period, OpenCode states that data sent to that model may be used to improve it. The agent actions use only the free models in this release. For the chat you can instead connect your own OpenCode sign-in or API key. <a href="models.html">Models and keeping up</a> explains both.</p>
 
 <h2 id="is-it-safe">Is it safe?</h2>
 <p>Treat it as untested software. StatePort is an early alpha and has not had an independent security review. Do not use it for important data, and try it on a computer or virtual machine where a mistake would not matter.</p>
 <p>What the installer does to limit risk:</p>
 <ul>
 <li>It checks your computer first. Then it downloads each file and compares it with a fingerprint (a SHA-256 checksum) before it uses the file. It also checks the release signature.</li>
-<li>It asks for two confirmations, and you type each confirmation word yourself.</li>
+<li>It asks for two confirmations, and you type each confirmation word yourself: <code>install-packages</code> and <code>install-exact</code>.</li>
 <li>The address it prints is <code>127.0.0.1</code>, your own computer. Do not expose it to the internet.</li>
 </ul>
-<p>What it changes on your machine: it installs system packages and services inside the Ubuntu distribution you run it in, and it registers one Windows scheduled task named <code>StatePortKeepAlive</code>. There is no supported one-command uninstall in this alpha, so read <a href="updates.html">updates and removal</a> before installing on a computer you care about. More detail is in <a href="security-and-privacy.html">security and privacy</a>.</p>
+<p>What it changes on your machine: it installs system packages and services inside the Ubuntu distribution you run it in, and it registers one Windows scheduled task named <code>StatePortKeepAlive</code> that keeps Ubuntu running so StatePort stays reachable. You can remove it again with the <code>uninstall</code> and <code>purge</code> commands in <a href="updates.html">updates and removal</a>. More detail is in <a href="security-and-privacy.html">security and privacy</a>.</p>
 
 <h2 id="where-is-my-data">Where does my data live?</h2>
-<p>On your own computer, inside the Ubuntu (WSL) distribution where you installed StatePort. It is not stored in a StatePort cloud service. The installer keeps its receipts and installation records in <code>~/.local/state/stateport-install</code> in that Ubuntu user's home folder. StatePort's local services keep app content in the same distribution. Where every file lives is not yet documented for Alpha.22.</p>
+<p>On your own computer, inside the Ubuntu (WSL) distribution where you installed StatePort. It is not stored in a StatePort cloud service. The installer keeps its receipts and installation records in <code>~/.local/state/stateport-install</code> in that Ubuntu user&rsquo;s home folder, and the local services keep your applications in the same distribution.</p>
 <p>Because it all sits inside one distribution, removing that distribution would remove it. Keep your own backups, and read <a href="lifecycle.html">backup and recovery</a> for what StatePort does and does not promise.</p>
 
 <h2 id="internet">Does it need internet?</h2>
 <ul>
 <li><strong>To install, yes.</strong> The installer downloads release files from this site and from GitHub, and downloads the container images anonymously.</li>
-<li><strong>After install,</strong> StatePort runs as local services on your computer and you open it at a local address. Whether every feature works with no connection has not been measured.</li>
+<li><strong>To import a template from a public repository, yes.</strong> That is the one feature that reaches out after the install, apart from the model.</li>
+<li><strong>After install,</strong> StatePort runs as local services on your computer and you open it at a local address. Everything except agent actions and chat works with no connection.</li>
 <li><strong>Connecting an AI tool</strong> does need internet. A request to a remote provider can send task context to that provider; see <a href="security-and-privacy.html#before-connecting-an-ai-tool">before connecting an AI tool</a>.</li>
 </ul>
 
 <h2 id="cannot-do-yet">What can I not do yet?</h2>
 <ul>
 <li>Use anything other than Windows 11 with WSL2 and Ubuntu 24.04 on AMD64. WSL1, ARM64, macOS, native Linux, Docker Desktop, and other distributions are not supported.</li>
-<li>Uninstall or reinstall with a tested, supported command. Neither has been measured yet.</li>
-<li>Rely on StatePort surviving a Windows restart. A planned restart has not been measured. After one unplanned restart of the test machine, with nobody signed in, StatePort stayed down until Ubuntu was started by hand.</li>
-<li>Count on template import (ProjectState, a project tracker; StudyState, a study plan) from GitHub or any public Git URL: importing the real StudyState_Template (tested at template commit 3bf1048 from August; the template&rsquo;s current main changed on 7 October and is not yet measured) from GitHub worked once on Alpha.24 (it failed on Alpha.23 because the product&rsquo;s containers could not resolve external host names), but ProjectState and other public repositories were not tried on Alpha.24; the template files themselves are fine to use as plain files. A local Git checkout was measured without extra steps on Alpha.21 (not repeated on Alpha.24).</li>
-<li>Update in place or roll back. There is no supported in-place update or rollback in this alpha, and data saved by one alpha may not work in another.</li>
-<li>Undo most changes. One undo exists: the last evidence update in the StudyState sample.</li>
-<li>Back up more than an instance's files. A backup does not include Git history, conversations, the receipts index or approvals, and restore recreates files only.</li>
-<li>Count on the chat assistant answering, or on it knowing your study or project state. No AI provider could be connected in testing, so no reply was produced on Alpha.21, and on Alpha.23 the same class of failure was measured at the network level: the product&rsquo;s containers could not resolve external host names. In Alpha.24 the web service has outbound access, but connecting an AI provider has not been tried. On Alpha.20 the assistant saw only the recent conversation.</li>
+<li>Go back to an older release. You can move forward to a newer one, but there is no way back.</li>
+<li>Import the three templates and run each of their actions. The Decision Log template is published, but importing the templates and running their actions has not been measured in this release yet.</li>
+<li>Undo most changes. One undo exists: the last evidence update in the study sample.</li>
+<li>Back up more than an application&rsquo;s files. A backup does not include the Git history, the conversations, the index of records or the approvals, and a restore recreates files only.</li>
+<li>Ask chat to do something. Chat answers questions about an application, reading the files that the template&rsquo;s actions say a model may read, and it never runs tools or changes anything.</li>
+<li>Move to another computer with everything attached. The files of an application can be exported and imported; permissions, records and provider logins do not travel.</li>
 <li>Use it for a team, as a hosted service, or across the public internet. It is for one person on one local computer.</li>
+<li>Count on measured results for this release. The install, the restart behaviour and the resource use are not measured yet; <a href="limitations.html#measured">what is measured and what is not</a> lists the gaps.</li>
 </ul>
-<p>The full lists of what works, what is not measured and what is not built are on <a href="limitations.html">current limitations</a>.</p>
 
 <h2 id="report-a-bug">How do I report a bug?</h2>
-<p><a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue on GitHub</a>. Include the release (0.1.0-alpha.24), the step you were on, and the exact message you saw. If the installer printed a <code>refusal record:</code> path, attach that file after checking it for anything private. Remove tokens, passwords, private URLs, and personal file contents from anything you share. Do not post secrets, and do not post details of a suspected vulnerability in public: <a href="https://github.com/lennertvhoy/StatePort-Source/security/advisories/new" target="_blank" rel="noopener">report a suspected vulnerability privately on GitHub</a> instead (<a href="security-and-privacy.html#reporting-a-security-issue">how that works</a>). <a href="troubleshooting.html#report">Troubleshooting</a> lists what helps most.</p>
+<p><a href="https://github.com/lennertvhoy/StatePort-Site/issues" target="_blank" rel="noopener">Open an issue on GitHub</a>. Include the release (Alpha.26), the step you were on, and the exact message you saw. If the installer printed a <code>refusal record:</code> path, attach that file after checking it for anything private. Remove tokens, passwords, private URLs, and personal file contents from anything you share. Do not post secrets, and do not post details of a suspected vulnerability in public: <a href="https://github.com/lennertvhoy/StatePort-Source/security/advisories/new" target="_blank" rel="noopener">report a suspected vulnerability privately on GitHub</a> instead (<a href="security-and-privacy.html#reporting-a-security-issue">how that works</a>). <a href="troubleshooting.html#report">Troubleshooting</a> lists what helps most.</p>
 
 <h2 id="who-builds-it">Who builds it?</h2>
-<p>StatePort is built and maintained by Lennert Van Hoyweghen. AI coding agents help write the code, under the maintainer's direction. The source for the release is in the <a href="https://github.com/lennertvhoy/StatePort-Source" target="_blank" rel="noopener">StatePort-Source repository</a>. The code and the template files are AGPL-3.0-or-later, and the docs are CC-BY-4.0. The <a href="../download/technical-release-files.html">technical release files</a> page has the release files for developers.</p>
+<p>StatePort is built and maintained by Lennert Van Hoyweghen. AI coding agents help write the code, under the maintainer&rsquo;s direction. The source for the release is in the <a href="https://github.com/lennertvhoy/StatePort-Source" target="_blank" rel="noopener">StatePort-Source repository</a>. The code and the template files are AGPL-3.0-or-later, and the docs are CC-BY-4.0. The <a href="../download/technical-release-files.html">technical release files</a> page has the release files for developers.</p>
 
 <div class="inline-actions">
 <a class="button button--ink" href="getting-started.html">Install StatePort</a>
+<a class="button button--outlined" href="models.html">Models and keeping up</a>
 <a class="button button--outlined" href="troubleshooting.html">Troubleshooting</a>
 <a class="button button--outlined" href="reference.html">Glossary and concepts</a>
 </div>
-        </article>
+</article>
       </div>
     </main>
 

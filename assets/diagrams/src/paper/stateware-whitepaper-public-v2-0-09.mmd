@@ -1,0 +1,7 @@
+flowchart TB
+    accTitle: Moving the files is only the first question
+    accDescr: Portability asks separate questions about retained data, preserved meaning, available execution, and comparable behavior. Passing one question does not prove the next.
+    data["Data: can I keep the records?"]
+    data -.->|"also check"| meaning["Meaning: can the new host read them?"]
+    meaning -.->|"also check"| execution["Execution: can it do the work?"]
+    execution -.->|"separate evaluation"| behavior["Behavior: are the results comparable?"]

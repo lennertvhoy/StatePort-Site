@@ -1,0 +1,8 @@
+flowchart TB
+    accTitle: One definition, separate owned instances
+    accDescr: A shared StudyState definition creates Amira and Ben instances. Each instance contains its own plan, progress, and decisions; neither learner shares private state merely by using the same template.
+    template["Shared StudyState template"]
+    template -->|"create"| amira["Amira's app"]
+    template -->|"create"| ben["Ben's app"]
+    amira --> aState[("Her private state")]
+    ben --> bState[("His private state")]
