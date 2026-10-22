@@ -10,7 +10,7 @@ back to their Mermaid sources. SVG-local styles and IDs do not enter the page.
 Requires pandoc, mmdc, and a Chrome/Chromium executable (or MMDC_CHROME_BIN).
 Without --paper, only the public paper renders. The earlier draft (candidate v1.2) now
 carries hand-redrawn static SVGs; render it only with an explicit --paper.
-Candidate v2.0 is built the same way as the public paper (--paper stateware-whitepaper-candidate-v2.0).
+Version 2.0 is built the same way as the public paper (--paper stateware-whitepaper-public-v2.0).
 """
 from __future__ import annotations
 
@@ -32,12 +32,12 @@ THEME_CONFIG = ROOT / "config" / "mermaid-theme.json"
 PAPERS_TO_RENDER = (
     "stateware-whitepaper-public-v1.1",
     "stateware-whitepaper-candidate-v1.2",
-    "stateware-whitepaper-candidate-v2.0",
+    "stateware-whitepaper-public-v2.0",
 )
 # Papers rebuilt from Markdown into isolated static SVG image files.
 STATIC_SVG_PAPERS = (
     "stateware-whitepaper-public-v1.1",
-    "stateware-whitepaper-candidate-v2.0",
+    "stateware-whitepaper-public-v2.0",
 )
 
 MERMAID_FENCE = re.compile(r"```mermaid\n(.*?)```", re.DOTALL)

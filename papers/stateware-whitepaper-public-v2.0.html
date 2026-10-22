@@ -4,21 +4,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="Candidate version 2.0 of the Stateware paper, prepared for owner review and not published. The current paper is version 1.1.">
-    <meta name="robots" content="noindex">
+    <meta name="description" content="Version 2.0 of the Stateware paper: every application declares an outcome and an evaluator, and an improvement loop keeps it up with better models. About 25 minutes.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="StatePort">
-    <meta property="og:title" content="Stateware: State as the Application Boundary (candidate 2.0, not published) — StatePort">
-    <meta property="og:description" content="An unpublished candidate, version 2.0, of the Stateware paper. The current paper is version 1.1.">
-    <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/papers/stateware-whitepaper-candidate-v2.0.html">
+    <meta property="og:title" content="Stateware: State as the Application Boundary (version 2.0) — StatePort">
+    <meta property="og:description" content="Version 2.0 of the Stateware paper: durable AI applications with a declared outcome, an evaluator, and a way to keep up with better instruments without losing their work.">
+    <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/papers/stateware-whitepaper-public-v2.0.html">
     <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="StatePort overview card: AI-assisted work saved in files on your own computer, with the current release status.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
-    <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/papers/stateware-whitepaper-candidate-v2.0.html">
+    <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/papers/stateware-whitepaper-public-v2.0.html">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="../assets/favicon-32.png" type="image/png" sizes="32x32">
     <link rel="alternate icon" href="../assets/favicon.ico" sizes="16x16 32x32">
@@ -26,9 +25,23 @@
     <link rel="manifest" href="../site.webmanifest">
     <link rel="stylesheet" href="../assets/site.css?v=2026-09-10-1">
     <link rel="stylesheet" href="../assets/site-enhancements.css?v=2026-09-10-1" data-site-enhancements>
-    <title>Stateware: State as the Application Boundary (candidate 2.0, not published) — StatePort</title>
+    <title>Stateware: State as the Application Boundary (version 2.0) — StatePort</title>
     <link rel="stylesheet" href="../assets/whitepaper-diagrams.css?v=2026-09-09-svg-text">
     <link rel="stylesheet" href="assets/papers.css?v=2026-09-30-1">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Stateware: State as the Application Boundary",
+        "description": "Version 2.0 of the Stateware paper: durable AI applications with a declared outcome, an evaluator, and a way to keep up with better instruments without losing their work.",
+        "url": "https://lennertvhoy.github.io/StatePort-Site/papers/stateware-whitepaper-public-v2.0.html",
+        "author": {"@type": "Person", "name": "Lennert Van Hoyweghen"},
+        "version": "2.0",
+        "datePublished": "2026-10-22",
+        "dateModified": "2026-10-22",
+        "inLanguage": "en"
+      }
+    </script>
   </head>
   <body class="article-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -52,8 +65,8 @@
     <main id="main">
       <section class="article-hero" aria-labelledby="paper-title">
         <div class="article-hero-inner">
-          <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="../">Home</a></li><li><a href="./">Papers</a></li><li><span aria-current="page">Candidate 2.0</span></li></ol></nav>
-          <p class="document-kicker">Candidate for owner review · Version 2.0 · 21 October 2026 · Not published</p>
+          <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="../">Home</a></li><li><a href="./">Papers</a></li><li><span aria-current="page">Stateware paper 2.0</span></li></ol></nav>
+          <p class="document-kicker">Idea paper · Version 2.0 · Revised 22 October 2026</p>
           <h1 id="paper-title">Stateware: State as the Application Boundary</h1>
           <p>Durable AI applications that know what good looks like, and keep up with better instruments without losing their work.</p>
           <p class="paper-hero-meta">About 25 minutes · 9 diagrams · <a href="./">All papers</a></p>
@@ -64,16 +77,16 @@
         <aside class="doc-sidebar doc-sidebar--wide-only" aria-label="Paper navigation">
           <h2>Stateware paper</h2>
           <nav>
-            <a href="./stateware-whitepaper-candidate-v2.0.html" aria-current="page">Candidate 2.0 (not published)</a>
-            <a href="./stateware-whitepaper-candidate-v2.0.md">Source Markdown</a>
-            <a href="./stateware-whitepaper-public-v1.1.html">Current public paper (1.1)</a>
+            <a href="./stateware-whitepaper-public-v2.0.html" aria-current="page">Read online</a>
+            <a href="./stateware-whitepaper-public-v2.0.md">Source Markdown</a>
+            <a href="./stateware-whitepaper-public-v1.1.html">Previous edition (1.1)</a>
             <a href="./">All papers</a>
             <a href="../docs/">Documentation</a>
             <a href="../releases/">Release status</a>
           </nav>
         </aside>
         <article class="prose paper-prose">
-<p class="notice"><strong>Candidate note</strong> This is an unpublished candidate, version 2.0 (21 October 2026), prepared for owner review. The current public paper remains <a href="./stateware-whitepaper-public-v1.1.html">version 1.1 (revised 9 September 2026)</a>. For what StatePort does today, see the <a href="../releases/">release status</a>. <a href="./">All papers</a></p>
+<p class="notice"><strong>Version 2.0</strong> This is version 2.0 (22 October 2026), the current public paper. <a href="./stateware-whitepaper-public-v1.1.html">Version 1.1 (revised 9 September 2026)</a> remains available. For what StatePort does today, see the <a href="../releases/">release status</a>. <a href="./">All papers</a></p>
 <h2 id="abstract-and-thesis">1. Abstract and thesis</h2>
 <h3 id="abstract">Abstract</h3>
 <p>AI-assisted work increasingly extends beyond a single exchange: a
@@ -251,11 +264,11 @@ with it. A rendered conversation can be rebuilt; an unrecorded user
 decision cannot. There is one durable record per instance, not a
 separate truth for state, another for receipts and a third for the
 conversation.</p>
-<figure class="paper-diagram" id="figure-1" data-mermaid-id="stateware-whitepaper-candidate-v2-0-01">
+<figure class="paper-diagram" id="figure-1" data-mermaid-id="stateware-whitepaper-public-v2-0-01">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 1: The work stays; the tools can change">
-    <img src="../assets/diagrams/paper/stateware-whitepaper-candidate-v2-0-01.svg" alt="Durable state supplies views and task context. The selected context informs a model or agent, which proposes a change. The evaluator judges the change, and authority decides whether it becomes the next revision of the same durable state." width="270" height="598" loading="lazy">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v2-0-01.svg" alt="Durable state supplies views and task context. The selected context informs a model or agent, which proposes a change. The evaluator judges the change, and authority decides whether it becomes the next revision of the same durable state." width="270" height="598" loading="lazy">
   </div>
-  <figcaption><strong>Figure 1. The work stays; the tools can change</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-candidate-v2-0-01.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-candidate-v2-0-01.mmd">Mermaid source</a></span></figcaption>
+  <figcaption><strong>Figure 1. The work stays; the tools can change</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v2-0-01.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v2-0-01.mmd">Mermaid source</a></span></figcaption>
 </figure>
 <p><strong>Context</strong> is the material selected for a particular
 model task. For a study-plan revision, that might be the current plan,
@@ -273,11 +286,11 @@ actions, and requested capabilities. An <strong>instance</strong> is one
 owner’s working application created from that definition. Two learners
 can use the same study template while keeping separate plans, histories,
 settings, and permissions.</p>
-<figure class="paper-diagram" id="figure-2" data-mermaid-id="stateware-whitepaper-candidate-v2-0-02">
+<figure class="paper-diagram" id="figure-2" data-mermaid-id="stateware-whitepaper-public-v2-0-02">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 2: One definition, separate owned instances">
-    <img src="../assets/diagrams/paper/stateware-whitepaper-candidate-v2-0-02.svg" alt="A shared StudyState definition creates Amira and Ben instances. Each instance contains its own plan, progress, and decisions; neither learner shares private state merely by using the same template." width="324" height="284" loading="lazy">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v2-0-02.svg" alt="A shared StudyState definition creates Amira and Ben instances. Each instance contains its own plan, progress, and decisions; neither learner shares private state merely by using the same template." width="324" height="284" loading="lazy">
   </div>
-  <figcaption><strong>Figure 2. One definition, separate owned instances</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-candidate-v2-0-02.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-candidate-v2-0-02.mmd">Mermaid source</a></span></figcaption>
+  <figcaption><strong>Figure 2. One definition, separate owned instances</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v2-0-02.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v2-0-02.mmd">Mermaid source</a></span></figcaption>
 </figure>
 <p>The template author owns the reusable definition, including the
 evaluator. The instance owner owns their working content, their outcome
@@ -335,11 +348,11 @@ applies the change, runs the evaluator again on the result, and records
 both verdicts. The owner can approve or reject a proposal, or grant in
 advance that a bounded class of proposals may apply without asking
 (Section 6.5).</p>
-<figure class="paper-diagram" id="figure-3" data-mermaid-id="stateware-whitepaper-candidate-v2-0-03">
+<figure class="paper-diagram" id="figure-3" data-mermaid-id="stateware-whitepaper-public-v2-0-03">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 3: An agent&#x27;s work becomes state only through a proposal">
-    <img src="../assets/diagrams/paper/stateware-whitepaper-candidate-v2-0-03.svg" alt="An agent action runs on a copy of the state and returns a proposal with the exact diff and the evaluator verdict before and after. The owner or a standing grant decides. Applying binds to the proposal digest and base revision, re-runs the evaluator, and records the result." width="466" height="722" loading="lazy">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v2-0-03.svg" alt="An agent action runs on a copy of the state and returns a proposal with the exact diff and the evaluator verdict before and after. The owner or a standing grant decides. Applying binds to the proposal digest and base revision, re-runs the evaluator, and records the result." width="466" height="722" loading="lazy">
   </div>
-  <figcaption><strong>Figure 3. An agent&#x27;s work becomes state only through a proposal</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-candidate-v2-0-03.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-candidate-v2-0-03.mmd">Mermaid source</a></span></figcaption>
+  <figcaption><strong>Figure 3. An agent&#x27;s work becomes state only through a proposal</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v2-0-03.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v2-0-03.mmd">Mermaid source</a></span></figcaption>
 </figure>
 <h3 id="contracts-and-adapters">3.5 Contracts and adapters</h3>
 <p>StateSpec names the portable template contract used within the
@@ -368,11 +381,11 @@ lifecycle</h2>
 <p>StatePort gives the model a concrete division of responsibilities.
 These are logical roles, not a requirement to create a separate service
 for every concern.</p>
-<figure class="paper-diagram" id="figure-4" data-mermaid-id="stateware-whitepaper-candidate-v2-0-04">
+<figure class="paper-diagram" id="figure-4" data-mermaid-id="stateware-whitepaper-public-v2-0-04">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 4: How a work request moves through StatePort">
-    <img src="../assets/diagrams/paper/stateware-whitepaper-candidate-v2-0-04.svg" alt="The interface submits a request to control checks. Admitted work runs on an execution host inside its boundary. The candidate result is judged by the evaluator, applied under authority, and recorded in durable state, then shown in the interface." width="262" height="668" loading="lazy">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v2-0-04.svg" alt="The interface submits a request to control checks. Admitted work runs on an execution host inside its boundary. The candidate result is judged by the evaluator, applied under authority, and recorded in durable state, then shown in the interface." width="262" height="668" loading="lazy">
   </div>
-  <figcaption><strong>Figure 4. How a work request moves through StatePort</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-candidate-v2-0-04.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-candidate-v2-0-04.mmd">Mermaid source</a></span></figcaption>
+  <figcaption><strong>Figure 4. How a work request moves through StatePort</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v2-0-04.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v2-0-04.mmd">Mermaid source</a></span></figcaption>
 </figure>
 <p>The interface asks; the control layer checks permission; the
 execution host performs the work inside its boundary and returns a
@@ -449,11 +462,11 @@ operator policy ∩ host capability ∩ run lease</strong></p>
 person acting in two roles: deciding what one application may do, and
 deciding what the machine allows at all. Keeping the roles distinct
 matters as soon as one person hosts another’s instance.</p>
-<figure class="paper-diagram" id="figure-5" data-mermaid-id="stateware-whitepaper-candidate-v2-0-05">
+<figure class="paper-diagram" id="figure-5" data-mermaid-id="stateware-whitepaper-public-v2-0-05">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 5: A request alone gives no permission">
-    <img src="../assets/diagrams/paper/stateware-whitepaper-candidate-v2-0-05.svg" alt="Effective authority is the shared scope of the template request, the instance grant, operator policy, host capability and the run&#x27;s lease. Each restricts the request; if no shared permission remains, the operation is unavailable." width="279" height="562" loading="lazy">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v2-0-05.svg" alt="Effective authority is the shared scope of the template request, the instance grant, operator policy, host capability and the run&#x27;s lease. Each restricts the request; if no shared permission remains, the operation is unavailable." width="279" height="562" loading="lazy">
   </div>
-  <figcaption><strong>Figure 5. A request alone gives no permission</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-candidate-v2-0-05.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-candidate-v2-0-05.mmd">Mermaid source</a></span></figcaption>
+  <figcaption><strong>Figure 5. A request alone gives no permission</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v2-0-05.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v2-0-05.mmd">Mermaid source</a></span></figcaption>
 </figure>
 <p>For example, a study template might request file access. The owner
 can grant access to one study folder; that does not grant access to the
@@ -576,11 +589,11 @@ means a change exists; <strong>validated</strong> means the named
 journey passed in the named environment; <strong>published</strong>
 requires separate delivery evidence; <strong>accepted</strong> requires
 the human’s verdict.</p>
-<figure class="paper-diagram" id="figure-6" data-mermaid-id="stateware-whitepaper-candidate-v2-0-06">
+<figure class="paper-diagram" id="figure-6" data-mermaid-id="stateware-whitepaper-public-v2-0-06">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 6: From the intended outcome to observed evidence">
-    <img src="../assets/diagrams/paper/stateware-whitepaper-candidate-v2-0-06.svg" alt="The human-owned outcome defines a bounded slice. The real user journey produces evidence. That evidence informs two separate questions: whether the outcome is satisfied and whether another work increment is justified." width="350" height="448" loading="lazy">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v2-0-06.svg" alt="The human-owned outcome defines a bounded slice. The real user journey produces evidence. That evidence informs two separate questions: whether the outcome is satisfied and whether another work increment is justified." width="350" height="448" loading="lazy">
   </div>
-  <figcaption><strong>Figure 6. From the intended outcome to observed evidence</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-candidate-v2-0-06.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-candidate-v2-0-06.mmd">Mermaid source</a></span></figcaption>
+  <figcaption><strong>Figure 6. From the intended outcome to observed evidence</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v2-0-06.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v2-0-06.mmd">Mermaid source</a></span></figcaption>
 </figure>
 <h3 id="continuing-is-a-separate-decision">5.2 Continuing is a separate
 decision</h3>
@@ -596,9 +609,9 @@ calls for an assumption review and simplification before further
 expansion.</p>
 <p>These rules are advisory unless an actual runner enforces admission.
 Writing a deadline in a file is not the same as preventing work after
-it. StatePort’s leases (Section 6.5) are the runner: a budget, an expiry
-and the two-failure rule become conditions the host enforces rather than
-text the agent is asked to respect.</p>
+it. In the model, leases (Section 6.5) are that runner: a budget, an
+expiry and the two-failure rule must become conditions the host enforces
+rather than text the agent is asked to respect.</p>
 <h3 id="development-and-operating-use">5.3 Development and operating
 use</h3>
 <p>A ProjectState instance can support both the development of a product
@@ -628,11 +641,11 @@ the proposal changes, a grant expires, or relevant state has moved, the
 system must determine whether approval still applies before execution.
 Otherwise, an exact-looking approval interface can authorize something
 the owner never saw.</p>
-<figure class="paper-diagram" id="figure-7" data-mermaid-id="stateware-whitepaper-candidate-v2-0-07">
+<figure class="paper-diagram" id="figure-7" data-mermaid-id="stateware-whitepaper-public-v2-0-07">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 7: An approved intention still needs a checked execution">
-    <img src="../assets/diagrams/paper/stateware-whitepaper-candidate-v2-0-07.svg" alt="A proposal is checked against authority. A permitted proposal uses existing authority or receives any required approval, then passes validation before an execution attempt. The system records observed outcomes. Refusal or invalidation prevents the attempt; an attempted effect can still fail or remain uncertain." width="345" height="704" loading="lazy">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v2-0-07.svg" alt="A proposal is checked against authority. A permitted proposal uses existing authority or receives any required approval, then passes validation before an execution attempt. The system records observed outcomes. Refusal or invalidation prevents the attempt; an attempted effect can still fail or remain uncertain." width="345" height="704" loading="lazy">
   </div>
-  <figcaption><strong>Figure 7. An approved intention still needs a checked execution</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-candidate-v2-0-07.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-candidate-v2-0-07.mmd">Mermaid source</a></span></figcaption>
+  <figcaption><strong>Figure 7. An approved intention still needs a checked execution</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v2-0-07.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v2-0-07.mmd">Mermaid source</a></span></figcaption>
 </figure>
 <h3 id="agents-can-act-but-not-define-their-own-authority">6.2 Agents
 can act, but not define their own authority</h3>
@@ -720,11 +733,13 @@ provider)</td>
 <p>Unattended work runs only inside a <strong>lease</strong>: an owner
 grant with a holder, a scope (which actions, which instances), an
 instrument, a budget, an expiry, and an auto-apply scope from the
-table’s third row. The host enforces it. A lease stops at its budget or
-expiry, halts after two evidenced failures at one boundary, parks and
-notifies when it needs a decision outside its scope, and stops at once
-when the owner pauses or revokes it, without the run’s cooperation. A
-lease never extends itself.</p>
+table’s third row. The host, not the run, must enforce it: a lease stops
+at its budget or expiry, halts after two evidenced failures at one
+boundary, parks and notifies when it needs a decision outside its scope,
+and stops at once when the owner pauses or revokes it, without the run’s
+cooperation. A lease never extends itself. Which of these conditions a
+released version enforces, and for which actions, is stated on its
+release page.</p>
 <p>Work applied under a lease is <em>applied</em>, never
 <em>accepted</em>. Acceptance stays a human act.</p>
 <h2 id="applications-that-keep-up">7. Applications that keep up</h2>
@@ -792,11 +807,11 @@ owner accepts</td>
 </tr>
 </tbody>
 </table>
-<figure class="paper-diagram" id="figure-8" data-mermaid-id="stateware-whitepaper-candidate-v2-0-08">
+<figure class="paper-diagram" id="figure-8" data-mermaid-id="stateware-whitepaper-public-v2-0-08">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 8: One improvement loop at three levels">
-    <img src="../assets/diagrams/paper/stateware-whitepaper-candidate-v2-0-08.svg" alt="Observe changes in the world, evaluate candidates against a judgment the loop cannot edit, propose the better one, apply it where authority allows, and record the result. Instruments may switch automatically inside a lease; definitions and the platform change only through proposals and signed releases." width="430" height="663" loading="lazy">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v2-0-08.svg" alt="Observe changes in the world, evaluate candidates against a judgment the loop cannot edit, propose the better one, apply it where authority allows, and record the result. Instruments may switch automatically inside a lease; definitions and the platform change only through proposals and signed releases." width="430" height="663" loading="lazy">
   </div>
-  <figcaption><strong>Figure 8. One improvement loop at three levels</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-candidate-v2-0-08.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-candidate-v2-0-08.mmd">Mermaid source</a></span></figcaption>
+  <figcaption><strong>Figure 8. One improvement loop at three levels</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v2-0-08.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v2-0-08.mmd">Mermaid source</a></span></figcaption>
 </figure>
 <p>At the instrument level the loop can run unattended, because its
 changes are cheap to reverse and its judgment is mechanical. At the
@@ -906,11 +921,11 @@ A destination may need new grants because permissions are local to its
 operator and environment. Credentials should be provisioned through
 supported authentication paths, not silently copied into a portable
 bundle.</p>
-<figure class="paper-diagram" id="figure-9" data-mermaid-id="stateware-whitepaper-candidate-v2-0-09">
+<figure class="paper-diagram" id="figure-9" data-mermaid-id="stateware-whitepaper-public-v2-0-09">
   <div class="paper-diagram-scroll" tabindex="0" role="region" aria-label="Figure 9: Moving the files is only the first question">
-    <img src="../assets/diagrams/paper/stateware-whitepaper-candidate-v2-0-09.svg" alt="Portability asks separate questions about retained data, preserved meaning, available execution, and comparable behavior. Passing one question does not prove the next." width="272" height="435" loading="lazy">
+    <img src="../assets/diagrams/paper/stateware-whitepaper-public-v2-0-09.svg" alt="Portability asks separate questions about retained data, preserved meaning, available execution, and comparable behavior. Passing one question does not prove the next." width="272" height="435" loading="lazy">
   </div>
-  <figcaption><strong>Figure 9. Moving the files is only the first question</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-candidate-v2-0-09.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-candidate-v2-0-09.mmd">Mermaid source</a></span></figcaption>
+  <figcaption><strong>Figure 9. Moving the files is only the first question</strong><span class="paper-diagram-links"><a href="../assets/diagrams/paper/stateware-whitepaper-public-v2-0-09.svg">Open full diagram</a> · <a href="../assets/diagrams/src/paper/stateware-whitepaper-public-v2-0-09.mmd">Mermaid source</a></span></figcaption>
 </figure>
 <h3 id="backup-is-a-consistency-problem">8.3 Backup is a consistency
 problem</h3>
@@ -989,13 +1004,12 @@ can be tried, judged and adopted, by the application itself, without
 touching what the owner has built or what the owner has allowed.</p>
 <p><strong>State is the application boundary.</strong></p>
 <h2 id="reading-and-provenance">Reading and provenance</h2>
-<p>This candidate edition extends version 1.1 (9 September 2026), which
-remains the public edition until the owner accepts this one. It keeps
-1.1’s argument and corrections, and adds the evaluator (Sections
-3.3–3.4), the authority table and leases (Section 6.5) and the
-improvement loop (Section 7). The July v1.2 candidate remains a
-historical draft. The architectural decisions behind this edition are
-recorded in StatePort’s ADR-0007.</p>
+<p>This edition extends version 1.1 (9 September 2026), which remains
+available. It keeps 1.1’s argument and corrections, and adds the
+evaluator (Sections 3.3–3.4), the authority table and leases (Section
+6.5) and the improvement loop (Section 7). The July v1.2 candidate
+remains a historical draft. The architectural decisions behind this
+edition are recorded in StatePort’s ADR-0007.</p>
 <p>The architectural account is grounded in StatePort’s template
 adapter, persistent application, execution-host and lifecycle code, and
 in ProjectState’s v6 core, outcome checker and release mechanism. These

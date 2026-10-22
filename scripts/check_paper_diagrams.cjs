@@ -5,9 +5,11 @@ const path=require('node:path');
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE || path.join(os.homedir(),'Projects/StatePort/apps/web/node_modules/playwright'));
 const base=process.env.PAPER_BASE || 'http://127.0.0.1:4194';
 const out=process.env.PAPER_REPORT || 'output/diagram-clipping-20260909/local';
-const stem=process.env.PAPER_STEM || 'stateware-whitepaper-public-v1-1';
-const pageName=process.env.PAPER_PAGE || 'stateware-whitepaper-public-v1.1.html';
-const figures=Number(process.env.PAPER_FIGURES || 10);
+const rawStem=process.env.PAPER_STEM || 'stateware-whitepaper-public-v1.1';
+// Diagram assets use the slugified stem (render_paper_diagrams.slugify).
+const stem=rawStem.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+const pageName=process.env.PAPER_PAGE || `${rawStem}.html`;
+const requestedFigures=Number(process.env.PAPER_FIGURES || 0);
 const normalize=s=>s.replace(/\s+/g,' ').trim();
 (async()=>{
  fs.mkdirSync(out,{recursive:true});
@@ -18,6 +20,8 @@ const normalize=s=>s.replace(/\s+/g,' ').trim();
   const context=await browser.newContext({viewport:{width,height:1000},javaScriptEnabled});
   const page=await context.newPage();
   await page.goto(`${base}/papers/${pageName}`);
+  // Without PAPER_FIGURES the page decides how many figures it carries.
+  const figures=requestedFigures||await page.locator('figure.paper-diagram').count();
   for(let i=1;i<=figures;i++) {
    const figure=page.locator(`#figure-${i}`);await figure.scrollIntoViewIfNeeded();
    const img=figure.locator('img');await img.evaluate(e=>e.decode());

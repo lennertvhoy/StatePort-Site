@@ -3,9 +3,9 @@ title: "Stateware: State as the Application Boundary"
 subtitle: "Durable AI applications that know what good looks like, and keep up with better instruments without losing their work."
 kicker: "STATEWARE"
 version: "2.0"
-date: "2026-10-21"
+date: "2026-10-22"
 author: "Lennert Van Hoyweghen"
-status: "Candidate edition — prepared for owner review; version 1.1 remains the public edition"
+status: "Public edition — version 1.1 remains available"
 lang: en
 ---
 
@@ -257,7 +257,7 @@ Closure asks whether the recorded outcome is satisfied. Continuation asks whethe
 
 ProjectState's continuation rule asks the agent to identify the unchanged outcome or safety boundary being addressed, the information or behavior expected from the next action, and why that action is the smallest sufficient step. Repeated attempts need a changed premise. After two evidenced failures at the same delivery boundary, the method calls for an assumption review and simplification before further expansion.
 
-These rules are advisory unless an actual runner enforces admission. Writing a deadline in a file is not the same as preventing work after it. StatePort's leases (Section 6.5) are the runner: a budget, an expiry and the two-failure rule become conditions the host enforces rather than text the agent is asked to respect.
+These rules are advisory unless an actual runner enforces admission. Writing a deadline in a file is not the same as preventing work after it. In the model, leases (Section 6.5) are that runner: a budget, an expiry and the two-failure rule must become conditions the host enforces rather than text the agent is asked to respect.
 
 ## 5.3 Development and operating use
 
@@ -317,7 +317,7 @@ Oversight is a property of each action, not a label on the application. The same
 | Sends data outside the machine (for example to a model provider) | asks once per destination, naming what leaves and on what terms |
 | Destructive, external, financial, or changes authority | asks every time; never inside a lease |
 
-Unattended work runs only inside a **lease**: an owner grant with a holder, a scope (which actions, which instances), an instrument, a budget, an expiry, and an auto-apply scope from the table's third row. The host enforces it. A lease stops at its budget or expiry, halts after two evidenced failures at one boundary, parks and notifies when it needs a decision outside its scope, and stops at once when the owner pauses or revokes it, without the run's cooperation. A lease never extends itself.
+Unattended work runs only inside a **lease**: an owner grant with a holder, a scope (which actions, which instances), an instrument, a budget, an expiry, and an auto-apply scope from the table's third row. The host, not the run, must enforce it: a lease stops at its budget or expiry, halts after two evidenced failures at one boundary, parks and notifies when it needs a decision outside its scope, and stops at once when the owner pauses or revokes it, without the run's cooperation. A lease never extends itself. Which of these conditions a released version enforces, and for which actions, is stated on its release page.
 
 Work applied under a lease is *applied*, never *accepted*. Acceptance stays a human act.
 
@@ -451,7 +451,7 @@ Stateware places durable state, explicit contracts and a declared evaluator at t
 
 # Reading and provenance
 
-This candidate edition extends version 1.1 (9 September 2026), which remains the public edition until the owner accepts this one. It keeps 1.1's argument and corrections, and adds the evaluator (Sections 3.3–3.4), the authority table and leases (Section 6.5) and the improvement loop (Section 7). The July v1.2 candidate remains a historical draft. The architectural decisions behind this edition are recorded in StatePort's ADR-0007.
+This edition extends version 1.1 (9 September 2026), which remains available. It keeps 1.1's argument and corrections, and adds the evaluator (Sections 3.3–3.4), the authority table and leases (Section 6.5) and the improvement loop (Section 7). The July v1.2 candidate remains a historical draft. The architectural decisions behind this edition are recorded in StatePort's ADR-0007.
 
 The architectural account is grounded in StatePort's template adapter, persistent application, execution-host and lifecycle code, and in ProjectState's v6 core, outcome checker and release mechanism. These sources establish the design and implementation vocabulary; they do not substitute for qualification of any described behavior. Software availability and measured behavior belong on the [release page](../releases/).
 
