@@ -112,15 +112,16 @@
 
 <h2 id="import-heading">How import works</h2>
 <ol>
-<li>Give StatePort the repository, in one of two ways. Put a real Git checkout, with its <code>.git</code> folder, in the import folder the installer creates; the default is <code>/var/lib/stateport/imports</code>. Or give a public HTTPS repository address and the exact 40-character commit. A ZIP file has no Git history, so it cannot give an exact commit, and a branch name is not enough either.</li>
+<li>Give StatePort the repository, in one of two ways. Put a real Git checkout, with its <code>.git</code> folder, in the import folder the installer creates; the default is <code>/var/lib/stateport/imports</code>. A ZIP file has no Git history, so it cannot be used here. Or give a public HTTPS repository address in <strong>Public HTTPS repository</strong>.</li>
+<li>For a public repository, the second field, <strong>Branch, tag or commit (optional)</strong>, can stay empty. Empty means the repository&rsquo;s default branch. You can also type a branch or tag name, or a full 40-character commit.</li>
 <li>In StatePort, open <strong>Catalog</strong> and choose <strong>Import a repository</strong>.</li>
-<li>Choose <strong>Inspect</strong>. Inspection only reads. It reports the source, the kind of template it detected, the commit, and whether the working tree has uncommitted changes.</li>
+<li>Choose <strong>Fetch and inspect</strong> for the public repository, or <strong>Inspect</strong> for a checkout in the import folder. Inspection only reads. It reports the source, the kind of template it detected, the commit, and whether the working tree has uncommitted changes.</li>
 <li>Read the findings. If the repository is dirty or reports an error, fix it, commit, and inspect again.</li>
 <li>Name the application and approve that exact inspection.</li>
 <li>For a template that follows the contract, choose <strong>Create isolated copy</strong>. For an ordinary repository that is not a template, the action is <strong>Register repository</strong>.</li>
 <li>Open the new application, or its record of the import.</li>
 </ol>
-<p>Your approval is tied to what was inspected. If the source changes afterwards, StatePort refuses the approval instead of quietly importing a different version.</p>
+<p>StatePort resolves the name you typed once, to the exact commit it points to. The review screen shows that commit, and your approval and the import record are bound to it, so a later push to the same branch does not change an application you already imported. If the source changes between the inspection and your approval, StatePort refuses the approval instead of quietly importing a different version.</p>
 <p><strong>Ownership.</strong> A checkout placed in the import folder by your normal Ubuntu user is listed, inspected and installed without any ownership change. If a checkout does not appear on your install, <a href="troubleshooting.html#template-import-ownership">troubleshooting</a> has the entry.</p>
 
 <h2 id="safety-heading">What StatePort copies and runs</h2>
@@ -136,7 +137,7 @@
 <ul>
 <li>The checkout should be in the import folder, be a real directory and not a symbolic link, and keep its <code>.git</code> folder.</li>
 <li>Refresh the list after you copy a checkout in.</li>
-<li>For a public source, use HTTPS and a full commit, not a branch name.</li>
+<li>For a public source, use HTTPS. The branch, tag or commit field is optional: leave it empty for the default branch, or type a branch, a tag or a full 40-character commit.</li>
 <li>If inspection reports uncommitted changes or an invalid template, make the smallest fix, commit it, and inspect again.</li>
 <li>If an import result is uncertain, read Catalog and the records again before you try again.</li>
 </ul>

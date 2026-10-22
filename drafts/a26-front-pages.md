@@ -198,7 +198,7 @@ Now:
 
 Proposed:
 
-> To try your own project, place a Git repository below `/var/lib/stateport/imports` and use **Catalog → Import a repository**, or give a public repository address with its exact commit. If it does not appear, see troubleshooting.
+> To try your own project, place a Git repository below `/var/lib/stateport/imports` and use **Catalog → Import a repository**, or give a public repository address and, if you want one, a branch, tag or commit. If it does not appear, see troubleshooting.
 
 Now:
 
