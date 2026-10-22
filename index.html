@@ -76,7 +76,7 @@
 <!-- support-section-link:start -->
 
 <!-- support-section-link:end -->
-            <p class="availability"><strong>Alpha.24 has a one-line installer for Windows 11 + WSL2: it installs and passes in a clean test VM; real-Windows and reboot results pending. Early alpha, <a href="#status">known limits below</a>.</strong> <a href="download/">Get the install command →</a></p>
+            <p class="availability"><strong>Alpha.26 has a one-line installer for Windows 11 + WSL2. Early alpha, <a href="#status">known limits below</a>.</strong> <a href="download/">Get the install command →</a></p>
           </div>
 
           <figure class="hero-visual">
@@ -144,7 +144,7 @@
               <track kind="captions" srclang="en" label="English" src="assets/media/stateport-overview.vtt?v=2026-09-30-2" default>
               Your browser does not support HTML video. The transcript below carries the same information.
             </video>
-            <p id="overview-caption">This clip shows the real interface, recorded in August 2026 on an earlier development build. Screens in Alpha.24 may differ. It shows the study sample and a receipt; it does not show installing or setting anything up.</p>
+            <p id="overview-caption">This clip shows the real interface, recorded in August 2026 on an earlier development build. Screens in Alpha.26 may differ. It shows the study sample and a record of a change; it does not show installing or setting anything up.</p>
             <details class="video-transcript" id="overview-transcript">
               <summary>Read the transcript</summary>
               <p>AI chats forget. Your work shouldn't. StatePort gives AI-assisted work a durable home on your own machine.</p>
@@ -159,7 +159,7 @@
         <div class="audience-intro reveal">
           <p class="section-kicker">Try it</p>
           <h2 class="section-heading" id="try-heading">Install it with one command.</h2>
-          <p>StatePort Alpha.24 is an early alpha. If you have a Windows 11 computer with WSL2 and Ubuntu 24.04, you can install it with one command. Use a test machine and test data only.</p>
+          <p>StatePort Alpha.26 is an early alpha. If you have a Windows 11 computer with WSL2 and Ubuntu 24.04, you can install it with one command. Use a test machine and test data only.</p>
         </div>
         <div class="try-grid">
           <article class="try-card reveal">
@@ -204,7 +204,7 @@
           <article class="principle reveal">
             <p class="principle-index">02</p>
             <h3>A new session starts from the saved files</h3>
-            <p>State is saved on disk, not held in a chat window. On Alpha.21 the study sample's saved state was still there after a page reload; that was measured again on Alpha.23 and Alpha.24 through the product's own interface, with the saved data still there after a StatePort service restart and a full WSL distribution restart. Whether StatePort keeps running after the last Ubuntu window closes was not measured on Alpha.23 or Alpha.24, and a Windows reboot is not measured (reboot: not measured).</p>
+            <p>State is saved on disk, not held in a chat window. On the release before this one, the study sample's saved state was still there after a page reload, and still there after a StatePort service restart and a full WSL distribution restart. Whether StatePort keeps running after the last Ubuntu window closes, and what happens after a Windows restart, are not measured yet.</p>
           </article>
           <article class="principle reveal">
             <p class="principle-index">03</p>
@@ -246,11 +246,11 @@
         <div class="release-band-inner release-band-inner--expanded">
           <div class="reveal">
             <p class="release-label">Current availability</p>
-            <h2 id="status-heading">Alpha.24 is the current public alpha, and it is an early alpha</h2>
+            <h2 id="status-heading">Alpha.26 is the current public alpha, and it is an early alpha</h2>
             <p class="notice"><strong>StatePort is in early alpha. Do not use it for important data.</strong> Here is exactly what works today, what is not working yet, and what is designed but not yet built.</p>
-            <p><strong>Release label.</strong> Alpha.24 is the current public alpha. Its signed release index marks it a qualification candidate; it is not yet qualified. The index also declares rollback unsupported: there is no supported way back to an earlier alpha, and data saved by one alpha may not work in another.</p>
-            <p><strong>What works today.</strong> Alpha.24 installs and passes in a clean test VM (Windows 11 with WSL2 and Ubuntu 24.04, in a virtual machine); real-Windows and reboot results are pending. In that test, from a local copy of the signed files, all services reported healthy, the web page and the API answered, and running the installer again changed nothing. It installs a web interface, an API, a background worker, storage and a sandbox on your own machine. On Alpha.24 the public one-line command finished in 474 seconds (one attempt), the bundled study sample ran end to end through the product's own interface, with the durable result read back, the saved data was still there after restarting the StatePort services and after a full WSL distribution restart, and importing the StudyState template from GitHub worked. On Alpha.23 the public command succeeded on 3 of 4 attempts and the GitHub import failed. The browser walk-through was last measured on Alpha.21: open the study sample with one click, start an activity, review and approve the exact change, write a reflection, open the receipt and find the saved state again after a reload; import a template from a local Git folder; and, through the API, undo the last evidence update, export and import, and back up and restore as a new instance.</p>
-            <p><strong>Not working yet.</strong> On Alpha.21, coding-agent runs were refused before they started, chat replies failed because no AI provider could be connected, restoring from the interface failed, the provider actions in the interface were refused, the workbench terminal and files tools did not work, per-application workspaces were unavailable, the standing-authority and updater pages showed errors, and the background worker ran no jobs. The Learning tab could show old numbers until you reloaded, and refused changes gave vague error messages. Importing a StudyState repository does not add the study planner (the planner is the built-in sample). None of the Alpha.21 failures below has been measured again on an installed Alpha.24, so treat them as still not working. The keep-alive task is registered but had not run on the test machine, so whether StatePort stays reachable after the last Ubuntu window closes or after a restart is not measured (reboot: not measured). Uninstall was not run on Windows. <a href="docs/limitations.html">Full list of limitations</a>.</p>
+            <p><strong>Release label.</strong> Alpha.26 is the current public alpha, and it is an early alpha. There is no supported way back to an earlier release: you can move forward to a newer one, and data saved by one release may not be usable in another.</p>
+            <p><strong>What works today.</strong> Alpha.26 installs from one command on Windows 11 with WSL2 and Ubuntu 24.04. It gives you a web interface, an API, storage and a sandbox on your own machine, and an address on your own computer that nobody else can reach. You open an application, run its check, ask a model to work on a copy, read the diff it proposes, and apply it or reject it. The measurements for this release are not in yet: how long the install takes, what happens after a Windows restart, and how much memory and disk it uses are still open. The install, the study sample and an import from GitHub were measured on the previous release in a Windows 11 test virtual machine, which is a virtual machine and not a physical computer.</p>
+            <p><strong>Not working yet.</strong> You cannot go back to an older release. The three templates have not been imported and measured in this release yet. Chat answers questions about an application, reading the files that the template's actions say a model may read, and it never runs tools or changes anything. One undo exists, for the last evidence update in the study sample. A backup holds the files of one application, not its history. There is no team, no hosted version and no supported way to reach it over a network. The measurements listed above are not in yet. The full list is on <a href="docs/limitations.html">current limitations</a>.</p>
             <p><strong>Planned.</strong> Undo for most changes, platform rollback, a chat assistant that reads all of your state, saving coding-agent output into your app's state, backups that include history and receipts, container deployment and Agent Kits.</p>
             <details class="status-exact">
               <summary>Technical status of this release</summary>
@@ -262,7 +262,7 @@
           <dl class="release-status-list reveal">
             <div>
               <dt>What works today</dt>
-              <dd>On Alpha.24: one-command install (the public command exited 0 in 474 seconds, one attempt, in a local Windows 11 test virtual machine); the bundled study sample end to end, with the saved data kept after a service restart and a full WSL restart; importing the real StudyState template (tested at template commit 3bf1048 from August; the template&rsquo;s current main changed on 7 October and is not yet measured) from its public GitHub address, which offers a read-only inspect action only. On Alpha.21 (not repeated on Alpha.24): the study sample loop in the browser (open with one click, start an activity, review, approve, reflect, receipt, with state kept after a reload); importing ProjectState and StudyState templates from a local Git folder without an ownership fix; the notifications list; Back up now; undo, export and import, backup and restore as a new instance through the API</dd>
+              <dd>On the previous release: one-command install (the public command exited 0 in 474 seconds, one attempt, in a local Windows 11 test virtual machine); the bundled study sample end to end, with the saved data kept after a service restart and a full WSL restart; importing the StudyState template from its public GitHub address. For Alpha.26 the results are not in yet. <!-- facts:install-seconds --> <!-- facts:journey-result --> <!-- facts:reboot-result --> <!-- facts:memory-mb --> <!-- facts:disk-gb --></dd>
             </div>
             <div>
               <dt>Not working yet</dt>
