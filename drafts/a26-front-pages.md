@@ -95,7 +95,7 @@ Proposed:
 
 Proposed:
 
-> **Not working yet.** You cannot go back to an older release. The Decision Log template is not published yet, so it cannot be imported. Chat answers questions about an application and never runs tools or changes anything. One undo exists, for the last evidence update in the study sample. A backup holds the files of one application, not its history. There is no team, no hosted version and no supported way to reach it over a network. The measurements listed above are not in yet. The full list is on current limitations.
+> **Not working yet.** You cannot go back to an older release. The three templates have not been imported and measured in this release yet. Chat answers questions about an application and never runs tools or changes anything. One undo exists, for the last evidence update in the study sample. A backup holds the files of one application, not its history. There is no team, no hosted version and no supported way to reach it over a network. The measurements listed above are not in yet. The full list is on current limitations.
 
 ### The exact status statement
 
@@ -158,7 +158,7 @@ Proposed:
 > - **What this release does.** One command installs it. It asks for your password and for two typed confirmations, then prints the address to open and the commands that manage it. You open an application, run its check, ask a model to work on a copy, and apply or reject what it proposes.
 > - **Measured on the previous release.** The install, the study sample, a service restart, a full WSL restart and an import from GitHub, in a Windows 11 test virtual machine. The public command took 474 seconds there, once.
 > - **Not measured yet for this release.** How long the install takes: <!-- facts:install-seconds -->. The whole journey on a clean machine: <!-- facts:journey-result -->. What happens after a Windows restart: <!-- facts:reboot-result -->. Memory and disk at idle: <!-- facts:memory-mb --> and <!-- facts:disk-gb -->. Upgrading in place: <!-- facts:upgrade-result -->. Removing StatePort on Windows: <!-- facts:removal-result -->. Importing the three templates: <!-- facts:import-result -->.
-> - **Not working yet.** You cannot go back to an older release. The Decision Log template is not published yet. Chat answers questions and never changes anything. One undo exists. A backup holds the files of one application.
+> - **Not working yet.** You cannot go back to an older release. The three templates have not been imported and measured in this release yet. Chat answers questions and never changes anything. One undo exists. A backup holds the files of one application.
 
 ### The dry-run line
 
@@ -287,7 +287,7 @@ Now: the Alpha.21 failures, the keep-alive task, the unmeasured reboot, undo in 
 
 Proposed:
 
-> **Not working yet.** You cannot go back to an older release. The Decision Log template is not published yet. Chat answers questions and never changes anything. One undo exists, for the last evidence update in the study sample. A backup holds the files of one application, not its history or its conversations. There is no team, no hosted version and no supported way to reach it over a network. The measurements above are not in yet. The full list is on current limitations.
+> **Not working yet.** You cannot go back to an older release. The three templates have not been imported and measured in this release yet. Chat answers questions and never changes anything. One undo exists, for the last evidence update in the study sample. A backup holds the files of one application, not its history or its conversations. There is no team, no hosted version and no supported way to reach it over a network. The measurements above are not in yet. The full list is on current limitations.
 
 ### The availability table
 
