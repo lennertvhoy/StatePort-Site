@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bind immutable Alpha.16 bytes and the exact Alpha.24 mutable install route."""
+"""Bind immutable Alpha.16 bytes and the exact Alpha.26 mutable install route."""
 
 from __future__ import annotations
 
@@ -8,24 +8,24 @@ import sys
 
 VERSIONED_BOOTSTRAP_URL = (
     "https://lennertvhoy.github.io/StatePort-Site/"
-    "download/0.1.0-alpha.24/bootstrap.sh"
+    "download/0.1.0-alpha.26/bootstrap.sh"
 )
-VERSIONED_BOOTSTRAP_SHA256 = "4c7499e60b82fded33672dfd472fea87bca8ea96b74a579affc1681af10181fd"
-VERSIONED_BOOTSTRAP_SIZE = 33_121
+VERSIONED_BOOTSTRAP_SHA256 = "a1cd19571745631b3537c9458f1338c8231984870556fc34e3c5973bf16ecc5a"
+VERSIONED_BOOTSTRAP_SIZE = 39_327
 # The Alpha.16 predecessor bytes stay pinned as immutable retained history.
 RETAINED_ALPHA16_BOOTSTRAP_SHA256 = "6feedf5273547f4a98f5d8edb6fe24e729104ad822c4d58da70cb1f0fdad417a"
 RETAINED_ALPHA16_BOOTSTRAP_SIZE = 32_081
 RETAINED_ALPHA16_INDEX_SHA256 = "8dad6399e66956d1dcb5aebb5a5119c6001617b3279902f0746857b5e6bfac47"
-# The mutable one-command route now serves the Alpha.24 signed candidate. Its
-# bytes must equal the versioned Alpha.24 bootstrap; Alpha.16 remains an
+# The mutable one-command route now serves the Alpha.26 signed candidate. Its
+# bytes must equal the versioned Alpha.26 bootstrap; Alpha.16 remains an
 # immutable pinned predecessor. Every release input is digest-pinned inside
 # the bootstrap; no mutable repair layer is applied.
 MUTABLE_BOOTSTRAP_URL = (
     "https://lennertvhoy.github.io/StatePort-Site/"
-    "download/0.1.0-alpha.24/bootstrap.sh"
+    "download/0.1.0-alpha.26/bootstrap.sh"
 )
-MUTABLE_BOOTSTRAP_SHA256 = "4c7499e60b82fded33672dfd472fea87bca8ea96b74a579affc1681af10181fd"
-MUTABLE_BOOTSTRAP_SIZE = 33_121
+MUTABLE_BOOTSTRAP_SHA256 = "a1cd19571745631b3537c9458f1338c8231984870556fc34e3c5973bf16ecc5a"
+MUTABLE_BOOTSTRAP_SIZE = 39_327
 RETAINED_ALPHA11_BOOTSTRAP_SHA256 = "9aaea4790059579d22db4e5537485a84cc094d9f2b8b0bafc04c618b5e0052df"
 RETAINED_ALPHA11_BOOTSTRAP_SIZE = 31_576
 RETAINED_ALPHA11_INDEX_SHA256 = "8a26f7d36b5c6883c314db7323c4a79a497e0973e0ec671c02c6b38f0f533f2c"
@@ -33,13 +33,13 @@ RETAINED_ALPHA10_BOOTSTRAP_SHA256 = "afb807280e1588ce4903be79649a7b7dd69026177b1
 RETAINED_ALPHA10_BOOTSTRAP_SIZE = 17_774
 RETAINED_ALPHA10_INDEX_SHA256 = "2fc626fcab180f664f04f36d1fcceacaffa81ca96a658585f6684e3cf37abf89"
 MANIFEST_DIGESTS = {
-    "stateport-api": "e9b3ff5554da41a6475d47622c39ec4955c913e13df640df423660817d934c88",
-    "stateport-dev-workspace": "0931aa4d6f9e28a073b1125efef4dc8006b93f0b52e32c83c95297d50930ff65",
-    "stateport-execution-host": "acd04151b7e7b83087551140c901ce4aadd94a3e368dbd85144499f3a82a02ac",
-    "stateport-playwright": "0fd7d98acbd2b7039c354cb0174fc43e394717a80cc4018d05315ed6d0b0511c",
-    "stateport-runner": "c7a6daeb697b507501d64953e4d49e8d3f8afd7db2a7f87550581a3e1f19477d",
-    "stateport-web": "af4e3b78cb71e427c466f43de203790b0ff1850f01f3a593fa44c3826caf3900",
-    "stateport-worker": "f771d7fd2fde0904a93999b1429065a5e18f62a32b76521b915b8e4b88201b06",
+    "stateport-api": "d4831f59fb38d7ac5e4ebb5e88a3d86e43b3a4d417e9b39028f97d2dca8d6f03",
+    "stateport-dev-workspace": "fca3c66ec1989cec95112e8fc557aa526455369b704c8fbd6a2a8579d3c2d0b0",
+    "stateport-execution-host": "8d12dffcf79dff105cc7a407bd9b151a1cbe7cce4a8ab419e7484709ff93ef00",
+    "stateport-playwright": "c798463890a781b9092777ecc09b4a10a62331ddb649dc6c462be31ace7f1007",
+    "stateport-runner": "9f27022e67c858deffacf3ca1007554895acd0304e2299d7c33f0e8dc93739ac",
+    "stateport-web": "8d29f8e0b21427501ccf878b3c356a47e4bddbe5278f700eda247a76e0fa4758",
+    "stateport-worker": "3981d934386f0f88054475bdf0f7a53ffa3d2658bd1d04e9febea455e1095989",
 }
 # Retained immutable Alpha.16 image manifests (nested-repo era).
 RETAINED_ALPHA16_MANIFEST_DIGESTS = {

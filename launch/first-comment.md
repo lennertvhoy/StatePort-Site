@@ -7,7 +7,7 @@ Install on Windows 11 + WSL2 (Ubuntu 24.04): open Ubuntu in WSL2 and run
 The public one-line command installed Alpha.24 on a pristine Windows 11 test VM in 474 seconds (one attempt); the study sample works end to end and its data survives StatePort and WSL restarts, and importing the StudyState template from GitHub works. Real-Windows and reboot results are pending. If it stops with `package_installation_invalid` (a check that races Ubuntu's background updates; it stopped one of three Alpha.21 installs), wait a minute and run the same command again.
 
 Known limits, stated plainly: https://lennertvhoy.github.io/StatePort-Site/releases/
-Verify the installer bytes yourself: `curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh | sha256sum` → 4c7499e60b82fded33672dfd472fea87bca8ea96b74a579affc1681af10181fd (also shown on the download page).
+Verify the installer bytes yourself: `curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh | sha256sum` → a1cd19571745631b3537c9458f1338c8231984870556fc34e3c5973bf16ecc5a (also shown on the download page).
 
 Feedback I'd genuinely love:
 1. Does the one-line install run cleanly on your Windows 11 + WSL2 machine — and where does it stop if not?
@@ -27,7 +27,7 @@ Installeren op Windows 11 + WSL2 (Ubuntu 24.04): open Ubuntu in WSL2 en draai
 Het publieke één-regel-commando installeerde Alpha.24 op een schone Windows 11-test-VM in 474 seconden (één poging); het studievoorbeeld werkt end-to-end en zijn data overleeft StatePort- en WSL-herstarts, en het importeren van de StudyState-template van GitHub werkt. Resultaten op echte Windows en na een herstart zijn nog open. Stopt hij met `package_installation_invalid` (een controle die racet met de achtergrondupdates van Ubuntu; bij Alpha.21 stopte dit één van de drie installaties), wacht dan een minuut en voer dezelfde opdracht opnieuw uit.
 
 Bekende grenzen, eerlijk verwoord: https://lennertvhoy.github.io/StatePort-Site/releases/
-Controleer de installer-bytes zelf: `curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh | sha256sum` → 4c7499e60b82fded33672dfd472fea87bca8ea96b74a579affc1681af10181fd (staat ook op de downloadpagina).
+Controleer de installer-bytes zelf: `curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh | sha256sum` → a1cd19571745631b3537c9458f1338c8231984870556fc34e3c5973bf16ecc5a (staat ook op de downloadpagina).
 
 Feedback die ik echt wil:
 1. Draait de one-line install netjes op jouw Windows 11 + WSL2-machine — en waar stopt hij als dat niet zo is?
