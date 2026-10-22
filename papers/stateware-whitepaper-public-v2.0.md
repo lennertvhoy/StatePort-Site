@@ -5,7 +5,7 @@ kicker: "STATEWARE"
 version: "2.0"
 date: "2026-10-22"
 author: "Lennert Van Hoyweghen"
-status: "Public edition — version 1.1 remains available"
+status: "Public edition, published 22 October 2026 — version 1.1 remains available"
 lang: en
 ---
 
@@ -317,7 +317,7 @@ Oversight is a property of each action, not a label on the application. The same
 | Sends data outside the machine (for example to a model provider) | asks once per destination, naming what leaves and on what terms |
 | Destructive, external, financial, or changes authority | asks every time; never inside a lease |
 
-Unattended work runs only inside a **lease**: an owner grant with a holder, a scope (which actions, which instances), an instrument, a budget, an expiry, and an auto-apply scope from the table's third row. The host, not the run, must enforce it: a lease stops at its budget or expiry, halts after two evidenced failures at one boundary, parks and notifies when it needs a decision outside its scope, and stops at once when the owner pauses or revokes it, without the run's cooperation. A lease never extends itself. Which of these conditions a released version enforces, and for which actions, is stated on its release page.
+Unattended work runs only inside a **lease**: an owner grant with a holder, a scope (which actions, which instances), an instrument, a budget, an expiry, and an auto-apply scope from the table's third row. The host, not the run, must enforce it: a lease stops at its budget or expiry, halts after two evidenced failures at one boundary, parks and notifies when it needs a decision outside its scope, and stops at once when the owner pauses or revokes it, without the run's cooperation. A lease never extends itself. Which of these conditions a released version enforces, and for which actions, belongs in that version's [release notes](../download/technical-release-files.html); this paper does not claim it for any version.
 
 Work applied under a lease is *applied*, never *accepted*. Acceptance stays a human act.
 
@@ -451,10 +451,10 @@ Stateware places durable state, explicit contracts and a declared evaluator at t
 
 # Reading and provenance
 
-This edition extends version 1.1 (9 September 2026), which remains available. It keeps 1.1's argument and corrections, and adds the evaluator (Sections 3.3–3.4), the authority table and leases (Section 6.5) and the improvement loop (Section 7). The July v1.2 candidate remains a historical draft. The architectural decisions behind this edition are recorded in StatePort's ADR-0007.
+This is the public edition, published on 22 October 2026. It extends version 1.1 (9 September 2026), which remains available. It keeps 1.1's argument and corrections, and adds the evaluator (Sections 3.3–3.4), the authority table and leases (Section 6.5) and the improvement loop (Section 7). The July v1.2 candidate remains a historical draft. The architectural decisions behind this edition are recorded in StatePort's ADR-0007.
 
 The architectural account is grounded in StatePort's template adapter, persistent application, execution-host and lifecycle code, and in ProjectState's v6 core, outcome checker and release mechanism. These sources establish the design and implementation vocabulary; they do not substitute for qualification of any described behavior. Software availability and measured behavior belong on the [release page](../releases/).
 
 ## Authorship
 
-Lennert Van Hoyweghen defines the model and its product direction. Coding agents assist with implementation, analysis, and editorial revision; this candidate was drafted by the coordinating agent under the owner's delegation and awaits the owner's review. Their participation does not transfer ownership of the outcome, acceptance criteria, or final product judgment from the human.
+Lennert Van Hoyweghen defines the model and its product direction. Coding agents assist with implementation, analysis, and editorial revision; this edition was drafted by the coordinating agent under the owner's delegation. Their participation does not transfer ownership of the outcome, acceptance criteria, or final product judgment from the human. The owner asked for this edition to be published, and it appeared on 22 October 2026 as the public edition; version 1.1 remains available.
