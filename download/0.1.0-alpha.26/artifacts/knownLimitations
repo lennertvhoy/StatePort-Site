@@ -1,0 +1,7 @@
+# Known limitations
+
+StatePort 0.1.0-alpha.26 targets Ubuntu 24.04 running under WSL2 on Windows 11. WSL1 is refused with `wsl1_substrate_unsupported` before provisioning-plan emission, install-state creation, receipt creation, or host mutation. Native Linux remains a separate signed target and does not inherit WSL2 qualification.
+
+Windows 11, WSL2, and Ubuntu identities remain evidence dimensions rather than substitutes for the required runtime capabilities. WSL2 is reported as `compatible_unvalidated` until a clean-install acceptance receipt exists. Human acceptance, independent security review, stability, and production qualification are not established.
+
+AI work runs through OpenCode, bundled at a pinned version. The default model route uses OpenCode's free models, which need no account but are used only after you accept their terms in Settings (during a model's free period OpenCode states that collected data may be used to improve that model). In this release agent actions and the practice runs use only that free route; chat can also use your own OpenCode sign-in or API key. The anonymous free route has a usage limit per connection: while it is reached, requests on it are refused with that reason and nothing is changed. Agent work runs in a sandbox on a copy of your application and comes back as a proposal you review; chat answers never run tools. Free models come and go, so StatePort measures them and can switch routes for you when you allow it.
