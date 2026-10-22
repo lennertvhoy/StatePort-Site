@@ -216,14 +216,17 @@ refusal record: ~/.local/state/stateport-install/refusals/&lt;timestamp&gt;-pack
 <p><strong>What to do.</strong> Nothing. It is a note, not a refusal. If the install later stops, include this line in your report.</p>
 <h3 id="image-archive-conflict">image_archive_conflict</h3>
 <p><strong>You see</strong> this near the end of a run, after the package steps. The image name can differ.</p>
-<pre><code>install refused (image_archive_conflict): retained image archive differs: stateport-web.oci.tar
+<pre><code>install refused (image_archive_conflict): retained image archive is not a regular file: stateport-web.oci.tar
 refusal record: ~/.local/state/stateport-install/refusals/&lt;timestamp&gt;-image_archive_conflict-&lt;id&gt;.json</code>
 </pre>
-<p><strong>Cause.</strong> An earlier run on this computer left retained image archives in <code>~/.local/state/stateport-install/updater/bundles/image-archives/</code>. This run has an archive with the same name whose contents differ, for example because the earlier run was an older release or was interrupted while copying. The installer refuses to overwrite it. You would only see this if an earlier attempt left files behind.</p>
-<p><strong>What to do.</strong> Close any running StatePort, then move the folder aside with this command (it moves the folder, it does not delete it):</p>
+<p><strong>Cause.</strong> The installer keeps a copy of each image archive in <code>~/.local/state/stateport-install/updater/bundles/image-archives/</code>. If an archive with the same name is already there and its contents differ, for example because an earlier run was an older release or was interrupted while copying, the installer moves the old one aside by itself. It renames it to end in <code>.superseded-</code> and a number, never deletes it, and carries on, so that case no longer stops the install. The refusal above remains for one case: the existing path is not a regular file, for example a symbolic link or a folder, and the installer will not replace that.</p>
+<p><strong>What to do.</strong> Close any running StatePort. To see what is in the way, list the folder:</p>
+<pre><code>ls -l ~/.local/state/stateport-install/updater/bundles/image-archives/</code>
+</pre>
+<p>Then move the folder aside with this command (it moves the folder, it does not delete it):</p>
 <pre><code>mv ~/.local/state/stateport-install/updater/bundles/image-archives ~/.local/state/stateport-install/updater/bundles/image-archives.old</code>
 </pre>
-<p>Then run the one-line install command again. If you report this, attach the refusal record. A leftover from an older release can be the cause, so say whether you tried an earlier StatePort release on the same computer.</p>
+<p>Then run the one-line install command again. If you report this, attach the refusal record and the output of the <code>ls -l</code> command. Files whose names end in <code>.superseded-</code> and a number are old archives the installer set aside by itself; leave them where they are.</p>
 <p>For any other <code>install refused</code> code, keep the message and the refusal record, do not change files in <code>~/.local/state/stateport-install</code>, and report it.</p>
 
 <h2 id="after-install">After a successful install</h2>

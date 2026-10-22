@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none">
-<meta name="description" content="StudyState is a template for a study plan. Its three actions, the study sample that ships with StatePort, and how to import the template.">
+<meta name="description" content="StudyState is a template for a study plan. Its four actions, the study sample that ships with StatePort, and how to import the template.">
 <meta name="theme-color" content="#0B132B">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="StatePort">
 <meta property="og:title" content="StudyState — StatePort">
-<meta property="og:description" content="StudyState is a template for a study plan, its three actions, and the study sample that ships with StatePort.">
+<meta property="og:description" content="StudyState is a template for a study plan, its four actions, and the study sample that ships with StatePort.">
 <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/study-state.html">
 <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
 <link rel="canonical" href="https://lennertvhoy.github.io/StatePort-Site/docs/study-state.html">
@@ -67,7 +67,7 @@
 </aside>
 <article class="prose">
 <p class="notice"><strong>Early alpha. This page describes Alpha.26.</strong> Alpha.24 was the previous public release, where an imported StudyState repository had a single inspection action. This release gives every template its own check and its own actions. Do not use StatePort for important data. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
-<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-studystate-is">What StudyState is</a></li><li data-level="2"><a href="#actions">The three actions</a></li><li data-level="2"><a href="#reflection-becomes-a-change-you-review">Reflection becomes a change you review</a></li><li data-level="2"><a href="#the-focus-default-what-to-do-next-and-why">Choosing the next activity</a></li><li data-level="2"><a href="#state-that-survives-restarts">Saved state and restarts</a></li><li data-level="2"><a href="#what-studystate-deliberately-does-not-do">What StudyState does not do</a></li><li data-level="2"><a href="#use-studystate">Use StudyState</a></li></ol></details>
+<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-studystate-is">What StudyState is</a></li><li data-level="2"><a href="#actions">The four actions</a></li><li data-level="2"><a href="#reflection-becomes-a-change-you-review">Reflection becomes a change you review</a></li><li data-level="2"><a href="#the-focus-default-what-to-do-next-and-why">Choosing the next activity</a></li><li data-level="2"><a href="#state-that-survives-restarts">Saved state and restarts</a></li><li data-level="2"><a href="#what-studystate-deliberately-does-not-do">What StudyState does not do</a></li><li data-level="2"><a href="#use-studystate">Use StudyState</a></li></ol></details>
 <section>
 <h2 id="what-studystate-is">What StudyState is</h2>
 <p>StudyState is a template for a study plan. It keeps a learner&rsquo;s targets, activities, sources, sessions, reviews and evidence as readable Markdown and YAML files. You can run it through StatePort, or you can run it without StatePort at all.</p>
@@ -75,14 +75,15 @@
 <p>The <strong>study sample</strong> is a worked application that ships with StatePort, so you can try the loop before you import anything.</p>
 </section>
 <section>
-<h2 id="actions">The three actions</h2>
-<p>Once a StudyState application is open, it offers three actions.</p>
+<h2 id="actions">The four actions</h2>
+<p>Once a StudyState application is open, it offers four actions.</p>
 <ul>
-<li><strong>Set up study.</strong> You describe your subject and your goals in your own words, and the application builds the starting files from that description: your profile, your targets and your next action. It works on a copy, so you see the whole change before anything is written. Apply it if it says what you meant, or reject it and try again with clearer words.</li>
-<li><strong>Plan next session.</strong> The application looks at your targets, your sources and what you have done so far, and proposes what to do next. The proposal is a diff: the exact lines that would be added or changed, with the check&rsquo;s verdict before and after. Apply it and it becomes one commit in the application. Reject it and nothing changes.</li>
-<li><strong>Check.</strong> This runs the check on your files. It answers <strong>passed</strong>, <strong>not yet</strong>, or <strong>invalid</strong>, and tells you why. It is deterministic: it reads the files and compares them with each other. It never asks a model and never changes anything.</li>
+<li><strong>Inspect study state.</strong> This validates your study state files and summarizes your learner profile and study workflow. It changes nothing and never asks a model.</li>
+<li><strong>Check study state.</strong> This checks your study state files and, when the ProjectState core files are present, runs StatePort&rsquo;s pinned copy of the ProjectState gate as well. It answers <strong>passed</strong>, <strong>not yet</strong>, or <strong>invalid</strong>, and tells you why. It is deterministic: it reads the files and compares them with each other. It never asks a model and never changes anything.</li>
+<li><strong>Plan the next study session.</strong> The application looks at your active target, your review queue and the evidence you recorded, and proposes the next session: the plan becomes your next action, the session is recorded, and any reviews it schedules are added to the queue. The proposal is a diff: the exact lines that would be added or changed, with the check&rsquo;s verdict before and after. Apply it and it becomes one commit in the application. Reject it and nothing changes.</li>
+<li><strong>Set up my study.</strong> You give the goal you want to reach and, if you want, a deadline, where you start, the hours per week you have and your name. The application builds the starting files from that: your profile, your first target and your next action. It works on a copy, so you see the whole change before anything is written. Apply it if it says what you meant, or reject it and try again with clearer words.</li>
 </ul>
-<p>Two of the three actions need a model, so they need an AI route. <a href="models.html">Models and keeping up</a> explains how to get one, including a route that needs no account. The check works either way.</p>
+<p>Two of the four actions need a model, so they need an AI route. <a href="models.html">Models and keeping up</a> explains how to get one, including a route that needs no account. The inspection and the check work either way.</p>
 </section>
 <section>
 <h2 id="reflection-becomes-a-change-you-review">Reflection becomes a change you review</h2>
@@ -92,7 +93,7 @@
 <section>
 <h2 id="the-focus-default-what-to-do-next-and-why">Choosing the next activity</h2>
 <p>The next-activity engine belongs to the StudyState template, not to StatePort. In the template&rsquo;s own design, the engine can pick a question, a spaced review, a paper exercise, a lab, an outside resource, interview or presentation practice, a voice note, a diagram, or an upload-and-review task. Due reviews stay visible. For subjects that change fast, it asks for fresh source information before it asks a question.</p>
-<p>In StatePort, <strong>Plan next session</strong> is what brings that thinking to you as a proposal. You still decide whether it is right for today.</p>
+<p>In StatePort, <strong>Plan the next study session</strong> is what brings that thinking to you as a proposal. You still decide whether it is right for today.</p>
 </section>
 <section>
 <h2 id="state-that-survives-restarts">Saved state and restarts</h2>
@@ -108,7 +109,7 @@
 <section>
 <h2 id="use-studystate">Use StudyState</h2>
 <h3>Try the sample</h3>
-<ol><li>Open the study sample from the first screen, or from <strong>Catalog</strong>.</li><li>Run <strong>Set up study</strong>, or open the sample that is already set up, and read what the check says.</li><li>Run <strong>Plan next session</strong>, read the proposal, and apply it if you agree.</li><li>Write a reflection, review its proposed effect, and apply it to save it as evidence.</li><li>Open the record of what happened, reload the application, and check that your activity and reflection are still there.</li></ol>
+<ol><li>Open the study sample from the first screen, or from <strong>Catalog</strong>.</li><li>The sample is already set up, and its actions are scripts, not a model. Run <strong>Plan next learning activity</strong> and read which activity it selects.</li><li>Run <strong>Start learning activity</strong>, read the proposal, and apply it if you agree.</li><li>Run <strong>Complete activity and record evidence</strong>, write what you learned, review its proposed effect, and apply it to save it as evidence.</li><li>Open the record of what happened, reload the application, and check that your activity and reflection are still there.</li></ol>
 <h3>Import the template</h3>
 <p>Choose <strong>Import a repository</strong> and give the public address of the template in <strong>Public HTTPS repository</strong>. In <strong>Branch, tag or commit (optional)</strong> you can leave the field empty for the default branch, or type a branch, a tag or a full 40-character commit; StatePort resolves it once to the exact commit, and the review screen shows that commit. Or put a Git checkout in <code>/var/lib/stateport/imports</code>. Check the identity, the source commit and what StatePort detected before you create your own copy. The repository is <a href="https://github.com/lennertvhoy/StudyState_Template" target="_blank" rel="noopener">lennertvhoy/StudyState_Template</a>.</p>
 <h3>Use the repository directly</h3>

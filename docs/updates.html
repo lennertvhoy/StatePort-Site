@@ -121,7 +121,7 @@
 <p>Running the one-line command again over a finished install of the same version keeps the install and changes nothing. If you want it reinstalled anyway, and you want to keep your data, put this in front of the command:</p>
 <pre><code>STATEPORT_REINSTALL=1 bash &lt;(curl -fsSL https://lennertvhoy.github.io/StatePort-Site/download/install.sh)</code>
 </pre>
-<p>If an earlier attempt left files behind, the run can stop with <code>image_archive_conflict</code>. <a href="troubleshooting.html#image-archive-conflict">Troubleshooting</a> has the workaround for that case.</p>
+<p>If an earlier attempt left a different copy of a retained image archive behind, the installer moves it aside by itself and carries on. The run can still stop with <code>image_archive_conflict</code> when the existing path is not a regular file. <a href="troubleshooting.html#image-archive-conflict">Troubleshooting</a> has the workaround for that case.</p>
 
 <h2 id="backup">Back up before anything else</h2>
 <p>Every application has its own <strong>Back up now</strong> button. A backup archives the files of that application, not its Git history, its conversations, the index of records or the approvals you gave, and a restore recreates files only. Keep your own copy of anything you care about outside the Ubuntu distribution where StatePort runs, and do not use StatePort for important data. Container images, the install receipt and the installer's records are not a backup of your application data. See <a href="lifecycle.html#back-up-and-recover">backup and recovery</a>.</p>

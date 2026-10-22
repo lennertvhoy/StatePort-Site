@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-    <meta name="description" content="ProjectState is a template for tracking a project. Its three actions, how to import it, and how to use it while building and running a project.">
+    <meta name="description" content="ProjectState is a template for tracking a project. Its four actions, how to import it, and how to use it while building and running a project.">
     <meta name="theme-color" content="#0B132B">
     <meta property="og:type" content="article">
 <meta property="og:site_name" content="StatePort">
 <meta property="og:title" content="ProjectState — StatePort">
-<meta property="og:description" content="What ProjectState is, its three actions, how to import it, and how to use it while building and running a project.">
+<meta property="og:description" content="What ProjectState is, its four actions, how to import it, and how to use it while building and running a project.">
 <meta property="og:url" content="https://lennertvhoy.github.io/StatePort-Site/docs/project-state.html">
 <meta property="og:image" content="https://lennertvhoy.github.io/StatePort-Site/assets/media/stateport-social-card.png">
 <meta property="og:image:width" content="1200">
@@ -69,7 +69,7 @@
         <article class="prose">
 <p class="notice"><strong>Early alpha. This page describes Alpha.26.</strong> Do not use StatePort for important data. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
 <p class="notice notice--quiet"><strong>Import it first.</strong> <a href="templates.html">The template guide</a> explains how to bring a ProjectState repository into StatePort: a public HTTPS address, with an optional branch, tag or commit, or a Git checkout under <code>/var/lib/stateport/imports</code>.</p>
-<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-it-is">What ProjectState is</a></li><li data-level="2"><a href="#files">The ProjectState files</a></li><li data-level="2"><a href="#actions">The three actions</a></li><li data-level="2"><a href="#import">Import and review in StatePort</a></li><li data-level="2"><a href="#development">Use it while developing</a></li><li data-level="2"><a href="#operation">Use it while operating the project</a></li><li data-level="2"><a href="#validation">Tests are evidence; acceptance is your decision</a></li><li data-level="2"><a href="#limits">Limits and recovery</a></li></ol></details>
+<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#what-it-is">What ProjectState is</a></li><li data-level="2"><a href="#files">The ProjectState files</a></li><li data-level="2"><a href="#actions">The four actions</a></li><li data-level="2"><a href="#import">Import and review in StatePort</a></li><li data-level="2"><a href="#development">Use it while developing</a></li><li data-level="2"><a href="#operation">Use it while operating the project</a></li><li data-level="2"><a href="#validation">Tests are evidence; acceptance is your decision</a></li><li data-level="2"><a href="#limits">Limits and recovery</a></li></ol></details>
 <section>
 <h2 id="what-it-is">What ProjectState is</h2>
 <p>ProjectState keeps a project&rsquo;s goal, the one piece of work in progress, the working rules and the evidence in ordinary files. It helps an agent or a team answer four questions: what are we trying to change, what is the one thing we are working on, what did we actually see, and what happens next? The template calls that one piece of work a &ldquo;slice&rdquo;.</p>
@@ -100,14 +100,15 @@
 <p>The check script reads what the record says. It does not run your project. A real run of the user task supplies the observed result.</p>
 </section>
 <section>
-<h2 id="actions">The three actions</h2>
-<p>Once a ProjectState application is open, it offers three actions.</p>
+<h2 id="actions">The four actions</h2>
+<p>Once a ProjectState application is open, it offers four actions.</p>
 <ul>
-<li><strong>Set up project (from your own words).</strong> You describe the project in your own words, and the application builds the starting files from that description: the outcome in <code>PROJECT.md</code>, the current work in <code>STATE.yaml</code>, and the rules in <code>AGENTS.md</code>. It works on a copy, so you see the whole change before anything is written. Apply it if it says what you meant; reject it and try again with clearer words.</li>
-<li><strong>Do the next action.</strong> The application looks at <code>STATE.yaml</code>, works out the next step, and proposes the change that step needs. The proposal is a diff: the exact lines that would be added or changed, with the check&rsquo;s verdict before and after. Apply it and it becomes one commit in the application. Reject it and nothing changes.</li>
-<li><strong>Check.</strong> This runs the check script on your files. It answers <strong>passed</strong>, <strong>not yet</strong>, or <strong>invalid</strong>, and tells you why. It is deterministic: it reads the files and compares them with each other. It never asks a model and never changes anything.</li>
+<li><strong>Inspect project outcome.</strong> This reads <code>PROJECT.md</code> and <code>STATE.yaml</code>, validates them and summarizes the current outcome and the current piece of work. It changes nothing and never asks a model.</li>
+<li><strong>Check the project gate.</strong> This runs StatePort&rsquo;s pinned copy of the ProjectState gate on your files. It answers <strong>passed</strong>, <strong>not yet</strong>, or <strong>invalid</strong>, and tells you why. It is deterministic: it reads the files and compares them with each other. It never asks a model and never changes anything.</li>
+<li><strong>Do the next action.</strong> The application takes the next action recorded in <code>STATE.yaml</code> and does only that step, on a copy of the project. It never changes <code>PROJECT.md</code>. The proposal is a diff: the exact lines that would be added or changed, with the check&rsquo;s verdict before and after. Apply it and it becomes one commit in the application. Reject it and nothing changes.</li>
+<li><strong>Set up this project.</strong> You give the project name, who it is for, the outcome and, if you want, the first piece of work, in your own words. The application writes <code>PROJECT.md</code> from those words, resets <code>STATE.yaml</code> to a first piece of work, writes the evidence summary for it and names the project in <code>README.md</code>. It does not touch <code>AGENTS.md</code>. It works on a copy, so you see the whole change before anything is written. Apply it if it says what you meant; reject it and try again with clearer words.</li>
 </ul>
-<p>Two of the three actions need a model, so they need an AI route. <a href="models.html">Models and keeping up</a> explains how to get one, including a route that needs no account. The check works either way.</p>
+<p>Two of the four actions need a model, so they need an AI route. <a href="models.html">Models and keeping up</a> explains how to get one, including a route that needs no account. The inspection and the check work either way.</p>
 </section>
 <section>
 <h2 id="import">Import and review in StatePort</h2>

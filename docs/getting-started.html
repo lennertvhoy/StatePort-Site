@@ -164,21 +164,30 @@ id -u</code>
 <li>Services are installed and started, and their health is checked.</li>
 <li>It prints the address to open and the commands you use to manage StatePort afterwards.</li>
 </ol>
-<p>Let it finish and keep the window open; an interrupted run can leave files behind that stop a later run (see <a href="troubleshooting.html#image-archive-conflict">troubleshooting</a>). Lines that start with <code>StatePort download retry</code> or <code>StatePort apt update retry</code> mean the installer is retrying a step by itself. A line saying StatePort held packages is normal: the installer pins the exact packages it installed so that ordinary updates do not change them.</p>
+<p>Let it finish and keep the window open; an interrupted run can leave files behind (see <a href="troubleshooting.html#image-archive-conflict">troubleshooting</a>). Lines that start with <code>StatePort download retry</code> or <code>StatePort apt update retry</code> mean the installer is retrying a step by itself. A line saying StatePort held packages is normal: the installer pins the exact packages it installed so that ordinary updates do not change them.</p>
 <p>How long this takes on the reference test machine: <!-- facts:install-seconds --> not measured for this release yet. Allow more time on a slower computer or a slower connection.</p>
 
 <h2 id="success">What success looks like</h2>
 <p>Near the end you see this, with your own port and your own paths:</p>
 <pre><code>StatePort is installed and healthy.
+  OpenCode sign-in: none found on this account; nothing was copied.
+
   Open StatePort at: http://127.0.0.1:&lt;port&gt;/
-  Manage it with:
-    ~/.local/state/stateport-install/bin/stateport status
-    ~/.local/state/stateport-install/bin/stateport open
-    ~/.local/state/stateport-install/bin/stateport url
-    ~/.local/state/stateport-install/bin/stateport uninstall
-    ~/.local/state/stateport-install/bin/stateport purge</code>
+    On Windows, open that same address in your normal Windows browser;
+    WSL forwards localhost, so it is the same localhost address there.
+    The first screen is Applications: click "Open the study sample" to start.
+  install receipt: /home/&lt;you&gt;/.local/state/stateport-install/receipts/&lt;receipt file&gt;
+  Your data and install records live under: /home/&lt;you&gt;/.local/state/stateport-install
+
+  Commands for this installation (type them in this Ubuntu terminal):
+    Open StatePort:  /home/&lt;you&gt;/.local/state/stateport-install/bin/stateport open
+    Status:          /home/&lt;you&gt;/.local/state/stateport-install/bin/stateport status
+    Uninstall:       /home/&lt;you&gt;/.local/state/stateport-install/bin/stateport uninstall    (stops and removes StatePort; your data is kept)
+    Reinstall:       STATEPORT_REINSTALL=1 bash &lt;(curl -fsSL &lt;address of this release&gt;/bootstrap.sh)    (your data is kept)
+    Upgrade:         bash &lt;(curl -fsSL &lt;address of the install script&gt;)    (installs a newer published release; your data is kept)
+    Purge:           /home/&lt;you&gt;/.local/state/stateport-install/bin/stateport purge    (DELETES all StatePort data; asks you to type purge)</code>
 </pre>
-<p>The port is chosen by the installer and can differ between computers. Use the address your installer printed. You may also see lines that start with <code>notice:</code>; on a successful install they were informational. The closing lines say where your data and install records live and how to stop, remove or reinstall StatePort. You may also see <code>Note: this machine is not one of the tested setups; it has every capability StatePort needs, so the install continues.</code> That is a note, not a refusal (see <a href="troubleshooting.html#not-tested-setup">troubleshooting</a>).</p>
+<p>The port is chosen by the installer and can differ between computers. Use the address your installer printed. Your own home folder, receipt file and release addresses appear where this example has placeholders, and the commands are printed with their full paths. The line that starts with <code>OpenCode sign-in:</code> says whether the installer copied an existing OpenCode sign-in; <a href="security-and-privacy.html#what-leaves">security and privacy</a> explains what that means. You may also see lines that start with <code>notice:</code>; on a successful install they were informational. The closing lines say where your data and install records live and give the exact commands to open, check, remove, reinstall, upgrade or purge StatePort. You may also see <code>Note: this machine is not one of the tested setups; it has every capability StatePort needs, so the install continues.</code> That is a note, not a refusal (see <a href="troubleshooting.html#not-tested-setup">troubleshooting</a>).</p>
 <p>The install receipt is a file that records what was installed. The address is stored in it too, in a field called <code>localUrl</code>, if you lose the printed line. Receipts live in <code>~/.local/state/stateport-install/receipts/</code>.</p>
 
 <h2 id="open">Step 5. Open StatePort</h2>
@@ -186,7 +195,7 @@ id -u</code>
 <p>You can also let the product open it for you:</p>
 <pre><code>~/.local/state/stateport-install/bin/stateport open</code>
 </pre>
-<p>The first screen opens empty. It asks you to choose an AI route before you use anything else; Step 6 explains that. After that you can open the bundled study sample, or import a template of your own. <a href="templates.html">Templates</a> explains the difference.</p>
+<p>The first screen is the Applications page. While you have no applications it shows three steps: choose an AI route, create your first application, and run its first action. The first step is optional, because the study sample and every check work without an AI model; Step 6 explains it. For the second step you can choose <strong>Open the study sample</strong>, <strong>Import a template</strong> or <strong>Browse catalog</strong>. <a href="templates.html">Templates</a> explains the difference.</p>
 <p>If the page does not load, see <a href="troubleshooting.html#after-install">troubleshooting</a>.</p>
 
 <h2 id="route">Step 6. Choose an AI route</h2>
