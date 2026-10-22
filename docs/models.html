@@ -91,7 +91,7 @@
 <p>Two things in StatePort use an AI model:</p>
 <ul>
 <li><strong>Agent actions.</strong> A model works on a copy of one of your applications and hands you the result as a proposal. <a href="everyday-work.html">Your first session</a> shows the loop.</li>
-<li><strong>Chat.</strong> Chat answers questions about an application. It reads the application&rsquo;s own files to answer, at most 12 KiB of them. It never runs tools and never changes anything.</li>
+<li><strong>Chat.</strong> Chat answers questions about an application. It reads the files that the template&rsquo;s actions say a model may read, at most 12 KiB of them. It never runs tools and never changes anything.</li>
 </ul>
 <p>Everything else is deterministic. The check actions read your files and give a verdict: passed, not yet, or invalid, with the reason. Those verdicts come from a script, not from a model.</p>
 
@@ -119,11 +119,11 @@
 <ul>
 <li>the models in the current catalogue, and which ones are free;</li>
 <li>a score for each model that has been measured;</li>
-<li>the model StatePort currently uses for agent work;</li>
+<li>the model StatePort uses for agent actions and the model it uses for chat; you choose each one;</li>
 <li>the history of what was measured and what changed.</li>
 </ul>
 <p>The scores come from StatePort's own practice tasks: small, fixed jobs with a clear right answer, run through the same runner and the same sandbox that your agent actions use. <strong>Your data is never used for measuring.</strong> The practice tasks belong to StatePort and never touch your applications. The page says so in the same words, so a score is never mistaken for a judgement about your work.</p>
-<p>A model replaces the one in use only when it does everything the current one does, and does more, or the same work faster. When two models are equal, the one you already use stays.</p>
+<p>Each model in use is replaced only when the new one does everything the current one does, and does more, or the same work faster. When two models are equal, the one you already use stays.</p>
 
 <h2 id="keep-up">Keep up automatically</h2>
 <p>You can switch on <strong>Keep up automatically</strong>. It is a permission you give for 30 days, and you can take it away at any moment.</p>
