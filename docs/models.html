@@ -91,7 +91,7 @@
 <p>Two things in StatePort use an AI model:</p>
 <ul>
 <li><strong>Agent actions.</strong> A model works on a copy of one of your applications and hands you the result as a proposal. <a href="everyday-work.html">Your first session</a> shows the loop.</li>
-<li><strong>Chat.</strong> Chat answers questions about an application. It never runs tools and never changes anything.</li>
+<li><strong>Chat.</strong> Chat answers questions about an application. It reads the application&rsquo;s own files to answer, at most 12 KiB of them. It never runs tools and never changes anything.</li>
 </ul>
 <p>Everything else is deterministic. The check actions read your files and give a verdict: passed, not yet, or invalid, with the reason. Those verdicts come from a script, not from a model.</p>
 
@@ -108,7 +108,7 @@
 <ul>
 <li>During a model's free period, OpenCode states that data sent to that model may be used to improve that model. StatePort shows you that text before you accept, together with a link to the provider's own page.</li>
 <li>Accepting is your choice. If you decline, no free-model request is made and the rest of StatePort is unaffected.</li>
-<li>When you use the free route, the model receives the work it was asked to do: the prompt for the action and the files of the copy it is working on. It does not receive your other applications, your conversations from other applications, or your account details.</li>
+<li>When you use the free route, the model receives the work it was asked to do: the prompt for the action and the files of the copy it is working on. A chat message sends your question, the files StatePort put into it (at most 12 KiB) and the pending approvals and recent records. It does not receive your other applications, your conversations from other applications, or your account details.</li>
 <li>The model runs inside a sandbox that has no access to anything else on the machine, and it can reach only the model provider's addresses. <a href="security-and-privacy.html">Security and privacy</a> explains what that means in detail.</li>
 <li>You can withdraw the consent later. The route then stops being used.</li>
 </ul>

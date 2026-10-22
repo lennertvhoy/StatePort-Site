@@ -129,12 +129,13 @@
 <p>Only apply a proposal you have read. The diff tells you what the model believes about your work; the check tells you whether the files agree with each other. Neither replaces your judgement.</p>
 
 <h2 id="chat">Chat</h2>
-<p>Chat answers questions about an application. That is all it does.</p>
+<p>Chat &mdash; the <strong>Ask</strong> box of an application &mdash; answers questions about an application. That is all it does.</p>
 <ul>
 <li>It never runs tools.</li>
 <li>It never changes a file or a setting.</li>
 <li>A chat message is not saved as work in your application. If you want a change, use an action.</li>
 </ul>
+<p>The model in chat has no tools: it cannot open a file, run a command or change anything. StatePort reads the application&rsquo;s own files and puts them in your question. They are the files that the template&rsquo;s own actions say a model may read: for ProjectState <code>PROJECT.md</code>, <code>STATE.yaml</code> and <code>AGENTS.md</code>; for StudyState its state files and next actions; for Decision Log <code>state/DECISIONS.yaml</code> and <code>decisions/</code>. That is at most 12 KiB, together with your pending approvals and the recent import or run records.</p>
 <p>Chat needs a model. <a href="models.html">Models and keeping up</a> explains how to get one, including a route that needs no account at all.</p>
 
 <h2 id="a-daily-loop">A daily loop</h2>

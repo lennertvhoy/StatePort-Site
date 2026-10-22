@@ -98,7 +98,7 @@
 <ul>
 <li><strong>During the install.</strong> The installer downloads the release files and the container images from this site and from GitHub, and checks each one against a fingerprint before using it.</li>
 <li><strong>When you import a template from a public repository.</strong> StatePort reads the repository you name. It does not send anything else, and it does not run the code of that repository while inspecting it.</li>
-<li><strong>When you ask a model to do something.</strong> An agent action or a chat message sends the work to the model provider you chose. That is the only time your content is sent to someone else.</li>
+<li><strong>When you ask a model to do something.</strong> An agent action or a chat message sends the work to the model provider you chose. A chat message also carries the files StatePort read for it: the files that the template says a model may read, at most 12 KiB, together with your pending approvals and the recent import or run records. That is the only time your content is sent to someone else.</li>
 </ul>
 <p>Everything else stays where it is. Your applications, their files, their history, your backups and the record of what happened all stay inside the Ubuntu distribution where you installed StatePort. Check actions, applying a change you have reviewed, and the whole interface work without a model and without a network.</p>
 
