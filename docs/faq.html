@@ -123,13 +123,13 @@
 <ul>
 <li>Use anything other than Windows 11 with WSL2 and Ubuntu 24.04 on AMD64. WSL1, ARM64, macOS, native Linux, Docker Desktop, and other distributions are not supported.</li>
 <li>Go back to an older release. You can move forward to a newer one, but there is no way back.</li>
-<li>Import the three templates and run each of their actions. The Decision Log template is published, but importing the templates and running their actions has not been measured in this release yet.</li>
+<li>Run the agent actions of the three templates with a free model. The three templates were imported and their check actions ran on this release, but OpenCode's anonymous free route had reached its usage limit from the test connection, so no agent action was measured.</li>
 <li>Undo most changes. One undo exists: the last evidence update in the study sample.</li>
 <li>Back up more than an application&rsquo;s files. A backup does not include the Git history, the conversations, the index of records or the approvals, and a restore recreates files only.</li>
 <li>Ask chat to do something. Chat answers questions about an application, reading the files that the template&rsquo;s actions say a model may read, and it never runs tools or changes anything.</li>
 <li>Move to another computer with everything attached. The files of an application can be exported and imported; permissions, records and provider logins do not travel.</li>
 <li>Use it for a team, as a hosted service, or across the public internet. It is for one person on one local computer.</li>
-<li>Count on measured results for this release. The install, the restart behaviour and the resource use are not measured yet; <a href="limitations.html#measured">what is measured and what is not</a> lists the gaps.</li>
+<li>Count on a complete set of measured results for this release. The install, the resource use, uninstall and purge were measured once in a Windows 11 test virtual machine; restarting Windows, the upgrade from Alpha.24, and agent actions and chat are not measured yet. <a href="limitations.html#measured">What is measured and what is not</a> lists the gaps.</li>
 </ul>
 
 <h2 id="report-a-bug">How do I report a bug?</h2>
