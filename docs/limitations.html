@@ -107,17 +107,17 @@
 <p>WSL1, ARM64, macOS, Docker Desktop, native Linux, Windows 10 and other Linux distributions are not supported. The installer checks your setup before it changes anything and stops with a message if it does not match. See <a href="platform-support.html">platform support</a>.</p>
 
 <h2 id="measured">What is measured, and what is not</h2>
-<p><strong>This release has not been measured yet.</strong> No result below is claimed. Where a number belongs, there is a placeholder instead of a guess, and it will be filled in when the result exists.</p>
+<p><strong>This release has not been measured yet.</strong> No result below is claimed. Where a number belongs, nothing is shown instead of a guess. A result is written after its item once it exists, and an item with nothing after it has not been measured for this release.</p>
 <p>What still needs to be measured for this release:</p>
 <ul>
-<li><strong>How long the install takes</strong> on the reference test machine: <!-- facts:install-seconds --></li>
-<li><strong>The whole journey on a clean machine</strong>: install, open the study sample, run a check, run an agent action, read the proposal, apply it, and see the result again after a reload: <!-- facts:journey-result --></li>
-<li><strong>What happens after a Windows restart</strong>: <!-- facts:reboot-result --></li>
-<li><strong>What happens after a Windows sign-out</strong>, and whether the keep-alive task starts on its own: <!-- facts:keepalive-result --></li>
-<li><strong>Memory and disk use at idle</strong>: <!-- facts:memory-mb -->, and <!-- facts:disk-gb --></li>
-<li><strong>Upgrading in place</strong> from the previous release, and reinstalling over the same release: <!-- facts:upgrade-result --></li>
-<li><strong>Removing StatePort on Windows</strong> with <code>uninstall</code> and <code>purge</code>: <!-- facts:removal-result --></li>
-<li><strong>Importing the three templates</strong> and running each of their actions: <!-- facts:import-result --></li>
+<li><strong>How long the install takes</strong> on the reference test machine. <!-- facts:install-seconds --></li>
+<li><strong>The whole journey on a clean machine</strong>, which is install, open the study sample, run a check, run an agent action, read the proposal, apply it, and see the result again after a reload. <!-- facts:journey-result --></li>
+<li><strong>What happens after a Windows restart.</strong> <!-- facts:reboot-result --></li>
+<li><strong>What happens after a Windows sign-out</strong>, and whether the keep-alive task starts on its own. <!-- facts:keepalive-result --></li>
+<li><strong>Memory and disk use at idle.</strong> <!-- facts:memory-mb --> <!-- facts:disk-gb --></li>
+<li><strong>Upgrading in place</strong> from the previous release, and reinstalling over the same release. <!-- facts:upgrade-result --></li>
+<li><strong>Removing StatePort on Windows</strong> with <code>uninstall</code> and <code>purge</code>. <!-- facts:removal-result --></li>
+<li><strong>Importing the three templates</strong> and running each of their actions. <!-- facts:import-result --></li>
 </ul>
 <p>What earlier releases showed is in the exact status statement at the top of this page. In short: the install, the study sample, a restart of the services, a restart of the Ubuntu distribution and an import from GitHub were measured on the Alpha.24 release in a Windows 11 test virtual machine, which is a virtual machine and not a physical computer. Results on a real Windows computer are still missing, and so are results for a planned restart.</p>
 <p>The installer itself is a script you can read. It checks that you have WSL2 (not WSL1), Ubuntu 24.04, systemd as the first process, Windows build 22000 or newer, <code>powershell.exe</code> reachable from Ubuntu, an x86-64 CPU, and a user that is not root. It asks for two typed confirmations. It has two options that install nothing: <code>--transport-probe</code> and <code>--materialization-preflight</code>. <a href="getting-started.html">Getting started</a> explains them.</p>

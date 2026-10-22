@@ -165,7 +165,7 @@ id -u</code>
 <li>It prints the address to open and the commands you use to manage StatePort afterwards.</li>
 </ol>
 <p>Let it finish and keep the window open; an interrupted run can leave files behind (see <a href="troubleshooting.html#image-archive-conflict">troubleshooting</a>). Lines that start with <code>StatePort download retry</code> or <code>StatePort apt update retry</code> mean the installer is retrying a step by itself. A line saying StatePort held packages is normal: the installer pins the exact packages it installed so that ordinary updates do not change them.</p>
-<p>How long this takes on the reference test machine: <!-- facts:install-seconds --> not measured for this release yet. Allow more time on a slower computer or a slower connection.</p>
+<p>How long this takes on the reference test machine has not been measured for this release yet. <!-- facts:install-seconds --> Allow more time on a slower computer or a slower connection.</p>
 
 <h2 id="success">What success looks like</h2>
 <p>Near the end you see this, with your own port and your own paths:</p>
@@ -218,7 +218,7 @@ id -u</code>
 <h2 id="keeping-running">Keeping StatePort running</h2>
 <ul>
 <li><strong>Closing Ubuntu windows.</strong> The installer registers a Windows scheduled task named <code>StatePortKeepAlive</code>. It keeps Ubuntu running so that StatePort stays reachable after you close the last Ubuntu window, and it starts again after you sign out or restart Windows.</li>
-<li><strong>Restarting Windows.</strong> What happens after a restart has not been measured yet on this release: <!-- facts:reboot-result -->. If the address does not answer after a restart, sign in to Windows, open an Ubuntu window, and try again after a few minutes.</li>
+<li><strong>Restarting Windows.</strong> What happens after a restart has not been measured yet on this release. <!-- facts:reboot-result --> If the address does not answer after a restart, sign in to Windows, open an Ubuntu window, and try again after a few minutes.</li>
 <li><strong>The port.</strong> The installer picks the port, and it can differ between installs and computers. Always use the address printed at the end of your install, or ask for it later with <code>stateport url</code>.</li>
 </ul>
 

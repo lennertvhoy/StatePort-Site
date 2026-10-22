@@ -113,7 +113,7 @@ Now:
 
 Proposed:
 
-> On the previous release: one-command install (the public command exited 0 in 474 seconds, one attempt, in a local Windows 11 test virtual machine); the bundled study sample end to end, with the saved data kept after a service restart and a full WSL restart; importing the StudyState template from its public GitHub address. For Alpha.26 the results are not in yet: <!-- facts:install-seconds -->, <!-- facts:journey-result -->, <!-- facts:reboot-result -->, <!-- facts:memory-mb --> and <!-- facts:disk-gb -->.
+> On the previous release: one-command install (the public command exited 0 in 474 seconds, one attempt, in a local Windows 11 test virtual machine); the bundled study sample end to end, with the saved data kept after a service restart and a full WSL restart; importing the StudyState template from its public GitHub address. For Alpha.26 the results are not in yet. <!-- facts:install-seconds --> <!-- facts:journey-result --> <!-- facts:reboot-result --> <!-- facts:memory-mb --> <!-- facts:disk-gb -->
 
 ---
 
@@ -157,7 +157,7 @@ Proposed:
 
 > - **What this release does.** One command installs it. It asks for your password and for two typed confirmations, then prints the address to open and the commands that manage it. You open an application, run its check, ask a model to work on a copy, and apply or reject what it proposes.
 > - **Measured on the previous release.** The install, the study sample, a service restart, a full WSL restart and an import from GitHub, in a Windows 11 test virtual machine. The public command took 474 seconds there, once.
-> - **Not measured yet for this release.** How long the install takes: <!-- facts:install-seconds -->. The whole journey on a clean machine: <!-- facts:journey-result -->. What happens after a Windows restart: <!-- facts:reboot-result -->. Memory and disk at idle: <!-- facts:memory-mb --> and <!-- facts:disk-gb -->. Upgrading in place: <!-- facts:upgrade-result -->. Removing StatePort on Windows: <!-- facts:removal-result -->. Importing the three templates: <!-- facts:import-result -->.
+> - **Not measured yet for this release.** How long the install takes. <!-- facts:install-seconds --> The whole journey on a clean machine. <!-- facts:journey-result --> What happens after a Windows restart. <!-- facts:reboot-result --> Memory and disk at idle. <!-- facts:memory-mb --> <!-- facts:disk-gb --> Upgrading in place. <!-- facts:upgrade-result --> Removing StatePort on Windows. <!-- facts:removal-result --> Importing the three templates. <!-- facts:import-result -->
 > - **Not working yet.** You cannot go back to an older release. The three templates have not been imported and measured in this release yet. Chat answers questions, reading the files that the template's actions say a model may read, and never changes anything. One undo exists. A backup holds the files of one application.
 
 ### The dry-run line
@@ -188,7 +188,7 @@ Now:
 
 Proposed:
 
-> Expect it to take several minutes. The previous release's public command took 474 seconds (about 8 minutes) once on a test virtual machine; allow more on a slow connection or a slower computer. For this release: <!-- facts:install-seconds -->. If it stops with `package_installation_invalid`, wait a minute and run the same command again; troubleshooting explains why.
+> Expect it to take several minutes. The previous release's public command took 474 seconds (about 8 minutes) once on a test virtual machine; allow more on a slow connection or a slower computer. For this release the time has not been measured yet. <!-- facts:install-seconds --> If it stops with `package_installation_invalid`, wait a minute and run the same command again; troubleshooting explains why.
 
 ### Template import and the study sample
 
@@ -214,7 +214,7 @@ Now: a long paragraph about the triggers on Alpha.24, Alpha.21 and Alpha.20, and
 
 Proposed:
 
-> **Be aware:** the Windows task that keeps Ubuntu running is registered to start at Windows start-up, at sign-in and every 10 minutes. Whether it keeps StatePort reachable after the last Ubuntu window closes, and what happens after a Windows restart, are not measured yet for this release: <!-- facts:keepalive-result --> and <!-- facts:reboot-result -->. If the local address stops answering, open an Ubuntu window and reload after a few minutes, or sign out of Windows and back in, then reload the page.
+> **Be aware:** the Windows task that keeps Ubuntu running is registered to start at Windows start-up, at sign-in and every 10 minutes. Whether it keeps StatePort reachable after the last Ubuntu window closes, and what happens after a Windows restart, are not measured yet for this release. <!-- facts:keepalive-result --> <!-- facts:reboot-result --> If the local address stops answering, open an Ubuntu window and reload after a few minutes, or sign out of Windows and back in, then reload the page.
 
 ### The uninstall bullet
 
@@ -224,7 +224,7 @@ Now:
 
 Proposed:
 
-> **Remove it:** `~/.local/state/stateport-install/bin/stateport uninstall` removes StatePort and keeps your data; `~/.local/state/stateport-install/bin/stateport purge` deletes the data as well, after you type a confirmation, and needs your `sudo` password. Both on Windows: <!-- facts:removal-result -->. The update and removal guide has the details. Do not run an installer from another release against a newer install.
+> **Remove it:** `~/.local/state/stateport-install/bin/stateport uninstall` removes StatePort and keeps your data; `~/.local/state/stateport-install/bin/stateport purge` deletes the data as well, after you type a confirmation, and needs your `sudo` password. How both behave on Windows has not been measured for this release yet. <!-- facts:removal-result --> The update and removal guide has the details. Do not run an installer from another release against a newer install.
 
 ### What to include in a report
 
@@ -279,7 +279,7 @@ Now: the Alpha.24 and Alpha.23 measurements, the 474 second install, the study s
 
 Proposed:
 
-> Alpha.26 is installed on Windows 11 with WSL2 and Ubuntu 24.04 from one command. It gives you a web interface, an API, storage and a sandbox on your own machine, and an address that only your computer can reach. It needs no account for anything except the agent actions and the chat, and for those you can use OpenCode's free models after accepting their terms. The measurements for this release are not in yet: <!-- facts:install-seconds -->, <!-- facts:journey-result -->, <!-- facts:reboot-result -->, <!-- facts:memory-mb -->, <!-- facts:disk-gb -->, <!-- facts:upgrade-result -->, <!-- facts:removal-result --> and <!-- facts:import-result -->. The install, the study sample, a service restart, a full WSL restart and an import from GitHub were measured on the previous release in a Windows 11 test virtual machine, which is a virtual machine and not a physical computer.
+> Alpha.26 is installed on Windows 11 with WSL2 and Ubuntu 24.04 from one command. It gives you a web interface, an API, storage and a sandbox on your own machine, and an address that only your computer can reach. It needs no account for anything except the agent actions and the chat, and for those you can use OpenCode's free models after accepting their terms. The measurements for this release are not in yet. <!-- facts:install-seconds --> <!-- facts:journey-result --> <!-- facts:reboot-result --> <!-- facts:memory-mb --> <!-- facts:disk-gb --> <!-- facts:upgrade-result --> <!-- facts:removal-result --> <!-- facts:import-result --> The install, the study sample, a service restart, a full WSL restart and an import from GitHub were measured on the previous release in a Windows 11 test virtual machine, which is a virtual machine and not a physical computer.
 
 ### Not working yet
 
@@ -296,15 +296,15 @@ Rows to change, with the wording proposed for each:
 | Row | Proposed wording for Alpha.26 |
 |---|---|
 | Product preview | Available; the video was recorded on an earlier development build, and its &ldquo;stay undoable&rdquo; line does not hold for this release |
-| Alpha.26 one-line installer | Available; the measurements are not in yet: <!-- facts:install-seconds -->, <!-- facts:journey-result --> |
+| Alpha.26 one-line installer | Available; the measurements are not in yet. <!-- facts:install-seconds --> <!-- facts:journey-result --> |
 | Alpha.24 one-line installer (previous release) | Files remain available. Measured through the public command itself: exit 0 in 474 seconds on a pristine Windows 11 test VM (one attempt); real-Windows and reboot results pending |
 | Alpha.23 one-line installer (older release) | Files remain available. Measured through the public command itself: exit 0 in about 9 minutes on a pristine Windows 11 test VM (3 of 4 attempts on these bytes) |
-| Study sample loop | Measured on the previous release through the product&rsquo;s own interface: start an activity, review the exact change, approve, reflect, and read the durable result back; state kept after a StatePort service restart and a full WSL distribution restart (7 of 7 checks both times). In the browser: measured on Alpha.21, not repeated since. For this release: <!-- facts:journey-result --> |
-| Reachable after the last WSL window closes | Not measured for this release: <!-- facts:keepalive-result --> |
-| Windows reboot survival | Not measured for this release: <!-- facts:reboot-result --> |
-| Template import on Windows | Importing the StudyState template from GitHub worked on the previous release (inspected, planned and installed as a new instance). For this release: <!-- facts:import-result --> |
-| Backup and restore | A backup archives the files of one application, not its Git history, its conversations, the index of records or the approvals; a restore creates a new application from it. For this release: <!-- facts:backup-result --> |
-| Chat replies and agent runs | A model route is needed. Chat answers questions, reading the files that the template's actions say a model may read, and never changes anything; an agent action works on a copy and hands you a proposal. For this release: <!-- facts:agent-action-result --> |
+| Study sample loop | Measured on the previous release through the product&rsquo;s own interface: start an activity, review the exact change, approve, reflect, and read the durable result back; state kept after a StatePort service restart and a full WSL distribution restart (7 of 7 checks both times). In the browser: measured on Alpha.21, not repeated since. This release has no result yet. <!-- facts:journey-result --> |
+| Reachable after the last WSL window closes | Not measured for this release. <!-- facts:keepalive-result --> |
+| Windows reboot survival | Not measured for this release. <!-- facts:reboot-result --> |
+| Template import on Windows | Importing the StudyState template from GitHub worked on the previous release (inspected, planned and installed as a new instance). This release has no result yet. <!-- facts:import-result --> |
+| Backup and restore | A backup archives the files of one application, not its Git history, its conversations, the index of records or the approvals; a restore creates a new application from it. This release has no result yet. <!-- facts:backup-result --> |
+| Chat replies and agent runs | A model route is needed. Chat answers questions, reading the files that the template's actions say a model may read, and never changes anything; an agent action works on a copy and hands you a proposal. This release has no result yet. <!-- facts:agent-action-result --> |
 | Undo and rollback | One undo exists, for the last evidence update in the study sample. Undo for other changes is not built. There is no supported way back to an earlier release, and data saved by one release may not be usable in another |
 
 ---
