@@ -199,10 +199,10 @@ id -u</code>
 <p>If the page does not load, see <a href="troubleshooting.html#after-install">troubleshooting</a>.</p>
 
 <h2 id="route">Step 6. Choose an AI route</h2>
-<p>StatePort can ask an AI model to do work for you, but only if a model is available. On the first screen you pick one of two routes:</p>
+<p>StatePort can ask an AI model to do work for you, but only if a model is available. The first step on the first screen offers two routes:</p>
 <ul>
-<li><strong>Use free models (no account).</strong> These are OpenCode's free models. You do not need an account and you do not need a key. Before the first request, the product shows you the provider's terms and asks you to accept them. During a model's free period, OpenCode states that data sent to that model may be used to improve it. Read the terms before you accept.</li>
-<li><strong>Your own OpenCode sign-in or API key.</strong> You connect an account you already have. What that provider does with your data is covered by your own agreement with them.</li>
+<li><strong>Use free models (no account).</strong> These are OpenCode's free models. You do not need an account and you do not need a key. Before the first request, the product shows you the provider's terms and asks you to accept them. During a model's free period, OpenCode states that data sent to that model may be used to improve it. Read the terms before you accept. The agent actions use this route in this release.</li>
+<li><strong>Connect your own OpenCode sign-in or API key.</strong> You connect an account you already have. In this release only the chat uses it. The agent actions, and the practice runs on the Models page, use only the free models, so they stay off until you accept the free-model terms. What that provider does with your data is covered by your own agreement with them.</li>
 </ul>
 <p>You can also skip both for now. Without an AI route everything still works except the AI actions and the chat. The check actions, the applications, the backup and the rest of the interface do not need a model.</p>
 <p><a href="models.html">Models and keeping up</a> explains how StatePort chooses a model, how it measures them, and how to pin one.</p>
@@ -217,7 +217,7 @@ id -u</code>
 
 <h2 id="keeping-running">Keeping StatePort running</h2>
 <ul>
-<li><strong>Closing Ubuntu windows.</strong> The installer registers a Windows scheduled task named <code>StatePortKeepAlive</code>. It keeps Ubuntu running so that StatePort stays reachable after you close the last Ubuntu window, and it starts again after you sign out or restart Windows.</li>
+<li><strong>Closing Ubuntu windows.</strong> The installer registers a Windows scheduled task named <code>StatePortKeepAlive</code>. The task is designed to keep Ubuntu running, so that StatePort stays reachable after you close the last Ubuntu window, and to start Ubuntu again at Windows start-up (where Windows allows it), at sign-in and every 10 minutes. Windows may allow only a smaller version for your account, for example sign-in only, and the installer says so at the end when that is the case. Whether the task does what it is designed to do has not been measured on this release.</li>
 <li><strong>Restarting Windows.</strong> What happens after a restart has not been measured yet on this release. <!-- facts:reboot-result --> If the address does not answer after a restart, sign in to Windows, open an Ubuntu window, and try again after a few minutes.</li>
 <li><strong>The port.</strong> The installer picks the port, and it can differ between installs and computers. Always use the address printed at the end of your install, or ask for it later with <code>stateport url</code>.</li>
 </ul>

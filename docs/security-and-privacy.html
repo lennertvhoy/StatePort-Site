@@ -87,18 +87,19 @@
         <article class="prose">
 <p class="notice notice--quiet"><strong>Early alpha.</strong> StatePort has not had an independent security review. Do not use it for important data. One setup is supported: Windows 11 with WSL2 and Ubuntu 24.04 on an AMD64 computer. <a href="limitations.html#measured">See what is measured and what is not</a>.</p>
 
-<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#main-risks">Main risks</a></li><li data-level="2"><a href="#what-leaves">What leaves your machine, and when</a></li><li data-level="2"><a href="#the-sandbox">The sandbox</a></li><li data-level="2"><a href="#egress">The list of addresses a model may reach</a></li><li data-level="2"><a href="#privacy">Privacy</a></li><li data-level="3"><a href="#free-models">Using free models</a></li><li data-level="3"><a href="#before-connecting-an-ai-tool">Before connecting an AI tool</a></li><li data-level="3"><a href="#sharing-diagnostics">Sharing diagnostics</a></li><li data-level="2"><a href="#current-limits">Current limits</a></li><li data-level="2"><a href="#reporting-a-security-issue">Report a vulnerability</a></li></ol></details>
+<details class="page-toc" open><summary>On this page</summary><ol><li data-level="2"><a href="#main-risks">Main risks</a></li><li data-level="2"><a href="#what-leaves">What leaves your machine, and when</a></li><li data-level="2"><a href="#the-sandbox">The sandbox</a></li><li data-level="2"><a href="#egress">The list of addresses a model may reach</a></li><li data-level="2"><a href="#privacy">Privacy</a></li><li data-level="3"><a href="#free-models">Using free models</a></li><li data-level="3"><a href="#opencode-sign-in">An OpenCode sign-in already on your computer</a></li><li data-level="3"><a href="#before-connecting-an-ai-tool">Before connecting an AI tool</a></li><li data-level="3"><a href="#sharing-diagnostics">Sharing diagnostics</a></li><li data-level="2"><a href="#current-limits">Current limits</a></li><li data-level="2"><a href="#reporting-a-security-issue">Report a vulnerability</a></li></ol></details>
 
 <h2 id="main-risks">Main risks</h2>
 <p>AI-assisted applications can read malicious content, follow unsafe instructions, use old permissions, expose secrets or change the wrong files. A compromised computer can also get around an application&rsquo;s own controls. StatePort reduces these risks; it does not remove them.</p>
 
 <h2 id="what-leaves">What leaves your machine, and when</h2>
 <p>StatePort runs as local services and prints an address on your own computer (<code>127.0.0.1</code>). Other devices cannot reach it, and you should not expose it to the internet.</p>
-<p>Three things can leave your machine, and only three:</p>
+<p>Four things can leave your machine, and only four:</p>
 <ul>
-<li><strong>During the install.</strong> The installer downloads the release files and the container images from this site and from GitHub, and checks each one against a fingerprint before using it.</li>
+<li><strong>During the install.</strong> The installer downloads the release files and the container images from this site and from GitHub, and checks each one against a fingerprint before using it. It also runs <code>apt-get update</code> and installs a few ordinary Ubuntu packages, for example <code>python3-venv</code>, <code>fuse3</code> and <code>nftables</code>, from the package mirrors your Ubuntu is set up to use. The container runtime packages come from a signed bundle on this site, not from those mirrors.</li>
 <li><strong>When you import a template from a public repository.</strong> StatePort reads the repository you name. It does not send anything else, and it does not run the code of that repository while inspecting it.</li>
-<li><strong>When you ask a model to do something.</strong> An agent action or a chat message sends the work to the model provider you chose. A chat message also carries the files StatePort read for it: the files that the template says a model may read, at most 12 KiB, together with your pending approvals and the recent import or run records. That is the only time your content is sent to someone else.</li>
+<li><strong>When you ask a model to do something.</strong> An agent action or a chat message sends the work to the model provider you chose. A chat message also carries the files StatePort read for it: the files that the template says a model may read, at most 12 KiB, together with your pending approvals and the recent import or run records. Apart from the next item, that is the only time your content is sent to someone else.</li>
+<li><strong>A daily pass, after you accept the free-model terms.</strong> A few seconds after StatePort&rsquo;s service starts, and then once a day, StatePort refreshes OpenCode&rsquo;s list of free models (it contacts <code>models.opencode.ai</code>) and sends each model it currently uses, or is about to switch to, one short test prompt (it contacts <code>opencode.ai</code>), to see whether the model still answers. The test prompt is fixed text and carries none of your content. If you have switched on <strong>Keep up automatically</strong> and there is work to do, the pass can also run StatePort&rsquo;s own practice tasks on up to three models, at most once a day; those tasks send StatePort&rsquo;s own sample files, never your work. Until you accept the terms, StatePort does not run this pass by itself. The Models page also has a <strong>Check the model list</strong> button that refreshes the list by hand.</li>
 </ul>
 <p>Everything else stays where it is. Your applications, their files, their history, your backups and the record of what happened all stay inside the Ubuntu distribution where you installed StatePort. Check actions, applying a change you have reviewed, and the whole interface work without a model and without a network.</p>
 
@@ -111,7 +112,7 @@
 <li>It has a wall-clock limit and a limit on how much it can write. When the limit is reached, it is stopped.</li>
 <li>It cannot reach the loopback address of the StatePort services themselves, so it cannot ask them to do anything.</li>
 </ul>
-<p>Only one file can be given to it on purpose: when you connect your own account, the single credential file that account needs is copied into the run&rsquo;s own home folder. The agent can read that file, and the address list below bounds where it could send it. The copy is deleted with the run, and the record of the run states that this route exposes the credential to the model.</p>
+<p>Only one file can be given to it on purpose: when the chat uses your own account (an adopted OpenCode sign-in or a stored API key), the single credential file that account needs is copied into the run&rsquo;s own home folder. Agent actions are never given a credential file. The agent can read that file, and the address list below bounds where it could send it. The copy is deleted with the run, and the record of the run states that this route exposes the credential to the model.</p>
 <p>StatePort itself computes the difference between the copy and your application, so the proposal you review is the real change, not a summary from the model. A proposal that touches a file outside the application is refused before you see it.</p>
 
 <h2 id="egress">The list of addresses a model may reach</h2>
@@ -130,11 +131,20 @@
 <p>You do not need an account to use StatePort. The free route needs no sign-in and no key, which is why it is offered with its terms in front of you:</p>
 <ul>
 <li>Before the first request, StatePort shows you the provider&rsquo;s terms and asks you to accept them. During a model&rsquo;s free period, OpenCode states that data sent to that model may be used to improve that model. Read that text before you accept; the page links to the provider&rsquo;s own wording.</li>
-<li>If you decline, no free-model request is made. The rest of StatePort keeps working, and you can connect your own account or API key instead.</li>
+<li>If you decline, no free-model request is made. The rest of StatePort keeps working, and the chat can use your own account or API key instead. Agent actions use only the free models in this release.</li>
 <li>With the free route, the model receives the task you asked for and the files of the copy it works on. It does not receive your other applications, and it does not receive your account details.</li>
 <li>You can withdraw the consent at any time. The route then stops being used.</li>
 </ul>
 <p><a href="models.html">Models and keeping up</a> has the full picture, including how StatePort measures models on its own practice tasks without ever using your data.</p>
+
+<h3 id="opencode-sign-in">An OpenCode sign-in already on your computer</h3>
+<p>At the end of an install, the installer looks in the account that ran it for <code>~/.local/share/opencode/auth.json</code>, the file where OpenCode keeps its sign-ins. It checks that the file is there without opening it. If it is, the installer uses <code>sudo</code> to copy the records of OpenCode Go and OpenCode, and only those, into StatePort&rsquo;s private provider folders under <code>/var/lib/stateport-control</code> and <code>/var/lib/stateport-exec</code>. Records for any other provider are never copied. The original file is not changed, and nothing is sent anywhere. If there is no file, or no OpenCode record in it, nothing is copied. The line that starts with <code>OpenCode sign-in:</code> near the end of the install says which of these happened. The one-line command has no option to skip the copy.</p>
+<ul>
+<li>In the web interface, only the chat can use the copy, and only for an OpenCode or OpenCode Go model. Agent actions never use it.</li>
+<li>If the copied sign-in is an OAuth one, OpenCode replaces its refresh token whenever it refreshes it, so a refresh inside StatePort can sign your original OpenCode out. A sign-in that is an API key, such as OpenCode Go, does not have that problem.</li>
+<li><code>uninstall</code> and <code>purge</code> both leave the copies in place. The installer says so, and StatePort&rsquo;s cleanup neither reads nor deletes these files.</li>
+<li><strong>Remove adopted sign-in</strong> on the Coding provider page deletes StatePort&rsquo;s copy in its provider folder and never touches the original. The two copies in the <code>agent-provider</code> folders stay until you remove them yourself as an administrator, or remove the whole Ubuntu distribution.</li>
+</ul>
 
 <h3 id="before-connecting-an-ai-tool">Before connecting an AI tool</h3>
 <p>A local web interface does not make a remote AI provider local. A provider request may send task context to that provider. Before you send sensitive content, check the selected route, what the request contains, and your provider account settings.</p>

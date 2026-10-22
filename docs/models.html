@@ -98,8 +98,8 @@
 <h2 id="two-ways">Two ways to get a model</h2>
 <p>On the first screen, and later under <strong>Settings &rarr; Models</strong>, you can choose:</p>
 <ul>
-<li><strong>Use free models (no account).</strong> These are OpenCode's free models. You do not need an account and you do not need a key. Before the first request, StatePort shows you the provider's terms and asks you to accept them.</li>
-<li><strong>Your own OpenCode sign-in or API key.</strong> You connect an account you already have. What that provider does with what it receives is covered by your agreement with them.</li>
+<li><strong>Use free models (no account).</strong> These are OpenCode's free models. You do not need an account and you do not need a key. Before the first request, StatePort shows you the provider's terms and asks you to accept them. The agent actions and the chat can both use this route.</li>
+<li><strong>Your own OpenCode sign-in or API key.</strong> You connect an account you already have, on the <strong>Coding provider</strong> page, which <strong>Settings &rarr; Models</strong> links to. In this release only the chat can use it. The agent actions, and the practice runs on the Models page, use only the free route. What that provider does with what it receives is covered by your agreement with them.</li>
 </ul>
 <p>You can leave both alone. The rest of StatePort keeps working, and you can pick a route later.</p>
 
@@ -134,7 +134,8 @@
 <p>You can pin a model. A pinned model is never changed for you, not by the catalogue and not by the automatic switch. Pin the model you trust if you would rather make that choice yourself.</p>
 
 <h2 id="no-model">When no free model is available</h2>
-<p>If no free model can be used or measured, the route becomes <em>none</em>. The agent actions then say so in plain words: no measured free model is available, so you can evaluate one now or connect an account. Nothing is sent anywhere, and no action runs against a model you did not choose.</p>
+<p>If no free model can be used or measured, the route becomes <em>none</em>. The agent actions then say so in plain words: no measured free model is available, so you can evaluate one now. Connecting your own account does not change that, because the agent actions use only the free route in this release. Nothing is sent anywhere, and no action runs against a model you did not choose.</p>
+<p>If the free models are refused because OpenCode's free allowance for this computer is used up, see <a href="troubleshooting.html#free-usage-limit">Free usage limit reached</a>. Nothing is lost, and trying again later is the remedy.</p>
 
 <h2 id="not-measured">What is not measured yet</h2>
 <p>This release is new. No numbers are given for the following until they have been measured. A result is written after its item once it exists, and an item with nothing after it has not been measured yet:</p>

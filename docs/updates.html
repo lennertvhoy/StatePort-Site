@@ -140,6 +140,7 @@
 <li>System packages in the Ubuntu distribution. The installer holds them so ordinary updates do not change them.</li>
 <li>Background services that run under Ubuntu&rsquo;s systemd, and the container images they use.</li>
 <li>Install records in <code>~/.local/state/stateport-install</code>.</li>
+<li>A copy of your OpenCode sign-in, if the installer found one and made it. <code>uninstall</code> and <code>purge</code> both leave it in place. <a href="security-and-privacy.html#opencode-sign-in">Security and privacy</a> says where it is.</li>
 <li>One Windows scheduled task, <code>StatePortKeepAlive</code>. It lives in Windows, not in Ubuntu. If you remove StatePort, remove this task too in Windows Task Scheduler.</li>
 </ul>
 <p>Two more things to know:</p>
